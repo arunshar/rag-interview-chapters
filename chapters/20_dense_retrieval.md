@@ -350,7 +350,7 @@ E[||g_{hat}||^2] = Σ_j ||g_j||^2/p_j
 $$
 Cauchy-Schwarz gives equality at:
 $$
-p_j^* = ||g_j|| / Σ_i ||g_i||
+p_j^{*} = ||g_j|| / Σ_i ||g_i||
 $$
 Since norm(g_j) is proportional to e^-Δ_j, the optimal sampler is the model's own ranked retrieval list.
 

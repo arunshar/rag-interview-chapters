@@ -1,0 +1,4 @@
+interface:
+  display_name: "RAG Interview Study Edition"
+  short_description: "Build verified RAG study editions from technical PDFs"
+  default_prompt: "Use $rag-interview-study-edition to turn this technical RAG PDF into a verified, whiteboard-ready Markdown study package."

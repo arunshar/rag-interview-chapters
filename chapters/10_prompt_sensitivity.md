@@ -257,7 +257,7 @@ $$
 - **Cost or complexity:** The full matrix uses N(N - 1) scoring passes after N generations.
 
 $$
-\operatorname{POSIX} = \frac{1}{N(N-1)} \sum_{i=1}^{N} \sum_{j \ne i} \frac{1}{|y_i|} \left|\log \frac{P(y_i \mid x_j)}{P(y_i \mid x_i)}\right|
+\mathop{\text{POSIX}} = \frac{1}{N(N-1)} \sum_{i=1}^{N} \sum_{j \ne i} \frac{1}{|y_i|} \left|\log \frac{P(y_i \mid x_j)}{P(y_i \mid x_i)}\right|
 $$
 
 - A 40-token answer moving from total log-likelihood -12.0 to -13.6 contributes 1.6 / 40 = 0.040 nats per token.
@@ -340,7 +340,7 @@ $$
 $$
 
 $$
-\operatorname{sd}(A - \widehat{A}) = \sigma_A \sqrt{1-\rho^2}, \qquad A = \rho Z + \sqrt{1-\rho^2}\,\varepsilon
+\mathop{\text{sd}}(A - \widehat{A}) = \sigma_A \sqrt{1-\rho^2}, \qquad A = \rho Z + \sqrt{1-\rho^2}\,\varepsilon
 $$
 
 - At r = 0.7, the residual is 0.714 σ_A.
@@ -425,7 +425,7 @@ $$
 $$
 
 $$
-\sigma_M^2 = \operatorname{Var}_{f \sim F}[A_M(f)]
+\sigma_M^2 = \mathop{\text{Var}}_{f \sim F}[A_M(f)]
 $$
 
 #### Why scale and standard instruction tuning do not impose invariance

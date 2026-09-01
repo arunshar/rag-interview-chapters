@@ -275,7 +275,7 @@ Forgetting has a quadratic form. Learning is first order in step length. Damage 
 The motivating fact says an enterprise tier includes 24/7 phone support even though the service ended in March. The assistant has told customers this for three months, and the vice president wants the claim gone by Friday. The claim is one sentence inside a 27 billion parameter model. At fp32, the model needs 108 GB for weights in the forward pass before gradients, optimizer state, or activations. A full retrain is not a Friday repair. A transformer feed-forward block computes:
 
 $$
-\operatorname{MLP}(h)
+\mathop{\text{MLP}}(h)
 = W_{\mathrm{proj}}\sigma(W_{\mathrm{fc}}h)
 $$
 
@@ -289,7 +289,7 @@ The recovered probability is the indirect effect of that state. Sweeping all lay
 
 $$
 W^{\prime}
-= W+\Lambda(C^{-1}k^*)^{\mathsf T}
+= W+\Lambda(C^{-1}k^{*})^{\mathsf T}
 $$
 
 C is the uncentered covariance of remembered keys estimated from text. For GPT-J 6B, d is 4,096 and the feed-forward width is 16,384. The edited matrix has 67.1 million parameters. The update carries 20,480 free numbers. That is 0.031 percent of the matrix and 0.00034 percent of the model. It needs no optimizer state, training corpus, or full training run. Gradient-based editing starts from the desired output loss. The naive aggressive step overfits and scatters damage. MEND from Mitchell et al. (2022) and KnowledgeEditor from De Cao et al. (2021) train a small auxiliary network to transform the raw gradient into a controlled edit. For a linear layer, the gradient is already an outer product:
@@ -312,7 +312,7 @@ $$
 $$
 
 $$
-\operatorname{rank}(\Delta W)
+\mathop{\text{rank}}(\Delta W)
 \leq \min(n,d,d_{\mathrm{mlp}})
 $$
 
@@ -366,7 +366,7 @@ $$
 The terms are equal at:
 
 $$
-C^*=\frac{N}{Ld}
+C^{*}=\frac{N}{Ld}
 $$
 
 For an 8 billion parameter decoder with 32 layers and width 4,096, the crossover is 61,035 tokens. Below it, doubling context roughly doubles prefill. Above it, attention dominates and doubling context roughly quadruples prefill. A retrieved prompt near 3,000 tokens remains in the linear regime. A 210,000-token stuffed prompt is 3.4 times the crossover and pays the quadratic term. A context window is capacity. Retrieval is selection. Capacity is billed on each query. Selection is primarily paid at indexing time and then limits how much evidence reaches prefill. Liu et al. (2023) measured position effects in multi-document question answering and synthetic key-value retrieval. Accuracy was strongest near the start and end and weaker in the middle. With the gold document in the middle, accuracy could fall below the closed-book baseline. Extended-context variants did not materially improve the shape of the curve. Buying a larger window buys capacity, not reliable use of every position. Corpus stuffing loses on compute and latency because it declines to perform the cheapest selection step. It does not prove retrieval always wins. Retrieval can also flip a correct parametric answer to wrong. Use retrieval to select, then spend extra window capacity on candidate and reranking headroom. One query class genuinely needs whole-corpus evidence. The example asks for three complaints recurring across all 12,000 tickets. No top-k set of eight chunks can represent that evidence. Route such work to hierarchical summarization or graph community summaries rather than pretending ordinary retrieval solved it.

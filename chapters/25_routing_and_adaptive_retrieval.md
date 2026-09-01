@@ -310,7 +310,7 @@ Hand-label 200 production queries by level before tuning retrieval. Use decompos
 Adaptive-RAG chooses among three policies. Policy A answers with no retrieval. Policy B retrieves once and generates. Policy C runs a retrieve-and-reason loop capped at T iterations. For query q with gold answer a*, let G_pi(q) be the generator output under policy pi. Let c(pi) be policy cost with c(A) below c(B) below c(C). The objective is:
 
 $$
-\pi^\star(q) = \underset{\pi \in \{A,B,C\}}{\arg\min}\ c(\pi) \quad \text{subject to}\quad \operatorname{EM}(G_\pi(q), a^\star) = 1
+\pi^\star(q) = \underset{\pi \in \{A,B,C\}}{\arg\min}\ c(\pi) \quad \text{subject to}\quad \mathop{\text{EM}}(G_\pi(q), a^\star) = 1
 $$
 
 When several policies are correct, cheapest wins. When no policy is correct, the source dataset's single-hop or multi-hop bias supplies a fallback label. The hard queries stay in training rather than disappearing.

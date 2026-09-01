@@ -490,7 +490,7 @@ $$
 Across Q queries, inference is Q times Cquery. If a test-time method multiplies query compute by m, the breakeven with added pre-training is:
 
 $$
-Q^*
+Q^{*}
 =
 \frac{\Delta C_{pre}}{(m-1)C_{query}}
 $$
@@ -534,7 +534,7 @@ Pre-training the 70 B at 20 tokens per parameter costs 5.88 × 10^23 FLOPs. The 
 With m = 3.48:
 
 $$
-Q^*
+Q^{*}
 =
 \frac{5.80 \times 10^{23}}
 {2.48(7.04 \times 10^{13})}

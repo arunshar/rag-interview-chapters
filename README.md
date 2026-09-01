@@ -9,6 +9,7 @@ This repository converts the structure of *The RAG Interview* into 57 self-conta
 - Browse the complete [study index](00_INDEX.md) for source spans, reading-time estimates, and focused reading paths.
 - Open the [chapter directory](chapters/) to study one topic at a time.
 - Download [rag-interview-chapters.zip](rag-interview-chapters.zip) for the verified portable package.
+- Reuse the project-scoped [RAG Interview Study Edition skill](.agents/skills/rag-interview-study-edition/SKILL.md) from Codex or share its folder with Fable.
 - Begin with [For Interview Candidates](chapters/00_05_for_interview_candidates.md), [Chapter 1](chapters/01_what_a_rag_interview_actually_tests.md), and [Chapter 3](chapters/03_a_repeatable_framework_for_any_rag_design_question.md) if an interview is close.
 - Use [Chapter 41](chapters/41_end_to_end_design_drills.md) and [Appendix A2](chapters/A2_question_bank.md) for rehearsal after completing a technical path.
 
@@ -41,11 +42,34 @@ Each unit follows the same interview-oriented structure:
 |   |   Forty-one technical and interview-practice chapters
 |   `-- A1_formula_sheet.md through A7_glossary.md
 |       Formula, question, checklist, reporting, reading, notation, and glossary references
+|-- .agents/skills/rag-interview-study-edition/
+|   |-- SKILL.md
+|   |   Reusable workflow entrypoint for building, auditing, packaging, and publishing an edition
+|   |-- references/ and assets/
+|   |   Chapter contract, verification rules, handoff guidance, recap, and templates
+|   `-- scripts/
+|       Markdown, Mermaid, package, and README verification helpers
 `-- rag-interview-chapters.zip
     Verified portable package containing 00_INDEX.md and chapters/
 ```
 
-The ZIP intentionally contains only the study index and the 57 unit files. The repository README remains outside that portable package.
+The ZIP intentionally contains only the study index and the 57 unit files. The repository README and reusable skill remain outside that portable study package.
+
+## Reuse the workflow
+
+This repository includes the project-scoped [RAG Interview Study Edition skill](.agents/skills/rag-interview-study-edition/SKILL.md). A new Codex session opened anywhere in this checkout can invoke it with:
+
+```text
+Use $rag-interview-study-edition to audit this study edition without changing files.
+```
+
+To install the same skill for use outside this repository, ask Codex:
+
+```text
+Use $skill-installer to install the skill from https://github.com/arunshar/rag-interview-chapters/tree/main/.agents/skills/rag-interview-study-edition
+```
+
+For Fable, share the `.agents/skills/rag-interview-study-edition/` folder and ask it to read `SKILL.md` first. The skill does not grant standing permission for pushes, releases, repository creation, or visibility changes. Each external mutation still requires current authorization.
 
 ## Suggested reading paths
 
@@ -229,7 +253,9 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Numbered table headings | 9 |
 | Mermaid diagram blocks | 175 |
 | Files inside the ZIP | 58 |
-| ZIP size | 1,142,359 bytes |
+| ZIP size | 1,142,408 bytes |
+| GitHub-blocked `\operatorname` macros | 0 |
+| Repaired display-math blocks parsed | 72 of 72 |
 
 ### Creation-time quality record
 
@@ -243,12 +269,12 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Final audit errors | 0 |
 | Final audit warnings | 0 |
 
-The supporting manifest, verifier tracker, and audit runner are not included in this repository. These values are preserved as creation-time quality records rather than current reproducible checks.
+The reusable verification scripts are included under `.agents/skills/rag-interview-study-edition/scripts/`. The manifest and verifier tracker are not included, so the creation-time source-reconciliation records are not fully reproducible from this checkout. The current README and repository-structure checks can be rerun directly.
 
 ZIP SHA-256:
 
 ```text
-4122080b0b8c35766712a53c4e62ed679f33adc0ee5c57f8ee6633a66862875d
+171b477340d406f765d7a230d8447a47578cf130e718c1653426d79235f02fac
 ```
 
 The archive was extracted during creation-time verification. All 58 extracted files matched their source files byte for byte.

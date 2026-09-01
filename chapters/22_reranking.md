@@ -201,12 +201,12 @@ BM25 needs 3.07 doublings beyond `k = 20` to reach 78.4%, so it needs approximat
 Depth is not monotonically helpful. Let `epsilon` be the chance that one irrelevant candidate outscores gold. The number of distractors above gold is
 
 $$
-\operatorname{Binomial}(k - 1, \epsilon),
+\mathop{\text{Binomial}}(k - 1, \epsilon),
 $$
 with approximation
 
 $$
-\operatorname{Poisson}((k - 1)\epsilon).
+\mathop{\text{Poisson}}((k - 1)\epsilon).
 $$
 Gold reaches the top `m` only when fewer than `m` distractors beat it. `R1(k)` rises with depth while `R2(m given k)` falls. Their product can peak at an interior depth and then collapse.
 Inherited depth also wastes retriever improvements. A better first stage should often be redeemed as lower `k`, not stored as unmeasured headroom.
@@ -587,13 +587,13 @@ $$
 Equating the two gives
 
 $$
-m^* = \frac{\ln q}{\ln q_{\text{prime}} - \ln q}.
+m^{*} = \frac{\ln q}{\ln q_{\text{prime}} - \ln q}.
 $$
 The common factors `A` and `R1` cancel. The crossing depends on the two rankers, not on generator extraction or first-stage recall.
 For `p = 0.18`, `q = 0.82`, upgraded `p_prime = 0.212`, and `q_prime = 0.788`,
 
 $$
-m^* = \frac{-0.1985}{-0.2383 + 0.1985} = \frac{-0.1985}{-0.0398} = 4.99 \approx 5.
+m^{*} = \frac{-0.1985}{-0.2383 + 0.1985} = \frac{-0.1985}{-0.0398} = 4.99 \approx 5.
 $$
 At `m = 4`, a fifth document buys 8.14 coverage points while the better ranker buys 6.64. At `m = 6`, a seventh document buys 5.47 while the ranker buys 6.44.
 #### Failure without it

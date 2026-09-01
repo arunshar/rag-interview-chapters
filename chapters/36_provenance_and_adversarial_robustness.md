@@ -194,13 +194,13 @@ At step i, manifest Mᵢ contains assertions about the operation, an ingredient 
 The current hash is:
 
 $$
-H_i = \operatorname{SHA256}(\text{asset bytes at step } i)
+H_i = \mathop{\text{SHA256}}(\text{asset bytes at step } i)
 $$
 
 The producer signs a hash of the manifest:
 
 $$
-\sigma_i = \operatorname{Sign}(sk_i, H(M_i)), \quad \operatorname{Verify}(pk_i, H(M_i), \sigma_i) = 1
+\sigma_i = \mathop{\text{Sign}}(sk_i, H(M_i)), \quad \mathop{\text{Verify}}(pk_i, H(M_i), \sigma_i) = 1
 $$
 
 Verification recomputes H(Mᵢ), checks the signature with pkᵢ, and confirms that the signer's certificate chains to a root on the chosen trust list. This mirrors a browser's Transport Layer Security certificate-chain check.
@@ -456,13 +456,13 @@ The reported ASR falls from 71% to 2% on the stated red-team suite.
 For Q = 50,000 queries per day and an assumed attempt rate a = 0.1%:
 
 $$
-Q \times a \times \operatorname{ASR}_{\mathrm{base}} = 50{,}000 \times 0.001 \times 0.71 \approx 35.5
+Q \times a \times \mathop{\text{ASR}}_{\mathrm{base}} = 50{,}000 \times 0.001 \times 0.71 \approx 35.5
 $$
 
 With the defended ASR:
 
 $$
-Q \times a \times \operatorname{ASR}_{\mathrm{def}} = 50{,}000 \times 0.001 \times 0.02 = 1.0
+Q \times a \times \mathop{\text{ASR}}_{\mathrm{def}} = 50{,}000 \times 0.001 \times 0.02 = 1.0
 $$
 
 The check removes roughly 34.5 daily incidents under those assumptions. It leaves adaptive residual risk.

@@ -224,8 +224,8 @@ $$
 The chapter's pre-norm attention and MLP update is:
 $$
 x_l=x_{l-1}
-+\sum_{h=1}^{H}A_{lh}(\operatorname{LN}(x_{l-1}))
-+M_l\left(\operatorname{LN}\left(x_{l-1}+\sum_hA_{lh}\right)\right)
++\sum_{h=1}^{H}A_{lh}(\mathop{\text{LN}}(x_{l-1}))
++M_l\left(\mathop{\text{LN}}\left(x_{l-1}+\sum_hA_{lh}\right)\right)
 $$
 Why: Every block reads and writes the coordinate system created by the embedding.
 The gradient contains a pure identity route because:
@@ -283,7 +283,7 @@ The pressure grows with depth rather than width.
 
 What: The next-token logits come from the final answer-position state.
 $$
-W_U\operatorname{LN}(x_L)
+W_U\mathop{\text{LN}}(x_L)
 $$
 Why: Every retrieved contribution must reach one d-dimensional vector before sampling.
 Failure without enough selection: More chunks compete for the same fixed-width answer state.
@@ -317,7 +317,7 @@ Patch the 5-chunk answer stream into the 50-chunk run to test assembly failure w
 
 What: For context matrix X with n positions and width d:
 $$
-A=\operatorname{softmax}\left(\frac{XW_QW_K^{T}X^{T}}{\sqrt{d_h}}\right)
+A=\mathop{\text{softmax}}\left(\frac{XW_QW_K^{T}X^{T}}{\sqrt{d_h}}\right)
 $$
 $$
 h(X)=AXW_VW_O
@@ -353,7 +353,7 @@ W_{OV}=W_VW_O
 $$
 Then:
 $$
-A=\operatorname{softmax}\left(\frac{XW_{QK}X^{T}}{\sqrt{d_h}}\right)
+A=\mathop{\text{softmax}}\left(\frac{XW_{QK}X^{T}}{\sqrt{d_h}}\right)
 $$
 $$
 h(X)=(AX)W_{OV}=A(XW_{OV})
@@ -367,10 +367,10 @@ Cost or complexity: The split is exact for the head computation and drops no ter
 
 What: The expanded maps are:
 $$
-\operatorname{OV}_{full}=W_EW_{OV}W_U
+\mathop{\text{OV}}_{full}=W_EW_{OV}W_U
 $$
 $$
-\operatorname{QK}_{full}=W_EW_{QK}W_E^{T}
+\mathop{\text{QK}}_{full}=W_EW_{QK}W_E^{T}
 $$
 Why: One OV entry gives the logit shift from an attended source token to a target token.
 One QK entry gives a score contribution from a query-side token and a key-side token.
@@ -407,7 +407,7 @@ For GPT-2 small, 50,257 vocabulary items and head width 64 reduce 2.526 times 10
 
 What: The copying score is:
 $$
-\kappa=\frac{1}{d_h}\sum_i\frac{\operatorname{Re}(\lambda_i)}{|\lambda_i|}
+\kappa=\frac{1}{d_h}\sum_i\frac{\mathop{\text{Re}}(\lambda_i)}{|\lambda_i|}
 $$
 Positive-real eigenvalues indicate copying.
 Negative-real eigenvalues indicate suppression.

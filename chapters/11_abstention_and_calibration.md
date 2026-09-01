@@ -396,7 +396,7 @@ Nine total passes cost 2,250 tokens, 56.3 seconds, and $6.75 per day. The increm
 For eight parallel samples, assume each sample is correct with probability 0.738 and wrong answers spread across four distinct values. Under that idealized independence assumption:
 
 $$
-C \sim \operatorname{Bin}(8,0.738)
+C \sim \mathop{\text{Bin}}(8,0.738)
 $$
 
 $$
@@ -426,15 +426,15 @@ Do not fine-tune a successor on unverified outputs from its predecessor. The sta
 For score buckets B1 through BM:
 
 $$
-\operatorname{ECE}
+\mathop{\text{ECE}}
 = \sum_{m=1}^{M}\frac{|B_m|}{n}
-\left|\operatorname{acc}(B_m)-\operatorname{conf}(B_m)\right|
+\left|\mathop{\text{acc}}(B_m)-\mathop{\text{conf}}(B_m)\right|
 $$
 
 For one correct and one wrong draw:
 
 $$
-\operatorname{AUROC}
+\mathop{\text{AUROC}}
 = P(s_{correct}>s_{wrong})
 + \frac{1}{2}P(s_{correct}=s_{wrong})
 $$
@@ -460,13 +460,13 @@ The cited black-box elicitation study found different winners. Pairwise-ranking 
 - **Cost or complexity:** Fit calibration on held-out labeled data. Resolution must come from a better raw signal.
 
 $$
-\operatorname{BS}
+\mathop{\text{BS}}
 =
 \underbrace{\sum_m \frac{|B_m|}{n}
-\left(\operatorname{conf}(B_m)-\operatorname{acc}(B_m)\right)^2}_{REL}
+\left(\mathop{\text{conf}}(B_m)-\mathop{\text{acc}}(B_m)\right)^2}_{REL}
 -
 \underbrace{\sum_m \frac{|B_m|}{n}
-\left(\operatorname{acc}(B_m)-a\right)^2}_{RES}
+\left(\mathop{\text{acc}}(B_m)-a\right)^2}_{RES}
 +
 \underbrace{a(1-a)}_{UNC}
 $$
@@ -484,7 +484,7 @@ Recalibration can drive REL to zero. The task fixes UNC. A monotone map cannot c
 Verbalized confidence has 300 queries at 0.90 with 210 correct, 400 at 0.95 with 300 correct, and 300 at 1.00 with 228 correct. Bucket accuracies are 0.700, 0.750, and 0.760.
 
 $$
-\operatorname{ECE}
+\mathop{\text{ECE}}
 = 0.3(0.200)+0.4(0.200)+0.3(0.240)
 = 0.212
 $$
@@ -544,9 +544,9 @@ The cited study reports that vanilla verbalized confidence is systematically ove
 For k distributed binomially:
 
 $$
-\operatorname{Var}(\hat c)=\frac{c(1-c)}{m}
+\mathop{\text{Var}}(\hat c)=\frac{c(1-c)}{m}
 \qquad
-\operatorname{SE}(\hat c)=\sqrt{\frac{c(1-c)}{m}}
+\mathop{\text{SE}}(\hat c)=\sqrt{\frac{c(1-c)}{m}}
 $$
 
 Adjacent levels are 1/m apart. Requiring one level gap to exceed one standard error gives:
@@ -681,7 +681,7 @@ Claims that share retrieved context are positively correlated. The book therefor
 - **Cost or complexity:** The cited black-box routes score the same answer in m fresh sessions or sample m alternative briefs and measure claim-level corroboration.
 
 $$
-\operatorname{CRPS}(\hat F,s)
+\mathop{\text{CRPS}}(\hat F,s)
 =\int_0^1\left(\hat F(t)-\mathbf{1}[s\le t]\right)^2dt
 $$
 

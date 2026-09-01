@@ -297,7 +297,7 @@ The cost-minimizing rule is:
 $$
 (1-p)C_w < C_a
 \quad\Longleftrightarrow\quad
-p > p^* = 1 - \frac{C_a}{C_w}
+p > p^{*} = 1 - \frac{C_a}{C_w}
 $$
 
 The threshold belongs to the deployment cost ratio, not to the model.
@@ -311,7 +311,7 @@ A general assistant with `Cw = 1` and `Ca = 0.05` uses `p* = 0.95`.
 A clinical dosage assistant with `Cw = 1,000` and `Ca = 2` uses:
 
 $$
-p^* = 1 - \frac{2}{1{,}000} = 0.998
+p^{*} = 1 - \frac{2}{1{,}000} = 0.998
 $$
 
 The same model can therefore face different gates without any calibration change.

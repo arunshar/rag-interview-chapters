@@ -123,7 +123,7 @@ A safe pilot can rebuild every reading when a constraint changes. Memorizing the
 Section 18.3 derives BM25, which scores one query-document pair by summing over query terms.
 
 $$
-\operatorname{BM25}(q,D)= \sum_{t\in q} \ln\left(1+\frac{N-n_t+0.5}{n_t+0.5}\right) \frac{f(t,D)(k_1+1)} {f(t,D)+k_1\left(1-b+b\frac{|D|}{\operatorname{avgdl}}\right)}
+\mathop{\text{BM25}}(q,D)= \sum_{t\in q} \ln\left(1+\frac{N-n_t+0.5}{n_t+0.5}\right) \frac{f(t,D)(k_1+1)} {f(t,D)+k_1\left(1-b+b\frac{|D|}{\mathop{\text{avgdl}}}\right)}
 $$
 The logarithmic factor is IDF. The second factor is saturating, length-normalized TF.
 
@@ -135,7 +135,7 @@ $$
 Define the dimensionless length ratio and adjusted denominator term as:
 
 $$
-\ell=\frac{|D|}{\operatorname{avgdl}}, \qquad K=k_1(1-b+b\ell)
+\ell=\frac{|D|}{\mathop{\text{avgdl}}}, \qquad K=k_1(1-b+b\ell)
 $$
 At `b=0`, document length is ignored. At `b=1`, the length ratio is charged in full.
 
@@ -148,7 +148,7 @@ IDF raises rare terms. TF saturation gives the first few occurrences most of the
 At `k_1=1.2`, the TF factor becomes:
 
 $$
-\operatorname{TFfactor}(f)=\frac{2.2f}{f+1.2}
+\mathop{\text{TFfactor}}(f)=\frac{2.2f}{f+1.2}
 $$
 | `f` | 1 | 2 | 5 | 10 | 20 | Limit |
 |---:|---:|---:|---:|---:|---:|---:|
@@ -167,7 +167,7 @@ $$
 K=1.2(1-0.75+0.75\times2)=1.2\times1.75=2.1
 $$
 $$
-\operatorname{TFfactor}=\frac{2.2}{1+2.1}=0.710
+\mathop{\text{TFfactor}}=\frac{2.2}{1+2.1}=0.710
 $$
 This is a 29 percent discount inside the saturation denominator. It is soft rather than punitive.
 
@@ -186,7 +186,7 @@ This is a 29 percent discount inside the saturation denominator. It is soft rath
 Section 21.6 derives RRF, which assigns one reciprocal contribution for every list that contains document `d`.
 
 $$
-\operatorname{RRF}(d)=\sum_{\ell=1}^{L}\frac{1}{k+r_\ell(d)}
+\mathop{\text{RRF}}(d)=\sum_{\ell=1}^{L}\frac{1}{k+r_\ell(d)}
 $$
 A missing document contributes nothing. This is equivalent to sending its rank to infinity. The conventional default is:
 
@@ -217,21 +217,21 @@ RRF uses ranks, not raw scores. It can therefore combine BM25 and cosine-similar
 With two lists and `k=60`:
 
 $$
-r^*=2(61)-60=62
+r^{*}=2(61)-60=62
 $$
 Agreement anywhere in the top 61 of both lists outranks either list's single best guess.
 
 With two lists and `k=0`:
 
 $$
-r^*=2
+r^{*}=2
 $$
 Only unanimous first place qualifies, so fusion degenerates into interleaving the two heads.
 
 With three lists and `k=60`:
 
 $$
-r^*=3(61)-60=123
+r^{*}=3(61)-60=123
 $$
 #### Conditions, failures, and rules
 
@@ -249,12 +249,12 @@ $$
 Section 32.2 derives Reciprocal Rank, which depends only on the first relevant result for query `q`.
 
 $$
-\operatorname{RR}_q=\frac{1}{\operatorname{rank}_q}
+\mathop{\text{RR}}_q=\frac{1}{\mathop{\text{rank}}_q}
 $$
 MRR averages one RR value for every query.
 
 $$
-\operatorname{MRR}=\frac{1}{|\mathcal{Q}|}\sum_{q\in\mathcal{Q}}\operatorname{RR}_q
+\mathop{\text{MRR}}=\frac{1}{|\mathcal{Q}|}\sum_{q\in\mathcal{Q}}\mathop{\text{RR}}_q
 $$
 If no relevant result appears, RR is zero.
 
@@ -267,7 +267,7 @@ MRR asks one question: how far down is the first relevant document? It ignores e
 A ten-document list with relevant results at ranks one and ten has:
 
 $$
-\operatorname{RR}=1/1=1.0
+\mathop{\text{RR}}=1/1=1.0
 $$
 A list with only one relevant result at rank one receives the same score. The following calculation is not MRR:
 
@@ -298,25 +298,25 @@ The fall from rank one to rank two loses half the score. Results after rank five
 Section 32.2 derives the ranking metrics, beginning with Cumulative Gain, which ignores order.
 
 $$
-\operatorname{CG}@k=\sum_{i=1}^{k}\operatorname{rel}_i
+\mathop{\text{CG}}@k=\sum_{i=1}^{k}\mathop{\text{rel}}_i
 $$
 Discounted Cumulative Gain divides each grade by a log-rank term.
 
 $$
-\operatorname{DCG}@k=
+\mathop{\text{DCG}}@k=
 \sum_{i=1}^{k}
-\frac{\operatorname{rel}_i}{\log_2(i+1)}
+\frac{\mathop{\text{rel}}_i}{\log_2(i+1)}
 $$
 
 Normalization divides by the best ordering achievable from the available judgments.
 
 $$
-\operatorname{nDCG}@k= \frac{\operatorname{DCG}@k}{\operatorname{IDCG}@k}
+\mathop{\text{nDCG}}@k= \frac{\mathop{\text{DCG}}@k}{\mathop{\text{IDCG}}@k}
 $$
 Therefore:
 
 $$
-0\leq\operatorname{nDCG}@k\leq1
+0\leq\mathop{\text{nDCG}}@k\leq1
 $$
 
 #### Plain-language mechanics
@@ -338,7 +338,7 @@ At rank 10, DCG still assigns 0.289 while RR assigns 0.100. A useful document at
 The displayed formula uses direct relevance grades. An alternative uses exponential gain:
 
 $$
-\operatorname{gain}_i=2^{\operatorname{rel}_i}-1
+\mathop{\text{gain}}_i=2^{\mathop{\text{rel}}_i}-1
 $$
 
 This makes the highest ordinal grade dominate more strongly. Both versions appear under the nDCG name, so the gain definition must be stated. Unjudged documents count as non-relevant. Section 32.3 explains why a shallow judgment pool can penalize a retriever for finding a genuinely relevant but unpooled document.
@@ -438,7 +438,7 @@ $$
 Quantize each subspace against `k` centroids. Code length is:
 
 $$
-\operatorname{code\ length}=m\log_2 k\text{ bits}
+\mathop{\text{code length}}=m\log_2 k\text{ bits}
 $$
 
 The number of representable vectors is:
@@ -465,7 +465,7 @@ The `m` factor cancels. Codebook memory is independent of how many subspaces spl
 The distance lookup table amortizes after:
 
 $$
-N^*=\frac{2kd}{2d-m}
+N^{*}=\frac{2kd}{2d-m}
 $$
 
 candidate distance computations.
@@ -522,7 +522,7 @@ The source opening calls this 768 KB, while the worked byte calculation yields 7
 The break-even candidate count is:
 
 $$
-N^*=\frac{2\times256\times768}{1536-96}
+N^{*}=\frac{2\times256\times768}{1536-96}
 =\frac{393216}{1440}\approx273.07
 $$
 
@@ -570,11 +570,11 @@ Sections 6.2 and 37.1 derive and apply this arithmetic. For a model with `N` par
 
 $$
 \begin{aligned}
-\operatorname{forward} &= 2N\text{ FLOPs}\\
-\operatorname{backward} &= 4N\text{ FLOPs}\\
-\operatorname{training} &= 6N\text{ FLOPs}\\
+\mathop{\text{forward}} &= 2N\text{ FLOPs}\\
+\mathop{\text{backward}} &= 4N\text{ FLOPs}\\
+\mathop{\text{training}} &= 6N\text{ FLOPs}\\
 C &\approx 6ND_{tokens}\\
-\operatorname{generation} &= 2N\text{ FLOPs}
+\mathop{\text{generation}} &= 2N\text{ FLOPs}
 \end{aligned}
 $$
 
@@ -583,7 +583,7 @@ Generation has no backward pass.
 For prefill over `s` tokens, `L_layers` layers, and hidden dimension `d_hidden`:
 
 $$
-\operatorname{FLOPs}_{prefill}=2Ns+2L_{layers}s^2d_{hidden}
+\mathop{\text{FLOPs}}_{prefill}=2Ns+2L_{layers}s^2d_{hidden}
 $$
 
 The first term is model work linear in context. The second is attention work quadratic in context. Doubling retrieved context is therefore not a linear cost.
@@ -807,8 +807,8 @@ The text payload now dominates.
 - Shard count is a ceiling division:
 
 $$
-\operatorname{shards}
-=\left\lceil\frac{M_{fleet}}{\operatorname{usable\ RAM\ per\ node}}\right\rceil
+\mathop{\text{shards}}
+=\left\lceil\frac{M_{fleet}}{\mathop{\text{usable RAM per node}}}\right\rceil
 $$
 
 - Include payload from the start. Past roughly 30 times vector compression, chunk text can dominate.

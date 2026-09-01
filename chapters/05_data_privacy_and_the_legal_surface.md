@@ -334,7 +334,7 @@ Let R = D minus F be what remains.
 Exact unlearning returns a model trained on R, so it never saw F.
 
 $$
-\theta_R = \operatorname{Train}(R), \qquad R = D \setminus F
+\theta_R = \mathop{\text{Train}}(R), \qquad R = D \setminus F
 $$
 
 Bourtoule et al. made exact deletion cheaper for classifiers by sharding data and retraining one shard.
@@ -446,7 +446,7 @@ Protect F̂ as sensitive data because it is a concentrated list of target sequen
 SILO writes generation as a combination of parametric weights θ and a non-parametric datastore D.
 
 $$
-y \sim p_{\theta}\!\left(y \mid x, \operatorname{RET}(x, D)\right)
+y \sim p_{\theta}\!\left(y \mid x, \mathop{\text{RET}}(x, D)\right)
 $$
 
 Both sides may require a copy of source text.

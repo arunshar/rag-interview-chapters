@@ -404,7 +404,7 @@ m_v^{(l)}=\sum_{k=1}^{K}\sum_{(u,r,v)\in E}p_u^{(l)}\alpha_k(r)h_u^{(l)}
 $$
 
 $$
-h_v^{(l+1)}=\operatorname{MLP}(h_v^{(l)},m_v^{(l)},W^{(l)}),
+h_v^{(l+1)}=\mathop{\text{MLP}}(h_v^{(l)},m_v^{(l)},W^{(l)}),
 \qquad
 p_v^{(l+1)}=g(m_v^{(l)},W_p^{(l)})
 $$

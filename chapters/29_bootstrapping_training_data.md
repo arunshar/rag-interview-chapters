@@ -141,7 +141,7 @@ The source's sanity check says production search systems, including Google's syn
 BM25 scores query terms against a document as follows.
 
 $$
-\operatorname{score}(d,q)=\sum_{i=1}^{n}\operatorname{IDF}(t_i)\cdot\frac{\operatorname{tf}(t_i,d)(k_1+1)}{\operatorname{tf}(t_i,d)+k_1\left(1-b+b\frac{|d|}{\operatorname{avgdl}}\right)}
+\mathop{\text{score}}(d,q)=\sum_{i=1}^{n}\mathop{\text{IDF}}(t_i)\cdot\frac{\mathop{\text{tf}}(t_i,d)(k_1+1)}{\mathop{\text{tf}}(t_i,d)+k_1\left(1-b+b\frac{|d|}{\mathop{\text{avgdl}}}\right)}
 $$
 
 Here tf is raw term count, document length is |d|, avgdl is mean corpus length, and k1 and b control saturation and length normalization.
@@ -176,11 +176,11 @@ After adding predicted queries such as "how do I reset my password" and "steps t
 Use k1 = 1.2 and b = 0.75.
 
 $$
-\operatorname{IDF}(\text{reset})=\ln\left(1+\frac{10{,}000-500+0.5}{500+0.5}\right)\approx2.99
+\mathop{\text{IDF}}(\text{reset})=\ln\left(1+\frac{10{,}000-500+0.5}{500+0.5}\right)\approx2.99
 $$
 
 $$
-\operatorname{IDF}(\text{password})=\ln\left(1+\frac{10{,}000-300+0.5}{300+0.5}\right)\approx3.50
+\mathop{\text{IDF}}(\text{password})=\ln\left(1+\frac{10{,}000-300+0.5}{300+0.5}\right)\approx3.50
 $$
 
 The length term is 1 - 0.75 + 0.75 times 128 divided by 150, which is about 0.89.
@@ -523,7 +523,7 @@ Let l* of x be the true label and l_T of x be a draw from teacher T.
 Teacher accuracy is the probability that those labels match.
 
 $$
-a_T=\Pr[l_T(x)=l^*(x)]
+a_T=\Pr[l_T(x)=l^{*}(x)]
 $$
 
 Draw s labels per input by changing temperature or paraphrasing the prompt.
@@ -531,7 +531,7 @@ Let S contain inputs where the correct label is not the plurality across draws.
 Split teacher error into repeatable systematic error and varying noise.
 
 $$
-1-a_T=\Pr[x\in S]+\Pr[l_T(x)\neq l^*(x),x\notin S]
+1-a_T=\Pr[x\in S]+\Pr[l_T(x)\neq l^{*}(x),x\notin S]
 =\epsilon_{\mathrm{sys}}+\epsilon_{\mathrm{noise}}
 $$
 

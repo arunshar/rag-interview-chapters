@@ -193,7 +193,7 @@ The `m x k` table costs `m k (d/m)=k d` multiply-adds. Each candidate then costs
 At `d = 768`, `m = 96`, and `k = 256`, the build costs 196,608 multiply-adds. Against an exact dot product counted as `2d = 1,536` operations, the source gives:
 
 $$
-N^*=\frac{2kd}{2d-m}=\frac{393{,}216}{1{,}536-96}=273\ \text{candidates}.
+N^{*}=\frac{2kd}{2d-m}=\frac{393{,}216}{1{,}536-96}=273\ \text{candidates}.
 $$
 
 SDC quantizes the query and adds query error for no database-memory saving.
@@ -244,13 +244,13 @@ $$
 The last term is `rho sigma^2`. Under the stated high-rate model:
 
 $$
-\rho\approx K_c^{-2/d^*},\qquad D\approx\sigma^2 2^{-2R/d^*}.
+\rho\approx K_c^{-2/d^{*}},\qquad D\approx\sigma^2 2^{-2R/d^{*}}.
 $$
 
 Matching residual-PQ without residuals costs:
 
 $$
-\Delta R=-\frac{d^*}{2}\log_2\rho=\log_2K_c\ \text{bits}.
+\Delta R=-\frac{d^{*}}{2}\log_2\rho=\log_2K_c\ \text{bits}.
 $$
 
 With `xi` as mean squared quantizer error and `e=q(x)-x`:
@@ -286,7 +286,7 @@ $$
 The crossover is:
 
 $$
-K_c^*=\frac{Nm}{kd}.
+K_c^{*}=\frac{Nm}{kd}.
 $$
 
 Use `N = 10^7`, `d = 768`, `K_c = 4,096`, `m = 64`, `k = 256`, and `w = 32`:
@@ -301,7 +301,7 @@ Use `N = 10^7`, `d = 768`, `K_c = 4,096`, `m = 64`, `k = 256`, and `w = 32`:
 - Residual encoding adds 12 implicit bits to a 512-bit code, a 2.3% high-rate floor.
 
 $$
-K_c^*=\frac{10^7\times64}{256\times768}=3{,}255.
+K_c^{*}=\frac{10^7\times64}{256\times768}=3{,}255.
 $$
 
 The source gives a FAISS sizing range of:
@@ -375,14 +375,14 @@ With an exact unit query:
 
 $$
 \langle q,\hat{x}\rangle=\langle q,x\rangle+\langle q,e\rangle,\qquad
-\operatorname{Var}(\langle q,e\rangle)=\sigma_e^2.
+\mathop{\text{Var}}(\langle q,e\rangle)=\sigma_e^2.
 $$
 
 Binary quantization stores signs. For angle `theta`:
 
 $$
 p=\frac{\theta}{\pi},\qquad
-H\sim\operatorname{Binomial}\left(d,\frac{\theta}{\pi}\right),\qquad
+H\sim\mathop{\text{Binomial}}\left(d,\frac{\theta}{\pi}\right),\qquad
 \hat{\theta}=\frac{\pi H}{d}.
 $$
 
@@ -414,11 +414,11 @@ $$
 
 $$
 \mathbb{E}[H]=768\times0.2048=157.3,\qquad
-\operatorname{sd}(H)=\sqrt{768p(1-p)}=11.18.
+\mathop{\text{sd}}(H)=\sqrt{768p(1-p)}=11.18.
 $$
 
 $$
-\operatorname{sd}(\hat{\theta})=\frac{\pi\times11.18}{768}=0.0457\ \text{rad}.
+\mathop{\text{sd}}(\hat{\theta})=\frac{\pi\times11.18}{768}=0.0457\ \text{rad}.
 $$
 
 Since `sin(theta) = 0.6`, cosine noise is about `0.027`. Binary gives `8x` more compression than SQ8 and about `60x` its score noise. It is about `4x` less noisy than naive one-bit scalar reconstruction.
@@ -481,8 +481,8 @@ PQ ADC computes:
 
 $$
 \hat{d}(q,x)^2
-=\sum_{j=1}^{m}\left\lVert q^{(j)}-c_{\operatorname{code}_j(x)}^{(j)}\right\rVert_2^2
-=\sum_{j=1}^{m}T[j,\operatorname{code}_j(x)].
+=\sum_{j=1}^{m}\left\lVert q^{(j)}-c_{\mathop{\text{code}}_j(x)}^{(j)}\right\rVert_2^2
+=\sum_{j=1}^{m}T[j,\mathop{\text{code}}_j(x)].
 $$
 
 Building `T` costs `k d` multiply-accumulates. Scanning one code costs `m` lookups and `m - 1` additions.

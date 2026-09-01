@@ -188,11 +188,11 @@ Before assigning a runway, the tower sizes chunk count, rush-hour query rate, an
 Let `x` be user input, `D` the datastore, `theta` the generator weights, `c1` through `ck` the selected contexts, and `y` the answer.
 
 $$
-c_1,\ldots,c_k = \operatorname{RET}(x,D)
+c_1,\ldots,c_k = \mathop{\text{RET}}(x,D)
 $$
 
 $$
-y = \operatorname{GEN}_{\theta}(x,c_1,\ldots,c_k)
+y = \mathop{\text{GEN}}_{\theta}(x,c_1,\ldots,c_k)
 $$
 
 The source argues that five retrieval choices exhaust the free parameters in these two lines. Changing `theta` is possible, but it is training rather than retrieval.
@@ -306,19 +306,19 @@ For a product with a 2 second SLO and a 12 percent multi-hop rate, routing 88 pe
 Let `q` be the query, `D = {d1, ..., dk}` the selected documents, `theta` the generator weights, `h` hidden size, `e(·) ∈ R^d` the retrieval encoder, and `Wp: R^d → R^h` the projector. The source warns that an implicit interface choice can force a rebuild six months later.
 
 $$
-p_{\theta}(y \mid \operatorname{tok}(d_1) \oplus \cdots \oplus \operatorname{tok}(d_k) \oplus \operatorname{tok}(q))
+p_{\theta}(y \mid \mathop{\text{tok}}(d_1) \oplus \cdots \oplus \mathop{\text{tok}}(d_k) \oplus \mathop{\text{tok}}(q))
 $$
 
 The text interface converts documents into tokens and concatenates them with the query.
 
 $$
-p_{\theta}(y \mid W_p e(d_1), \ldots, W_p e(d_k), \operatorname{tok}(q))
+p_{\theta}(y \mid W_p e(d_1), \ldots, W_p e(d_k), \mathop{\text{tok}}(q))
 $$
 
 The embedding interface projects retrieval vectors into generator hidden states and uses one input slot per document in the worked design.
 
 $$
-p_{\theta + \Delta\theta(D)}(y \mid \operatorname{tok}(q))
+p_{\theta + \Delta\theta(D)}(y \mid \mathop{\text{tok}}(q))
 $$
 
 The parameter interface compiles the corpus into a weight delta before the query arrives.
@@ -494,13 +494,13 @@ $$
 The best fixed policy chooses one column for all traffic.
 
 $$
-A^* = \sum_i \pi_i \max_j a_{ij}
+A^{*} = \sum_i \pi_i \max_j a_{ij}
 $$
 
 Oracle routing chooses the best cell in every row.
 
 $$
-D = A^* - A_{\text{fix}} \ge 0
+D = A^{*} - A_{\text{fix}} \ge 0
 $$
 
 The adaptivity dividend `D` is zero exactly when one configuration is at least as good as every other configuration on each segment with positive weight.
@@ -508,7 +508,7 @@ The adaptivity dividend `D` is zero exactly when one configuration is at least a
 Suppose router accuracy is `rho` and mean loss on a misroute is `Lloss`.
 
 $$
-A(\rho) = A^* - (1-\rho)L_{\text{loss}}
+A(\rho) = A^{*} - (1-\rho)L_{\text{loss}}
 $$
 
 $$

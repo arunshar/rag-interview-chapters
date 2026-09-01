@@ -428,7 +428,7 @@ Cost and complexity:
 Break-even criterion:
 
 $$
-f^* = \frac{R}{m\tau + R}
+f^{*} = \frac{R}{m\tau + R}
 $$
 
 - With R = 44 ms and sentence decode m tau = 105 ms, f* = 44 / 149 = 0.295.

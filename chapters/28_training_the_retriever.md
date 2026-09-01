@@ -103,7 +103,7 @@ The apprenticeship teaches reader and clerk together. It also closes every lesso
 
 Expose both parameter sets.
 $$
-c_1,\ldots,c_k = \operatorname{RET}_{\phi}(x,D), \qquad y = \operatorname{GEN}_{\theta}(x,c_1,\ldots,c_k)
+c_1,\ldots,c_k = \mathop{\text{RET}}_{\phi}(x,D), \qquad y = \mathop{\text{GEN}}_{\theta}(x,c_1,\ldots,c_k)
 $$
 The retriever scores N chunks and returns k. The generator consumes that evidence. Each parameter set can be frozen or trainable.
 Run the oracle-context ablation on current failures. Put the gold passage directly in the generator context and rescore.
@@ -264,7 +264,7 @@ $$
 Draw standard Gumbel noise from uniforms.
 
 $$
-u_i \sim \operatorname{Uniform}(0,1), \qquad g_i = -\log(-\log u_i)
+u_i \sim \mathop{\text{Uniform}}(0,1), \qquad g_i = -\log(-\log u_i)
 $$
 Its cumulative distribution is:
 
@@ -279,7 +279,7 @@ $$
 Therefore:
 
 $$
-\Pr\left[\operatorname*{arg\,max}_j(s_j+g_j)=i\right] = \frac{e^{s_i}}{\sum_j e^{s_j}}
+\Pr\left[\mathop{\text{arg max}}\limits_j(s_j+g_j)=i\right] = \frac{e^{s_i}}{\sum_j e^{s_j}}
 $$
 The temperature relaxation and its Jacobian are:
 
@@ -307,7 +307,7 @@ Gaussian perturbations produce the Thurstone probit model. For more than two can
 The five-logit example is:
 
 $$
-s=(2.0,1.5,0.5,0.0,-1.0), \qquad \operatorname{softmax}(s) =(0.496,0.301,0.111,0.067,0.025)
+s=(2.0,1.5,0.5,0.0,-1.0), \qquad \mathop{\text{softmax}}(s) =(0.496,0.301,0.111,0.067,0.025)
 $$
 The Gumbel draw uses:
 
@@ -420,7 +420,7 @@ $$
 Train only the retriever by minimizing:
 
 $$
-\mathcal{L} = \operatorname{KL}(P_R\Vert Q_{\mathrm{LM}})
+\mathcal{L} = \mathop{\text{KL}}(P_R\Vert Q_{\mathrm{LM}})
 $$
 Let:
 
@@ -593,7 +593,7 @@ Train with flat exact search where it fits. Build the approximate index once at 
 REALM treats a retrieved block as a latent variable in masked-token prediction.
 
 $$
-p(y\mid x) = \sum_{z\in Z_k}p(y\mid z,x)p(z\mid x), \qquad p(z\mid x) = \frac{\exp f(x,z)} {\sum_{z'\in Z_k}\exp f(x,z')}, \qquad f(x,z)=\operatorname{Emb}_q(x)^\top\operatorname{Emb}_d(z)
+p(y\mid x) = \sum_{z\in Z_k}p(y\mid z,x)p(z\mid x), \qquad p(z\mid x) = \frac{\exp f(x,z)} {\sum_{z'\in Z_k}\exp f(x,z')}, \qquad f(x,z)=\mathop{\text{Emb}}_q(x)^\top\mathop{\text{Emb}}_d(z)
 $$
 The retriever-score gradient is:
 

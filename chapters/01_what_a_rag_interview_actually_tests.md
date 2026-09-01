@@ -191,11 +191,11 @@ A non-parametric datastore grows with its contents. Store `N` chunks and its kno
 RAG composes the two stores.
 
 $$
-c_1, \ldots, c_k = \operatorname{RET}(x, D)
+c_1, \ldots, c_k = \mathop{\text{RET}}(x, D)
 $$
 
 $$
-y = \operatorname{GEN}_{\theta}(x, c_1, \ldots, c_k)
+y = \mathop{\text{GEN}}_{\theta}(x, c_1, \ldots, c_k)
 $$
 
 The query is `x`. The datastore is `D`. The retrieved chunks are `c_1` through `c_k`. The answer is `y`.
@@ -329,7 +329,7 @@ The later deletion is a row removal. The compute identity is checked against GPT
 The generation step can be written as a conditional answer over the query and retrieved chunks.
 
 $$
-p_{\theta}(y \mid x, \operatorname{RET}(x, D))
+p_{\theta}(y \mid x, \mathop{\text{RET}}(x, D))
 $$
 
 The weights are learned and then frozen for service. The datastore is queried at inference time. Each claimed RAG benefit transfers one responsibility from the weights to that datastore. The responsibility does not disappear. It acquires a new operational failure surface.
@@ -397,17 +397,17 @@ Twenty-one million Wikipedia passages at 768 float32 dimensions require 64.5 GB.
 A RAG system first retrieves passages and then generates from them.
 
 $$
-c_1, \ldots, c_k = \operatorname{RET}(x, D)
+c_1, \ldots, c_k = \mathop{\text{RET}}(x, D)
 $$
 
 $$
-y = \operatorname{GEN}_{\theta}(x, c_1, \ldots, c_k)
+y = \mathop{\text{GEN}}_{\theta}(x, c_1, \ldots, c_k)
 $$
 
 A tool-augmented generator generalizes that sequence by choosing a tool and arguments before producing an answer.
 
 $$
-o_i = \operatorname{TOOL}_{t_i}(a_i)
+o_i = \mathop{\text{TOOL}}_{t_i}(a_i)
 $$
 
 $$
@@ -415,7 +415,7 @@ t_i \in T
 $$
 
 $$
-y = \operatorname{GEN}_{\theta}(x, o_1, \ldots, o_m)
+y = \mathop{\text{GEN}}_{\theta}(x, o_1, \ldots, o_m)
 $$
 
 RAG is the special case where `|T| = 1`. The sole tool is `RET`. Its argument is the query or a reformulation of the query. Its return type is passages in the model's token space, each with a document identifier. The boundary is the contract, not the index technology.
