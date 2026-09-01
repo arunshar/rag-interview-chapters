@@ -398,15 +398,15 @@ flowchart TD
     T -->|stable fact| A["4. self-aware"]
     A -->|already known| S3["SKIP"]
     A -->|not known| R2["RETRIEVE"]
-    classDef skip fill:#dddddd,stroke:#666666,stroke-width:1px
-    classDef retrieve fill:#ffffff,stroke:#000000,stroke-width:3px
+    classDef skip stroke-width:1px,stroke-dasharray:5 5
+    classDef retrieve stroke-width:3px
     class S1,S2,S3 skip
     class R1,R2 retrieve
 ```
 
 All four probes read the same hidden state from one prefill. They train independently, while the tree applies their bits as a precedence rule.
 
-**Figure 25.2:** The four criteria are trained as independent binary probes over one frozen hidden state but applied as a cascade, so the tree encodes precedence rather than computation order: testing time-sensitivity before self-knowledge is what stops a confidently stale answer from short-circuiting the gate. Shaded terminals skip retrieval. Heavy terminals invoke it.
+**Figure 25.2:** The four criteria are trained as independent binary probes over one frozen hidden state but applied as a cascade, so the tree encodes precedence rather than computation order: testing time-sensitivity before self-knowledge is what stops a confidently stale answer from short-circuiting the gate. Dashed terminals skip retrieval. Heavy terminals invoke it.
 
 ### Figure 25.3
 

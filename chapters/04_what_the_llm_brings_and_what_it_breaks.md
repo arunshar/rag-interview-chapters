@@ -571,7 +571,7 @@ flowchart TB
     A --> B
     B --> C
     C -. "gradient descent ends here" .-> D
-    classDef datastore fill:#eeeeee,stroke:#222222,stroke-width:2px,stroke-dasharray:5 5
+    classDef datastore stroke-width:2px,stroke-dasharray:5 5
     class D datastore
 ```
 
@@ -639,15 +639,15 @@ flowchart TB
     E -- no --> F["4. Does a second prompt passage contradict the first?"]
     F -- yes --> C5["Cause 5: knowledge integration. m5 = 2.00 up"]
     F -- no --> C4["Cause 4: over-generalization. m4 = 0.40 down"]
-    classDef initial fill:#eeeeee,stroke:#222222,stroke-width:2px
-    classDef shrinks fill:#ffffff,stroke:#333333,stroke-width:2px,stroke-dasharray:5 5
-    classDef grows fill:#dddddd,stroke:#111111,stroke-width:3px
+    classDef initial stroke-width:2px
+    classDef shrinks stroke-width:2px,stroke-dasharray:5 5
+    classDef grows stroke-width:3px
     class A initial
     class C1,C3,C4 shrinks
     class C2,C5 grows
 ```
 
-Figure 4.5: Four cheap tests, run in this order, assign every failure to exactly one cause - and the order matters, because a stale-correct answer is also repaired by pasting the passage, so staleness must be tested before absence. Dashed boxes are the causes retrieval shrinks. Heavy shaded boxes are the two it enlarges. Multipliers are from the audit below.
+Figure 4.5: Four cheap tests, run in this order, assign every failure to exactly one cause - and the order matters, because a stale-correct answer is also repaired by pasting the passage, so staleness must be tested before absence. Dashed boxes are the causes retrieval shrinks. Heavy solid boxes are the two it enlarges. Multipliers are from the audit below.
 
 ### Figure 4.6
 
@@ -666,13 +666,13 @@ flowchart LR
         C2 --> D2["Residual 64, or 6.4 percent. Floor 40 at perfect recall."]
     end
     SAME ~~~ SOURCE
-    classDef blind fill:#dddddd,stroke:#111111,stroke-width:3px
-    classDef catchable fill:#ffffff,stroke:#333333,stroke-width:2px,stroke-dasharray:5 5
+    classDef blind stroke-width:3px
+    classDef catchable stroke-width:2px,stroke-dasharray:5 5
     class B1,B2 blind
     class C1,C2 catchable
 ```
 
-Figure 4.6: Judge accuracy moves only the dashed middle box. The oracle the judge is allowed to read moves the shaded one, which is where the floor lives - so the left configuration cannot fall below 120 residual errors however good its judge becomes. Counts are from the audit below.
+Figure 4.6: Judge accuracy moves only the dashed middle box. The oracle the judge is allowed to read moves the heavy box, which is where the floor lives - so the left configuration cannot fall below 120 residual errors however good its judge becomes. Counts are from the audit below.
 
 ## Whiteboard pack
 

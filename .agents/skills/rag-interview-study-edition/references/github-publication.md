@@ -80,6 +80,9 @@ Do not rely only on `git push` output. Verify:
 - remote commit SHA and message
 - README blob SHA versus `git hash-object README.md`
 - remote file count and absence of the PDF
+- rendered Mermaid figures in GitHub's current dark appearance when styled nodes are present
+
+Also run the reusable Mermaid verifier with both `default` and `dark` themes before the push. A parser-success result alone does not establish readable contrast. Do not change the user's GitHub appearance setting merely to perform this check.
 
 ## Change and verify visibility
 

@@ -44,12 +44,13 @@ Load only the references needed for the requested mode. A full build requires th
 - Brace superscript stars as `^{*}` so GitHub Markdown cannot consume paired asterisks before MathJax runs.
 - Do not add raw HTML, image embeds, base64 data, footnotes, or local filesystem links to study units.
 - Use triple-backtick Mermaid fences. Do not substitute tilde fences when the contract requires backticks.
+- Do not hardcode Mermaid fill, text, background, or stroke colors. Let the active renderer theme set colors. Preserve emphasis with node shapes, `stroke-width`, and `stroke-dasharray`.
 
 ## Deterministic helpers
 
 - Resolve every `scripts/...` path from the directory that contains this `SKILL.md` file.
 - Run `node scripts/audit_markdown.mjs <package-root>` for the full unit contract. It expects `<package-root>/manifest.json` and `<package-root>/chapters/`.
-- Run `node scripts/verify_mermaid.mjs <package-root> [mmdc-path] [parallelism]` to parse every Mermaid block with Mermaid CLI. It uses isolated block files and defaults to three concurrent parses.
+- Run `node scripts/verify_mermaid.mjs <package-root> [mmdc-path] [parallelism] [theme]` to parse every Mermaid block with Mermaid CLI. It uses isolated block files, defaults to three concurrent parses, and accepts Mermaid themes such as `default` and `dark`.
 - Run `node scripts/verify_package.mjs <package-root>` after the index and ZIP exist. It checks the manifest, index coverage, archive allowlist, integrity, and byte equality.
 - Run `node scripts/verify_readme.mjs <repository-root>` before publishing a repository README.
 

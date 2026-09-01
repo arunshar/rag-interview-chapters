@@ -62,6 +62,8 @@ Recreate every numbered source figure and table:
 - layout-sensitive or unsupported diagrams as ASCII code blocks
 - unrepresentable visuals as precise blockquoted descriptions
 
+Let the active renderer theme choose Mermaid fills, text colors, backgrounds, and stroke colors. Encode semantic differences with shapes, border width, and dash patterns so diagrams remain legible in light and dark themes.
+
 Each numbered visual carries its number and source caption or reference exactly as the manifest defines it. Do not invent figure or table numbers for unnumbered artifacts.
 
 ## Whiteboard pack
@@ -107,6 +109,7 @@ Distinguish direct source values, recomputed results, and preserved source discr
 - Use no prose semicolon or comma splice as a dash substitute.
 - Normalize smart quotes, ligatures, nonbreaking spaces, and soft hyphens.
 - Use no raw HTML, footnotes, image embeds, base64, or local filesystem links.
+- Use no fixed Mermaid `fill`, `color`, `background`, or `stroke` properties. Theme defaults own color contrast. Use `stroke-width` and `stroke-dasharray` for emphasis.
 - Define every acronym on first use in each unit.
 - Keep each unit self-contained.
 - Target 400 to 900 lines per unit. Split only when the user permits and a faithful unit cannot fit.

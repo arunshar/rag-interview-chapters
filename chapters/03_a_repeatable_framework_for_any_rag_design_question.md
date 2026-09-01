@@ -592,7 +592,7 @@ flowchart TD
     P --> G["y = GENθ(x, c1, ..., ck)"]
     W -. "g(x) = 0" .-> C["answer closed book"]
     C -.-> G
-    style P stroke-width:4px,fill:#dddddd
+    style P stroke-width:4px
 ```
 
 **Figure 3.1:** The five decisions are the five free parameters of y = GENθ (x, RET(x, D)), and only the first one has a bypass. Milliseconds are the worked example's time-to-first-token budget. The heavy box is the decision that owns 82% of it.

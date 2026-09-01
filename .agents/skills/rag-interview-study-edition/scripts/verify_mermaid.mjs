@@ -10,13 +10,19 @@ const execFileAsync = promisify(execFile);
 const packageRoot = path.resolve(process.argv[2] || ".");
 const requestedCli = process.argv[3] || process.env.MMDC_PATH || "mmdc";
 const requestedParallelism = Number.parseInt(process.argv[4] || "3", 10);
+const theme = process.argv[5] || "default";
 const parallelism = Number.isInteger(requestedParallelism)
   ? Math.max(1, Math.min(requestedParallelism, 8))
   : 3;
 const errors = [];
+const allowedThemes = new Set(["default", "dark", "forest", "neutral", "base"]);
 
 function fail(message) {
   errors.push(message);
+}
+
+if (!allowedThemes.has(theme)) {
+  fail(`Unsupported Mermaid theme: ${theme}`);
 }
 
 function resolveCli(value) {
@@ -98,7 +104,7 @@ if (cli && errors.length === 0) {
       const outputPath = path.join(tempDirectory, `${stem}.svg`);
       fs.writeFileSync(inputPath, job.source, "utf8");
       try {
-        await execFileAsync(cli, ["-i", inputPath, "-o", outputPath, "-b", "transparent"], {
+        await execFileAsync(cli, ["-i", inputPath, "-o", outputPath, "-b", "transparent", "-t", theme], {
           maxBuffer: 10 * 1024 * 1024,
         });
         if (!fs.existsSync(outputPath) || fs.statSync(outputPath).size === 0) {
@@ -125,6 +131,7 @@ const report = {
   cli,
   cliVersion,
   parallelism,
+  theme,
   units: units.length,
   mermaidBlocks: jobs.length,
   parsed,

@@ -803,9 +803,9 @@ flowchart TB
     C4 -.-> L10[" "] & L11[" "] & L12[" "]
   end
   style CP stroke-dasharray: 2 3
-  classDef root fill:#999,stroke:#333
-  classDef summary fill:#bbb,stroke:#333
-  classDef cluster fill:#ddd,stroke:#333
+  classDef root stroke-width:4px
+  classDef summary stroke-width:2px
+  classDef cluster stroke-width:1px,stroke-dasharray:5 5
   class R root
   class S1,S2 summary
   class C1,C2,C3,C4 cluster

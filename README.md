@@ -252,8 +252,11 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Numbered figure headings | 246 |
 | Numbered table headings | 9 |
 | Mermaid diagram blocks | 175 |
+| Hardcoded Mermaid color directives | 0 |
+| Mermaid renders, default theme | 175 of 175 |
+| Mermaid renders, dark theme | 175 of 175 |
 | Files inside the ZIP | 58 |
-| ZIP size | 1,142,408 bytes |
+| ZIP size | 1,142,346 bytes |
 | GitHub-blocked `\operatorname` macros | 0 |
 | Repaired display-math blocks parsed | 72 of 72 |
 
@@ -274,7 +277,7 @@ The reusable verification scripts are included under `.agents/skills/rag-intervi
 ZIP SHA-256:
 
 ```text
-171b477340d406f765d7a230d8447a47578cf130e718c1653426d79235f02fac
+ccba472284b229b73b890530340663c591b0ad1bdceef18cb34be103a082d819
 ```
 
 The archive was extracted during creation-time verification. All 58 extracted files matched their source files byte for byte.

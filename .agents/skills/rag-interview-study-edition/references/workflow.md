@@ -105,8 +105,9 @@ After all independent verification is complete:
 6. Normalize Mermaid fences to triple backticks if the contract requires them.
 7. Reject `\operatorname` in GitHub-bound Markdown. Replace it with `\mathop{\text{label}}`, and preserve starred operator placement with `\limits`.
 8. Brace superscript stars as `^{*}` before GitHub preview validation.
+9. Reject fixed Mermaid fill, text, background, and stroke colors. Preserve meaning with shapes, border width, and dash patterns, then render under both `default` and `dark` themes.
 
-The session case study found a useful failure mode: all diagrams were syntactically sound, but 20 used tilde fences. The final pass converted them to triple-backtick Mermaid fences before packaging.
+The session case study found two useful failure modes. All diagrams were syntactically sound, but 20 used tilde fences. The final pass converted them to triple-backtick Mermaid fences before packaging. A later GitHub dark-theme audit found that fixed light fills could hide labels even when Mermaid parsing passed. Theme-safe diagrams therefore need both parser validation and contrast-aware preview checks.
 
 ## 6. Build and refresh the index
 

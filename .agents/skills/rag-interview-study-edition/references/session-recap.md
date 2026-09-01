@@ -41,8 +41,8 @@ https://github.com/arunshar/rag-interview-chapters
 - 405 minimum unit lines
 - 900 maximum unit lines
 - 58 files in the portable ZIP
-- ZIP size: 1,142,408 bytes
-- ZIP SHA-256: `171b477340d406f765d7a230d8447a47578cf130e718c1653426d79235f02fac`
+- ZIP size: 1,142,346 bytes
+- ZIP SHA-256: `ccba472284b229b73b890530340663c591b0ad1bdceef18cb34be103a082d819`
 
 The ZIP contains only `00_INDEX.md` and `chapters/`.
 
@@ -157,6 +157,22 @@ A later browser audit found two GitHub-specific math failures that the creation-
 - The reusable audit now rejects both GitHub-blocked `\operatorname` and unbraced superscript stars.
 - The repository now includes a project-scoped public copy of this skill under `.agents/skills/rag-interview-study-edition/`.
 
+## Post-publication Mermaid theme repair
+
+A later dark-mode browser audit found a fixed Mermaid fill in Figure 3.1 that made the node text nearly disappear. A complete Markdown scan showed the same class of theme-dependent styling in six figures.
+
+- Scanned all 68 Markdown files in the repository, including the project-scoped skill documentation.
+- Inspected all 175 Mermaid blocks and every direct Mermaid style declaration.
+- Found 12 fixed color declarations across 6 figures in 4 chapter files. They affected 24 nodes.
+- Removed every fixed fill, text, background, and stroke color. Shape emphasis now uses theme-safe border width and dash patterns.
+- Updated three captions so their prose matches the repaired visual encoding.
+- Reduced the count of hardcoded Mermaid color directives to zero.
+- Rendered all 175 Mermaid blocks successfully with both the `default` and `dark` Mermaid themes.
+- Measured repaired node contrast at approximately 10.83:1 in the default theme and 10.17:1 in the dark theme. The affected nodes had ranged from approximately 1.18:1 to 1.77:1 before the repair.
+- Extended the reusable audit to reject fixed Mermaid colors and Mermaid theme overrides.
+- Added a theme argument to the Mermaid verifier so future runs can validate more than one theme.
+- Rebuilt the package ZIP from the allowlist. All 58 extracted files matched their source files byte for byte.
+
 ## Current completion boundary
 
-The edition is built, independently verified, packaged, and publicly readable. Its GitHub math compatibility repair and project-scoped skill are included in the repository. The original PDF is not in the repository. No release was created. No open-source license was added. Future edits, releases, visibility changes, or publication to another service require fresh user direction.
+The edition is built, independently verified, packaged, and publicly readable. Its GitHub math compatibility repair, Mermaid theme repair, and project-scoped skill are included in the repository. The original PDF is not in the repository. No release was created. No open-source license was added. Future edits, releases, visibility changes, or publication to another service require fresh user direction.

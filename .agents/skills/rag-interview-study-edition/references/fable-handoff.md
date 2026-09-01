@@ -41,7 +41,9 @@ Use $rag-interview-study-edition to audit this existing package without changing
 - Repository root: the checkout containing `README.md`, `00_INDEX.md`, `chapters/`, and the portable ZIP
 - Public repository: `https://github.com/arunshar/rag-interview-chapters`
 - Initial expanded README commit: `51b65e61af66ad6b5543f1f6db9ad53f8371f712`
-- ZIP SHA-256: `171b477340d406f765d7a230d8447a47578cf130e718c1653426d79235f02fac`
+- ZIP SHA-256: `ccba472284b229b73b890530340663c591b0ad1bdceef18cb34be103a082d819`
+- Current Mermaid verification: 175 of 175 blocks in both the default and dark themes
+- Current hardcoded Mermaid color count: 0
 
 ## Authority boundary
 

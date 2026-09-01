@@ -336,6 +336,15 @@ for (const unit of manifest.units) {
     if (!/^\s*(?:flowchart|graph|sequenceDiagram|classDiagram|stateDiagram|erDiagram|journey|gantt|pie|quadrantChart|mindmap|timeline|sankey-beta|xychart-beta)\b/m.test(block.content)) {
       add("error", relativeFile, block.start, "Mermaid block has no recognized diagram declaration");
     }
+    for (const [offset, mermaidLine] of block.content.split("\n").entries()) {
+      const lineNumber = block.start + offset + 1;
+      if (/^\s*(?:style|classDef|linkStyle)\b.*\b(?:fill|color|background|stroke)\s*:/i.test(mermaidLine)) {
+        add("error", relativeFile, lineNumber, "Contains theme-dependent Mermaid color styling. Use theme defaults and distinguish nodes with shapes, stroke-width, or stroke-dasharray");
+      }
+      if (/^\s*%%\{.*\b(?:theme|themeVariables|themeCSS)\b/i.test(mermaidLine)) {
+        add("error", relativeFile, lineNumber, "Contains a Mermaid theme override. Let the host renderer select its light or dark theme");
+      }
+    }
   }
 
   results.push({

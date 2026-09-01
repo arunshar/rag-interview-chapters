@@ -45,7 +45,7 @@ The audit checks:
 4. Table integrity.
 5. Forbidden dash and smart glyphs.
 6. GitHub-blocked math macros and Markdown-sensitive math syntax, including `\operatorname` and unbraced `^*`.
-7. Mermaid declarations.
+7. Mermaid declarations, fixed color overrides, and theme configuration.
 8. Heading order and exact level-2 section order.
 9. Unit purpose, summary bullets, Decoder width, whiteboard sequence and script, and interview-trap sentence counts.
 10. Line range, manifest captions, figure and table counts, and undeclared files.
@@ -62,7 +62,15 @@ Run the bundled helper from the skill directory:
 node scripts/verify_mermaid.mjs /absolute/path/to/package-root
 ```
 
-Pass an explicit Mermaid CLI path as the second argument when `mmdc` is not on `PATH`. The optional third argument controls parallelism from one to eight. The helper extracts each block into an isolated `.mmd` file, renders it to SVG, compares successful renders with the source block count, and deletes its temporary directory.
+Pass an explicit Mermaid CLI path as the second argument when `mmdc` is not on `PATH`. The optional third argument controls parallelism from one to eight. The optional fourth argument selects the Mermaid theme and defaults to `default`. The helper extracts each block into an isolated `.mmd` file, renders it to SVG, compares successful renders with the source block count, and deletes its temporary directory.
+
+Run a second pass with the dark theme before GitHub publication:
+
+```text
+node scripts/verify_mermaid.mjs /absolute/path/to/package-root mmdc 3 dark
+```
+
+Parser success does not prove readable contrast. The Markdown auditor rejects fixed Mermaid `fill`, `color`, `background`, and `stroke` properties while allowing `stroke-width` and `stroke-dasharray`. After a diagram-style repair, inspect the affected figures in GitHub light and dark appearances.
 
 ## Index verification
 
