@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 40. Graph RAG | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/40_graph_rag.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group" open><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html" aria-current="page">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part XII. Scaling, Advanced Variants, and Design Drills</p><h1>Chapter 40. Graph RAG</h1><p class="chapter-meta">43 min estimated reading · Unit 49 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to defend every stage, cost, failure, and claim boundary of graph-based Retrieval-Augmented Generation (RAG), from construction and grounded retrieval through generation and the GraphRAG versus LightRAG choice.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Build a graph only when answers need connected facts, relation types recur, and construction plus updates are affordable.</li>
+<li>Graph construction moves cost from cheap chunk embeddings into extraction, entity resolution, typed-edge quality, and recurring re-indexing.</li>
+<li>Query processing has five stages, but only structuration, decomposition, and expansion consult the graph schema.</li>
+<li>Heuristic retrieval links entities, matches phrases to real relation types, and traverses a bounded connected path.</li>
+<li>Grounding turns a graph from a fact store into a reasoning source by rejecting every proposed path that has no real walk.</li>
+<li>Graph neural network retrieval moves repeated inference-time model calls into offline training, but it needs a symbolic fallback for unseen relations.</li>
+<li>Prune, rerank, augment, and verbalize before generation. A correct but raw subgraph can still overflow context or bury the answer. Choose GraphRAG communities for global sense-making and LightRAG dual-level keys for point or multi-hop factual retrieval with frequent updates.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of the system as a rail network built for questions.</p>
+<p>Flat retrieval is a shelf of timetables. It can return several correct pages, but it does not prove that the listed stations connect.</p>
+<p>A graph is the track map. Entities are stations. Typed relations are named tracks. A multi-hop answer is a route that must stay on existing rails.</p>
+<p>The first decision is whether to build the railway at all. A route is wasteful when one timetable already contains the answer, when every trip needs a one-off track type, or when the track crew cannot keep pace with updates.</p>
+<p>Construction lays the rails. Manual extraction is careful and slow. Rules are cheap but miss unusual phrasing. A large language model (LLM) finds more candidate tracks, then creates a second job in deduplication and entity resolution.</p>
+<p>The query processor reads the passenger's request. It identifies stations and relation phrases, translates them into the network's vocabulary, breaks a long trip into legs, and expands aliases. Only the last three jobs need the official track schema.</p>
+<p>Heuristic retrieval acts like a dispatcher. It fixes the departure station, maps the requested relation to real track names, and runs a bounded search. Two named endpoints invite a meet-in-the-middle search. One named endpoint requires an outward route.</p>
+<p>Reasoning on Graphs (RoG) writes candidate sequences of track types before choosing stations. Constrained breadth-first search (BFS) then checks whether each planned route exists. A fictional rail is rejected before it can support an answer.</p>
+<p>Graph neural network RAG (GNN-RAG) trains an automated signal system. Query-matching relations carry more importance. Off-topic relations fade. The trained system is fast, but an unfamiliar track type can fool it silently, so the human-readable symbolic route remains a fallback.</p>
+<p>The organizer is the switching yard. It removes excess cars, orders the useful ones, adds missing labels, and converts the consist into text or embeddings the generator can consume.</p>
+<p>Generation chooses the vehicle. Verbalization pays per triple in context tokens. Embedding fusion compresses the route into a fixed number of vectors after training. Graph-native generation stays on the rails when the output itself must remain graph-shaped.</p>
+<p>Finally, GraphRAG builds a hierarchy of regional rail maps and summaries for questions about the whole network. LightRAG keeps a flat station directory with specific and thematic keys. The right system follows the trip shape, not the better-known name.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Decode</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieve evidence before generation</td>
+<td>A graph changes the evidence structure, not the need for grounded generation</td>
+</tr>
+<tr>
+<td>Knowledge graph (KG)</td>
+<td>Entities joined by typed directed relations</td>
+<td>It represents connected facts explicitly</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td><code>G = (V, E)</code></td>
+<td>It contains entity nodes and relation-labeled edges</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>Entity-node set</td>
+<td>Linking chooses anchors in this set</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Relation vocabulary</td>
+<td>Matching and planning must stay inside it</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>Directed typed edges with <code>E</code> contained in <code>V x R x V</code></td>
+<td>Traversal accepts only real connections</td>
+</tr>
+<tr>
+<td>Triple</td>
+<td><code>(h, r, t)</code> for head, relation, tail</td>
+<td>It is the extraction and storage unit</td>
+</tr>
+<tr>
+<td>Typed edge</td>
+<td>A specific relation such as <code>born_in</code></td>
+<td>Generic <code>related_to</code> removes selective retrieval value</td>
+</tr>
+<tr>
+<td>Graph-shaped domain</td>
+<td>A domain with recurring relational topology</td>
+<td>It can amortize graph construction across queries</td>
+</tr>
+<tr>
+<td>Recurring relation</td>
+<td>The same edge type serves many future queries</td>
+<td>It is the economic gate for graph construction</td>
+</tr>
+<tr>
+<td>Multi-hop necessity</td>
+<td>No single chunk contains the complete answer</td>
+<td>It is the capability gate for graph retrieval</td>
+</tr>
+<tr>
+<td>Adjacency matrix</td>
+<td>A cell for every possible node pair</td>
+<td>It wastes space on sparse extracted graphs</td>
+</tr>
+<tr>
+<td>Edge list</td>
+<td>Three identifiers per real edge</td>
+<td>It stores sparse connectivity directly</td>
+</tr>
+<tr>
+<td>Entity resolution</td>
+<td>Merge mentions that refer to one entity</td>
+<td>Without it, duplicate nodes split paths</td>
+</tr>
+<tr>
+<td>Deduplication</td>
+<td>Collapse repeated relations or mentions</td>
+<td>It turns noisy extraction into usable topology</td>
+</tr>
+<tr>
+<td>Gleaning</td>
+<td>A second extraction pass for missed entities</td>
+<td>It raises recall and roughly doubles extraction calls</td>
+</tr>
+<tr>
+<td>Explicit graph format</td>
+<td>A machine-readable structure such as Simplified Molecular Input Line Entry System (SMILES) or citations</td>
+<td>It removes the need for prose extraction</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Entity types plus allowed edge labels</td>
+<td>It bounds valid structured queries and reasoning hops</td>
+</tr>
+<tr>
+<td>Entity recognition</td>
+<td>Find literal things named in the question</td>
+<td>A missed or wrong anchor cannot be repaired later</td>
+</tr>
+<tr>
+<td>Relation extraction</td>
+<td>Find phrases that connect mentioned things</td>
+<td>It identifies the requested relation intent</td>
+</tr>
+<tr>
+<td>Query structuration</td>
+<td>Convert a question into the store's query language</td>
+<td>It makes the request executable</td>
+</tr>
+<tr>
+<td>Query decomposition</td>
+<td>Split a multi-hop request into single-hop legs</td>
+<td>It exposes the intermediate variables</td>
+</tr>
+<tr>
+<td>Query expansion</td>
+<td>Add synonyms, acronyms, aliases, or neighbor labels</td>
+<td>It bridges user phrasing and stored labels</td>
+</tr>
+<tr>
+<td>Grounded decomposition</td>
+<td>Permit only sub-questions licensed by the schema</td>
+<td>It prevents plausible but nonexistent hops</td>
+</tr>
+<tr>
+<td>Entity linking</td>
+<td>Map a mention to a node</td>
+<td>It fixes the traversal anchor</td>
+</tr>
+<tr>
+<td>Relational matching</td>
+<td>Map a phrase to one or more real edge types</td>
+<td>It narrows the allowable traversal relations</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>Explore a graph frontier by hop depth</td>
+<td>It finds bounded connected paths</td>
+</tr>
+<tr>
+<td>Bidirectional search</td>
+<td>Expand from two named endpoints and intersect</td>
+<td>It cuts the touched-node count for two-anchor queries</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Average branching factor</td>
+<td>Traversal cost grows rapidly with it</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Required hop depth</td>
+<td>It bounds symbolic traversal and compounding error</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td>Number of candidate relation plans</td>
+<td>A wider beam can reduce grounding failure at added BFS cost</td>
+</tr>
+<tr>
+<td>RoG</td>
+<td>Plan relation paths, ground them, then answer</td>
+<td>Its model-call count stays roughly fixed in hop depth</td>
+</tr>
+<tr>
+<td>Think-on-Graph (ToG)</td>
+<td>Ask an LLM to choose neighbors at every hop</td>
+<td>It sees entity context but pays per branch and hop</td>
+</tr>
+<tr>
+<td>Constrained BFS</td>
+<td>Follow only the next relation in a proposed plan</td>
+<td>An empty result rejects an invented route</td>
+</tr>
+<tr>
+<td>Planning module</td>
+<td>Propose ordered relation-type paths</td>
+<td>It separates route intent from entity grounding</td>
+</tr>
+<tr>
+<td>Reasoning module</td>
+<td>Answer from grounded entity paths</td>
+<td>It receives only routes backed by real edges</td>
+</tr>
+<tr>
+<td>GNN-RAG</td>
+<td>Learned query-conditioned graph retrieval</td>
+<td>It replaces sequential retrieval calls with one forward pass</td>
+</tr>
+<tr>
+<td>Node importance <code>p_v at layer l</code></td>
+<td>Relevance of node <code>v</code> at layer <code>l</code></td>
+<td>It propagates answer likelihood across hops</td>
+</tr>
+<tr>
+<td>Relation relevance <code>alpha_k(r)</code></td>
+<td>Match between a query head and relation type</td>
+<td>It gates which edges carry importance</td>
+</tr>
+<tr>
+<td>Message <code>m_v at layer l</code></td>
+<td>Aggregated importance-weighted neighbor signal</td>
+<td>It updates a node from query-relevant incoming edges</td>
+</tr>
+<tr>
+<td>GNN depth <code>L</code></td>
+<td>Number of message-passing layers</td>
+<td>It sets the receptive field to exactly <code>L</code> hops</td>
+</tr>
+<tr>
+<td>Over-smoothing</td>
+<td>Distant node representations converge at excess depth</td>
+<td>It reduces precision when depth exceeds the workload</td>
+</tr>
+<tr>
+<td>Union fallback</td>
+<td>Merge learned results with grounded symbolic paths</td>
+<td>It catches out-of-distribution learned failures</td>
+</tr>
+<tr>
+<td>Organizer</td>
+<td>Prune, rerank, augment, then verbalize</td>
+<td>It turns a raw subgraph into usable generator context</td>
+</tr>
+<tr>
+<td>Semantic pruning</td>
+<td>Score candidates against the query</td>
+<td>It is relevant but costs a model pass per query</td>
+</tr>
+<tr>
+<td>Structural pruning</td>
+<td>Use graph position such as PageRank</td>
+<td>It is query-agnostic and can be precomputed</td>
+</tr>
+<tr>
+<td>Syntactic pruning</td>
+<td>Use dependency distance</td>
+<td>It favors candidates close in the question structure</td>
+</tr>
+<tr>
+<td>Dynamic pruning</td>
+<td>Mask the graph inside successive GNN layers</td>
+<td>It learns a changing relevance function</td>
+</tr>
+<tr>
+<td>PageRank</td>
+<td>Propagate structural importance through incoming links</td>
+<td>It gives a reusable pruning score</td>
+</tr>
+<tr>
+<td>Teleport term</td>
+<td>Send probability mass uniformly with probability <code>1 - d</code></td>
+<td>It prevents a dense cluster from trapping all mass</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Reorder surviving nodes before serialization</td>
+<td>It prevents answer evidence from being buried</td>
+</tr>
+<tr>
+<td>Feature augmentation</td>
+<td>Add context to existing nodes</td>
+<td>It is reversible and preserves topology</td>
+</tr>
+<tr>
+<td>Structure augmentation</td>
+<td>Add nodes or edges</td>
+<td>It can bridge gaps but injects unverified topology</td>
+</tr>
+<tr>
+<td>Verbalization</td>
+<td>Serialize triples into text</td>
+<td>It is portable and traceable, with token cost linear in triples</td>
+</tr>
+<tr>
+<td>Learned projector</td>
+<td>Map graph representations into token-embedding space</td>
+<td>It avoids text tokens after training</td>
+</tr>
+<tr>
+<td>Embedding fusion</td>
+<td>Pool a variable graph into fixed soft-prompt vectors</td>
+<td>It holds per-query context cost constant</td>
+</tr>
+<tr>
+<td>Discrimination generator</td>
+<td>Produce a label or score from a graph</td>
+<td>It fits classification, not written explanations</td>
+</tr>
+<tr>
+<td>Graph-native generator</td>
+<td>Produce graph-shaped or sequence-native output</td>
+<td>It avoids lossy translation through prose</td>
+</tr>
+<tr>
+<td>GraphRAG</td>
+<td>Community hierarchy plus recursive summaries</td>
+<td>It targets global corpus sense-making</td>
+</tr>
+<tr>
+<td>Leiden</td>
+<td>Connected-community partitioning by modularity gain</td>
+<td>It constructs GraphRAG's hierarchy</td>
+</tr>
+<tr>
+<td>Modularity <code>Q</code></td>
+<td>Within-community connection strength beyond chance</td>
+<td>It is the partition objective</td>
+</tr>
+<tr>
+<td>Map-reduce</td>
+<td>Answer over community summaries, then merge partial answers</td>
+<td>It serves global queries without reopening raw chunks</td>
+</tr>
+<tr>
+<td>LightRAG</td>
+<td>Flat key-value graph with dual-level retrieval</td>
+<td>It favors point queries and incremental updates</td>
+</tr>
+<tr>
+<td>Low-level key</td>
+<td>Specific entity or relation key</td>
+<td>It behaves like entity linking for facts</td>
+</tr>
+<tr>
+<td>High-level key</td>
+<td>Abstract thematic key</td>
+<td>It retrieves broader related material</td>
+</tr>
+<tr>
+<td>Sense-making query</td>
+<td>Ask for themes across a corpus</td>
+<td>It matches GraphRAG's summary hierarchy</td>
+</tr>
+<tr>
+<td>Point query</td>
+<td>Ask for a specific fact or short path</td>
+<td>It matches LightRAG's flat lookup</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="401-when-a-graph-earns-its-place-and-when-it-does-not">40.1 When a graph earns its place, and when it does not</h3>
+<h4 id="what">What</h4>
+<p>A graph represents entities as <code>V</code> and directed typed relations as <code>E</code>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>V</mi><mo>,</mo><mi>E</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>E</mi><mo>⊆</mo><mi>V</mi><mo>×</mo><mi>R</mi><mo>×</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">G=(V,E), \qquad E\subseteq V\times R\times V</annotation></semantics></math></p>
+<p>The build gate asks three questions in sequence.</p>
+<ol type="1">
+<li>Does the answer require chaining facts that no single chunk contains?</li>
+<li>Is the domain naturally graph-shaped, with recurring relation types?</li>
+<li>Can the team afford construction and re-indexing on corpus updates?</li>
+</ol>
+<p>Any <code>no</code> returns to flat retrieval. The first <code>no</code> favors dense or Best Matching 25 (BM25) lexical RAG. The second favors iterative or decomposed retrieval over flat chunks. The third favors vanilla RAG with known multi-hop fragmentation.</p>
+<h4 id="why">Why</h4>
+<p>Vector retrieval scores chunks independently. It can retrieve individually correct facts without guaranteeing a connected path. A graph makes reachability auditable.</p>
+<p>Construction pays off only when relations recur across many future questions. Named entities alone do not justify a graph.</p>
+<p>Topology does not transfer automatically. Airport networks have hub-and-spoke structure. Citation networks connect papers directly to papers. Traversal depth, community resolution, and GNN radius require corpus-specific retuning.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>Building immediately after one multi-hop miss can spend heavily on a capability that iterative retrieval already fixes.</p>
+<p>Vague edges such as <code>related_to</code> collapse distinct connections. Any traversal or community algorithm then optimizes meaningless topology.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>For one million chunks of 300 tokens, vanilla embedding covers 300 million tokens. At the illustrative rate of $0.02 per million tokens, it costs $6.</p>
+<p>Graph extraction uses about 450 input tokens and 100 output tokens per chunk. At $3 per million input tokens and $15 per million output tokens:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>6</mn></msup><mrow><mo stretchy="true" form="prefix">(</mo><mn>450</mn><mfrac><mn>3</mn><msup><mn>10</mn><mn>6</mn></msup></mfrac><mo>+</mo><mn>100</mn><mfrac><mn>15</mn><msup><mn>10</mn><mn>6</mn></msup></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1350</mn><mo>+</mo><mn>1500</mn><mo>=</mo><mi>$</mi><mn>2850</mn></mrow><annotation encoding="application/x-tex">10^6\left(450\frac{3}{10^6}+100\frac{15}{10^6}\right) =1350+1500=\$2850</annotation></semantics></math></p>
+<p>The ratio is <code>2850 / 6 = 475</code>. At 5 percent monthly churn, 50,000 changed chunks cost $0.30 to re-embed and $142.50 to re-extract.</p>
+<h4 id="decisions-ablation-and-claim-limit">Decisions, ablation, and claim limit</h4>
+<p>First ablate the graph. Decompose the query, retrieve each sub-question from flat chunks, and run a second pass. Build the graph only if recurrent typed relations still add value.</p>
+<p>Scope the graph to high-value relation types. Treat extraction as a recurring per-triple bill, not a one-time project.</p>
+<p>The $2,850, $6, and 475 times figures use illustrative prices. They compare cost shape, not a provider benchmark. A full re-extraction that takes six hours cannot meet a same-day compliance update without incremental or hybrid indexing.</p>
+<h3 id="402-constructing-the-graph-extraction-cost-and-quality">40.2 Constructing the graph: extraction, cost, and quality</h3>
+<h4 id="what-1">What</h4>
+<p>Construction converts prose into triples <code>(h, r, t)</code>, resolves duplicate entity mentions, deduplicates repeated relations, and writes an edge or adjacency list.</p>
+<p>Three extraction paths place cost differently.</p>
+<ul>
+<li>Manual extraction offers high precision and consumes annotator-hours. Wikidata illustrates volunteer and bot-assisted curation sustained for more than a decade.</li>
+<li>Rule-based extraction is deterministic, runs in milliseconds on a central processing unit without an external application programming interface (API), and misses passive, coordinated, or cross-sentence relations. Stanford OpenIE-style dependency patterns are the source example.</li>
+<li>LLM extraction has higher recall across paraphrases and clauses, but it costs tokens and can create duplicates, hallucinated relations, or relations outside the licensed schema.</li>
+</ul>
+<p>No extractor is needed when structure is already explicit. SMILES molecule strings, citation edges, and foreign keys can be parsed directly.</p>
+<h4 id="why-1">Why</h4>
+<p>Extraction quality fixes the topology that every later method sees. Entity resolution is a separate stage because two mentions of one entity otherwise form disconnected nodes.</p>
+<p>Sparse storage is essential. With 150,000 entities and 500,000 directed edges, a bit-packed adjacency matrix uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>150000</mn><mn>2</mn></msup><mo>=</mo><mn>2.25</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bits</mtext></mrow><mo>≈</mo><mn>2.8</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> GB</mtext></mrow></mrow><annotation encoding="application/x-tex">150000^2=2.25\times10^{10}\text{ bits}\approx2.8\text{ GB}</annotation></semantics></math></p>
+<p>An edge list with three four-byte identifiers per edge uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>500000</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>4</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>6</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> MB</mtext></mrow></mrow><annotation encoding="application/x-tex">500000\times3\times4\text{ bytes}=6\text{ MB}</annotation></semantics></math></p>
+<p>The matrix is about 469 times larger for connectivity alone.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>Manual-only extraction does not scale. Rule-only extraction misses legitimate edges outside stable patterns. Unchecked LLM extraction builds noisy topology and pushes the cost downstream into deduplication.</p>
+<p>Exhaustive pairwise entity comparison becomes quadratic. Embedding-similarity blocking is needed after a few thousand entities.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>For 50,000 chunks of about 400 tokens, add 180 prompt tokens. Six triples at 14 tokens each in compact JavaScript Object Notation (JSON) produce 84 output tokens. At $0.15 per million input tokens and $0.60 per million output tokens:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>580</mn><mfrac><mn>0.15</mn><msup><mn>10</mn><mn>6</mn></msup></mfrac><mo>+</mo><mn>84</mn><mfrac><mn>0.60</mn><msup><mn>10</mn><mn>6</mn></msup></mfrac><mo>=</mo><mi>$</mi><mn>0.0001374</mn></mrow><annotation encoding="application/x-tex">580\frac{0.15}{10^6}+84\frac{0.60}{10^6}=\$0.0001374</annotation></semantics></math></p>
+<p>Single-pass extraction costs <code>50000 x 0.0001374 = $6.87</code>. One gleaning pass doubles it to $13.74.</p>
+<p>The 300,000 raw mentions reduce to about 150,000 unique entities, a 2 to 1 duplication ratio. Embedding one 400-token chunk costs $0.000008 at the illustrative $0.02 per million rate, so extraction is about 17 times more expensive.</p>
+<p>At 5 percent weekly churn, changed-chunk extraction costs about $0.69. A full $13.74 rebuild is 20 times that local update.</p>
+<h4 id="decisions-ablation-and-claim-limit-1">Decisions, ablation, and claim limit</h4>
+<p>Use LLM extraction plus one gleaning pass for open prose. Use rules for narrow and stable legal or clinical fields. Skip extraction for explicit structures. Reserve manual review for high-stakes drug or regulatory edges.</p>
+<p>Ablate the extraction method on a few hundred hand-labeled examples. A rule system with 95 percent precision may still lose through missing recall.</p>
+<p>Use incremental extraction with periodic full entity resolution and community repartition. The prices are illustrative, and the examples compare mechanisms rather than measured production quality.</p>
+<h3 id="403-query-processing-five-sub-processes-and-grounded-decomposition">40.3 Query processing: five sub-processes and grounded decomposition</h3>
+<h4 id="what-2">What</h4>
+<p>The query processor maps a natural-language question and schema into grounded sub-queries.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>Q</mi><mo accent="true">̂</mo></mover><mo>=</mo><mi>ω</mi><mo stretchy="false" form="prefix">(</mo><mi>Q</mi><mo>,</mo><mi>G</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\widehat{Q}=\omega(Q,G)</annotation></semantics></math></p>
+<p>Its five fixed stages are entity recognition, relation extraction, query structuration, query decomposition, and query expansion.</p>
+<p>Entity recognition and relation extraction are schema-free. Structuration, decomposition, and expansion consult the graph schema.</p>
+<p>Structuration can emit SPARQL Protocol and RDF Query Language (SPARQL) for a Resource Description Framework (RDF) triple store or Cypher for a property graph such as Neo4j. Decomposition turns <code>Which novels are written by the author of 1984?</code> into a lookup for the author and a second lookup for that author's novels. Expansion maps <code>written by</code> to <code>authored_by</code> and can use <code>Apple Inc.</code>, <code>AAPL</code>, and <code>market_capitalization</code> to distinguish a company from fruit.</p>
+<h4 id="why-2">Why</h4>
+<p>Grounded decomposition validates every planned hop against existing entity and relation types. A general LLM can invent a plausible hop such as an author's political leanings even when the extractor never built that edge.</p>
+<p>An empty result from an invalid label looks like a true missing fact unless validation separates the cases.</p>
+<p>Entity recognition also controls the ceiling. An ambiguous acronym such as <code>CRP</code> can link to the wrong node, and no later traversal can repair that anchor.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Without expansion, user language and stored labels never meet. Without structuration, the graph cannot execute the request. Without decomposition, one prompt hides which hop failed. Without schema validation, the generator can fall back to parametric memory after an empty invented hop.</p>
+<h4 id="cost-and-complexity-2">Cost and complexity</h4>
+<p>Assume a 600-token schema, 50 query or intermediate tokens per schema-aware stage, 60 output tokens per stage, $0.15 per million input tokens, $0.60 per million output tokens, 80 decoded tokens per second, and 300 milliseconds of fixed overhead per call.</p>
+<p>Three calls consume 1,950 input and 180 output tokens. They cost $0.0004005 and take 3,150 milliseconds.</p>
+<p>One structured call consumes 650 input and 180 output tokens. It costs $0.0002055 and takes 2,550 milliseconds.</p>
+<p>The structured call cuts cost by 48.7 percent and latency by 19.0 percent. Decoding still dominates. A graph or approximate nearest neighbor lookup takes tens of milliseconds, so the roughly 2.5-second query processor is the bottleneck by two to three orders of magnitude.</p>
+<h4 id="decisions-ablation-and-claim-limit-2">Decisions, ablation, and claim limit</h4>
+<p>Combine the last three stages in one structured-output call, but retain a field for each stage so the trace remains auditable. Validate every label before execution.</p>
+<p>Use lighter components for recognition and extraction. Use a stronger model for structuration and decomposition. Bound expansion by result count or node count. Use community cardinality estimates and clarify when it grows too broad. The worked 2.55-second processor cannot meet a 300-millisecond p95 target without another design change.</p>
+<p>Ablate five separate calls against one structured call. The measured savings come from shared schema input and one fixed overhead, not faster decoding.</p>
+<h3 id="404-heuristic-retrieval-linking-matching-traversal">40.4 Heuristic retrieval: linking, matching, traversal</h3>
+<h4 id="what-3">What</h4>
+<p>Heuristic graph retrieval has three separable steps.</p>
+<ol type="1">
+<li>Entity linking maps a mention to an anchor node.</li>
+<li>Relational matching maps each relation phrase to one or more real edge types.</li>
+<li>Bounded traversal returns a connected subgraph.</li>
+</ol>
+<p>For <code>nationality of Jack's wife</code>, linking fixes Jack. Matching maps <code>wife</code> to <code>married_to</code> and <code>nationality</code> to both <code>born_in</code> and <code>state_of</code>. A depth-three BFS finds Jack to Joe to New Jersey to USA. An unmatched <code>colleague_of</code> edge to Amit is not traversed.</p>
+<p>Descriptions of edge types work better than literal names when phrases differ. If several relation scores are close, traversal can try each candidate and keep the one that connects.</p>
+<h4 id="why-3">Why</h4>
+<p>Dense retrieval over verbalized triples can return individually relevant but disconnected facts. Graph traversal preserves reachability.</p>
+<p>When a query names two entities, bidirectional meet-in-the-middle search expands from both anchors and intersects their frontiers. The source uses a biomedical EZH2 and epithelioid sarcoma query as this shape. When only one anchor is linkable, single-source traversal must discover the rest outward.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>A wrong entity link poisons the entire route. Literal matching silently misses paraphrases. Flat similarity loses connectivity. Excess traversal depth explodes the frontier.</p>
+<p>Depth beyond three or four hops is usually a decomposition or planning failure, not a reason to expand BFS farther.</p>
+<h4 id="cost-and-complexity-3">Cost and complexity</h4>
+<p>Single-source traversal grows as <code>O(b^h)</code>. Meet-in-the-middle traversal touches about <code>O(2b^(h/2))</code>.</p>
+<p>With branching factor 12 and depth three, a single-source search touches about:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>12</mn><mn>3</mn></msup><mo>=</mo><mn>1728</mn></mrow><annotation encoding="application/x-tex">12^3=1728</annotation></semantics></math></p>
+<p>Expanding each of two anchors to depth two touches:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><msup><mn>12</mn><mn>2</mn></msup><mo>=</mo><mn>288</mn></mrow><annotation encoding="application/x-tex">2\times12^2=288</annotation></semantics></math></p>
+<p>That is <code>288 / 1728 = 0.167</code>, an 83 percent reduction.</p>
+<p>Knowledge Graph Generative Pre-trained Transformer (KG-GPT) splits a query into one-relation sentences and uses an LLM for relation matching plus top-k relation selection. An <code>h</code>-relation query costs at least <code>h + 2</code> LLM calls, excluding entity linking.</p>
+<h4 id="decisions-ablation-and-claim-limit-3">Decisions, ablation, and claim limit</h4>
+<p>Default to alias tables and candidate-node reranking for entity linking. Precompute embeddings for natural-language edge descriptions. Hand-written lookup fits only a closed schema under roughly 20 edge types. At about 1,000 edge types, escalate to an LLM only when top embedding scores lie within a small margin.</p>
+<p>Default to bidirectional search for two concrete anchors. Use single-source traversal for an open fan-out query. Rank the frontier instead of increasing depth when branching explodes.</p>
+<p>Ablate connected traversal against dense retrieval over verbalized nodes. If retrieved triples are correct but disconnected, the failure is structural, not an embedding-quality problem.</p>
+<h3 id="405-knowledge-graphs-as-reasoning-sources">40.5 Knowledge graphs as reasoning sources</h3>
+<h4 id="what-4">What</h4>
+<p>A graph becomes a reasoning source only when every proposed inference step is checked against a real edge before it counts as evidence.</p>
+<p>Free-text reasoning can invent a tidy path. A false trace might move from Jack through Joan and New Jersey to Canada even though the real location edge reaches the United States.</p>
+<p>RoG separates three operations. A fine-tuned planning module proposes <code>K</code> ordered relation paths. Constrained BFS starts at the real question entity and follows only the proposed relation sequence. A reasoning module answers from paths that ground successfully and cites the selected path.</p>
+<p>Planning supervision comes from shortest relation paths between question and answer entities in the graph. This bounds proposals to the graph's relation vocabulary.</p>
+<h4 id="why-4">Why</h4>
+<p>Relation names such as <code>born_in</code>, <code>located_in</code>, and <code>citizen_of</code> can sound similar while licensing different facts. Fluent free text does not reveal whether a hop exists.</p>
+<p>Grounding returns an empty set for an impossible relation walk and discards it before generation. It does not ask the model to repair the plan.</p>
+<p>ToG takes the alternative route. It asks an LLM to score actual neighboring relations at every hop. This sees entity-specific context that a relation-only RoG plan lacks, but its call count compounds with beam width and depth.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>One false intermediate entity poisons all later hops. A generated chain can look fully reasoned while containing no valid walk.</p>
+<p>Repairing a failed plan with another free-form model call reopens the same hallucination channel that grounding closed.</p>
+<h4 id="cost-and-complexity-4">Cost and complexity</h4>
+<p>The source begins with average graph branching factor <code>b = 8</code>. At beam width <code>w</code> and depth <code>h</code>, hop-by-hop traversal calls are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>h</mi></munderover><msup><mi>w</mi><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><mfrac><mrow><msup><mi>w</mi><mi>h</mi></msup><mo>−</mo><mn>1</mn></mrow><mrow><mi>w</mi><mo>−</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">\sum_{k=1}^{h}w^{k-1}=\frac{w^h-1}{w-1}</annotation></semantics></math></p>
+<p>With <code>w = 3</code>, a two-hop question needs four traversal calls and one final call, or five total. A four-hop question needs 40 traversal calls and one final call, or 41 total.</p>
+<p>RoG uses one planning call, zero model calls for exact grounding, and one reasoning call. It stays at two calls independent of <code>h</code>.</p>
+<p>At about $0.002 per short call, two hops cost $0.010 for ToG and $0.004 for RoG, a 2.5 times gap. Four hops cost about $0.082 and $0.004, roughly a 20 times gap.</p>
+<h4 id="decisions-ablation-and-claim-limit-4">Decisions, ablation, and claim limit</h4>
+<p>Use plan-then-ground when depth is uncertain. Consider hop-by-hop selection when the graph is shallow, dense, and almost always at most two hops.</p>
+<p>Size <code>K</code> from the measured grounding-failure rate. A wider beam adds constrained BFS runs, not LLM calls. If failures come from missing edges, beam width cannot fix them.</p>
+<p>Ablate free-text reasoning by removing the supporting graph walk. A robust answer must disappear or abstain. If it remains, the model is using unsupported memory.</p>
+<p>RoG's fixed call count trades away entity-specific planning context. Union grounded relation plans with a learned context-aware retriever when entity identity changes the correct route.</p>
+<h3 id="406-learned-retrieval-gnn-rag-and-query-conditioned-message-passing">40.6 Learned retrieval: GNN-RAG and query-conditioned message passing</h3>
+<h4 id="what-5">What</h4>
+<p>GNN-RAG moves query-to-graph matching from sequential inference-time LLM calls into offline graph training.</p>
+<p>A shared Bidirectional Encoder Representations from Transformers (BERT) or Robustly Optimized BERT Pretraining Approach (RoBERTa) scale encoder maps query heads and relation labels into one space. Linked question entities start with importance one. Other nodes start at zero.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>p</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mn>1</mn></mtd><mtd columnalign="left" style="text-align: left"><mrow><mtext mathvariant="normal">if </mtext><mspace width="0.333em"></mspace></mrow><mi>v</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> is a linked question entity</mtext></mrow></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mtext mathvariant="normal">otherwise</mtext></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">p_v^{(0)}= \begin{cases} 1 &amp; \text{if }v\text{ is a linked question entity}\\ 0 &amp; \text{otherwise} \end{cases}</annotation></semantics></math></p>
+<p>For query head <code>k</code>, relation relevance is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mi>k</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msubsup><mi>q</mi><mi>k</mi><mi>𝖳</mi></msubsup><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><msup><mi>r</mi><mo>′</mo></msup><mo>∈</mo><mi>R</mi></mrow></munder><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msubsup><mi>q</mi><mi>k</mi><mi>𝖳</mi></msubsup><msup><mi>r</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\alpha_k(r)=\frac{\exp(q_k^{\mathsf T}r)}{\sum_{r&#39;\in R}\exp(q_k^{\mathsf T}r&#39;)}</annotation></semantics></math></p>
+<p>A node receives importance-weighted messages over incoming edges.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>m</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><munder><mo>∑</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mo>,</mo><mi>r</mi><mo>,</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo><mo>∈</mo><mi>E</mi></mrow></munder><msubsup><mi>p</mi><mi>u</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><msub><mi>α</mi><mi>k</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><msubsup><mi>h</mi><mi>u</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">m_v^{(l)}=\sum_{k=1}^{K}\sum_{(u,r,v)\in E}p_u^{(l)}\alpha_k(r)h_u^{(l)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>h</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><mo>MLP</mo><mo stretchy="false" form="prefix">(</mo><msubsup><mi>h</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>,</mo><msubsup><mi>m</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>,</mo><msup><mi>W</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msubsup><mi>p</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><msubsup><mi>m</mi><mi>v</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>,</mo><msubsup><mi>W</mi><mi>p</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h_v^{(l+1)}=\mathop{\text{MLP}}(h_v^{(l)},m_v^{(l)},W^{(l)}), \qquad p_v^{(l+1)}=g(m_v^{(l)},W_p^{(l)})</annotation></semantics></math></p>
+<p>After scoring, retrieval selects top nodes and extracts shortest paths from linked question entities to answer candidates.</p>
+<h4 id="why-5">Why</h4>
+<p>Importance compounds across layers. Relations that fit the question carry signal. Off-topic paths decay. Exactly <code>L</code> layers reach exactly <code>L</code> hops.</p>
+<p>The displayed equations preserve the source mechanism, importance times relevance followed by aggregation and update. They simplify the published formulation, which normalizes across heads instead of summing them bare.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>Symbolic LLM traversal dominates latency at query volume. A learned retriever instead fails silently on graph regions or relation types missing from training.</p>
+<p>Too much depth causes over-smoothing. New nodes under known relations are less disruptive than a new relation type. The learned route is less precise and much denser than the symbolic route it replaces.</p>
+<h4 id="cost-and-complexity-5">Cost and complexity</h4>
+<p>For a candidate graph with 500 nodes, about 2,000 edges, dimension 768, and three layers, one layer uses roughly:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>E</mi><mi>d</mi><mo>=</mo><mn>2</mn><mo>×</mo><mn>2000</mn><mo>×</mo><mn>768</mn><mo>≈</mo><mn>3.07</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> million multiply-adds</mtext></mrow></mrow><annotation encoding="application/x-tex">2Ed=2\times2000\times768\approx3.07\text{ million multiply-adds}</annotation></semantics></math></p>
+<p>Three layers use about 9.2 million multiply-adds. Kernel-launch overhead dominates arithmetic at this graph size.</p>
+<p>The worked symbolic route caps three beam expansions across three hops at nine sequential calls. At 700 milliseconds each, retrieval takes 6.3 seconds.</p>
+<p>The worked GNN route uses 50 milliseconds to encode the query and about 5 milliseconds for three message-passing layers on a graphics processing unit. Total retrieval latency is 55 milliseconds.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6300</mn><mi>/</mi><mn>55</mn><mo>≈</mo><mn>115</mn></mrow><annotation encoding="application/x-tex">6300/55\approx115</annotation></semantics></math></p>
+<p>The roughly 115 times difference supports the stated two-orders-of-magnitude throughput direction. It assumes one batched forward pass, not one GNN invocation per candidate.</p>
+<h4 id="decisions-ablation-and-claim-limit-5">Decisions, ablation, and claim limit</h4>
+<p>Start with the symbolic route. Train GNN-RAG once query volume justifies fixed training cost or shortest-path labels already exist.</p>
+<p>Never ship the learned graph alone in the source design. Union its subgraph with grounded symbolic paths and often a dense-retrieval pass. Log which route supplied each surviving answer.</p>
+<p>Retrain on schema change, not calendar time. Set <code>L</code> from measured hop count. Feed the generator an extracted shortest path, not only an opaque answer-node score.</p>
+<p>Ablate each union member. If the GNN appears accurate only while the symbolic fallback supplies the hard tail, the union instrumentation should reveal that dependence.</p>
+<h3 id="407-organizing-pruning-reranking-augmenting-verbalizing">40.7 Organizing: pruning, reranking, augmenting, verbalizing</h3>
+<h4 id="what-6">What</h4>
+<p>The organizer runs four operations in order.</p>
+<ol type="1">
+<li>Prune candidate nodes and edges.</li>
+<li>Rerank survivors before serialization.</li>
+<li>Augment missing node context or graph structure.</li>
+<li>Verbalize triples or project graph embeddings.</li>
+</ol>
+<p>Pruning has four families. Question-answering GNN (QA-GNN) style semantic pruning scores candidates against the query. A semantic variant scores edges after repeated relation types are deduplicated. PageRank supplies a structural score. PipeNet style syntactic pruning uses dependency distance. JointLK style dynamic pruning masks the graph across roughly five GNN layers.</p>
+<p>PageRank is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mi>d</mi></mrow><mi>N</mi></mfrac><mo>+</mo><mi>d</mi><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>I</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></munder><mfrac><mrow><mi>P</mi><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>O</mi><mi>u</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">PR(i)=\frac{1-d}{N}+d\sum_{j\in In(i)}\frac{PR(j)}{Out(j)}</annotation></semantics></math></p>
+<p>The source uses <code>d</code> approximately equal to 0.85. The teleport term prevents one dense cluster from trapping all mass and gives dangling nodes somewhere to send score.</p>
+<h4 id="why-6">Why</h4>
+<p>A raw traversal is an unordered and unbounded set. A cross-encoder reranks the pruned candidates because answer evidence can be buried after the graph becomes a token sequence.</p>
+<p>Feature augmentation adds a summary to an existing node and keeps topology unchanged. Structure augmentation adds nodes or edges, such as ConceptNet bridges, and introduces content the source graph did not verify.</p>
+<p>Template verbalization is portable and auditable. A learned projector is cheaper per node after training but tied to a base model.</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>Breadth-first traversal can overwhelm the context window. Verbalizing BFS order can place the answer in a weak position. Irrelevant nodes dilute useful evidence. Raw graph objects are also incompatible with a token-only generator.</p>
+<h4 id="cost-and-complexity-6">Cost and complexity</h4>
+<p>For two inbound PageRank neighbors with scores 0.30 and 0.50, out-degrees four and two, and <code>N = 100</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>0.15</mn><mn>100</mn></mfrac><mo>+</mo><mn>0.85</mn><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>0.30</mn><mn>4</mn></mfrac><mo>+</mo><mfrac><mn>0.50</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0.278</mn></mrow><annotation encoding="application/x-tex">PR(i)=\frac{0.15}{100}+0.85\left(\frac{0.30}{4}+\frac{0.50}{2}\right) =0.278</annotation></semantics></math></p>
+<p>At branching factor 20 over three hops:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mo>+</mo><msup><mn>20</mn><mn>2</mn></msup><mo>+</mo><msup><mn>20</mn><mn>3</mn></msup><mo>=</mo><mn>20</mn><mo>+</mo><mn>400</mn><mo>+</mo><mn>8000</mn><mo>=</mo><mn>8420</mn></mrow><annotation encoding="application/x-tex">20+20^2+20^3=20+400+8000=8420</annotation></semantics></math></p>
+<p>At seven tokens per triple, the raw traversal costs about 58,940 tokens. This is about seven times an 8K context and leaves little room even in a 32K deployment.</p>
+<p>Prune to 50 triples, rerank them, and add five 20-token node summaries:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>50</mn><mo>×</mo><mn>7</mn><mo>+</mo><mn>5</mn><mo>×</mo><mn>20</mn><mo>=</mo><mn>450</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> tokens</mtext></mrow></mrow><annotation encoding="application/x-tex">50\times7+5\times20=450\text{ tokens}</annotation></semantics></math></p>
+<p>The source compares this with about 2,000 tokens in a text retrieval funnel. Both organized pipelines land in the hundreds to low thousands, not tens of thousands.</p>
+<h4 id="decisions-ablation-and-claim-limit-6">Decisions, ablation, and claim limit</h4>
+<p>Default to precomputed structural pruning at scale. Pay for semantic pruning when relevance is query-dependent, as in company-versus-fruit disambiguation.</p>
+<p>Compute <code>b + b^2 + ... + b^h</code> before choosing the scorer. Rerank before verbalizing. Skip reranking only when <code>k</code> is at most 5 and leaves no meaningful middle.</p>
+<p>Prefer feature augmentation because it is reversible. Add topology only when the source graph cannot connect any plausible answer.</p>
+<p>Ablate each organizer operation separately. Measure answer-path recall after pruning, answer position after reranking, unsupported edges after augmentation, and context size after verbalization. In the source case, accuracy is flat between <code>k = 10</code> and a full 128K context, but p99 latency triples for the large context. That favors pruning plus reranking unless a harder multi-hop slice proves the extra graph is load-bearing.</p>
+<h3 id="408-generation-verbalize-fuse-or-stay-in-graph-space">40.8 Generation: verbalize, fuse, or stay in graph space</h3>
+<h4 id="what-7">What</h4>
+<p>Generation has three top-level families.</p>
+<ul>
+<li>LLM generation either verbalizes triples or fuses graph embeddings.</li>
+<li>Discrimination generation uses a graph convolutional network or graph transformer to emit a label or score.</li>
+<li>Graph-native generation keeps the output in graph or sequence form, as with a SMILES molecule representation.</li>
+</ul>
+<p>Verbalize-then-prompt renders each triple as literal text. Embedding fusion uses a query-conditioned GNN, cross-modality pooling, and a domain projector to create a fixed number of soft-prompt vectors in the LLM embedding space.</p>
+<p>Graph Neural Prompting is the source example. Its graph becomes another input modality. No literal triple string survives in the fused representation.</p>
+<p>Discrimination architectures can compose graph convolutional and transformer blocks in serial, alternating, or parallel-then-merged patterns. They fit classification or regression, not open prose.</p>
+<h4 id="why-7">Why</h4>
+<p>Verbalization needs no training and leaves traceable facts. Its context cost grows with subgraph size. Fusion pays training compute to keep the input footprint fixed. Graph-native generation preserves domain structure when prose would lose constraints.</p>
+<h4 id="failure-without-it-7">Failure without it</h4>
+<p>Verbalizing an unbounded hub subgraph can consume the prompt. Fusion removes literal evidence needed for citations. A discrimination head cannot write an explanation. Translating a structure-native output through prose can violate the structure that mattered.</p>
+<h4 id="cost-and-complexity-7">Cost and complexity</h4>
+<p>At 15 tokens per triple, 40 triples cost:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mrow><mi>v</mi><mi>e</mi><mi>r</mi><mi>b</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow></msub><mo>=</mo><mn>40</mn><mo>×</mo><mn>15</mn><mo>=</mo><mn>600</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> tokens</mtext></mrow></mrow><annotation encoding="application/x-tex">T_{verbalize}=40\times15=600\text{ tokens}</annotation></semantics></math></p>
+<p>At 200 triples, the cost is 3,000 tokens. With a fixed fusion budget of <code>k = 32</code> vectors, the structure-position ratios are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>600</mn><mi>/</mi><mn>32</mn><mo>≈</mo><mn>19</mn><mo>,</mo><mspace width="2.0em"></mspace><mn>3000</mn><mi>/</mi><mn>32</mn><mo>≈</mo><mn>94</mn></mrow><annotation encoding="application/x-tex">600/32\approx19, \qquad 3000/32\approx94</annotation></semantics></math></p>
+<p>The fusion footprint stays fixed because <code>k</code> is a hyperparameter. The source connects 32 to the fixed query budget of the BLIP-2 Q-Former.</p>
+<p>A five-chunk dense prompt at 250 tokens per chunk costs 1,250 tokens. A well-pruned 600-token graph prompt is not inherently larger. The risk begins when pruning allows hundreds of triples.</p>
+<h4 id="decisions-ablation-and-claim-limit-7">Decisions, ablation, and claim limit</h4>
+<p>Default to verbalization for low-hundreds-of-token subgraphs and products that require literal evidence. Reuse an existing query-conditioned GNN before funding a standalone fusion pipeline. A regulated one-quarter launch that needs human-checkable facts favors verbalization until fused attribution exists.</p>
+<p>Use a discrimination generator for verification or link prediction. Switch families when the output must be an explanation. Reserve graph-native generation for graph-shaped or sequence-native outputs.</p>
+<p>Even with fusion, verbalize a top-ranked justification subset when citations matter.</p>
+<p>Ablate the graph evidence from the generator. Remove the verbalized triples or fused vectors and rerun. An unchanged answer shows that the generator was not using retrieved evidence.</p>
+<h3 id="409-graphrag-vs-lightrag-communities-vs-dual-level-keys">40.9 GraphRAG vs LightRAG: communities vs dual-level keys</h3>
+<h4 id="what-8">What</h4>
+<p>GraphRAG extracts triples, builds a knowledge graph, partitions it into a hierarchy of Leiden communities, recursively summarizes every level, and answers by map-reduce over summaries. It targets global sense-making.</p>
+<p>Leiden starts with each node in its own community. It moves a node to the neighboring community with the highest modularity gain, collapses settled communities into super-nodes, and repeats. Unlike its Louvain predecessor, the resulting communities remain internally connected. Repeated coarsening has the same layered shape as Hierarchical Navigable Small World (HNSW) approximate search.</p>
+<p>Modularity is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><mfrac><mrow><msub><mi>k</mi><mi>i</mi></msub><msub><mi>k</mi><mi>j</mi></msub></mrow><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mo stretchy="true" form="postfix">]</mo></mrow><mi>δ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><msub><mi>c</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Q=\frac{1}{2m}\sum_{i,j}\left[A_{ij}-\frac{k_i k_j}{2m}\right]\delta(c_i,c_j)</annotation></semantics></math></p>
+<p>LightRAG skips community summaries. It profiles each entity name as a key and surrounding text as its value, deduplicates relations, and searches the flat graph with a low-level entity or relation key plus a high-level thematic key.</p>
+<h4 id="why-8">Why</h4>
+<p>GraphRAG's hierarchy can answer questions about major themes without reopening raw chunks. LightRAG avoids the summarization tax and accepts local incremental updates. <code>Which plan tier includes single sign-on?</code> is the source point-query example for LightRAG.</p>
+<p>GraphRAG loses on point lookup because a map-reduce pass reads summaries written for another question. LightRAG loses on a genuinely global query because local key matching cannot replace a summary that was never written.</p>
+<h4 id="failure-without-it-8">Failure without it</h4>
+<p>A vague edge inflates node degree, corrupts modularity, damages a community, and then damages every recursive summary above it.</p>
+<p>Frequent updates can shift GraphRAG community boundaries far from the changed document because modularity is global. LightRAG stays local but has no community-level synthesis.</p>
+<h4 id="cost-and-complexity-8">Cost and complexity</h4>
+<p>In the four-node toy, nodes one through three form a triangle and node four hangs from node three. There are four edges and <code>2m = 8</code>. Keeping the triangle together and node four alone gives <code>Q = -0.03125</code>. Merging all four gives <code>Q = 0</code>, a gain of 0.03125. One dangling edge changes the preferred partition.</p>
+<p>For a constructed 10,000-chunk corpus with about 30,000 extracted nodes and communities of about 10 nodes, GraphRAG summary calls are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3000</mn><mo>+</mo><mn>300</mn><mo>+</mo><mn>30</mn><mo>+</mo><mn>3</mn><mo>=</mo><mn>3333</mn></mrow><annotation encoding="application/x-tex">3000+300+30+3=3333</annotation></semantics></math></p>
+<p>Add 10,000 extraction calls for 13,333 total. LightRAG stops at the same 10,000 extraction calls. GraphRAG pays a 1.33 times call count, or a 33 percent premium, before higher-level calls become longer.</p>
+<p>For 50 new documents, LightRAG adds about 50 local extraction units. GraphRAG reruns Leiden globally and can repeat the 3,333-summary bill in the worst case.</p>
+<h4 id="decisions-ablation-and-claim-limit-8">Decisions, ablation, and claim limit</h4>
+<p>Default to LightRAG for point and multi-hop factual queries. Use GraphRAG for global themes. A source decision threshold treats at most about 10,000 chunks with rare edits as the small and static case where GraphRAG's one-time premium may be acceptable.</p>
+<p>For a corpus growing 5 percent daily under a one-hour freshness target, combine an incremental LightRAG-style key store with a scheduled GraphRAG rebuild for sense-making queries.</p>
+<p>Audit edge quality before comparing architectures. Fall back to dense retrieval when extraction cannot produce relations more precise than co-occurrence.</p>
+<p>Benchmark hygiene matters. GraphRAG reports subjective, LLM-scored comprehensiveness, diversity, and empowerment. It does not evaluate HotpotQA-style multi-hop correctness. That leaves multi-hop ability untested, not proven weak. Run the benchmark that matches the shipped query shape.</p>
+<p>The 33 percent construction premium is an order-of-magnitude illustration from constructed community sizes, not a benchmark result. Real community size skew and higher-level prompt lengths change the overhead.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-401">Figure 40.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    A[&quot;Does the answer require chaining facts no single chunk contains?&quot;] --&gt;|yes| B[&quot;Is the domain naturally graph-shaped, with recurring relation types?&quot;]
+    A -.-&gt;|no| X[&quot;no: vanilla dense / BM25 RAG&quot;]
+    B --&gt;|yes| C[&quot;Can you afford construction and re-indexing on every update?&quot;]
+    B -.-&gt;|no| Y[&quot;no: iterative / decomposed retrieval over flat chunks&quot;]
+    C --&gt;|yes| D[&quot;build the knowledge graph&quot;]
+    C -.-&gt;|no| Z[&quot;no: vanilla RAG, accept fragmented multi-hop answers&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.1:</strong> A graph earns its place only after multi-hop necessity, recurring relational structure, and affordable maintenance all clear the gate - any "no" routes back to flat retrieval.</p>
+<h3 id="figure-402">Figure 40.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    S[&quot;Source chunk, about 400 tokens&quot;] --&gt; M[&quot;Manual: high precision, annotator-hours&quot;]
+    S --&gt; R[&quot;Rule-based: near-zero cost, brittle low recall&quot;]
+    S --&gt; L[&quot;LLM: high recall, priced per token, noisy&quot;]
+    M --&gt; T[&quot;Triples, head relation tail&quot;]
+    R --&gt; T
+    L --&gt; T
+    T --&gt; E[&quot;Entity resolution / deduplication&quot;] --&gt; G[&quot;Knowledge graph, edge / adjacency list&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.2:</strong> The extraction method decides where the graph's cost lands - annotator-hours, missed edges, or a token bill that reappears downstream as a deduplication pass.</p>
+<h3 id="figure-403">Figure 40.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    Q[&quot;Query: Which novels are written by the author of 1984?&quot;] --&gt; A[&quot;1. Entity recognition&quot;] --&gt; B[&quot;2. Relation extraction&quot;] --&gt; C[&quot;3. Query structuration&quot;] --&gt; D[&quot;4. Query decomposition&quot;] --&gt; E[&quot;5. Query expansion&quot;] --&gt; O[&quot;Grounded sub-queries handed to retriever&quot;]
+    G[&quot;Graph schema G: entity types + edge vocabulary&quot;] -.-&gt; C
+    G -.-&gt; D
+    G -.-&gt; E</code></pre></details></figure>
+<p><strong>Figure 40.3:</strong> Only the last three sub-processes ever consult the graph schema. Grounding a decomposition means constraining it to that schema, not to the LLM's own notion of a plausible next hop.</p>
+<h3 id="figure-404">Figure 40.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    Q[&quot;Query: nationality of Jack&#39;s wife?&quot;] --&gt; L[&quot;Step 1: entity linking, Jack to node vJack&quot;] --&gt; M[&quot;Step 2: wife to married_to, nationality to born_in or state_of&quot;] --&gt; T[&quot;Step 3: BFS from vJack, depth at most 3, matched edge types only&quot;] --&gt; G[&quot;Connected subgraph to generator&quot;]
+    J((Jack)) --&gt;|married_to| Joe((Joe)) --&gt;|born_in| NJ((New Jersey)) --&gt;|state_of| USA((USA))
+    J -.-&gt;|colleague_of, unmatched| A((Amit))</code></pre></details></figure>
+<p><strong>Figure 40.4:</strong> Heuristic retrieval is three checkable steps rather than one similarity score: linking fixes the anchor node, matching narrows the query's phrases to real edge types, and bounded traversal finds the connected path, while an unmatched relation like colleague_of is never traversed.</p>
+<h3 id="figure-405">Figure 40.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    Q[&quot;Question&quot;] --&gt; P[&quot;Planning module, LLM: propose K relation paths&quot;]
+    P --&gt; A[&quot;married_to to born_in to located_in&quot;]
+    P --&gt; B[&quot;married_to to born_in to colonized_by&quot;]
+    A --&gt; G[&quot;Constrained BFS grounding from question entity&quot;]
+    B --&gt; G
+    G --&gt; R[&quot;Grounds: reaches United States&quot;]
+    G -.-&gt; X[&quot;No matching edge: discarded&quot;]
+    R --&gt; M[&quot;Reasoning module, LLM&quot;] --&gt; O[&quot;Answer: American&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.5:</strong> Reasoning on Graphs proposes relation paths before touching an entity, then grounds each one against real edges: a plan with no matching walk from the question entity is discarded before it can reach the answer.</p>
+<h3 id="figure-406">Figure 40.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    J[&quot;Jamaicans, question entity, p0 = 1&quot;] --&gt;|official_language, alpha = 0.41| E[&quot;English, p1 = 0.82&quot;]
+    J --&gt;|language_spoken, alpha = 0.37| P[&quot;Jamaican Patois, p1 = 0.77&quot;]
+    J -.-&gt;|capital, alpha = 0.03| K[&quot;Kingston, p1 = 0.05&quot;]
+    J -.-&gt;|borders, alpha = 0.02| C[&quot;Caribbean Sea, p1 = 0.03&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.6:</strong> Query-conditioned message passing raises importance on relations that match the question's intent and lets the rest decay toward zero, without a hand-written rule for which edge types matter. Scores shown are illustrative, one layer in, for the query "which language do Jamaican people speak."</p>
+<h3 id="figure-407">Figure 40.7</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    S[&quot;Retrieved subgraph: 3-hop BFS, about 8,420 candidates&quot;] --&gt; P[&quot;1. Prune: semantic / structural / syntactic / dynamic to top k = 50&quot;] --&gt; R[&quot;2. Rerank: cross-encoder moves answer-bearing triple out of the middle&quot;] --&gt; A[&quot;3. Augment: node summaries or ConceptNet edges&quot;] --&gt; V[&quot;4. Verbalize: template text or projected embeddings, about 450 tokens&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.7:</strong> Four operations sit between a retrieved subgraph and the generator, and each one earns its place by removing a specific failure mode - unbounded size, positional burial, missing context, or an incompatible format - rather than by convention.</p>
+<h3 id="figure-408">Figure 40.8</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    A[&quot;pruned subgraph, N triples&quot;] --&gt; B[&quot;template serialize&quot;] --&gt; C[&quot;token sequence, about 15N tokens&quot;] --&gt; D[&quot;LLM decoder&quot;] --&gt; E[&quot;text answer&quot;]
+    F[&quot;pruned subgraph, any N&quot;] --&gt; G[&quot;query-conditioned GNN + pool + project&quot;] --&gt; H[&quot;k soft-prompt vectors, fixed&quot;] --&gt; I[&quot;LLM decoder&quot;] --&gt; J[&quot;text answer&quot;]
+    K[&quot;graph query / subgraph&quot;] --&gt; L[&quot;graph encoder&quot;] --&gt; M[&quot;graph decoder&quot;] --&gt; N[&quot;graph-structured output, such as SMILES&quot;]</code></pre></details></figure>
+<p><strong>Figure 40.8:</strong> Verbalizing pays in context tokens that grow with subgraph size, embedding fusion pays in training compute to hold that cost constant, and graph-native generation never routes through natural-language text at all.</p>
+<h3 id="figure-409">Figure 40.9</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    subgraph G[&quot;GraphRAG&quot;]
+        G1[&quot;chunks&quot;] --&gt; G2[&quot;LLM extraction: triples&quot;] --&gt; G3[&quot;knowledge graph&quot;] --&gt; G4[&quot;Leiden partition, maximize Q&quot;] --&gt; G5[&quot;community hierarchy, recursive LLM summaries&quot;] --&gt; G6[&quot;query: map-reduce over summaries&quot;] --&gt; G7[&quot;answer&quot;]
+    end
+    subgraph L[&quot;LightRAG&quot;]
+        L1[&quot;chunks&quot;] --&gt; L2[&quot;LLM extraction: triples&quot;] --&gt; L3[&quot;knowledge graph&quot;] --&gt; L4[&quot;key-value profile + dedup, entity = key&quot;] --&gt; L5[&quot;no community layer&quot;] --&gt; L6[&quot;query: dual-level low + high keys&quot;] --&gt; L7[&quot;answer&quot;]
+    end</code></pre></details></figure>
+<p><strong>Figure 40.9:</strong> GraphRAG spends index-time budget on a community hierarchy so a query can be answered by map-reduce over summaries. LightRAG spends none of that budget and answers by searching a flat key-value graph at two granularities.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw the three graph gates: multi-hop need, recurring relations, affordable maintenance.</li>
+<li>Under the gates, draw manual, rule-based, and LLM extraction converging on resolved triples.</li>
+<li>Draw the five query-processing boxes and connect the schema only to boxes three through five.</li>
+<li>Draw link, match, and bounded traverse as three separate retrieval checks.</li>
+<li>Add a two-anchor bidirectional frontier and label its intersection.</li>
+<li>Draw RoG as relation planning, constrained BFS grounding, and grounded-answer generation.</li>
+<li>Add GNN-RAG as a fast learned route and union it with the symbolic fallback.</li>
+<li>Draw the organizer funnel: prune, rerank, augment, verbalize.</li>
+<li>Split generation into verbalized text, fixed-vector fusion, and graph-native output.</li>
+<li>Finish with GraphRAG's community hierarchy beside LightRAG's flat dual-level keys.</li>
+<li>Write the dominant costs under each stage: extraction, model calls, branching, context, and rebuilds.</li>
+<li>Circle the audit path from final claim back through grounded edges to source extraction.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the three-gate decision: a graph needs multi-hop questions, recurring typed relations, and affordable maintenance. Then build resolved triples and ground the last three query-processing stages in the schema. Retrieval links an anchor, matches real edge types, and traverses a bounded connected path. RoG plans relations and rejects paths that fail constrained search. GNN-RAG trades offline training for fast serving, with a symbolic fallback. The organizer prunes, reranks, augments, and verbalizes. Generation then chooses traceable text, fixed-vector fusion, or graph-native output. Use GraphRAG communities for global themes and LightRAG keys for factual, frequently updated workloads.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-the-final-answer-is-wrong-which-stage-owns-the-failure">1. The final answer is wrong. Which stage owns the failure?</h3>
+<p>Start at the macro level by testing whether the workload should use a graph and whether GraphRAG or LightRAG matches the query shape. At the mezzo level, isolate construction, query processing, retrieval, reasoning, organization, or generation. At the micro level, inspect the exact entity link, edge label, truncated hop, pruned node, evidence position, or unsupported claim.</p>
+<h3 id="2-how-do-you-prove-that-graph-construction-and-traversal-add-value">2. How do you prove that graph construction and traversal add value?</h3>
+<p>First compare the graph with iterative decomposition over the flat index, then compare extraction methods on precision, recall, duplicate rate, and typed-edge validity. Hold the graph fixed and ablate entity linking, relation matching, and connected traversal. Connectivity is decisive because a graph has not earned its recurring cost when flat retrieval already supplies a connected answer or decomposition closes the hops.</p>
+<h3 id="3-what-is-the-remove-the-evidence-test-for-graph-reasoning">3. What is the remove-the-evidence test for graph reasoning?</h3>
+<p>Record the grounded path, remove one load-bearing edge or withhold the whole path, and rerun. A grounded system should change, abstain, or surface the missing connection because an unchanged confident answer shows that parametric memory drove generation. For a learned-symbolic union, remove the GNN subgraph and RoG path separately to reveal which route supplied usable evidence.</p>
+<h3 id="4-how-do-latency-consistency-and-robustness-trade-across-the-pipeline">4. How do latency, consistency, and robustness trade across the pipeline?</h3>
+<p>Attribute latency before optimizing because one structured schema call takes 2,550 milliseconds, bidirectional traversal touches 288 nodes, GNN-RAG takes 55 milliseconds, and organization cuts 58,940 raw tokens to 450. Consistency comes from schema validation, exact grounding, and stable typed edges, while robustness comes from route unions, bounded depth, schema-change retraining, and organizer ablations. A learned route is fast but can fail silently on unseen relations, so route by confidence and log whether learned or symbolic evidence supplied the answer.</p>
+<h3 id="5-is-graphrag-better-than-lightrag-because-its-reported-evaluation-looks-stronger">5. Is GraphRAG better than LightRAG because its reported evaluation looks stronger?</h3>
+<p>No, because the query shape and benchmark must be named first. GraphRAG targets global sense-making through community summaries, while LightRAG targets factual retrieval through low-level and high-level keys. GraphRAG's reported comprehensiveness, diversity, and empowerment are subjective and LLM-scored, so test point accuracy, global coverage, update freshness, and cost on the workload that will ship.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source section</th>
+<th>Number or formula</th>
+<th>Meaning and claim boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>40.1</td>
+<td>One million x 300 = 300 million tokens</td>
+<td>Vanilla embedding workload</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>$6</td>
+<td>Illustrative embedding cost at $0.02 per million tokens</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>450 input and 100 output tokens per chunk</td>
+<td>Graph extraction workload</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>$1,350 input + $1,500 output = $2,850</td>
+<td>Illustrative full extraction cost</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td><code>2850 / 6 = 475</code> times</td>
+<td>Construction-to-embedding cost ratio</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>5 percent = 50,000 changed chunks</td>
+<td>Monthly churn case</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>$0.30 versus $142.50</td>
+<td>Re-embedding versus re-extraction at that churn</td>
+</tr>
+<tr>
+<td>40.1</td>
+<td>6 hours</td>
+<td>Example full re-extraction duration under a same-day compliance constraint</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>150,000 nodes and 500,000 edges</td>
+<td>Sparse storage example</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>2.8 GB versus 6 MB, about 469 times</td>
+<td>Bit-packed matrix versus edge list</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>50,000 chunks, 400 + 180 = 580 input tokens</td>
+<td>Extraction example input</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>6 triples at 14 tokens = 84 output tokens</td>
+<td>Extraction example output</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>$0.0001374 per chunk</td>
+<td>Illustrative extraction cost</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>$6.87 single pass and $13.74 with gleaning</td>
+<td>One pass versus two passes</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>300,000 mentions to 150,000 entities, 2 to 1</td>
+<td>Deduplication load</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>$0.000008 per chunk, extraction about 17 times higher</td>
+<td>Embedding comparison</td>
+</tr>
+<tr>
+<td>40.2</td>
+<td>5 percent update about $0.69 versus $13.74, 20 times</td>
+<td>Incremental versus full rebuild</td>
+</tr>
+<tr>
+<td>40.3</td>
+<td>600 schema, 50 stage input, 60 stage output tokens</td>
+<td>Query processor assumptions</td>
+</tr>
+<tr>
+<td>40.3</td>
+<td>80 tokens per second and 300 milliseconds fixed per call</td>
+<td>Latency assumptions</td>
+</tr>
+<tr>
+<td>40.3</td>
+<td>1,950 input, 180 output, $0.0004005, 3,150 ms</td>
+<td>Three-call configuration</td>
+</tr>
+<tr>
+<td>40.3</td>
+<td>650 input, 180 output, $0.0002055, 2,550 ms</td>
+<td>One structured-call configuration</td>
+</tr>
+<tr>
+<td>40.3</td>
+<td>48.7 percent cost and 19.0 percent latency reduction</td>
+<td>Structured-call savings</td>
+</tr>
+<tr>
+<td>40.4</td>
+<td><code>12^3 = 1728</code> versus <code>2 x 12^2 = 288</code></td>
+<td>Single-source versus bidirectional search</td>
+</tr>
+<tr>
+<td>40.4</td>
+<td>83 percent fewer touched nodes</td>
+<td>Meet-in-the-middle reduction</td>
+</tr>
+<tr>
+<td>40.4</td>
+<td><code>h</code> at most 3 or <code>h</code> at most 4</td>
+<td>Explicit practical depth bound from the source</td>
+</tr>
+<tr>
+<td>40.4</td>
+<td><code>h + 2</code> calls</td>
+<td>KG-GPT minimum for an <code>h</code>-relation query</td>
+</tr>
+<tr>
+<td>40.4</td>
+<td>Roughly 20 edge types</td>
+<td>Upper region where hand lookup can remain practical</td>
+</tr>
+<tr>
+<td>40.5</td>
+<td><code>b = 8</code> and <code>w = 3</code>, then 5 calls at two hops</td>
+<td>Graph branching example and ToG-style two-hop total including generation</td>
+</tr>
+<tr>
+<td>40.5</td>
+<td>41 calls at four hops</td>
+<td>ToG-style four-hop total including generation</td>
+</tr>
+<tr>
+<td>40.5</td>
+<td>2 calls independent of <code>h</code></td>
+<td>RoG planning plus reasoning</td>
+</tr>
+<tr>
+<td>40.5</td>
+<td>$0.010 versus $0.004, then $0.082 versus $0.004</td>
+<td>Two-hop and four-hop illustrative costs</td>
+</tr>
+<tr>
+<td>40.5</td>
+<td>2.5 times and roughly 20 times</td>
+<td>Cost gaps as depth increases</td>
+</tr>
+<tr>
+<td>40.6</td>
+<td>500 nodes, degree 4, about 2,000 edges, dimension 768</td>
+<td>Candidate graph example</td>
+</tr>
+<tr>
+<td>40.6</td>
+<td>3 layers and 9.2 million multiply-adds</td>
+<td>Learned retrieval arithmetic</td>
+</tr>
+<tr>
+<td>40.6</td>
+<td>9 calls at 700 ms = 6.3 seconds</td>
+<td>Constructed symbolic latency</td>
+</tr>
+<tr>
+<td>40.6</td>
+<td>50 ms encoder + 5 ms GNN = 55 ms</td>
+<td>Constructed learned latency</td>
+</tr>
+<tr>
+<td>40.6</td>
+<td><code>6300 / 55</code> is about 115 times</td>
+<td>Two-orders-of-magnitude latency direction</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td><code>d</code> about 0.85 and toy <code>PR(i) = 0.278</code></td>
+<td>PageRank settings and check</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td><code>20 + 400 + 8000 = 8420</code> candidates</td>
+<td>Three-hop branching example</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td>7 tokens each = 58,940 tokens</td>
+<td>Raw verbalization cost</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td>Top 50 plus five 20-token summaries = 450 tokens</td>
+<td>Organized context</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td>About 7 times an 8K context</td>
+<td>Raw-context overflow</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td><code>k</code> at most 5</td>
+<td>Source condition where reranking may be skipped</td>
+</tr>
+<tr>
+<td>40.7</td>
+<td><code>k = 10</code> versus 128K context, p99 latency 3 times</td>
+<td>Large-context adjudication with flat offline accuracy</td>
+</tr>
+<tr>
+<td>40.8</td>
+<td>40 triples at 15 tokens = 600 tokens</td>
+<td>Verbalized graph context</td>
+</tr>
+<tr>
+<td>40.8</td>
+<td>200 triples = 3,000 tokens</td>
+<td>Hub-growth case</td>
+</tr>
+<tr>
+<td>40.8</td>
+<td><code>k = 32</code> vectors</td>
+<td>Fixed fusion budget</td>
+</tr>
+<tr>
+<td>40.8</td>
+<td>About 19 times and 94 times fewer positions</td>
+<td>Fusion ratios at 40 and 200 triples</td>
+</tr>
+<tr>
+<td>40.8</td>
+<td><code>5 x 250 = 1250</code> tokens</td>
+<td>Dense-prompt comparison</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>Four-node toy with <code>Q = -0.03125</code> to <code>Q = 0</code></td>
+<td>Leiden modularity gain check</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>10,000 chunks and about 30,000 nodes</td>
+<td>Constructed indexing example</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>3,000 + 300 + 30 + 3 = 3,333 summaries</td>
+<td>Recursive hierarchy calls</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>13,333 versus 10,000 calls</td>
+<td>GraphRAG versus LightRAG build</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>1.33 times or 33 percent</td>
+<td>Constructed premium, not benchmark result</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>50 new documents versus worst-case 3,333 summary calls</td>
+<td>Local update versus global rebuild</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>5 percent daily growth and one-hour freshness</td>
+<td>Staff update-SLA case</td>
+</tr>
+<tr>
+<td>40.9</td>
+<td>At most about 10,000 chunks with rare edits</td>
+<td>Source region where batch hierarchy cost may be tolerable</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/39_multimodal_rag.html"><small>Previous</small>Chapter 39. Multimodal RAG</a><a href="../chapters/41_end_to_end_design_drills.html"><small>Next</small>Chapter 41. End-to-End Design Drills</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

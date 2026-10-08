@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 29. Bootstrapping Training Data | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/29_bootstrapping_training_data.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group" open><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html" aria-current="page">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VIII. Training the RAG System</p><h1>Chapter 29. Bootstrapping Training Data</h1><p class="chapter-meta">48 min estimated reading · Unit 38 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: explain how to manufacture useful retrieval supervision when query logs or expert labels are scarce, while preserving the task's relevance relation, filtering known failure modes, measuring distribution shift, and locating the teacher ceiling.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Invert retrieval at index time. Ask what queries each document can answer, then append those predicted queries so lexical retrieval can reach vocabulary the document never used.</li>
+<li>doc2query repairs a candidate-generation failure. It changes indexed text, not the BM25 ranking rule, and pays generation cost once rather than on every search.</li>
+<li>InPars shows that few-shot examples set the generator's quality ceiling. A good/bad question pair teaches discrimination better than a lone dataset query teaches imitation.</li>
+<li>Promptagator treats relevance as task-specific. Two to eight seed examples can steer synthetic generation toward entailment, exhaustive coverage, stance opposition, or another target relation.</li>
+<li>Consistency filtering makes a round trip from generated query back to source passage. It raises precision when sound pairs survive more often than broken pairs, but strict filtering can delete the hard positives the retriever needs.</li>
+<li>Multilingual and conversational bootstrapping must change the output type. SWIM-IR summarizes before asking, while CONVERSER generates a dialogue with anaphora and ellipsis.</li>
+<li>Synthetic data is a sampling procedure, not a validity category. Inspect coverage, cycles, prompt selection, calibration against real traffic, and label provenance. A student's asymptotic ceiling is set by repeatable teacher error, not by single-draw teacher accuracy. Filtering removes draw-to-draw noise. A genuinely different label source moves the ceiling.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a library whose shelves are full but whose catalog is poor. A nurse asks for "heart attack," while the right clinical note says "myocardial infarction." The book exists. The catalog simply offers no route to it.</p>
+<p>The first move is to let every book draft extra catalog cards for the questions it can answer. That is document-side inversion. doc2query turns those cards into searchable terms and files them once, before patrons arrive.</p>
+<p>The library then hires an apprentice to write more cards for collections with no query logs. InPars teaches the apprentice with examples. A weak example makes the apprentice imitate vague wording. A good card beside a bad card teaches the apprentice to tell quality from plausibility.</p>
+<p>The library also has rooms with different rules. The general search room wants topical answers. The fact-checking room wants entailment or contradiction. The debate room wants the strongest opposing argument. Promptagator gives the apprentice a few room-specific cards because one definition of relevance cannot govern every room.</p>
+<p>An inspector then performs a round trip. The inspector reads a generated card and checks whether it returns to its source book. That is consistency filtering. The inspector can still approve a useless card that copies a unique clause number. The inspector can also reject a valuable card when a near-duplicate book wins a tie. The right policy therefore audits discarded cards and uses a small top-K window.</p>
+<p>The foreign-language desk needs another workflow. SWIM-IR asks the apprentice to summarize a passage before writing its query. The conversation desk needs complete exchanges, not isolated cards. CONVERSER writes later turns such as "when did he start it?" so the training set contains context dependence.</p>
+<p>Finally, the head librarian audits the apprentice. Gold labels are the ruler. Silver and bronze labels provide volume. Repeated samples reveal which mistakes vary and which mistakes recur. More apprentices from the same school can cancel noisy slips. Only a teacher with different blind spots can move a systematic ceiling.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term or symbol</th>
+<th>Meaning in this chapter</th>
+<th>Interview use and boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q, d, score(q, d)</td>
+<td>Query, document, and their relevance score</td>
+<td>Retrieval accepts two arguments. Inversion fixes d instead of q, but it does not make facts reachable from model weights.</td>
+</tr>
+<tr>
+<td>N, Q, c</td>
+<td>N is corpus size or paired-evaluation size by context. Q is daily query volume in 29.1 and predicted queries per document in 29.2. c is one call cost.</td>
+<td>Compare one-time N times c with cumulative Q times c. Check the overloaded meanings before using the symbols.</td>
+</tr>
+<tr>
+<td>q_hat_i, m</td>
+<td>Predicted query i and number of predicted queries in Figure 29.1</td>
+<td>m later denotes prompt count in the selection calculation. Context resolves the overload.</td>
+</tr>
+<tr>
+<td>Inverse query generation</td>
+<td>Fix a document and generate queries it could answer</td>
+<td>It changes index reachability. It does not change the later retrieval direction.</td>
+</tr>
+<tr>
+<td>Document-side inversion</td>
+<td>Generate and append predicted queries before indexing</td>
+<td>Pay once at index time and amortize over future searches.</td>
+</tr>
+<tr>
+<td>Query-side reformulation</td>
+<td>Rewrite each incoming query before retrieval</td>
+<td>It adapts to a live query but pays a large language model (LLM) cost on every search.</td>
+</tr>
+<tr>
+<td>Vocabulary mismatch</td>
+<td>Searcher and document use different words for one concept</td>
+<td>Ranker tuning cannot repair a term that the lexical index never stored.</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>Lexical score using term frequency, inverse document frequency, and length normalization</td>
+<td>A zero-overlap document never enters the candidate set.</td>
+</tr>
+<tr>
+<td>t_i, tf(t, d), IDF(t)</td>
+<td>Query term i, its frequency in d, and its inverse document frequency</td>
+<td>A missing term has tf equal to zero. IDF cannot rescue it.</td>
+</tr>
+<tr>
+<td>Document length, avgdl</td>
+<td>Current document length and corpus mean document length</td>
+<td>Appended queries change the length-normalization term as well as posting-list membership.</td>
+</tr>
+<tr>
+<td>k1, b</td>
+<td>BM25 saturation and length-normalization controls</td>
+<td>Tuning them cannot repair a missing posting-list entry.</td>
+</tr>
+<tr>
+<td>Inverted index</td>
+<td>Map from each term to documents containing it</td>
+<td>Candidate generation reads posting lists before BM25 scores documents.</td>
+</tr>
+<tr>
+<td>Posting list</td>
+<td>Documents indexed under one term</td>
+<td>doc2query moves a document into lists a matching query will touch.</td>
+</tr>
+<tr>
+<td>doc2query</td>
+<td>Sequence-to-sequence generation of plausible queries from a passage</td>
+<td>Append several sampled queries to indexed text. It needs supervised query-passage pairs for its generator.</td>
+</tr>
+<tr>
+<td>docTTTTTquery</td>
+<td>T5-based follow-up to doc2query</td>
+<td>It yields more diverse queries and a larger lexical retrieval gain. The ranker itself stays unchanged.</td>
+</tr>
+<tr>
+<td>Microsoft Machine Reading Comprehension (MS MARCO)</td>
+<td>Source query-passage dataset used by doc2query and several baselines</td>
+<td>Its relevant-query field can be useful as a label yet poor as a generation exemplar.</td>
+</tr>
+<tr>
+<td>Pseudo-relevance feedback (PRF)</td>
+<td>Expand a query from its first retrieval pass</td>
+<td>It can help ambiguity after a useful first pass. Total mismatch gives it nothing to mine.</td>
+</tr>
+<tr>
+<td>Top-k sampling</td>
+<td>Sample among likely next tokens instead of taking one greedy completion</td>
+<td>Several outputs cover more phrasing. They cost storage and generation compute.</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank at 10 (MRR@10)</td>
+<td>Reciprocal-rank metric cut at rank 10</td>
+<td>The docTTTTTquery result moves from 0.184 to 0.277. It does not measure a new ranker.</td>
+</tr>
+<tr>
+<td>InPars</td>
+<td>Few-shot LLM generation of synthetic query-passage pairs</td>
+<td>It needs no target-domain labeled query beyond the prompt seeds. Query quality inherits exemplar defects.</td>
+</tr>
+<tr>
+<td>k in a few-shot prompt</td>
+<td>Number of prompt exemplars</td>
+<td>It is distinct from retrieval cutoff K. More exemplars increase prompt cost.</td>
+</tr>
+<tr>
+<td>Vanilla InPars prompt</td>
+<td>k passage and relevant-query examples</td>
+<td>It teaches imitation. A relevant dataset query can still be a weak exemplar.</td>
+</tr>
+<tr>
+<td>Good-bad question (GBQ) prompt</td>
+<td>k passage, good-question, and bad-question triples</td>
+<td>It teaches discrimination but needs a few curated good questions.</td>
+</tr>
+<tr>
+<td>Contrastive prompting</td>
+<td>Show positive and negative query forms before generation</td>
+<td>It shapes outputs before training. It complements post-hoc filtering.</td>
+</tr>
+<tr>
+<td>T, R_T(q, d)</td>
+<td>Retrieval task and its binary relevance relation</td>
+<td>T later denotes a label teacher. State which meaning applies. More data from the wrong relation entrenches the mismatch.</td>
+</tr>
+<tr>
+<td>d+ and d-</td>
+<td>Positive and negative documents in a contrastive triple</td>
+<td>Their task-specific relation pulls one toward q and pushes the other away.</td>
+</tr>
+<tr>
+<td>Benchmarking Information Retrieval (BEIR)</td>
+<td>Benchmark containing structurally different retrieval tasks</td>
+<td>Performance on one relation does not grant transfer to the others.</td>
+</tr>
+<tr>
+<td>FEVER</td>
+<td>Claim-verification task in Table 29.1</td>
+<td>Relevant evidence entails or contradicts. Topicality alone is insufficient.</td>
+</tr>
+<tr>
+<td>DBpedia-Entity</td>
+<td>Entity-retrieval task in Table 29.1</td>
+<td>Relevance demands exhaustive mentions, not one strong topical hit.</td>
+</tr>
+<tr>
+<td>ArguAna</td>
+<td>Counter-argument task in Table 29.1</td>
+<td>Relevance demands stance opposition. Shared stance can be a distractor.</td>
+</tr>
+<tr>
+<td>Promptagator</td>
+<td>Task-specific generation, filtering, and dual-encoder training</td>
+<td>Two to eight seeds steer a full synthetic set. The seeds are not the final training set.</td>
+</tr>
+<tr>
+<td>Preliminary retriever</td>
+<td>Filter model trained on unfiltered synthetic pairs</td>
+<td>Use it for one round trip. Do not continue it as the shipped model.</td>
+</tr>
+<tr>
+<td>K</td>
+<td>Retrieval window used by the consistency filter</td>
+<td>K = 1 is strict. A small window rescues ties but admits more broken pairs.</td>
+</tr>
+<tr>
+<td>Consistency filtering</td>
+<td>Keep a pair when its source passage returns within top K</td>
+<td>It tests retrievability, not answerability.</td>
+</tr>
+<tr>
+<td>pi, alpha, beta</td>
+<td>Sound-pair rate, sound keep rate, and broken keep rate</td>
+<td>Precision rises exactly when alpha exceeds beta for pi below one.</td>
+</tr>
+<tr>
+<td>r, pi prime</td>
+<td>Retention and retained precision in 29.5</td>
+<td>r is also the relevance variable in P* in 29.7. Budget generation at N divided by retention r.</td>
+</tr>
+<tr>
+<td>Hard positive</td>
+<td>Correct source that a weak retriever finds difficult</td>
+<td>Strict filtering can erase exactly this useful signal.</td>
+</tr>
+<tr>
+<td>Near-duplicate collision</td>
+<td>Another similar passage outranks the source</td>
+<td>Audit discards and use a small top-K window when duplicates remain.</td>
+</tr>
+<tr>
+<td>InPars+</td>
+<td>Generator tuning with reward and chain-of-thought prompting</td>
+<td>It raises source quality but does not remove the need to filter.</td>
+</tr>
+<tr>
+<td>l, d_l, q_l</td>
+<td>Target language, passage in that language, and query in that language</td>
+<td>Low-resource reading and natural query writing can fail at different rates.</td>
+</tr>
+<tr>
+<td>s, s_hat</td>
+<td>Possible summary and selected summary</td>
+<td>s later counts teacher draws. SWIM-IR makes fact selection inspectable before query generation.</td>
+</tr>
+<tr>
+<td>SWIM-IR</td>
+<td>Multilingual summarize-then-ask generation</td>
+<td>It shortens low-resource conditioning text but adds output tokens.</td>
+</tr>
+<tr>
+<td>H_t, q_t, a_t</td>
+<td>Dialogue history, current query, and current or earlier answers</td>
+<td>Conversation retrieval must use history because later turns can be incomplete alone.</td>
+</tr>
+<tr>
+<td>CONVERSER</td>
+<td>Generate a whole multi-turn dialogue over a passage</td>
+<td>It creates anaphora and ellipsis that single-query generation cannot produce.</td>
+</tr>
+<tr>
+<td>Translationese</td>
+<td>Target-language text retaining English syntax and choices</td>
+<td>Translate-then-generate is weakest where language resources are weakest.</td>
+</tr>
+<tr>
+<td>P*, P_G</td>
+<td>Production joint distribution and generator-induced distribution</td>
+<td>Neither human nor synthetic data equals production traffic. Measure their shift.</td>
+</tr>
+<tr>
+<td>n, p</td>
+<td>n is query-term count in BM25 or sample count in coverage. p is passage in P* or true intent mass in coverage.</td>
+<td>Coverage is 1 minus (1 minus p) to the n. State the local overload before calculating.</td>
+</tr>
+<tr>
+<td>Open loop, G_0, D_G, M</td>
+<td>Frozen generator, one synthetic set, and trained retriever</td>
+<td>The topology causes one bounded shift. The shift can still be biased.</td>
+</tr>
+<tr>
+<td>Closed loop, G_t, D_G_t, M_t</td>
+<td>Generator, synthetic set, and model at round t</td>
+<td>When M_t becomes the next generator, each round can thin the prior tail.</td>
+</tr>
+<tr>
+<td>p01, p10</td>
+<td>Paired cases won by only one of two systems</td>
+<td>Their sum is the discordance rate used in paired-gap uncertainty.</td>
+</tr>
+<tr>
+<td>sigma_D</td>
+<td>Standard error of a paired performance gap</td>
+<td>It equals the square root of discordance divided by N under the source setup.</td>
+</tr>
+<tr>
+<td>m, delta, z</td>
+<td>Prompt count, target effect, and normal quantile</td>
+<td>m controls selection inflation. Delta and z values size a powered evaluation.</td>
+</tr>
+<tr>
+<td>Selection inflation</td>
+<td>Best result chosen across generated evaluation prompts</td>
+<td>Report prompt count. Retry noise can explain a large headline gain.</td>
+</tr>
+<tr>
+<td>Calibration anchor</td>
+<td>Small real set used to measure generator shift</td>
+<td>Reserve it from training. A tiny anchor cannot decide a small system gap.</td>
+</tr>
+<tr>
+<td>Gold label</td>
+<td>Domain-expert adjudicated ground truth</td>
+<td>Use it as the ruler for audits and calibration. It remains expensive.</td>
+</tr>
+<tr>
+<td>Silver label</td>
+<td>Non-expert human or strong-model label</td>
+<td>Use it for bulk training after filtering. One model's errors can repeat.</td>
+</tr>
+<tr>
+<td>Bronze label</td>
+<td>Weak-model or in-family model label</td>
+<td>Use it only with an out-of-family cross-check.</td>
+</tr>
+<tr>
+<td>l star, l_T</td>
+<td>True label and one label drawn from teacher T</td>
+<td>Repeated teacher labels reveal varying and repeatable errors.</td>
+</tr>
+<tr>
+<td>a_T, a_M</td>
+<td>Teacher and student accuracy</td>
+<td>The student can beat one-draw teacher accuracy only through removable noise.</td>
+</tr>
+<tr>
+<td>y_hat, y</td>
+<td>Student's conditional-mode prediction and a candidate label</td>
+<td>With enough data and capacity, y_hat follows the teacher distribution's mode.</td>
+</tr>
+<tr>
+<td>s draws, S</td>
+<td>Number of teacher draws and inputs whose plurality label is wrong</td>
+<td>More same-teacher draws do not repair S.</td>
+</tr>
+<tr>
+<td>epsilon_sys</td>
+<td>Repeatable error where the teacher's plurality label is wrong</td>
+<td>It fixes the asymptotic student ceiling.</td>
+</tr>
+<tr>
+<td>epsilon_noise</td>
+<td>Wrong labels that vary across draws</td>
+<td>Redundancy can cancel it without changing blind spots.</td>
+</tr>
+<tr>
+<td>rho</td>
+<td>Systematic blind-spot overlap across teacher families</td>
+<td>Measure it before buying a second teacher. Same-lineage teachers can leave it near one.</td>
+</tr>
+<tr>
+<td>Execution-based label</td>
+<td>Label obtained by running and verifying behavior</td>
+<td>It replaces a judge ceiling with verifier error plus generator variance.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="291-inverting-the-relation-what-queries-does-this-document-answer">29.1 Inverting the relation: what queries does this document answer?</h3>
+<h4 id="what">What</h4>
+<p>Ordinary retrieval fixes query q and searches for document d that maximizes score(q, d). Inversion fixes d and asks which queries would score highly against it. A sequence-to-sequence model reads a passage, generates plausible queries, and appends them to the document's indexed text. The original passage does not change. Its lexical reachability changes. The clinical example maps document text "myocardial infarction" to predicted query "heart attack." The document-to-query pass runs once before search. The ordinary query-to-document match runs on every later search.</p>
+<h4 id="why">Why</h4>
+<p>BM25 gives an absent term exactly zero contribution. If every query term is absent, tuning k1 or b cannot recover the document. Document-side work uses the full passage to anticipate future search vocabulary. It also amortizes one offline generation call over every later query. The source compares this move to an experienced librarian who imagines the book that would answer a vague question, then searches with the book's likely index terms.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>Query-side PRF needs an initial retrieval pass. It has nothing to expand when total mismatch returns no useful candidate. Query reformulation also pays forever. Do not confuse index reachability with generation-time reachability from model weights. If the document appears in top K but the generator ignores it, re-indexing is the wrong fix. Inversion also adds nothing to an already symmetric shared-embedding dual encoder.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>Let N = 10,000,000 documents, Q = 2,000,000 queries per day, and c = $0.0001 per LLM call. Query-side reformulation costs Q times c = $200 per day and $6,000 after 30 days. Document-side inversion costs N times c = $1,000 once. The break-even condition is cumulative query count equal to N. At 2,000,000 queries per day, break-even arrives after 5 days. Re-index only documents that change. Choose more predicted queries for jargon-heavy legal, clinical, or internal documents. Choose fewer for plain, query-like documents. Use expansion beside a dense retriever by default. For continuously changing corpora, index literal text immediately and reconsider whether expansion will repay before staleness. The source's sanity check says production search systems, including Google's synonym and related-term expansion, precompute query-adjacent work where possible and reserve query-time work for residuals such as spelling and session context.</p>
+<h3 id="292-doc2query-and-vocabulary-mismatch">29.2 doc2query and vocabulary mismatch</h3>
+<h4 id="what-1">What</h4>
+<p>BM25 scores query terms against a document as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>score</mo><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo>IDF</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>⋅</mo><mfrac><mrow><mo>tf</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mo>tf</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>t</mi><mi>i</mi></msub><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>k</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo></mrow><mo>avgdl</mo></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{score}}(d,q)=\sum_{i=1}^{n}\mathop{\text{IDF}}(t_i)\cdot\frac{\mathop{\text{tf}}(t_i,d)(k_1+1)}{\mathop{\text{tf}}(t_i,d)+k_1\left(1-b+b\frac{|d|}{\mathop{\text{avgdl}}}\right)}</annotation></semantics></math></p>
+<p>Here tf is raw term count, document length is |d|, avgdl is mean corpus length, and k1 and b control saturation and length normalization. doc2query trains on query-passage pairs, originally from Microsoft Machine Reading Comprehension (MS MARCO), to predict queries a passage could answer. At index build time, it samples several predicted queries per passage and appends their text. docTTTTTquery replaces the generator with T5, which yields more diverse predicted queries and a larger gain.</p>
+<h4 id="why-1">Why</h4>
+<p>An inverted index fetches posting lists before BM25 scores anything. A zero-overlap document is not ranked low. It is never fetched. Adding "reset" and "password" to an article titled "Restoring Account Access After a Lockout" moves that article into both posting lists. The mechanism needs token co-occurrence, not semantic understanding. Furnas, Landauer, Gomez, and Dumais found only about 10% to 20% agreement when two people independently chose one keyword for the same familiar concept. A short synonym list cannot cover that combinatorial mismatch.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>PRF loses here for three reasons. First, it inherits a zero-candidate first pass. Second, it guesses from a three-word or four-word query rather than a full passage. Third, it adds a second retrieval and reranking pass to every search. A purely dense system may gain less from lexical expansion. Generated terms also go stale when product names or slang change.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>Before expansion, use N = 10,000 articles, avgdl = 150, df(reset) = 500, df(password) = 300, and document length 120. Both query term frequencies are zero, so the score is zero. After adding predicted queries such as "how do I reset my password" and "steps to reset a forgotten password," document length becomes 128 and each target term frequency becomes 1. Use k1 = 1.2 and b = 0.75.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>IDF</mo><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">reset</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mn>10</mn><mo>,</mo><mn>000</mn><mo>−</mo><mn>500</mn><mo>+</mo><mn>0.5</mn></mrow><mrow><mn>500</mn><mo>+</mo><mn>0.5</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>≈</mo><mn>2.99</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{IDF}}(\text{reset})=\ln\left(1+\frac{10{,}000-500+0.5}{500+0.5}\right)\approx2.99</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>IDF</mo><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">password</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mn>10</mn><mo>,</mo><mn>000</mn><mo>−</mo><mn>300</mn><mo>+</mo><mn>0.5</mn></mrow><mrow><mn>300</mn><mo>+</mo><mn>0.5</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>≈</mo><mn>3.50</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{IDF}}(\text{password})=\ln\left(1+\frac{10{,}000-300+0.5}{300+0.5}\right)\approx3.50</annotation></semantics></math></p>
+<p>The length term is 1 - 0.75 + 0.75 times 128 divided by 150, which is about 0.89. The per-term multiplier is 2.2 divided by 1 + 1.2 times 0.89, which is about 1.06. The resulting score is about (2.99 + 3.50) times 1.06, or 6.9. Top-k sampling of 10 queries with 12 tokens each for 10,000 articles generates 1.2 million tokens once. On MS MARCO passage retrieval, docTTTTTquery moved BM25 mean reciprocal rank at 10 (MRR@10) from 0.184 to 0.277. That is roughly a 50% relative gain without changing the ranking function. For near-real-time ingestion, index literal text immediately and backfill expansion later.</p>
+<h3 id="293-inpars-contrasting-good-and-bad-generated-queries">29.3 InPars: contrasting good and bad generated queries</h3>
+<h4 id="what-2">What</h4>
+<p>InPars uses k few-shot passage-query examples to prompt GPT-3 for a query about each unlabeled target passage. It then trains a dense retriever on the generated query-passage pairs. The vanilla prompt shows k pairs of passage and "relevant query." The GBQ prompt shows k triples of passage, good question, and bad question. The human-written question is the good example. The MS MARCO "relevant query" used as vanilla's positive becomes GBQ's bad example.</p>
+<h4 id="why-2">Why</h4>
+<p>Real search-engine queries can be short, underspecified, and click-driven while remaining relevant under dataset labels. A lone positive teaches the generator to imitate those surface statistics. A good/bad pair supplies an implicit decision boundary. The idea mirrors hard-negative training. A positive teaches attraction. A positive-negative contrast teaches discrimination.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>A larger generator does not repair a mediocre exemplar. It can reproduce the same defect more fluently and at greater scale. Synthetic pairs may look plausible while the retriever learns a poor relevance signal. Do not call the pipeline label-free. It still needs a few examples. The useful economy is a fixed handful of curated examples rather than a labeled target dataset. If even that is unavailable, use keyword or noun-phrase extraction as the bad exemplar rather than dropping contrast.</p>
+<h4 id="cost-and-complexity-2">Cost and complexity</h4>
+<p>Use 50,000 documents, k = 3, 100-token passages, and 12-token queries. The vanilla prompt has 3 times 112 + 100 = 436 input tokens and a 12-token completion, or 448 tokens per call. The GBQ prompt has 3 times 124 + 100 = 472 input tokens and a 12-token completion, or 484 tokens per call. At an illustrative $0.02 per 1,000 tokens, vanilla costs about $448. GBQ costs about $484. The contrastive design adds about 8% and roughly $36 for the whole corpus. The fixed human cost is two or three good questions, while the general few-shot budget is 2 to 8 examples. The reported InPars retriever beat BM25 and several self-supervised dense baselines with no human-labeled query in the target domain. Use prompt contrast and post-hoc consistency filtering together. If rate limits bind, shorten exemplar passages before removing the contrast.</p>
+<h3 id="294-promptagator-retrieval-tasks-are-not-one-task">29.4 Promptagator: retrieval tasks are not one task</h3>
+<h4 id="what-3">What</h4>
+<p>Each task T defines a binary relevance relation.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>T</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">R_T(q,d)\in\{0,1\}</annotation></semantics></math></p>
+<p>A contrastive retriever observes triples of query, positive document, and negative document sampled from that relation. Promptagator starts with 2 to 8 hand-written examples of the target relation. It few-shot-prompts an LLM to generate task-matched queries for documents in the unlabeled target corpus. It trains a preliminary retriever on all generated pairs. It keeps only pairs whose generated query retrieves its source passage. It trains the shipped dual encoder from scratch on the survivors.</p>
+<h4 id="why-3">Why</h4>
+<p>Web search usually rewards topical overlap. FEVER-style verification needs entailment or contradiction. DBpedia-Entity needs exhaustive entity coverage. ArguAna needs stance opposition. A passage can share every content word with a claim and still have the wrong stance. More web-search data cannot teach a relation its loss never demonstrates.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>One shared checkpoint can average incompatible objectives without solving any one of them. Fine-tuning on a new corpus changes topic exposure but does not teach stance opposition. The quiet verification failure is ranking a topically close same-stance passage above the needed evidence. Write the target relation in one sentence before generating data. Use separate retrievers for structurally different task families unless budget forces sharing. For stance and entailment, inspect the top five results for about a dozen claims by hand.</p>
+<h4 id="cost-and-complexity-3">Cost and complexity</h4>
+<p>Use N = 100,000 passages and six seed claims with supporting or refuting evidence. Generate four candidate claims per passage. Each call uses about 720 seed tokens, 200 passage tokens, and 80 instruction tokens, or 1,000 input tokens. Four candidates per passage produce 400,000 calls, 400 million input tokens, and 8 million output tokens at 20 output tokens per claim. At $0.25 per million input tokens and $1.00 per million output tokens, generation costs $100 + $8 = $108. Filtering leaves a task-matched set on the order of 100,000 pairs. A comparable 500,000-query human set at $1 per judgment costs $500,000. That is roughly 4,630 times the $108 generation bill. Six seeds versus 500,000 labels is about an 83,000-fold reduction in hand-labeling volume. Promptagator used as few as eight real examples per task and beat ColBERTv2 and SPLADEv2 trained on roughly 500,000 MS MARCO queries across all eleven Benchmarking Information Retrieval (BEIR) tasks. The claim is task-matched supervision, not that eight pairs directly train the final retriever.</p>
+<h3 id="295-consistency-filtering">29.5 Consistency filtering</h3>
+<h4 id="what-4">What</h4>
+<p>Run this algorithm in order.</p>
+<ol type="1">
+<li>Generate synthetic query-passage pairs over the target corpus.</li>
+<li>Train a preliminary retriever on the unfiltered set.</li>
+<li>Search the whole corpus with every generated query.</li>
+<li>Keep a pair only when its source passage appears in top K.</li>
+<li>Train the shipped dual encoder from scratch on the survivors.</li>
+</ol>
+<p>Let pi be the sound-pair fraction. Let alpha be the probability of keeping a sound pair. Let beta be the probability of keeping a broken pair. The retained fraction r and retained precision pi prime are as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mi>π</mi><mi>α</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mo stretchy="false" form="postfix">)</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">r=\pi\alpha+(1-\pi)\beta</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>π</mi><mo>′</mo></msup><mo>=</mo><mfrac><mrow><mi>π</mi><mi>α</mi></mrow><mrow><mi>π</mi><mi>α</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mo stretchy="false" form="postfix">)</mo><mi>β</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\pi&#39;=\frac{\pi\alpha}{\pi\alpha+(1-\pi)\beta}</annotation></semantics></math></p>
+<p>For any pi below 1, retained precision exceeds pi exactly when alpha exceeds beta.</p>
+<h4 id="why-4">Why</h4>
+<p>Wrong positives drive contrastive gradients in the wrong direction. The round trip checks whether a generated query can recover its source without labeling every pair. A small top-K window rescues a correct source that loses rank 1 to a near-duplicate. The source traces this idea to round-trip consistency for synthetic question answering, then applies its retrieval form in Promptagator.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>The filter has two opposite errors. Beta stays above zero when a generated query copies a rare string and round-trips at rank 1 without teaching meaning. The legal example is "what does clause 14(b)(iii) of the 2019 amendment provide?" Alpha falls below one when a near-duplicate outranks the source. That rejected pair can be the hardest and most useful positive. The filter measures whether the current retriever finds a pair easy, not whether the query is good. Do not iterate keep, retrain, and re-filter with the same lineage. Each round selects what the checkpoint already likes and shrinks corpus coverage. Train the final encoder from scratch so it does not inherit the preliminary filter's boundary. Generating three times more data does not dilute wrong positives because it also triples them. InPars+ instead raises source quality through a reward signal and chain-of-thought prompting, while still retaining a filter.</p>
+<h4 id="cost-and-complexity-4">Cost and complexity</h4>
+<p>Use 500,000 passages and a 500-pair audit with 350 sound pairs and 150 broken pairs. This gives pi = 0.70. With K = 1, alpha = 273 divided by 350 = 0.78 and beta = 27 divided by 150 = 0.18. Then r = 0.70 times 0.78 + 0.30 times 0.18 = 0.546 + 0.054 = 0.600. Retained precision is 0.546 divided by 0.600 = 0.91. The filter keeps 300,000 pairs and discards 200,000. The discard pile contains 123,000 broken pairs and 77,000 sound pairs. With K = 10, alpha = 0.94 and beta = 0.42. Then r = 0.658 + 0.126 = 0.784. The filter keeps 392,000 pairs at 84% precision. Its sound reject rate is 0.06, so it discards 21,000 sound pairs and keeps 63,000 broken pairs, compared with 27,000 broken pairs at K = 1. Relative to K = 1, it recovers 56,000 sound pairs and admits 36,000 additional broken pairs. That is 1.56 sound pairs bought per broken pair. If 68 of 100 audited K = 1 false rejects lost to a near-duplicate, the recovered subset contains about 0.68 times 56,000, or 38,000 hard positives. The source default is K from 5 to 10. Use K = 1 only after corpus deduplication. Audit 100 rejected pairs as broken, near-duplicate collision, or fine but unlucky. Treat r below roughly 0.5 as an upstream warning unless the corpus is highly repetitive. Generation uses 500 million input tokens and 10 million output tokens, or $125 + $10 = $135 at the stated rates. Passage encoding takes 1,250 seconds at 400 passages per second. Query encoding takes 250 seconds at 2,000 queries per second. One preliminary epoch takes 1,302 seconds for 3,906 batches of 128 at 3 steps per second. Those 3,906 full batches cover 499,968 examples, so the source's one-epoch line implicitly drops or omits a final 32-example partial batch. Five hundred thousand hierarchical navigable small world (HNSW) searches at 1 millisecond take 500 seconds. Total filter work is 3,302 seconds and about $2.30 at $2.50 per graphics processing unit (GPU)-hour. The worked cost line calls this 1.7% of generation cost. The source takeaway rounds it to about 1.5%. At r = 0.600, usable-pair price rises from $0.00027 to $0.00045. Generate N divided by r pairs and expect 1.67 times the naive price.</p>
+<h3 id="296-multilingual-and-conversational-extensions">29.6 Multilingual and conversational extensions</h3>
+<h4 id="what-5">What</h4>
+<p>For target language l, let d_l be a passage and q_l be a query. SWIM-IR factorizes query generation through summary s.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>l</mi></msub><mo>∣</mo><msub><mi>d</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mi>s</mi></munder><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>l</mi></msub><mo>∣</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>∣</mo><msub><mi>d</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>l</mi></msub><mo>∣</mo><mover><mi>s</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mover><mi>s</mi><mo accent="true">̂</mo></mover><mo>=</mo><mrow><mi>arg</mi><mo>&#8289;</mo></mrow><munder><mi>max</mi><mi>s</mi></munder><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>∣</mo><msub><mi>d</mi><mi>l</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P(q_l\mid d_l)=\sum_s P(q_l\mid s)P(s\mid d_l)\approx P(q_l\mid \hat{s}),\qquad \hat{s}=\arg\max_s P(s\mid d_l)</annotation></semantics></math></p>
+<p>The implementation is "summarize then ask." A roughly 120-token passage becomes a roughly 30-token summary before producing a roughly 25-token query. SWIM-IR used this design across 33 languages and trained retrievers competitive with human-supervised multilingual models. For dialogue, session history at turn t is as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>t</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mn>1</mn></msub><mo>,</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>q</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>a</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">H_t=(q_1,a_1,\ldots,q_{t-1},a_{t-1})</annotation></semantics></math></p>
+<p>The conversational retriever must score history, current query, and document together. CONVERSER generates a full dialogue so later turns contain anaphora and ellipsis. It reports matching retrievers trained on real dialogues from roughly six example dialogues.</p>
+<h4 id="why-5">Why</h4>
+<p>Low-resource reading can be stronger than low-resource query writing. A summary separates fact selection from query phrasing and makes the selected fact inspectable. The query is written from one quarter as much target-language text. Single-step passage-to-query generation creates self-contained queries by construction. It therefore assigns zero training mass to turns such as "when did he start the company?" and "and before that?" Dialogue generation changes the output type so context dependence exists at all.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>Direct low-resource generation can copy an opening clause, drift into English, or emit a grammatical query no speaker would type. Translate-then-generate produces target-language strings with English syntax and lexical choices. It is weakest where target-language data is scarcest. It also cannot create dialogue structure from a self-contained English query. Consistency filtering is least reliable in the language where its preliminary retriever is weakest. Loosen the threshold and report retention per language when no parallel English source exists.</p>
+<h4 id="cost-and-complexity-5">Cost and complexity</h4>
+<p>Use 12 languages, 200,000 passages per language, 120 tokens per passage, $1 per million input tokens, and $5 per million output tokens. The 8-shot prompt uses 8 times (120 + 15) = 1,080 exemplar tokens. Human queries at $0.30 each cost $150,000 per language for 500,000 queries and $1.8 million for 12 languages. For four or five languages, annotator supply can bind before price. Single-step generation uses 1,200 input tokens and 25 output tokens per call. Per language, that is 240 million input tokens for $240 and 5 million output tokens for $25, or $265. Summarize-then-ask keeps input fixed and emits 55 output tokens, or 11 million output tokens per language. It costs $295 per language. The ratio 295 divided by 265 is 1.11, or an 11% premium. Twelve languages cost $3,540, which is 508 times less than $1.8 million under the source's assumptions. A four-turn dialogue emits about 4 times (25 + 30) = 220 output tokens. That is nearly 9 times the single-step output per passage. It yields four training queries, so the per-query output is 55 tokens, a 2.2 times multiplier. Three of those four queries are context-dependent. At r = 0.4, obtaining 100,000 filtered pairs requires 250,000 generations. The seed-volume comparison is 500,000 real queries divided by 8 seeds = 62,500. That ratio counts human effort, while the 508 ratio prices replacement inference. Buy 6 to 8 seeds from speakers rather than translating English seeds. If no speaker is reachable, mark the language unvalidated rather than merging it silently into the same index. Track the fraction of queries that are unanswerable in isolation. For a multi-turn surface, the source default is at least half. Pin and version the generator model. If one index must serve both surfaces, a single-turn retriever plus query rewriter is an alternative that adds one serial LLM call per query. With 2,000 reviewed items across 12 languages, spend 8 per language as seeds, or 96 total. Use the remaining 1,904 as roughly 159 test queries per language. At n = 159, a proportion has standard error at most 0.5 divided by the square root of 159, or 4.0 percentage points. Two standard errors can resolve an 8-point gap but not a 2-point gap.</p>
+<h3 id="297-synthetic-data-the-right-question-is-how-not-whether">29.7 Synthetic data: the right question is how, not whether</h3>
+<h4 id="what-6">What</h4>
+<p>Let P* be the production joint distribution over query, passage, and relevance. Let P_G be the generator distribution conditioned on corpus and prompt. Human labels and synthetic labels both sample approximations to P*. The opening design-review example trains on 118,000 synthetic pairs and reports a 4.1-point recall@5 gain on a synthetic evaluation, while only 500 real tickets from three enterprise customers exist. Analyze three risks. The first is finite-sample coverage. An intent with true mass p appears at least once in n draws with this probability.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>n</mi></msup><mo>≈</mo><mn>1</mn><mo>−</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>n</mi><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">1-(1-p)^n\approx1-e^{-np}</annotation></semantics></math></p>
+<p>The second risk is self-consumption through a closed loop. The third risk is selection after trying multiple prompts.</p>
+<h4 id="why-6">Why</h4>
+<p>At n = 100,000, mass 0.00001 appears with probability 0.63. Mass 0.000001 appears with probability 0.095. Mass 0.0001 appears with probability 0.99995. The coverage floor is near 1 divided by n. A 500-query human set has a floor of 0.002, which is 200 times coarser than 0.00001. Figure 29.6 calls this a two-decade shift. The source's stated 200-fold ratio corresponds to about 2.30 decades, so the caption is approximate. Synthesis is the lever that lowers that floor. Model collapse requires a cycle. A frozen generator feeding a retriever once is an open loop with one bounded shift. If model M_t becomes generator G at t + 1, every round resamples a tail thinned by the prior round. Early collapse loses tails. Late collapse converges toward a low-variance distribution unlike the original.</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>A blanket synthetic-data ban does not detect loops, selection, or finite-sample underpower. Human data can also participate in a feedback loop. Consistency filtering is safe only as one bounded keep-drop pass. Iterating it converges toward pairs the retriever already liked. Never let the evaluated model generate or filter its own evaluation set. Fix the generation prompt before reading results and report how many prompts were tried. If prompt iteration is necessary, tune on one corpus split and generate the reported set from another.</p>
+<h4 id="cost-and-complexity-6">Cost and complexity</h4>
+<p>For a paired evaluation, let p01 + p10 be the fraction where exactly one of two systems succeeds. The standard error of their paired gap is as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mi>D</mi></msub><mo>=</mo><msqrt><mfrac><mrow><msub><mi>p</mi><mn>01</mn></msub><mo>+</mo><msub><mi>p</mi><mn>10</mn></msub></mrow><mi>N</mi></mfrac></msqrt></mrow><annotation encoding="application/x-tex">\sigma_D=\sqrt{\frac{p_{01}+p_{10}}{N}}</annotation></semantics></math></p>
+<p>At N = 500 and discordance 0.20, sigma_D = 0.020. The expected maximum of 8 independent standard normals is 1.42. The stated upper bound is the square root of (2 times the natural log of 8), or 2.04. Best-of-eight selection therefore adds an expected 1.42 times 0.020 = 0.028, or 2.8 points. In the semantic-chunking example, 500 synthetic queries and eight prompts produce a reported +4.1 points. After expected selection inflation, 1.3 points remain against a 2.0-point standard error. One fixed prompt reports +1.5 plus or minus 2.0 points. That result is honest and uninformative. To resolve delta = 0.015 at 95% confidence and 80% power, use this lower bound.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≥</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>z</mi><mn>0.975</mn></msub><mo>+</mo><msub><mi>z</mi><mn>0.80</mn></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mn>01</mn></msub><mo>+</mo><msub><mi>p</mi><mn>10</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><msup><mi>δ</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>1.96</mn><mo>+</mo><mn>0.84</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>⋅</mo><mn>0.20</mn></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mn>0.015</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mn>1.568</mn><mrow><mn>2.25</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup></mrow></mfrac><mo>=</mo><mn>6</mn><mo>,</mo><mn>969</mn></mrow><annotation encoding="application/x-tex">N\geq\frac{(z_{0.975}+z_{0.80})^2(p_{01}+p_{10})}{\delta^2} =\frac{(1.96+0.84)^2\cdot0.20}{(0.015)^2} =\frac{1.568}{2.25\times10^{-4}} =6{,}969</annotation></semantics></math></p>
+<p>Use roughly 7,000 queries. Each generated query uses about 800 input tokens and 25 output tokens. At $3 and $15 per million tokens, each query costs $0.002775 and the set costs $19.43. At $1.50 per human judgment, equivalent power costs $10,500. The ratio is 540. Use 120 real queries as a calibration anchor rather than as the decision set. Mean query-to-gold-passage term Jaccard overlap is 0.38 for generated queries and 0.11 for real tickets. With per-query standard deviation 0.12, 120 real queries pin the mean to plus or minus 0.011. The generator copies source vocabulary and under-samples the vocabulary-mismatch cases that chunk boundaries affect. The source reports that semantic chunking's apparent advantage largely disappears on real corpora because synthetic benchmarks are more topic-diverse while real documents are topically contiguous. Above roughly 5,000 real labels, the real set can carry the decision and synthetic data can become a stress case. Three hundred real queries have a floor near 0.003 and cannot resolve effects under about 6 points in the source's staff scenario.</p>
+<h3 id="298-gold-silver-bronze-label-provenance-and-the-teacher-ceiling">29.8 Gold, silver, bronze: label provenance and the teacher ceiling</h3>
+<h4 id="what-7">What</h4>
+<p>Let l* of x be the true label and l_T of x be a draw from teacher T. Teacher accuracy is the probability that those labels match.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>T</mi></msub><mo>=</mo><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><msub><mi>l</mi><mi>T</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>l</mi><mo>*</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">a_T=\Pr[l_T(x)=l^{*}(x)]</annotation></semantics></math></p>
+<p>Draw s labels per input by changing temperature or paraphrasing the prompt. Let S contain inputs where the correct label is not the plurality across draws. Split teacher error into repeatable systematic error and varying noise.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msub><mi>a</mi><mi>T</mi></msub><mo>=</mo><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mi>x</mi><mo>∈</mo><mi>S</mi><mo stretchy="false" form="postfix">]</mo><mo>+</mo><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><msub><mi>l</mi><mi>T</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>≠</mo><msup><mi>l</mi><mo>*</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>x</mi><mo>∉</mo><mi>S</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msub><mi>ϵ</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">s</mi></mrow></msub><mo>+</mo><msub><mi>ϵ</mi><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">1-a_T=\Pr[x\in S]+\Pr[l_T(x)\neq l^{*}(x),x\notin S] =\epsilon_{\mathrm{sys}}+\epsilon_{\mathrm{noise}}</annotation></semantics></math></p>
+<p>With enough data and capacity, a student trained under a proper loss converges to the teacher label distribution's conditional mode.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>y</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>arg</mi><mo>&#8289;</mo></mrow><munder><mi>max</mi><mi>y</mi></munder><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><msub><mi>l</mi><mi>T</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>y</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\hat{y}(x)=\arg\max_y\Pr[l_T(x)=y]</annotation></semantics></math></p>
+<p>Its limit is as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>M</mi></msub><mo>→</mo><mn>1</mn><mo>−</mo><msub><mi>ϵ</mi><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">s</mi></mrow></msub><mo>=</mo><msub><mi>a</mi><mi>T</mi></msub><mo>+</mo><msub><mi>ϵ</mi><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">a_M\longrightarrow1-\epsilon_{\mathrm{sys}}=a_T+\epsilon_{\mathrm{noise}}</annotation></semantics></math></p>
+<h4 id="why-7">Why</h4>
+<p>The student can average away draw-to-draw noise. It faithfully learns repeatable teacher mistakes. The folk claim that a student cannot beat its teacher misses exactly epsilon_noise. Burns et al. fine-tuned GPT-4 on GPT-2-level supervision and, with an auxiliary confidence loss, recovered roughly 80% of the gap between weak-supervisor training and gold-label fine-tuning on natural language processing tasks. Non-expert humans often err differently across people. Repeated samples from one model often reproduce the same misreading. Redundancy pays according to independence, not headcount.</p>
+<h4 id="failure-without-it-7">Failure without it</h4>
+<p>Scaling the student cannot move a fixed teacher mode. A plateau across 110 million, 340 million, and 1.3 billion parameters, with gains of 0.4 points and then zero, indicates a label ceiling. Generating, filtering, and consuming labels within one model family can increase systematic error over rounds. Do not assume a larger same-lineage teacher has different blind spots. Change teacher family before teacher size when the goal is decorrelation. When the domain is unseen by every available family, expert gold is the only source with a different blind spot.</p>
+<h4 id="cost-and-complexity-7">Cost and complexity</h4>
+<p>If two teacher families' blind spots overlap on fraction rho, surviving systematic error is rho times epsilon_sys. The ceiling rises by (1 - rho) times epsilon_sys. Execution is a second lever. Adaptive retrieval-augmented generation (Adaptive-RAG) runs three pipelines and keeps the cheapest whose answer exact-matches a gold answer. Reinforcement learning with verifiable rewards makes the same execution-based move at policy level. That replaces label judgment with measurement. The ceiling then reflects verifier error plus generator variance. In the worked audit, one teacher produces 62% correct pairs. Across three draws at temperature 0.8, 22 of 100 are wrong in all three and 16 are wrong in one or two. Thus epsilon_sys = 0.22, epsilon_noise = 0.16, and the student ceiling is 78%. Three draws plus filtering discard 5 of 22 systematic cases and 9 of 78 sound cases. Of 69 sound retained passages, 2 keep a noise-corrupted draw. The retained set has 86 pairs and 67 correct, or 78%, leaving 172,000 pairs from a 200,000-passage corpus. A second teacher family with rho = 0.4 moves the ceiling to 1 - 0.4 times 0.22 = 91%. It catches both noise cases and all but rho of the 17 remaining systematic cases, leaving 6.8 errors. Retention falls from 86 to 73.8 points, or about 148,000 pairs. Accuracy is 67 divided by 73.8 = 91%, assuming the second family rarely rejects correct pairs. That assumption is the next audit target. Three draws over 200,000 passages require 600,000 calls. Each uses 400 input tokens and 30 output tokens, for 240 million input and 18 million output tokens. At $0.25 and $1.25 per million tokens, one teacher pass costs $60 + $22.50 = $82.50. The second family costs another $82.50 and moves the ceiling 13 points. Hand-labeling 200,000 pairs at two minutes each takes 6,667 hours and about $400,000 at $60 per hour. That is about 4,800 times one teacher pass. A 2,000-pair expert audit takes 67 hours and costs $4,000. At accuracy near 0.8, its standard error is as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mfrac><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow><mi>n</mi></mfrac></msqrt><mo>=</mo><msqrt><mfrac><mn>0.16</mn><mrow><mn>2</mn><mo>,</mo><mn>000</mn></mrow></mfrac></msqrt><mo>=</mo><mn>0.0089</mn></mrow><annotation encoding="application/x-tex">\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.16}{2{,}000}}=0.0089</annotation></semantics></math></p>
+<p>The corresponding 95% interval is plus or minus 1.8 points. Spend gold on measurement. Prefer labels produced by execution when the task has an exact answer, unit test, or source-passage retrieval check. Re-audit labels when two consecutive model-size increases yield less than one point. Never let one family generate, filter, and consume the same labels without a cross-family audit. The source cites Promptagator as Dai et al. (2022) in section 29.4 and as Dai et al. (2023) in section 29.8. Preserve that year mismatch as a source inconsistency.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-291">Figure 29.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    D[&quot;Document d: myocardial infarction&quot;]
+    QH[&quot;Predicted queries q_hat_1 through q_hat_m: heart attack, ...&quot;]
+    I[&quot;Indexed entry: d concatenated with all predicted queries&quot;]
+    Q[&quot;Query q: heart attack&quot;]
+    D --&gt;|&quot;index time: what queries does d answer?&quot;| QH
+    QH --&gt;|&quot;appended to indexed text&quot;| I
+    Q --&gt;|&quot;query time: ordinary lexical match&quot;| I</code></pre></details></figure>
+<p>Figure 29.1: The inversion (top two arrows) runs once per document, before the corpus is ever searched, so the ordinary query-time retrieval step (bottom arrow) can later succeed on vocabulary the original document never contained.</p>
+<h3 id="figure-292">Figure 29.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    subgraph B[&quot;Before doc2query&quot;]
+        B1[&quot;Indexed text: restoring, account, access, lockout&quot;]
+        B2[&quot;Query: reset, password&quot;]
+        B3[&quot;Posting lists for reset and password omit the document. Score = 0. Never retrieved.&quot;]
+        B1 --&gt; B3
+        B2 --&gt; B3
+    end
+    G[&quot;doc2query: generate and append predicted queries&quot;]
+    subgraph A[&quot;After doc2query&quot;]
+        A1[&quot;Indexed text: restoring, account, access, lockout, reset, password&quot;]
+        A2[&quot;Query: reset, password&quot;]
+        A3[&quot;Both terms enter the posting lists. The document is fetched and scored above 0.&quot;]
+        A1 --&gt; A3
+        A2 --&gt; A3
+    end
+    B3 --&gt; G --&gt; A1</code></pre></details></figure>
+<p>Figure 29.2: doc2query appends model-predicted query terms to a document's indexed text at build time, moving the document into the posting lists that a matching query will actually touch.</p>
+<h3 id="figure-293">Figure 29.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    V[&quot;Vanilla prompt: k times passage plus relevant query&quot;]
+    C[&quot;Contrastive GBQ prompt: k times passage plus good Q plus bad Q&quot;]
+    G[&quot;Few-shot generator: same model and same target passage&quot;]
+    VO[&quot;Generated query imitates source-dataset style, defects included&quot;]
+    CO[&quot;Generated query moves toward the vetted good side&quot;]
+    V --&gt; G --&gt; VO
+    C -.-&gt; G
+    G -.-&gt; CO</code></pre></details></figure>
+<p>Same generator and same target passage. The exemplar shape changes the output distribution. Figure 29.3: The prompt's exemplars set an implicit quality ceiling: a single positive example teaches imitation, a good/bad pair teaches discrimination.</p>
+<h3 id="table-291">Table 29.1</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Query looks like</th>
+<th>Relevant document is</th>
+<th>Dominant signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MS MARCO</td>
+<td>"salary of a surgeon per year"</td>
+<td>a passage answering it directly</td>
+<td>topical overlap</td>
+</tr>
+<tr>
+<td>FEVER</td>
+<td>"Christina Aguilera's profession is a musician"</td>
+<td>a passage that entails or contradicts the claim</td>
+<td>entailment / contradiction</td>
+</tr>
+<tr>
+<td>DBpedia-Entity</td>
+<td>an entity name</td>
+<td>any passage mentioning it, exhaustively</td>
+<td>exhaustive coverage</td>
+</tr>
+<tr>
+<td>ArguAna</td>
+<td>an argument for a position</td>
+<td>the best argument against that position</td>
+<td>stance opposition</td>
+</tr>
+</tbody>
+</table></div>
+<p>Table 29.1: Four BEIR retrieval tasks define "relevant" on four structurally different relations. A retriever trained to approximate one does not automatically approximate the others.</p>
+<h3 id="figure-294">Figure 29.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    D[&quot;Source passage d_i&quot;]
+    Q[&quot;Generated query q_i&quot;]
+    R[&quot;Preliminary retriever searches whole corpus&quot;]
+    L[&quot;1. d_j, near-duplicate of d_i. 2. d_i, the source. 3. ...&quot;]
+    K[&quot;Keep&quot;]
+    X[&quot;Discard&quot;]
+    LEAK[&quot;Leak beta above 0: copied rare string round-trips at rank 1 and teaches nothing&quot;]
+    REJECT[&quot;False reject alpha below 1: at K = 1, source loses a tie to a legitimate near-duplicate&quot;]
+    D --&gt;|&quot;generator&quot;| Q
+    Q --&gt; R --&gt; L
+    L --&gt;|&quot;d_i inside top K&quot;| K
+    L --&gt;|&quot;d_i below rank K&quot;| X
+    LEAK -.-&gt; Q
+    REJECT -.-&gt; L</code></pre></details></figure>
+<p>A window of K = 10 keeps the illustrated hard positive. Figure 29.4: The round trip verifies that a retriever can recover the source passage from the generated query, so its two errors are a degenerate query that round-trips anyway and a hard positive that loses a tie to a near-duplicate.</p>
+<h3 id="figure-295">Figure 29.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    subgraph A[&quot;A. Single step: InPars and Promptagator&quot;]
+        A1[&quot;Passage d: 120 tokens&quot;] --&gt; A2[&quot;Query q: 25 tokens&quot;]
+        A3[&quot;Answerable from d alone, so self-contained by construction and fluent only where the generator is fluent&quot;]
+        A2 --&gt; A3
+    end
+    subgraph B[&quot;B. Summarize then ask: SWIM-IR&quot;]
+        B1[&quot;Passage d_l: 120 tokens&quot;] --&gt; B2[&quot;Summary s_hat: 30 tokens&quot;] --&gt; B3[&quot;Query q_l: 25 tokens&quot;]
+        B4[&quot;The query uses 30 target-language tokens, not 120. The summary records the chosen fact.&quot;]
+        B3 --&gt; B4
+    end
+    subgraph C[&quot;C. Dialogue: CONVERSER&quot;]
+        C1[&quot;Passage d: 120 tokens&quot;] --&gt; C2[&quot;q1: who founded Tesla? Stands alone&quot;]
+        C1 --&gt; C3[&quot;q2: when did he start it? Anaphora&quot;]
+        C1 --&gt; C4[&quot;q3: and before that? Ellipsis&quot;]
+        C5[&quot;Turns 2 through T are unanswerable in isolation&quot;]
+        C4 --&gt; C5
+    end
+    subgraph D[&quot;D. Translate then generate, loses&quot;]
+        D1[&quot;Passage d_en&quot;] -.-&gt; D2[&quot;English query&quot;] -.-&gt;|&quot;X&quot;| D3[&quot;Machine translation into l&quot;]
+        D4[&quot;English question syntax in l, worst where l is lowest-resource, with no dialogue structure&quot;]
+        D3 --&gt; D4
+    end
+    A3 ~~~ B1
+    B4 ~~~ C1
+    C5 ~~~ D1</code></pre></details></figure>
+<p>Figure 29.5: Both extensions change the generator's output type rather than its prompt wording: SWIM-IR inserts a summary so the query is written from a quarter as much low-resource text, and CONVERSER emits a dialogue so that context-dependent turns exist in the training set at all.</p>
+<h3 id="figure-296">Figure 29.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    subgraph O[&quot;Open loop&quot;]
+        direction TB
+        O1[&quot;Generator G_0, frozen&quot;] --&gt; O2[&quot;Synthetic set D_G, n items&quot;] --&gt; O3[&quot;Retriever M&quot;]
+        O4[&quot;No cycle. One bounded shift, measurable once.&quot;]
+        O3 --&gt; O4
+    end
+    subgraph C[&quot;Closed loop&quot;]
+        direction TB
+        C1[&quot;Generator G_t&quot;] --&gt; C2[&quot;Synthetic set D_G_t, n items&quot;] --&gt; C3[&quot;Model M_t becomes G_t+1&quot;]
+        C3 --&gt; C1
+        C4[&quot;Every round resamples a tail the last round thinned.&quot;]
+        C3 --&gt; C4
+    end
+    O ~~~ C</code></pre></details></figure>
+<p>Panel (b), n = 100,000 draws:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">True intent mass p</th>
+<th style="text-align: right;">Probability intent appears</th>
+<th>Figure annotation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.0000001</td>
+<td style="text-align: right;">near 0</td>
+<td>deleted by the finite draw</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.000001</td>
+<td style="text-align: right;">0.095</td>
+<td>below the coverage floor</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.00001</td>
+<td style="text-align: right;">0.63</td>
+<td>p = 1 divided by n</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.0001</td>
+<td style="text-align: right;">0.99995</td>
+<td>nearly certain to appear</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.001</td>
+<td style="text-align: right;">near 1</td>
+<td>plateau</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 29.6: Whether a synthetic set is safe is a question about topology and sample size, not about provenance. In (a) the same generator is benign on the left and divergent on the right, because only the cycle lets one round's truncation feed the next. In (b) a draw of n = 10^5 items puts a hard floor under what any set can contain: an intent carrying mass 10^-5 appears with probability 0.63, one at 10^-6 with probability 0.095, and after fitting, whatever failed to appear has no support at all. A 500-item human set has the same curve shifted two decades right.</p>
+<h3 id="table-292">Table 29.2</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Produced by</th>
+<th>Error structure</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gold</td>
+<td>adjudicated domain experts</td>
+<td>residual ambiguity in the task definition</td>
+<td>measurement: the audit set that locates your ceiling</td>
+</tr>
+<tr>
+<td>Silver</td>
+<td>non-expert humans, or a strong model</td>
+<td>idiosyncratic across people, repeatable within one model</td>
+<td>bulk training, after filtering</td>
+</tr>
+<tr>
+<td>Bronze</td>
+<td>a weak model, or one in the student's family</td>
+<td>repeatable, so it survives sampling and majority vote</td>
+<td>bulk training only with an out-of-family cross-check</td>
+</tr>
+</tbody>
+</table></div>
+<p>Table 29.2: The tier tells you the error structure, and the error structure tells you whether redundancy is worth buying.</p>
+<h3 id="figure-297">Figure 29.7</h3>
+<pre class="text"><code>ceiling 1 - ϵsys
+                                      |
+one teacher, one draw per passage     | correct 62 | noise 16 | systematic 22 |
+                                      |------------ ceiling -----------------|
+plus three draws, consistency filter  | correct 78            | systematic 22 |
+                                      |------------ ceiling -----------------|
+only a new label source moves this                         ---&gt; new ceiling
+plus a second teacher family          | correct 91                         | systematic 9 |
+Legend: correct | noise = wrong differently on each draw | systematic = wrong the same way on every draw</code></pre>
+<p>Figure 29.7: Filtering converts the teacher's draw-to-draw noise into accuracy and then stops dead at 1 - ϵsys. Only a label source with different blind spots moves the ceiling itself. Figures are percentages of the retained set in the worked example.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a document box labeled "myocardial infarction."</li>
+<li>Draw an offline arrow to generated query "heart attack," then append it to an indexed-entry box.</li>
+<li>Draw a normal query-time arrow from "heart attack" back to that entry.</li>
+<li>Add two prompt boxes, vanilla and good/bad, feeding one generator.</li>
+<li>Add a task-relation gate before Promptagator generation.</li>
+<li>Draw the consistency round trip through a preliminary retriever, with keep and discard branches at top K.</li>
+<li>Add a summary branch for multilingual data and a dialogue branch for conversational data.</li>
+<li>Finish with gold, silver, and bronze bars. Mark the 78% systematic ceiling and show a second teacher moving it to 91%.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with a document that says myocardial infarction and a query that says heart attack. I generate likely queries offline and append them to the index, which fixes lexical reachability. When no labels exist, InPars uses good and bad exemplars, while Promptagator adds task-specific seeds because relevance differs across search, verification, and counter-argument retrieval. I round-trip each synthetic query through a preliminary retriever, keep sources found in top K, and train the final model from scratch. For multilingual data I summarize first. For conversation I generate dialogues. Finally, I audit gold labels to separate removable noise from systematic teacher error.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-generate-queries-from-documents-instead-of-rewriting-incoming-queries">1. Why generate queries from documents instead of rewriting incoming queries?</h3>
+<p>Inverse query generation appends predicted terms once, which moves a zero-overlap document into posting lists that BM25 can score. For 10 million documents, 2 million daily queries, and a $0.0001 call, offline expansion costs $1,000 and breaks even with $200-per-day rewriting after 5 days. Query-time rewriting wins when the corpus changes faster than it is searched or the live intent could not be anticipated.</p>
+<h3 id="2-how-do-inpars-and-promptagator-differ">2. How do InPars and Promptagator differ?</h3>
+<p>InPars improves exemplar quality by contrasting a human-written good question with a bad one, even when the bad one came from a dataset's relevant field. Promptagator encodes the target relevance relation with 2 to 8 seeds, generates over an unlabeled corpus, filters the pairs, and trains a dual encoder from scratch. Both need seeds, but neither claims that those few pairs directly train the final retriever.</p>
+<h3 id="3-does-consistency-filtering-prove-that-a-synthetic-pair-is-correct">3. Does consistency filtering prove that a synthetic pair is correct?</h3>
+<p>No, because the round trip only proves that a preliminary retriever recovers the source within top K, so a copied clause identifier can pass and a hard positive can fail at K = 1 when a near-duplicate wins. Use K from 5 to 10, audit 100 discards, run one pass, and train from scratch. Precision rises when alpha exceeds beta, but the filter never replaces a real-query evaluation.</p>
+<h3 id="4-how-do-you-extend-bootstrapping-to-low-resource-languages-and-conversations">4. How do you extend bootstrapping to low-resource languages and conversations?</h3>
+<p>Do not translate a self-contained English query. SWIM-IR summarizes the target-language passage and writes from about 30 tokens instead of 120, while CONVERSER generates dialogues so anaphora and ellipsis exist in training. Buy 6 to 8 seeds from speakers, report retention per language, and remember that single-step generation creates zero context-dependent queries at any budget.</p>
+<h3 id="5-is-synthetic-supervision-valid-and-can-a-student-beat-its-teacher">5. Is synthetic supervision valid, and can a student beat its teacher?</h3>
+<p>Replace the validity question with distribution, topology, prompt-selection, and real-traffic calibration checks. Gold measures the ceiling, while silver and bronze provide volume with different error structures. A student can beat one-draw teacher accuracy by epsilon_noise but cannot exceed 1 - epsilon_sys under the stated limit, so only an out-of-family teacher or execution-based verifier moves systematic blind spots.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Source value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inversion corpus</td>
+<td style="text-align: right;">10,000,000 documents</td>
+<td>one offline call per document</td>
+</tr>
+<tr>
+<td>Inversion traffic</td>
+<td style="text-align: right;">2,000,000 queries per day</td>
+<td>query-side calls recur daily</td>
+</tr>
+<tr>
+<td>Call price</td>
+<td style="text-align: right;">$0.0001</td>
+<td>equal per direction in the example</td>
+</tr>
+<tr>
+<td>Query-side daily cost</td>
+<td style="text-align: right;">$200</td>
+<td>$6,000 after 30 days</td>
+</tr>
+<tr>
+<td>Document-side cost</td>
+<td style="text-align: right;">$1,000</td>
+<td>paid once</td>
+</tr>
+<tr>
+<td>Break-even</td>
+<td style="text-align: right;">5 days</td>
+<td>cumulative queries equal corpus size</td>
+</tr>
+<tr>
+<td>Opening reachability examples</td>
+<td style="text-align: right;">rank 40,000 hits deep and an unloved-book analogy of 30 years</td>
+<td>the clinical note misses index scoring, while inversion cannot repair generation-time reachability from weights</td>
+</tr>
+<tr>
+<td>Human keyword agreement</td>
+<td style="text-align: right;">10% to 20%</td>
+<td>Furnas et al. result</td>
+</tr>
+<tr>
+<td>BM25 example</td>
+<td style="text-align: right;">10,000 articles, avgdl 150, document length 120, then 128</td>
+<td>reset and password each occur once after expansion</td>
+</tr>
+<tr>
+<td>BM25 settings</td>
+<td style="text-align: right;">k1 = 1.2 and b = 0.75</td>
+<td>worked example parameters</td>
+</tr>
+<tr>
+<td>BM25 result</td>
+<td style="text-align: right;">IDF values 2.99 and 3.50, then score about 6.9</td>
+<td>previous score was 0</td>
+</tr>
+<tr>
+<td>doc2query output</td>
+<td style="text-align: right;">1.2 million tokens</td>
+<td>10 queries times 12 tokens times 10,000 articles</td>
+</tr>
+<tr>
+<td>docTTTTTquery MRR@10</td>
+<td style="text-align: right;">0.184 to 0.277</td>
+<td>roughly 50% relative gain</td>
+</tr>
+<tr>
+<td>Near-real-time ingestion trap</td>
+<td style="text-align: right;">searchable within 5 minutes</td>
+<td>index literal text first and backfill expansion</td>
+</tr>
+<tr>
+<td>InPars corpus</td>
+<td style="text-align: right;">50,000 documents</td>
+<td>k = 3 and 100-token passages</td>
+</tr>
+<tr>
+<td>InPars calls</td>
+<td style="text-align: right;">vanilla 448 tokens and about $448, GBQ 484 tokens and about $484</td>
+<td>whole-corpus costs at the stated rate</td>
+</tr>
+<tr>
+<td>GBQ premium</td>
+<td style="text-align: right;">8% and about $36</td>
+<td>stated illustrative rate</td>
+</tr>
+<tr>
+<td>InPars postmortem</td>
+<td style="text-align: right;">6 weeks and hundreds of thousands of pairs</td>
+<td>volume does not repair a weak exemplar ceiling</td>
+</tr>
+<tr>
+<td>Promptagator seeds</td>
+<td style="text-align: right;">2 to 8</td>
+<td>target-relation examples</td>
+</tr>
+<tr>
+<td>Promptagator reuse trap</td>
+<td style="text-align: right;">1 year of logs, 8 labeled examples, and 1 week</td>
+<td>test the task relation before reusing a search retriever</td>
+</tr>
+<tr>
+<td>Promptagator corpus</td>
+<td style="text-align: right;">100,000 passages</td>
+<td>six seeds and four candidates each</td>
+</tr>
+<tr>
+<td>Promptagator generation</td>
+<td style="text-align: right;">400,000 calls, 400 million input tokens, 8 million output tokens, and $108</td>
+<td>$100 input plus $8 output</td>
+</tr>
+<tr>
+<td>Promptagator human comparison</td>
+<td style="text-align: right;">$500,000, about 4,630 times generation, and about 83,000-fold label-volume reduction</td>
+<td>six seeds versus 500,000 labels</td>
+</tr>
+<tr>
+<td>Filter audit</td>
+<td style="text-align: right;">500 pairs</td>
+<td>pi = 0.70</td>
+</tr>
+<tr>
+<td>Filter windows</td>
+<td style="text-align: right;">K = 1 gives alpha 0.78, beta 0.18, r 0.600, 300,000 pairs at 91%. K = 10 gives alpha 0.94, beta 0.42, r 0.784, 392,000 pairs at 84%</td>
+<td>stricter precision versus looser hard-positive recovery</td>
+</tr>
+<tr>
+<td>Window trade</td>
+<td style="text-align: right;">56,000 sound for 36,000 broken</td>
+<td>1.56 sound per broken</td>
+</tr>
+<tr>
+<td>Hard-positive estimate</td>
+<td style="text-align: right;">about 38,000</td>
+<td>68% of recovered sound pairs</td>
+</tr>
+<tr>
+<td>Filter compute</td>
+<td style="text-align: right;">3,302 seconds and about $2.30</td>
+<td>source gives 1.7%, then rounds to about 1.5%</td>
+</tr>
+<tr>
+<td>Yield multiplier</td>
+<td style="text-align: right;">1.67 times</td>
+<td>r = 0.600</td>
+</tr>
+<tr>
+<td>Filter interview probes</td>
+<td style="text-align: right;">2,000,000 pairs, 60% tightened to 30%, and 3 rounds</td>
+<td>inspect discard composition and reject iterative self-filtering</td>
+</tr>
+<tr>
+<td>SWIM-IR languages</td>
+<td style="text-align: right;">33</td>
+<td>summarize-then-ask result</td>
+</tr>
+<tr>
+<td>Multilingual corpus</td>
+<td style="text-align: right;">12 times 200,000 passages</td>
+<td>120 tokens each</td>
+</tr>
+<tr>
+<td>Single-step cost</td>
+<td style="text-align: right;">$265 per language</td>
+<td>1,200 input and 25 output tokens per call</td>
+</tr>
+<tr>
+<td>Summary cost</td>
+<td style="text-align: right;">$295 per language</td>
+<td>11% premium</td>
+</tr>
+<tr>
+<td>Twelve-language cost</td>
+<td style="text-align: right;">$3,540</td>
+<td>508 times below $1.8 million annotation example</td>
+</tr>
+<tr>
+<td>Dialogue output</td>
+<td style="text-align: right;">220 tokens for four turns</td>
+<td>55 per query and 2.2 times single-step per query</td>
+</tr>
+<tr>
+<td>Filtering at r = 0.4</td>
+<td style="text-align: right;">250,000 generations</td>
+<td>yields 100,000 pairs</td>
+</tr>
+<tr>
+<td>Speaker-review allocation</td>
+<td style="text-align: right;">2,000 across 12 languages</td>
+<td>96 seeds and about 159 tests per language</td>
+</tr>
+<tr>
+<td>Even split before seeds</td>
+<td style="text-align: right;">about 167 per language</td>
+<td>too small for training but useful for evaluation</td>
+</tr>
+<tr>
+<td>Low-resource interview probe</td>
+<td style="text-align: right;">8 languages with labels in 1, leaving 7, and recall@10 of 0.41 in Telugu</td>
+<td>representation changes do not create target-language supervision</td>
+</tr>
+<tr>
+<td>Test-set resolution</td>
+<td style="text-align: right;">4.0-point maximum standard error</td>
+<td>resolves 8 points at two standard errors, not 2</td>
+</tr>
+<tr>
+<td>Coverage n</td>
+<td style="text-align: right;">100,000</td>
+<td>floor near 0.00001</td>
+</tr>
+<tr>
+<td>Intent mass 0.00001</td>
+<td style="text-align: right;">0.63 appearance probability</td>
+<td>n times p = 1</td>
+</tr>
+<tr>
+<td>Intent mass 0.000001</td>
+<td style="text-align: right;">0.095 appearance probability</td>
+<td>below coverage floor</td>
+</tr>
+<tr>
+<td>Intent mass 0.0001</td>
+<td style="text-align: right;">0.99995 appearance probability</td>
+<td>well above floor</td>
+</tr>
+<tr>
+<td>Prompt selection</td>
+<td style="text-align: right;">N = 500, discordance 20%, m = 8</td>
+<td>expected inflation 2.8 points</td>
+</tr>
+<tr>
+<td>Chunking headline</td>
+<td style="text-align: right;">+4.1 points</td>
+<td>residual 1.3 against 2.0 standard error</td>
+</tr>
+<tr>
+<td>Synthetic review setup</td>
+<td style="text-align: right;">week 11, 118,000 training pairs, 500 real tickets, and 3 enterprise customers</td>
+<td>the evaluation is also synthetic in the opening scenario</td>
+</tr>
+<tr>
+<td>Closed-loop dispute</td>
+<td style="text-align: right;">5 rounds and 300 real queries</td>
+<td>break the cycle and reserve the real set as a calibration anchor</td>
+</tr>
+<tr>
+<td>Powered synthetic set</td>
+<td style="text-align: right;">6,969, rounded to 7,000</td>
+<td>resolves 1.5 points at 80% power</td>
+</tr>
+<tr>
+<td>Synthetic evaluation cost</td>
+<td style="text-align: right;">$19.43</td>
+<td>human comparison $10,500 and factor 540</td>
+</tr>
+<tr>
+<td>Calibration overlap</td>
+<td style="text-align: right;">0.38 synthetic versus 0.11 real</td>
+<td>120 real queries pin mean to plus or minus 0.011</td>
+</tr>
+<tr>
+<td>Student scale check</td>
+<td style="text-align: right;">stuck 3 weeks across 110M, 340M, and 1.3B</td>
+<td>gain 0.4 points, then zero</td>
+</tr>
+<tr>
+<td>One-teacher audit</td>
+<td style="text-align: right;">62 correct, 16 noise, 22 systematic</td>
+<td>ceiling 78%</td>
+</tr>
+<tr>
+<td>Filtered labels</td>
+<td style="text-align: right;">67 correct of 86</td>
+<td>78% and 172,000 pairs</td>
+</tr>
+<tr>
+<td>Second family</td>
+<td style="text-align: right;">rho = 0.4</td>
+<td>ceiling 91% and about 148,000 pairs</td>
+</tr>
+<tr>
+<td>One teacher pass</td>
+<td style="text-align: right;">$82.50</td>
+<td>240 million input and 18 million output tokens</td>
+</tr>
+<tr>
+<td>Full expert labeling</td>
+<td style="text-align: right;">about $400,000</td>
+<td>6,667 hours and about 4,800 times one teacher pass</td>
+</tr>
+<tr>
+<td>Gold audit</td>
+<td style="text-align: right;">2,000 pairs and $4,000</td>
+<td>67 hours and plus or minus 1.8 points</td>
+</tr>
+<tr>
+<td>Annotation-budget dispute</td>
+<td style="text-align: right;">$50,000, 25,000 expert pairs, rounded $83 second teacher, and $4,000 audit</td>
+<td>measure blind-spot overlap before choosing volume or decorrelation</td>
+</tr>
+<tr>
+<td>Source years</td>
+<td style="text-align: right;">1987, 2019, 2021, 2022, 2023, and 2024</td>
+<td>Furnas, Alberti, BEIR and SPLADEv2, InPars and Promptagator and ColBERTv2, Burns and the conflicting Promptagator citation, then SWIM-IR and model collapse</td>
+</tr>
+<tr>
+<td>Source cross-references</td>
+<td style="text-align: right;">4.3, 11.3, 13.6, 20.5, 23.4, 24.5, 24.6, 25.6, 26.7, and 32.3</td>
+<td>generation reachability, self-reflection, chunking, low-resource translation, generative retrieval, query rewriting, dense inversion, Adaptive-RAG, verifiable rewards, and ceiling diagnosis</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/28_training_the_retriever.html"><small>Previous</small>Chapter 28. Training the Retriever</a><a href="../chapters/30_lost_in_the_middle.html"><small>Next</small>Chapter 30. Lost in the Middle</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

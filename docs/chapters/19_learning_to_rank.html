@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 19. Learning to Rank | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/19_learning_to_rank.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html" aria-current="page">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 19. Learning to Rank</h1><p class="chapter-meta">58 min estimated reading · Unit 28 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: Explain how Learning to Rank (LTR) aligns training gradients with ranked-list metrics, then choose among pointwise, pairwise, listwise, representation, interaction, and hybrid designs under real serving constraints.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A rank metric reads the order of documents, not the numeric scores that produced it. Squared error can improve while the order stays fixed.</li>
+<li>Normalized Discounted Cumulative Gain (NDCG) rewards good documents more when they appear near the top. A useful training signal must respect that position sensitivity.</li>
+<li>Pointwise methods score one document at a time. For graded labels, sort by expected gain or learn one continuous score with ordered grade cut points instead of sorting by the most likely class.</li>
+<li>Pairwise methods learn which of two documents should win. LambdaRank improves them by weighting each correction by the NDCG change that the swap would cause.</li>
+<li>Listwise methods either smooth integer ranks, define metric-aware gradients, or score the whole candidate set. Their costs and serving properties differ sharply.</li>
+<li>Representation models precompute document vectors. Interaction models wait for the query and usually score more accurately, but they cannot scan a large corpus cheaply.</li>
+<li>A practical funnel uses a representation model first and an interaction model inside a limited candidate window. The second stage cannot recover anything the first stage missed.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a parcel depot that must place the most urgent parcels at the front of a conveyor.</p>
+<p>Each customer request is a query. Each parcel is a candidate document. Human inspectors attach priority stickers from 0 to 4, which are relevance grades. The numbers show an order, but they do not promise that the jump from 1 to 2 is the same size as the jump from 3 to 4.</p>
+<p>The depot first hires a clerk who predicts each sticker number as closely as possible. The clerk's squared error falls every week. The conveyor barely improves because the shipping score cares only about parcel order. It cannot see whether the clerk wrote 2.0 or 20.0 when both numbers induce the same order.</p>
+<p>The sorting gate, called argsort, keeps only the order and destroys the score scale. Its quality measure is a ranked-list metric, which gives more credit when an urgent parcel reaches the front. The depot therefore needs a smooth training substitute, called a surrogate loss, because the real sorting measure changes only when two parcels swap.</p>
+<p>The first replacement is a pointwise inspector, which means an inspector who examines one parcel at a time. A five-class inspector should not emit only the winning sticker class. That would throw many parcels into one tied bucket. The depot instead computes expected priority from the whole predicted class distribution. An ordinal inspector can also learn one continuous urgency line with ordered cut points.</p>
+<p>The second replacement is a pairwise referee, which means a referee who asks which of two parcels should go first. Maximum-margin training and RankNet make that comparison smooth. Plain pairwise training still treats a swap near the loading door like a swap at the back wall. LambdaRank adds the actual change in the shipping metric, so front-of-conveyor repairs pull much harder.</p>
+<p>The third replacement is a listwise supervisor, which means a supervisor whose objective sees the candidate list. SoftRank turns each predicted score into a bell-shaped uncertainty and computes a smooth distribution over possible ranks. A boosted-tree route gives LambdaRank's metric-aware forces to trees. SetRank uses self-attention, which lets every parcel inspect every competitor, while removing position tags so the input order does not become an accidental signal.</p>
+<p>The depot still has a serving problem. A representation worker stamps every parcel with a compact vector before any customer arrives. A query vector can then scan the stored parcel vectors. An interaction worker waits for the customer request, opens each candidate, and compares request words with parcel words. That richer comparison cannot be prepared in advance.</p>
+<p>The depot therefore builds a funnel. The representation worker retrieves a manageable candidate set. The interaction worker reranks only that set. A hybrid scorer adds both views because they fail on different requests. The funnel is fast, but its ceiling is absolute. A parcel excluded by the first worker can never reach the second worker.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learning to Rank (LTR)</td>
+<td>Training a model to order candidates for each query</td>
+<td>It is the chapter's central problem</td>
+</tr>
+<tr>
+<td>Query <code>q</code></td>
+<td>The user's information request</td>
+<td>Rankings are defined within one query</td>
+</tr>
+<tr>
+<td>Candidate document <code>d</code></td>
+<td>One item that might answer the query</td>
+<td>The scorer orders these items</td>
+</tr>
+<tr>
+<td>Relevance label <code>y</code></td>
+<td>A human or behavioral judgment of usefulness</td>
+<td>It supplies supervision</td>
+</tr>
+<tr>
+<td>Query-document triple <code>(q, d, y)</code></td>
+<td>One query, one candidate, and its label</td>
+<td>It is the basic judged record</td>
+</tr>
+<tr>
+<td>Feature map <code>φ(q, d)</code></td>
+<td>A vector of signals for one query-document pair</td>
+<td>Traditional rankers score this vector</td>
+</tr>
+<tr>
+<td>Feature dimension <code>m</code> or <code>F</code></td>
+<td>The number of features in a vector</td>
+<td>The source uses 46 and 136 in named benchmarks</td>
+</tr>
+<tr>
+<td>Candidate set <code>D_q</code> and depth `</td>
+<td>D_q</td>
+<td><code>or</code>n_q`</td>
+</tr>
+<tr>
+<td>Candidate count <code>n</code>, class count <code>K</code>, and cutoff <code>k</code></td>
+<td>List length, number of relevance grades, and reported rank depth</td>
+<td>The source uses each count for a different boundary</td>
+</tr>
+<tr>
+<td>Indices <code>i</code>, <code>j</code>, and <code>r</code></td>
+<td>Candidate, comparison-candidate, and rank positions</td>
+<td>They identify documents, preference pairs, and rank bins</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>A lexical relevance score named in the source</td>
+<td>It is a feature and a first-stage retriever</td>
+</tr>
+<tr>
+<td>Term Frequency-Inverse Document Frequency (TF-IDF)</td>
+<td>A term-weighting feature family</td>
+<td>It is one input to traditional rankers</td>
+</tr>
+<tr>
+<td>PageRank</td>
+<td>A document-level importance feature</td>
+<td>It complements query-dependent signals</td>
+</tr>
+<tr>
+<td>Scorer <code>fθ</code></td>
+<td>A model that maps features to a real score</td>
+<td>Its scores induce the ranking</td>
+</tr>
+<tr>
+<td>Parameters <code>θ</code> and metric <code>M</code></td>
+<td>The scorer's learned values and the ranked-list evaluation function</td>
+<td>Training seeks parameters whose induced permutation raises the metric</td>
+</tr>
+<tr>
+<td>Score <code>s_i</code></td>
+<td>The scalar assigned to candidate <code>i</code></td>
+<td>Sorting scores produces the output order</td>
+</tr>
+<tr>
+<td><code>argsort</code></td>
+<td>The operation that returns indices in score order</td>
+<td>It discards score magnitudes and keeps order</td>
+</tr>
+<tr>
+<td>Permutation <code>π_q</code></td>
+<td>The ordered candidate list for query <code>q</code></td>
+<td>Ranking metrics read this object</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain at <code>k</code> (NDCG@k)</td>
+<td>A top-weighted graded ranking score normalized by the ideal order</td>
+<td>It is the main reported metric</td>
+</tr>
+<tr>
+<td>Discounted Cumulative Gain (DCG)</td>
+<td>Graded gain reduced by rank-dependent discounts</td>
+<td>It values useful documents near the top</td>
+</tr>
+<tr>
+<td>Ideal Discounted Cumulative Gain (IDCG)</td>
+<td>DCG for the best possible order</td>
+<td>It normalizes DCG into NDCG</td>
+</tr>
+<tr>
+<td>Mean Reciprocal Rank (MRR)</td>
+<td>A rank metric named by the source</td>
+<td>It also reads order rather than score scale</td>
+</tr>
+<tr>
+<td>Mean Average Precision (MAP)</td>
+<td>A rank metric named by the source</td>
+<td>It is another order-only evaluation</td>
+</tr>
+<tr>
+<td>Gain <code>g(y)</code></td>
+<td>The value assigned to a relevance grade</td>
+<td>The standard form here is <code>2^y - 1</code></td>
+</tr>
+<tr>
+<td>Discount</td>
+<td>The decreasing value attached to a rank</td>
+<td>The source uses <code>1 / log2(1 + rank)</code></td>
+</tr>
+<tr>
+<td>Surrogate loss</td>
+<td>A smooth objective used because the metric has no usable ordinary gradient</td>
+<td>Every trainable LTR method needs one or an explicit gradient</td>
+</tr>
+<tr>
+<td>Squared error</td>
+<td>The sum of squared score-label gaps</td>
+<td>It assumes a numeric scale that graded labels do not supply</td>
+</tr>
+<tr>
+<td>Shift invariance</td>
+<td>Adding one constant to all scores leaves the order unchanged</td>
+<td>A ranking-aligned objective should respect it</td>
+</tr>
+<tr>
+<td>Common score shift <code>c</code></td>
+<td>One constant added to every score for a query</td>
+<td>It exposes squared error's mismatch with an unchanged ranking</td>
+</tr>
+<tr>
+<td>Ordinal label</td>
+<td>A label whose order is meaningful but whose spacing is not measured</td>
+<td>Grades 0 through 4 have this status</td>
+</tr>
+<tr>
+<td>Interval scale</td>
+<td>A scale with meaningful equal gaps and a shared origin</td>
+<td>Squared error requires it, but relevance grades lack it</td>
+</tr>
+<tr>
+<td>Per-query normalization</td>
+<td>Giving each query a controlled total loss weight</td>
+<td>It prevents deeply judged queries from dominating</td>
+</tr>
+<tr>
+<td>Head query</td>
+<td>A query with many judgments or high frequency</td>
+<td>Judgment depth can overweight it accidentally</td>
+</tr>
+<tr>
+<td>Tail query</td>
+<td>A query with few judgments</td>
+<td>It can disappear from an unnormalized loss</td>
+</tr>
+<tr>
+<td>Per-query z-score</td>
+<td>A within-query standardization of labels or scores</td>
+<td>It fixes some invariances but invents interval structure</td>
+</tr>
+<tr>
+<td>Uniform Resource Locator (URL)</td>
+<td>A document address</td>
+<td>Its depth can be a ranking feature</td>
+</tr>
+<tr>
+<td>Learning to Rank 4.0 (LETOR 4.0)</td>
+<td>A public benchmark named by the source</td>
+<td>It supplies 46 features per pair</td>
+</tr>
+<tr>
+<td>Microsoft Learning to Rank WEB30K (MSLR-WEB30K)</td>
+<td>A public benchmark named by the source</td>
+<td>It supplies 136 features per pair</td>
+</tr>
+<tr>
+<td>Microsoft Machine Reading Comprehension (MS MARCO)</td>
+<td>A passage-ranking collection named by the source</td>
+<td>It supplies binary judgments and a scale check</td>
+</tr>
+<tr>
+<td>Pointwise method</td>
+<td>A loss that consumes one candidate label at a time</td>
+<td>It yields stable, cacheable per-document scores</td>
+</tr>
+<tr>
+<td>Pairwise method</td>
+<td>A loss derived from within-query document preferences</td>
+<td>It learns which candidate should beat another</td>
+</tr>
+<tr>
+<td>Listwise method</td>
+<td>A method whose loss, gradient, or scorer uses list structure</td>
+<td>It can align more closely with a ranked-list metric</td>
+</tr>
+<tr>
+<td>Classifier</td>
+<td>A model that predicts a label distribution</td>
+<td>It is an honest pointwise reading of graded labels</td>
+</tr>
+<tr>
+<td>Softmax</td>
+<td>A normalized distribution over classes</td>
+<td>A flat softmax treats grades as exchangeable classes</td>
+</tr>
+<tr>
+<td>Cross-entropy</td>
+<td>A loss for predicted class or preference probabilities</td>
+<td>McRank and RankNet use forms of it</td>
+</tr>
+<tr>
+<td>Arg max</td>
+<td>Choosing the class with largest probability</td>
+<td>It creates large tied buckets in graded ranking</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>The most probable class</td>
+<td>It is not the same as expected relevance</td>
+</tr>
+<tr>
+<td>Predicted distribution <code>p_j(d)</code></td>
+<td>The probability that document <code>d</code> has grade <code>j</code></td>
+<td>Its full shape supports expected gain</td>
+</tr>
+<tr>
+<td>Expected relevance</td>
+<td>The probability-weighted average grade</td>
+<td>It produces a continuous pointwise score</td>
+</tr>
+<tr>
+<td>Expected gain</td>
+<td>The probability-weighted average metric gain</td>
+<td>Sorting it maximizes expected DCG under the source derivation</td>
+</tr>
+<tr>
+<td>Rearrangement inequality</td>
+<td>The rule that pairs larger gains with larger discounts</td>
+<td>It justifies sorting by expected gain</td>
+</tr>
+<tr>
+<td>McRank</td>
+<td>A multiclass boosted-tree pointwise ranker</td>
+<td>It ranks by expected relevance instead of raw regression</td>
+</tr>
+<tr>
+<td>Ordinal regression</td>
+<td>A model with one score direction and ordered thresholds</td>
+<td>It encodes grade order and avoids class ties</td>
+</tr>
+<tr>
+<td>Ordinal direction <code>w</code> and threshold index <code>r</code></td>
+<td>A learned scoring vector and the first cut point above its score</td>
+<td>The continuous value <code>wᵀφ</code> can rank even after thresholds are discarded</td>
+</tr>
+<tr>
+<td>Monotone thresholds <code>b_1...b_K-1</code></td>
+<td>Ordered cut points on one continuous score</td>
+<td>They partition the line into ordered grades</td>
+</tr>
+<tr>
+<td>PRank</td>
+<td>A perceptron method for ordinal ranking</td>
+<td>It rotates one hyperplane and shifts offending thresholds</td>
+</tr>
+<tr>
+<td>Perceptron</td>
+<td>An online linear update rule</td>
+<td>PRank adapts it to ordered classes</td>
+</tr>
+<tr>
+<td>Large-margin ordinal model</td>
+<td>A threshold model that separates neighboring intervals with slack</td>
+<td>It extends PRank's ordinal construction</td>
+</tr>
+<tr>
+<td>Support Vector Machine (SVM)</td>
+<td>A maximum-margin classifier</td>
+<td>RankSVM applies it to difference vectors</td>
+</tr>
+<tr>
+<td>Preference set <code>I</code></td>
+<td>Within-query pairs where one label exceeds another</td>
+<td>It is pairwise supervision</td>
+</tr>
+<tr>
+<td>Difference vector <code>x_i - x_j</code></td>
+<td>The feature contrast for a preferred pair</td>
+<td>RankSVM classifies it through the origin</td>
+</tr>
+<tr>
+<td>RankSVM</td>
+<td>A maximum-margin pairwise ranker</td>
+<td>It makes score differences shift-invariant</td>
+</tr>
+<tr>
+<td>Regularization weight <code>C</code></td>
+<td>The multiplier on summed RankSVM slack</td>
+<td>It trades margin size against preference violations</td>
+</tr>
+<tr>
+<td>Hinge loss</td>
+<td>A margin penalty for an incorrect or weak preference</td>
+<td>RankSVM uses its slack form</td>
+</tr>
+<tr>
+<td>Slack <code>ξᵢⱼ</code></td>
+<td>The amount by which a pair misses the unit margin</td>
+<td>RankSVM sums it across preferences</td>
+</tr>
+<tr>
+<td>RankNet</td>
+<td>A neural pairwise ranker with logistic cross-entropy</td>
+<td>It gives smooth, equal-and-opposite pair forces</td>
+</tr>
+<tr>
+<td>Logistic function <code>σ</code></td>
+<td>A smooth map from a score gap to a probability</td>
+<td>RankNet uses it for preference probability</td>
+</tr>
+<tr>
+<td>Shape parameter <code>γ</code></td>
+<td>The steepness applied to score differences</td>
+<td>It controls RankNet's logistic curve</td>
+</tr>
+<tr>
+<td>Linear score drop <code>α</code></td>
+<td>The worked example's score decrease per rank position</td>
+<td>It fixes equal score gaps for the swap comparison</td>
+</tr>
+<tr>
+<td>Score margin <code>s_i - s_j</code></td>
+<td>The difference between two document scores</td>
+<td>Pairwise losses depend on it, so they are shift-invariant</td>
+</tr>
+<tr>
+<td>Softplus</td>
+<td>The smooth value <code>log(1 + exp(-margin))</code></td>
+<td>It is RankNet's collapsed cross-entropy</td>
+</tr>
+<tr>
+<td>Pair force <code>λᵢⱼ</code></td>
+<td>The gradient contribution from one preference pair</td>
+<td>It pushes one document up and the other down equally</td>
+</tr>
+<tr>
+<td>Document force <code>λᵢ</code></td>
+<td>All incoming and outgoing pair forces for one document</td>
+<td>It lets the network score each document once</td>
+</tr>
+<tr>
+<td>Gradient factorization</td>
+<td>Moving pair coupling outside model forward passes</td>
+<td>It reduces network calls from pair count to document count</td>
+</tr>
+<tr>
+<td>LambdaRank</td>
+<td>RankNet-style forces weighted by metric change</td>
+<td>It focuses learning where NDCG can move</td>
+</tr>
+<tr>
+<td>Delta NDCG <code>ΔNDCGᵢⱼ</code></td>
+<td>The NDCG change from swapping documents <code>i</code> and <code>j</code></td>
+<td>It measures the value of repairing that pair</td>
+</tr>
+<tr>
+<td>Relevance gains <code>rel_i</code>, <code>rel_j</code> and ranks <code>r_i</code>, <code>r_j</code></td>
+<td>The two gain values and positions used in a swap</td>
+<td>Their gain and discount differences determine delta NDCG</td>
+</tr>
+<tr>
+<td>Metric truncation</td>
+<td>Computing metric change only to the served cutoff</td>
+<td>It can zero training force below the reported depth</td>
+</tr>
+<tr>
+<td>LambdaLoss</td>
+<td>A probabilistic loss family matching lambda gradients</td>
+<td>It supplies a genuine loss interpretation noted by the source</td>
+</tr>
+<tr>
+<td>SoftRank</td>
+<td>A method that randomizes scores and smooths rank distributions</td>
+<td>It makes expected NDCG differentiable</td>
+</tr>
+<tr>
+<td>Gaussian score</td>
+<td>A normal random variable centered on a model score</td>
+<td>It smooths pairwise outranking events</td>
+</tr>
+<tr>
+<td>Smoothing width <code>σ</code></td>
+<td>The Gaussian standard deviation in SoftRank</td>
+<td>It is an extra hyperparameter tied to score scale</td>
+</tr>
+<tr>
+<td>Cumulative normal function <code>Φ</code></td>
+<td>The smooth Gaussian probability function</td>
+<td>It yields SoftRank's pairwise outranking probability</td>
+</tr>
+<tr>
+<td>Outranking probability <code>πᵢⱼ</code></td>
+<td>The probability that candidate <code>i</code> scores above <code>j</code></td>
+<td>It drives the rank insertion recurrence</td>
+</tr>
+<tr>
+<td>Rank distribution <code>p_j(r)</code></td>
+<td>The probability that document <code>j</code> occupies rank <code>r</code></td>
+<td>Its expectation gives a smooth metric</td>
+</tr>
+<tr>
+<td>Insertion recurrence</td>
+<td>A sequential update over candidates and rank bins</td>
+<td>It produces SoftRank's rank distribution</td>
+</tr>
+<tr>
+<td>SoftNDCG</td>
+<td>Expected NDCG under smoothed ranks</td>
+<td>It is differentiable in the scores</td>
+</tr>
+<tr>
+<td>Lambda Multiple Additive Regression Trees (LambdaMART)</td>
+<td>LambdaRank gradients fitted by boosted regression trees</td>
+<td>It is the source's production default for tabular features</td>
+</tr>
+<tr>
+<td>Listwise scale <code>σ_l</code></td>
+<td>The steepness used in the listwise lambda equation</td>
+<td>It controls the logistic part of the LambdaMART training force</td>
+</tr>
+<tr>
+<td>Gradient-boosted regression tree</td>
+<td>A sequence of trees fitted to residual targets</td>
+<td>LambdaMART fits trees to document forces</td>
+</tr>
+<tr>
+<td>Newton leaf step</td>
+<td>A second-order update for a tree leaf value</td>
+<td>LambdaMART uses it after fitting a tree</td>
+</tr>
+<tr>
+<td>SetRank</td>
+<td>A multivariate set-scoring ranker</td>
+<td>A document score may depend on competitors</td>
+</tr>
+<tr>
+<td>Self-attention</td>
+<td>A learned interaction among all candidate rows</td>
+<td>It contextualizes each candidate in SetRank</td>
+</tr>
+<tr>
+<td>Attention matrices <code>Q</code>, <code>K</code>, <code>V</code> and width <code>d</code></td>
+<td>Query, key, and value projections with head width <code>d</code></td>
+<td>Their permutation identity proves SetRank's input-order symmetry</td>
+</tr>
+<tr>
+<td>Permutation matrix <code>P</code></td>
+<td>A reordering of candidate rows</td>
+<td>It expresses the required input-order symmetry</td>
+</tr>
+<tr>
+<td>Permutation equivariance</td>
+<td>Reordering inputs reorders outputs without changing their values</td>
+<td>It prevents arbitrary candidate order from changing scores</td>
+</tr>
+<tr>
+<td>Positional embedding</td>
+<td>A signal for input position</td>
+<td>SetRank removes it to preserve permutation equivariance</td>
+</tr>
+<tr>
+<td>Ordinal prior-rank embedding</td>
+<td>A deliberate feature for the first-stage rank</td>
+<td>It reintroduces prior order in an ablatable way</td>
+</tr>
+<tr>
+<td>ListNet</td>
+<td>A permutation-likelihood method using a top-one distribution</td>
+<td>It is cheap but does not optimize NDCG directly</td>
+</tr>
+<tr>
+<td>Plackett-Luce softmax</td>
+<td>A distribution over ranking choices</td>
+<td>ListNet uses its top-one form</td>
+</tr>
+<tr>
+<td>ListMLE</td>
+<td>A method that maximizes ground-truth permutation likelihood</td>
+<td>It is another listwise likelihood branch</td>
+</tr>
+<tr>
+<td>NeuralSort</td>
+<td>A later differentiable sorting relaxation named by the source</td>
+<td>It carries forward SoftRank's relaxation idea</td>
+</tr>
+<tr>
+<td>Univariate scorer</td>
+<td>A scorer whose output depends on one document and query</td>
+<td>It remains stable under sharding and pagination</td>
+</tr>
+<tr>
+<td>Multivariate scorer</td>
+<td>A scorer whose outputs depend on the candidate set</td>
+<td>It can break shard merges and pagination stability</td>
+</tr>
+<tr>
+<td>Representation model</td>
+<td>A scorer that separately encodes query and document</td>
+<td>Document vectors can be precomputed</td>
+</tr>
+<tr>
+<td>Interaction model</td>
+<td>A scorer that builds a joint query-document object</td>
+<td>Nothing document-specific can be fully precomputed</td>
+</tr>
+<tr>
+<td>Hybrid model</td>
+<td>A sum or funnel using representation and interaction</td>
+<td>It combines channels that fail differently</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>A modern representation model with separate encoders</td>
+<td>It supports corpus-scale retrieval</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A pointwise neural scorer that reads query and document jointly</td>
+<td>It is accurate but requires a joint pass per candidate</td>
+</tr>
+<tr>
+<td>Similarity function <code>sim</code></td>
+<td>Cosine or dot-product comparison of vectors</td>
+<td>It joins precomputed representations</td>
+</tr>
+<tr>
+<td>Encoder <code>η</code></td>
+<td>A map from text to an <code>m</code>-dimensional vector</td>
+<td>Its document output can be indexed</td>
+</tr>
+<tr>
+<td>Corpus size <code>N</code></td>
+<td>The number of indexed documents</td>
+<td>It separates offline document work from per-query work</td>
+</tr>
+<tr>
+<td>Index-time precomputation</td>
+<td>Computing document-side work before a query arrives</td>
+<td>It is the structural advantage of representation models</td>
+</tr>
+<tr>
+<td>Deep Structured Semantic Model (DSSM)</td>
+<td>A representation ranker using trigram hashing and cosine</td>
+<td>It starts the lineage described by the source</td>
+</tr>
+<tr>
+<td>Letter-trigram hashing</td>
+<td>Mapping words to overlapping three-character features</td>
+<td>It handles words outside a fixed vocabulary</td>
+</tr>
+<tr>
+<td>Multi-hot vector</td>
+<td>A vector marking every present trigram</td>
+<td>DSSM projects it to 128 dimensions</td>
+</tr>
+<tr>
+<td>Click-through supervision</td>
+<td>Treating clicked results as relevant examples</td>
+<td>It gave DSSM inexpensive training data</td>
+</tr>
+<tr>
+<td>Contrastive loss</td>
+<td>A softmax objective against sampled unclicked negatives</td>
+<td>It trains the clicked document to beat sampled alternatives</td>
+</tr>
+<tr>
+<td>Dense Passage Retriever (DPR)</td>
+<td>A later representation model named by the source</td>
+<td>It reuses the softmax-over-negatives shape</td>
+</tr>
+<tr>
+<td>Contriever</td>
+<td>A representation retriever named by the source</td>
+<td>It retains the same scoring structure</td>
+</tr>
+<tr>
+<td>Sparse Lexical and Expansion model (SPLADE)</td>
+<td>A sparse retriever named by the source</td>
+<td>It is another descendant in the stated loss lineage</td>
+</tr>
+<tr>
+<td>Convolutional DSSM (C-DSSM)</td>
+<td>DSSM with sequence convolution and max pooling</td>
+<td>It learns phrases rather than a bag</td>
+</tr>
+<tr>
+<td>Long Short-Term Memory DSSM (LSTM-DSSM)</td>
+<td>A recurrent DSSM variant</td>
+<td>It reaches farther in a sequence but not across hundreds of tokens</td>
+</tr>
+<tr>
+<td>MatchPyramid</td>
+<td>An interaction ranker over a token similarity matrix</td>
+<td>It keeps detailed query-document matches</td>
+</tr>
+<tr>
+<td>Interaction matrix <code>M_ij</code></td>
+<td>Cosine similarity for query token <code>i</code> and document token <code>j</code></td>
+<td>It exposes every token pair to the ranker</td>
+</tr>
+<tr>
+<td>Two-dimensional convolutional neural network (2-D CNN)</td>
+<td>Filters sliding over the interaction matrix</td>
+<td>MatchPyramid uses it to learn match patterns</td>
+</tr>
+<tr>
+<td>Receptive field</td>
+<td>The input region a convolutional filter can combine</td>
+<td>Here it spans positions in both texts</td>
+</tr>
+<tr>
+<td>Deep Relevance Matching Model (DRMM)</td>
+<td>An interaction model using similarity histograms</td>
+<td>It makes input width independent of document length</td>
+</tr>
+<tr>
+<td>Histogram aggregator</td>
+<td>Fixed-width counts of similarity values</td>
+<td>It removes document-length dependence and word order</td>
+</tr>
+<tr>
+<td>Multilayer perceptron (MLP)</td>
+<td>A feed-forward network over fixed-width bins</td>
+<td>DRMM learns each histogram bin's contribution</td>
+</tr>
+<tr>
+<td>32-bit floating point (fp32)</td>
+<td>Four-byte numeric storage</td>
+<td>It sets vector and token-embedding byte counts</td>
+</tr>
+<tr>
+<td>Vector budget</td>
+<td>The fixed number of bits available for one document representation</td>
+<td>It explains loss of rare literal distinctions</td>
+</tr>
+<tr>
+<td>Duet</td>
+<td>A model that sums representation and interaction channels</td>
+<td>Its joint model beat either half in the source claim</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN) index</td>
+<td>A fast vector-search structure</td>
+<td>Rebuilding it can change tie order from the first stage</td>
+</tr>
+<tr>
+<td>Queries per second (QPS)</td>
+<td>Request throughput</td>
+<td>It makes cache and sequential-call costs operational</td>
+</tr>
+<tr>
+<td>Large language model (LLM) reranker</td>
+<td>A listwise or pointwise reranker using an LLM</td>
+<td>Its serving boundary depends on windowing and latency</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>Arithmetic work</td>
+<td>The source contrasts it with bytes moved</td>
+</tr>
+<tr>
+<td>p99 latency</td>
+<td>The 99th-percentile response time</td>
+<td>It is the tail-latency budget in a design probe</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>Fraction of relevant items present by cutoff <code>k</code></td>
+<td>It caps every downstream reranker</td>
+</tr>
+<tr>
+<td>MaxSim</td>
+<td>A late-interaction reshaping operation named by the source</td>
+<td>It is part of the residual measured-system cost</td>
+</tr>
+<tr>
+<td>Contextualized Late Interaction over Bidirectional Encoder Representations from Transformers (ColBERT)</td>
+<td>A multi-vector late-interaction system named by the source</td>
+<td>Its measured latency checks the byte estimate</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="191-the-ltr-setup-and-why-regression-is-the-wrong-framing">19.1 The LTR setup and why regression is the wrong framing</h3>
+<h4 id="what-it-is">What it is</h4>
+<p>The training data contains triples <code>(q, d, y)</code>. The feature extractor maps each pair to <code>φ(q, d) in R^m</code>. The source examples include BM25 over title, body, and anchor text, TF-IDF variants, language-model scores, PageRank, URL depth, and click counts. LETOR 4.0 has 46 features per pair. MSLR-WEB30K has 136 features per pair. Both use the five-grade scale in the source. The scorer and serving order are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>ᵢ</mi><mo>=</mo><mi>f</mi><mi>θ</mi><mo stretchy="false" form="prefix">(</mo><mi>φ</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mi>ᵢ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">sᵢ = fθ(φ(q, dᵢ))</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>q</mi></msub><mo>=</mo><mi>a</mi><mi>r</mi><mi>g</mi><mi>s</mi><mi>o</mi><mi>r</mi><mi>t</mi><mo>↓</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>₁</mi><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><msub><mi>s</mi><mo stretchy="false" form="prefix">|</mo></msub><msub><mi>D</mi><mi>q</mi></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">π_q = argsort↓(s₁, ..., s_|D_q|)</annotation></semantics></math></p>
+<p>The metric is <code>M(π_q, y_q)</code>. It reads the permutation and labels, not the scores. The desired objective is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>i</mi><mi>m</mi><mi>i</mi><mi>z</mi><mi>e</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>θ</mi><mo>:</mo><msub><mi mathvariant="normal">Σ</mi><mi>q</mi></msub><mi>M</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>π</mi><mi>q</mi></msub><mo>,</mo><msub><mi>y</mi><mi>q</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">maximize over θ: Σ_q M(π_q, y_q)</annotation></semantics></math></p>
+<p>This objective is piecewise constant in <code>θ</code>. It changes only when two scores cross. Its gradient is zero everywhere else.</p>
+<h4 id="why-it-exists">Why it exists</h4>
+<p>The system needs a differentiable surrogate or an explicitly defined gradient. The three loss families encode increasing amounts of permutation structure. Pointwise methods keep one-document decomposition and treat labels as classes or ordinal bins. Pairwise methods use score differences, which are shift-invariant. Listwise methods place a smoothed metric or metric-aware structure into training.</p>
+<h4 id="what-fails-without-alignment">What fails without alignment</h4>
+<p>Squared error is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mi>q</mi></msub><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>i</mi><mi>i</mi><mi>n</mi><msub><mi>D</mi><mi>q</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>y</mi><mi>ᵢ</mi><mo stretchy="false" form="postfix">)</mo><mi>²</mi></mrow><annotation encoding="application/x-tex">L = Σ_q Σ_(i in D_q) (sᵢ - yᵢ)²</annotation></semantics></math></p>
+<p>It fails in three separate ways. First, it lacks the metric's shift invariance. Adding a constant <code>c</code> to every score leaves the ranking fixed, but changes loss by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">Σ</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>y</mi><mi>ᵢ</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mi>c</mi><mi>²</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Σ_i (2c(sᵢ - yᵢ) + c²)</annotation></semantics></math></p>
+<p>Second, grades are ordinal judgments, not interval measurements. The only guaranteed relation is <code>y₁ &lt; y₂ &lt; y₃</code>. The standard gain is <code>2^y - 1</code>. A grade 4 has gain 15 and a grade 3 has gain 7. Their gain ratio is 15/7 = 2.14, while their raw-label ratio is 4/3 = 1.33. That is a 1.61-fold re-spacing. Third, pair-summed loss weights queries by judgment depth while the metric averages queries. A query with 500 judgments and one with 5 give the first query 500/505 = 99.0% of loss but 50% of the metric. That is a 100-fold accidental overweighting. Per-query z-scoring does not repair the objective. It invents interval structure and makes a pair's target depend on the first-stage candidate pool. Changing from BM25 to a dense retriever can then change the target for the same <code>(q, d)</code> pair. Pointwise is not a synonym for regression. Classification and ordinal regression remain pointwise. Rejecting squared error does not require a pairwise model.</p>
+<h4 id="worked-example">Worked example</h4>
+<p>Use five candidates with grades <code>y = (4, 3, 0, 0, 0)</code>. The ideal discounted gain is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>D</mi><mi>C</mi><mi>G</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>⁴</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>2</mn><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>³</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>3</mn><mo>=</mo><mn>15</mn><mo>+</mo><mn>7</mn><mi>/</mi><mn>1.585</mn><mo>=</mo><mn>15</mn><mo>+</mo><mn>4.417</mn><mo>=</mo><mn>19.417</mn></mrow><annotation encoding="application/x-tex">IDCG = (2⁴ - 1)/log₂2 + (2³ - 1)/log₂3 = 15 + 7/1.585 = 15 + 4.417 = 19.417</annotation></semantics></math></p>
+<p>Model A predicts <code>s = (2.0, 2.1, 0, 0, 0)</code>. Its squared error is <code>4.00 + 0.81 = 4.81</code>. It inverts the top pair. Its DCG is <code>7 + 15/1.585 = 7 + 9.464 = 16.464</code>. Its NDCG is <code>16.464/19.417 = 0.848</code>. Model B predicts <code>s = (0.5, 0.2, 0.1, 0.1, 0.1)</code>. Its squared error is <code>12.25 + 7.84 + 0.03 = 20.12</code>. Its order is ideal, so NDCG is 1.000. Squared error prefers A by <code>20.12/4.81 = 4.2</code> times. NDCG prefers B by 15.2 points. For Model A, squared-error gradient magnitudes total <code>4.0 + 1.8 = 5.8</code>. For Model B, they total <code>7.0 + 5.6 + 3(0.2) = 13.2</code>. Squared error pushes 2.3 times harder on the model that already has NDCG 1.000. The source's internal check repeats the 15-to-7 gain ratio. Its external check notes that Li, Burges, and Wu introduced McRank in 2007 and reported that multiclass classification ranked better than regression on the same kind of labels and features. The Qin and Liu 2013 baselines named are RankSVM, RankBoost, ListNet, AdaRank, and LambdaMART. Least-squares regression is absent from that list.</p>
+<h4 id="cost-complexity-and-practice-choices">Cost, complexity, and practice choices</h4>
+<p>The opening failure used 40,000 judged rows, a quarter of work, and a six-figure annotation budget. Training loss halved while held-out NDCG@10 moved by only 0.004. More labels, trees, features, or epochs do not fix a misaligned loss. Normalize each query's loss by <code>|D_q|</code>, or sample a fixed candidate count per query. Use explicit traffic frequency only when traffic weighting is deliberate. Freeze the first-stage retriever when comparing rankers. Report recall@k separately when evaluating retrieval because reranking cannot recover a missing candidate. Gate releases on NDCG@10 on a frozen evaluation set. Use surrogate loss as an optimization diagnostic. Its absolute value becomes directly informative when it diverges. Audit adjacent-grade annotator agreement. If adjacent disagreement is common, the source recommends collapsing 0 through 4 to three levels. If disagreement clusters at one boundary, rewrite that guideline instead. Clicks are a stated exception to the five-grade setup. With sparse binary judgments, the scale issue disappears and position bias becomes the hard problem. Dwell time is also a genuine continuous quantity, so the scale objection dissolves. The source contrasts 30 seconds on a recipe with 30 seconds on a troubleshooting page to show cross-query incomparability. The loss-metric mismatch, query weighting, cross-query incomparability, and exposure-policy bias remain. The source places dwell time in features or within-query preferences, then settles the choice with frozen-set NDCG@10.</p>
+<h3 id="192-pointwise-classification-and-ordinal-regression">19.2 Pointwise classification and ordinal regression</h3>
+<h4 id="what-it-is-1">What it is</h4>
+<p>A pointwise model trains on individual <code>(φ, y)</code> pairs after dissolving query boundaries. For each of <code>k</code> candidates, serving computes one score, sorts descending, and cuts at 10. The source uses labels <code>y in {0, 1, ..., K - 1}</code> and the standard case <code>K = 5</code>. Pointwise decomposition makes scores independent of the rest of the candidate list. That property supports caching, batching, sharding, and stable behavior after index changes. The opening failure returns the same ten documents in a different order because five scores leave a large tied class whose order comes from a rebuilt ANN index. Binary labels are direct. The source allows a margin classifier, an SVM, or a maximum-entropy model, then ranks by <code>P(y = 1)</code>.</p>
+<h4 id="why-expected-gain-fixes-the-head">Why expected gain fixes the head</h4>
+<p>A flat <code>K</code>-way softmax treats classes as exchangeable. Its objective does not encode that 3 lies between 0 and 4. Arg max then maps 100 candidates onto only 5 scores. Ties become typical, not exceptional. Let <code>p_j(d) = P(y = j given φ(q, d))</code>. For standard gain <code>g(y) = 2^y - 1</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>d</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>j</mi><mo>=</mo><mn>0</mn><mi>t</mi><mi>o</mi><mi>K</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>ʲ</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">E[g(y_d)] = Σ_(j=0 to K-1) (2ʲ - 1)p_j(d)</annotation></semantics></math></p>
+<p>For a candidate permutation:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>D</mi><mi>C</mi><mi>G</mi><mi>@</mi><mi>k</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>i</mi><mo>=</mo><mn>1</mn><mi>t</mi><mi>o</mi><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>π</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">E[DCG@k] = Σ_(i=1 to k) E[g(y_π(i))] / log₂(i + 1)</annotation></semantics></math></p>
+<p>The discounts decrease strictly with rank. The rearrangement inequality therefore makes descending expected gain optimal for expected DCG. McRank uses multiclass gradient-boosted trees and ranks by expected relevance <code>Σ_j j p_j(d)</code>. The linear-gain and exponential-gain versions usually agree on order in the source. The exponential version matches the metric.</p>
+<h4 id="ordinal-alternative">Ordinal alternative</h4>
+<p>Ordinal regression learns one direction <code>w</code> and <code>K - 1</code> thresholds:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mi>₁</mi><mo>≤</mo><mi>b</mi><mi>₂</mi><mo>≤</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>≤</mo><msub><mi>b</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>K</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">b₁ ≤ b₂ ≤ ... ≤ b_(K-1)</annotation></semantics></math></p>
+<p>It predicts the first interval boundary above the score:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mi>a</mi><mi>t</mi><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mrow><mi>r</mi><mo>:</mo><mi>w</mi><mi>ᵀ</mi><mi>φ</mi><mo>&lt;</mo><msub><mi>b</mi><mi>r</mi></msub></mrow></mrow><annotation encoding="application/x-tex">y_hat = min{r : wᵀφ &lt; b_r}</annotation></semantics></math></p>
+<p>PRank, from Crammer and Singer in 2001, initializes weights at zero. On a mistake it rotates the hyperplane like a perceptron and shifts offending thresholds by one. The thresholds remain ordered by construction. Shashua and Levin's 2002 method makes the construction large-margin. It learns both ends of each interval, maximizes neighboring margins, and uses slack. For ranking, the thresholds can be discarded. The continuous score <code>wᵀφ</code> gives a total order.</p>
+<h4 id="what-fails-without-it">What fails without it</h4>
+<p>Sorting by the winning class probability ranks confidence, not estimated relevance. A document with <code>p₃ = 0.50</code> and nothing above it can lose in expectation to one with <code>p₃ = 0.45</code> and <code>p₄ = 0.35</code>. Pointwise training never directly learns that one item should beat another inside the same candidate set. An unnormalized query with 500 judgments outweighs one with 20 by 25 to 1. Classification accuracy is also misleading when class 0 contains about 90% of candidates. The score can be excellent while the head remains unordered.</p>
+<h4 id="worked-example-1">Worked example</h4>
+<p>Use 10 candidates. Truth is <code>A = 4</code>, <code>B = C = 3</code>, <code>D = E = F = 2</code>, and the final four are 0. Exponential gains are <code>15, 7, 7, 3, 3, 3</code>, then four zeros. The source reports the ideal value as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>D</mi><mi>C</mi><mi>G</mi><mi>@</mi><mn>10</mn><mo>=</mo><mn>15</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>2</mn><mo>+</mo><mn>7</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>3</mn><mo>+</mo><mn>7</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>4</mn><mo>+</mo><mn>3</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>5</mn><mo>+</mo><mn>3</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>6</mn><mo>+</mo><mn>3</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mn>7</mn><mo>=</mo><mn>26.437</mn></mrow><annotation encoding="application/x-tex">IDCG@10 = 15/log₂2 + 7/log₂3 + 7/log₂4 + 3/log₂5 + 3/log₂6 + 3/log₂7 = 26.437</annotation></semantics></math></p>
+<p>Direct evaluation of that formula gives 26.437718, which rounds to 26.438 rather than 26.437. The source uses its displayed 26.437 in the remaining arithmetic. The head distributions are: <code>p(A) = (0.00, 0.05, 0.15, 0.45, 0.35)</code>. <code>p(B) = (0.00, 0.05, 0.25, 0.50, 0.20)</code>. <code>p(C) = (0.05, 0.10, 0.30, 0.45, 0.10)</code>. All three modes are class 3. Placing A first gives NDCG@10 = 1.000. Placing A second loses 2.953 DCG. The source reports <code>23.484/26.437 = 0.888</code>, while unrounded calculation gives DCG 23.485156. Placing A third loses 4.000 DCG. The source reports <code>22.437/26.437 = 0.849</code>, while unrounded calculation gives DCG 22.437718. Both NDCG values still round to 0.888 and 0.849. Across the six orders of <code>{A, B, C}</code>, the expected value is <code>(1.000 + 0.888 + 0.849)/3 = 0.912</code>. Breaking the tie by winning-class probability puts B first and A second. That gives NDCG@10 = 0.888. Expected relevance gives <code>3.10</code> for A, <code>2.85</code> for B, and <code>2.45</code> for C. Expected gain gives <code>8.90</code>, <code>7.30</code>, and <code>5.65</code>. Both order A, B, C and reach NDCG@10 = 1.000. The change is 0.088 absolute and 9.6% relative with no extra inference pass. At <code>K = 2</code>, expected relevance reduces to <code>p₁</code>. The source says monoT5, from Nogueira and colleagues in 2020, ranks by the decoder probability of the token <code>true</code>.</p>
+<h4 id="cost-complexity-and-practice-choices-1">Cost, complexity, and practice choices</h4>
+<p>For <code>k = 100</code>, pointwise scoring needs 100 independent forward passes. At 250 query-document pairs per second, this takes 0.40 seconds. The passes batch and shard freely. All pairs require <code>100 choose 2 = 4,950</code> passes and 19.8 seconds. A comparison sort needs about <code>k log₂k = 664</code> comparisons, 2.66 seconds, and <code>log₂k</code> dependent rounds. Weight each example by <code>1/n_q</code> unless judgment counts are already uniform. Prefer expected relevance over arg max. For <code>K = 2</code>, both reduce to ranking by <code>p₁</code>. The source favors an ordinal head when the scale exceeds five levels or adjacent grades are noisy. For boosted trees, it favors McRank-style multiclass prediction plus expectation. Keep a hot-path reranker pointwise unless the candidate set is stable. Use listwise scoring for offline or low-QPS, high-value segments when its latency is justified. Use per-class recall only as a diagnostic, not the headline metric. Calibrate scores across queries only when the product needs an absolute abstention threshold. A sliding window of 20 with stride 10 over 100 candidates creates 9 sequential LLM calls in the source's staff example. The proposed boundary is pointwise from 100 to 20, then listwise from 20 to 10 only for justified segments. Pointwise, pairwise, and listwise describe the loss, not the architecture. A cross-encoder can be pointwise. RankNet can be pairwise even though its network scores one document at a time.</p>
+<h3 id="193-pairwise-ranksvm-ranknet-and-lambdarank">19.3 Pairwise RankSVM, RankNet, and LambdaRank</h3>
+<h4 id="what-it-is-2">What it is</h4>
+<p>For one query, pairwise training derives:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mo>:</mo><mi>y</mi><mi>ᵢ</mi><mo>&gt;</mo><mi>y</mi><mi>ⱼ</mi></mrow></mrow><annotation encoding="application/x-tex">I = {(i, j) : yᵢ &gt; yⱼ}</annotation></semantics></math></p>
+<p>Pairs must stay within one query. Grades are not calibrated across queries. RankSVM uses <code>sᵢ = wᵀxᵢ</code>. Its preference condition is <code>wᵀ(xᵢ - xⱼ) &gt; 0</code>. It classifies the difference vector through the origin. There is no bias because a common score shift cannot change rank. Its max-margin program is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mi>i</mi><mi>m</mi><mi>i</mi><mi>z</mi><mi>e</mi><mi>o</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>w</mi><mo>:</mo><mn>0.5</mn><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>w</mi><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>²</mi><mo>+</mo><mi>C</mi><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mi>i</mi><mi>n</mi><mi>I</mi><mo stretchy="false" form="postfix">)</mo><mi>ξ</mi><mi>ᵢ</mi><mi>ⱼ</mi></mrow><annotation encoding="application/x-tex">minimize over w: 0.5||w||² + C Σ_((i,j) in I) ξᵢⱼ</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>u</mi><mi>b</mi><mi>j</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>t</mi><mi>o</mi><mi>w</mi><mi>ᵀ</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>ᵢ</mi><mo>−</mo><mi>x</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo>≥</mo><mn>1</mn><mo>−</mo><mi>ξ</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>a</mi><mi>n</mi><mi>d</mi><mi>ξ</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">subject to wᵀ(xᵢ - xⱼ) ≥ 1 - ξᵢⱼ and ξᵢⱼ ≥ 0</annotation></semantics></math></p>
+<p>Herbrich and colleagues introduced the method in 2000. Joachims applied it to search in 2002. A click on result 3 after skipping results 1 and 2 yields two preference pairs in the source example.</p>
+<h4 id="ranknet-and-factorization">RankNet and factorization</h4>
+<p>RankNet, from Burges and colleagues in 2005, keeps the preference pairs and uses a neural scorer. Its pair probability and target are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>σ</mi><mo stretchy="false" form="prefix">(</mo><mi>γ</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>P</mi><mo>̄</mo><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mn>1</mn><mi>f</mi><mi>o</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mi>i</mi><mi>n</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">Pᵢⱼ = σ(γ(sᵢ - sⱼ)), P̄ᵢⱼ = 1 for (i, j) in I</annotation></semantics></math></p>
+<p>Cross-entropy collapses to:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mi>γ</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Cᵢⱼ = log(1 + exp(-γ(sᵢ - sⱼ)))</annotation></semantics></math></p>
+<p>Differentiation gives equal-and-opposite forces:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∂</mi><mi>C</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>/</mi><mi>∂</mi><mi>s</mi><mi>ᵢ</mi><mo>=</mo><mi>−</mi><mi>γ</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>γ</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>λ</mi><mi>ᵢ</mi><mi>ⱼ</mi></mrow><annotation encoding="application/x-tex">∂Cᵢⱼ/∂sᵢ = -γ/(1 + exp(γ(sᵢ - sⱼ))) = -λᵢⱼ</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∂</mi><mi>C</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>/</mi><mi>∂</mi><mi>s</mi><mi>ⱼ</mi><mo>=</mo><mi>λ</mi><mi>ᵢ</mi><mi>ⱼ</mi></mrow><annotation encoding="application/x-tex">∂Cᵢⱼ/∂sⱼ = λᵢⱼ</annotation></semantics></math></p>
+<p>Aggregate document force is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>ᵢ</mi><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>j</mi><mo>:</mo><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mi>i</mi><mi>n</mi><mi>I</mi><mo stretchy="false" form="postfix">)</mo><mi>λ</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>−</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>j</mi><mo>:</mo><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo>,</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mi>i</mi><mi>n</mi><mi>I</mi><mo stretchy="false" form="postfix">)</mo><mi>λ</mi><mi>ⱼ</mi><mi>ᵢ</mi></mrow><annotation encoding="application/x-tex">λᵢ = Σ_(j:(i,j) in I) λᵢⱼ - Σ_(j:(j,i) in I) λⱼᵢ</annotation></semantics></math></p>
+<p>The model gradient factorizes as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∂</mi><mi>C</mi><mi>/</mi><mi>∂</mi><mi>θ</mi><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>i</mi><mo>=</mo><mn>1</mn><mi>t</mi><mi>o</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><mi>λ</mi><mi>ᵢ</mi><mi>∂</mi><mi>s</mi><mi>ᵢ</mi><mi>/</mi><mi>∂</mi><mi>θ</mi></mrow><annotation encoding="application/x-tex">∂C/∂θ = Σ_(i=1 to n) λᵢ ∂sᵢ/∂θ</annotation></semantics></math></p>
+<p>The network therefore runs once per document, not once per pair. The pair loop assembles forces outside the network.</p>
+<h4 id="why-lambdarank-exists">Why LambdaRank exists</h4>
+<p>RankSVM and RankNet count or smooth inversions without rank-position value. The same score gap gets the same force near rank 1 and rank 500. LambdaRank, from Burges, Ragno, and Le in 2006, specifies the metric-aware gradient directly. For documents at ranks <code>r_i</code> and <code>r_j</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi mathvariant="normal">Δ</mi><mi>N</mi><mi>D</mi><mi>C</mi><mi>G</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mo stretchy="false" form="prefix">|</mo><mi>r</mi><mi>e</mi><mi>l</mi><mi>ᵢ</mi><mo>−</mo><mi>r</mi><mi>e</mi><mi>l</mi><mi>ⱼ</mi><mo stretchy="false" form="prefix">|</mo><mi>/</mi><mi>I</mi><mi>D</mi><mi>C</mi><mi>G</mi><mo>×</mo><mo stretchy="false" form="prefix">|</mo><mn>1</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><mi>ᵢ</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mn>1</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">|ΔNDCGᵢⱼ| = |relᵢ - relⱼ|/IDCG × |1/log₂(1 + rᵢ) - 1/log₂(1 + rⱼ)|</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>L</mi><mi>R</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>γ</mi><mo stretchy="false" form="prefix">|</mo><mi mathvariant="normal">Δ</mi><mi>N</mi><mi>D</mi><mi>C</mi><mi>G</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo stretchy="false" form="prefix">|</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>γ</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">λLRᵢⱼ = γ|ΔNDCGᵢⱼ|/(1 + exp(γ(sᵢ - sⱼ)))</annotation></semantics></math></p>
+<p>The extra metric factor costs one multiplication per pair. The source says the authors tested more than ten candidate approximations before selecting it. The continuous derivative of the discount at rank 100 has magnitude <code>3.222 × 10^-4</code>. The discrete change is <code>3.199 × 10^-4</code>. They agree within 0.7%. The reweighting acts as a position derivative.</p>
+<h4 id="what-fails-without-it-1">What fails without it</h4>
+<p>The opening run improves pairwise validation accuracy from 0.71 to 0.84 over six hours. NDCG@10 stays at 0.3869. Plain pairwise training can spend most of its gradient below the reported cutoff. Pairwise accuracy is useful for debugging pair construction, but the source says not to report it as the production outcome. LambdaRank historically had a gradient but no scalar loss. Gradient descent still works because it needs a parameter-update vector. The missing loss removes a directly comparable training number and an ordinary convergence claim. The source cites Donmez, Svore, and Burges in 2009 for empirical local-optimum evidence. It cites Wang and colleagues in 2018 for LambdaLoss as a genuine probabilistic loss framework. Neither result changes the implementation.</p>
+<h4 id="worked-example-2">Worked example</h4>
+<p>Use <code>n = 120</code> candidates with two relevant documents at ranks 2 and 51. Scores fall by <code>alpha = 0.1</code> per rank and <code>gamma = 1</code>. The ideal value is <code>1/log₂2 + 1/log₂3 = 1.63093</code>. Swap A exchanges the relevant rank-2 document with the irrelevant rank-1 document. Swap B exchanges the relevant rank-51 document with the irrelevant rank-50 document. Both RankSVM pairs have margin <code>-0.1</code> and slack <code>1.1</code>. Substituting that margin into the source's general RankNet formula gives <code>1/(1 + exp(-0.1)) = 0.52498</code> for both forces. The worked example drops the minus sign in its printed exponential. Its printed <code>exp(0.1)</code> would instead give 0.47502. Across 236 discordant pairs, 71.4% of RankNet gradient magnitude lands on pairs where both documents are below rank 10. For LambdaRank, Swap A has metric change <code>|1 - 0.63093|/1.63093 = 0.22629</code>. Swap B has full-list metric change <code>|0.17629 - 0.17543|/1.63093 = 5.312 × 10^-4</code>. The ratio is 426. Metric weighting cuts below-rank-10 gradient mass from 71.4% to 21.6%. Truncating DeltaNDCG at 10 cuts it to exactly zero. The stalled NDCG@10 is <code>0.63093/1.63093 = 0.38685</code>. Swap A raises it to <code>1.00000/1.63093 = 0.61315</code>. The gain is 0.22629 absolute and 58.5% relative. Swap B changes truncated NDCG@10 by exactly zero.</p>
+<h4 id="cost-complexity-and-practice-choices-2">Cost, complexity, and practice choices</h4>
+<p>A label split of <code>80/20/12/6/2</code> across grades 0 to 4 creates <code>120 choose 2 = 7,140</code> pairs. Of these, 3,432 share a label and 3,708 are discordant. Direct pair scoring needs 3,708 network evaluations. Factorization needs 120. That is a 30.9-fold saving, and the advantage grows linearly with <code>n</code>. The source compares LambdaRank with SoftRank here and describes SoftRank's rank-distribution recurrence as <code>O(n²)</code> per query. Section 19.4 later counts all documents, insertions, and rank bins and states <code>Θ(n³)</code> per query for full SoftRank. These are two distinct cost statements in the source. Default to LambdaRank over RankNet or RankSVM for a truncated, discounted metric. In a Retrieval-Augmented Generation (RAG) pipeline that supplies ten chunks, truncate ΔNDCG at ten when that cutoff is fixed. Do not bake in the cutoff while it is still being tuned. Keep pairs within each query and assert that invariant in the data loader. Score documents individually, then assemble document forces outside the network. For a pure recall@100 objective, delta recall is zero unless a swap crosses rank 100. Replacing ΔNDCG with delta recall would annihilate almost all gradient and leave one boundary. The source's proposed middle is NDCG weighting truncated at 100. If the generator is order-sensitive, recall@100 alone is also an incomplete target.</p>
+<h3 id="194-listwise-softrank-lambdamart-and-setrank">19.4 Listwise SoftRank, LambdaMART, and SetRank</h3>
+<h4 id="what-it-is-3">What it is</h4>
+<p>NDCG depends on integer ranks:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mi>C</mi><mi>G</mi><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>j</mi><mo>=</mo><mn>1</mn><mi>t</mi><mi>o</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">DCG = Σ_(j=1 to n) g(yⱼ)/log₂(1 + rⱼ)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>D</mi><mi>C</mi><mi>G</mi><mo>=</mo><mi>D</mi><mi>C</mi><mi>G</mi><mi>/</mi><mi>I</mi><mi>D</mi><mi>C</mi><mi>G</mi></mrow><annotation encoding="application/x-tex">NDCG = DCG/IDCG</annotation></semantics></math></p>
+<p>A tiny score change either leaves every rank fixed or swaps documents and jumps the metric. The gradient is zero almost everywhere and undefined at swap boundaries. The source develops three routes.</p>
+<h4 id="route-one-softrank">Route one: SoftRank</h4>
+<p>SoftRank, from Taylor and colleagues in 2008, randomizes each score:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>ⱼ</mi><mi>i</mi><mi>s</mi><mi>d</mi><mi>i</mi><mi>s</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>b</mi><mi>u</mi><mi>t</mi><mi>e</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>N</mi><mi>o</mi><mi>r</mi><mi>m</mi><mi>a</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>σ</mi><mi>²</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">sⱼ is distributed as Normal(f(xⱼ), σ²)</annotation></semantics></math></p>
+<p>For independent Gaussians:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">[</mo><mi>s</mi><mi>ᵢ</mi><mo>&gt;</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>ᵢ</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mo>√</mo><mn>2</mn><mi>σ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">πᵢⱼ = Pr[sᵢ &gt; sⱼ] = Φ((f(xᵢ) - f(xⱼ))/(√2σ))</annotation></semantics></math></p>
+<p>Insert candidates one at a time. The recurrence is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>π</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">pⱼ^(i)(r) = πᵢⱼ pⱼ^(i-1)(r - 1) + (1 - πᵢⱼ)pⱼ^(i-1)(r)</annotation></semantics></math></p>
+<p>It starts with all probability mass at rank zero. After <code>n - 1</code> insertions, every rank probability is differentiable in every score. Expected metric is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>N</mi><mi>D</mi><mi>C</mi><mi>G</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>I</mi><mi>D</mi><mi>C</mi><mi>G</mi><mo stretchy="false" form="postfix">)</mo><msub><mi mathvariant="normal">Σ</mi><mi>j</mi></msub><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><msub><mi mathvariant="normal">Σ</mi><mi>r</mi></msub><mi>p</mi><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">SoftNDCG = (1/IDCG) Σ_j g(yⱼ) Σ_r pⱼ(r)/log₂(1 + r)</annotation></semantics></math></p>
+<p>Each of <code>n</code> documents needs <code>n - 1</code> insertions. Each insertion updates <code>n</code> rank bins. The full recurrence therefore costs <code>Θ(n³)</code> per query and is sequential in insertion index.</p>
+<h4 id="route-two-lambdamart">Route two: LambdaMART</h4>
+<p>LambdaRank keeps the metric discrete and defines the gradient. The listwise section writes the pair force as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>−</mi><msub><mi>σ</mi><mi>l</mi></msub><mi mathvariant="normal">Δ</mi><mi>N</mi><mi>D</mi><mi>C</mi><mi>G</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>σ</mi><mi>l</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mi>ᵢ</mi><mo>−</mo><mi>s</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">λᵢⱼ = -σ_l ΔNDCGᵢⱼ/(1 + exp(σ_l(sᵢ - sⱼ)))</annotation></semantics></math></p>
+<p>LambdaMART feeds the per-document forces to gradient-boosted regression trees. Each boosting round fits a tree to <code>lambda_j = Σ_j' lambda_jj'</code>. It sets leaf values with a Newton step. The source favors trees for heterogeneous, unnormalized features such as BM25, PageRank, click-through rate, and domain age.</p>
+<h4 id="route-three-setrank">Route three: SetRank</h4>
+<p>SoftRank and LambdaMART still score each document alone. SetRank, from Pang and colleagues in 2020, changes the scorer's arity:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mrow><mi>d</mi><mi>₁</mi><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><msub><mi>d</mi><mi>n</mi></msub></mrow><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s = f(q, {d₁, ..., d_n})</annotation></semantics></math></p>
+<p>A document score can now depend on competitors. The output must not depend on arbitrary first-stage input order. Without positional encodings, self-attention obeys:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>P</mi><mi>Q</mi><mi>K</mi><mi>ᵀ</mi><mi>P</mi><mi>ᵀ</mi><mi>/</mi><mo>√</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mi>P</mi><mi>V</mi><mo>=</mo><mi>P</mi><mi>s</mi><mi>o</mi><mi>f</mi><mi>t</mi><mi>m</mi><mi>a</mi><mi>x</mi><mo stretchy="false" form="prefix">(</mo><mi>Q</mi><mi>K</mi><mi>ᵀ</mi><mi>/</mi><mo>√</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mi>V</mi></mrow><annotation encoding="application/x-tex">softmax(PQKᵀPᵀ/√d)PV = P softmax(QKᵀ/√d)V</annotation></semantics></math></p>
+<p>SetRank removes positional embeddings and projects each contextualized candidate to a scalar. When prior rank should be a feature, it adds an ordinal embedding that can be ablated.</p>
+<h4 id="other-listwise-likelihood-methods">Other listwise likelihood methods</h4>
+<p>ListNet, from Cao and colleagues in 2007, uses a top-one Plackett-Luce softmax and cross-entropy against a label-derived distribution. ListMLE, from Xia and colleagues in 2008, maximizes likelihood of the ground-truth permutation. Top-one ListNet costs <code>O(n)</code> per query. It optimizes likelihood rather than NDCG. The source names NeuralSort, from Grover and colleagues in 2019, and differentiable ranking from Blondel and colleagues in 2020 as later relaxations carrying SoftRank's idea.</p>
+<h4 id="what-fails-and-what-the-evidence-limits">What fails and what the evidence limits</h4>
+<p>The opening list has 1,000 candidates. Most misordered pairs lie between ranks 300 and 800. The discount falls from <code>1/log₂301 = 0.12</code> to <code>1/log₂801 = 0.10</code>, versus 1.00 at rank 1. Pairwise cross-entropy can fall from 0.61 to 0.54 to 0.49 while NDCG@10 stays fixed for three weeks. SoftRank is principled but has cubic cost, sequential recurrence, and a smoothing width tied to score scale. Changing feature normalization requires retuning that width. Burges and colleagues reported in 2011 that the winning Track 1 entry of the 2010 Yahoo Learning to Rank Challenge combined 12 models, including 8 LambdaMART models. The source states that LightGBM offers <code>objective=lambdarank</code> and XGBoost offers <code>rank:ndcg</code>. It states that no mainstream library offers SoftRank. A set scorer can break shard-local reranking and stable pagination because competitor membership changes scores. An offline gain must therefore clear a candidate-order shuffle test and an interaction ablation.</p>
+<h4 id="worked-cost-example">Worked cost example</h4>
+<p>Use 10,000 queries, 1,000 BM25 candidates per query, 5 relevant documents per query, and 136 features per pair. Full SoftRank costs <code>1,000³ = 10^9</code> bin updates per query and <code>10^13</code> per epoch. The <code>999</code> insertions are sequential passes over a <code>1,000 × 1,000</code> table. Truncating SoftRank to 100 cuts the recurrence to <code>100³ = 10^6</code> per query and <code>10^10</code> per epoch. That is a 1,000-fold reduction. If first-stage recall@100 is 0.86 and recall@1,000 is 0.94, truncation discards 8 points of achievable recall. LambdaMART uses <code>5 × 995 = 4,975</code> differing-label pairs per query plus one <code>O(n log n)</code> sort. One epoch uses <code>10^4 × 4,975 = 4.98 × 10^7</code> pair evaluations. The ratio against full SoftRank is <code>2.0 × 10^5</code>. SetRank uses three attention blocks with <code>d = 256</code> and <code>n = 1,000</code>. Per block, attention costs <code>4n²d</code> floating-point operations. Four projections cost <code>8nd²</code>. A four-times-width feed-forward network costs <code>16nd²</code>. At the stated values these are <code>1.02 × 10^9</code>, <code>5.24 × 10^8</code>, and <code>1.05 × 10^9</code>. The total is <code>2.60 × 10^9</code> per block and <code>7.8 × 10^9</code> per query forward pass. Training at about three times forward costs <code>2.34 × 10^10</code> per query and <code>2.34 × 10^14</code> per epoch. At <code>3.4 × 10^14</code> FLOPs per second, the source estimates 0.69 seconds per epoch. Dense attention can beat the sequential cubic recurrence in wall time despite its quadratic exponent. MSLR-WEB30K contains 3,771,125 query-document pairs across 31,531 queries. That is 119.6 documents per query. At <code>n = 120</code>, the recurrence costs <code>1.73 × 10^6</code> per query, 579 times below the 1,000-document case.</p>
+<h4 id="practice-choices">Practice choices</h4>
+<p>Use LambdaMART by default for handcrafted tabular features. The source says a boosted tree cannot use a 768-dimensional dense vector and recommends a neural listwise model when features are learned text representations. Train at the depth production reranks, not automatically at retrieval depth. If first-stage recall at rerank depth is materially worse, deepen the candidate cut. Remove positional information from a set scorer unless prior rank is an intentional, ablatable feature. Shuffle candidate order ten times and compare NDCG@10 spread with the A/B decision threshold. Benchmark a new listwise model against LambdaMART when tabular features exist. In the sharded staff example, SetRank raises offline NDCG@10 from 0.412 to 0.431, a gain of 0.019. A shuffle spread of plus or minus 0.015 would put that gain inside order sensitivity. If removing attention preserves the gain, the model class caused it rather than set interaction. If the ablation kills the gain and shuffle spread is small, move reranking above the eight-shard merge and budget one global pass.</p>
+<h3 id="195-neural-ltr-representation-interaction-and-hybrid-scoring">19.5 Neural LTR representation, interaction, and hybrid scoring</h3>
+<h4 id="what-it-is-4">What it is</h4>
+<p>Neural LTR changes features from handcrafted values to learned text representations. It does not change the pointwise, pairwise, and listwise loss taxonomy. The source applies the same structural distinction to a 2016 CNN ranker, a 2020 bi-encoder, and a 2024 LLM reranker. Representation scoring factorizes:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>r</mi></msub><mi>e</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false" form="prefix">(</mo><mi>η</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>η</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s_rep(q, d) = sim(η(q), η(d))</annotation></semantics></math></p>
+<p>The document vector <code>eta(d)</code> does not depend on the query. It can be computed when the document is indexed. Interaction scoring does not factorize:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub><mi>n</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>φ</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s_int(q, d) = f(φ(q, d))</annotation></semantics></math></p>
+<p>The joint object cannot exist before the query arrives. Parameter count is not the deciding property. The deciding question is whether the document contribution can be computed before the query is known.</p>
+<h4 id="representation-lineage">Representation lineage</h4>
+<p>DSSM, from Huang and colleagues in 2013, hashes words into letter trigrams. The source bounds the distinct trigram count at roughly <code>30³ = 27,000</code>, using 26 letters, a word-boundary marker, and some punctuation. It projects the multi-hot trigram vector to 128 dimensions and scores by cosine. Click-through logs supply supervision. The clicked document must beat a handful of sampled unclicked documents under a softmax-over-negatives contrastive objective. The source says this objective reappears essentially unchanged in DPR, Contriever, and SPLADE. C-DSSM, from Shen and colleagues in 2014, convolves over word sequences and max-pools. LSTM-DSSM, from Palangi and colleagues in 2016, reaches farther in a sequence but still not across hundreds of tokens. Transformers address that context gap while keeping the representation shape.</p>
+<h4 id="interaction-lineage">Interaction lineage</h4>
+<p>MatchPyramid, from Pang and colleagues in 2016, constructs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo>=</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mi>ᵢ</mi><mo>,</mo><mi>d</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Mᵢⱼ = cos(qᵢ, dⱼ)</annotation></semantics></math></p>
+<p>A 100-word query and 100-word document create <code>100 × 100 = 10,000</code> token similarities for one pair. MatchPyramid treats the matrix as an image and applies a 2-D CNN. Its filters span positions in both texts. The source says the usual complaint about CNN locality does not apply in the same way here. It describes the design in hindsight as attention without the softmax. DRMM, from Guo and colleagues in 2016, turns each matrix row into a similarity histogram. An MLP learns the contribution of each bin. Histogram width is independent of document length. That avoids the padding and truncation forced by a fixed interaction matrix. DRMM also destroys document word order. The source treats that as defensible for ad hoc aboutness matching. It treats it as indefensible when order carries meaning, such as Boston-to-Denver versus Denver-to-Boston. For directional or comparative queries, order destruction is the bug, not a small approximation.</p>
+<h4 id="representation-bottleneck-and-hybrid-repair">Representation bottleneck and hybrid repair</h4>
+<p>A representation model compresses a document before it knows the future query. At <code>m = 128</code> in fp32, the vector has <code>128 × 32 = 4,096</code> bits. A 400-token chunk from a 30,522-piece vocabulary has a raw upper bound of:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>400</mn><mi>l</mi><mi>o</mi><mi>g</mi><mi>₂</mi><mo stretchy="false" form="prefix">(</mo><mn>30</mn><mo>,</mo><mn>522</mn><mo stretchy="false" form="postfix">)</mo><mi>a</mi><mi>p</mi><mi>p</mi><mi>r</mi><mi>o</mi><mi>x</mi><mi>i</mi><mi>m</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>l</mi><mi>y</mi><mi>e</mi><mi>q</mi><mi>u</mi><mi>a</mi><mi>l</mi><mi>s</mi><mn>400</mn><mo>×</mo><mn>14.9</mn><mo>=</mo><mn>5</mn><mo>,</mo><mn>960</mn><mi>b</mi><mi>i</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">400 log₂(30,522) approximately equals 400 × 14.9 = 5,960 bits</annotation></semantics></math></p>
+<p>The vector budget is about <code>4,096/400 = 10</code> bits per token. That is below the 14.9 bits needed merely to name one vocabulary item under the raw bound. Natural language is redundant and has lower true entropy. The source therefore presents this as the shape of the constraint, not a break-even point. The vector budget stays fixed while document length varies. The encoder allocates coordinates to corpus-wide recurring distinctions. A part number occurring in one document among <code>10^6</code> may not receive a coordinate. Increasing width from 128 to 768 multiplies index bytes by 6. The source says this does not restore exact matching because the problem is allocation, not only room. Duet, from Mitra, Diaz, and Craswell in 2017, sums a representation score and an interaction score. The source's stated headline result is that the joint model beats each half. The claim is about complementary failure modes. If the two channels have high rank correlation on actual traffic, the source allows choosing one because correlated channels duplicate signal at twice the cost.</p>
+<h4 id="worked-cost-example-1">Worked cost example</h4>
+<p>Use a <code>10^7</code>-passage corpus, about the stated 8.8 million passage size of Microsoft Machine Reading Comprehension (MS MARCO). Each passage has 100 tokens with 300-dimensional fp32 token embeddings. The query has 10 tokens. The accelerator sustains 3.35 terabytes per second of memory bandwidth and <code>3.4 × 10^14</code> FLOPs per second. Full interaction streams:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>100</mn><mo>×</mo><mn>300</mn><mo>×</mo><mn>4</mn><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>1.2</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>1.2</mn><mi>t</mi><mi>e</mi><mi>r</mi><mi>a</mi><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">10^7 × 100 × 300 × 4 bytes = 1.2 × 10^12 bytes = 1.2 terabytes</annotation></semantics></math></p>
+<p>At the stated bandwidth, that is <code>0.358</code> seconds or 358 milliseconds before convolution. The data does not fit in one accelerator's memory. A representation index at <code>m = 128</code> streams:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>128</mn><mo>×</mo><mn>4</mn><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>5.12</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>5.12</mn><mi>g</mi><mi>i</mi><mi>g</mi><mi>a</mi><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">10^7 × 128 × 4 bytes = 5.12 × 10^9 bytes = 5.12 gigabytes</annotation></semantics></math></p>
+<p>That takes 1.53 milliseconds. The dot products cost <code>10^7 × 2m = 2.56 × 10^9</code> FLOPs. At the stated compute rate, they take 7.5 microseconds. Memory movement dominates arithmetic by more than 200 times. The byte ratio is <code>1.2 × 10^12 / 5.12 × 10^9 = 234</code>. A hybrid interaction stage over top <code>k = 100</code> streams <code>1.2 × 10^7</code> bytes in 3.6 microseconds. It runs on <code>10^-5</code> of the corpus. The stage adds 0.0036 milliseconds to a 1.53-millisecond retrieval, or 0.235% of that budget. It cannot recover a document excluded from top 100. At <code>10^4</code> documents, full interaction streams 1.2 gigabytes and takes 0.36 milliseconds. At that scale, the source says a first stage is pure complexity. A multi-vector index with one vector per token uses 100 times the bytes and streams in 153 milliseconds. ColBERT's published end-to-end latency on MS MARCO is 458 milliseconds in the cited 2020 work. The estimate is within a factor of 3. The source attributes the residual to ANN traversal, MaxSim reshaping, and final reranking.</p>
+<h4 id="practice-choices-and-limits">Practice choices and limits</h4>
+<p>Default to representation at stage one and interaction inside a candidate window. Budget stage one in bytes streamed per query before focusing on FLOPs. The source calls the reranking stage compute-bound when a deep cross-encoder runs on a short list. Use a fixed-width aggregator when document lengths vary by more than about 3 times. Uniformly sized chunks can justify a position-preserving matrix because padding waste is bounded. Start from <code>m = 128</code> in the source's default and require a recall curve before moving to 768. The stated example moves index bytes from 5.12 gigabytes to 30.7 gigabytes. For rare literal misses, the source recommends a sparse or late-interaction channel instead of relying only on width. In the p99 probe, the budget drops from 400 milliseconds to 80 milliseconds. Cutting first-stage candidates from 1,000 to 50 reduces what the reranker can see by 20 times. The source proposes keeping both stages and cutting rerank depth where the measured quality curve flattens. If first-stage recall@50 and recall@1,000 are within one point, the cut is effectively free under the stated decision rule.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-191">Figure 19.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[Query q and document d_i] --&gt; B[Feature vector phi in R^m]
+    B --&gt; C[Score s_i from f_theta]
+    C --&gt; D[argsort scores]
+    D --&gt; E[Permutation pi_q]
+    E --&gt; F[Metric M such as NDCG at k]
+    G[Squared error from scores and labels] --&gt;|gradient available| C
+    F -.-&gt;|desired gradient unavailable| C</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Trace</th>
+<th>Document positions and scores</th>
+<th style="text-align: right;">Squared error</th>
+<th style="text-align: right;">NDCG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Labels</td>
+<td><code>d3..d5 = 0</code>, <code>d2 = 3</code>, <code>d1 = 4</code></td>
+<td style="text-align: right;">Not applicable</td>
+<td style="text-align: right;">Ideal order</td>
+</tr>
+<tr>
+<td>Model A</td>
+<td><code>d1 = 2.0</code>, <code>d2 = 2.1</code>, irrelevant items <code>0</code></td>
+<td style="text-align: right;">4.81</td>
+<td style="text-align: right;">0.848</td>
+</tr>
+<tr>
+<td>Model B</td>
+<td><code>d1 = 0.5</code>, <code>d2 = 0.2</code>, irrelevant items <code>0.1</code></td>
+<td style="text-align: right;">20.12</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 19.1: The argsort step destroys everything about the scores except their order, so the metric has no gradient and a surrogate loss is unavoidable (top). squared error is the wrong surrogate because it ranks Model A above Model B by a factor of 4.2 in loss while NDCG ranks Model B above Model A by 15.2 points (bottom).</p>
+<h3 id="figure-192">Figure 19.2</h3>
+<pre class="text"><code>(a) Rank by arg max_j p_j. k candidates collapse onto K = 5 values.
+
+class 0      class 1      class 2      class 3      class 4
+[       ]    [       ]    [       ]    [ A B C ]    [       ]
+                                          |
+                            tied. Candidate-list order decides.
+
+(b) Rank by a continuous score. Use sum_j j p_j or w^T phi.
+
+0----------1----------2-----2.45-----2.85-----3.10----------4
+                              C        B        A
+            b1         b2        b3                  b4</code></pre>
+<p>Figure 19.2: The same classifier, the same probabilities: taking the arg max leaves the head of the ranking as one unordered bucket, while an expectation over the predicted distribution recovers a total order for free.</p>
+<h3 id="figure-193">Figure 19.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    A[Documents x_1 through x_n] --&gt; B[Scorer f of one document]
+    B --&gt;|n forward passes| C[Scores s_1 through s_n]
+    C --&gt; D[Pair loop over preference set I]
+    D --&gt;|lambda_ij times metric-change magnitude| E[Per-document forces lambda_i]
+    E --&gt;|one backward pass| B</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>One-position swap</th>
+<th style="text-align: right;">Metric-change magnitude</th>
+<th style="text-align: right;">Plain RankNet force</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ranks 1 and 2</td>
+<td style="text-align: right;">0.22629</td>
+<td style="text-align: right;">0.52498</td>
+</tr>
+<tr>
+<td>Ranks 50 and 51</td>
+<td style="text-align: right;"><code>5.31 × 10^-4</code></td>
+<td style="text-align: right;">0.52498</td>
+</tr>
+<tr>
+<td>Ranks 100 and 101</td>
+<td style="text-align: right;"><code>1.96 × 10^-4</code></td>
+<td style="text-align: right;">0.52498</td>
+</tr>
+</tbody>
+</table></div>
+<p>The top repair and rank-50 repair differ by 426 times under the metric factor.</p>
+<p>Figure 19.3: RankNet's gradient factorizes so the scorer never sees a pair, but it weights a top-of-list repair and a rank-50 repair identically. LambdaRank's |∆NDCG| factor separates them by 426×.</p>
+<h3 id="figure-194">Figure 19.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[Gaussian score for document j] --&gt; C[Smooth outranking probability pi_ij]
+    B[Gaussian score for document i] --&gt; C
+    C --&gt; D[Insert candidate i]
+    D --&gt; E[Rank distribution p_j of r]
+    E --&gt; F[Differentiable expected NDCG]
+    G[Documents d1 d2 d3] --&gt; H[Self-attention with no positional embedding]
+    H --&gt; I[Scores 2.1 0.4 1.7]
+    J[Permuted documents d3 d1 d2] --&gt; K[Same self-attention]
+    K --&gt; L[Permuted scores 1.7 2.1 0.4]</code></pre></details></figure>
+<p>SoftRank recurrence:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>π</mi><mi>ᵢ</mi><mi>ⱼ</mi><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>π</mi><mi>ᵢ</mi><mi>ⱼ</mi><mo stretchy="false" form="postfix">)</mo><mi>p</mi><msup><mi>ⱼ</mi><mo stretchy="false" form="prefix">(</mo></msup><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">pⱼ^(i)(r) = πᵢⱼ pⱼ^(i-1)(r - 1) + (1 - πᵢⱼ)pⱼ^(i-1)(r)</annotation></semantics></math></p>
+<p>SetRank equivariance:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>P</mi><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>P</mi><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mi>f</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>v</mi><mi>e</mi><mi>r</mi><mi>y</mi><mi>p</mi><mi>e</mi><mi>r</mi><mi>m</mi><mi>u</mi><mi>t</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">f(q, PD) = P f(q, D) for every permutation P</annotation></semantics></math></p>
+<p>Figure 19.4: Two ways to get a usable gradient out of a metric built on integer ranks. (a) SoftRank replaces each score with a Gaussian, which makes the pairwise probability πij smooth, then an insertion recurrence turns the discrete rank into a distribution pj (r) whose expected NDCG is differentiable - at a cost of Θ(n3 ) per query. (b) SetRank instead changes what is scored, pushing the whole candidate set through self-attention with the positional embeddings removed, so re-ordering the input permutes the scores rather than changing them.</p>
+<h3 id="figure-195">Figure 19.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    subgraph REP[Representation path]
+        Q[Query q] --&gt; QE[Encoder eta]
+        QE --&gt; QV[eta of q]
+        DS[Documents d1 through dN] -.-&gt;|N offline passes| DE[Encoder eta]
+        DE -.-&gt; IDX[Index of eta of d]
+        QV --&gt; SIM[Similarity]
+        IDX --&gt; SIM
+    end
+    subgraph INT[Interaction path]
+        QD[Joint query and document] --&gt; MAT[Token interaction matrix]
+        MAT --&gt; NET[2-D CNN or histogram]
+        NET --&gt; SCORE[Interaction score]
+    end
+    subgraph HYB[Hybrid Duet path]
+        RS[Representation score] --&gt; ADD[Add]
+        IS[Interaction score] --&gt; ADD
+        ADD --&gt; FINAL[Final score]
+    end</code></pre></details></figure>
+<p>The representation path needs <code>N</code> offline document passes and one query pass. The interaction path needs <code>N</code> joint passes per query and has no precomputable document path.</p>
+<p>Figure 19.5: The three shapes differ only in whether the document's contribution to the score can be computed before the query arrives: the dashed path in (a) runs at index time, (b) has no dashed path at all, and (c) pays for both because they fail on different queries.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a query box and a candidate-document stack.</li>
+<li>Draw one scorer that emits a score for every candidate.</li>
+<li>Draw an <code>argsort</code> gate and a ranked list.</li>
+<li>Write <code>metric sees order, not score scale</code> beside the gate.</li>
+<li>Under the scorer, draw three loss choices labeled pointwise, pairwise, and listwise.</li>
+<li>Connect pointwise to expected gain and ordinal thresholds.</li>
+<li>Connect pairwise to score gaps, then multiply its arrow by <code>|ΔNDCG|</code> for LambdaRank.</li>
+<li>Connect listwise to SoftRank, LambdaMART, and SetRank.</li>
+<li>At the right, draw a two-stage funnel from representation retrieval to interaction reranking.</li>
+<li>Mark the first-stage recall cutoff as the funnel's hard ceiling.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Learning to rank is hard because the metric sees only document order, while training starts from continuous scores. Squared error can fall without any pair swapping, so it is the wrong target for graded relevance. Pointwise methods stay cheap and stable, but should rank by expected gain or an ordinal score. Pairwise methods learn preferences, and LambdaRank weights each pair by the NDCG change its swap would cause. Listwise methods smooth ranks, define metric-aware gradients, or score the candidate set jointly. In practice, I retrieve with precomputed representations, rerank a limited window with interaction, and measure the final ranked-list metric.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-are-pointwise-pairwise-and-listwise-model-architectures">1. Are pointwise, pairwise, and listwise model architectures?</h3>
+<p>No. They describe where list structure enters the training objective. A cross-encoder can be pointwise, while RankNet remains pairwise even when its neural scorer sees one document at a time.</p>
+<h3 id="2-why-can-squared-error-fall-while-ndcg-stays-flat">2. Why can squared error fall while NDCG stays flat?</h3>
+<p>Squared error reads score magnitudes and label gaps. NDCG reads only the order induced by those scores, so common shifts and many scale corrections change loss without changing one rank.</p>
+<h3 id="3-why-not-sort-a-five-way-classifier-by-its-arg-max-class">3. Why not sort a five-way classifier by its arg max class?</h3>
+<p>Arg max collapses many candidates into five tied buckets and throws away the rest of each probability distribution. Sort by expected metric gain, or use the continuous latent score of an ordinal model.</p>
+<h3 id="4-what-does-lambdarank-add-to-ordinary-pairwise-learning">4. What does LambdaRank add to ordinary pairwise learning?</h3>
+<p>RankNet weights equal score gaps equally, even when one swap changes rank 1 and another changes rank 50. LambdaRank multiplies each pair force by the NDCG change caused by that swap, and truncation can remove force below the served cutoff.</p>
+<p>LambdaRank historically specified a gradient without a scalar loss, and the source names LambdaLoss as the later probabilistic framework that gives those gradients a genuine loss interpretation.</p>
+<h3 id="5-how-do-you-choose-among-expensive-listwise-and-neural-scorers">5. How do you choose among expensive listwise and neural scorers?</h3>
+<p>Use LambdaMART by default for handcrafted tabular features. Avoid full SoftRank at large list depth because its complete recurrence is cubic, and avoid full interaction over a large corpus because its document-side work cannot be precomputed. Avoid multivariate set scoring when sharding, caching, or pagination requires a stable per-document score, unless its measured gain survives shuffle and interaction ablations and justifies one global pass.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or range</th>
+<th>What it commits to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>40,000 rows, one quarter, six-figure budget</td>
+<td>Opening regression project that did not move the metric materially</td>
+</tr>
+<tr>
+<td>Grades 0 through 4</td>
+<td>Standard five-point relevance scale used throughout</td>
+</tr>
+<tr>
+<td>46 features</td>
+<td>LETOR 4.0 feature count</td>
+</tr>
+<tr>
+<td>136 features</td>
+<td>MSLR-WEB30K feature count</td>
+</tr>
+<tr>
+<td>Loss halved, NDCG@10 moved 0.004</td>
+<td>Opening evidence of objective mismatch</td>
+</tr>
+<tr>
+<td>15/7 = 2.14, 4/3 = 1.33, 1.61-fold</td>
+<td>Metric-gain spacing versus raw-label spacing</td>
+</tr>
+<tr>
+<td>500 and 5 judgments</td>
+<td>Query depths producing 99.0% versus 50% weighting and 100-fold overweighting</td>
+</tr>
+<tr>
+<td>IDCG 19.417</td>
+<td>Five-document regression example ideal score</td>
+</tr>
+<tr>
+<td>Model A 4.81 and 0.848</td>
+<td>Squared error and NDCG for calibrated but inverted scores</td>
+</tr>
+<tr>
+<td>Model B 20.12 and 1.000</td>
+<td>Squared error and NDCG for badly scaled but ideal order</td>
+</tr>
+<tr>
+<td>4.2 times and 15.2 points</td>
+<td>Opposite preferences of squared error and NDCG</td>
+</tr>
+<tr>
+<td>5.8 and 13.2, then 2.3 times</td>
+<td>Gradient-magnitude totals and misplaced pressure</td>
+</tr>
+<tr>
+<td>30 seconds</td>
+<td>Dwell-time example showing that one duration means different things across queries</td>
+</tr>
+<tr>
+<td>K = 5 and k = 100</td>
+<td>Standard pointwise classes and candidate count</td>
+</tr>
+<tr>
+<td>About 90% class 0</td>
+<td>Source's typical accuracy-dominating mass</td>
+</tr>
+<tr>
+<td>IDCG@10 26.437</td>
+<td>Ten-candidate pointwise example ideal value</td>
+</tr>
+<tr>
+<td>26.437718, rounding to 26.438</td>
+<td>Independent evaluation of that IDCG formula and the source's rounding discrepancy</td>
+</tr>
+<tr>
+<td>1.000, 0.888, 0.849, expected 0.912</td>
+<td>Outcomes from arbitrary ordering of the tied head</td>
+</tr>
+<tr>
+<td>2.953 and 4.000 DCG</td>
+<td>Loss from placing A second or third in the pointwise example</td>
+</tr>
+<tr>
+<td>23.484 and 22.437</td>
+<td>Resulting DCG values for those two placements</td>
+</tr>
+<tr>
+<td>3.10, 2.85, 2.45</td>
+<td>Expected grades for A, B, and C</td>
+</tr>
+<tr>
+<td>8.90, 7.30, 5.65</td>
+<td>Expected exponential gains for A, B, and C</td>
+</tr>
+<tr>
+<td>0.088 absolute and 9.6% relative</td>
+<td>Gain from expected scoring over arbitrary ties</td>
+</tr>
+<tr>
+<td>250 pairs per second</td>
+<td>Stated cross-encoder throughput</td>
+</tr>
+<tr>
+<td>100 passes and 0.40 seconds</td>
+<td>Pointwise cost for 100 candidates</td>
+</tr>
+<tr>
+<td>4,950 passes and 19.8 seconds</td>
+<td>All-pairs cost for 100 candidates</td>
+</tr>
+<tr>
+<td>About 664 comparisons and 2.66 seconds</td>
+<td>Comparison-sort alternative</td>
+</tr>
+<tr>
+<td>500 versus 20, or 25 to 1</td>
+<td>Pointwise query-weight imbalance</td>
+</tr>
+<tr>
+<td>More than five levels</td>
+<td>Source threshold favoring an ordinal head</td>
+</tr>
+<tr>
+<td>2001 and 2002</td>
+<td>PRank and its cited large-margin ordinal successor</td>
+</tr>
+<tr>
+<td>2007, 2009, 2020</td>
+<td>McRank, the cited LTR survey, and monoT5 years</td>
+</tr>
+<tr>
+<td>Window 20, stride 10, 9 calls</td>
+<td>Sequential listwise LLM window example over 100 candidates</td>
+</tr>
+<tr>
+<td>82% accuracy</td>
+<td>Pointwise interview example with weak NDCG@10</td>
+</tr>
+<tr>
+<td>800 QPS and hourly updates</td>
+<td>Hot-path constraints in the pointwise staff example</td>
+</tr>
+<tr>
+<td>0.71 to 0.84 over six hours</td>
+<td>Pairwise validation accuracy rise</td>
+</tr>
+<tr>
+<td>NDCG@10 0.3869</td>
+<td>Metric that remained stalled</td>
+</tr>
+<tr>
+<td>F = 136</td>
+<td>MSLR-WEB30K pairwise feature count</td>
+</tr>
+<tr>
+<td>RankSVM years 2000 and 2002</td>
+<td>Introduction and search application cited by the source</td>
+</tr>
+<tr>
+<td>RankNet 2005</td>
+<td>Cited introduction year</td>
+</tr>
+<tr>
+<td>LambdaRank 2006</td>
+<td>Cited introduction year</td>
+</tr>
+<tr>
+<td>More than 10 approximations</td>
+<td>Candidate metric-gradient approximations tested</td>
+</tr>
+<tr>
+<td>3.222 × 10^-4 and 3.199 × 10^-4</td>
+<td>Continuous and discrete discount changes at rank 100</td>
+</tr>
+<tr>
+<td>0.7%</td>
+<td>Agreement of those two changes</td>
+</tr>
+<tr>
+<td>n = 120, ranks 2 and 51</td>
+<td>Pairwise worked-example setup</td>
+</tr>
+<tr>
+<td>alpha = 0.1 and gamma = 1</td>
+<td>Score slope and logistic shape</td>
+</tr>
+<tr>
+<td>IDCG 1.63093</td>
+<td>Pairwise example ideal value</td>
+</tr>
+<tr>
+<td>Margin -0.1 and slack 1.1</td>
+<td>Equal RankSVM treatment of both swaps</td>
+</tr>
+<tr>
+<td>0.52498</td>
+<td>Equal RankNet force for all shown swaps</td>
+</tr>
+<tr>
+<td>0.47502</td>
+<td>Value of the source's printed <code>1/(1 + exp(0.1))</code>, which exposes its omitted minus sign</td>
+</tr>
+<tr>
+<td>236 pairs and 71.4%</td>
+<td>Discordant-pair count and below-cutoff RankNet gradient share</td>
+</tr>
+<tr>
+<td>0.22629 and 5.312 × 10^-4</td>
+<td>Full-list swap values at the head and rank 50</td>
+</tr>
+<tr>
+<td>426 times</td>
+<td>LambdaRank separation between those repairs</td>
+</tr>
+<tr>
+<td>21.6% and 0%</td>
+<td>Below-rank-10 mass after full or truncated metric weighting</td>
+</tr>
+<tr>
+<td>0.38685 to 0.61315</td>
+<td>NDCG@10 before and after the top repair</td>
+</tr>
+<tr>
+<td>58.5% relative</td>
+<td>Value of the top repair</td>
+</tr>
+<tr>
+<td>Split 80/20/12/6/2</td>
+<td>Pairwise label counts across grades 0 to 4</td>
+</tr>
+<tr>
+<td>7,140, 3,432, 3,708</td>
+<td>Total, same-label, and discordant pair counts</td>
+</tr>
+<tr>
+<td>120 versus 3,708, or 30.9 times</td>
+<td>Factorized versus direct network evaluations</td>
+</tr>
+<tr>
+<td>2009 and 2018</td>
+<td>Cited local-optimum and LambdaLoss years</td>
+</tr>
+<tr>
+<td>1,000 candidates</td>
+<td>Main listwise worked-example depth</td>
+</tr>
+<tr>
+<td>Ranks 300 through 800</td>
+<td>Region containing most stated misordered pairs</td>
+</tr>
+<tr>
+<td>Discounts 0.12 to 0.10 versus 1.00</td>
+<td>Position-value contrast in that region</td>
+</tr>
+<tr>
+<td>Loss 0.61, 0.54, 0.49 over three weeks</td>
+<td>Falling pairwise loss with flat NDCG@10</td>
+</tr>
+<tr>
+<td>Θ(n³)</td>
+<td>Full SoftRank recurrence cost stated in section 19.4</td>
+</tr>
+<tr>
+<td>O(n²)</td>
+<td>SoftRank rank-distribution cost statement made in section 19.3</td>
+</tr>
+<tr>
+<td>12 models, 8 LambdaMART</td>
+<td>Stated composition of the 2010 Yahoo winning blend</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>Year of the cited report describing that blend</td>
+</tr>
+<tr>
+<td>2007, 2008, 2008</td>
+<td>ListNet, ListMLE, and SoftRank introduction years</td>
+</tr>
+<tr>
+<td>2019 and 2020</td>
+<td>NeuralSort and cited differentiable-ranking years</td>
+</tr>
+<tr>
+<td>10,000 queries, 5 relevant, 136 features</td>
+<td>Listwise worked-example data</td>
+</tr>
+<tr>
+<td>10^9 per query and 10^13 per epoch</td>
+<td>Full SoftRank bin updates</td>
+</tr>
+<tr>
+<td>100 candidates, 10^6 per query, 10^10 per epoch</td>
+<td>Truncated SoftRank cost</td>
+</tr>
+<tr>
+<td>1,000-fold</td>
+<td>Cubic saving from truncating 1,000 to 100</td>
+</tr>
+<tr>
+<td>Recall 0.86 versus 0.94</td>
+<td>First-stage recall at 100 versus 1,000</td>
+</tr>
+<tr>
+<td>8 points</td>
+<td>Achievable recall discarded by truncation in that example</td>
+</tr>
+<tr>
+<td>4,975 pairs and 4.98 × 10^7 per epoch</td>
+<td>LambdaMART pair cost</td>
+</tr>
+<tr>
+<td>2.0 × 10^5</td>
+<td>Full SoftRank to LambdaMART cost ratio</td>
+</tr>
+<tr>
+<td>Three blocks, d = 256</td>
+<td>SetRank worked-example architecture</td>
+</tr>
+<tr>
+<td>1.02 × 10^9, 5.24 × 10^8, 1.05 × 10^9</td>
+<td>Attention, projection, and feed-forward operations per block</td>
+</tr>
+<tr>
+<td>2.60 × 10^9 and 7.8 × 10^9</td>
+<td>SetRank operations per block and per forward pass</td>
+</tr>
+<tr>
+<td>2.34 × 10^10 and 2.34 × 10^14</td>
+<td>SetRank training operations per query and epoch</td>
+</tr>
+<tr>
+<td>3.4 × 10^14 FLOPs per second and 0.69 seconds</td>
+<td>Stated accelerator rate and estimated epoch time</td>
+</tr>
+<tr>
+<td>3,771,125 pairs and 31,531 queries</td>
+<td>MSLR-WEB30K totals</td>
+</tr>
+<tr>
+<td>119.6 documents per query</td>
+<td>Benchmark average</td>
+</tr>
+<tr>
+<td>1.73 × 10^6 and 579 times</td>
+<td>Recurrence cost at n = 120 and reduction from n = 1,000</td>
+</tr>
+<tr>
+<td>Top 50 rerank depth</td>
+<td>Source example of training at serving depth</td>
+</tr>
+<tr>
+<td>Ten candidate shuffles</td>
+<td>Permutation-sensitivity diagnostic</td>
+</tr>
+<tr>
+<td>0.412 to 0.431, gain 0.019</td>
+<td>SetRank-style offline result in the staff probe</td>
+</tr>
+<tr>
+<td>Plus or minus 0.015</td>
+<td>Shuffle spread that would place the gain inside noise</td>
+</tr>
+<tr>
+<td>Eight shards</td>
+<td>Deployment constraint in that probe</td>
+</tr>
+<tr>
+<td>0.03 NDCG@10 drop</td>
+<td>Retriever-swap probe from BM25 to dense candidates</td>
+</tr>
+<tr>
+<td>100 by 100 = 10,000</td>
+<td>Token interaction cells for one pair</td>
+</tr>
+<tr>
+<td>About 30^3 = 27,000</td>
+<td>DSSM trigram-feature bound</td>
+</tr>
+<tr>
+<td>26 letters</td>
+<td>Main alphabet count inside the trigram bound</td>
+</tr>
+<tr>
+<td>2016, 2020, 2024</td>
+<td>CNN, bi-encoder, and LLM ranker timeline used for the structural distinction</td>
+</tr>
+<tr>
+<td>2013, 2014, 2016, 2017</td>
+<td>DSSM, C-DSSM, LSTM-DSSM or MatchPyramid, and Duet years</td>
+</tr>
+<tr>
+<td>128 dimensions</td>
+<td>DSSM projection and source representation default</td>
+</tr>
+<tr>
+<td>4,096 bits</td>
+<td>fp32 bit budget for a 128-dimensional vector</td>
+</tr>
+<tr>
+<td>400 tokens, vocabulary 30,522</td>
+<td>Representation bottleneck example</td>
+</tr>
+<tr>
+<td>5,960 raw bits, 14.9 per token, about 10 available</td>
+<td>Raw-content bound and vector budget</td>
+</tr>
+<tr>
+<td>One in 10^6 documents</td>
+<td>Rare part-number frequency example</td>
+</tr>
+<tr>
+<td>128 to 768, 6 times</td>
+<td>Width increase and index-byte multiplier</td>
+</tr>
+<tr>
+<td>10^7 passages and stated 8.8 million</td>
+<td>Cost model corpus and MS MARCO comparison</td>
+</tr>
+<tr>
+<td>100 passage tokens, 300 dimensions, 10 query tokens</td>
+<td>Interaction cost setup</td>
+</tr>
+<tr>
+<td>3.35 terabytes per second</td>
+<td>Stated memory bandwidth</td>
+</tr>
+<tr>
+<td>1.2 terabytes and 358 milliseconds</td>
+<td>Full interaction bytes and streaming floor</td>
+</tr>
+<tr>
+<td>5.12 gigabytes and 1.53 milliseconds</td>
+<td>Representation bytes and streaming time</td>
+</tr>
+<tr>
+<td>2.56 × 10^9 FLOPs and 7.5 microseconds</td>
+<td>Representation dot-product arithmetic</td>
+</tr>
+<tr>
+<td>More than 200 times</td>
+<td>Memory movement dominance over arithmetic</td>
+</tr>
+<tr>
+<td>234 times</td>
+<td>Full-interaction to representation byte ratio</td>
+</tr>
+<tr>
+<td>Top 100, 1.2 × 10^7 bytes, 3.6 microseconds</td>
+<td>Hybrid reranking stream</td>
+</tr>
+<tr>
+<td>10^-5 and 0.235%</td>
+<td>Corpus fraction and added retrieval-budget share</td>
+</tr>
+<tr>
+<td>10^4 documents, 1.2 gigabytes, 0.36 milliseconds</td>
+<td>Scale where full interaction no longer needs a first stage</td>
+</tr>
+<tr>
+<td>100 times and 153 milliseconds</td>
+<td>Multi-vector byte multiplier and streaming estimate</td>
+</tr>
+<tr>
+<td>458 milliseconds and factor 3</td>
+<td>Published ColBERT latency and agreement of the estimate</td>
+</tr>
+<tr>
+<td>More than about 3 times</td>
+<td>Document-length variation threshold favoring fixed-width aggregation</td>
+</tr>
+<tr>
+<td>5.12 to 30.7 gigabytes</td>
+<td>Index growth from 128 to 768 dimensions</td>
+</tr>
+<tr>
+<td>p99 400 to 80 milliseconds</td>
+<td>Tail-latency reduction in the staff probe</td>
+</tr>
+<tr>
+<td>1,000 to 50, or 20 times</td>
+<td>Candidate-window cut in that probe</td>
+</tr>
+<tr>
+<td>Within one point</td>
+<td>Recall difference that makes the cut effectively free in the source's decision rule</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/18_classical_ir_you_are_expected_to_know.html"><small>Previous</small>Chapter 18. Classical IR You Are Expected to Know</a><a href="../chapters/20_dense_retrieval.html"><small>Next</small>Chapter 20. Dense Retrieval</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

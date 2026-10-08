@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 37. Latency, Cost, and Systems | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/37_latency_cost_and_systems.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group" open><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html" aria-current="page">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part XII. Scaling, Advanced Variants, and Design Drills</p><h1>Chapter 37. Latency, Cost, and Systems</h1><p class="chapter-meta">43 min estimated reading · Unit 46 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: Build a stage-level model of Retrieval-Augmented Generation (RAG) latency and cost, then use caching, batching, kernel design, pipelining, retrieval cascades, and multi-resolution indexing only where the measured bottleneck justifies them.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A RAG request has five timed stages. Measure query embedding, approximate nearest neighbor (ANN) search, candidate reranking, context processing called prefill, and token emission called decode separately.</li>
+<li>In the worked 8 billion parameter example, decode takes 1,221 ms of a 1,343 ms request. It dominates because every output token rereads the model weights from memory.</li>
+<li>Prefill is limited by arithmetic after roughly 170 tokens in the stated two-byte bfloat16 setup. Decode is limited by memory bandwidth at batch size one, so smaller weight bytes and shared weight reads attack the right resource.</li>
+<li>Key-value (KV) cache reuse stores a recurring chunk's attention state. It loses interaction between chunks and creates duplicate positions, which a short mask-aware fine-tune and Rotary position embeddings (RoPE) re-offsetting address.</li>
+<li>A document-first causal reranker processes the reusable document before the unique query. Fixed-shape layouts then let compiled or captured graphics processing unit (GPU) kernels replay without rebuilding their execution plan.</li>
+<li>Pipelining hides a transfer inside work that already runs. A retrieval funnel sends broad candidates through cheap stages before expensive ones. Recursive summaries create retrievable answers for themes that no short chunk states.</li>
+<li>Cost per query depends on achieved throughput, or how many requests the hardware actually serves. At decode batch size 32, the worked cost falls from $933 to $125 per million queries, and prefill becomes the largest cost line.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture the RAG system as a warehouse that assembles one shipment per query.</p>
+<p>Five stations touch the shipment. The clerk labels the order, the locator finds bins, the inspector ranks items, the packing station loads context, and the dispatch line emits the answer one token at a time.</p>
+<p>The dispatch line looks simple, but it rereads the entire catalog for every item it releases. That repeated memory trip makes it the slow station even when the packing station performs much more arithmetic.</p>
+<p>The warehouse can stamp reusable labels onto popular bins. Chunk KV caches do that for retrieved text. A document-first causal reranker gives the same treatment to hot documents because the document is processed before the unique query arrives.</p>
+<p>The floor layout matters too. If every parcel has a new shape, the machinery must be reset for every order. Fixed slots and a few size buckets let the same compiled motion replay, while fusion keeps intermediate material on the machine instead of sending it back to storage.</p>
+<p>At larger scale, the catalog no longer fits beside the machinery. The warehouse predicts which shelves an unfinished order will need and moves those shelves while the order is still being rewritten. The bytes still move, but they leave the critical path.</p>
+<p>A funnel sends a broad set through cheap gates before the expensive inspector sees it. A summary tree adds mezzanine views of a long document, so a thematic question can retrieve a whole-book abstraction instead of a pile of local scenes.</p>
+<p>The invoice finally changes the apparent bottleneck. Batching lets many dispatches share one weight read, so decode's cost share falls. The right optimization therefore depends on the stage, the hardware regime, the traffic level, and whether the target is latency, time to first token, throughput, or dollars.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median latency, or p50</td>
+<td>The middle request latency</td>
+<td>It sets the 1.3 second to 500 ms scenario, but one total timer cannot identify the stage to cut</td>
+</tr>
+<tr>
+<td>Five-stage budget</td>
+<td>Embed, ANN search, rerank, prefill, decode</td>
+<td>It exposes the bottleneck before a change spends recall or engineering time</td>
+</tr>
+<tr>
+<td>Arithmetic intensity</td>
+<td>Floating-point operations (FLOPs) per byte moved</td>
+<td>It predicts compute-bound versus bandwidth-bound execution, so peak FLOPs do not help a stage waiting on memory</td>
+</tr>
+<tr>
+<td>Roofline model</td>
+<td>Compare arithmetic intensity with a hardware ridge</td>
+<td>It explains which resource limits a stage before optimization begins</td>
+</tr>
+<tr>
+<td>Ridge point</td>
+<td>Peak or sustained FLOPs divided by memory bandwidth</td>
+<td>It separates hardware regimes, with the stated H100 setup at 170 FLOPs per byte</td>
+</tr>
+<tr>
+<td>bfloat16 and 32-bit floating point (fp32)</td>
+<td>Two-byte model precision and four-byte vector precision</td>
+<td>Byte width sets model traffic, cache traffic, and index memory</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Encode query and chunks separately</td>
+<td>It makes ANN search possible, while call overhead can dominate its short query pass</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>One forward pass over the assembled context</td>
+<td>Its intensity grows with context, and long context raises compute plus attention work</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>One dependent step per output token</td>
+<td>It rereads weights once per token and takes 90.9% of the unbatched worked request</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>Reduce bytes per parameter</td>
+<td>It cuts decode weight traffic, subject to measured evaluation tolerance</td>
+</tr>
+<tr>
+<td>Continuous batching</td>
+<td>Share one weight read across concurrent decode streams</td>
+<td>It raises intensity toward <code>2B/b</code>, but waiting for a batch raises time to first token (TTFT) and tail latency</td>
+</tr>
+<tr>
+<td>TTFT</td>
+<td>Delay before streaming begins</td>
+<td>It makes prefill visible even when decode dominates total response time</td>
+</tr>
+<tr>
+<td>Response cache</td>
+<td>Store an answer keyed by a repeated query</td>
+<td>It helps near-duplicates, but paraphrased requests usually miss it</td>
+</tr>
+<tr>
+<td>Chunk KV cache</td>
+<td>Store per-layer keys and values for a recurring chunk</td>
+<td>It removes repeated prefill work when retrieval hits are concentrated</td>
+</tr>
+<tr>
+<td>Cross-attention</td>
+<td>Let tokens use information from the other text segment</td>
+<td>It improves joint reasoning but can destroy a reusable document-only artifact</td>
+</tr>
+<tr>
+<td>Cross-chunk attention loss</td>
+<td>Independently cached chunks never attend to earlier chunks</td>
+<td>It can hurt comparison questions, while mask-aware fine-tuning closes most of the measured gap</td>
+</tr>
+<tr>
+<td>Causal mask</td>
+<td>Let each token attend only to earlier positions</td>
+<td>It makes the leading document independent of the later query</td>
+</tr>
+<tr>
+<td>Retrieval hit rate</td>
+<td>Fraction of requests that find an existing cache entry</td>
+<td>It decides whether cache construction and storage amortize</td>
+</tr>
+<tr>
+<td>Hot set and storage tier</td>
+<td>Frequently reused items and where their caches live</td>
+<td>High-bandwidth memory (HBM) serves the hottest items, while host memory or recompute handles the tail</td>
+</tr>
+<tr>
+<td>Position collision</td>
+<td>Each isolated chunk starts at position zero</td>
+<td>Duplicate positions corrupt relative distance, so concatenation needs disjoint offsets</td>
+</tr>
+<tr>
+<td>RoPE re-offset</td>
+<td>Rotate cached keys for the new position range</td>
+<td>It avoids recomputation, while absolute learned positions do not permit the cheap fix</td>
+</tr>
+<tr>
+<td>Provider prompt cache</td>
+<td>Reuse an exact byte-for-byte prefix</td>
+<td>It serves static prefixes, but reordered RAG chunks do not match literally</td>
+</tr>
+<tr>
+<td>Bidirectional cross-encoder</td>
+<td>Query and document tokens attend both ways</td>
+<td>It extracts strong pairwise relevance but makes every document vector query-dependent</td>
+</tr>
+<tr>
+<td>Bidirectional Encoder Representations from Transformers (BERT)</td>
+<td>The encoder family used in the reranker example</td>
+<td>It represents the bidirectional baseline whose attention pattern prevents document caching</td>
+</tr>
+<tr>
+<td>Document-first causal decoder</td>
+<td>Put document tokens before query tokens under causal masking</td>
+<td>It makes the document cacheable, but a same-size decoder can lose ranking quality</td>
+</tr>
+<tr>
+<td>Query-first causal decoder</td>
+<td>Put unique query tokens first</td>
+<td>It makes the wrong side independent and leaves the recurring document query-dependent</td>
+</tr>
+<tr>
+<td>Kernel fusion</td>
+<td>Combine adjacent operations into one kernel</td>
+<td>It avoids intermediate high-bandwidth memory (HBM) round trips, but dynamic operations can block reuse</td>
+</tr>
+<tr>
+<td>Eager execution</td>
+<td>Launch each operation separately</td>
+<td>It accepts variable shapes but writes and rereads intermediates at each boundary</td>
+</tr>
+<tr>
+<td>FlashAttention</td>
+<td>Fuse score, softmax, and value application</td>
+<td>It avoids the full attention matrix in HBM, subject to mask support and validation</td>
+</tr>
+<tr>
+<td><code>torch.compile</code></td>
+<td>Trace a forward pass and generate fused work</td>
+<td>It amortizes setup over repeated shapes, while new shapes retrace or fall back</td>
+</tr>
+<tr>
+<td>Compute Unified Device Architecture (CUDA) graph</td>
+<td>Capture and replay a fixed kernel sequence</td>
+<td>It removes repeated dispatch only when operation sequence and shapes stay fixed</td>
+</tr>
+<tr>
+<td>Static slot</td>
+<td>Pack document left and query right with masked padding</td>
+<td>It gives one request shape, but a wrong mask or position identifier silently changes scores</td>
+</tr>
+<tr>
+<td>Attention mask</td>
+<td>Block padded or disallowed token interactions</td>
+<td>An incorrect mask changes scores even when the latency benchmark looks good</td>
+</tr>
+<tr>
+<td>Tensor shape</td>
+<td>The dimensions presented to a kernel</td>
+<td>Repeated shapes reuse compiled work, while new shapes retrace</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>An intermediate value between model operations</td>
+<td>Eager execution can write it to HBM and read it back unnecessarily</td>
+</tr>
+<tr>
+<td>Feed-forward network</td>
+<td>The per-layer expansion and contraction block</td>
+<td>Its intermediate supplies the fusion example's measurable round-trip traffic</td>
+</tr>
+<tr>
+<td>Shape bucket</td>
+<td>Reuse one of a few fixed lengths</td>
+<td>It balances padding against graph reuse, unlike one expensive global maximum</td>
+</tr>
+<tr>
+<td>Central processing unit (CPU) and GPU pipeline</td>
+<td>Overlap host work, transfer, and device search</td>
+<td>It turns a sum into a maximum when work fits in the window</td>
+</tr>
+<tr>
+<td>Dynamic random-access memory (DRAM)</td>
+<td>Large host memory for an oversized index</td>
+<td>It holds a corpus that cannot fit in HBM, at slower search and transfer speeds</td>
+</tr>
+<tr>
+<td>Inverted file (IVF) index</td>
+<td>Partition chunks around learned centroids</td>
+<td>It searches selected clusters, although the full vector store still scales with corpus size</td>
+</tr>
+<tr>
+<td><code>nlist</code></td>
+<td>Number of IVF clusters</td>
+<td>It sets average cluster size and must match corpus scale</td>
+</tr>
+<tr>
+<td><code>nprobe</code></td>
+<td>Number of clusters searched or prefetched</td>
+<td>It trades coverage for bytes and work, with a safe value set by the rewrite window</td>
+</tr>
+<tr>
+<td>Query rewrite</td>
+<td>Reformulate a raw query before retrieval</td>
+<td>Its generation window can hide centroid prediction and transfer</td>
+</tr>
+<tr>
+<td>Cold index</td>
+<td>An index not resident on the fast path</td>
+<td>It can turn a single-digit ANN stage into hundreds of milliseconds</td>
+</tr>
+<tr>
+<td>TeleRAG prefetch</td>
+<td>Predict and move likely clusters during query rewrite</td>
+<td>It hides transfer, while concurrent CPU search covers wrong predictions</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW) search</td>
+<td>A graph-based ANN stage</td>
+<td>Its p50 can stay stable while fixed top-k recall falls among more distractors</td>
+</tr>
+<tr>
+<td>Retrieval funnel</td>
+<td>Cheap coarse search followed by narrower expensive stages</td>
+<td>It caps final-ranker work, but the first stage sets the recall floor</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>Keep the k highest-ranked candidates</td>
+<td>A fixed k can lose recall as distractors grow, while widening k raises downstream cost</td>
+</tr>
+<tr>
+<td>Coarse-stage recall</td>
+<td>Whether the first funnel stage retains answer-bearing groups</td>
+<td>Later stages cannot recover a group that the first stage removed</td>
+</tr>
+<tr>
+<td>Reciprocal Rank Fusion (RRF)</td>
+<td>Merge independent sparse and dense rankings</td>
+<td>It covers complementary misses but does not shrink either full-corpus search</td>
+</tr>
+<tr>
+<td>Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR)</td>
+<td>Repeatedly cluster, summarize, and embed</td>
+<td>It creates multi-resolution nodes at an offline construction and rebuild cost</td>
+</tr>
+<tr>
+<td>Soft Gaussian-mixture clustering</td>
+<td>Let a leaf belong to more than one related group</td>
+<td>It lets one passage support more than one theme</td>
+</tr>
+<tr>
+<td>Branching factor</td>
+<td>Average number of children compressed into a parent</td>
+<td>It controls tree height, storage overhead, and summary granularity</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>Rank query and node embeddings in one shared space</td>
+<td>It lets one score compare leaves and summaries directly</td>
+</tr>
+<tr>
+<td>Collapsed-tree retrieval</td>
+<td>Rank every tree node in one shared pool</td>
+<td>The query chooses its resolution because every level shares one embedding space</td>
+</tr>
+<tr>
+<td>Tree traversal</td>
+<td>Keep a fixed quota per level and descend</td>
+<td>It can guarantee level-specific output but imposes one resolution schedule on every query</td>
+</tr>
+<tr>
+<td>Cost per query</td>
+<td>Infrastructure spend divided by achieved throughput</td>
+<td>It prices the operating point rather than treating cost as a pipeline constant</td>
+</tr>
+<tr>
+<td>Fixed index cost</td>
+<td>Hourly memory cost paid without traffic</td>
+<td>It dominates at low volume, with the worked crossover near 0.69 queries per second (QPS)</td>
+</tr>
+<tr>
+<td>Variable compute cost</td>
+<td>Per-query stage time at the achieved batch and throughput</td>
+<td>It grows with traffic, and compute-bound stages do not receive decode's batching discount</td>
+</tr>
+<tr>
+<td>Formula symbols</td>
+<td><code>N</code> is parameters, corpus items, or leaves by section. <code>b</code> is bytes per parameter. <code>s</code>, <code>s_c</code>, and <code>s_f</code> are total, cached, and fresh tokens. <code>L</code> is layers. <code>d</code> is hidden or vector width. <code>B</code> is batch size. <code>m</code> is repeats or cascade stages. <code>M</code> is index bytes. <code>r_i</code> is a stage reduction. <code>k_m</code> is final candidates. <code>l</code> is leaf length. <code>h</code> is tree height. <code>P</code> is hourly price. <code>t_i</code> is stage time. <code>C_q</code> is query cost. <code>c</code> is branching factor or per-stream cache GB.</td>
+<td>The source overloads several letters, so each formula must be read in its own section</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="371-where-the-milliseconds-actually-go">37.1 Where the milliseconds actually go</h3>
+<h4 id="what">What</h4>
+<p>The opening interview allows thirty seconds to cut p50 from 1.3 seconds toward 500 ms. A request crosses query embedding, ANN search, reranking, generator prefill, and token-by-token decode.</p>
+<p>The embedding and graph-search stages are overhead-dominated in the stated example.</p>
+<p>A 110 million parameter bi-encoder on a 24-token query performs about 5.3 billion FLOPs. An HNSW walk visits a few thousand candidate distances, but tokenization, service calls, and graph pointer chasing can dominate what the trace shows.</p>
+<p>Measure those first two stages. Derive the last three from arithmetic and bytes only after fixing the hardware and shapes.</p>
+<h4 id="why">Why</h4>
+<p>The stated H100 80 GB Peripheral Component Interconnect Express (PCIe) setup sustains 340 trillion FLOPs per second and moves 2,000 GB per second from HBM.</p>
+<p>Its ridge point is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mfrac><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow><mrow><mn>2.000</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow></mfrac><mo>=</mo><mn>170</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi></mrow></mrow><annotation encoding="application/x-tex">R = \frac{3.4 \times 10^{14}}{2.000 \times 10^{12}} = 170\ \mathrm{FLOPs/byte}</annotation></semantics></math></p>
+<p>For <code>N</code> parameters, <code>b</code> bytes per parameter, and <code>s</code> context tokens, prefill intensity is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mi>N</mi><mi>s</mi></mrow><mrow><mi>N</mi><mi>b</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>s</mi></mrow><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">I_{\mathrm{prefill}} = \frac{2Ns}{Nb} = \frac{2s}{b}</annotation></semantics></math></p>
+<p>At <code>b = 2</code>, prefill clears the ridge after roughly 170 tokens and becomes compute-bound.</p>
+<p>Decode processes one new token at a time. Its intensity is independent of model size:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mi>N</mi></mrow><mrow><mi>N</mi><mi>b</mi></mrow></mfrac><mo>=</mo><mfrac><mn>2</mn><mi>b</mi></mfrac></mrow><annotation encoding="application/x-tex">I_{\mathrm{decode}} = \frac{2N}{Nb} = \frac{2}{b}</annotation></semantics></math></p>
+<p>At bfloat16, decode provides 1 FLOP per byte. That is 170 times below the ridge for both an 8 billion and a 70 billion parameter model because <code>N</code> cancels.</p>
+<p>Batching <code>B</code> streams raises the useful work per shared weight read toward <code>2B/b</code>.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>Cutting rerank depth from 50 to 10 removes 80% of candidates but can save only a few milliseconds from a 1,343 ms request.</p>
+<p>That cut can also remove answer-bearing candidates.</p>
+<p>A faster GPU with more peak FLOPs helps compute-bound prefill and reranking. It does not remove a decode weight-read bottleneck.</p>
+<p>Shrinking the KV cache first also misses this example's bottleneck. The average 0.28 GB cache read is under 2% of the 16.28 GB moved per step.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>The worked pipeline uses Llama 3.1 8B with 32 layers, hidden dimension 4,096, 8 KV heads, head dimension 128, and bfloat16 weights.</p>
+<p>The 10 million chunk corpus returns 50 candidates. Embed and search measure 8 ms and 6 ms.</p>
+<p>The 110 million parameter cross-encoder scores 50 pairs of 256 tokens:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>256</mn><mo>×</mo><mn>50</mn><mo>=</mo><mn>2.82</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2 \times 110 \times 10^6 \times 256 \times 50 = 2.82 \times 10^{12}\ \mathrm{FLOPs}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2.82</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>≈</mo><mn>8.3</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">\frac{2.82 \times 10^{12}}{3.4 \times 10^{14}} \approx 8.3\ \mathrm{ms}</annotation></semantics></math></p>
+<p>The source states that five 400-token chunks plus 200 query and instruction tokens round to a 2,048-token context. Those components sum to 2,200, so the subsequent formulas use the source's stated 2,048-token context rather than the component sum.</p>
+<p>Prefill performs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>N</mi><mi>s</mi><mo>+</mo><mn>2</mn><mi>L</mi><msup><mi>s</mi><mn>2</mn></msup><mi>d</mi><mo>=</mo><mn>3.39</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2Ns + 2Ls^2d = 3.39 \times 10^{13}\ \mathrm{FLOPs}</annotation></semantics></math></p>
+<p>That takes 99.6 ms at the stated sustained rate.</p>
+<p>Decode reads 16 GB of weights plus about 0.28 GB of KV cache per step:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>16.28</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><mrow><mn>2.000</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow></mfrac><mo>≈</mo><mn>8.14</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">/</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">k</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi></mrow></mrow><annotation encoding="application/x-tex">\frac{16.28 \times 10^9}{2.000 \times 10^{12}} \approx 8.14\ \mathrm{ms/token}</annotation></semantics></math></p>
+<p>For 150 tokens, decode takes about 1,221 ms.</p>
+<p>The total is 8 + 6 + 8.3 + 99.6 + 1,221, or about 1,343 ms.</p>
+<p>Decode performs 2.4 trillion FLOPs across the answer. Prefill performs fourteen times more arithmetic, yet decode takes about twelve times longer.</p>
+<p>The single-stream rate is about 123 tokens per second, which the source limits to an order-of-magnitude sanity check around 100 tokens per second for this configuration.</p>
+<h4 id="decisions-and-limits">Decisions and limits</h4>
+<ul>
+<li><p>Instrument all five stages independently.</p></li>
+<li><p>Attack decode with shorter answers, int8 or int4 weights, or batching when total latency is the target.</p></li>
+<li><p>Attack prefill when a streaming interface makes TTFT the target.</p></li>
+<li><p>Leave embed and ANN search alone below roughly 1% unless the index is cold, disk-backed, or missing hot-path caching.</p></li>
+<li><p>Cut rerank depth only when recall data shows the tail is unused. A heavy large language model (LLM) reranker is the stated exception.</p></li>
+<li><p>Quantize before shrinking the generator, subject to evaluation tolerance.</p></li>
+<li><p>A proposed 30 billion parameter model moves 3.75 times the weight bytes of the 8 billion parameter model at the same precision. Decode moves toward 4.6 seconds.</p></li>
+<li><p>Int8 roughly halves that multiplier to 1.875 times. The 500 ms service-level agreement (SLA) can still require a different output-length or batching policy.</p></li>
+</ul>
+<h3 id="372-kv-cache-reuse-for-retrieved-chunks">37.2 KV-cache reuse for retrieved chunks</h3>
+<h4 id="what-1">What</h4>
+<p>A causally masked decoder computes a chunk's per-layer keys and values from that chunk and its left context.</p>
+<p>When a chunk leads its own isolated sequence, its cache is a deterministic function of its tokens.</p>
+<p>Precompute that artifact once. At request time, load the selected chunk caches, concatenate them, append fresh query tokens, and compute only the fresh part.</p>
+<p>This targets a support workload with thousands of paraphrases, roughly twenty recurring questions, and 500 knowledge-base articles.</p>
+<h4 id="why-1">Why</h4>
+<p>Response caching keys on repeated queries. Chunk caching keys on repeated documents.</p>
+<p>The source example reuses 2,000 chunk tokens and computes 48 fresh tokens.</p>
+<p>The fresh work is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>N</mi><msub><mi>s</mi><mi>f</mi></msub><mo>+</mo><mn>2</mn><mi>L</mi><mi>d</mi><msub><mi>s</mi><mi>f</mi></msub><mi>s</mi><mo>=</mo><mn>7.94</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2Ns_f + 2Lds_fs = 7.94 \times 10^{11}\ \mathrm{FLOPs}</annotation></semantics></math></p>
+<p>That takes about 2.3 ms instead of the 99.6 ms full prefill.</p>
+<p>The 128 KiB per-token cache is 131,072 bytes and occupies about 262 MB for 2,000 tokens.</p>
+<p>An HBM-resident load takes about 0.13 ms, for a 2.5 ms total and a 40 times stage reduction.</p>
+<p>A host-memory load over a 31.5 GB per second PCIe Gen4 x16 link takes 8.3 ms, for a 10.7 ms total and a 9.3 times stage reduction.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>An independently cached chunk B never attended to chunk A.</p>
+<p>This lost coupling can hurt questions that compare documents even when single-fact questions remain stable.</p>
+<p>Attention maps in the source show most mass stays local or points toward the query. A short fine-tune with the cross-chunk mask closes most of the reported gap.</p>
+<p>Each independent chunk also starts at position zero. Naive concatenation creates duplicate position identifiers.</p>
+<p>Assign disjoint offsets in concatenation order. Chunk one uses positions <code>0</code> through <code>l - 1</code>, chunk two uses <code>l</code> through <code>2l - 1</code>, and later chunks continue the pattern. Under RoPE, this is one rotation per cached key vector rather than a full forward pass.</p>
+<p>Absolute learned position embeddings are the stated exception. Reordering then requires recomputation.</p>
+<p>Provider prompt caching is not a substitute. It matches an exact static prefix, while RAG mixes and reorders chunks.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>TurboRAG reports peak TTFT speedup of 9.4 times, average speedup of 8.6 times on LongBench multi-document question answering (QA), and 98.46% less online compute.</p>
+<p>The independent arithmetic gives 9.3 times for prefill and a 97.7% FLOP reduction.</p>
+<p>The full request improves only about 6.7% when 99.6 ms in a roughly 1,320 ms budget falls to 10.7 ms.</p>
+<p>Figure 37.2 holds decode at 1,198 ms in both branches. Reuse changes prefill, not decode.</p>
+<p>HBM bandwidth is roughly 63 times the stated PCIe bandwidth, at 2,000 versus 31.5 GB per second.</p>
+<h4 id="decisions-and-limits-1">Decisions and limits</h4>
+<ul>
+<li><p>Build reuse only after measuring retrieval-hit concentration.</p></li>
+<li><p>Cache the highest-frequency chunks in HBM. Use host memory or recompute for the tail.</p></li>
+<li><p>Pair the independent-attention mask with the short fine-tune unless chunks are already near-independent.</p></li>
+<li><p>Reassign offsets by concatenation order at generation time.</p></li>
+<li><p>Treat reuse mainly as a throughput and GPU-seconds lever.</p></li>
+<li><p>Treat TTFT and very long contexts as the cases where wall-clock latency can justify it directly.</p></li>
+</ul>
+<h3 id="373-reordering-a-decoder-to-make-caching-possible">37.3 Reordering a decoder to make caching possible</h3>
+<h4 id="what-2">What</h4>
+<p>A standard bidirectional reranker mixes the query into every document token.</p>
+<p>Changing the token order cannot remove that coupling because the attention mask still runs both ways.</p>
+<p>A causal decoder makes the first sequence segment independent of everything that follows it.</p>
+<p>Place the document first and the query last. The document cache becomes query-independent, while the query still attends backward over the document.</p>
+<p>HyperRAG uses this document-first decoder pattern for reranking.</p>
+<h4 id="why-2">Why</h4>
+<p>Bidirectional attention can resolve the phrase "high interest rate in Japan" because the token "interest" can use "rate" three tokens later.</p>
+<p>A left-to-right representation of "interest" cannot see that later disambiguator at the moment it is computed.</p>
+<p>The systems trade is therefore explicit. Bidirectional interaction can extract more relevance signal per FLOP, while causal ordering creates the reusable artifact.</p>
+<p>Query-first ordering grants independence to the query, which is normally unique, and leaves the recurring document query-dependent.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>A cache built from a bidirectional cross-encoder changes whenever the query changes.</p>
+<p>A query-first causal design caches the wrong side of the pair.</p>
+<p>A same-size decoder swap can regress ranking quality because it gives up full bidirectional interaction.</p>
+<p>At under 5% repeat rate, about 95% of document caches are built, used once, and discarded.</p>
+<h4 id="cost-and-complexity-2">Cost and complexity</h4>
+<p>The example uses a 110 million parameter reranker, a 400-token document, a 24-token query, and 340 trillion FLOPs per second.</p>
+<p>The full 424-token pair costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>424</mn><mo>=</mo><mn>9.328</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo>≈</mo><mn>0.274</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2 \times 110 \times 10^6 \times 424 = 9.328 \times 10^{10}\ \mathrm{FLOPs} \approx 0.274\ \mathrm{ms}</annotation></semantics></math></p>
+<p>The one-time document cache costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>400</mn><mo>=</mo><mn>8.8</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo>≈</mo><mn>0.259</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2 \times 110 \times 10^6 \times 400 = 8.8 \times 10^{10}\ \mathrm{FLOPs} \approx 0.259\ \mathrm{ms}</annotation></semantics></math></p>
+<p>Each fresh query costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>24</mn><mo>=</mo><mn>5.28</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo>≈</mo><mn>0.0155</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2 \times 110 \times 10^6 \times 24 = 5.28 \times 10^9\ \mathrm{FLOPs} \approx 0.0155\ \mathrm{ms}</annotation></semantics></math></p>
+<p>Steady-state reuse is about 17.7 times cheaper.</p>
+<p>The break-even repeat count is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>≈</mo><mfrac><mn>0.259</mn><mrow><mn>0.274</mn><mo>−</mo><mn>0.0155</mn></mrow></mfrac><mo>≈</mo><mn>1.0</mn></mrow><annotation encoding="application/x-tex">m \approx \frac{0.259}{0.274 - 0.0155} \approx 1.0</annotation></semantics></math></p>
+<p>The document contributes 94% of the pair. The fresh query contributes about 5.7%.</p>
+<h4 id="decisions-and-limits-2">Decisions and limits</h4>
+<ul>
+<li><p>Use document-first and query-last for a causal decoder reranker.</p></li>
+<li><p>Swap architectures only when retrieval logs show a concentrated hot set.</p></li>
+<li><p>Budget a larger decoder if needed, then remeasure ranking quality.</p></li>
+<li><p>Share tiered document-cache storage with generator-side reuse when the fleets permit it.</p></li>
+<li><p>Make ordering the prerequisite. Cache compression, quantization, and memory-layout work come after a reusable artifact exists.</p></li>
+</ul>
+<h3 id="374-kernel-fusion-static-layouts-and-gpu-shaped-design">37.4 Kernel fusion, static layouts, and GPU-shaped design</h3>
+<h4 id="what-3">What</h4>
+<p>Eager execution launches matrix multiplication, softmax, normalization, and elementwise operations as separate kernels.</p>
+<p>Each boundary can write an intermediate tensor to HBM and read it back for the next operation.</p>
+<p>Kernel fusion consumes an intermediate on chip.</p>
+<p>FlashAttention fuses attention score computation, softmax, and value application so the full square score matrix is not materialized in HBM.</p>
+<p>Its traffic scaling changes from quadratic in sequence length for that matrix to linear storage traffic for the fused path described by the source.</p>
+<p><code>torch.compile</code> traces and fuses eligible operations. CUDA graphs capture and replay a fixed launch sequence.</p>
+<p>Both mechanisms need reusable tensor shapes.</p>
+<h4 id="why-3">Why</h4>
+<p>HyperRAG packs document tokens from the beginning of a fixed slot and query tokens against the end.</p>
+<p>It masks the gap between them.</p>
+<p>A 180-token document with a 9-token query and a 400-token document with a 24-token query both present a 424-position tensor.</p>
+<p>The static shape can reuse one compiled graph. It also allows compatible requests to stack into a batch.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>Variable shapes trigger a new trace or an eager fallback.</p>
+<p>The compile setup can cost more than the microseconds that the pass was meant to save.</p>
+<p>One global 2,000-token maximum avoids retracing but wastes work on short requests.</p>
+<p>A wrong padding mask or position identifier silently changes model scores. Output parity is a required correctness gate.</p>
+<h4 id="cost-and-complexity-3">Cost and complexity</h4>
+<p>The example uses the 12-layer, 110 million parameter BERT-base architecture cited to Devlin et al. (2019), with hidden dimension 768.</p>
+<p>Only 24 fresh query positions run after the document cache is warm.</p>
+<p>The feed-forward network (FFN) expands to width 3,072.</p>
+<p>Its intermediate activation is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24</mn><mo>×</mo><mn>3</mn><mo>,</mo><mn>072</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>147</mn><mo>,</mo><mn>456</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow><mo>=</mo><mn>144</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">B</mi></mrow></mrow><annotation encoding="application/x-tex">24 \times 3{,}072 \times 2 = 147{,}456\ \mathrm{bytes} = 144\ \mathrm{KiB}</annotation></semantics></math></p>
+<p>Two write-read round trips move 576 KiB per layer.</p>
+<p>Across 12 layers, 7.08 million bytes take about 3.54 microseconds at 2,000 GB per second.</p>
+<p>The source writes 0.00347 ms for the traffic term even though its preceding 3.54 microseconds converts to 0.00354 ms. It reports the unfused pass at about 0.0190 ms and the fused pass at 0.0155 ms.</p>
+<p>Fusion removes about 18% of the steady-state latency in this isolated example.</p>
+<p>Dao et al. (2022) report FlashAttention training BERT-large 15% faster than the MLPerf 1.1 record named in the source. The source treats this only as a same-order sanity check across a different sub-block and regime.</p>
+<p>Padding all 50 rerank candidates to 2,000 tokens costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>2</mn><mo>,</mo><mn>000</mn><mo>×</mo><mn>50</mn><mo>=</mo><mn>2.2</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo>≈</mo><mn>64.7</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">2 \times 110 \times 10^6 \times 2{,}000 \times 50 = 2.2 \times 10^{13}\ \mathrm{FLOPs} \approx 64.7\ \mathrm{ms}</annotation></semantics></math></p>
+<p>That is nearly eight times the original 8.3 ms rerank batch and approaches the 99.6 ms prefill.</p>
+<h4 id="decisions-and-limits-3">Decisions and limits</h4>
+<ul>
+<li><p>Compile or capture fixed, repeated passes. Dynamic control flow and early exits are stated exceptions.</p></li>
+<li><p>Use a few shape buckets instead of fully dynamic input or one global maximum.</p></li>
+<li><p>The source suggests 512, 1,024, and 2,048 as an illustrative bucket set for the 2,000-token case.</p></li>
+<li><p>Prefer a validated fused-attention kernel when its mask pattern is supported.</p></li>
+<li><p>Validate output parity for masks and position identifiers before trusting speed.</p></li>
+<li><p>Size batch and shape bucket together. Low traffic in a rare bucket can limit batching even when graph reuse still helps.</p></li>
+</ul>
+<h3 id="375-cpugpu-pipelining-and-prefetching">37.5 CPU/GPU pipelining and prefetching</h3>
+<h4 id="what-4">What</h4>
+<p>The motivating ANN stage measures 6 ms while a 10 million chunk, 768-dimensional, 32-bit floating point (fp32) index occupies 3.072 x 10^10 bytes, or 30.72 GB. It can fit on the stated 80 GB card beside 16 GB of generator weights and cache headroom, but the same search can reach 200 ms after production-scale movement to host memory.</p>
+<p>At 500 million chunks, the same index occupies 1.536 x 10^12 bytes, or about 1.54 TB, which is about 19 times the card's entire HBM capacity before generator weights. Quantization cannot close that gap on one card, so the index moves to CPU DRAM, which the source describes as about an order of magnitude cheaper per GB and available in terabytes.</p>
+<p>An IVF index still stores every vector even though each query searches only <code>nprobe</code> clusters from <code>nlist</code> partitions.</p>
+<p>TeleRAG overlaps cluster prediction and host-to-device prefetch with a query rewrite that already runs. The GPU searches prefetched clusters while the CPU searches the remainder, then the system merges scores. Pipelining neither shrinks the transfer nor speeds CPU search.</p>
+<p>The idle resource is the retrieval link and destination buffer, not necessarily the whole GPU. Its copy engine can run separately from the rewrite model's decode work.</p>
+<h4 id="why-4">Why</h4>
+<p>Index memory scales as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>N</mi><mo>×</mo><mi>d</mi><mo>×</mo><mn>4</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">b</mi><mi mathvariant="normal">y</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">M = N \times d \times 4\ \mathrm{bytes}</annotation></semantics></math></p>
+<p>The index guidance cited to Johnson, Douze, and Jégou (2019) places <code>nlist</code> between roughly four and sixteen times the square root of <code>N</code>.</p>
+<p>For 10 million vectors, the lower estimate is about 12,649 and the example rounds to <code>nlist = 16,384</code>.</p>
+<p>An average cluster then holds about 610 vectors. Prefetching <code>nprobe = 16</code> moves about 3.00 x 10^7 bytes, or 30.0 MB.</p>
+<p>At the 32 GB per second PCIe Gen4 x16 ceiling, transfer takes about 0.94 ms. At the stated practical 25 GB per second, it takes about 1.2 ms, which is under 7% of the rewrite window.</p>
+<p>A 1 billion parameter bfloat16 rewriter that emits 20 tokens reads 2 GB per step. At 2,000 GB per second, that is 1.00 ms per token and creates a 20.0 ms rewrite window.</p>
+<p>Sequential readiness is 20.0 + 0.94, or 20.94 ms. Pipelined readiness is the maximum of 20.0 and 0.94, or 20.0 ms.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>Launching prefetch only after rewrite returns creates two sequential stages with a pipelined label.</p>
+<p>Waiting for a final embedding before estimating centroids also removes the overlap.</p>
+<p>Prefetch-only search can lose recall when its prediction misses. Concurrent CPU search over non-prefetched clusters is the recovery path.</p>
+<p>With no rewrite step, there is no idle window to hide the transfer behind.</p>
+<h4 id="cost-and-complexity-4">Cost and complexity</h4>
+<p>The 0.94 ms saving is 4.5% of the 20.94 ms sequential total.</p>
+<p>Raising <code>nprobe</code> from 16 to 128 multiplies the bytes by eight. Transfer becomes about 7.5 ms at the ceiling or 9.6 ms at the practical rate, still inside this 20.0 ms window.</p>
+<p>The limit is the rewrite-window length. A faster rewriter can put the same transfer back on the critical path.</p>
+<p>Use HBM as a prefetch cache when the full corpus does not fit. Keep the whole index resident only when memory leaves room for weights, KV cache, and activations.</p>
+<p>Start centroid prediction from the best available draft embedding. Refine it as more rewrite tokens arrive when the interface exposes intermediate drafts.</p>
+<p>Batch prefetch transfers only when traffic amortizes driver overhead without adding more queueing delay than the transfer itself.</p>
+<h3 id="376-funnel-retrieval-coarse-to-fine-cascades">37.6 Funnel retrieval: coarse-to-fine cascades</h3>
+<h4 id="what-5">What</h4>
+<p>The scenario absorbs a dozen more sources, including wikis from three acquired teams, and grows from 10 million to 200 million chunks. HNSW p50 barely moves because its search cost grows logarithmically, but the old top five now competes against twenty times more distractors.</p>
+<p>A flat pipeline sends <code>k</code> candidates to a downstream stage with per-item cost <code>c</code>, so that stage costs <code>k</code> times <code>c</code>.</p>
+<p>A cascade of <code>m</code> stages keeps fractions set by reduction factors <code>r</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mi>m</mi></msub><mo>=</mo><mfrac><mi>N</mi><mrow><msub><mi>r</mi><mn>1</mn></msub><msub><mi>r</mi><mn>2</mn></msub><mi>⋯</mi><msub><mi>r</mi><mi>m</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">k_m = \frac{N}{r_1 r_2 \cdots r_m}</annotation></semantics></math></p>
+<p>FunnelRAG first runs BM25 over roughly 4,000-token clusters, then dense retrieval over roughly 1,000-token documents, then a ranking model over roughly 100-token passages.</p>
+<h4 id="why-5">Why</h4>
+<p>Corpus growth can be absorbed by a cheap early stage instead of widening the most expensive final stage.</p>
+<p>Figure 37.6 starts with 2.5 million clusters and keeps 300. Those clusters contain 1,200 candidate documents, of which dense retrieval keeps 40. Those documents contain 400 passages, of which the ranker keeps 20 for context.</p>
+<p>The expensive ranker sees 400 candidates rather than the full corpus.</p>
+<p>RRF solves a different problem. It merges sparse and dense rankings that each searched the corpus, so it does not reduce either search space.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>The first stage sets the recall floor. No later model can recover a cluster that BM25 removed.</p>
+<p>Monitor recall after every stage rather than only end-to-end answer quality.</p>
+<p>Stale clusters can quietly lower coarse-stage recall as topics drift.</p>
+<p>Widening the flat top-k transfers corpus growth into rerank cost, prompt length, and lost-in-the-middle risk.</p>
+<h4 id="cost-and-complexity-5">Cost and complexity</h4>
+<p>The worked corpus contains 100 million passages of 100 tokens each.</p>
+<p>A flat 768-dimensional fp32 passage index costs 307.2 GB, which forces sharding or quantization before further growth in the source's example.</p>
+<p>Grouping ten passages per 1,000-token document reduces the dense index to 30.72 GB, a ten times footprint reduction.</p>
+<p>Only 400 of 100 million passages reach full cross-attention. The source calls this a five-order-of-magnitude reduction.</p>
+<p>FunnelRAG reports roughly 40% lower end-to-end retrieval latency with accuracy held or improved at its tested scale. The worked 100 million passage example is deliberately one order of magnitude larger than that reported scale.</p>
+<p>Use the funnel once a flat index no longer fits comfortably on one node, at tens of millions of items and up in the source, or when memory, cold start, or reindex time appears in profiling. Treat it mainly as a throughput and footprint lever unless the index itself is cold or disk-backed.</p>
+<p>Put sparse retrieval first by default. The stated exception is paraphrase-heavy text with little lexical structure, where a measured coarse dense pass may recall better.</p>
+<p>Size each cutoff from downstream cost and per-stage recall. Recluster on a maintenance schedule, with faster rebuilds when topic drift is rapid. If one sprint cannot fit a three-stage build, the source recommends a minimal sparse prefilter before the existing dense stage.</p>
+<h3 id="377-recursive-summarization-for-thematic-queries">37.7 Recursive summarization for thematic queries</h3>
+<h4 id="what-6">What</h4>
+<p>Leaf retrieval returns rank one for the local mentor question in the source's 300-page novel. The central-conflict query instead returns five chunks about five scenes because no 100-token span states the whole-book theme.</p>
+<p>It can fail on the central conflict because no 100-token span states a whole-book theme.</p>
+<p>RAPTOR builds a multi-resolution index with a repeated cluster, summarize, and embed loop.</p>
+<p>It splits leaves at about 100 tokens on sentence boundaries. It embeds them, uses soft Gaussian-mixture clustering in a dimension-reduced space, summarizes each cluster with a cheap instruction-tuned model, embeds each summary, and recurses to one root. The paper uses gpt-3.5-turbo for the summarizer.</p>
+<p>Soft membership lets one leaf support more than one theme.</p>
+<p>For average branching factor <code>c</code>, leaf count <code>N</code>, and a height that includes the leaf layer:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>≈</mo><mrow><mo stretchy="true" form="prefix">⌈</mo><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mi>c</mi></msub><mi>N</mi><mo stretchy="true" form="postfix">⌉</mo></mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">h \approx \left\lceil \log_c N \right\rceil + 1</annotation></semantics></math></p>
+<h4 id="why-6">Why</h4>
+<p>Every node uses the same embedding space. One cosine-similarity ranking can compare a sentence, section summary, and book-level summary.</p>
+<p>Collapsed retrieval flattens every level into one candidate pool and takes one global top-k.</p>
+<p>A factual query can favor leaves. A thematic query can favor higher summaries.</p>
+<p>Tree traversal instead reserves a fixed quota for every level and descends through retained parents. That quota imposes the same resolution prior on every query.</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>Increasing leaf top-k returns more locally related scenes but does not create the missing aggregate claim.</p>
+<p>A bigger embedding model or reranker only reorders the same leaf candidates.</p>
+<p>Weak summaries can discard facts. Round-trip a sample against its source leaves before trusting the tree.</p>
+<p>Material source changes can invalidate every ancestor up to the root.</p>
+<h4 id="cost-and-complexity-6">Cost and complexity</h4>
+<p>A 120,000-token novel yields 1,200 leaves at 100 tokens each.</p>
+<p>At branching factor 10, the levels contain 1,200, 120, 12, 2, and 1 nodes. Height is 5.</p>
+<p>The 1,335 total nodes add 135 embeddings, about 11% over the flat index, and require 135 internal summarization calls.</p>
+<p>Each internal call compresses roughly ten 100-token inputs in the worked construction.</p>
+<p>Traversal with 20 nodes across 5 levels touches 100 nodes for every query. A factual query pays for 80 summary nodes it does not need.</p>
+<p>Collapsed retrieval keeps one global top 20. A factual result near the leaf layer gives about a 2,000-token context, while a thematic result lands mostly at levels 2 through 4 and uses summaries that cover many leaves.</p>
+<p>Sarthi et al. (2024) report a 20 percentage point absolute QA accuracy gain on QuALITY over their strongest compared baseline when RAPTOR is coupled with GPT-4, and their ablations favor collapsed retrieval over traversal.</p>
+<p>Build the tree for a novel, long contract, multi-hundred-page report, or other linked corpus with thematic, comparative, or change-over-time questions. Independent short articles gain little.</p>
+<p>Use a cheap summarizer by default. Treat construction as a background job. Rebuild after material changes, or name a bounded stale-summary window and trigger targeted ancestor work when changed leaf embeddings shift cluster membership.</p>
+<p>At branching factor <code>c</code>, the source estimates internal-node overhead near <code>1/(c - 1)</code> of leaf count. Larger <code>c</code> reduces storage at the cost of summary granularity.</p>
+<h3 id="378-cost-per-query-end-to-end">37.8 Cost per query, end to end</h3>
+<h4 id="what-7">What</h4>
+<p>Self-hosted cost is hardware price multiplied by occupied wall-clock time at the achieved operating point.</p>
+<p>For hourly GPU price <code>P</code> and stage times <code>t_i</code> in milliseconds:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>q</mi></msub><mo>=</mo><mfrac><mi>P</mi><mrow><mn>3</mn><mo>,</mo><mn>600</mn><mo>,</mo><mn>000</mn></mrow></mfrac><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>t</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">C_q = \frac{P}{3{,}600{,}000}\sum_i t_i</annotation></semantics></math></p>
+<p>Prefill and rerank are compute-bound in the stated regime. Batching <code>B</code> requests performs about <code>B</code> times their work in about <code>B</code> times the GPU time, so billed time per query barely changes.</p>
+<p>Decode is memory-bound. Concurrent requests share the same model-weight read.</p>
+<p>With <code>Nb</code> GB of weights, <code>c</code> GB of cache per stream per step, <code>s</code> output tokens, and 2,000 GB per second bandwidth:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mi>s</mi><mrow><mn>2</mn><mo>,</mo><mn>000</mn></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mi>N</mi><mi>b</mi></mrow><mi>B</mi></mfrac><mo>+</mo><mi>c</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">t_{\mathrm{decode}}(B) = \frac{s}{2{,}000}\left(\frac{Nb}{B} + c\right)</annotation></semantics></math></p>
+<p>As <code>B</code> grows, the weight term amortizes and the per-stream cache term remains.</p>
+<h4 id="why-7">Why</h4>
+<p>At batch size one, embed, search, rerank, and prefill total 121.9 ms. Decode takes 1,221 ms.</p>
+<p>At $2.50 per GPU-hour, the 1,343 ms request costs about $0.000933, or $933 per million queries.</p>
+<p>At <code>B = 32</code>, decode becomes:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>150</mn><mo>×</mo><mfrac><mrow><mn>16</mn><mi>/</mi><mn>32</mn><mo>+</mo><mn>0.28</mn></mrow><mrow><mn>2</mn><mo>,</mo><mn>000</mn></mrow></mfrac><mo>=</mo><mn>0.0585</mn><mspace width="0.222em"></mspace><mi mathvariant="normal">s</mi><mo>=</mo><mn>58.5</mn><mspace width="0.222em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">s</mi></mrow></mrow><annotation encoding="application/x-tex">150 \times \frac{16/32 + 0.28}{2{,}000} = 0.0585\ \mathrm{s} = 58.5\ \mathrm{ms}</annotation></semantics></math></p>
+<p>The total becomes 180.4 ms. Cost becomes about $0.000125, or $125 per million queries, which is about 7.4 times cheaper.</p>
+<p>Decode's cost share falls from 90.9% to 32.4%. Prefill becomes 55.2%.</p>
+<h4 id="failure-without-it-7">Failure without it</h4>
+<p>Using the unbatched latency share as the production cost share overstates decode after batching.</p>
+<p>Replacing 8 billion parameters with 4 billion roughly halves the weight term. The source calls that term a minority at production batch sizes, but its own <code>B = 32</code> values give 0.50 GB of weight per query versus 0.28 GB of cache, so the weight term is still larger at that operating point. Decode is only 32.4% of the total bill there, which still rules out the proposed 30% total saving and leaves the source's possible faithfulness cost at the same context budget.</p>
+<p>Treating batch size 32 as free ignores queueing. A request can wait for 31 peers, which trades dollars for TTFT and 99th-percentile (p99) latency.</p>
+<h4 id="cost-and-complexity-7">Cost and complexity</h4>
+<p>The 10 million vector, 768-dimensional fp32 store occupies 30.72 GB before HNSW link overhead.</p>
+<p>At the source's assumed $0.01 per GB-hour, it costs about $0.31 per hour whether or not a query arrives.</p>
+<p>The fixed and variable costs cross at about 2,500 queries per hour, or 0.69 queries per second (QPS).</p>
+<p>Below roughly one QPS, the always-on index can dominate. Above it, its per-query share becomes small beside generation compute.</p>
+<p>Decode-only cost at batch 32 is about $0.0000406 per query. Across 150 output tokens, that is about $0.27 per million output tokens.</p>
+<p>Model cost as spend divided by achieved throughput. Raise decode utilization before shrinking the model when quality is still needed.</p>
+<p>After decode is batched, trim retrieved chunks and rerank depth when evaluation supports the recall trade. Those changes reduce compute-bound prefill and rerank.</p>
+<p>Use shared or serverless index capacity for low average traffic when cold-start latency is acceptable. The source maps a steady 50 QPS tenant to dedicated batched capacity and a 0.3 QPS tenant with 20 QPS bursts to shared or serverless capacity. Use dedicated capacity after the crossover when tail-latency stability justifies it.</p>
+<p>For a third-party application programming interface (API), price the invoiced input and output units directly. The provider has already amortized its own fleet. If it publishes one blended rate, reconstruct the input and output split before trusting the total.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-371">Figure 37.1</h3>
+<blockquote>
+<p>Latency in milliseconds on one linear scale embed <code>#</code> 8 ms (0.6%) ANN search <code>#</code> 6 ms (0.4%) rerank <code>#</code> 8.3 ms (0.6%) prefill <code>#####</code> 99.6 ms (7.4%) decode <code>#############################################################</code> 1,221 ms (90.9%) axis 0, 200, 400, 600, 800, 1,000, and 1,200 ms, all bars start at 0</p>
+</blockquote>
+<p><strong>Figure 37.1:</strong> Decode is 91% of a 1.34-second RAG query even though prefill performs fourteen times more arithmetic in a tenth of the time - the other four stages are barely visible at this scale because they are not the bottleneck.</p>
+<h3 id="figure-372">Figure 37.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph NR[&quot;No reuse&quot;]
+    N1[&quot;3 chunks and query, 2,048 tokens&quot;] --&gt; N2[&quot;full prefill, 99.6 ms&quot;] --&gt; N3[&quot;decode, 1,198 ms&quot;]
+  end
+  subgraph KR[&quot;KV-cache reuse&quot;]
+    S[&quot;offline store, chunks A, B, C&quot;] --&gt;|&quot;load 8.3 ms&quot;| K[&quot;concatenated cache, 2,000 tokens, 0 new FLOPs&quot;]
+    K --&gt;|&quot;query, 48 fresh tokens&quot;| P[&quot;fresh prefill, 2.3 ms&quot;] --&gt; D[&quot;decode, 1,198 ms&quot;]
+  end</code></pre></details></figure>
+<p><strong>Figure 37.2:</strong> Concatenating precomputed, per-chunk KV caches turns an online 2,048-token prefill into a 48-token one, loaded rather than recomputed. Decode, still 91% of the query (section 37.1), is identical either way.</p>
+<h3 id="figure-373">Figure 37.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph BI[&quot;Bidirectional cross-encoder&quot;]
+    Q[&quot;query, 24 tokens&quot;] &lt;--&gt;|&quot;attention both ways&quot;| D[&quot;document, 400 tokens&quot;]
+    D --&gt; X[&quot;document cache depends on this query, full recompute&quot;]
+  end
+  subgraph CA[&quot;Causal decoder, document first&quot;]
+    D2[&quot;document, 400 tokens&quot;]
+    Q2[&quot;query, 24 tokens&quot;] --&gt;|&quot;attends backward&quot;| D2
+    D2 --&gt; Y[&quot;document cache is query-independent, precompute once&quot;]
+  end</code></pre></details></figure>
+<p><strong>Figure 37.3:</strong> Bidirectional attention entangles document and query key/value vectors regardless of order. Causal masking with the document placed first decouples them, so only the document-first ordering leaves a cacheable artifact.</p>
+<h3 id="figure-374">Figure 37.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+  subgraph A[&quot;Request A, 180-token document and 9-token query&quot;]
+    AD[&quot;document, 180 tokens&quot;] --&gt; AP[&quot;masked padding&quot;] --&gt; AQ[&quot;query, 9 tokens&quot;]
+  end
+  subgraph B[&quot;Request B, 400-token document and 24-token query&quot;]
+    BD[&quot;document, 400 tokens&quot;] --&gt; BQ[&quot;query, 24 tokens&quot;]
+  end
+  A --&gt; S[&quot;same 424-position tensor shape, one compiled graph&quot;]
+  B --&gt; S</code></pre></details></figure>
+<p><strong>Figure 37.4:</strong> A fixed-size slot packs the document from the start and the query flush against the end, masking whatever is left in between, so every request presents the identical tensor shape to a compiled or captured kernel graph regardless of actual document or query length.</p>
+<h3 id="figure-375">Figure 37.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph SEQ[&quot;Sequential&quot;]
+    R1[&quot;query rewrite, 20.0 ms&quot;] --&gt; P1[&quot;prefetch, 0.94 ms&quot;] --&gt; T1[&quot;search-ready at 20.94 ms&quot;]
+  end
+  subgraph PIPE[&quot;Pipelined TeleRAG&quot;]
+    R2[&quot;query rewrite, 20.0 ms&quot;] --&gt; T2[&quot;search-ready at 20.0 ms&quot;]
+    P2[&quot;prefetch, 0.94 ms during rewrite&quot;] --&gt; T2
+    I[&quot;GPU copy engine idle before prefetch&quot;] --&gt; P2
+  end</code></pre></details></figure>
+<p><strong>Figure 37.5:</strong> The prefetch transfer is identical in both timelines - only its placement changes - so moving it inside the rewrite window removes it from the query's critical path entirely.</p>
+<h3 id="figure-376">Figure 37.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+  S1[&quot;Stage 1, sparse BM25, 4,000-token clusters, 2.5 million to 300&quot;] --&gt; S2[&quot;Stage 2, dense, 1,000-token documents, 1,200 to 40&quot;]
+  S2 --&gt; S3[&quot;Stage 3, ranker, 100-token passages, 400 to 20&quot;]
+  S3 --&gt; C[&quot;final context, 20 passages&quot;]</code></pre></details></figure>
+<p><strong>Figure 37.6:</strong> Each stage hands a shrinking, purpose-matched candidate set to the next - the funnel's cost is set by what survives to the narrowest stage, not by the corpus size feeding the widest one.</p>
+<h3 id="figure-377">Figure 37.7</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+  subgraph CP[&quot;collapsed pool, one top-k over every level&quot;]
+    R((&quot;root&quot;))
+    R -.-&gt; S1(&quot;summary&quot;) &amp; S2(&quot;summary&quot;)
+    S1 -.-&gt; C1(&quot;cluster&quot;) &amp; C2(&quot;cluster&quot;)
+    S2 -.-&gt; C3(&quot;cluster&quot;) &amp; C4(&quot;cluster&quot;)
+    C1 -.-&gt; L1[&quot; &quot;] &amp; L2[&quot; &quot;] &amp; L3[&quot; &quot;]
+    C2 -.-&gt; L4[&quot; &quot;] &amp; L5[&quot; &quot;] &amp; L6[&quot; &quot;]
+    C3 -.-&gt; L7[&quot; &quot;] &amp; L8[&quot; &quot;] &amp; L9[&quot; &quot;]
+    C4 -.-&gt; L10[&quot; &quot;] &amp; L11[&quot; &quot;] &amp; L12[&quot; &quot;]
+  end
+  style CP stroke-dasharray: 2 3
+  classDef root stroke-width:4px
+  classDef summary stroke-width:2px
+  classDef cluster stroke-width:1px,stroke-dasharray:5 5
+  class R root
+  class S1,S2 summary
+  class C1,C2,C3,C4 cluster</code></pre></details></figure>
+<p><strong>Figure 37.7:</strong> Cluster-summarize-embed builds one tree from leaves to root, and collapsed retrieval treats every node on that tree, regardless of level, as a single candidate pool for one similarity ranking.</p>
+<h3 id="figure-378">Figure 37.8</h3>
+<blockquote>
+<p>B = 1 B = 32 <code>+------------------+</code> <code>+------------------+</code> <code>| decode 90.9%     |</code> <code>| decode 32.4%     |</code> <code>|                  |</code> <code>+------------------+</code> <code>|                  |</code> <code>| prefill 55.2%    |</code> <code>+------------------+</code> <code>+------------------+</code> <code>| prefill 7.4%     |</code> <code>| combined other  |</code> <code>| combined other  |</code> <code>+------------------+</code> <code>+------------------+</code> $125 per million queries $933 per million queries</p>
+</blockquote>
+<p><strong>Figure 37.8:</strong> Batching decode from B = 1 to B = 32 collapses decode's share of the bill from 90.9% to 32.4% and makes prefill - untouched by batching because it is compute-bound - the largest line item at 55.2%.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw the five request stages and write 8, 6, 8.3, 99.6, and 1,221 ms below them.</li>
+<li>Put the 170 FLOPs per byte ridge above the line. Mark prefill as compute-bound and decode as bandwidth-bound.</li>
+<li>Split the cache lane into full prefill and 2,000 cached plus 48 fresh tokens.</li>
+<li>Draw bidirectional query-document arrows, then replace them with a document-first causal arrow.</li>
+<li>Pack two unequal requests into the same 424-position slot and circle the reusable compiled graph.</li>
+<li>Place the 0.94 ms prefetch inside the 20.0 ms rewrite window.</li>
+<li>Draw the sparse, dense, and ranker funnel beside the collapsed RAPTOR tree.</li>
+<li>Finish with the B = 1 and B = 32 cost bars and label the fixed-index crossover at 0.69 QPS.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<blockquote>
+<p>Draw the five-stage latency bar. Mark decode at 1,221 of 1,343 milliseconds. The roofline explains why. Prefill grows with context and clears the ridge, while decode rereads weights for every token. Next, add cached chunks, document-first reranking, and fixed-shape fused kernels as three reuse lanes. Then draw the overlapped prefetch window, the retrieval funnel, and the RAPTOR tree. Finish with the cost bars. Batching decode from one to thirty-two cuts cost from 933 to 125 dollars per million queries, so prefill becomes the largest cost line. Profile first, then optimize the stage and operating point you pay for.</p>
+</blockquote>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="probe-1-product-wants-p50-below-500-ms-what-do-you-change-first">Probe 1: Product wants p50 below 500 ms. What do you change first?</h3>
+<p>Answer: Profile all five stages because the worked request is already 2.7 times above target and decode owns 90.9%. Shorter output, quantization, or batching attacks that bottleneck, while rerank and ANN cuts can spend recall for only a few milliseconds. Switch attention to prefill when TTFT, not total response time, is the product metric.</p>
+<h3 id="probe-2-can-every-repeated-document-be-cached-and-served-through-one-fast-compiled-path">Probe 2: Can every repeated document be cached and served through one fast compiled path?</h3>
+<p>Answer: No. Chunk reuse needs retrieval concentration, mask-aware fine-tuning, and position re-offsetting, while reranker reuse needs a document-first causal model. Compiled serving also needs fixed shapes, supported masks, output-parity checks, and a few buckets that balance graph reuse against padding.</p>
+<h3 id="probe-3-a-production-index-becomes-slow-and-recall-falls-as-the-corpus-grows-is-one-systems-fix-enough">Probe 3: A production index becomes slow and recall falls as the corpus grows. Is one systems fix enough?</h3>
+<p>Answer: Separate the failures. If the index no longer fits in HBM, prefetch likely IVF clusters during rewrite and search the rest on CPU. If a fixed top-k loses recall among more distractors, add a coarse-to-fine funnel that caps expensive work without removing the first stage's recall floor.</p>
+<h3 id="probe-4-why-does-a-larger-top-k-not-fix-thematic-questions">Probe 4: Why does a larger top-k not fix thematic questions?</h3>
+<p>Answer: The answer may not exist in any leaf, so RAPTOR creates summary nodes through recursive cluster, summarize, and embed steps. Collapsed retrieval lets one embedding ranking choose leaves for factual queries and summaries for thematic queries. Use tree traversal only when the product requires a fixed contribution from particular levels.</p>
+<h3 id="probe-5-decode-is-909-of-latency-is-it-also-909-of-production-cost">Probe 5: Decode is 90.9% of latency. Is it also 90.9% of production cost?</h3>
+<p>Answer: Only at batch size one in this example. At batch 32, shared weight reads cut decode to 58.5 ms and 32.4% of cost, while prefill reaches 55.2%. Price achieved throughput, queueing, input work, output work, and the always-on index separately before assuming a smaller generator gives the largest saving.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Exact source values and limits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H100 reference</td>
+<td>80 GB PCIe, 2,000 GB/s HBM2e, 3.4 x 10^14 sustained FLOPs/s, about 45% of 756 TFLOPs/s peak, 170 FLOPs/byte ridge</td>
+</tr>
+<tr>
+<td>Query encoder</td>
+<td>110 million parameters, 24 tokens, about 5.3 x 10^9 FLOPs, measured embed latency 8 ms</td>
+</tr>
+<tr>
+<td>Five-stage trace</td>
+<td>p50 1.3 seconds, 500 ms target, 30-second interview window, expected decode region 85% to 90% plus for a few thousand tokens, stages 8 ms, 6 ms, 8.3 ms, 99.6 ms, and 1,221 ms, total about 1,343 ms</td>
+</tr>
+<tr>
+<td>Rerank</td>
+<td>50 candidates, 256 tokens per pair, 2.82 x 10^12 FLOPs, 8.3 ms</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Five 400-token chunks plus 200 sum to 2,200 even though the source uses 2,048 for its formulas, giving 3.39 x 10^13 FLOPs and 99.6 ms</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>16 GB weights plus 0.28 GB average cache, 8.14 ms/token, 150 tokens, 1,221 ms, about 123 tokens/s</td>
+</tr>
+<tr>
+<td>Larger generator check</td>
+<td>30 billion versus 8 billion parameters gives 3.75 times bytes and about 4.6 s decode, while int8 reduces the multiplier to about 1.875</td>
+</tr>
+<tr>
+<td>Reuse context</td>
+<td>Thousands of paraphrases, 20 recurring questions, 500 articles, 2,000 cached tokens, 48 fresh tokens, 131,072 bytes per token, 262 MB cache, 7.94 x 10^11 fresh FLOPs, 2.3 ms compute</td>
+</tr>
+<tr>
+<td>HBM reuse</td>
+<td>0.13 ms load, about 2.5 ms total, about 40 times prefill reduction</td>
+</tr>
+<tr>
+<td>Host reuse</td>
+<td>31.5 GB/s PCIe, 8.3 ms load, about 10.7 ms total, about 9.3 times reduction, HBM about 63 times faster</td>
+</tr>
+<tr>
+<td>TurboRAG checks</td>
+<td>9.4 times peak TTFT, 8.6 times average LongBench speedup, 98.46% reported online-compute cut, 97.7% derived FLOP cut, about 6.7% end-to-end latency cut</td>
+</tr>
+<tr>
+<td>Causal reranker</td>
+<td>424-token pair 0.274 ms, 400-token cache build 0.259 ms, 24-token fresh query 0.0155 ms, 94% document share, 5.7% fresh share, 17.7 times steady-state saving, break-even near one repeat, under 5% repeats means about 95% one-use caches</td>
+</tr>
+<tr>
+<td>Fusion</td>
+<td>147,456 bytes or 144 KiB activation, 576 KiB per layer, 7.08 MB over 12 layers, 3.54 microseconds, source also states 0.00347 ms, 0.0190 to 0.0155 ms, 18% cut, 15% external sanity check</td>
+</tr>
+<tr>
+<td>Global padding warning</td>
+<td>2,000 tokens across 50 candidates gives 2.2 x 10^13 FLOPs and 64.7 ms, nearly eight times 8.3 ms</td>
+</tr>
+<tr>
+<td>Index scale</td>
+<td>10 million fp32 vectors at dimension 768 cost 3.072 x 10^10 bytes or 30.72 GB, while 500 million cost 1.536 x 10^12 bytes or about 1.54 TB, about 19 times 80 GB</td>
+</tr>
+<tr>
+<td>Base prefetch</td>
+<td><code>nlist = 16,384</code>, about 610 vectors/cluster, <code>nprobe = 16</code>, about 30.0 MB, 0.94 to 1.2 ms inside a 20.0 ms rewrite</td>
+</tr>
+<tr>
+<td>Deeper prefetch</td>
+<td><code>nprobe = 128</code> moves about eight times the bytes and takes about 7.5 to 9.6 ms under the two bandwidth assumptions</td>
+</tr>
+<tr>
+<td>Funnel</td>
+<td>10 million to 200 million chunks after a dozen added sources and wikis from three acquired teams, 20 times more distractors, worked 100 million passages, 2.5 million clusters to 300, 1,200 documents to 40, 400 passages to 20, 307.2 to 30.72 GB dense footprint, roughly 40% reported latency cut</td>
+</tr>
+<tr>
+<td>RAPTOR</td>
+<td>300-page motivating novel, five returned scenes, 120,000 tokens, 1,200 leaves, branching factor 10, five levels, 1,335 nodes, 135 summaries, about 11% storage overhead, 20 percentage point reported gain</td>
+</tr>
+<tr>
+<td>Batched cost</td>
+<td>$933 per million at B = 1 versus $125 at B = 32, 58.5 ms batched decode, 180.4 ms total, about 7.4 times cheaper, 32.4% decode and 55.2% prefill</td>
+</tr>
+<tr>
+<td>Fixed store</td>
+<td>30.72 GB at $0.01/GB-hour gives about $0.31/hour, crossover about 2,500 queries/hour or 0.69 QPS, tenant rates 50 QPS and 0.3 QPS with 20 QPS bursts, batched decode about $0.27 per million output tokens</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/36_provenance_and_adversarial_robustness.html"><small>Previous</small>Chapter 36. Provenance and Adversarial Robustness</a><a href="../chapters/38_distributed_and_federated_rag.html"><small>Next</small>Chapter 38. Distributed and Federated RAG</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A6. Notation Quick Reference | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A6_notation_quick_reference.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html" aria-current="page">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A6. Notation Quick Reference</h1><p class="chapter-meta">14 min estimated reading · Unit 56 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This appendix provides a compact, calculation-oriented reference for the source's symbols, overload rules, and conventions while leaving the extended discussion to the front matter.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Preserve case, primes, subscripts, and function arguments because they distinguish symbols.</li>
+<li>Read overloaded symbols from their local scope. The same letter can name different objects.</li>
+<li>Keep <code>m</code> for Product Quantization (PQ) sub-quantizers. <code>M</code> is the Hierarchical Navigable Small World (HNSW) out-degree and never means product quantization.</li>
+<li>Do not merge <code>R@k</code> , <code>P@k</code> , and <code>P_k</code> . They mean Recall at <code>k</code> , Precision at <code>k</code> , and segmentation error.</li>
+<li>Use base 2 for logarithms unless the text says otherwise. Use decimal storage units unless a quoted source explicitly uses binary units.</li>
+<li>Treat vectors as column vectors and read <code>⊤</code> as transpose.</li>
+<li>The recurring comparison setup is <code>d = 768</code> with a 110 million-parameter encoder. It is a book-wide default, not a new symbol definition.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of the notation sheet as the control board in a rail yard.</p>
+<p>Each symbol is a track label. <code>x</code> brings user input into the yard. <code>q = Φ(x)</code> sends a query toward retrieval. <code>c_1 ... c_k</code> carries contexts onward, and <code>y</code> marks the generated answer at the end of the route.</p>
+<p>Subscripts and primes are track markers. <code>k</code> and <code>k'</code> do not stop at the same platform. Uppercase <code>D</code> , lowercase <code>d</code> , and primed <code>D'</code> also lead to different destinations.</p>
+<p>The overload table is the switch chart. It tells the operator whether <code>d</code> means a document or dimensionality, whether <code>k</code> counts contexts or PQ centroids, and whether <code>N</code> counts vectors or model parameters.</p>
+<p>One switch has a stop sign. <code>M</code> belongs to HNSW out-degree. Product quantization uses lowercase <code>m</code> .</p>
+<p>The conventions are the station clock and scale. They set the logarithm base, storage units, latency units, cost units, vector orientation, and recurring comparison setup.</p>
+<p>The board works only when the operator reads the local route before interpreting a reused label.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<p>The three blocks below preserve the source layout and all 57 primary symbol-meaning entries.</p>
+<h3 id="block-1-system-retrieval-and-index-notation">Block 1: System, retrieval, and index notation</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>θ</code></td>
+<td>Generator parameters</td>
+<td>Locates the trainable or frozen generator state</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Datastore</td>
+<td>Names the corpus available to retrieval</td>
+</tr>
+<tr>
+<td><code>D_1 ... D_m</code></td>
+<td>Component stores</td>
+<td>Separates federated or multimodal stores</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>User input</td>
+<td>Marks the pipeline input before encoding</td>
+</tr>
+<tr>
+<td><code>q = Φ(x)</code></td>
+<td>Query issued to the retriever</td>
+<td>Connects user input to retrieval geometry</td>
+</tr>
+<tr>
+<td><code>g(x)</code></td>
+<td>Retrieval gate with values <code>{0, 1}</code></td>
+<td>Decides whether retrieval runs</td>
+</tr>
+<tr>
+<td><code>RET</code></td>
+<td>Retriever</td>
+<td>Names the evidence-selection component</td>
+</tr>
+<tr>
+<td><code>GEN_θ</code></td>
+<td>Generator</td>
+<td>Names the answer-producing component</td>
+</tr>
+<tr>
+<td><code>c_1 ... c_k</code></td>
+<td>Retrieved contexts</td>
+<td>Identifies evidence passed downstream</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Generated answer</td>
+<td>Marks the pipeline output</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Contexts reaching the generator</td>
+<td>Sets the final context depth</td>
+</tr>
+<tr>
+<td><code>k'</code></td>
+<td>Retrieval depth before reranking</td>
+<td>Separates candidate depth from final depth</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Vectors in the index</td>
+<td>Sets index scale</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Embedding dimension</td>
+<td>Sets vector width and memory cost</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>HNSW out-degree</td>
+<td>Sets graph connectivity and memory</td>
+</tr>
+<tr>
+<td><code>M_0</code></td>
+<td>HNSW degree at layer 0</td>
+<td>Distinguishes the base-layer degree</td>
+</tr>
+<tr>
+<td><code>ef</code></td>
+<td>HNSW search beam</td>
+<td>Trades latency for recall at query time</td>
+</tr>
+<tr>
+<td><code>n_probe</code></td>
+<td>Inverted File (IVF) cells probed</td>
+<td>Trades search breadth for latency</td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>PQ sub-quantizers</td>
+<td>Splits a vector for compression</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>PQ centroids per subspace</td>
+<td>Sets the local codebook size</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Code length in bits</td>
+<td>Sets compressed storage per vector</td>
+</tr>
+<tr>
+<td><code>R@k</code></td>
+<td>Recall at <code>k</code></td>
+<td>Measures retrieval coverage at depth <code>k</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="block-2-scoring-and-evaluation-notation">Block 2: Scoring and evaluation notation</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s(q, d)</code></td>
+<td>Relevance score</td>
+<td>Orders a document for a query</td>
+</tr>
+<tr>
+<td><code>rank(d)</code></td>
+<td>Position in a ranked list</td>
+<td>Connects a score to rank-based metrics</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>Term frequency</td>
+<td>Controls lexical evidence strength</td>
+</tr>
+<tr>
+<td><code>k_1, b</code></td>
+<td>Best Matching 25 (BM25) saturation and length normalization</td>
+<td>Control repetition and document-length effects</td>
+</tr>
+<tr>
+<td><code>avgdl</code></td>
+<td>Mean document length</td>
+<td>Anchors BM25 length normalization</td>
+</tr>
+<tr>
+<td><code>E_Q, E_P</code></td>
+<td>Query and passage encoders</td>
+<td>Map both sides into retrieval space</td>
+</tr>
+<tr>
+<td><code>L_q, L_p</code></td>
+<td>Query and passage token lengths</td>
+<td>Set encoder and interaction cost</td>
+</tr>
+<tr>
+<td><code>MaxSim</code></td>
+<td>Late-interaction operator</td>
+<td>Aggregates token-level similarity</td>
+</tr>
+<tr>
+<td><code>MRR</code></td>
+<td>Mean Reciprocal Rank</td>
+<td>Rewards the first relevant result</td>
+</tr>
+<tr>
+<td><code>DCG</code></td>
+<td>Discounted Cumulative Gain</td>
+<td>Discounts useful results by rank</td>
+</tr>
+<tr>
+<td><code>nDCG@k</code></td>
+<td>Normalized Discounted Cumulative Gain at <code>k</code></td>
+<td>Compares ranking quality at a fixed depth</td>
+</tr>
+<tr>
+<td><code>P@k</code></td>
+<td>Precision at <code>k</code></td>
+<td>Measures useful-result density</td>
+</tr>
+<tr>
+<td><code>P_k</code></td>
+<td>Segmentation error</td>
+<td>Measures chunk-boundary error rather than precision</td>
+</tr>
+<tr>
+<td><code>IoU</code></td>
+<td>Intersection over Union for chunk-span overlap</td>
+<td>Measures overlap between predicted and reference spans</td>
+</tr>
+<tr>
+<td><code>F_1</code></td>
+<td>Harmonic mean of precision <code>P</code> and recall <code>R</code></td>
+<td>Balances retrieval coverage and precision</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="block-3-training-serving-and-graph-notation">Block 3: Training, serving, and graph notation</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ℒ</code></td>
+<td>Training loss</td>
+<td>Defines the optimization target</td>
+</tr>
+<tr>
+<td><code>τ</code></td>
+<td>Softmax temperature</td>
+<td>Controls distribution sharpness</td>
+</tr>
+<tr>
+<td><code>D'</code></td>
+<td>Retrieved subset in training</td>
+<td>Separates training evidence from the full store</td>
+</tr>
+<tr>
+<td><code>λ(d, x)</code></td>
+<td>Ensemble retrieval weight</td>
+<td>Mixes retrieval signals for one document</td>
+</tr>
+<tr>
+<td><code>P_R</code></td>
+<td>Retriever distribution</td>
+<td>Describes retrieval preferences</td>
+</tr>
+<tr>
+<td><code>Q_LM</code></td>
+<td>Generator preference distribution</td>
+<td>Describes generator preferences</td>
+</tr>
+<tr>
+<td><code>γ, β</code></td>
+<td>Retriever and generator temperatures</td>
+<td>Calibrate the two distributions</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>Low-Rank Adaptation (LoRA) rank</td>
+<td>Sets adapter capacity</td>
+</tr>
+<tr>
+<td><code>A, B</code></td>
+<td>LoRA low-rank factors</td>
+<td>Form the adapter update</td>
+</tr>
+<tr>
+<td><code>E_q, E_d</code></td>
+<td>Shared-space embeddings</td>
+<td>Enable cross-modal or shared-space scoring</td>
+</tr>
+<tr>
+<td><code>t_i</code></td>
+<td>Stage <code>i</code> latency</td>
+<td>Supports stage-level latency attribution</td>
+</tr>
+<tr>
+<td><code>C_q</code></td>
+<td>Cost per query</td>
+<td>Connects design choices to serving economics</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>Serving batch size</td>
+<td>Controls throughput and memory use</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Tokens in context or answer</td>
+<td>Sets sequence-dependent serving cost</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>Transformer layers</td>
+<td>Sets model depth and repeated compute</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>Knowledge graph</td>
+<td>Names the graph used for grounded retrieval</td>
+</tr>
+<tr>
+<td><code>∣V∣, ∣E∣</code></td>
+<td>Entities and edges</td>
+<td>Quantify graph size</td>
+</tr>
+<tr>
+<td><code>ω</code></td>
+<td>Graph grounding operator</td>
+<td>Maps a query into graph-grounded form</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Traversal depth in hops</td>
+<td>Bounds graph search and reasoning depth</td>
+</tr>
+<tr>
+<td><code>θ_m</code></td>
+<td>Per-modality threshold</td>
+<td>Controls multimodal routing decisions</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="purpose-and-use">Purpose and use</h3>
+<p>The full notation chapter carries the conventions and extended overload discussion. This appendix is the compact version. It gives symbols and meanings for use during a derivation rather than during continuous reading.</p>
+<p>Read the exact glyph before assigning meaning. Case distinguishes <code>D</code> from <code>d</code> . A prime distinguishes <code>D'</code> from <code>D</code> and <code>k'</code> from <code>k</code> . Subscripts distinguish <code>M_0</code> , <code>P_R</code> , <code>Q_LM</code> , <code>θ_m</code> , and related symbols from their base letters.</p>
+<p>Function arguments also establish scope. <code>s(q, d)</code> is a relevance score, while standalone <code>s</code> counts tokens in a context or answer.</p>
+<p>The calligraphic symbol <code>ℒ</code> is training loss. Plain <code>L</code> counts Transformer layers.</p>
+<h3 id="overloaded-symbols">Overloaded symbols</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning A</th>
+<th>Meaning B or scope condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>d</code></td>
+<td>A document or chunk</td>
+<td>Embedding or hidden dimensionality</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Retrieved contexts</td>
+<td>PQ centroids per sub-quantizer</td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>PQ sub-quantizers</td>
+<td>Datastore count or modality index</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>HNSW out-degree</td>
+<td>Never product quantization. Product quantization uses <code>m</code>.</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>BM25 length normalization</td>
+<td>Code bits or bytes per parameter</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Vectors in the index</td>
+<td>Model parameter count</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Model parameter count</td>
+<td>Instance price per hour</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>The knowledge graph</td>
+<td>The graph's schema alone in Section 40.3</td>
+</tr>
+</tbody>
+</table></div>
+<p>The overload table is a scope rule. It does not authorize swapping meanings within one derivation. Use the surrounding topic to select the intended meaning.</p>
+<h3 id="conventions">Conventions</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Convention</th>
+<th>Rule</th>
+<th>Scope condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logarithms</td>
+<td>Use base 2.</td>
+<td>A written alternative overrides the default.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Use decimal units. <code>1 gigabyte (GB) = 10⁹ bytes</code>.</td>
+<td>This is the default storage convention.</td>
+</tr>
+<tr>
+<td>Quoted storage source</td>
+<td>Preserve binary units.</td>
+<td>Apply this only when the source is quoted in binary units and the text says so.</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Measure in milliseconds.</td>
+<td>Applies when no different unit is written.</td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>Measure in queries per second.</td>
+<td>Applies when no different unit is written.</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Measure in United States dollars per query.</td>
+<td>Applies when no different unit is written.</td>
+</tr>
+<tr>
+<td>Vectors and transpose</td>
+<td>Vectors are column vectors. <code>⊤</code> denotes transpose.</td>
+<td>Preserve orientation in derivations.</td>
+</tr>
+<tr>
+<td>Recurring default</td>
+<td>Use <code>d = 768</code> with a 110 million-parameter encoder.</td>
+<td>This lets worked examples across chapters be compared without restating the setup.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="scope-sensitive-reading-sequence">Scope-sensitive reading sequence</h3>
+<ol type="1">
+<li>Match the exact case, prime, and subscript.</li>
+<li>Read function arguments before reducing a symbol to its base letter.</li>
+<li>Check the explicit overload table for <code>d</code> , <code>k</code> , <code>m</code> , <code>M</code> , <code>b</code> , <code>N</code> , <code>P</code> , or <code>G</code> .</li>
+<li>Apply the topic scope, such as retrieval, index structure, evaluation, training, serving, or graphs.</li>
+<li>Apply written units first. Use the convention defaults only when no alternative is written.</li>
+<li>Treat <code>d = 768</code> and the 110 million-parameter encoder as the recurring comparison setup.</li>
+</ol>
+<h3 id="distinctions-that-must-survive-transcription">Distinctions that must survive transcription</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Pair or family</th>
+<th>Required distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>D</code>, <code>d</code>, <code>D'</code></td>
+<td>Datastore, document or dimension by scope, and retrieved training subset</td>
+</tr>
+<tr>
+<td><code>k</code>, <code>k'</code>, <code>k_1</code></td>
+<td>Context count or PQ centroid count, pre-rerank depth, and BM25 saturation</td>
+</tr>
+<tr>
+<td><code>M</code>, <code>M_0</code>, <code>m</code></td>
+<td>HNSW out-degree, HNSW layer-0 degree, and PQ sub-quantizer count</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>BM25 length normalization, code bits, or bytes per parameter by scope</td>
+</tr>
+<tr>
+<td><code>P@k</code>, <code>P_k</code>, <code>P_R</code>, <code>P</code></td>
+<td>Precision at <code>k</code>, segmentation error, retriever distribution, and an overloaded parameter or price symbol</td>
+</tr>
+<tr>
+<td><code>R@k</code>, <code>MRR</code>, <code>DCG</code>, <code>nDCG@k</code>, <code>F_1</code></td>
+<td>Distinct evaluation quantities</td>
+</tr>
+<tr>
+<td><code>s(q, d)</code>, <code>s</code></td>
+<td>Relevance score and token count</td>
+</tr>
+<tr>
+<td><code>ℒ</code>, <code>L</code>, <code>L_q</code>, <code>L_p</code></td>
+<td>Training loss, Transformer layer count, and query or passage token lengths</td>
+</tr>
+<tr>
+<td><code>E_Q</code>, <code>E_P</code>, <code>E_q</code>, <code>E_d</code></td>
+<td>Query and passage encoders versus shared-space embeddings</td>
+</tr>
+<tr>
+<td><code>G</code>, <code>∣V∣</code>, <code>∣E∣</code>, <code>ω</code>, <code>h</code></td>
+<td>Graph, entity count, edge count, grounding operator, and hop depth</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest records 0 numbered figures and 0 numbered tables. The source contains two unnumbered reference layouts. The main symbol layout is recreated in the three Decoder table blocks. The overloaded-symbol layout is recreated under Core mechanics. No source number or caption is invented.</p>
+<h3 id="source-layout-accounting">Source layout accounting</h3>
+<ol type="1">
+<li>Main notation layout: 57 symbol-meaning entries across three horizontal blocks.</li>
+<li>Overloaded symbols layout: 8 symbols with two meanings or a scope restriction.</li>
+<li>Conventions text: 8 rules covering bases, units, orientation, and the recurring default.</li>
+</ol>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw three stacked boxes for system and index, evaluation, and training or serving or graph notation.</li>
+<li>Put <code>x</code> , <code>q = Φ(x)</code> , <code>RET</code> , <code>c_1 ... c_k</code> , <code>GEN_θ</code> , and <code>y</code> across the first box.</li>
+<li>Add <code>N</code> , <code>d</code> , <code>M</code> , <code>M_0</code> , <code>ef</code> , <code>n_probe</code> , <code>m</code> , <code>k</code> , and <code>b</code> below that path.</li>
+<li>Put scoring symbols and metric symbols in the second box.</li>
+<li>Put training, serving, and graph symbols in the third box.</li>
+<li>Draw a switch panel labeled <code>d</code> , <code>k</code> , <code>m</code> , <code>M</code> , <code>b</code> , <code>N</code> , <code>P</code> , and <code>G</code> .</li>
+<li>Mark <code>M</code> as HNSW only and <code>m</code> as the PQ symbol.</li>
+<li>Add a footer for base 2 logs, decimal storage, milliseconds, queries per second, and United States dollars per query.</li>
+<li>Finish with column vectors, <code>⊤</code> , <code>d = 768</code> , and the 110 million-parameter encoder.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Draw the notation sheet as a rail-yard board with three zones. The first tracks system flow from <code>x</code> through retrieval and generation, then adds index symbols. The second holds scoring and evaluation. The third holds training, serving, and graph notation. Now draw an overload switch for <code>d</code> , <code>k</code> , <code>m</code> , <code>M</code> , <code>b</code> , <code>N</code> , <code>P</code> , and <code>G</code> . Read scope before moving the switch. Mark uppercase <code>M</code> as HNSW only. Finish with the operating clock: base 2 logs, decimal storage, milliseconds, queries per second, United States dollars per query, column vectors, transpose, and the recurring <code>d = 768</code> setup.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-are-m-and-m-interchangeable-in-product-quantization">1. Are <code>m</code> and <code>M</code> interchangeable in product quantization?</h3>
+<p>No. Lowercase <code>m</code> is the number of PQ sub-quantizers, while uppercase <code>M</code> is HNSW out-degree and <code>M_0</code> is the HNSW degree at layer 0. The overload table explicitly says <code>M</code> never means product quantization.</p>
+<h3 id="2-does-k-always-mean-the-same-retrieval-depth">2. Does <code>k</code> always mean the same retrieval depth?</h3>
+<p>No. <code>k</code> can mean contexts reaching the generator or PQ centroids per sub-quantizer, while <code>k'</code> is retrieval depth before reranking. <code>k_1</code> is the BM25 saturation parameter, so the exact mark and local scope choose the meaning.</p>
+<h3 id="3-which-metric-symbols-are-easy-to-collapse-incorrectly">3. Which metric symbols are easy to collapse incorrectly?</h3>
+<p><code>R@k</code> is Recall at <code>k</code> , while <code>P@k</code> is Precision at <code>k</code> . <code>P_k</code> is segmentation error. <code>MRR</code> , <code>DCG</code> , <code>nDCG@k</code> , <code>IoU</code> , and <code>F_1</code> also retain separate meanings, so similar letters do not make them interchangeable.</p>
+<h3 id="4-what-defaults-apply-when-a-derivation-omits-units">4. What defaults apply when a derivation omits units?</h3>
+<p>Logarithms use base 2, while storage uses decimal units with <code>1 GB = 10⁹ bytes</code> . A quoted source can use binary units only when the text says so. Latency is milliseconds, throughput is queries per second, and cost is US dollars per query.</p>
+<h3 id="5-is-d--768-a-universal-requirement">5. Is <code>d = 768</code> a universal requirement?</h3>
+<p>No. It is the book's recurring default with a 110 million-parameter encoder, and its purpose is to make worked examples comparable without repeating the setup. A written alternative overrides a convention default.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primary reference entries</td>
+<td>57</td>
+<td>All symbol-meaning entries in the main layout</td>
+</tr>
+<tr>
+<td>Primary source blocks</td>
+<td>3</td>
+<td>System and index, evaluation, and training or serving or graph notation</td>
+</tr>
+<tr>
+<td>Explicit overloaded symbols</td>
+<td>8</td>
+<td><code>d</code>, <code>k</code>, <code>m</code>, <code>M</code>, <code>b</code>, <code>N</code>, <code>P</code>, and <code>G</code></td>
+</tr>
+<tr>
+<td>Convention rules</td>
+<td>8</td>
+<td>Base, storage, unit, orientation, and recurring-default rules</td>
+</tr>
+<tr>
+<td>Retrieval gate values</td>
+<td>2</td>
+<td><code>g(x)</code> takes values <code>{0, 1}</code></td>
+</tr>
+<tr>
+<td>Default logarithm base</td>
+<td>2</td>
+<td>Applies unless another base is written</td>
+</tr>
+<tr>
+<td>Decimal gigabyte</td>
+<td><code>10⁹</code> bytes</td>
+<td>Binary units require an explicit quoted-source exception</td>
+</tr>
+<tr>
+<td>Default embedding dimension</td>
+<td>768</td>
+<td>Recurring setup for comparable worked examples</td>
+</tr>
+<tr>
+<td>Default encoder size</td>
+<td>110 million parameters</td>
+<td>Paired with <code>d = 768</code> in the recurring setup</td>
+</tr>
+<tr>
+<td>Manifest numbered visuals</td>
+<td>0 figures, 0 tables</td>
+<td>The source layouts are unnumbered</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/A5_annotated_reading_list.html"><small>Previous</small>Appendix A5. Annotated Reading List</a><a href="../chapters/A7_glossary.html"><small>Next</small>Appendix A7. Glossary</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

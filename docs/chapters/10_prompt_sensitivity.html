@@ -1,0 +1,1811 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 10. Prompt Sensitivity | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/10_prompt_sensitivity.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group" open><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html" aria-current="page">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part III. Prompting and Context Construction</p><h1>Chapter 10. Prompt Sensitivity</h1><p class="chapter-meta">53 min estimated reading · Unit 19 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how meaning-preserving prompt changes can alter Retrieval-Augmented Generation (RAG), how to measure the effect, and how to make defensible template and optimization decisions.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Six meaning-free wrapper choices create 1,440 renderings of one request. Published spreads reach 76 accuracy points, so prompt format is a tuned system parameter.</li>
+<li>A single accuracy score is one draw from a format family. Compare retrievers only after controlling or independently optimizing the format for each arm.</li>
+<li>The prompt sensitivity index (POSIX) measures how much an answer's log-likelihood moves across equivalent prompt variants. It needs no correctness labels.</li>
+<li>Decoding confidence is a free warning signal. A small top-two probability gap means a modest prompt change can flip the next token.</li>
+<li>Sensitivity can rank candidate prompts, but it cannot certify correctness. A generator can trust a wrong retrieved passage and stay confidently wrong under every rewrite.</li>
+<li>In-format examples reduce sensitivity more than model scale or ordinary instruction tuning. They still do not eliminate the spread, and they consume context and key-value cache capacity.</li>
+<li>Prompt optimization needs a restricted search, paired comparisons, staged allocation, and held-out confirmation. Otherwise selection noise can fully explain a reported gain.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a restaurant where a pantry runner retrieves the ingredients and a chef prepares the answer. The order ticket is the prompt. The retrieved chunks are the ingredients placed beside that ticket. The wrapper is the ticket layout, including its header, numbering, separators, casing, and where the cooking instruction appears.</p>
+<p>Two tickets can request the same meal but use different boxes and punctuation. The chef still sees different marks in different positions. That is why an identical request can produce a different dish.</p>
+<p>The manager first lists every harmless ticket layout. Six layout choices multiply into 1,440 tickets for one meaning. The manager treats the winning layout as a kitchen setting, not as decoration. The manager also checks whether the finished plate follows the required serving format, because an unreadable plate fails even when its food is correct.</p>
+<p>Labels are slow, so the manager needs a faster fragility test. For each equivalent ticket, the chef exposes how strongly it prefers the dish it produced. POSIX compares those preference scores across tickets. Large movement means the chef depends heavily on ticket layout.</p>
+<p>The top-two choice gap is another clue. A chef barely choosing soup over salad can flip after a tiny layout change. A chef with a wide preference gap needs a larger change. The manager must not confuse steadiness with correctness. If the pantry runner supplies the wrong ingredient, the chef can prepare the wrong dish with complete confidence every time. Sensitivity therefore helps rank ticket layouts, but a groundedness or labeled check must still inspect the meal.</p>
+<p>The kitchen can pin a few correctly filled sample tickets beside the station. Those in-format examples show the chef how this exact layout maps to an answer. A larger kitchen or more general training can improve average cooking, but neither directly teaches indifference to ticket layout. The examples narrow the spread, though they use counter space and eventually add less help.</p>
+<p>Finally, an optimizer edits the ticket wording. It changes one influential word slot at a time because every-word combinations are too numerous to search. The manager tastes candidate dishes on the same orders, advances only clear winners, and confirms the survivor on untouched orders. The manager also puts overly inclusive and overly exclusive mistakes in separate trays. Mixing those trays gives the editor opposing instructions that cancel.</p>
+<p>The lesson stays consistent across the kitchen. Control the ticket, measure the chef's reaction, inspect the retrieved ingredients, and distrust any winner selected on the same tasting set that created it.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves passages and gives them to a generator</td>
+<td>Prompt format can change how the generator uses the retrieved evidence</td>
+</tr>
+<tr>
+<td>Prompt</td>
+<td>The token sequence that asks the generator to act</td>
+<td>The model consumes exact tokens, not only human meaning</td>
+</tr>
+<tr>
+<td>Prompt template</td>
+<td>Reusable text and structure around each request</td>
+<td>It must be versioned and evaluated like any other configuration</td>
+</tr>
+<tr>
+<td>Context wrapper</td>
+<td>The headers and separators around retrieved chunks</td>
+<td>Meaning-free wrapper edits can move accuracy and parse rate</td>
+</tr>
+<tr>
+<td>Retrieved chunk</td>
+<td>A passage supplied as evidence</td>
+<td>Its placement and wrapper affect the generator's token context</td>
+</tr>
+<tr>
+<td>Meaning-preserving format</td>
+<td>A different spelling or layout with the same intended request</td>
+<td>It isolates sensitivity to form rather than task meaning</td>
+</tr>
+<tr>
+<td>Format family F</td>
+<td>The complete set of allowed equivalent renderings</td>
+<td>Accuracy should be viewed across this family, not at one arbitrary member</td>
+</tr>
+<tr>
+<td>Format grammar</td>
+<td>Independent slots and choices that generate prompt variants</td>
+<td>It turns prompt formatting into a countable search space</td>
+</tr>
+<tr>
+<td>FormatSpread</td>
+<td>A tool that enumerates meaning-preserving prompt formats</td>
+<td>Its reported spreads show that formatting effects can be very large</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>One model input unit</td>
+<td>Equivalent human text can become different token sequences</td>
+</tr>
+<tr>
+<td>Tokenization</td>
+<td>Conversion from text into token identifiers</td>
+<td>A format change can alter length, position, and all later computation</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>A model's internal numeric state</td>
+<td>Equivalent meanings need not create equivalent states</td>
+</tr>
+<tr>
+<td>Key-value set</td>
+<td>Attention memory created from earlier tokens</td>
+<td>Retokenization changes what later tokens attend to</td>
+</tr>
+<tr>
+<td>Residual stream</td>
+<td>The evolving internal representation at each position</td>
+<td>Format changes can move computation into a different region</td>
+</tr>
+<tr>
+<td>Pre-training</td>
+<td>Learning next-token likelihood from a corpus</td>
+<td>It matches observed format frequencies and does not enforce format invariance</td>
+</tr>
+<tr>
+<td>Instruction tuning</td>
+<td>Training on instruction and response pairs</td>
+<td>It improves instruction following but normally shows one rendering per instruction</td>
+</tr>
+<tr>
+<td>Invariance</td>
+<td>Equal behavior under meaning-preserving changes</td>
+<td>Standard objectives do not explicitly require it</td>
+</tr>
+<tr>
+<td>Low-density format</td>
+<td>A format that appeared rarely in training data</td>
+<td>Behavior there can be less smooth</td>
+</tr>
+<tr>
+<td>Hyperparameter</td>
+<td>A configuration chosen outside learned weights</td>
+<td>The context wrapper can have a larger effect than many retriever changes</td>
+</tr>
+<tr>
+<td>Accuracy A(f)</td>
+<td>Correctness under format f</td>
+<td>One reported value is a draw from the format family</td>
+</tr>
+<tr>
+<td>Parse rate</td>
+<td>Share of outputs that a parser can read</td>
+<td>End-to-end quality can fall even when parsed-answer accuracy looks stable</td>
+</tr>
+<tr>
+<td>Valid-response rate</td>
+<td>Share of outputs that follow the required output form</td>
+<td>It must be logged beside correctness</td>
+</tr>
+<tr>
+<td>Regular expression</td>
+<td>A text pattern used to extract fields such as citations</td>
+<td>Format changes can break extraction without changing answer content</td>
+</tr>
+<tr>
+<td>Exhaustive grid</td>
+<td>Evaluation of every candidate format</td>
+<td>It is reliable but can be expensive</td>
+</tr>
+<tr>
+<td>Successive halving</td>
+<td>Repeatedly test candidates and keep only the strongest fraction</td>
+<td>It cuts format-search cost while preserving a small finalist set</td>
+</tr>
+<tr>
+<td>Search split</td>
+<td>Examples used to rank candidates</td>
+<td>Reusing it for final proof creates selection bias</td>
+</tr>
+<tr>
+<td>Held-out split</td>
+<td>Untouched examples used only for confirmation</td>
+<td>It is the clean fix for the winner's curse</td>
+</tr>
+<tr>
+<td>Winner's curse</td>
+<td>Inflation caused by selecting the best noisy score</td>
+<td>Best-of-many gains can vanish on fresh data</td>
+</tr>
+<tr>
+<td>Standard error</td>
+<td>Expected sampling variation in an estimated score</td>
+<td>It sets the noise floor for a claimed gain</td>
+</tr>
+<tr>
+<td>Selection floor</td>
+<td>Approximate best-of-many inflation under noisy evaluation</td>
+<td>Candidate gains should clear it before acceptance</td>
+</tr>
+<tr>
+<td>Paired test</td>
+<td>Comparison on the same examples for both systems</td>
+<td>Only discordant outcomes carry the difference signal</td>
+</tr>
+<tr>
+<td>Per-arm maximum</td>
+<td>Best score after tuning each system separately</td>
+<td>It is the fair target when formats interact with retrievers</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>The model that writes the answer</td>
+<td>Its model family and tokenizer determine format preferences</td>
+</tr>
+<tr>
+<td>Open-weight model</td>
+<td>A generator whose weights can be run and scored directly</td>
+<td>It enables teacher-forced log-likelihood evaluation</td>
+</tr>
+<tr>
+<td>Hosted generator</td>
+<td>A model accessed through a vendor service</td>
+<td>Missing token probabilities can block POSIX computation</td>
+</tr>
+<tr>
+<td>Application programming interface (API)</td>
+<td>A service boundary for model calls</td>
+<td>Its probability access determines available monitors</td>
+</tr>
+<tr>
+<td>Variation operator</td>
+<td>A rule that creates equivalent prompt variants</td>
+<td>The chosen family defines what sensitivity means</td>
+</tr>
+<tr>
+<td>Output agreement</td>
+<td>How often variants produce the same answer</td>
+<td>It is easy to understand but discards probability margins</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>Equality only when answer strings are identical</td>
+<td>It is too brittle for free-form grounded answers</td>
+</tr>
+<tr>
+<td>Embedding threshold</td>
+<td>A similarity cutoff for deciding whether answers match</td>
+<td>It is not a complete equality rule for grounded answers</td>
+</tr>
+<tr>
+<td>Log-likelihood</td>
+<td>The model's score for an entire answer under a prompt</td>
+<td>Its movement across variants is the core sensitivity signal</td>
+</tr>
+<tr>
+<td>Ordered pair</td>
+<td>A source prompt and target prompt where direction matters</td>
+<td>Canonical-to-typo and typo-to-canonical scoring can differ</td>
+</tr>
+<tr>
+<td>Prompt sensitivity index (POSIX)</td>
+<td>Average absolute per-token log-likelihood shift across ordered prompt pairs</td>
+<td>It measures distributional consistency without correctness labels</td>
+</tr>
+<tr>
+<td>Prompt sensitivity score (PSS)</td>
+<td>An instance-level sensitivity score paired with generation confidence</td>
+<td>It exposes risky queries that a dataset mean can hide</td>
+</tr>
+<tr>
+<td>Decoding confidence</td>
+<td>Strength of the model's emitted-token preferences</td>
+<td>More confident generations tend to be more consistent under rewording</td>
+</tr>
+<tr>
+<td>Logit</td>
+<td>An unnormalized score before token probabilities</td>
+<td>Top-two logit distance is the flip barrier</td>
+</tr>
+<tr>
+<td>Argmax</td>
+<td>The option with the largest score</td>
+<td>The answer changes when perturbation crosses the winner's margin</td>
+</tr>
+<tr>
+<td>Top-two gap</td>
+<td>Log ratio between the two leading token probabilities</td>
+<td>A small gap means higher fragility</td>
+</tr>
+<tr>
+<td>Mean per-token log-probability</td>
+<td>Average emitted-token confidence across an answer</td>
+<td>It is free to log because decoding already computes it</td>
+</tr>
+<tr>
+<td>Nat</td>
+<td>A log-likelihood unit using natural logarithms</td>
+<td>It gives prompt drift and decoding margin shared units</td>
+</tr>
+<tr>
+<td>Teacher-forced scoring</td>
+<td>Scoring a supplied continuation token by token</td>
+<td>POSIX needs it for answers not sampled from the scoring prompt</td>
+</tr>
+<tr>
+<td>One-sided sensitivity</td>
+<td>Score one canonical answer under the rewrites</td>
+<td>It is much cheaper but misses reverse-direction effects</td>
+</tr>
+<tr>
+<td>Full POSIX matrix</td>
+<td>Score every variant answer under every other variant</td>
+<td>It preserves asymmetry at higher compute cost</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Parallel processing of prompt and supplied answer tokens</td>
+<td>POSIX rescoring mostly uses this cheaper phase</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>Sequential generation of new tokens</td>
+<td>It is slower per token for the worked hardware case</td>
+</tr>
+<tr>
+<td>bfloat16 (bf16)</td>
+<td>A 16-bit numeric format for model weights and compute</td>
+<td>It sets the worked memory and throughput arithmetic</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>Hardware used to run the generator</td>
+<td>Compute time and memory set evaluation cost</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One arithmetic operation used in compute accounting</td>
+<td>Prefill cost is estimated from parameter and token counts</td>
+</tr>
+<tr>
+<td>Trillion floating-point operations per second (TFLOP/s)</td>
+<td>A compute throughput rate</td>
+<td>It converts prefill work into time</td>
+</tr>
+<tr>
+<td>Memory bandwidth</td>
+<td>Rate at which weights can be read</td>
+<td>It bounds decode speed in the worked example</td>
+</tr>
+<tr>
+<td>Operations-to-byte ratio</td>
+<td>Compute rate divided by memory bandwidth</td>
+<td>It checks the maximum prefill-to-decode speed gap</td>
+</tr>
+<tr>
+<td>Label-free proxy</td>
+<td>A measurable signal used without gold correctness labels</td>
+<td>It can reduce labeling, but it cannot replace correctness evidence</td>
+</tr>
+<tr>
+<td>Correlation rho</td>
+<td>Linear association between sensitivity and accuracy</td>
+<td>A negative value supports ranking but leaves residual error</td>
+</tr>
+<tr>
+<td>Absolute correlation r</td>
+<td>Magnitude of the sensitivity-accuracy correlation</td>
+<td>It controls ranking accuracy and captured oracle gain</td>
+</tr>
+<tr>
+<td>Best linear prediction</td>
+<td>Accuracy estimate derived from sensitivity and correlation</td>
+<td>Its residual shows why sensitivity is not an accuracy meter</td>
+</tr>
+<tr>
+<td>Residual standard deviation</td>
+<td>Accuracy variation left after using the proxy</td>
+<td>It quantifies uncertainty that the proxy cannot remove</td>
+</tr>
+<tr>
+<td>Gaussian copula</td>
+<td>A joint model used to connect correlation with rank agreement</td>
+<td>It yields the pairwise ordering probability in the chapter</td>
+</tr>
+<tr>
+<td>Kendall's tau</td>
+<td>A rank association measure</td>
+<td>It turns correlation into expected pairwise ranking accuracy</td>
+</tr>
+<tr>
+<td>Confident error</td>
+<td>A stable, high-margin answer that is wrong</td>
+<td>Sensitivity can mark it safe even when retrieval misleads the generator</td>
+</tr>
+<tr>
+<td>Retrieved distractor</td>
+<td>A fluent but wrong passage used as evidence</td>
+<td>It can make a wrong answer both grounded-looking and stable</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Agreement among repeated samples from one fixed prompt</td>
+<td>It measures sampling variation, not prompt variation</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>A control on sampling randomness</td>
+<td>Temperature zero can be self-consistent while still format-sensitive</td>
+</tr>
+<tr>
+<td>Mean accuracy over formats</td>
+<td>Average accuracy across the format family</td>
+<td>Scale and instruction tuning can lift it</td>
+</tr>
+<tr>
+<td>Variance over formats</td>
+<td>Accuracy spread across equivalent renderings</td>
+<td>Prompt robustness is a claim about this quantity</td>
+</tr>
+<tr>
+<td>Few-shot prompting</td>
+<td>Adding solved examples to the prompt</td>
+<td>In-format examples supply a local pattern that narrows sensitivity</td>
+</tr>
+<tr>
+<td>In-format demonstration</td>
+<td>A solved example using the live wrapper exactly</td>
+<td>Matching typography is part of the proposed mechanism</td>
+</tr>
+<tr>
+<td>Copy mechanism</td>
+<td>Attention from a current pattern to earlier matching patterns</td>
+<td>It adds evidence for the demonstrated continuation</td>
+</tr>
+<tr>
+<td>Local prior</td>
+<td>Pattern evidence placed in the current prompt</td>
+<td>It replaces dependence on how common that typography was in training</td>
+</tr>
+<tr>
+<td>Softmax attention</td>
+<td>Normalized attention over available context</td>
+<td>Normalization makes each added example contribute less at larger k</td>
+</tr>
+<tr>
+<td>Key-value (KV) cache</td>
+<td>Stored attention state for prompt tokens</td>
+<td>More demonstrations reduce concurrency unless the prefix is shared</td>
+</tr>
+<tr>
+<td>Prefix cache</td>
+<td>One stored KV state reused for a shared prompt prefix</td>
+<td>It can remove most repeated cache cost for fixed demonstrations</td>
+</tr>
+<tr>
+<td>Grouped-query attention</td>
+<td>Attention with fewer key-value heads than query heads</td>
+<td>It can reduce KV bytes per token</td>
+</tr>
+<tr>
+<td>Low-Rank Adaptation (LoRA)</td>
+<td>A cheaper parameter adaptation method</td>
+<td>It lowers instruction-tuning cost but still optimizes the wrong robustness statistic</td>
+</tr>
+<tr>
+<td>Automatic prompt optimization</td>
+<td>Programmatic search over prompt wording</td>
+<td>Search gains depend on proposal restrictions and accept tests</td>
+</tr>
+<tr>
+<td>COPLE</td>
+<td>A black-box framework for combinatorial optimization over a prompt's lexicon</td>
+<td>It makes exponential word choices tractable through coordinate moves and influence ranking</td>
+</tr>
+<tr>
+<td>Lexicon</td>
+<td>The allowed word choices in a prompt</td>
+<td>Its size determines the raw combinatorial space</td>
+</tr>
+<tr>
+<td>Coordinate move</td>
+<td>Change one word slot while holding all others fixed</td>
+<td>It gives credit assignment but misses word interactions</td>
+</tr>
+<tr>
+<td>Coordinate-wise local optimum</td>
+<td>A prompt no single allowed word replacement improves</td>
+<td>COPLE can reach this result but cannot claim a global optimum</td>
+</tr>
+<tr>
+<td>Leave-one-out influence</td>
+<td>Score change after removing one word</td>
+<td>It ranks word slots before spending on replacements</td>
+</tr>
+<tr>
+<td>Proxy-task score</td>
+<td>Noisy development-set objective used during search</td>
+<td>Its noise floor can dominate reported gains</td>
+</tr>
+<tr>
+<td>Accept rule</td>
+<td>Test that decides whether a candidate replaces the incumbent</td>
+<td>It determines whether improvements survive held-out evaluation</td>
+</tr>
+<tr>
+<td>Best-arm identification</td>
+<td>Allocate more evaluation to promising candidates</td>
+<td>It reduces the cost of selecting a winner</td>
+</tr>
+<tr>
+<td>ProTeGi</td>
+<td>A method that uses textual feedback and staged candidate evaluation</td>
+<td>Its best-arm step supports disciplined prompt search</td>
+</tr>
+<tr>
+<td>Textual gradient</td>
+<td>Natural-language critique that suggests an opposite prompt edit</td>
+<td>It converts error examples into an edit direction</td>
+</tr>
+<tr>
+<td>Minibatch</td>
+<td>A small sample of errors used for feedback</td>
+<td>Pool composition can cancel opposing signals</td>
+</tr>
+<tr>
+<td>False positive</td>
+<td>A negative case incorrectly classified as positive</td>
+<td>Its critique calls for a stricter instruction</td>
+</tr>
+<tr>
+<td>False negative</td>
+<td>A positive case incorrectly classified as negative</td>
+<td>Its critique calls for a more inclusive instruction</td>
+</tr>
+<tr>
+<td>P2G</td>
+<td>A method that keeps opposing error pools as separate improvement directions</td>
+<td>It prevents false-positive and false-negative feedback from canceling</td>
+</tr>
+<tr>
+<td>Pooled critic</td>
+<td>One critique written from mixed error types</td>
+<td>Opposing corrections can shrink its useful signal to zero</td>
+</tr>
+<tr>
+<td>Credit assignment</td>
+<td>Knowing which edit caused a score change</td>
+<td>Whole-prompt rewrites obscure it</td>
+</tr>
+<tr>
+<td>Semantic drift</td>
+<td>An edit that quietly changes the task meaning</td>
+<td>It can create a false proxy-set win</td>
+</tr>
+<tr>
+<td>APE</td>
+<td>A named whole-prompt rewriting approach</td>
+<td>It can escape a coordinate basin but loses per-edit attribution</td>
+</tr>
+<tr>
+<td>OPRO</td>
+<td>A named whole-prompt rewriting approach</td>
+<td>It shares the higher-variance accept-test problem of free-form rewriting</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="101-how-much-formatting-alone-moves-accuracy">10.1 How much formatting alone moves accuracy</h3>
+<h4 id="count-the-format-family">Count the format family</h4>
+<ul>
+<li><strong>What:</strong> Decompose the context wrapper into independent choices.</li>
+<li>Headers are Document, Passage, Context, Source, or Excerpt. Indices are 1, 01, [1], or (a). Field separators are colon-space, colon-newline, space-hyphen-space, bare newline, space-pipe-space, or space-double-colon-space. Chunk separators are one newline, two newlines, or a horizontal rule. Header casing and instruction position each have 2 choices.</li>
+<li>Their product is 1,440 renderings of one meaning.</li>
+<li><strong>Why:</strong> The count makes the supposedly cosmetic format a real search space.</li>
+<li><strong>Failure without it:</strong> A team treats one inherited string as neutral and attributes its effect to the retriever or model.</li>
+<li><strong>Cost or complexity:</strong> The raw family is small enough for a grid once, but not cheap enough to repeat carelessly on every release.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>F</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mn>5</mn><mo>×</mo><mn>4</mn><mo>×</mo><mn>6</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>1</mn><mo>,</mo><mn>440</mn></mrow><annotation encoding="application/x-tex">|F| = 5 × 4 × 6 × 3 × 2 × 2 = 1,440</annotation></semantics></math></p>
+<h4 id="explain-the-mechanism">Explain the mechanism</h4>
+<ul>
+<li><strong>What:</strong> A format change retokenizes the prompt.</li>
+<li>Different token lengths move later positions, attention inputs, and residual-stream states.</li>
+<li>Pre-training assigns likelihood according to corpus frequency.</li>
+<li>It does not supply an operator that makes equivalent renderings identical.</li>
+<li><strong>Why:</strong> This explains why typography can change behavior even when human meaning stays fixed.</li>
+<li><strong>Failure without it:</strong> Engineers assume model scale or instruction tuning must remove the effect.</li>
+<li><strong>Cost or complexity:</strong> The effect persisted in LLaMA-2-70B and GPT-3.5. No single format won across models.</li>
+</ul>
+<h4 id="preserve-the-observed-claim-limits">Preserve the observed claim limits</h4>
+<ul>
+<li>Sclar et al. (2024) measured a worst-to-best spread of up to 76 accuracy points on one LLaMA-2-13B task.</li>
+<li>A Japanese-template study reported GPT-4 moving from roughly 49% to 25.44% under a meaning-preserving restructure.</li>
+<li>The chapter reports worse robustness for less-studied languages than for English.</li>
+<li>These findings establish large possible effects.</li>
+<li>They do not make every observed four-point change real.</li>
+</ul>
+<h4 id="treat-accuracy-as-format-indexed">Treat accuracy as format-indexed</h4>
+<ul>
+<li><strong>What:</strong> Report accuracy as A(f), where f identifies the wrapper.</li>
+<li>A single A(f0) is one draw, not the system's format-independent accuracy.</li>
+<li>A shared f0 comparison estimates the difference at that one format.</li>
+<li>The desired tuned comparison is the difference between each arm's own maximum.</li>
+<li><strong>Why:</strong> A retriever change alters the context content and can alter which wrapper works best.</li>
+<li><strong>Failure without it:</strong> Format noise can be larger than the retriever delta.</li>
+<li><strong>Cost or complexity:</strong> Separate format searches cost one sweep per arm. Fixing f0 is cheaper, but then the format and its spread must be published.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi mathvariant="normal">Δ</mi><mo accent="true">̂</mo></mover><mo>=</mo><msub><mi>A</mi><msub><mi>R</mi><mn>1</mn></msub></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>f</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>A</mi><msub><mi>R</mi><mn>2</mn></msub></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>f</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\widehat{\Delta} = A_{R_1}(f_0) - A_{R_2}(f_0)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">Δ</mi><mo>⋆</mo></msup><mo>=</mo><munder><mi>max</mi><mi>f</mi></munder><msub><mi>A</mi><msub><mi>R</mi><mn>1</mn></msub></msub><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><munder><mi>max</mi><mi>f</mi></munder><msub><mi>A</mi><msub><mi>R</mi><mn>2</mn></msub></msub><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\Delta^\star = \max_f A_{R_1}(f) - \max_f A_{R_2}(f)</annotation></semantics></math></p>
+<h4 id="search-efficiently-and-control-selection-bias">Search efficiently and control selection bias</h4>
+<ul>
+<li><strong>What:</strong> Use successive halving over the format grammar.</li>
+<li>Start with all candidates on a small seed.</li>
+<li>Keep the top quarter and increase the evaluation set each round.</li>
+<li>Select on a search split.</li>
+<li>Confirm the winner on an untouched held-out split.</li>
+<li><strong>Why:</strong> It preserves budget for confirmation while reducing the grid dramatically.</li>
+<li><strong>Failure without it:</strong> Best-of-1,440 selection can turn noise into an apparent gain.</li>
+<li><strong>Cost or complexity:</strong> The worked grid costs 720,000 generations and $812.</li>
+<li>Successive halving costs 56,420 generations, 7.8% of the grid, and about $64.</li>
+</ul>
+<h4 id="read-the-worked-result-correctly">Read the worked result correctly</h4>
+<ul>
+<li>The worked search finds 71.2% best, 52.8% worst, and 64.0% incumbent accuracy.</li>
+<li>That is an 18.4-point spread and a 7.2-point apparent gain.</li>
+<li>On 500 questions at p about 0.64, one-arm standard error is 0.021, or 2.1 points.</li>
+<li>The independent-arm best-of-family approximation is 8.0 points of inflation.</li>
+<li>Correlated format scores make the true inflation smaller than 8 points, but not zero.</li>
+<li>A four-point movement is therefore plausible and still under two one-arm standard errors.</li>
+<li>The first response is a paired test on discordant questions, not an automatic rollback.</li>
+</ul>
+<h4 id="own-the-full-output-contract">Own the full output contract</h4>
+<ul>
+<li><strong>What:</strong> Log valid-response rate beside parsed-answer accuracy.</li>
+<li><strong>Why:</strong> Formatting can change whether the response is parseable.</li>
+<li><strong>Failure without it:</strong> A benchmark can hide end-to-end loss.</li>
+<li>A two-point parsed-accuracy loss plus a five-point parse-rate loss becomes a seven-point service loss.</li>
+<li><strong>Cost or complexity:</strong> Logging is cheap. Ignoring it can misdiagnose the component that failed.</li>
+</ul>
+<h4 id="practical-decision-rule">Practical decision rule</h4>
+<ul>
+<li>Version the template with measured accuracy, parse rate, and an owner.</li>
+<li>Search again after a generator, version, vendor, or tokenizer change.</li>
+<li>Use exhaustive search only when the family is under about 50 candidates.</li>
+<li>Report each system as the best format searched over F.</li>
+<li>If transfer matters, test the old top 5 plus 20 random formats on the new model.</li>
+<li>Keep the old winner only if it lands in the new top quintile under the stated tie-breaker. A shared tokenizer and shared instruction-tuning lineage favor transfer, but do not prove it.</li>
+</ul>
+<h3 id="102-measuring-sensitivity-with-posix-pss-and-decoding-confidence">10.2 Measuring sensitivity with POSIX, PSS, and decoding confidence</h3>
+<h4 id="replace-agreement-with-probability-movement">Replace agreement with probability movement</h4>
+<ul>
+<li><strong>What:</strong> Build N intent-preserving variants for each query.</li>
+<li>Variants can include a paraphrase, typo, option reorder, or wrapper-header change.</li>
+<li>Agreement decodes all N variants and asks whether their outputs match.</li>
+<li>POSIX instead measures how the generated answer's log-likelihood moves under other variants.</li>
+<li><strong>Why:</strong> Probability movement preserves distance to a decision flip.</li>
+<li><strong>Failure without it:</strong> Exact match and embedding thresholds do not provide a reliable equality rule for free-form grounded answers.</li>
+<li>Agreement also treats a one-nat margin and a twenty-nat margin as equally stable if both emitted strings match.</li>
+<li><strong>Cost or complexity:</strong> Agreement needs N full decodes. POSIX needs decodes plus cheaper teacher-forced scoring passes.</li>
+</ul>
+<h4 id="posix-definition-and-design-choices">POSIX definition and design choices</h4>
+<ul>
+<li><strong>What:</strong> Generate response y_i from prompt x_i. Chatterjee et al. (2024) call the resulting index POSIX.</li>
+<li>Score y_i under every other x_j.</li>
+<li>Take the absolute log-likelihood ratio.</li>
+<li>Divide by answer length.</li>
+<li>Average over all ordered pairs.</li>
+<li><strong>Why:</strong> Absolute value prevents opposing shifts from canceling.</li>
+<li>Length normalization reports nats per token rather than rewarding short answers.</li>
+<li>Ordered pairs preserve directional asymmetry.</li>
+<li><strong>Failure without it:</strong> A variant that raises one answer's likelihood and lowers another's can average to false calm.</li>
+<li><strong>Cost or complexity:</strong> The full matrix uses N(N - 1) scoring passes after N generations.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>POSIX</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><munder><mo>∑</mo><mrow><mi>j</mi><mo>≠</mo><mi>i</mi></mrow></munder><mfrac><mn>1</mn><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">|</mo></mrow></mfrac><mrow><mo stretchy="true" form="prefix">|</mo><mi>log</mi><mfrac><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>∣</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>∣</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">\mathop{\text{POSIX}} = \frac{1}{N(N-1)} \sum_{i=1}^{N} \sum_{j \ne i} \frac{1}{|y_i|} \left|\log \frac{P(y_i \mid x_j)}{P(y_i \mid x_i)}\right|</annotation></semantics></math></p>
+<ul>
+<li>A 40-token answer moving from total log-likelihood -12.0 to -13.6 contributes 1.6 / 40 = 0.040 nats per token.</li>
+</ul>
+<h4 id="connect-sensitivity-to-the-decoding-margin">Connect sensitivity to the decoding margin</h4>
+<ul>
+<li><strong>What:</strong> Let p1 and p2 be the top two next-token probabilities.</li>
+<li>Their logit gap is log(p1 / p2).</li>
+<li>A rewrite flips the argmax only when it moves the gap far enough.</li>
+<li><strong>Why:</strong> Drift and margin now share units.</li>
+<li><strong>Failure without it:</strong> A raw agreement bit discards how close the answer was to changing.</li>
+<li><strong>Cost or complexity:</strong> Mean per-token log-probability costs nothing extra because decoding already computes it.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>z</mi><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mfrac><msub><mi>p</mi><mn>1</mn></msub><msub><mi>p</mi><mn>2</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">\Delta z = \log \frac{p_1}{p_2}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>ℓ</mi><mo accent="true">‾</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mo stretchy="false" form="prefix">|</mo><mi>y</mi><mo stretchy="false" form="prefix">|</mo></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>y</mi><mo stretchy="false" form="prefix">|</mo></mrow></munderover><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>t</mi></msub><mo>∣</mo><mi>x</mi><mo>,</mo><msub><mi>y</mi><mrow><mn>1</mn><mo>:</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\bar{\ell}(y) = \frac{1}{|y|} \sum_{t=1}^{|y|} \log p(y_t \mid x, y_{1:t-1})</annotation></semantics></math></p>
+<ul>
+<li>A confident 0.90 versus 0.05 split has a 2.89-nat barrier.</li>
+<li>A hesitant 0.35 versus 0.30 split has a 0.154-nat barrier.</li>
+<li>The hesitant step is 19 times closer to flipping under the same perturbation.</li>
+</ul>
+<h4 id="use-pss-for-tails">Use PSS for tails</h4>
+<ul>
+<li><strong>What:</strong> PSS pairs instance-level sensitivity with confidence.</li>
+<li><strong>Why:</strong> Production failures concentrate in the tail, not necessarily in the mean.</li>
+<li><strong>Failure without it:</strong> A mean can look calm when 5% of queries sit at 0.09 nats per token and the other 95% sit at 0.005.</li>
+<li><strong>Cost or complexity:</strong> Tail quantiles require storing per-query scores, but not new labels.</li>
+</ul>
+<h4 id="respect-scoring-access-limits">Respect scoring access limits</h4>
+<ul>
+<li><strong>What:</strong> POSIX needs teacher-forced log-likelihood for an arbitrary answer under another prompt.</li>
+<li><strong>Why:</strong> The score cannot be reconstructed from only the tokens a hosted model chose to emit.</li>
+<li><strong>Failure without it:</strong> A monitor is designed around a capability the vendor does not expose.</li>
+<li><strong>Cost or complexity:</strong> Open weights permit direct scoring. Many hosted chat APIs do not provide it.</li>
+<li>A judge model is a fallback only when the generator hides token probabilities.</li>
+<li>The judge adds its own prompt sensitivity and costs 56 calls per query at N = 8.</li>
+</ul>
+<h4 id="price-full-and-one-sided-measurement">Price full and one-sided measurement</h4>
+<ul>
+<li>The worked generator has 7 billion parameters in bf16 on one A100-80GB.</li>
+<li>It uses 14 GB of weights, 2.0 TB/s memory bandwidth, and 156 TFLOP/s achieved compute.</li>
+<li>A 1,400-token prefill costs 0.13 s.</li>
+<li>A 120-token decode costs 0.84 s.</li>
+<li>One generation costs 0.97 s.</li>
+<li>One 1,520-token scoring pass costs 0.136 s.</li>
+<li>A labeled eight-variant sweep over 500 queries costs 4,000 generations, 3,880 GPU-seconds, and 4,000 unavailable judgments.</li>
+<li>Full POSIX costs 15.4 s per query, 7,700 s total, or 2.1 GPU-hours.</li>
+<li>One-sided sensitivity costs 1.92 s per query, 960 s total, or 16 GPU-minutes.</li>
+<li>One-sided scoring is about 8 times cheaper than the full matrix.</li>
+<li>It can miss sensitivity that appears only in the reverse direction. Escalate to the full matrix when variants disagree on the answer string.</li>
+</ul>
+<h4 id="interpret-a-score-without-inventing-a-threshold">Interpret a score without inventing a threshold</h4>
+<ul>
+<li>Six ordered-pair shifts over three variants sum to 5.7 nats on a 40-token answer.</li>
+<li>POSIX is 5.7 / (40 × 6) = 0.0238 nats per token.</li>
+<li>Over 120 tokens, that is 2.85 nats of total drift and a 17-fold likelihood ratio.</li>
+<li>It is 0.8% of a 2.89-nat confident barrier and 15% of a 0.154-nat hesitant barrier.</li>
+<li>Sensitivity has no absolute safe threshold.</li>
+<li>Compare candidates only under the same variant family, query set, and tokenizer.</li>
+<li>Report the total answer swing beside the per-token value.</li>
+<li>Gate a template against the incumbent's relative sensitivity and alert on a tail quantile. Rebaseline after any model or tokenizer change.</li>
+</ul>
+<h3 id="103-sensitivity-as-a-label-free-performance-predictor">10.3 Sensitivity as a label-free performance predictor</h3>
+<h4 id="separate-ranking-from-measurement">Separate ranking from measurement</h4>
+<ul>
+<li><strong>What:</strong> Sensitivity S and accuracy A have a reported strong negative correlation.</li>
+<li>Let rho be their correlation and r its absolute value.</li>
+<li>Best linear prediction gives a point estimate and a residual standard deviation.</li>
+<li><strong>Why:</strong> The residual quantifies what the proxy cannot know.</li>
+<li><strong>Failure without it:</strong> A team writes that the lowest-sensitivity template is the most accurate without labels.</li>
+<li><strong>Cost or complexity:</strong> Estimating r requires a labeled vertical with the same model, task, and variant family.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">̂</mo></mover><mo>=</mo><msub><mi>μ</mi><mi>A</mi></msub><mo>+</mo><mi>ρ</mi><mfrac><msub><mi>σ</mi><mi>A</mi></msub><msub><mi>σ</mi><mi>S</mi></msub></mfrac><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mo>−</mo><msub><mi>μ</mi><mi>S</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\widehat{A} = \mu_A + \rho \frac{\sigma_A}{\sigma_S}(S - \mu_S)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sd</mo><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo>−</mo><mover><mi>A</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>σ</mi><mi>A</mi></msub><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>ρ</mi><mn>2</mn></msup></mrow></msqrt><mo>,</mo><mspace width="2.0em"></mspace><mi>A</mi><mo>=</mo><mi>ρ</mi><mi>Z</mi><mo>+</mo><msqrt><mrow><mn>1</mn><mo>−</mo><msup><mi>ρ</mi><mn>2</mn></msup></mrow></msqrt><mspace width="0.167em"></mspace><mi>ε</mi></mrow><annotation encoding="application/x-tex">\mathop{\text{sd}}(A - \widehat{A}) = \sigma_A \sqrt{1-\rho^2}, \qquad A = \rho Z + \sqrt{1-\rho^2}\,\varepsilon</annotation></semantics></math></p>
+<ul>
+<li>At r = 0.7, the residual is 0.714 σ_A.</li>
+<li>The proxy removes 28.6% of accuracy uncertainty, not 70%.</li>
+<li>If σ_A is 4.5 points, one residual standard deviation is 3.2 points.</li>
+<li>The corresponding 95% interval is plus or minus 6.3 points.</li>
+</ul>
+<h4 id="convert-correlation-into-ranking-quality">Convert correlation into ranking quality</h4>
+<ul>
+<li><strong>What:</strong> Under the chapter's bivariate normal assumption, the Gaussian copula connects correlation to Kendall's tau.</li>
+<li>The probability of ordering a random pair correctly depends on arcsin r.</li>
+<li><strong>Why:</strong> Ranking only needs the sign of a difference.</li>
+<li><strong>Failure without it:</strong> The phrase "strong correlation" hides a substantial reversal rate.</li>
+<li><strong>Cost or complexity:</strong> Even a high r leaves some pairs backwards.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mfrac><mn>2</mn><mi>π</mi></mfrac><mrow><mi>arcsin</mi><mo>&#8289;</mo></mrow><mi>ρ</mi><mo>,</mo><mspace width="2.0em"></mspace><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">correct order</mtext><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>+</mo><mfrac><mn>1</mn><mi>π</mi></mfrac><mrow><mi>arcsin</mi><mo>&#8289;</mo></mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">\tau = \frac{2}{\pi}\arcsin \rho, \qquad \Pr[\text{correct order}] = \frac{1}{2} + \frac{1}{\pi}\arcsin r</annotation></semantics></math></p>
+<ul>
+<li>r = 0.3 gives 59.7% pairwise accuracy.</li>
+<li>r = 0.5 gives exactly two thirds.</li>
+<li>r = 0.7 gives 74.7%.</li>
+<li>r = 0.9 gives 85.6%, so about one pair in seven is still backwards.</li>
+</ul>
+<h4 id="explain-the-correlation-and-its-blind-quadrant">Explain the correlation and its blind quadrant</h4>
+<ul>
+<li><strong>What:</strong> Sensitivity and correctness both depend partly on decoding margin.</li>
+<li>Small margins make tokens easier to flip and likelier to be wrong.</li>
+<li><strong>Why:</strong> A shared cause explains the negative correlation.</li>
+<li><strong>Failure without it:</strong> The proxy is mistaken for the target variable.</li>
+<li>A retrieved distractor can create a wide-margin wrong answer.</li>
+<li>That answer stays stable under paraphrases, reorders, and typos.</li>
+<li>Low sensitivity therefore covers both confidently correct and confidently wrong answers.</li>
+<li><strong>Cost or complexity:</strong> Pair sensitivity with a check that reads the retrieved evidence, plus labels on the finalist slice.</li>
+</ul>
+<h4 id="do-not-substitute-self-consistency">Do not substitute self-consistency</h4>
+<ul>
+<li><strong>What:</strong> Self-consistency samples repeatedly from one fixed prompt.</li>
+<li>Prompt sensitivity changes the prompt while holding the requested meaning fixed.</li>
+<li><strong>Why:</strong> They probe different sources of variation.</li>
+<li><strong>Failure without it:</strong> Temperature zero appears perfectly self-consistent while formatting can still move accuracy by 76 points.</li>
+<li><strong>Cost or complexity:</strong> Sampling k completions adds k decodes and still does not isolate wrapper sensitivity.</li>
+</ul>
+<h4 id="use-a-shortlist-then-label-protocol">Use a shortlist-then-label protocol</h4>
+<ul>
+<li>The worked case has six templates and 500 unlabeled legal queries.</li>
+<li>Labeling all candidates requires 3,000 judgments, 100 expert hours, $3,000, and nine days.</li>
+<li>Sensitivity ranking costs 5,760 GPU-seconds, 1.6 GPU-hours, and $4.00 in the direct configuration.</li>
+<li>With r = 0.7 and σ_A = 4.5, a labeled oracle gains 5.7 points over random selection.</li>
+<li>The label-free pick captures 70% of that gain, or 4.0 points.</li>
+<li>Of 15 template pairs, the expectation is 11.2 correctly ranked and 3.8 backwards.</li>
+<li>Keep the top two, then label 200 paired questions per finalist.</li>
+<li>That requires 400 judgments, 13.3 expert hours, $400, and one day.</li>
+<li>If the finalists disagree on 30 of 200 questions, their paired difference standard error is 2.7 points.</li>
+<li>The hybrid uses 13% of the full-label cost.</li>
+<li>The chapter later reports $3.20 for ranking all six in this hybrid protocol.</li>
+<li>That value and the earlier $4.00 direct configuration are both retained as stated.</li>
+</ul>
+<h4 id="practical-decision-rule-1">Practical decision rule</h4>
+<ul>
+<li>Use sensitivity to shortlist and labels to decide.</li>
+<li>Report a rank such as "lowest sensitivity of six candidates."</li>
+<li>Do not publish predicted accuracy from sensitivity alone.</li>
+<li>Ship on sensitivity alone only when the residual cannot change the decision.</li>
+<li>Estimate r on a labeled vertical before transferring it. Fix the candidate count F before looking at the scores.</li>
+<li>Re-estimate r after any generator change.</li>
+<li>Pair the monitor with a groundedness check for confident errors.</li>
+</ul>
+<h3 id="104-few-shot-beats-scale-for-reducing-sensitivity">10.4 Few-shot beats scale for reducing sensitivity</h3>
+<h4 id="name-the-statistic-being-optimized">Name the statistic being optimized</h4>
+<ul>
+<li><strong>What:</strong> Accuracy across formats has a mean and a variance.</li>
+<li>Scale and ordinary instruction tuning target expected likelihood and tend to lift mean accuracy.</li>
+<li>Prompt robustness concerns variance over the meaning-preserving format family.</li>
+<li><strong>Why:</strong> The three candidate interventions do not act on the same statistic.</li>
+<li><strong>Failure without it:</strong> A team buys a 10-times larger serving bill to solve a variance problem the objective never names.</li>
+<li><strong>Cost or complexity:</strong> Measuring variance requires evaluating a format family rather than one leaderboard prompt.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mi>M</mi></msub><mo>=</mo><msub><mi>𝔼</mi><mrow><mi>f</mi><mo>∼</mo><mi>F</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><msub><mi>A</mi><mi>M</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\mu_M = \mathbb{E}_{f \sim F}[A_M(f)]</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>σ</mi><mi>M</mi><mn>2</mn></msubsup><mo>=</mo><msub><mo>Var</mo><mrow><mi>f</mi><mo>∼</mo><mi>F</mi></mrow></msub><mo stretchy="false" form="prefix">[</mo><msub><mi>A</mi><mi>M</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">\sigma_M^2 = \mathop{\text{Var}}_{f \sim F}[A_M(f)]</annotation></semantics></math></p>
+<h4 id="why-scale-and-standard-instruction-tuning-do-not-impose-invariance">Why scale and standard instruction tuning do not impose invariance</h4>
+<ul>
+<li><strong>What:</strong> Pre-training minimizes expected negative log-likelihood under observed corpus frequencies.</li>
+<li>Standard instruction tuning keeps cross-entropy and swaps in instruction-response data.</li>
+<li>Neither objective normally ties two renderings of one request to the same output distribution.</li>
+<li><strong>Why:</strong> A missing constraint receives no direct gradient.</li>
+<li><strong>Failure without it:</strong> Better average accuracy is reported as format robustness.</li>
+<li><strong>Cost or complexity:</strong> Sclar et al. found formatting spread persisting from 13B to 70B and into GPT-3.5.</li>
+<li>GPT-4 was reported as more robust than smaller models while still sensitive.</li>
+<li>Format preferences did not transfer across model families.</li>
+</ul>
+<h4 id="why-in-format-demonstrations-help">Why in-format demonstrations help</h4>
+<ul>
+<li><strong>What:</strong> Put k solved examples in the exact live wrapper before the query.</li>
+<li>Attention can match the current pattern to prior examples and add evidence to the demonstrated continuation.</li>
+<li>Model each demonstration as adding g nats to the top-two margin.</li>
+<li><strong>Why:</strong> The prompt supplies a local typography prior that does not depend on corpus frequency.</li>
+<li><strong>Failure without it:</strong> A demonstration rendered in a different wrapper uses context without supplying the intended pattern match.</li>
+<li><strong>Cost or complexity:</strong> Attention normalizes over demonstrations, so g shrinks as k grows and the curve flattens.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>z</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi mathvariant="normal">Δ</mi><msub><mi>z</mi><mn>0</mn></msub><mo>+</mo><mi>k</mi><mi>g</mi></mrow><annotation encoding="application/x-tex">\Delta z(k) = \Delta z_0 + kg</annotation></semantics></math></p>
+<ul>
+<li>The worked values are Δz0 = 0.154 nats, g = 0.35 nats, and drift = 0.0238 nats per token.</li>
+<li>Drift is 15.5% of the barrier at k = 0.</li>
+<li>It is 4.7% at k = 1, 2.8% at k = 2, 1.5% at k = 4, and 0.81% at k = 8.</li>
+<li>At k = 8, the barrier is 2.954 nats, close to the 2.89-nat confident-step barrier.</li>
+<li>Few-shot reduces sensitivity more than scale or instruction tuning in the cited work.</li>
+<li>It does not eliminate sensitivity at any k.</li>
+</ul>
+<h4 id="price-the-three-interventions">Price the three interventions</h4>
+<ul>
+<li><strong>Scale to 70B:</strong> bf16 weights require 140 GB, so the model does not fit one 80 GB card.</li>
+<li>Two cards each stream 70 GB per decode step.</li>
+<li>Decode becomes 35 ms per token and 4.2 s for 120 output tokens.</li>
+<li>This is 5 times the latency, 2 times the hardware, and 10 times the GPU-seconds of the 7B case.</li>
+<li><strong>Instruction-tune 7B:</strong> 50,000 examples at 1,500 tokens produce 7.5 × 10^7 training tokens.</li>
+<li>The chapter's 6ND estimate is 3.15 × 10^18 FLOPs and 5.6 GPU-hours.</li>
+<li>LoRA is cheaper still, and serving cost stays unchanged.</li>
+<li><strong>Four demonstrations:</strong> Four 250-token examples grow the prompt from 1,400 to 2,400 tokens.</li>
+<li>Prefill rises from 0.126 s to 0.215 s.</li>
+<li>Total latency moves from 0.97 s to 1.06 s, a 9% increase.</li>
+</ul>
+<h4 id="account-for-kv-cache-and-concurrency">Account for KV cache and concurrency</h4>
+<ul>
+<li><strong>What:</strong> The 7B example uses 0.524 MB of KV cache per token.</li>
+<li>With 66 GB free, concurrency falls from 89 requests at 1,400 tokens to 52 at 2,400 tokens.</li>
+<li>That is a 42% throughput cut before runtime overhead.</li>
+<li><strong>Why:</strong> Context, not arithmetic compute, is the binding cost of demonstrations here.</li>
+<li><strong>Failure without it:</strong> A latency-only estimate hides the capacity loss.</li>
+<li><strong>Cost or complexity:</strong> Put a fixed demonstration block ahead of retrieved chunks so a prefix cache can reuse it.</li>
+<li>The 70B grouped-query-attention example uses 0.328 MB per token.</li>
+<li>It caches less per token than the 7B because it has 8 key-value heads rather than an incorrectly assumed 64.</li>
+</ul>
+<h4 id="practical-decision-rule-2">Practical decision rule</h4>
+<ul>
+<li>Spend the first robustness budget on two to four in-format demonstrations.</li>
+<li>Start at k = 4 and measure sensitivity against prompt tokens.</li>
+<li>Do not jump directly to k = 16 because marginal gains shrink.</li>
+<li>Use scale when the failure is missing knowledge or reasoning depth.</li>
+<li>Few-shot cannot recover an answer document that retrieval never supplied.</li>
+<li>Keep demonstrations byte-identical to the live wrapper.</li>
+<li>Place a fixed block before retrieved chunks for prefix caching. Select demonstrations per query only when task diversity justifies losing that cache.</li>
+<li>Re-measure after a model swap instead of carrying k forward.</li>
+<li>When trading examples for retrieved chunks, score grounded accuracy and sensitivity for both arms.</li>
+</ul>
+<h3 id="105-prompt-optimization-with-cople-and-p2g">10.5 Prompt optimization with COPLE and P2G</h3>
+<h4 id="count-the-lexical-space-before-choosing-an-algorithm">Count the lexical space before choosing an algorithm</h4>
+<ul>
+<li><strong>What:</strong> Represent a 60-word instruction as L word slots.</li>
+<li>Give each slot 8 meaning-preserving alternatives plus the incumbent.</li>
+<li>The raw space is 9^60, about 1.8 × 10^57 prompts.</li>
+<li><strong>Why:</strong> The count rules out enumeration and unguided random search.</li>
+<li><strong>Failure without it:</strong> A search result is described as broad when it covers a microscopic local slice.</li>
+<li><strong>Cost or complexity:</strong> Every workable optimizer must impose a structural restriction.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mi>X</mi><mo stretchy="false" form="prefix">|</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>C</mi><mo>+</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">)</mo><mi>L</mi></msup><mo>=</mo><msup><mn>9</mn><mn>60</mn></msup><mo>≈</mo><mn>1.8</mn><mo>×</mo><msup><mn>10</mn><mn>57</mn></msup></mrow><annotation encoding="application/x-tex">|X| = (C + 1)^L = 9^60 ≈ 1.8 × 10^57</annotation></semantics></math></p>
+<h4 id="cople-restriction-and-guarantee">COPLE restriction and guarantee</h4>
+<ul>
+<li><strong>What:</strong> COPLE changes one word slot at a time.</li>
+<li>It measures leave-one-out influence for all L words.</li>
+<li>It permits replacements only at the top m slots.</li>
+<li>With L = 60, m = 10, and C = 8, one sweep costs 140 evaluations.</li>
+<li><strong>Why:</strong> Influence ranking makes the sweep linear in prompt length rather than exponential.</li>
+<li><strong>Failure without it:</strong> Whole-space search is impossible.</li>
+<li>Coordinate edits also miss interactions between words.</li>
+<li><strong>Cost or complexity:</strong> Five sweeps evaluate 700 prompts, only 4 × 10^-55 of the space.</li>
+<li>The result is a coordinate-wise local optimum, not a global optimum.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>S</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>S</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mrow><mi>\</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">I(w_j) = \left|S(x) - S(x_{\setminus j})\right|</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>+</mo><mi>m</mi><mi>C</mi><mo>=</mo><mn>60</mn><mo>+</mo><mn>10</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>140</mn><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">selection floor</mtext><mo>≈</mo><mi>σ</mi><msqrt><mrow><mn>2</mn><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mi>C</mi><mo stretchy="false" form="postfix">)</mo></mrow></msqrt></mrow><annotation encoding="application/x-tex">L + mC = 60 + 10 \times 8 = 140, \qquad \text{selection floor} \approx \sigma\sqrt{2\ln(mC)}</annotation></semantics></math></p>
+<h4 id="the-accept-rule-controls-whether-a-gain-is-real">The accept rule controls whether a gain is real</h4>
+<ul>
+<li><strong>What:</strong> Compare candidate and incumbent on identical examples. Pryzant et al. (2023) attach this best-arm-identification step to ProTeGi.</li>
+<li>Stage evaluation so weak candidates receive fewer examples.</li>
+<li>Confirm the final survivor on examples never used for ranking.</li>
+<li><strong>Why:</strong> Search repeatedly selects the largest noisy score.</li>
+<li><strong>Failure without it:</strong> A greedy keep-any-win rule accepts selection inflation at each sweep.</li>
+<li><strong>Cost or complexity:</strong> At n = 200 and p about 0.70, one-arm standard error is 3.24 points.</li>
+<li>Best-of-80 selection has an approximate 9.6-point floor.</li>
+<li>A nine-point development gain can therefore be pure selection noise.</li>
+<li>With 24 disagreements in 200 paired examples, the difference standard error is 2.45 points.</li>
+<li>The unpaired comparison is 4.58 points.</li>
+</ul>
+<h4 id="p2g-prevents-feedback-cancellation">P2G prevents feedback cancellation</h4>
+<ul>
+<li><strong>What:</strong> ProTeGi creates a textual gradient from a minibatch of errors.</li>
+<li>False positives ask for stricter language.</li>
+<li>False negatives ask for more inclusive language.</li>
+<li>P2G keeps those pools as separate improvement directions.</li>
+<li><strong>Why:</strong> Their recommended edits point in opposite directions.</li>
+<li><strong>Failure without it:</strong> A pooled critic follows only the difference between error counts.</li>
+<li>With 36 false positives and 24 false negatives, it acts on 12 errors of a 60-error signal.</li>
+<li>Four fifths of the information cancels.</li>
+<li>At equal counts, the pooled step becomes zero even though both error types remain fixable.</li>
+<li><strong>Cost or complexity:</strong> P2G reports roughly 89% accuracy after three iterations across seven legal-domain classification tasks.</li>
+<li>The result was less dependent on the chosen iteration count.</li>
+</ul>
+<h4 id="know-when-free-form-rewriting-loses-and-wins">Know when free-form rewriting loses and wins</h4>
+<ul>
+<li><strong>What:</strong> APE from Zhou et al. (2023) and OPRO from Yang et al. (2024) ask a model to rewrite the whole prompt from failures.</li>
+<li><strong>Why teams use it:</strong> A large move can escape a basin that coordinate descent cannot.</li>
+<li><strong>Failure:</strong> One rewrite can change fourteen parts at once, destroy credit assignment, and drift the task meaning.</li>
+<li>A broader proposal distribution also needs more evaluation for the same confidence.</li>
+<li><strong>Cost or complexity:</strong> Use a free-form proposal only after two coordinate sweeps accept nothing.</li>
+<li>Treat it as a fresh incumbent.</li>
+<li>Resume coordinate-wise refinement so the shipped diff stays reviewable.</li>
+</ul>
+<h4 id="price-disciplined-cople">Price disciplined COPLE</h4>
+<ul>
+<li>A 700-token prompt and 4-token answer cost 62.8 ms of prefill plus 28 ms of decode.</li>
+<li>One evaluation rounds to 91 ms.</li>
+<li>One candidate on 200 examples costs 18.2 s.</li>
+<li>A greedy sweep uses 28,000 generations and 2,548 s.</li>
+<li>Five greedy sweeps use 140,000 generations, 3.5 GPU-hours, and $8.85.</li>
+<li>Staged influence ranking uses 3,000 generations.</li>
+<li>Candidate halving uses 4,300 generations against 16,000 for flat scoring.</li>
+<li>The combined sweep uses 7,300 generations.</li>
+<li>Five staged sweeps use 36,500 generations, 3,322 s, 0.92 GPU-hours, and the source's stated $1.85. At its stated $2.50 per GPU-hour, 0.92 hours instead gives about $2.30, so those source values do not reconcile.</li>
+<li>The disciplined procedure is 3.8 times cheaper.</li>
+<li>It covers 700 prompts from a 1.8 × 10^57 space, so its guarantee remains local.</li>
+</ul>
+<h4 id="practical-decision-rule-3">Practical decision rule</h4>
+<ul>
+<li>Pair every accept test on identical examples.</li>
+<li>Use staged allocation and a held-out confirmation.</li>
+<li>The source allows flat scoring when mC is under about 10 and calls sqrt(2 ln 10), about 2.2, a 2.2-point floor. That value is only the multiplier. With the stated 3.24-point sigma, the formula gives about 7.0 points, so the source threshold does not reconcile.</li>
+<li>Make one-slot, meaning-preserving edits the default.</li>
+<li>Split errors by type before asking for critique.</li>
+<li>For multiclass tasks, use the largest off-diagonal confusion cells as directions.</li>
+<li>Stop adding a direction below roughly 20 errors.</li>
+<li>A critique from 5 examples is only a critique of those 5 examples.</li>
+<li>Score surviving prompts on POSIX and accuracy.</li>
+<li>At equal accuracy, prefer the flatter candidate.</li>
+<li>Re-run optimization after a generator, tokenizer, or wrapper change.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-101">Figure 10.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    H[&quot;header word: 5&quot;] --&gt;|&quot;x&quot;| I[&quot;index style: 4&quot;]
+    I --&gt;|&quot;x&quot;| F[&quot;field separator: 6&quot;]
+    F --&gt;|&quot;x&quot;| C[&quot;chunk separator: 3&quot;]
+    C --&gt;|&quot;x&quot;| K[&quot;header casing: 2&quot;]
+    K --&gt;|&quot;x&quot;| B[&quot;block order: 2&quot;]
+    B --&gt; T[&quot;1,440 renderings, one meaning&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Reported comparison</th>
+<th style="text-align: right;">Accuracy movement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLaMA-2-13B, formatting alone</td>
+<td style="text-align: right;">76 points</td>
+</tr>
+<tr>
+<td>GPT-4, template restructure</td>
+<td style="text-align: right;">roughly 49% to 25.44%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Scale in the source runs from 0 to 80 accuracy points between the worst and best semantically equivalent prompt.</p>
+<p>Figure 10.1: One wrapper around the same retrieved chunks admits 1,440 semantically identical spellings, and choosing badly among them costs more accuracy than most retriever upgrades win. Spreads are as reported by Sclar et al. (2024) for LLaMA-2-13B and by the Japanese-template study for GPT-4.</p>
+<h3 id="figure-102">Figure 10.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    X1[&quot;x1 canonical&quot;] --&gt; G[&quot;generator weights and readable log-probabilities&quot;]
+    X2[&quot;x2 reworded&quot;] --&gt; G
+    XN[&quot;xN typo or reordered&quot;] --&gt; G
+    G --&gt; A[&quot;sampled string yi and agreement: labels plus N decodes&quot;]
+    G --&gt; P[&quot;log P of yi under xj and POSIX or PSS: label-free plus N(N-1) prefills&quot;]
+    G --&gt; D[&quot;top-two gap log(p1/p2) and decoding confidence: free with sample&quot;]</code></pre></details></figure>
+<p>Figure 10.2: One forward pass over a family of meaning-preserving prompt variants offers three read-outs. The top one is what teams reach for and is the only one that needs labels. The middle one is POSIX, label-free and continuous. The bottom one is already in your logits and costs nothing to log on live traffic.</p>
+<h3 id="figure-103">Figure 10.3</h3>
+<pre class="text"><code>accuracy A (points)
+^
+|  o
+|    o   o
+|      o    o             upper residual band
+|        o      o       /--------------------
+|          o      o   /  negative slope rho sigma_A / sigma_S
+|            o      o/-----------------------
+| [filled points]
+|  *   *   *   confident errors
+|              stable under rewrites
+|              wrong under labels
++--------------------------------------------------&gt; prompt sensitivity S (nats per token)
+
+Residual band width: plus or minus sigma_A sqrt(1 - rho squared)</code></pre>
+<p>Figure 10.3: Sensitivity tracks accuracy through the decoding margin, so the cloud slopes down and a ranking built on it beats chance. The filled points are what the proxy cannot see: answers held with a wide margin because the generator trusts a retrieved distractor. They sit in the quadrant the correlation promises is safe, and they are the failures a RAG system actually ships.</p>
+<h3 id="figure-104">Figure 10.4</h3>
+<pre class="text"><code>Top panel, schematic accuracy bands across 1,440 renderings
+
+7B, zero-shot                 [----------|----------]
+70B, or instruction-tuned             [----------|----------]
+7B plus four in-format demos             [----|----]
+
+Scale or instruction tuning translates the band.
+In-format demonstrations narrow the band.
+
+Bottom panel, drift of 0.0238 nats per token as a share of gap delta z(k)
+
+k = 0  | ############### 15.5%
+k = 1  | #####           4.7%
+k = 2  | ###             2.8%
+k = 4  | ##              1.5%
+k = 8  | #               0.81%</code></pre>
+<p>Figure 10.4: Adding parameters or instruction data translates the band of accuracies over meaning-preserving formats, while in-format demonstrations narrow it (top panel, schematic). The mechanism is margin: under ∆z(k) = 0.154 + 0.35k nats, the drift measured in section 10.2 falls from 15.5% of the flip barrier to 1.5% by four demonstrations (bottom panel, derived).</p>
+<h3 id="figure-105">Figure 10.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    subgraph C1[&quot;COPLE&quot;]
+        W[&quot;Answer using only the provided context below&quot;] --&gt; I[&quot;rank word slots by influence I(wj)&quot;]
+        I --&gt; M[&quot;replace one top-m slot: only to solely, exclusively, strictly, or another of C choices&quot;]
+        M --&gt; S[&quot;score paired candidates and require gain above sigma sqrt(2 ln(mC))&quot;]
+        S --&gt; Q{&quot;paired gain clears selection floor&quot;}
+        Q --&gt;|&quot;yes&quot;| W
+        Q --&gt;|&quot;no&quot;| STOP[&quot;stop&quot;]
+    end
+    subgraph P1[&quot;P2G&quot;]
+        FN[&quot;false negatives: 24 errors and count paraphrases&quot;] --&gt; KEEP[&quot;keep two textual gradients separate&quot;]
+        FP[&quot;false positives: 36 errors and require explicit language&quot;] --&gt; KEEP
+        FN -. &quot;pooled net&quot; .-&gt; NET[&quot;absolute difference 12 from 60 errors&quot;]
+        FP -. &quot;pooled net&quot; .-&gt; NET
+    end</code></pre></details></figure>
+<p>Figure 10.5: Both methods work by refusing to search the whole space. COPLE restricts edits to one influential word slot at a time, which makes the sweep linear in prompt length and the accept test the only thing standing between you and selection noise. P2G refuses to average its feedback: pooling false positives with false negatives leaves a step proportional to their difference, so the signal collapses exactly where both error types are still worth fixing.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw three boxes labeled "equivalent prompt wrappers."</li>
+<li>Put "same meaning" above those boxes.</li>
+<li>Add arrows from all three wrappers into one generator box.</li>
+<li>Draw three readout boxes after the generator.</li>
+<li>Label them "agreement," "POSIX log-likelihood drift," and "top-two confidence gap."</li>
+<li>Draw a downward sensitivity-versus-accuracy cloud.</li>
+<li>Add a filled cluster labeled "confident retrieved errors" in the low-sensitivity, low-accuracy region.</li>
+<li>Draw a wide format-accuracy band for zero-shot and a narrower band for in-format examples.</li>
+<li>Draw a prompt optimizer loop with one-word proposals, paired testing, staged allocation, and held-out confirmation.</li>
+<li>Split the optimizer's error feedback into false-positive and false-negative branches.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Prompt sensitivity means a model can react differently to two prompt formats that mean the same thing. I would draw a family of equivalent wrappers feeding one generator, then three readouts: agreement, POSIX, and decoding confidence. POSIX measures how much an answer's log-likelihood moves under rewrites without needing labels. Lower sensitivity can rank candidates, but it cannot certify accuracy because a model can be confidently wrong about a retrieved distractor. Few-shot examples usually narrow the spread more than scaling. Prompt optimization still needs paired tests, staged search, and held-out confirmation, or selection noise can look like a gain.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-a-punctuation-only-change-moves-accuracy-by-four-points-on-500-questions-is-that-real">1. A punctuation-only change moves accuracy by four points on 500 questions. Is that real?</h3>
+<p>It is plausible, because published meaning-preserving format spreads reach tens of points. It is not proven by that observation, because the one-arm standard error near 64% is 2.1 points and four points is under two such errors. Run a paired test on the discordant questions before rolling back.</p>
+<h3 id="2-can-posix-tell-you-which-prompt-is-most-accurate-without-labels">2. Can POSIX tell you which prompt is most accurate without labels?</h3>
+<p>It can help rank comparable candidates, but it does not measure accuracy. At r = 0.7, pairwise ordering is 74.7% correct and the residual is 0.714 of the accuracy spread. Shortlist with POSIX, then use labels and a groundedness check on the finalists.</p>
+<h3 id="3-what-if-the-hosted-generator-does-not-expose-log-probabilities">3. What if the hosted generator does not expose log-probabilities?</h3>
+<p>Full POSIX is unavailable because it needs teacher-forced scoring of arbitrary continuations. Use the weaker N-sample agreement measure on a traffic sample, retain any available emitted-token confidence, and treat an open-weight shadow model only as a canary for its own fragility.</p>
+<h3 id="4-when-do-few-shot-examples-not-solve-prompt-sensitivity">4. When do few-shot examples not solve prompt sensitivity?</h3>
+<p>They do not manufacture missing knowledge, recover an answer document that retrieval omitted, or eliminate format spread. Their benefit also flattens as attention normalizes across more examples, while context and KV-cache costs grow. Measure the curve and still keep a sensitivity monitor.</p>
+<h3 id="5-when-does-prompt-optimization-not-solve-the-problem">5. When does prompt optimization not solve the problem?</h3>
+<p>COPLE cannot see interactions beyond its coordinate moves, so it can stop at a local optimum. Any optimizer can also select noise, drift the task meaning, or find a sharp prompt that fails after a format or model change. Use paired staged tests, untouched confirmation data, semantic review, and sensitivity scoring.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number</th>
+<th>Meaning or claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening regression</td>
+<td style="text-align: right;">64.0% to 59.8%</td>
+<td>Grounded accuracy changes when only the wrapper format changes</td>
+</tr>
+<tr>
+<td>Header words</td>
+<td style="text-align: right;">5</td>
+<td>Document, Passage, Context, Source, and Excerpt</td>
+</tr>
+<tr>
+<td>Index styles</td>
+<td style="text-align: right;">4</td>
+<td>The worked format grammar has four choices</td>
+</tr>
+<tr>
+<td>Field separators</td>
+<td style="text-align: right;">6</td>
+<td>The worked format grammar has six choices</td>
+</tr>
+<tr>
+<td>Chunk separators</td>
+<td style="text-align: right;">3</td>
+<td>The worked format grammar has three choices</td>
+</tr>
+<tr>
+<td>Header casing choices</td>
+<td style="text-align: right;">2</td>
+<td>The worked format grammar has two choices</td>
+</tr>
+<tr>
+<td>Block orders</td>
+<td style="text-align: right;">2</td>
+<td>Instruction can precede or follow context</td>
+</tr>
+<tr>
+<td>Total formats</td>
+<td style="text-align: right;">1,440</td>
+<td>Product of the six wrapper slots</td>
+</tr>
+<tr>
+<td>LLaMA-2-13B spread</td>
+<td style="text-align: right;">up to 76 points</td>
+<td>Worst-to-best formatting spread on one task</td>
+</tr>
+<tr>
+<td>Scale comparison</td>
+<td style="text-align: right;">13B to 70B</td>
+<td>Formatting spread persisted under the reported scale increase</td>
+</tr>
+<tr>
+<td>Other reported model</td>
+<td style="text-align: right;">GPT-3.5</td>
+<td>Formatting sensitivity persisted there</td>
+</tr>
+<tr>
+<td>Japanese GPT-4 restructure</td>
+<td style="text-align: right;">roughly 49% to 25.44%</td>
+<td>A 23.56-point drop under a task-preserving template change</td>
+</tr>
+<tr>
+<td>Parse example</td>
+<td style="text-align: right;">2 plus 5 equals 7 points</td>
+<td>Parsed accuracy loss plus parse-rate loss becomes end-to-end loss</td>
+</tr>
+<tr>
+<td>Format evaluation set</td>
+<td style="text-align: right;">500 questions</td>
+<td>Basis of the section 10.1 worked example</td>
+</tr>
+<tr>
+<td>Retrieved context</td>
+<td style="text-align: right;">5 chunks at 250 tokens</td>
+<td>1,250 retrieved tokens per query</td>
+</tr>
+<tr>
+<td>Other input</td>
+<td style="text-align: right;">roughly 150 tokens</td>
+<td>Question and instruction size</td>
+</tr>
+<tr>
+<td>Total input</td>
+<td style="text-align: right;">1,400 tokens</td>
+<td>Worked per-generation input</td>
+</tr>
+<tr>
+<td>Output</td>
+<td style="text-align: right;">120 tokens</td>
+<td>Worked grounded-answer length</td>
+</tr>
+<tr>
+<td>Input price</td>
+<td style="text-align: right;">$0.60 per million tokens</td>
+<td>Pricing assumption</td>
+</tr>
+<tr>
+<td>Output price</td>
+<td style="text-align: right;">$2.40 per million tokens</td>
+<td>Pricing assumption</td>
+</tr>
+<tr>
+<td>Exhaustive grid</td>
+<td style="text-align: right;">720,000 generations</td>
+<td>1,440 formats on 500 questions</td>
+</tr>
+<tr>
+<td>Exhaustive input</td>
+<td style="text-align: right;">1,008 million tokens and $604.80</td>
+<td>Input bill</td>
+</tr>
+<tr>
+<td>Exhaustive output</td>
+<td style="text-align: right;">86.4 million tokens and $207.36</td>
+<td>Output bill</td>
+</tr>
+<tr>
+<td>Exhaustive total</td>
+<td style="text-align: right;">about $812</td>
+<td>Affordable once, not per release</td>
+</tr>
+<tr>
+<td>Halving round 1</td>
+<td style="text-align: right;">1,440 by 20 equals 28,800</td>
+<td>All formats on seed questions</td>
+</tr>
+<tr>
+<td>Halving round 2</td>
+<td style="text-align: right;">360 by 40 equals 14,400</td>
+<td>Top quarter advances</td>
+</tr>
+<tr>
+<td>Halving round 3</td>
+<td style="text-align: right;">90 by 80 equals 7,200</td>
+<td>Next quarter advances</td>
+</tr>
+<tr>
+<td>Halving round 4</td>
+<td style="text-align: right;">22 by 160 equals 3,520</td>
+<td>Rounded survivor count</td>
+</tr>
+<tr>
+<td>Halving final</td>
+<td style="text-align: right;">5 by 500 equals 2,500</td>
+<td>Finalists on full set</td>
+</tr>
+<tr>
+<td>Halving total</td>
+<td style="text-align: right;">56,420 generations</td>
+<td>7.8% of the grid and about $64</td>
+</tr>
+<tr>
+<td>Format search result</td>
+<td style="text-align: right;">71.2%, 52.8%, 64.0%</td>
+<td>Best, worst, and incumbent</td>
+</tr>
+<tr>
+<td>Search gain and spread</td>
+<td style="text-align: right;">7.2 and 18.4 points</td>
+<td>Apparent improvement and full observed spread</td>
+</tr>
+<tr>
+<td>Single-arm standard error</td>
+<td style="text-align: right;">sqrt(0.64 × 0.36 / 500) = 0.021</td>
+<td>A 2.1-point one-arm noise scale</td>
+</tr>
+<tr>
+<td>Best-of-1,440 factor</td>
+<td style="text-align: right;">3.81</td>
+<td>Approximate square root of 2 ln 1,440</td>
+</tr>
+<tr>
+<td>Selection inflation bound</td>
+<td style="text-align: right;">up to 8.0 points</td>
+<td>Independence approximation, with correlation making truth smaller</td>
+</tr>
+<tr>
+<td>Retrieval roadmap delta</td>
+<td style="text-align: right;">2.5 points</td>
+<td>1.2 standard errors and under one seventh of the 18.4-point spread</td>
+</tr>
+<tr>
+<td>Format noise ratio</td>
+<td style="text-align: right;">roughly 9 times</td>
+<td>Spread relative to one-arm standard error</td>
+</tr>
+<tr>
+<td>Exhaustive-search threshold</td>
+<td style="text-align: right;">family under about 50</td>
+<td>Chapter's default switch point</td>
+</tr>
+<tr>
+<td>Small hand-written set</td>
+<td style="text-align: right;">3 or 4 candidates</td>
+<td>Held-out confirmation may be skipped only knowingly</td>
+</tr>
+<tr>
+<td>Best-of-4 factor and floor</td>
+<td style="text-align: right;">1.67 and 3.5 points</td>
+<td>Selection accounting for four candidates</td>
+</tr>
+<tr>
+<td>Transfer probe</td>
+<td style="text-align: right;">old top 5 plus 20 random</td>
+<td>Cheap model-migration test</td>
+</tr>
+<tr>
+<td>Production traffic</td>
+<td style="text-align: right;">200,000 queries a day across 4 verticals</td>
+<td>Labels cover only one vertical in the setup</td>
+</tr>
+<tr>
+<td>Agreement margin contrast</td>
+<td style="text-align: right;">1 nat versus 20 nats</td>
+<td>Same output agreement can hide very different fragility</td>
+</tr>
+<tr>
+<td>Pair scoring example</td>
+<td style="text-align: right;">-12.0 to -13.6 over 40 tokens</td>
+<td>0.040 nats per token</td>
+</tr>
+<tr>
+<td>Confident top-two split</td>
+<td style="text-align: right;">0.90 versus 0.05</td>
+<td>log 18 equals 2.89 nats</td>
+</tr>
+<tr>
+<td>Hesitant top-two split</td>
+<td style="text-align: right;">0.35 versus 0.30</td>
+<td>log 1.167 equals 0.154 nats</td>
+</tr>
+<tr>
+<td>Margin ratio</td>
+<td style="text-align: right;">19 times</td>
+<td>Hesitant step is closer to flipping</td>
+</tr>
+<tr>
+<td>Tail example</td>
+<td style="text-align: right;">95% at 0.005 and 5% at 0.09</td>
+<td>Mean can hide the incident-producing tail</td>
+</tr>
+<tr>
+<td>Variant count</td>
+<td style="text-align: right;">N = 8</td>
+<td>Full ordered matrix has 56 cross-scores</td>
+</tr>
+<tr>
+<td>Model and precision</td>
+<td style="text-align: right;">7B in bf16</td>
+<td>Worked measurement model</td>
+</tr>
+<tr>
+<td>Hardware</td>
+<td style="text-align: right;">one A100-80GB</td>
+<td>Worked measurement device</td>
+</tr>
+<tr>
+<td>Weights</td>
+<td style="text-align: right;">14 GB</td>
+<td>7B bf16 model size</td>
+</tr>
+<tr>
+<td>Bandwidth</td>
+<td style="text-align: right;">2.0 TB/s</td>
+<td>Decode arithmetic assumption</td>
+</tr>
+<tr>
+<td>Peak compute</td>
+<td style="text-align: right;">312 TFLOP/s</td>
+<td>Hardware peak</td>
+</tr>
+<tr>
+<td>Achieved compute</td>
+<td style="text-align: right;">50% or 156 TFLOP/s</td>
+<td>Prefill arithmetic assumption</td>
+</tr>
+<tr>
+<td>Decode step</td>
+<td style="text-align: right;">7.0 ms</td>
+<td>One full 14 GB weight read per token</td>
+</tr>
+<tr>
+<td>Decode total</td>
+<td style="text-align: right;">0.84 s</td>
+<td>120 tokens</td>
+</tr>
+<tr>
+<td>Prefill work</td>
+<td style="text-align: right;">1.96 × 10^13 FLOPs</td>
+<td>2PT for 1,400 tokens</td>
+</tr>
+<tr>
+<td>Prefill time</td>
+<td style="text-align: right;">0.13 s</td>
+<td>Worked estimate</td>
+</tr>
+<tr>
+<td>One generation</td>
+<td style="text-align: right;">0.97 s</td>
+<td>Prefill plus decode</td>
+</tr>
+<tr>
+<td>Scoring pass</td>
+<td style="text-align: right;">1,520 tokens and 0.136 s</td>
+<td>Prompt plus answer teacher-forced pass</td>
+</tr>
+<tr>
+<td>Labeled variant sweep</td>
+<td style="text-align: right;">4,000 generations and 3,880 s</td>
+<td>Also needs 4,000 judgments</td>
+</tr>
+<tr>
+<td>Full POSIX</td>
+<td style="text-align: right;">8(0.97) + 56(0.136) = 7.76 + 7.62 = 15.4 s</td>
+<td>7,700 s or 2.1 GPU-hours for 500 queries</td>
+</tr>
+<tr>
+<td>One-sided POSIX</td>
+<td style="text-align: right;">0.97 + 7(0.136) = 1.92 s per query</td>
+<td>960 s, 16 GPU-minutes, and about 8 times cheaper</td>
+</tr>
+<tr>
+<td>POSIX shifts</td>
+<td style="text-align: right;">1.6, 0.4, 1.6, 0.7, 0.4, 1.0</td>
+<td>Six ordered-pair shifts total 5.7 nats</td>
+</tr>
+<tr>
+<td>POSIX value</td>
+<td style="text-align: right;">0.0238 nats per token</td>
+<td>5.7 divided by 40 times 6</td>
+</tr>
+<tr>
+<td>Answer-level drift</td>
+<td style="text-align: right;">2.85 nats</td>
+<td>120-token extension of 0.0238</td>
+</tr>
+<tr>
+<td>Likelihood ratio</td>
+<td style="text-align: right;">17 times</td>
+<td>Exponential of 2.85</td>
+</tr>
+<tr>
+<td>Barrier shares</td>
+<td style="text-align: right;">0.8% and 15%</td>
+<td>Relative to confident and hesitant barriers</td>
+</tr>
+<tr>
+<td>Scoring rate</td>
+<td style="text-align: right;">0.0895 ms per token</td>
+<td>1,520 tokens in 0.136 s</td>
+</tr>
+<tr>
+<td>Hardware ratio</td>
+<td style="text-align: right;">78 times or 78 FLOP per byte</td>
+<td>Prefill-to-decode check from compute over bandwidth</td>
+</tr>
+<tr>
+<td>Template comparison</td>
+<td style="text-align: right;">0.024 versus 0.019</td>
+<td>2.9 versus 2.3 nats over 120 tokens and roughly 17 versus 10 times likelihood</td>
+</tr>
+<tr>
+<td>Candidate templates</td>
+<td style="text-align: right;">6</td>
+<td>Legal launch ranking example</td>
+</tr>
+<tr>
+<td>Launch window</td>
+<td style="text-align: right;">3 weeks</td>
+<td>Labels quote 9 days for a first batch</td>
+</tr>
+<tr>
+<td>Working correlation</td>
+<td style="text-align: right;">r = 0.7</td>
+<td>Stated assumption, not a universal constant</td>
+</tr>
+<tr>
+<td>Residual ratio</td>
+<td style="text-align: right;">sqrt(1 - 0.49) = 0.714 sigma_A</td>
+<td>Leaves 71.4% of the original standard deviation</td>
+</tr>
+<tr>
+<td>Uncertainty removed</td>
+<td style="text-align: right;">28.6%</td>
+<td>Not 70%</td>
+</tr>
+<tr>
+<td>Accuracy spread prior</td>
+<td style="text-align: right;">sigma_A = 4.5 points</td>
+<td>Worked legal-template assumption</td>
+</tr>
+<tr>
+<td>Residual uncertainty</td>
+<td style="text-align: right;">3.2 points at one standard deviation</td>
+<td>95% interval is plus or minus 6.3 points</td>
+</tr>
+<tr>
+<td>Pairwise accuracy at r 0.3</td>
+<td style="text-align: right;">0.5 + 0.3047 / pi = 59.7%</td>
+<td>Barely above chance</td>
+</tr>
+<tr>
+<td>Pairwise accuracy at r 0.5</td>
+<td style="text-align: right;">two thirds</td>
+<td>Exact result under the assumption</td>
+</tr>
+<tr>
+<td>Pairwise accuracy at r 0.7</td>
+<td style="text-align: right;">0.5 + 0.7754 / pi = 74.7%</td>
+<td>About one pair in four backwards</td>
+</tr>
+<tr>
+<td>Pairwise accuracy at r 0.9</td>
+<td style="text-align: right;">85.6%</td>
+<td>About one pair in seven backwards</td>
+</tr>
+<tr>
+<td>Self-consistency temperatures</td>
+<td style="text-align: right;">0.7 and 0</td>
+<td>Sampling example and deterministic limit</td>
+</tr>
+<tr>
+<td>Full labeling</td>
+<td style="text-align: right;">3,000 judgments</td>
+<td>2 minutes each, 100 hours, $30 per hour, $3,000, and 9 days</td>
+</tr>
+<tr>
+<td>Six-template sensitivity run</td>
+<td style="text-align: right;">5,760 s</td>
+<td>1.6 GPU-hours and $4.00 at $2.50 per GPU-hour</td>
+</tr>
+<tr>
+<td>Expected max of 6 normals</td>
+<td style="text-align: right;">1.267</td>
+<td>Exact working value, below the 1.89 asymptote</td>
+</tr>
+<tr>
+<td>Oracle selection gain</td>
+<td style="text-align: right;">5.7 points</td>
+<td>4.5 times 1.267</td>
+</tr>
+<tr>
+<td>Proxy selection gain</td>
+<td style="text-align: right;">4.0 points</td>
+<td>70% of the oracle gain at r 0.7</td>
+</tr>
+<tr>
+<td>Pair accounting</td>
+<td style="text-align: right;">15 pairs</td>
+<td>Expect 11.2 correct and 3.8 backwards</td>
+</tr>
+<tr>
+<td>Hybrid labels</td>
+<td style="text-align: right;">400 judgments</td>
+<td>2 finalists by 200 questions</td>
+</tr>
+<tr>
+<td>Hybrid labor and cost</td>
+<td style="text-align: right;">13.3 hours, $400, 1 day</td>
+<td>13% of full-label configuration</td>
+</tr>
+<tr>
+<td>Finalist disagreement</td>
+<td style="text-align: right;">30 of 200</td>
+<td>Paired difference standard error is 2.7 points</td>
+</tr>
+<tr>
+<td>Hybrid ranking price</td>
+<td style="text-align: right;">$3.20</td>
+<td>Later source value retained alongside the $4.00 direct configuration</td>
+</tr>
+<tr>
+<td>Format-family size</td>
+<td style="text-align: right;">1,440</td>
+<td>Used for mean-versus-variance analysis</td>
+</tr>
+<tr>
+<td>Few-shot margin model</td>
+<td style="text-align: right;">0.154 + 0.35k nats</td>
+<td>Stated additive approximation</td>
+</tr>
+<tr>
+<td>Drift shares by k</td>
+<td style="text-align: right;">15.5%, 4.7%, 2.8%, 1.5%, 0.81%</td>
+<td>Values at k equal to 0, 1, 2, 4, and 8</td>
+</tr>
+<tr>
+<td>Eight-shot barrier</td>
+<td style="text-align: right;">2.954 nats</td>
+<td>0.154 plus 2.80, close to 2.89</td>
+</tr>
+<tr>
+<td>70B bf16 weights</td>
+<td style="text-align: right;">140 GB</td>
+<td>Does not fit one 80 GB card</td>
+</tr>
+<tr>
+<td>70B serving</td>
+<td style="text-align: right;">2 cards at 70 GB each</td>
+<td>35 ms per token and 4.2 s for 120 tokens</td>
+</tr>
+<tr>
+<td>Scale cost</td>
+<td style="text-align: right;">5 times latency, 2 times hardware, 10 times GPU-seconds</td>
+<td>Spread still persists in the cited result</td>
+</tr>
+<tr>
+<td>Instruction data</td>
+<td style="text-align: right;">50,000 by 1,500 tokens</td>
+<td>7.5 × 10^7 training tokens</td>
+</tr>
+<tr>
+<td>Instruction-tuning work</td>
+<td style="text-align: right;">3.15 × 10^18 FLOPs</td>
+<td>5.6 GPU-hours under the 6ND estimate</td>
+</tr>
+<tr>
+<td>Demonstration block</td>
+<td style="text-align: right;">4 by 250 tokens</td>
+<td>Prompt grows from 1,400 to 2,400 tokens</td>
+</tr>
+<tr>
+<td>Few-shot latency</td>
+<td style="text-align: right;">0.97 s to 1.06 s</td>
+<td>Prefill becomes 0.215 s and total rises 9%</td>
+</tr>
+<tr>
+<td>7B KV cache</td>
+<td style="text-align: right;">524,288 bytes or 0.524 MB per token</td>
+<td>32 layers, 4,096 width, no grouped-query attention</td>
+</tr>
+<tr>
+<td>Free cache</td>
+<td style="text-align: right;">66 GB</td>
+<td>Worked concurrency budget</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td style="text-align: right;">66,000 / 734 = 89 to 66,000 / 1,258 = 52</td>
+<td>1,400 to 2,400 tokens, a 42% cut</td>
+</tr>
+<tr>
+<td>70B KV cache</td>
+<td style="text-align: right;">327,680 bytes or 0.328 MB per token</td>
+<td>80 layers, 8 KV heads, head dimension 128</td>
+</tr>
+<tr>
+<td>Incorrect KV assumption</td>
+<td style="text-align: right;">64 heads</td>
+<td>Would wrongly predict higher per-token cache</td>
+</tr>
+<tr>
+<td>Recommended demonstration count</td>
+<td style="text-align: right;">2 to 4, default 4</td>
+<td>Measure before considering 16</td>
+</tr>
+<tr>
+<td>Retrieval trade</td>
+<td style="text-align: right;">recall at 5 to recall at 7</td>
+<td>Two 250-token chunks compete roughly one-for-one with two examples</td>
+</tr>
+<tr>
+<td>Optimizer development gain</td>
+<td style="text-align: right;">9 points</td>
+<td>Reported after 5 iterations on 200 questions</td>
+</tr>
+<tr>
+<td>Optimizer word diff</td>
+<td style="text-align: right;">11 words</td>
+<td>Small diff does not prove causality</td>
+</tr>
+<tr>
+<td>Raw lexical space</td>
+<td style="text-align: right;">9^60 or about 1.8 × 10^57</td>
+<td>60 words with 8 replacements plus incumbent</td>
+</tr>
+<tr>
+<td>COPLE active slots</td>
+<td style="text-align: right;">m = 10</td>
+<td>Top influence positions admit replacement</td>
+</tr>
+<tr>
+<td>COPLE sweep</td>
+<td style="text-align: right;">140 evaluations</td>
+<td>60 influence tests plus 10 by 8 candidates</td>
+</tr>
+<tr>
+<td>Five COPLE sweeps</td>
+<td style="text-align: right;">700 prompts</td>
+<td>About 4 × 10^-55 of the raw space</td>
+</tr>
+<tr>
+<td>Proxy standard error</td>
+<td style="text-align: right;">3.24 points</td>
+<td>n 200 and p about 0.70</td>
+</tr>
+<tr>
+<td>Candidate count</td>
+<td style="text-align: right;">80</td>
+<td>mC for 10 slots and 8 replacements</td>
+</tr>
+<tr>
+<td>Best-of-80 factor</td>
+<td style="text-align: right;">2.96</td>
+<td>Approximate square root of 2 ln 80</td>
+</tr>
+<tr>
+<td>Best-of-80 floor</td>
+<td style="text-align: right;">9.6 points</td>
+<td>Can fully explain a 9-point development gain</td>
+</tr>
+<tr>
+<td>Paired disagreements</td>
+<td style="text-align: right;">24 of 200</td>
+<td>Difference standard error 2.45 points versus 4.58 unpaired</td>
+</tr>
+<tr>
+<td>P2G error pools</td>
+<td style="text-align: right;">36 false positives and 24 false negatives</td>
+<td>Net 12 from 60, so four fifths cancels when pooled</td>
+</tr>
+<tr>
+<td>P2G result</td>
+<td style="text-align: right;">roughly 89% after 3 iterations</td>
+<td>Across 7 legal-domain classification tasks</td>
+</tr>
+<tr>
+<td>Whole-prompt edit</td>
+<td style="text-align: right;">14 changes</td>
+<td>Example of lost credit assignment</td>
+</tr>
+<tr>
+<td>Short classifier prompt</td>
+<td style="text-align: right;">700 input and 4 output tokens</td>
+<td>Prompt-optimization cost case</td>
+</tr>
+<tr>
+<td>Short evaluation</td>
+<td style="text-align: right;">62.8 ms prefill plus 28 ms decode</td>
+<td>About 91 ms total</td>
+</tr>
+<tr>
+<td>One candidate</td>
+<td style="text-align: right;">200 examples and 18.2 s</td>
+<td>At 91 ms per example</td>
+</tr>
+<tr>
+<td>Greedy sweep</td>
+<td style="text-align: right;">28,000 generations and 2,548 s</td>
+<td>140 candidates or influence tests on 200 examples</td>
+</tr>
+<tr>
+<td>Five greedy sweeps</td>
+<td style="text-align: right;">140,000 generations</td>
+<td>3.5 GPU-hours and $8.85 at $2.50 per hour</td>
+</tr>
+<tr>
+<td>Influence ranking stage</td>
+<td style="text-align: right;">60 by 50 equals 3,000</td>
+<td>Smaller subset for slot ranking</td>
+</tr>
+<tr>
+<td>Candidate halving stages</td>
+<td style="text-align: right;">2,000, 1,000, 500, 800</td>
+<td>80 by 25, 20 by 50, 5 by 100, and 2 by 400</td>
+</tr>
+<tr>
+<td>Candidate allocation</td>
+<td style="text-align: right;">4,300 versus 16,000</td>
+<td>27% of flat candidate scoring</td>
+</tr>
+<tr>
+<td>Full staged sweep</td>
+<td style="text-align: right;">7,300 generations</td>
+<td>Includes 3,000 influence-ranking generations</td>
+</tr>
+<tr>
+<td>Five staged sweeps</td>
+<td style="text-align: right;">36,500 generations and 3,322 s</td>
+<td>The source states 0.92 GPU-hours, 55 GPU-minutes, and $1.85, but 0.92 × $2.50 is about $2.30</td>
+</tr>
+<tr>
+<td>Savings</td>
+<td style="text-align: right;">3.8 times</td>
+<td>Disciplined run versus greedy full-proxy run</td>
+</tr>
+<tr>
+<td>Prefill share</td>
+<td style="text-align: right;">69%</td>
+<td>The 0.065 s linear check agrees with 0.0628 s, or 62.8 ms of 91 ms</td>
+</tr>
+<tr>
+<td>Long-answer decode share</td>
+<td style="text-align: right;">0.84 s of 0.97 s</td>
+<td>Grounded-question case</td>
+</tr>
+<tr>
+<td>Long-form optimization cost</td>
+<td style="text-align: right;">roughly 10 times higher</td>
+<td>Per evaluation than short-output classification</td>
+</tr>
+<tr>
+<td>Three P2G iterations</td>
+<td style="text-align: right;">21,900 generations</td>
+<td>About 110 full proxy-set passes</td>
+</tr>
+<tr>
+<td>Flat-search threshold</td>
+<td style="text-align: right;">mC under about 10</td>
+<td>The source calls sqrt(2 ln 10), about 2.2, a point floor. Its stated 3.24-point sigma makes the formula about 7.0 points</td>
+</tr>
+<tr>
+<td>Rewrite escape trigger</td>
+<td style="text-align: right;">2 failed coordinate sweeps</td>
+<td>Then admit one free-form proposal</td>
+</tr>
+<tr>
+<td>Feedback direction floor</td>
+<td style="text-align: right;">roughly 20 errors</td>
+<td>A 5-example critique is too narrow to generalize</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html"><small>Previous</small>Chapter 9. Prompting for Retrieval-Augmented Systems</a><a href="../chapters/11_abstention_and_calibration.html"><small>Next</small>Chapter 11. Abstention and Calibration</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 31. Attribution and Citation | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/31_attribution_and_citation.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group" open><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html" aria-current="page">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part IX. Generation and Context Assembly</p><h1>Chapter 31. Attribution and Citation</h1><p class="chapter-meta">47 min estimated reading · Unit 40 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains why attribution is the defining promise of Retrieval-Augmented Generation (RAG) and how to test, route, and measure cited claims.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>RAG can attach each factual claim to the retrieved chunk that supplied it. A model answering only from its parameters has no comparable source pointer.</li>
+<li>A genuine attribution link records where a claim came from. A citation mark alone does not prove that the source caused, supports, or makes the claim true.</li>
+<li>Attributable to Identified Sources (AIS) uses two ordered checks. First make the sentence understandable, then ask whether its source supports the resolved claim.</li>
+<li>A post-hoc citation search runs after an answer is fixed. It can find similar text without showing that the source caused or verified the answer.</li>
+<li>Use three claim labels when remediation differs. Ship attributable claims, retrieve more evidence for extrapolatory claims, and block contradictory claims for review.</li>
+<li>Automatic attribution judges remain fallible. The best fine-tuned AttributionBench system reported about 80% macro-F1, and its errors came from both reasoning failures and missing source context.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a newspaper newsroom that must keep a receipt for every factual line it prints.</p>
+<p>The reporter is the generator. The archive clerk is the retriever. The clippings are retrieved chunks. The copy editor is the attribution judge.</p>
+<p>A reporter who writes only from memory may produce a correct sentence, such as "the capital of Canada is Ottawa." The newsroom still cannot name the one clipping that produced it. The sentence came from everything the reporter remembers, mixed together. That is the parametric model's problem. Its memory may be accurate, but it has no receipt.</p>
+<p>In the RAG newsroom, the archive clerk first hands the reporter a small set of visible clippings. The reporter writes while those clippings sit on the desk. The newsroom can then record which clipping supplied each output span. This does not guarantee a true article. It gives every reviewer a concrete place to check.</p>
+<p>The copy editor follows the AIS checklist in a fixed order. First, the editor rewrites a vague sentence into the full claim a reader would understand from the conversation. For example, "It was released on September 19, 2025" becomes "The iPhone 17 was released on September 19, 2025." That fully resolved claim is the explicature. Second, the editor asks whether the cited clipping actually supports that claim without borrowing outside knowledge.</p>
+<p>A careless newsroom can fake the appearance of receipts. It can let the reporter finish the article and then ask an assistant to search for a similar-looking clipping. That post-hoc process proves only that a search ran. The clipping did not guide the writing, and similarity does not establish support. A correct line may get a decorative citation, and a wrong line may get one too.</p>
+<p>The careful copy desk uses three trays. The attributable tray holds claims fully supported by their clippings, so they can ship. The extrapolatory tray holds claims that the clipping never addresses, so the archive clerk must retrieve more evidence. The contradictory tray holds claims that conflict with the clipping, so the newsroom blocks and escalates them. These trays match the older fact-checking labels SUPPORTS, NOT ENOUGH INFO, and REFUTES.</p>
+<p>The copy editor also needs an audit. On AttributionBench, the best fine-tuned judge reached only about 80% macro-F1. In a review of 300 judge errors, 66% came from missed nuance, failed inference, or overlooked contradiction. Another 27% came from a simpler mismatch. The human saw the full page, while the judge saw only a snippet. The first problem needs a better reader. The second needs the newsroom to hand the reader more of the clipping file.</p>
+<p>The newsroom lesson is simple. Build the receipt into writing, test the receipt in two ordered steps, route each failure by its cause, and audit the person who audits everyone else.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves source text and gives it to a generator before the answer is written</td>
+<td>It creates a visible evidence set that claims can point back to</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>A trace from a generated claim to the source passage that supplied or supports it</td>
+<td>It makes a claim checkable even when the claim is wrong</td>
+</tr>
+<tr>
+<td>Citation</td>
+<td>A marker that points a reader to a source</td>
+<td>Its value depends on how the source was connected to generation and whether support was checked</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>A model that generates text from learned parameters and the current input</td>
+<td>It may answer fluently without retaining a pointer to one training document</td>
+</tr>
+<tr>
+<td>Parametric model</td>
+<td>A model whose learned facts are mixed into its numerical weights</td>
+<td>It cannot identify one training document as the origin of a generated claim</td>
+</tr>
+<tr>
+<td>Closed-book model</td>
+<td>A model that answers from its parameters without retrieving a source at answer time</td>
+<td>It may know the answer but cannot provide a source pointer by construction</td>
+</tr>
+<tr>
+<td>Parametric knowledge</td>
+<td>Information encoded across model weights during training</td>
+<td>It supplies answers without keeping document-level receipts</td>
+</tr>
+<tr>
+<td>Probability distribution</td>
+<td>The model's numerical weighting over possible next tokens</td>
+<td>It explains how a parametric model produces text without a corpus pointer</td>
+</tr>
+<tr>
+<td>`P(x_n</td>
+<td>x_1, ..., x_(n-1))`</td>
+<td>Probability of next token <code>x_n</code> given all earlier tokens</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The visible input text available to the generator for the current answer</td>
+<td>Retrieved chunks must enter this window to condition the write</td>
+</tr>
+<tr>
+<td>Datastore</td>
+<td>The searchable collection that holds source material</td>
+<td>It supplies the finite set of chunks used for attribution</td>
+</tr>
+<tr>
+<td>Retriever</td>
+<td>The component that selects source passages for a query</td>
+<td>Its misses create extrapolatory claims and missing evidence</td>
+</tr>
+<tr>
+<td>Retrieved chunk</td>
+<td>A bounded source passage placed in the generator's context</td>
+<td>Chunk-level pointers reduce a reviewer's search burden</td>
+</tr>
+<tr>
+<td><code>D_1, ..., D_k</code>, <code>k</code>, and <code>s_1, s_2, s_3</code></td>
+<td>Retrieved chunks, retrieval depth, and example answer spans</td>
+<td>They label the finite evidence and traceable spans in Figure 31.1</td>
+</tr>
+<tr>
+<td>Chunk identifier (chunk ID)</td>
+<td>The identifier stored for a retrieved passage</td>
+<td>Logging it beside a generated span preserves the audit trail</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>The component that writes the answer from the query and available context</td>
+<td>Its use or neglect of evidence determines whether retrieval helps</td>
+</tr>
+<tr>
+<td>Output span</td>
+<td>A specific part of a generated answer</td>
+<td>Fine-grained attribution links each claim-sized span to evidence</td>
+</tr>
+<tr>
+<td>Source pointer</td>
+<td>A direct reference from a claim to the chunk or passage behind it</td>
+<td>This is the structural capability retrieval adds</td>
+</tr>
+<tr>
+<td>Span attribution</td>
+<td>A mapping from an answer span to one or more source chunks</td>
+<td>It lets a reviewer inspect the exact evidence for a claim</td>
+</tr>
+<tr>
+<td>During-generation attribution</td>
+<td>Writing a claim while the cited source is already in context</td>
+<td>The text and citation share the same causal input</td>
+</tr>
+<tr>
+<td>Causal origin</td>
+<td>A shared source that actually influenced both the written claim and its citation</td>
+<td>It separates during-generation attribution from later similarity matching</td>
+</tr>
+<tr>
+<td>Post-hoc citation</td>
+<td>Searching for a source after the answer text is fixed</td>
+<td>It can attach similar text without proving origin or support</td>
+</tr>
+<tr>
+<td>Back-filled citation</td>
+<td>Another name for a post-hoc citation</td>
+<td>The name highlights that the citation is added after writing</td>
+</tr>
+<tr>
+<td>Atomic claim</td>
+<td>One small factual assertion that can be checked separately</td>
+<td>Claim-level checks avoid hiding one bad fact inside a long sentence</td>
+</tr>
+<tr>
+<td>Support check</td>
+<td>A test of whether a cited passage actually backs a claim</td>
+<td>It distinguishes evidence from a decorative citation mark</td>
+</tr>
+<tr>
+<td>Grounding</td>
+<td>Tying a generated claim to evidence that supports it</td>
+<td>A citation marker is not grounding unless the relation is actually tested</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether a factual claim is correct</td>
+<td>It must be separated from citation presence and source origin</td>
+</tr>
+<tr>
+<td>Attributable to Identified Sources (AIS)</td>
+<td>A two-step framework for deciding whether a sentence is understandable and supported by its named source</td>
+<td>It gives human raters and automatic judges a shared ordered test</td>
+</tr>
+<tr>
+<td><code>s</code> and <code>S</code></td>
+<td>Generated sentence and identified source passage</td>
+<td>AIS resolves <code>s</code> before testing whether <code>S</code> supports it</td>
+</tr>
+<tr>
+<td>Interpretability</td>
+<td>The first AIS gate that asks whether the sentence can be understood as a complete claim</td>
+<td>An ambiguous sentence should not reach the source-support test</td>
+</tr>
+<tr>
+<td>Explicature</td>
+<td>The fully resolved proposition a reader constructs from immediate conversational context</td>
+<td>It resolves pronouns and ellipses before attribution is judged</td>
+</tr>
+<tr>
+<td>Attribution test</td>
+<td>The second AIS gate that asks whether the source supports the resolved claim</td>
+<td>It measures source support without using outside knowledge to bridge gaps</td>
+</tr>
+<tr>
+<td>Boolean test</td>
+<td>A check with a pass or fail result</td>
+<td>AIS keeps interpretability and attribution as separate boolean columns</td>
+</tr>
+<tr>
+<td>Outside world knowledge</td>
+<td>Facts a grader knows but the cited source does not provide</td>
+<td>Using it can silently repair unsupported claims</td>
+</tr>
+<tr>
+<td>Entailment</td>
+<td>The relation in which the evidence supports the claim</td>
+<td>A one-step entailment score can hide unresolved ambiguity</td>
+</tr>
+<tr>
+<td>Natural language inference (NLI)</td>
+<td>Automated classification of whether one text supports or conflicts with another</td>
+<td>A single NLI pass can conflate coherence and grounding failures</td>
+</tr>
+<tr>
+<td>WebGPT</td>
+<td>A browsing system that writes answers with inline markers tied to browsed excerpts</td>
+<td>It demonstrates visible, checkable span attribution</td>
+</tr>
+<tr>
+<td>Bing Chat</td>
+<td>A consumer system that retrieves web pages and attaches citations to recommendations</td>
+<td>It demonstrates attribution at user-facing scale</td>
+</tr>
+<tr>
+<td>GopherCite</td>
+<td>A system trained to quote from retrieved passages</td>
+<td>It makes the cited text part of the generation objective rather than an added label</td>
+</tr>
+<tr>
+<td>Fine-grained Atomic Evaluation of Factual Precision (FActScore)</td>
+<td>An atomic-fact audit used to examine factual support and citation behavior in long-form biographies</td>
+<td>Its citation rates show why mere citation presence can carry little evidence</td>
+</tr>
+<tr>
+<td>Bayes' rule</td>
+<td>A rule for updating odds after observing evidence</td>
+<td>It quantifies how little a citation helps when correct and incorrect claims cite at similar rates</td>
+</tr>
+<tr>
+<td><code>c</code>, `P(c</td>
+<td>correct)<code>, and </code>P(c</td>
+<td>incorrect)`</td>
+</tr>
+<tr>
+<td>Prior odds</td>
+<td>The belief about correctness before seeing a citation</td>
+<td>The citation's likelihood ratio updates this starting point</td>
+</tr>
+<tr>
+<td>Posterior odds</td>
+<td>The belief about correctness after seeing a citation</td>
+<td>It shows the actual evidentiary value of the citation marker</td>
+</tr>
+<tr>
+<td>Likelihood ratio</td>
+<td>The citation rate for correct claims divided by the citation rate for incorrect claims</td>
+<td>A value near 1 means the citation barely changes belief</td>
+</tr>
+<tr>
+<td>Attributable claim</td>
+<td>A claim fully supported by its cited source</td>
+<td>The router can ship it</td>
+</tr>
+<tr>
+<td>Extrapolatory claim</td>
+<td>A claim that goes beyond a source that is silent on the needed fact</td>
+<td>The router should retrieve more evidence</td>
+</tr>
+<tr>
+<td>Contradictory claim</td>
+<td>A claim that conflicts with its cited source</td>
+<td>The router should block and escalate it</td>
+</tr>
+<tr>
+<td>Fact Extraction and VERification (FEVER)</td>
+<td>A fact-checking benchmark with three evidence labels</td>
+<td>Its taxonomy maps exactly to the three attribution labels</td>
+</tr>
+<tr>
+<td>SUPPORTS</td>
+<td>The FEVER label for evidence that backs a claim</td>
+<td>It maps to attributable</td>
+</tr>
+<tr>
+<td>NOT ENOUGH INFO (NEI)</td>
+<td>The FEVER label for evidence that does not resolve a claim</td>
+<td>It maps to extrapolatory</td>
+</tr>
+<tr>
+<td>REFUTES</td>
+<td>The FEVER label for evidence that conflicts with a claim</td>
+<td>It maps to contradictory</td>
+</tr>
+<tr>
+<td>Remediation</td>
+<td>The action taken after a claim receives a verdict</td>
+<td>Different failures need different owners and fixes</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>Logic that sends each verdict to shipping, retrieval, or review</td>
+<td>It needs the three-way label to choose the right action</td>
+</tr>
+<tr>
+<td>Retrieval depth k</td>
+<td>The number of chunks requested from a retriever</td>
+<td>Increasing it is one possible response to missing evidence</td>
+</tr>
+<tr>
+<td>AttributionBench</td>
+<td>A benchmark for evaluating automatic attribution judges</td>
+<td>It supplies the reported macro-F1 result and error analysis</td>
+</tr>
+<tr>
+<td>Automatic attribution judge</td>
+<td>A classifier that compares a generated claim with its cited source</td>
+<td>Its own mistakes propagate into ship, retry, and block decisions</td>
+</tr>
+<tr>
+<td>Generative Pre-trained Transformer 3.5 (GPT-3.5)</td>
+<td>The best fine-tuned judge family reported in the source</td>
+<td>Its benchmark result anchors the worked error budget</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Task-specific training applied to a model</td>
+<td>AttributionBench's best reported judge used it and still remained fallible</td>
+</tr>
+<tr>
+<td>Per-class F1</td>
+<td>The F1 score computed separately for one label</td>
+<td>It reveals whether a judge fails one class while looking strong overall</td>
+</tr>
+<tr>
+<td>Macro-F1</td>
+<td>The unweighted average of the per-class F1 scores</td>
+<td>It prevents a majority class from hiding poor minority-class performance</td>
+</tr>
+<tr>
+<td><code>F1_attr</code> and <code>F1_non-attr</code></td>
+<td>Per-class F1 for attributable and non-attributable claims</td>
+<td>Their unweighted mean is macro-F1</td>
+</tr>
+<tr>
+<td>Raw accuracy</td>
+<td>The fraction of all predictions marked correct</td>
+<td>It can look high on an imbalanced dataset even when one class fails</td>
+</tr>
+<tr>
+<td>Class balance</td>
+<td>The relative number of examples from each label</td>
+<td>It changes how informative raw accuracy is</td>
+</tr>
+<tr>
+<td>Class base rate</td>
+<td>The frequency of a label in a particular data source</td>
+<td>A shift can require separate judge calibration even when labels stay the same</td>
+</tr>
+<tr>
+<td>Calibration threshold</td>
+<td>The score cutoff used to turn a judge's output into a label</td>
+<td>Different evidence sources may need different cutoffs</td>
+</tr>
+<tr>
+<td>In-distribution data</td>
+<td>Evaluation data drawn from the kinds of data used for training</td>
+<td>It tests held-out performance on familiar patterns</td>
+</tr>
+<tr>
+<td>Out-of-distribution data</td>
+<td>Evaluation data held outside the training distributions</td>
+<td>It tests whether the judge generalizes beyond benchmark phrasing</td>
+</tr>
+<tr>
+<td>Fine-grained information insensitivity</td>
+<td>A judge error caused by missed nuance, failed inference, or overlooked contradiction</td>
+<td>More source context alone does not fix this reasoning problem</td>
+</tr>
+<tr>
+<td>Information access mismatch</td>
+<td>A judge error caused by seeing less source text than the human labeler</td>
+<td>Giving the judge the same source context can remove this mismatch</td>
+</tr>
+<tr>
+<td>Input parity</td>
+<td>Giving the judge and human reviewer the same evidence</td>
+<td>It must be checked before blaming disagreement on the model</td>
+</tr>
+<tr>
+<td>Confusion matrix</td>
+<td>A per-label count of which classes the judge confuses</td>
+<td>It reveals whether extrapolatory and contradictory claims are being routed incorrectly</td>
+</tr>
+<tr>
+<td>Corpus coverage gap</td>
+<td>A missing source document that no query rewrite can retrieve</td>
+<td>It needs corpus repair rather than retrieval tuning</td>
+</tr>
+<tr>
+<td>Attribution coverage</td>
+<td>The share of factual claims that carry a source pointer</td>
+<td>It must be measured separately from answer accuracy</td>
+</tr>
+<tr>
+<td>Faithfulness rate</td>
+<td>The measured rate at which citations truly support their adjacent claims</td>
+<td>It strengthens a citation signal but still does not guarantee truth</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="311-attribution-as-rags-core-promise">31.1 Attribution as RAG's core promise</h3>
+<h4 id="parametric-generation-has-no-corpus-receipt">Parametric generation has no corpus receipt</h4>
+<ul>
+<li>What: A parametric language model samples the next token from <code>P(x_n | x_1, ..., x_(n-1))</code> using fixed learned weights.</li>
+<li>Why: The formulation explains how many training documents can shape one answer without any one document producing it.</li>
+<li>Failure without it: Asking the model to justify its answer produces another parametric guess. That guess is no more grounded than the first.</li>
+<li>Cost or complexity: The source states a structural limit, not a tunable cost. No amount of tuning creates a source pointer when the architecture kept none.</li>
+</ul>
+<p>The Canada example makes the limit concrete. "The capital of Canada is Ottawa" is likely correct. A closed-book model still cannot identify the one document that produced the sentence because no single document did.</p>
+<h4 id="retrieval-creates-something-concrete-to-point-to">Retrieval creates something concrete to point to</h4>
+<ul>
+<li>What: A RAG pipeline retrieves a finite set of chunks <code>D1, ..., Dk</code> and places them in the generator's context window.</li>
+<li>Why: Each generated span can, in principle, link back to the chunk that supplied it.</li>
+<li>Failure without it: A reviewer must reconstruct evidence with an independent search.</li>
+<li>Cost or complexity: The pipeline must preserve chunk IDs and span mappings at inference time.</li>
+</ul>
+<p>Retrieval changes what the system can expose. It does not merely change what the model knows.</p>
+<h4 id="concrete-systems-show-three-implementations">Concrete systems show three implementations</h4>
+<ul>
+<li><p>What: WebGPT searches, browses, and writes answers with inline markers such as <code>[1]</code> and <code>[2]</code> tied to specific excerpts.</p></li>
+<li><p>Why: A human or automatic checker can open the cited excerpt and compare it with the adjacent claim.</p></li>
+<li><p>Failure without it: A marker with no excerpt-level connection asks the reviewer to trust the model again.</p></li>
+<li><p>Cost or complexity: The system must store the browsed excerpt behind each marker.</p></li>
+<li><p>What: Bing Chat searches the web and cites pages behind recommendations, such as attractions in a two-day Toronto itinerary.</p></li>
+<li><p>Why: It exposes user-facing sources at consumer scale.</p></li>
+<li><p>Failure without it: The recommendation may remain plausible but uncheckable.</p></li>
+<li><p>Cost or complexity: The source gives no numeric serving cost for this example.</p></li>
+<li><p>What: GopherCite rewards the model for quoting verbatim from a retrieved passage.</p></li>
+<li><p>Why: The citation becomes part of what the model actually copied rather than a label attached later.</p></li>
+<li><p>Failure without it: A later citation service can only search for a match to already-fixed text.</p></li>
+<li><p>Cost or complexity: The mechanism changes the training objective rather than only the display layer.</p></li>
+</ul>
+<p>WebGPT was reported by Nakano et al. in 2021. GopherCite was reported by Menick et al. in 2022.</p>
+<h4 id="attribution-is-a-categorical-advantage">Attribution is a categorical advantage</h4>
+<ul>
+<li>What: RAG's defining advantage is that a claim can be checked against a visible source.</li>
+<li>Why: Retrieval accuracy varies by domain and fact popularity, and it can underperform a closed-book model on some question slices.</li>
+<li>Failure without it: Selling RAG only as an accuracy improvement makes the architecture look unjustified whenever retrieval hurts accuracy.</li>
+<li>Cost or complexity: Attribution requires source-aware generation and logging even when accuracy metrics do not improve.</li>
+</ul>
+<p>The claim limit matters. Attribution proves a checkable origin. It does not prove that the origin supports the claim. It does not prove the claim is true.</p>
+<h4 id="worked-audit-economics">Worked audit economics</h4>
+<ul>
+<li>What: A support assistant handles 50,000 answered queries per month with 5 factual claims per answer.</li>
+<li>Why: A 5% answer audit creates 2,500 reviewed answers and 12,500 claims to verify.</li>
+<li>Failure without it: A reviewer independently searches for each claim at an assumed 90 seconds per claim.</li>
+<li>Cost or complexity: <code>12,500 × 90 seconds = 1,125,000 seconds</code>, which is about 312.5 reviewer-hours per month.</li>
+</ul>
+<p>With WebGPT-style span attribution, each claim points to 1 to 2 chunks. The example uses an average of 1.5 citations per claim. A citation is about 50 words. At 200 words per minute, one excerpt takes <code>50 / 200 = 0.25 minute = 15 seconds</code> to read.</p>
+<p>The attributed review cost is:</p>
+<p><code>1.5 × 15 seconds = 22.5 seconds per claim</code></p>
+<p><code>12,500 × 22.5 seconds = 281,250 seconds</code>, which is about 78.1 reviewer-hours per month.</p>
+<ul>
+<li>What: Attribution changes the review task from search to reading a short excerpt.</li>
+<li>Why: The excerpt is shorter than the work required for an independent search.</li>
+<li>Failure without it: The reviewer pays the full search cost for every claim.</li>
+<li>Cost or complexity: The worked example falls from 312.5 to 78.1 hours per month, a 4× reduction.</li>
+</ul>
+<p>The 15-second assumption follows from the stated 50-word excerpt and 200-words-per-minute pace. The result is only as trustworthy as that reading-speed assumption.</p>
+<h4 id="production-defaults-and-their-limits">Production defaults and their limits</h4>
+<ul>
+<li><p>What: Treat "every generated factual claim links to a retrieved chunk" as a hard requirement.</p></li>
+<li><p>Why: It preserves the source pointer that defines the architecture's value.</p></li>
+<li><p>Failure without it: Unsupported claims can reach users without an audit trail.</p></li>
+<li><p>Cost or complexity: Purely conversational turns such as greetings and clarifying questions can skip attribution because they assert no facts.</p></li>
+<li><p>What: Measure attribution coverage separately from answer accuracy.</p></li>
+<li><p>Why: A system can be accurate yet unattributable when citations are attached after generation.</p></li>
+<li><p>Failure without it: One dashboard number hides whether the system is correct, traceable, or both.</p></li>
+<li><p>Cost or complexity: The source allows a fused shortcut only for an internal prototype with no external users.</p></li>
+<li><p>What: Cite the chunk the generator actually saw rather than a whole document.</p></li>
+<li><p>Why: A citation to a 50-page Portable Document Format (PDF) file recreates the expensive search that attribution should remove.</p></li>
+<li><p>Failure without it: Reviewers must locate the relevant passage themselves.</p></li>
+<li><p>Cost or complexity: Document-level citation is reasonable when one chunk already equals one short frequently asked question (FAQ) entry.</p></li>
+<li><p>What: Log retrieved-but-unused chunks as well as cited chunks.</p></li>
+<li><p>Why: The log separates evidence retrieved and ignored from evidence never retrieved.</p></li>
+<li><p>Failure without it: Teams cannot distinguish a generation failure from a retrieval failure after an incident.</p></li>
+<li><p>Cost or complexity: Keeping only cited chunks saves storage but gives up that diagnosis.</p></li>
+<li><p>What: Report a during-generation citation as proof of origin rather than proof of correctness.</p></li>
+<li><p>Why: A separate faithfulness check must establish whether the source supports the claim.</p></li>
+<li><p>Failure without it: Stakeholders can mistake a pointer for verification.</p></li>
+<li><p>Cost or complexity: Even a measured AIS-style faithfulness rate is only a stronger signal, not a guarantee.</p></li>
+</ul>
+<p>Citation metadata can remain logged even if a product hides citation markers in the user interface. This preserves compliance and incident-review value without assuming citations must improve satisfaction scores.</p>
+<h3 id="312-the-ais-framework-interpretability-then-attribution">31.2 The AIS framework: interpretability then attribution</h3>
+<h4 id="ais-defines-an-ordered-two-gate-test">AIS defines an ordered two-gate test</h4>
+<ul>
+<li>What: AIS takes a generated sentence <code>s</code> and an identified source passage <code>S</code>.</li>
+<li>Why: It asks whether a competent reader can conclude that <code>S</code> supports <code>s</code> without outside knowledge.</li>
+<li>Failure without it: Different raters can answer different hidden questions and produce inconsistent verdicts.</li>
+<li>Cost or complexity: The judge must run two sequential boolean checks rather than one fused score.</li>
+</ul>
+<p>Rashkin et al. introduced AIS in 2023 in Computational Linguistics. The ordering is the design.</p>
+<h4 id="gate-one-resolves-the-explicature">Gate one resolves the explicature</h4>
+<ul>
+<li>What: Interpretability asks whether the sentence can stand as an understandable proposition after immediate conversational context resolves pronouns and ellipses.</li>
+<li>Why: Ordinary generated text often uses context-bound phrases that a reader can resolve.</li>
+<li>Failure without it: A bare sentence such as "It was released on September 19, 2025" leaves "it" undefined.</li>
+<li>Cost or complexity: The resolver should use the immediate preceding turn by default and reach farther back only in long conversations with topic drift.</li>
+</ul>
+<p>Given the question "When was the iPhone 17 released?", the explicature is "The iPhone 17 was released on September 19, 2025." The source passage must not supply the missing referent. Outside world knowledge must not supply it either.</p>
+<ul>
+<li>What: Reject an explicature when the referent remains ambiguous.</li>
+<li>Why: Guessing would contaminate the interpretability gate with the source under evaluation.</li>
+<li>Failure without it: The grader can silently repair a sentence the generator never made coherent.</li>
+<li>Cost or complexity: The source allows a practical exception for one overwhelmingly dominant referent when formal rejection only adds overhead.</li>
+</ul>
+<h4 id="gate-two-tests-source-support">Gate two tests source support</h4>
+<ul>
+<li>What: The attribution gate asks whether "According to S, the resolved claim" is a reasonable and checkable utterance.</li>
+<li>Why: It tests whether the named passage itself supports the proposition.</li>
+<li>Failure without it: A claim can pass because it is true in the world even when the citation is silent, contradictory, or merely related.</li>
+<li>Cost or complexity: The judge must read the source closely enough to detect specific numbers, dates, qualifications, and conflicts.</li>
+</ul>
+<p>Only a sentence that passes interpretability can reach attribution. A sentence can be true and still fail AIS with respect to its cited source.</p>
+<h4 id="a-single-entailment-pass-loses-diagnostic-information">A single entailment pass loses diagnostic information</h4>
+<ul>
+<li>What: A one-step NLI-style checker scores the source and raw sentence together.</li>
+<li>Why: It appears simpler and costs less than two passes.</li>
+<li>Failure without it: The checker may resolve ambiguity using the very source it should evaluate, then report confidence for a claim the generator never committed to.</li>
+<li>Cost or complexity: A low fused score cannot tell the team whether to fix generation coherence or source grounding.</li>
+</ul>
+<p>AIS keeps these failure causes separate. It has been validated across conversational question answering (QA), summarization, and table-to-text generation. These tasks have different rates of context-dependent wording. The two-stage meaning stays stable across them.</p>
+<h4 id="worked-ais-audit">Worked AIS audit</h4>
+<ul>
+<li>What: The example audits 50 generated sentences, each with a cited passage.</li>
+<li>Why: It shows how the two pass rates combine.</li>
+<li>Failure without it: A single overall score would hide where claims fail.</li>
+<li>Cost or complexity: Human graders must resolve each sentence before comparing it with its source.</li>
+</ul>
+<p>Step one finds 3 sentences that remain uninterpretable. The other 47 pass.</p>
+<p><code>47 / 50 = 94% interpretable</code></p>
+<p>Step two finds 8 failures among the 47 interpretable sentences. Five cited passages are silent on the asserted number or date. Three passages mildly contradict the claim with a different date or qualified figure. The remaining 39 pass.</p>
+<p><code>39 / 47 = about 83% attributable among interpretable sentences</code></p>
+<p>The end-to-end AIS rate is:</p>
+<p><code>(47 / 50) × (39 / 47) = 39 / 50 = 78%</code></p>
+<ul>
+<li>What: The 78% result is compared with the roughly 80% macro-F1 of an automatic judge later in the chapter.</li>
+<li>Why: The two statistics differ, but their shared order of magnitude is a sanity check.</li>
+<li>Failure without it: A reported 99% attribution rate should trigger scrutiny of whether graders actually separated the two gates.</li>
+<li>Cost or complexity: The 78% figure is a batch pass rate. The 80% figure is judge quality. They must not be treated as the same metric.</li>
+</ul>
+<h4 id="ais-implementation-defaults">AIS implementation defaults</h4>
+<ul>
+<li><p>What: Log interpretability and attribution as separate boolean columns.</p></li>
+<li><p>Why: Each column points to a different owner and fix.</p></li>
+<li><p>Failure without it: A single "supported" score cannot distinguish incoherent output from unsupported output.</p></li>
+<li><p>Cost or complexity: A combined number is reasonable only after both stage-level rates are independently healthy.</p></li>
+<li><p>What: Automate AIS with two prompts or passes.</p></li>
+<li><p>Why: Automation should preserve the same ordered semantics as human rating.</p></li>
+<li><p>Failure without it: A one-shot entailment prompt repeats the NLI failure mode.</p></li>
+<li><p>Cost or complexity: Under a hard latency budget, use a cheap rule-based or small-model interpretability filter first, then call the expensive attribution judge only for sentences that pass.</p></li>
+</ul>
+<p>At a scale of one million sentences per day, this staged cost split preserves the ordering without doubling expensive judge calls on every sentence.</p>
+<h3 id="313-post-hoc-citations-and-why-they-are-nearly-worthless">31.3 Post-hoc citations and why they are nearly worthless</h3>
+<h4 id="post-hoc-citation-changes-the-question">Post-hoc citation changes the question</h4>
+<ul>
+<li>What: The generator first writes free text from parametric knowledge. A separate service then searches for a similar passage and attaches a marker.</li>
+<li>Why: It can ship in a week when retrieval-conditioned generation may require a quarter of engineering work.</li>
+<li>Failure without it: The search answers "what looks like this sentence" rather than "what source caused or supports this sentence."</li>
+<li>Cost or complexity: It avoids changes to the generation path, which makes it faster to build and weaker as evidence.</li>
+</ul>
+<p>During-generation attribution gives the text and citation one causal input. Post-hoc search runs after producing has ended. The answer is already fixed, whether right or wrong.</p>
+<h4 id="citation-presence-can-be-nearly-uninformative">Citation presence can be nearly uninformative</h4>
+<ul>
+<li>What: Min et al. reported in 2023 that more than 30% of both supported and unsupported sentences in their FActScore biography audit carried a citation.</li>
+<li>Why: Similar conditional citation rates make citation presence weak evidence of correctness.</li>
+<li>Failure without it: A product may present a decorative marker as verification.</li>
+<li>Cost or complexity: The system must measure citation rates separately for correct and incorrect claims to know whether the marker discriminates.</li>
+</ul>
+<p>Write <code>c</code> for the event that a sentence carries a citation. Bayes' rule gives the odds update:</p>
+<p><code>P(correct | c) / P(incorrect | c) = [P(correct) / P(incorrect)] × [P(c | correct) / P(c | incorrect)]</code></p>
+<p>The final factor is the likelihood ratio. A perfectly uninformative citation signal has a likelihood ratio of exactly 1. When both conditional citation rates sit just above 30%, the ratio stays close to 1.</p>
+<h4 id="a-correct-answer-can-still-have-a-decorative-citation">A correct answer can still have a decorative citation</h4>
+<ul>
+<li>What: Post-hoc search can attach an unrelated or tangentially related passage to a correct claim.</li>
+<li>Why: Similarity search optimizes topical resemblance rather than the support relation.</li>
+<li>Failure without it: A reader clicks the source and still cannot tell whether the number came from another source or was hallucinated.</li>
+<li>Cost or complexity: An independent support check must inspect each proposed citation.</li>
+</ul>
+<p>The claim can be right while the citation remains evidentially empty.</p>
+<h4 id="worked-likelihood-ratio-example">Worked likelihood-ratio example</h4>
+<ul>
+<li>What: A support bot produces 1,000 answers per month with 5 atomic claims each, for 5,000 claims.</li>
+<li>Why: The team wants to know whether "has a citation" can stand in for "is correct."</li>
+<li>Failure without it: The product may ship a trust signal that hardly changes the probability of correctness.</li>
+<li>Cost or complexity: The source uses a deliberately generous 35% citation rate for correct claims and 31% for incorrect claims.</li>
+</ul>
+<p>The four-point gap gives:</p>
+<p><code>likelihood ratio = 0.35 / 0.31 = about 1.13</code></p>
+<p>Starting from 50% prior probability, the posterior is:</p>
+<p><code>1.13 / (1 + 1.13) = about 53%</code></p>
+<p>The citation moves belief by only three percentage points. It is not verification.</p>
+<p>The AIS support check in the earlier worked batch moved from 94% interpretable to 78% attributable overall. That is a 16-point swing. The comparison shows that a citation mark and a citation check are different instruments.</p>
+<h4 id="deployment-rules-for-post-hoc-citations">Deployment rules for post-hoc citations</h4>
+<ul>
+<li><p>What: Prefer during-generation attribution when a confidently cited wrong claim carries real cost.</p></li>
+<li><p>Why: Health, legal, financial, and compliance surfaces need verifiable support rather than a similar passage.</p></li>
+<li><p>Failure without it: A likelihood ratio near 1 can be presented as a sourced answer.</p></li>
+<li><p>Cost or complexity: Low-stakes exploratory tools may use post-hoc citations when a bad citation costs only a wasted click.</p></li>
+<li><p>What: Gate post-hoc candidates with an independent factuality or support check.</p></li>
+<li><p>Why: The gate can turn a decorative candidate into a checked citation without rebuilding the full generation loop.</p></li>
+<li><p>Failure without it: Bare similarity search never tests truth or support.</p></li>
+<li><p>Cost or complexity: The shortcut is valid only when the search step itself includes an entailment test rather than a bare match.</p></li>
+<li><p>What: Measure <code>P(cited | correct)</code> and <code>P(cited | incorrect)</code> on the deployment's own evaluation set.</p></li>
+<li><p>Why: A large difference is the evidence that citation presence carries useful information.</p></li>
+<li><p>Failure without it: Teams can call a feature grounding without measuring whether it grounds anything.</p></li>
+<li><p>Cost or complexity: Close rates create a compliance and trust liability.</p></li>
+<li><p>What: Label bare post-hoc citations as "related sources" or "further reading."</p></li>
+<li><p>Why: The product label should describe the actual mechanism.</p></li>
+<li><p>Failure without it: "Sources for this claim" implies a support relation the pipeline did not test.</p></li>
+<li><p>Cost or complexity: Use the stronger label only after moving to during-generation attribution or adding a real support gate.</p></li>
+</ul>
+<p>The FActScore result is evidence against search-after-generate as an architecture. It is not a fixed ceiling on attribution in general.</p>
+<h3 id="314-attributable-extrapolatory-contradictory-and-the-fact-checking-mapping">31.4 Attributable, extrapolatory, contradictory, and the fact-checking mapping</h3>
+<h4 id="binary-failure-hides-two-different-causes">Binary failure hides two different causes</h4>
+<ul>
+<li>What: A binary attribution judge returns attributable or not attributable.</li>
+<li>Why: It provides a simple ship-or-fail metric.</li>
+<li>Failure without it: The failed bucket mixes a missing-evidence case with an active conflict.</li>
+<li>Cost or complexity: A router either retries everything and wastes retrieval calls, or blocks everything and overloads human review.</li>
+</ul>
+<p>The natural split has three labels.</p>
+<ul>
+<li>Attributable means the source fully supports the claim.</li>
+<li>Extrapolatory means the source is silent on the claim.</li>
+<li>Contradictory means the source states something incompatible with the claim.</li>
+</ul>
+<h4 id="the-taxonomy-maps-exactly-to-fact-checking">The taxonomy maps exactly to fact-checking</h4>
+<ul>
+<li>What: AttributionBench uses attributable, extrapolatory, and contradictory.</li>
+<li>Why: FEVER already uses the identical evidence relation under different names.</li>
+<li>Failure without it: Separate teams may rebuild the same three-way judge twice.</li>
+<li>Cost or complexity: A vocabulary layer maps attributable to SUPPORTS, extrapolatory to NEI, and contradictory to REFUTES.</li>
+</ul>
+<p>Thorne et al. introduced FEVER in 2018. The two communities reached the same three cases from different starting points. One checks human-written claims against curated evidence. The other checks model-written claims against retrieved passages.</p>
+<h4 id="each-label-drives-a-different-action">Each label drives a different action</h4>
+<ul>
+<li><p>What: Ship an attributable claim.</p></li>
+<li><p>Why: Its cited source fully supports it.</p></li>
+<li><p>Failure without it: Sending all supported claims to review wastes the router's value.</p></li>
+<li><p>Cost or complexity: The automatic judge still has an error rate, so shipping inherits judge risk.</p></li>
+<li><p>What: Return an extrapolatory claim to retrieval with a broader query, a larger <code>k</code>, or a second index.</p></li>
+<li><p>Why: The evidence was not found.</p></li>
+<li><p>Failure without it: Rewriting the same claim cannot create missing evidence.</p></li>
+<li><p>Cost or complexity: Repeated misses for the same absent document reveal a corpus coverage gap that retrieval tuning cannot fix.</p></li>
+<li><p>What: Hard-block and escalate a contradictory claim.</p></li>
+<li><p>Why: The claim conflicts with its own cited evidence.</p></li>
+<li><p>Failure without it: An automatic retry can reproduce a high-cost error without resolving which side is wrong.</p></li>
+<li><p>Cost or complexity: A reviewer must also check whether the retrieved source is stale or wrong before treating it as ground truth.</p></li>
+</ul>
+<h4 id="the-difficult-boundary-is-silence-versus-conflict">The difficult boundary is silence versus conflict</h4>
+<ul>
+<li>What: Judges must distinguish a source that lacks information from one that contradicts the claim.</li>
+<li>Why: Those labels send work to different owners.</li>
+<li>Failure without it: A good attributable-versus-fail score can still leave the router guessing.</li>
+<li>Cost or complexity: Long, nuance-dense references, misapplied label definitions, and symbolic or arithmetic operators make this boundary harder.</li>
+</ul>
+<p>A judge can miss the one clause that resolves a claim. A fluent reader can also fail to verify whether cited numbers compute to the claimed result.</p>
+<h4 id="worked-three-way-routing-example">Worked three-way routing example</h4>
+<ul>
+<li>What: A pipeline judges 1,000 claims per day and flags 30%, or 300 claims, as not attributable.</li>
+<li>Why: The example compares a binary queue with a routed queue.</li>
+<li>Failure without it: Every failed claim goes to a human for about 3 minutes.</li>
+<li>Cost or complexity: <code>300 × 3 minutes = 900 minutes = 15 hours per day</code> of human review.</li>
+</ul>
+<p>The source states an illustrative split because it does not supply a measured split for this pipeline. It assigns 60% of the failed claims to extrapolatory and 40% to contradictory. That produces 180 extrapolatory claims and 120 contradictory claims.</p>
+<p>The router sends the 180 extrapolatory claims back to retrieval at a compute cost described as cents rather than reviewer minutes. Only the 120 contradictory claims reach a human.</p>
+<p><code>120 × 3 minutes = 360 minutes = 6 hours per day</code></p>
+<p><code>(15 hours - 6 hours) / 15 hours = 60% ideal review-load reduction</code></p>
+<ul>
+<li>What: The 60% result is an ideal routing saving.</li>
+<li>Why: It shows the action value of the three labels.</li>
+<li>Failure without it: Treating the number as guaranteed ignores judge mistakes.</li>
+<li>Cost or complexity: At about 80% macro-F1, roughly one in five routing decisions is wrong, so realized savings fall below the ideal 60%.</li>
+</ul>
+<h4 id="production-label-decisions">Production label decisions</h4>
+<ul>
+<li><p>What: Use the three-way label whenever verdicts trigger different remediation.</p></li>
+<li><p>Why: A router needs action-specific information.</p></li>
+<li><p>Failure without it: A single fail state hides ownership.</p></li>
+<li><p>Cost or complexity: Binary remains adequate for a final ship-or-do-not-ship gate backed by one common human queue.</p></li>
+<li><p>What: Reuse existing SUPPORTS, NEI, and REFUTES infrastructure when evidence is comparable.</p></li>
+<li><p>Why: The label spaces are structurally identical.</p></li>
+<li><p>Failure without it: A new build duplicates the difficult silence-versus-conflict discrimination.</p></li>
+<li><p>Cost or complexity: Retrieved-at-query-time evidence can shift class base rates relative to a curated static corpus, so the shared judge may need separate calibration thresholds.</p></li>
+<li><p>What: Audit the full three-class confusion matrix.</p></li>
+<li><p>Why: Aggregate accuracy can hide confusion between extrapolatory and contradictory.</p></li>
+<li><p>Failure without it: The router assigns the wrong team and remedy.</p></li>
+<li><p>Cost or complexity: Per-class monitoring adds evaluation work but exposes the operationally important errors.</p></li>
+</ul>
+<h3 id="315-how-good-are-automatic-attribution-judges">31.5 How good are automatic attribution judges?</h3>
+<h4 id="attributionbench-measures-both-classes">AttributionBench measures both classes</h4>
+<ul>
+<li>What: AttributionBench's underlying task is binary attributable versus non-attributable classification against held-out human labels.</li>
+<li>Why: It tests whether an automatic judge agrees with the reference judgments.</li>
+<li>Failure without it: A router assumes a perfect classifier at the top of the pipeline.</li>
+<li>Cost or complexity: The benchmark draws from 7 datasets. Four support fine-tuning and in-distribution evaluation, while 3 are held out for out-of-distribution tests.</li>
+</ul>
+<p>The out-of-distribution split tests whether the judge learned entailment rather than one benchmark's surface phrasing.</p>
+<h4 id="macro-f1-blocks-the-majority-class-shortcut">Macro-F1 blocks the majority-class shortcut</h4>
+<ul>
+<li>What: Compute F1 for attributable and non-attributable separately, then average them without class weighting.</li>
+<li>Why: Each class must perform well regardless of test-set balance.</li>
+<li>Failure without it: A judge that predicts attributable on nearly everything can look strong on raw accuracy when that class dominates.</li>
+<li>Cost or complexity: Teams must retain per-class predictions and labels rather than report one raw count.</li>
+</ul>
+<p>The metric is:</p>
+<p><code>macro-F1 = (F1_attributable + F1_non-attributable) / 2</code></p>
+<p>A lopsided classifier drags one class score down and therefore lowers the average.</p>
+<h4 id="the-reported-ceiling-is-about-80-macro-f1">The reported ceiling is about 80% macro-F1</h4>
+<ul>
+<li>What: The best fine-tuned system in the paper was GPT-3.5 trained for attribution, at about 80% macro-F1.</li>
+<li>Why: It anchors the quality of a strong 2024-era judge on the benchmark's 7 datasets.</li>
+<li>Failure without it: A production router may treat automatic verdicts as near-perfect.</li>
+<li>Cost or complexity: <code>1 - 0.80 = 0.20</code>, which is roughly one wrong judgment in five.</li>
+</ul>
+<p>This number is not a warranty for another judge, chunking scheme, class balance, or deployment. Measure macro-F1 on a local labeled sample before letting the judge gate production traffic.</p>
+<h4 id="error-analysis-separates-reasoning-from-access">Error analysis separates reasoning from access</h4>
+<ul>
+<li>What: The authors manually reviewed 300 misclassified cases.</li>
+<li>Why: Aggregate error rate alone does not identify the right fix.</li>
+<li>Failure without it: A team can treat a data-pipeline problem as a model problem.</li>
+<li>Cost or complexity: The analysis assigns 66% to fine-grained information insensitivity and 27% to information access mismatch.</li>
+</ul>
+<p><code>300 × 0.66 = 198</code> information-insensitivity cases.</p>
+<p>These include missed nuance, failed inference, and overlooked contradiction. The source's representative claim says Thailand's population is about 63 million. The cited reference contains the number only in passing amid unrelated material. GPT-3.5 marks the claim non-attributable even though the figure appears correctly. A careful reader reaches the attributable ground truth. More context alone does not fix a judge that misses information it already has.</p>
+<p><code>300 × 0.27 = 81</code> information-access-mismatch cases.</p>
+<p>In these cases, the human labeler reads the full web page. The judge sees only the retrieved snippet. The graders do not have equal evidence. Giving the judge the full source can fix this pipeline mismatch.</p>
+<p><code>66% + 27% = 93%</code></p>
+<p>The source leaves the remaining 7% outside those two named categories. It does not decompose that residual further.</p>
+<h4 id="worked-judge-quality-example">Worked judge-quality example</h4>
+<ul>
+<li>What: A support bot judges 10,000 generated claims per day at the reported 80% macro-F1.</li>
+<li>Why: The example turns the benchmark result into a daily error budget.</li>
+<li>Failure without it: An aggregate benchmark score hides the number of wrong routing decisions.</li>
+<li>Cost or complexity: Because the benchmark balances the evaluation set, the example reads macro-F1 roughly as the fraction of judgments correct.</li>
+</ul>
+<p><code>10,000 × 0.20 = 2,000 wrong verdicts per day</code></p>
+<p>Applying the error-audit proportions gives:</p>
+<p><code>2,000 × 0.66 = 1,320 information-insensitivity errors</code></p>
+<p><code>2,000 × 0.27 = 540 information-access-mismatch errors</code></p>
+<p>Now give the judge the full source document instead of the snippet. The source treats this as an input-plumbing change rather than a model change. It leaves the 1,320 reasoning misses in place and removes essentially all 540 access-mismatch errors by definition.</p>
+<p><code>2,000 - 540 = 1,460 wrong verdicts per day</code></p>
+<p><code>1,460 / 10,000 = 14.6% effective error rate</code></p>
+<ul>
+<li>What: Full-source input moves the effective error rate from 20% toward 14.6% in this calculation.</li>
+<li>Why: It removes a mismatch between judge evidence and human evidence.</li>
+<li>Failure without it: Training harder spends effort on errors caused by missing text.</li>
+<li>Cost or complexity: Longer judge inputs increase latency or cost. If measured improvement is near zero, the judge may already receive full-document context.</li>
+</ul>
+<p>The change cuts judge errors by 27% before retraining. The effective rate moves from about one in five toward about one in seven.</p>
+<h4 id="production-judge-decisions">Production judge decisions</h4>
+<ul>
+<li><p>What: Report macro-F1 rather than raw accuracy.</p></li>
+<li><p>Why: A 95% accuracy claim can still hide a failed minority class on a skewed test set.</p></li>
+<li><p>Failure without it: A majority-class classifier can auto-ship the very claims the judge should catch.</p></li>
+<li><p>Cost or complexity: Raw accuracy is acceptable only after balance and per-class behavior are already checked.</p></li>
+<li><p>What: Feed the judge the full retrieved source when it may differ from the generator's chunk.</p></li>
+<li><p>Why: More than a quarter of the audited errors came from the judge seeing less than the human.</p></li>
+<li><p>Failure without it: Missing evidence looks like weak reasoning.</p></li>
+<li><p>Cost or complexity: Under a hard latency or cost budget, log which verdicts may suffer access mismatch rather than hiding the gap.</p></li>
+<li><p>What: Treat about 80% macro-F1 as a limit to route around rather than a target that prompt engineering will quickly close.</p></li>
+<li><p>Why: Two thirds of audited errors were genuine fine-grained reasoning failures.</p></li>
+<li><p>Failure without it: Teams expect a prompt rewrite to fix missed nuance and contradiction.</p></li>
+<li><p>Cost or complexity: Change the prompt only when evaluation shows it reduces the named information-insensitivity bucket.</p></li>
+<li><p>What: Test a new judge on out-of-distribution data.</p></li>
+<li><p>Why: A model can pattern-match one dataset's phrasing rather than reason about entailment.</p></li>
+<li><p>Failure without it: In-distribution results overstate production robustness.</p></li>
+<li><p>Cost or complexity: A narrow single-domain deployment may accept an in-distribution focus only when distribution shift genuinely will not occur.</p></li>
+<li><p>What: Spend human review on the costliest verdict class.</p></li>
+<li><p>Why: A missed contradictory claim that ships is more damaging than an attributable claim that receives an extra look.</p></li>
+<li><p>Failure without it: Full automation accepts a known nontrivial error rate, while universal review discards the judge's value.</p></li>
+<li><p>Cost or complexity: A practical policy can auto-ship attributable verdicts, reroute extrapolatory verdicts, and require human review for contradictory verdicts until local per-class error rates justify a change.</p></li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-311">Figure 31.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph P[&quot;Parametric path&quot;]
+    direction LR
+    pq[&quot;Query&quot;] --&gt; pm[&quot;Parametric LLM&quot;] --&gt; pa[&quot;Answer&quot;]
+    pa -. &quot;points to no document&quot; .-&gt; pn[&quot;No source pointer&quot;]
+  end
+  subgraph R[&quot;Retrieval-augmented path&quot;]
+    direction LR
+    rq[&quot;Query&quot;] --&gt; rr[&quot;Retriever&quot;]
+    rr --&gt; d1[&quot;D1&quot;]
+    rr --&gt; d2[&quot;D2&quot;]
+    rr --&gt; d3[&quot;D3&quot;]
+    d1 --&gt; rg[&quot;Generator&quot;]
+    d2 --&gt; rg
+    d3 --&gt; rg
+    rg --&gt; ra[&quot;Answer: s1, s2, s3&quot;]
+    d1 -. &quot;trace&quot; .-&gt; ra
+    d2 -. &quot;trace&quot; .-&gt; ra
+    d3 -. &quot;trace&quot; .-&gt; ra
+  end</code></pre></details></figure>
+<p>Figure 31.1: A parametric model's answer has no pointer back into the corpus that shaped it. A retrieval-augmented answer is built from a visible, finite set of chunks, so its spans can be traced back to the specific chunk that supplied them.</p>
+<h3 id="figure-312">Figure 31.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  a[&quot;Generated sentence s and query context&quot;] --&gt; b[&quot;Step 1: interpretability. Resolve the explicature and ask whether s stands alone&quot;]
+  b -- &quot;fail&quot; --&gt; c[&quot;Reject: uninterpretable&quot;]
+  b -- &quot;pass&quot; --&gt; d[&quot;Step 2: attribution. Ask whether according to S, s is valid&quot;]
+  d -- &quot;fail&quot; --&gt; e[&quot;Not attributable&quot;]
+  d -- &quot;pass&quot; --&gt; f[&quot;AIS: attributable to S&quot;]</code></pre></details></figure>
+<p>Figure 31.2: Interpretability gates attribution: a sentence is only checked against its source after its explicature has been resolved, so an ambiguous claim never reaches the attribution test in the first place.</p>
+<h3 id="figure-313">Figure 31.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph P[&quot;Post-hoc back-filled citation&quot;]
+    direction LR
+    pq[&quot;Query&quot;] --&gt; pg[&quot;Generator&quot;] --&gt; pa[&quot;Answer text fixed&quot;]
+    ps[&quot;Search: match text to corpus&quot;] -. &quot;similarity match only&quot; .-&gt; pa
+  end
+  subgraph D[&quot;During-generation attribution&quot;]
+    direction LR
+    dq[&quot;Query&quot;] --&gt; dr[&quot;Retriever&quot;] --&gt; dd[&quot;Doc D&quot;] --&gt; dg[&quot;Generator&quot;] --&gt; da[&quot;Answer cites D&quot;]
+    dd -. &quot;same document, both times&quot; .-&gt; da
+  end</code></pre></details></figure>
+<p>Figure 31.3: A post-hoc citation search matches already-fixed text to a passage that looks similar. During-generation attribution conditions the text on the same document it later cites, so text and citation share a causal origin.</p>
+<h3 id="figure-314">Figure 31.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  a[&quot;Generated claim s and cited source S&quot;] --&gt; b[&quot;Three-way attribution judge&quot;]
+  b --&gt; c[&quot;Attributable: SUPPORTS&quot;]
+  b --&gt; d[&quot;Extrapolatory: NEI&quot;]
+  b --&gt; e[&quot;Contradictory: REFUTES&quot;]
+  c --&gt; f[&quot;Ship&quot;]
+  d --&gt; g[&quot;Retrieve more evidence&quot;]
+  e --&gt; h[&quot;Block and escalate&quot;]</code></pre></details></figure>
+<p>Figure 31.4: The three-way attribution label routes each failure to a different fix: silence sends the claim back to retrieval, a conflict sends it to a block, and only a full match ships.</p>
+<h3 id="figure-315">Figure 31.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  a[&quot;300 error cases, fine-tuned judge, AttributionBench&quot;]
+  a --&gt; b[&quot;66%: fine-grained information insensitivity. Missed nuance, failed inference, overlooked contradiction&quot;]
+  a --&gt; c[&quot;27%: information access mismatch. Judge sees a snippet, human annotator saw the full page&quot;]
+  b --&gt; d[&quot;Fix: better judge model or reasoning&quot;]
+  c --&gt; e[&quot;Fix: give the judge more context&quot;]</code></pre></details></figure>
+<p>Figure 31.5: Two thirds of a fine-tuned attribution judge's errors are a reasoning problem no prompt fixes quickly. Over a quarter are a context-budget problem fixable by feeding the judge more of the source.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a top lane labeled "parametric path."</li>
+<li>Add Query, Parametric Model, and Answer boxes from left to right.</li>
+<li>Draw a dotted line from Answer to "no source pointer."</li>
+<li>Draw a lower lane labeled "RAG path."</li>
+<li>Add Query, Retriever, Chunks, Generator, and Answer boxes.</li>
+<li>Draw trace lines from the chunks to claim spans in the answer.</li>
+<li>Add two gates after the answer. Label them "resolve explicature" and "check source support."</li>
+<li>Add a side path that searches after the answer is fixed. Label it "post-hoc similarity only."</li>
+<li>Split the supported-check output into Attributable, Extrapolatory, and Contradictory.</li>
+<li>Route those branches to Ship, Retrieve More, and Block and Review.</li>
+<li>Add a final judge-quality note: about 80% macro-F1, with 66% reasoning errors and 27% access mismatch inside a 300-error audit.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>RAG's core promise is not guaranteed accuracy. It is a receipt for each claim. A parametric model writes from weights, so it cannot point to one source. A RAG system retrieves chunks first and writes from them. Then AIS checks each sentence in order: resolve what the sentence means, then ask whether the cited source supports it. A post-hoc citation skips that causal link and may only find similar text. Route supported claims to ship, missing evidence back to retrieval, and conflicts to review. Finally, measure the judge with macro-F1 because the judge itself can be wrong.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-if-retrieval-can-hurt-accuracy-why-is-attribution-still-rags-core-promise">1. If retrieval can hurt accuracy, why is attribution still RAG's core promise?</h3>
+<p>Attribution is categorical rather than an accuracy guarantee. A RAG answer can point to the finite chunks used to write it, while a parametric model has no architectural source pointer even when its answer is correct.</p>
+<h3 id="2-what-does-ais-test-and-why-must-the-order-stay-fixed">2. What does AIS test, and why must the order stay fixed?</h3>
+<p>AIS first resolves the sentence's explicature so the claim is understandable. Only then does it ask whether the identified source supports that resolved claim, which prevents the source or the grader's outside knowledge from silently repairing ambiguity.</p>
+<h3 id="3-when-would-you-use-post-hoc-citations-and-what-must-you-call-them">3. When would you use post-hoc citations, and what must you call them?</h3>
+<p>Use them for low-stakes exploratory surfaces where a wrong match costs only a wasted click, or gate them with an independent support check. Without that gate, call them related sources or further reading because similarity after generation does not prove origin, support, or truth.</p>
+<h3 id="4-why-are-attributable-extrapolatory-and-contradictory-better-than-one-failure-label">4. Why are attributable, extrapolatory, and contradictory better than one failure label?</h3>
+<p>They map to different actions and to FEVER's SUPPORTS, NEI, and REFUTES labels. Ship attributable claims, retrieve more evidence for source silence, and block a claim that conflicts with its cited source.</p>
+<h3 id="5-is-an-automatic-judge-at-about-80-macro-f1-good-enough-to-remove-human-review">5. Is an automatic judge at about 80% macro-F1 good enough to remove human review?</h3>
+<p>No single benchmark score justifies full automation. Check local macro-F1, input parity, out-of-distribution behavior, and per-class errors, then reserve mandatory review for the costliest class while routing lower-cost cases automatically.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or formula</th>
+<th>Meaning and claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td>Year attached to Nakano et al.'s WebGPT example</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>Year attached to Menick et al.'s GopherCite example</td>
+</tr>
+<tr>
+<td>2-day itinerary</td>
+<td>Bing Chat example used for cited Toronto recommendations</td>
+</tr>
+<tr>
+<td>50,000 answers per month</td>
+<td>Volume in the first audit example</td>
+</tr>
+<tr>
+<td>5 claims per answer</td>
+<td>Claim density in the first audit example and the post-hoc example</td>
+</tr>
+<tr>
+<td>5% of answers</td>
+<td>Monthly spot-check rate in the first audit example</td>
+</tr>
+<tr>
+<td>2,500 answers</td>
+<td>Answers reviewed after applying the 5% rate to 50,000</td>
+</tr>
+<tr>
+<td>12,500 claims</td>
+<td>Claims reviewed after multiplying 2,500 answers by 5 claims</td>
+</tr>
+<tr>
+<td>90 seconds per claim</td>
+<td>Assumed independent-search time without attribution</td>
+</tr>
+<tr>
+<td>1,125,000 seconds</td>
+<td>Total unattributed claim-review time in the first audit example</td>
+</tr>
+<tr>
+<td>312.5 reviewer-hours per month</td>
+<td>Unattributed review load in the first audit example</td>
+</tr>
+<tr>
+<td>1 to 2 chunks</td>
+<td>Citation range per claim in the attributed configuration</td>
+</tr>
+<tr>
+<td>1.5 citations per claim</td>
+<td>Average used in the attributed audit calculation</td>
+</tr>
+<tr>
+<td>50 words</td>
+<td>Approximate cited-excerpt length in the reading-cost calculation</td>
+</tr>
+<tr>
+<td>200 words per minute</td>
+<td>Stated proofreading pace used to derive excerpt reading time</td>
+</tr>
+<tr>
+<td>0.25 minute or 15 seconds</td>
+<td>Time to read one 50-word excerpt at 200 words per minute</td>
+</tr>
+<tr>
+<td>22.5 seconds per claim</td>
+<td>Review time from 1.5 citations times 15 seconds</td>
+</tr>
+<tr>
+<td>281,250 seconds</td>
+<td>Total attributed claim-review time in the first audit example</td>
+</tr>
+<tr>
+<td>78.1 reviewer-hours per month</td>
+<td>Attributed review load in the first audit example</td>
+</tr>
+<tr>
+<td>4× reduction</td>
+<td>Drop from 312.5 to 78.1 reviewer-hours</td>
+</tr>
+<tr>
+<td>50-page PDF</td>
+<td>Example of document-level citation that leaves too much search work</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Year attached to Rashkin et al.'s AIS publication and Min et al.'s FActScore audit</td>
+</tr>
+<tr>
+<td>2 AIS gates</td>
+<td>Interpretability first, then attribution</td>
+</tr>
+<tr>
+<td>September 19, 2025</td>
+<td>Date in the iPhone 17 explicature example</td>
+</tr>
+<tr>
+<td>50 sentences</td>
+<td>Size of the hand-run AIS audit</td>
+</tr>
+<tr>
+<td>3 sentences</td>
+<td>Cases still uninterpretable after explicature resolution</td>
+</tr>
+<tr>
+<td>47 sentences or 94%</td>
+<td>Cases that pass interpretability</td>
+</tr>
+<tr>
+<td>8 sentences</td>
+<td>Interpretable cases that fail attribution</td>
+</tr>
+<tr>
+<td>5 silent and 3 conflicting</td>
+<td>Split of the 8 attribution failures</td>
+</tr>
+<tr>
+<td>39 of 47 or about 83%</td>
+<td>Attribution pass rate among interpretable sentences</td>
+</tr>
+<tr>
+<td>39 of 50 or 78%</td>
+<td>End-to-end AIS pass rate</td>
+</tr>
+<tr>
+<td>About 80% macro-F1</td>
+<td>Comparison anchor for automatic judge quality, not the same statistic as the 78% pass rate</td>
+</tr>
+<tr>
+<td>1 million sentences per day</td>
+<td>Scale in the staged AIS latency interview example</td>
+</tr>
+<tr>
+<td>1 week versus 1 quarter</td>
+<td>Illustrative post-hoc ship time versus retrieval-conditioned engineering time</td>
+</tr>
+<tr>
+<td>More than 30%</td>
+<td>Citation rate reported for both supported and unsupported sentences in the FActScore audit</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Likelihood ratio of a perfectly uninformative signal</td>
+</tr>
+<tr>
+<td>1,000 answers per month</td>
+<td>Volume in the post-hoc citation worked example</td>
+</tr>
+<tr>
+<td>5,000 claims</td>
+<td>Total from 1,000 answers times 5 atomic claims</td>
+</tr>
+<tr>
+<td>35% versus 31%</td>
+<td>Generous illustrative citation rates for correct versus incorrect claims</td>
+</tr>
+<tr>
+<td>4 percentage points</td>
+<td>Difference between the 35% and 31% illustrative rates</td>
+</tr>
+<tr>
+<td>About 1.13</td>
+<td>Likelihood ratio from 0.35 divided by 0.31</td>
+</tr>
+<tr>
+<td>50% to about 53%</td>
+<td>Posterior correctness change after a citation under the illustrative likelihood ratio</td>
+</tr>
+<tr>
+<td>3 percentage points</td>
+<td>Size of that citation-only update</td>
+</tr>
+<tr>
+<td>16 percentage points</td>
+<td>Difference from 94% interpretable to 78% AIS-attributable in the comparison</td>
+</tr>
+<tr>
+<td>3 labels</td>
+<td>Attributable, extrapolatory, and contradictory</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Year attached to Thorne et al.'s FEVER benchmark</td>
+</tr>
+<tr>
+<td>1,000 claims per day</td>
+<td>Volume in the three-way routing example</td>
+</tr>
+<tr>
+<td>30% or 300 claims</td>
+<td>Binary not-attributable bucket in the routing example</td>
+</tr>
+<tr>
+<td>3 minutes per claim</td>
+<td>Human review time in the routing example</td>
+</tr>
+<tr>
+<td>900 minutes or 15 hours per day</td>
+<td>Binary human-review load</td>
+</tr>
+<tr>
+<td>60% or 180 claims</td>
+<td>Stated illustrative extrapolatory share of the failed bucket</td>
+</tr>
+<tr>
+<td>40% or 120 claims</td>
+<td>Stated illustrative contradictory share of the failed bucket</td>
+</tr>
+<tr>
+<td>360 minutes or 6 hours per day</td>
+<td>Review load when only contradictory claims escalate</td>
+</tr>
+<tr>
+<td>60% ideal reduction</td>
+<td>Review-load reduction before judge errors are applied</td>
+</tr>
+<tr>
+<td>Roughly 1 in 5</td>
+<td>Routing decisions treated as wrong at about 80% macro-F1</td>
+</tr>
+<tr>
+<td>7 datasets</td>
+<td>Total in AttributionBench's judge evaluation</td>
+</tr>
+<tr>
+<td>4 in-distribution datasets</td>
+<td>Datasets used for fine-tuning and familiar-distribution evaluation</td>
+</tr>
+<tr>
+<td>3 out-of-distribution datasets</td>
+<td>Datasets held out to test generalization</td>
+</tr>
+<tr>
+<td>2 class scores</td>
+<td>Attributable and non-attributable F1 values averaged for macro-F1</td>
+</tr>
+<tr>
+<td>About 80% macro-F1</td>
+<td>Best reported fine-tuned GPT-3.5 judge result</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>Approximate error share from 1 minus 0.80 in the worked interpretation</td>
+</tr>
+<tr>
+<td>1 in 20 versus 1 in 5</td>
+<td>Contrast used to show why the judge's actual error rate matters</td>
+</tr>
+<tr>
+<td>300 errors</td>
+<td>Size of the manual AttributionBench error audit</td>
+</tr>
+<tr>
+<td>66% or 198 cases</td>
+<td>Fine-grained information-insensitivity bucket</td>
+</tr>
+<tr>
+<td>27% or 81 cases</td>
+<td>Information-access-mismatch bucket</td>
+</tr>
+<tr>
+<td>93%</td>
+<td>Combined share of the two named error buckets</td>
+</tr>
+<tr>
+<td>7%</td>
+<td>Residual not further decomposed by the source</td>
+</tr>
+<tr>
+<td>About 63 million</td>
+<td>Thailand population claim in the buried-evidence example</td>
+</tr>
+<tr>
+<td>10,000 claims per day</td>
+<td>Volume in the judge-quality worked example</td>
+</tr>
+<tr>
+<td>2,000 wrong verdicts per day</td>
+<td>Approximate daily errors at a 20% rate</td>
+</tr>
+<tr>
+<td>1,320 errors</td>
+<td>Information-insensitivity share of the 2,000 daily errors</td>
+</tr>
+<tr>
+<td>540 errors</td>
+<td>Access-mismatch share of the 2,000 daily errors</td>
+</tr>
+<tr>
+<td>1,460 wrong verdicts per day</td>
+<td>Residual after removing the 540 access-mismatch errors</td>
+</tr>
+<tr>
+<td>14.6%</td>
+<td>Effective error rate from 1,460 divided by 10,000</td>
+</tr>
+<tr>
+<td>About 1 in 7</td>
+<td>Plain-language approximation of the 14.6% effective rate</td>
+</tr>
+<tr>
+<td>27% cut in judge errors</td>
+<td>Reduction from removing the access-mismatch bucket before retraining</td>
+</tr>
+<tr>
+<td>95% accuracy</td>
+<td>Interview example of a raw metric that still requires class-balance and macro-F1 checks</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/30_lost_in_the_middle.html"><small>Previous</small>Chapter 30. Lost in the Middle</a><a href="../chapters/32_evaluating_retrieval.html"><small>Next</small>Chapter 32. Evaluating Retrieval</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

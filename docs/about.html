@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>About this study edition | The RAG Interview</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/style.css"><script src="assets/reader.js" defer data-root=""></script></head>
+<body data-page="about.html" data-chapter="false"><a class="skip-link" href="#main">Skip to reading</a><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="index.html">Book roadmap</a><a href="reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="about.html">About this edition</a><a href="source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">THE RAG INTERVIEW · STUDY EDITION</p><h1>About this study edition</h1></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#start-here">Start here</a><a href="#what-every-study-unit-contains">What every study unit contains</a><a href="#repository-structure">Repository structure</a><a href="#reuse-the-workflow">Reuse the workflow</a><a href="#suggested-reading-paths">Suggested reading paths</a><a href="#book-map-at-a-glance">Book map at a glance</a><a href="#detailed-chapter-guide">Detailed chapter guide</a><a href="#verification-and-package-integrity">Verification and package integrity</a><a href="#source-and-rights-boundary">Source and rights boundary</a></nav></details><article class="prose"><p>A whiteboard-ready Markdown study guide for Retrieval-Augmented Generation (RAG) interviews, system design discussions, and production engineering reviews.</p>
+<p>This repository converts the structure of <em>The RAG Interview</em> into 57 self-contained study units. Each unit helps a reader explain the material cold, draw the core system on a whiteboard, reason through trade-offs, and answer follow-up questions without relying on the original PDF during practice.</p>
+<h2 id="start-here">Start here</h2>
+<ul>
+<li>Browse the complete <a href="source-index.html">study index</a> for source spans, reading-time estimates, and focused reading paths.</li>
+<li>Open the <a href="index.html#complete-contents">chapter directory</a> to study one topic at a time.</li>
+<li>Download <a href="https://github.com/arunshar/rag-interview-chapters/blob/main/rag-interview-chapters.zip">rag-interview-chapters.zip</a> for the verified portable package.</li>
+<li>Reuse the project-scoped <a href="https://github.com/arunshar/rag-interview-chapters/blob/main/.agents/skills/rag-interview-study-edition/SKILL.md">RAG Interview Study Edition skill</a> from Codex or share its folder with Fable.</li>
+<li>Begin with <a href="chapters/00_05_for_interview_candidates.html">For Interview Candidates</a>, <a href="chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1</a>, and <a href="chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3</a> if an interview is close.</li>
+<li>Use <a href="chapters/41_end_to_end_design_drills.html">Chapter 41</a> and <a href="chapters/A2_question_bank.html">Appendix A2</a> for rehearsal after completing a technical path.</li>
+</ul>
+<h2 id="what-every-study-unit-contains">What every study unit contains</h2>
+<p>Each unit follows the same interview-oriented structure:</p>
+<ol type="1">
+<li>A title and one-sentence purpose.</li>
+<li>A <code>TL;DR</code> with five to eight plain-language takeaways.</li>
+<li>A sustained explanatory story or analogy that translates the unit's technical ideas.</li>
+<li>A three-column Decoder table for terminology, symbols, metrics, models, and named systems.</li>
+<li>Core mechanics covering what each concept is, why it exists, what fails without it, and its stated cost or complexity when applicable.</li>
+<li>Recreated figures and tables using Mermaid, Markdown tables, ASCII diagrams, or precise prose descriptions.</li>
+<li>A Whiteboard pack with drawing order and a roughly 100 word spoken explanation.</li>
+<li>Interview traps with concise two or three sentence answers.</li>
+<li>A Key numbers table whenever the source commits to concrete values, thresholds, or trade-offs.</li>
+</ol>
+<h2 id="repository-structure">Repository structure</h2>
+<pre class="text"><code>.
+|-- README.md
+|   Repository overview, navigation, chapter guide, and verification summary
+|-- 00_INDEX.md
+|   Complete 57-unit index with source spans, reading times, and study routes
+|-- chapters/
+|   |-- 00_01_title_page.md through 00_09_about_the_author.md
+|   |   Front matter, study method, notation, and orientation
+|   |-- 01_what_a_rag_interview_actually_tests.md through 41_end_to_end_design_drills.md
+|   |   Forty-one technical and interview-practice chapters
+|   `-- A1_formula_sheet.md through A7_glossary.md
+|       Formula, question, checklist, reporting, reading, notation, and glossary references
+|-- .agents/skills/rag-interview-study-edition/
+|   |-- SKILL.md
+|   |   Reusable workflow entrypoint for building, auditing, packaging, and publishing an edition
+|   |-- references/ and assets/
+|   |   Chapter contract, verification rules, handoff guidance, recap, and templates
+|   `-- scripts/
+|       Markdown, Mermaid, package, and README verification helpers
+`-- rag-interview-chapters.zip
+    Verified portable package containing 00_INDEX.md and chapters/</code></pre>
+<p>The ZIP intentionally contains only the study index and the 57 unit files. The repository README and reusable skill remain outside that portable study package.</p>
+<h2 id="reuse-the-workflow">Reuse the workflow</h2>
+<p>This repository includes the project-scoped <a href="https://github.com/arunshar/rag-interview-chapters/blob/main/.agents/skills/rag-interview-study-edition/SKILL.md">RAG Interview Study Edition skill</a>. A new Codex session opened anywhere in this checkout can invoke it with:</p>
+<pre class="text"><code>Use $rag-interview-study-edition to audit this study edition without changing files.</code></pre>
+<p>To install the same skill for use outside this repository, ask Codex:</p>
+<pre class="text"><code>Use $skill-installer to install the skill from https://github.com/arunshar/rag-interview-chapters/tree/main/.agents/skills/rag-interview-study-edition</code></pre>
+<p>For Fable, share the <code>.agents/skills/rag-interview-study-edition/</code> folder and ask it to read <code>SKILL.md</code> first. The skill does not grant standing permission for pushes, releases, repository creation, or visibility changes. Each external mutation still requires current authorization.</p>
+<h2 id="suggested-reading-paths">Suggested reading paths</h2>
+<h3 id="fast-interview-loop">Fast interview loop</h3>
+<p>Read the interview guide, Chapters 1 and 3, and the retrieval stack in Chapters 15 through 18. Continue with Chapters 21, 22, 24, 25, and 26 for hybrid retrieval, reranking, query reformulation, routing, and iterative control. Add evaluation in Chapters 30 through 34 and trust and systems in Chapters 35 through 38. Finish with Chapter 41 and Appendices A1, A2, A3, and A6.</p>
+<h3 id="complete-technical-path">Complete technical path</h3>
+<p>Read the nine front-matter units first. Continue through Chapters 1 through 41 in book order, then use Appendices A1 through A7 as calculation, practice, review, and terminology references.</p>
+<h3 id="production-system-path">Production system path</h3>
+<p>Start with Chapters 3, 12, 13, and 14 for system framing and ingestion. Continue with Chapters 15 through 17, 21, and 22 for retrieval infrastructure. Add Chapters 24 through 26 and 30 for query control and context assembly. Validate with Chapters 31 through 38 and Appendix A4.</p>
+<h3 id="evaluation-and-trust-path">Evaluation and trust path</h3>
+<p>Read Chapters 5, 10, and 11 for data boundaries, prompt sensitivity, and abstention. Continue with Chapters 27 through 29 for training limits, then Chapters 31 through 38 for attribution, evaluation, credibility, attacks, operations, and distributed governance.</p>
+<p>The <a href="source-index.html">full index</a> gives the exact sequence for each path and an estimated reading time for every unit.</p>
+<h2 id="book-map-at-a-glance">Book map at a glance</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source part</th>
+<th style="text-align: right;">Chapters</th>
+<th>Main focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I. The RAG Interview Landscape</td>
+<td style="text-align: right;">1 to 3</td>
+<td>What interviews test, alternatives to retrieval, and a repeatable design framework</td>
+</tr>
+<tr>
+<td>II. The Generator Side</td>
+<td style="text-align: right;">4 to 8</td>
+<td>Generator capabilities, failure ownership, privacy, economics, in-context learning, and model circuits</td>
+</tr>
+<tr>
+<td>III. Prompting and Context Construction</td>
+<td style="text-align: right;">9 to 11</td>
+<td>Prompting boundaries, prompt sensitivity, abstention, and calibration</td>
+</tr>
+<tr>
+<td>IV. Representing What You Retrieve</td>
+<td style="text-align: right;">12 to 14</td>
+<td>Text representations, chunking, tables, layout, and document structure</td>
+</tr>
+<tr>
+<td>V. Indexing and Vector Search</td>
+<td style="text-align: right;">15 to 17</td>
+<td>Approximate nearest neighbors, compression, index economics, and vector-store operations</td>
+</tr>
+<tr>
+<td>VI. Retrieval and Ranking</td>
+<td style="text-align: right;">18 to 23</td>
+<td>Classical information retrieval, learning to rank, dense and sparse retrieval, reranking, and generative retrieval</td>
+</tr>
+<tr>
+<td>VII. Query Understanding and Control Flow</td>
+<td style="text-align: right;">24 to 26</td>
+<td>Reformulation, routing, adaptive retrieval, and iterative agentic control</td>
+</tr>
+<tr>
+<td>VIII. Training the RAG System</td>
+<td style="text-align: right;">27 to 29</td>
+<td>Generator tuning, retriever training, and bootstrapped supervision</td>
+</tr>
+<tr>
+<td>IX. Generation and Context Assembly</td>
+<td style="text-align: right;">30 to 31</td>
+<td>Position-dependent context failures, attribution, and citation</td>
+</tr>
+<tr>
+<td>X. Evaluation</td>
+<td style="text-align: right;">32 to 34</td>
+<td>Retrieval, generation, and end-to-end system evaluation</td>
+</tr>
+<tr>
+<td>XI. Trust, Credibility, and Adversarial Robustness</td>
+<td style="text-align: right;">35 to 36</td>
+<td>Source credibility, provenance, hostile content, and access boundaries</td>
+</tr>
+<tr>
+<td>XII. Scaling, Advanced Variants, and Design Drills</td>
+<td style="text-align: right;">37 to 41</td>
+<td>Latency, cost, federation, multimodality, graph RAG, and full design exercises</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="detailed-chapter-guide">Detailed chapter guide</h2>
+<h3 id="front-matter-orientation-and-study-strategy">Front matter: orientation and study strategy</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/00_01_title_page.html">00.01. Title Page</a></td>
+<td>Establishes the edition's scope, provenance, version, contact routes, and foundational RAG and artificial intelligence terminology.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_02_contents.html">00.02. Contents</a></td>
+<td>Turns the full contents into an interview-oriented navigation map for locating concepts and planning study sessions.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_03_preface.html">00.03. Preface</a></td>
+<td>Frames RAG as a production reasoning discipline rather than a simple list of components.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></td>
+<td>Explains reading routes, recurring unit structure, interview tags, references, and effective appendix use.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></td>
+<td>Provides a decision-first plan for design reasoning, derivations, debugging, pacing, and deliberate practice.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></td>
+<td>Maps technical material to engineering decisions, failure modes, costs, and operational trade-offs.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></td>
+<td>Defines symbols, abbreviations, overloaded terms, and measurement conventions used across the guide.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></td>
+<td>Records the people and sources that shaped the work and its emphasis on practical evidence and negative results.</td>
+</tr>
+<tr>
+<td><a href="chapters/00_09_about_the_author.html">00.09. About the Author</a></td>
+<td>Introduces Hao Hoang, the book's motivation and authorship, and its stated contact and correction channels.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-i-the-rag-interview-landscape">Part I: The RAG Interview Landscape</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/01_what_a_rag_interview_actually_tests.html">1. What a RAG Interview Actually Tests</a></td>
+<td>How to route knowledge to the right store, estimate the cost of that choice, and recognize when retrieval is not the right solution.</td>
+</tr>
+<tr>
+<td><a href="chapters/02_the_competing_answers_to_the_same_problem.html">2. The Competing Answers to the Same Problem</a></td>
+<td>How continual learning, model editing, long context, generative retrieval, and RAG fit different constraints and cost structures.</td>
+</tr>
+<tr>
+<td><a href="chapters/03_a_repeatable_framework_for_any_rag_design_question.html">3. A Repeatable Framework for Any RAG Design Question</a></td>
+<td>How to turn an underspecified prompt into explicit requirements, component choices, measurable trade-offs, and a defensible answer.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-ii-the-generator-side">Part II: The Generator Side</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/04_what_the_llm_brings_and_what_it_breaks.html">4. What the LLM Brings and What It Breaks</a></td>
+<td>How to separate useful generator behavior from failure modes and assign each failure to the component that should own the fix.</td>
+</tr>
+<tr>
+<td><a href="chapters/05_data_privacy_and_the_legal_surface.html">5. Data, Privacy, and the Legal Surface</a></td>
+<td>How RAG changes the cost, evidence, and reversibility of data decisions without replacing legal judgment.</td>
+</tr>
+<tr>
+<td><a href="chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">6. Scaling Laws and the Economics of Retrieval vs Parameters</a></td>
+<td>How to allocate training, serving, memory, and retrieval budgets across a RAG system.</td>
+</tr>
+<tr>
+<td><a href="chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">7. In-Context Learning: The Mechanism RAG Rides On</a></td>
+<td>How RAG uses in-context learning, when supervised fine-tuning is better, and how selection, format, order, and cost shape the design.</td>
+</tr>
+<tr>
+<td><a href="chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></td>
+<td>How residual streams, attention circuits, induction heads, and attribution support careful diagnosis without overstating model-level evidence.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-iii-prompting-and-context-construction">Part III: Prompting and Context Construction</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/09_prompting_for_retrieval_augmented_systems.html">9. Prompting for Retrieval-Augmented Systems</a></td>
+<td>Where prompting ends, where retrieval begins, how reasoning scaffolds change decoding, and why extra calls or passages can reduce quality.</td>
+</tr>
+<tr>
+<td><a href="chapters/10_prompt_sensitivity.html">10. Prompt Sensitivity</a></td>
+<td>How meaning-preserving prompt changes alter a RAG system and how to measure sensitivity before choosing a template.</td>
+</tr>
+<tr>
+<td><a href="chapters/11_abstention_and_calibration.html">11. Abstention and Calibration</a></td>
+<td>How to make refusal decisions, build confidence signals, and keep those signals calibrated for short and long answers.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-iv-representing-what-you-retrieve">Part IV: Representing What You Retrieve</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/12_text_representation.html">12. Text Representation</a></td>
+<td>How text representations trade exact matching, semantic reach, operational stability, training cost, and privacy.</td>
+</tr>
+<tr>
+<td><a href="chapters/13_chunking_and_granularity.html">13. Chunking and Granularity</a></td>
+<td>How to choose retrieval units, preserve context, route across granularities, and measure whether chunking improved retrieval.</td>
+</tr>
+<tr>
+<td><a href="chapters/14_beyond_plain_text_tables_layout_documents.html">14. Beyond Plain Text: Tables, Layout, Documents</a></td>
+<td>What structure is lost during flattening and how encoders, layout priors, metrics, invariance limits, and costs address that loss.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-v-indexing-and-vector-search">Part V: Indexing and Vector Search</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/15_approximate_nearest_neighbor_search.html">15. Approximate Nearest Neighbor Search</a></td>
+<td>How to choose and defend an approximate nearest neighbor index under recall, latency, memory, build-time, and update constraints.</td>
+</tr>
+<tr>
+<td><a href="chapters/16_compression_and_index_economics.html">16. Compression and Index Economics</a></td>
+<td>How to build an index budget from code length, scoring error, scan behavior, and fleet multipliers without confusing vector size with system footprint.</td>
+</tr>
+<tr>
+<td><a href="chapters/17_operating_a_vector_store.html">17. Operating a Vector Store</a></td>
+<td>How deletion, growth, metadata, filtering, and natural-language constraints affect the retrieval layer after deployment.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-vi-retrieval-and-ranking">Part VI: Retrieval and Ranking</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/18_classical_ir_you_are_expected_to_know.html">18. Classical IR You Are Expected to Know</a></td>
+<td>How lexical ranking works, where its assumptions fail, and why sparse retrieval protects rare and exact-match queries.</td>
+</tr>
+<tr>
+<td><a href="chapters/19_learning_to_rank.html">19. Learning to Rank</a></td>
+<td>How ranking objectives connect to ranked-list metrics and how pointwise, pairwise, listwise, representation, interaction, and hybrid designs differ.</td>
+</tr>
+<tr>
+<td><a href="chapters/20_dense_retrieval.html">20. Dense Retrieval</a></td>
+<td>How to train and serve dense retrieval, combine it with lexical search, price it, and extend it across languages.</td>
+</tr>
+<tr>
+<td><a href="chapters/21_learned_sparse_and_multi_vector_retrieval.html">21. Learned Sparse and Multi-Vector Retrieval</a></td>
+<td>How learned lexical weights, token-level interaction, compression, pruning, and rank fusion trade quality against index size and latency.</td>
+</tr>
+<tr>
+<td><a href="chapters/22_reranking.html">22. Reranking</a></td>
+<td>Why a second ranking stage helps, how to size its candidate set, and how cross-encoders and language-model ranking modes affect cost and diagnosis.</td>
+</tr>
+<tr>
+<td><a href="chapters/23_generative_retrieval.html">23. Generative Retrieval</a></td>
+<td>What changes when a model retrieves by generating document identifiers, why updates remain hard, and how recitation can complement RAG.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-vii-query-understanding-and-control-flow">Part VII: Query Understanding and Control Flow</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/24_query_reformulation.html">24. Query Reformulation</a></td>
+<td>How to diagnose weak queries, expand or rewrite them, repair conversational context, and search through hypothetical answers.</td>
+</tr>
+<tr>
+<td><a href="chapters/25_routing_and_adaptive_retrieval.html">25. Routing and Adaptive Retrieval</a></td>
+<td>How a system decides whether to retrieve, where to search, which operation to invoke, and how to handle unfamiliar queries safely.</td>
+</tr>
+<tr>
+<td><a href="chapters/26_iterative_recursive_and_agentic_retrieval.html">26. Iterative, Recursive, and Agentic Retrieval</a></td>
+<td>How repeated retrieval loops critique evidence, learn search behavior, fan out across sources, and stop before more rounds reduce value.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-viii-training-the-rag-system">Part VIII: Training the RAG System</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/27_fine_tuning_the_generator.html">27. Fine-tuning the Generator</a></td>
+<td>How to decide whether an error belongs to the generator and choose training objectives without conflating behavior, knowledge, robustness, and memory efficiency.</td>
+</tr>
+<tr>
+<td><a href="chapters/28_training_the_retriever.html">28. Training the Retriever</a></td>
+<td>How to connect generator utility to a discrete retriever and account for the index work created by retriever updates.</td>
+</tr>
+<tr>
+<td><a href="chapters/29_bootstrapping_training_data.html">29. Bootstrapping Training Data</a></td>
+<td>How to create retrieval supervision when logs or expert labels are scarce while measuring distribution shift and identifying the teacher ceiling.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-ix-generation-and-context-assembly">Part IX: Generation and Context Assembly</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/30_lost_in_the_middle.html">30. Lost in the Middle</a></td>
+<td>How to diagnose and reduce position-dependent failures in long retrieved contexts.</td>
+</tr>
+<tr>
+<td><a href="chapters/31_attribution_and_citation.html">31. Attribution and Citation</a></td>
+<td>Why attribution is a defining RAG capability and how to test, route, and measure cited claims.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-x-evaluation">Part X: Evaluation</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/32_evaluating_retrieval.html">32. Evaluating Retrieval</a></td>
+<td>How to measure evidence coverage and ordering, including cases without an established relevance set or with unreliable judges.</td>
+</tr>
+<tr>
+<td><a href="chapters/33_evaluating_generation.html">33. Evaluating Generation</a></td>
+<td>How generation metrics change with oracle access, claim coverage, response length, and summarization behavior.</td>
+</tr>
+<tr>
+<td><a href="chapters/34_evaluating_the_system.html">34. Evaluating the System</a></td>
+<td>How to combine component measurements into end-to-end diagnosis, validation, and stress testing before launch.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-xi-trust-credibility-and-adversarial-robustness">Part XI: Trust, Credibility, and Adversarial Robustness</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/35_source_credibility.html">35. Source Credibility</a></td>
+<td>How to estimate credibility, respond to weak evidence, and preserve freshness, pluralism, and fair exposure.</td>
+</tr>
+<tr>
+<td><a href="chapters/36_provenance_and_adversarial_robustness.html">36. Provenance and Adversarial Robustness</a></td>
+<td>How to verify evidence, resist hostile retrieved content, track provenance, harden the model, and protect access boundaries.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="part-xii-scaling-advanced-variants-and-design-drills">Part XII: Scaling, Advanced Variants, and Design Drills</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Chapter</th>
+<th>What it prepares you to explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/37_latency_cost_and_systems.html">37. Latency, Cost, and Systems</a></td>
+<td>How stage-level latency and cost models guide caching, batching, pipelining, kernel work, retrieval cascades, and multi-resolution indexes.</td>
+</tr>
+<tr>
+<td><a href="chapters/38_distributed_and_federated_rag.html">38. Distributed and Federated RAG</a></td>
+<td>How to design RAG across independently governed sources, regions, tenants, and shared public infrastructure.</td>
+</tr>
+<tr>
+<td><a href="chapters/39_multimodal_rag.html">39. Multimodal RAG</a></td>
+<td>How to index, retrieve, fuse, generate from, attribute, and evaluate text, images, tables, audio, and video.</td>
+</tr>
+<tr>
+<td><a href="chapters/40_graph_rag.html">40. Graph RAG</a></td>
+<td>How graph construction, grounded retrieval, generation, costs, and failure boundaries shape the GraphRAG versus LightRAG choice.</td>
+</tr>
+<tr>
+<td><a href="chapters/41_end_to_end_design_drills.html">41. End-to-End Design Drills</a></td>
+<td>How to turn seven interview prompts into measurable architectures that begin with the binding constraint and expose explicit trade-offs.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="appendices-formulas-practice-and-implementation-references">Appendices: formulas, practice, and implementation references</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Appendix</th>
+<th>What it gives you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="chapters/A1_formula_sheet.html">A1. Formula Sheet</a></td>
+<td>Eight formula groups covering lexical scoring, rank fusion, ranking metrics, modularity, product quantization, compute, latency, and index memory.</td>
+</tr>
+<tr>
+<td><a href="chapters/A2_question_bank.html">A2. Question Bank</a></td>
+<td>A timed self-test with Core, Senior, and Staff prompts plus compact answer spines for rehearsal.</td>
+</tr>
+<tr>
+<td><a href="chapters/A3_design_checklists.html">A3. Design Checklists</a></td>
+<td>Five operational checklists that turn a review into named decisions, measured quantities, and explicit exit criteria.</td>
+</tr>
+<tr>
+<td><a href="chapters/A4_the_rag_card_and_index_datasheet.html">A4. The RAG Card and Index Datasheet</a></td>
+<td>Two handoff templates for system scope, retrieval decisions, behavior, failures, index composition, footprint, performance, and lifecycle.</td>
+</tr>
+<tr>
+<td><a href="chapters/A5_annotated_reading_list.html">A5. Annotated Reading List</a></td>
+<td>A chapter-mapped reading route that identifies the result an interview candidate should be ready to explain or reproduce.</td>
+</tr>
+<tr>
+<td><a href="chapters/A6_notation_quick_reference.html">A6. Notation Quick Reference</a></td>
+<td>A compact reference for symbols, overloaded notation, calculation conventions, and pointers to the fuller notation discussion.</td>
+</tr>
+<tr>
+<td><a href="chapters/A7_glossary.html">A7. Glossary</a></td>
+<td>Definitions for overlapping RAG vocabulary with the distinctions, qualifications, and source pointers used across the edition.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="verification-and-package-integrity">Verification and package integrity</h2>
+<h3 id="current-repository-snapshot">Current repository snapshot</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markdown study units</td>
+<td style="text-align: right;">57</td>
+</tr>
+<tr>
+<td>Front-matter units</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Technical chapters</td>
+<td style="text-align: right;">41</td>
+</tr>
+<tr>
+<td>Appendices</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td>Total lines across unit files</td>
+<td style="text-align: right;">44,918</td>
+</tr>
+<tr>
+<td>Unit line-count range</td>
+<td style="text-align: right;">405 to 900</td>
+</tr>
+<tr>
+<td>Numbered figure headings</td>
+<td style="text-align: right;">246</td>
+</tr>
+<tr>
+<td>Numbered table headings</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Mermaid diagram blocks</td>
+<td style="text-align: right;">175</td>
+</tr>
+<tr>
+<td>Hardcoded Mermaid color directives</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Mermaid renders, default theme</td>
+<td style="text-align: right;">175 of 175</td>
+</tr>
+<tr>
+<td>Mermaid renders, dark theme</td>
+<td style="text-align: right;">175 of 175</td>
+</tr>
+<tr>
+<td>Files inside the ZIP</td>
+<td style="text-align: right;">58</td>
+</tr>
+<tr>
+<td>ZIP size</td>
+<td style="text-align: right;">1,142,346 bytes</td>
+</tr>
+<tr>
+<td>GitHub-blocked <code>\operatorname</code> macros</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Repaired display-math blocks parsed</td>
+<td style="text-align: right;">72 of 72</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="creation-time-quality-record">Creation-time quality record</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Check</th>
+<th style="text-align: right;">Recorded result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manifest units represented</td>
+<td style="text-align: right;">57 of 57</td>
+</tr>
+<tr>
+<td>Numbered figures reconciled</td>
+<td style="text-align: right;">246 of 246</td>
+</tr>
+<tr>
+<td>Numbered source tables reconciled</td>
+<td style="text-align: right;">9 of 9</td>
+</tr>
+<tr>
+<td>Mermaid diagrams parsed</td>
+<td style="text-align: right;">175 of 175</td>
+</tr>
+<tr>
+<td>Independently reviewed units</td>
+<td style="text-align: right;">57 of 57</td>
+</tr>
+<tr>
+<td>Final audit errors</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td>Final audit warnings</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The reusable verification scripts are included under <code>.agents/skills/rag-interview-study-edition/scripts/</code>. The manifest and verifier tracker are not included, so the creation-time source-reconciliation records are not fully reproducible from this checkout. The current README and repository-structure checks can be rerun directly.</p>
+<p>ZIP SHA-256:</p>
+<pre class="text"><code>ccba472284b229b73b890530340663c591b0ad1bdceef18cb34be103a082d819</code></pre>
+<p>The archive was extracted during creation-time verification. All 58 extracted files matched their source files byte for byte.</p>
+<h2 id="source-and-rights-boundary">Source and rights boundary</h2>
+<p>This repository is an unofficial set of study notes derived from a user-provided technical book. The original PDF is not included, and no affiliation with or endorsement by the book's author or publisher is claimed. Rights in the source work remain with their respective owner.</p>
+<p>The Markdown units retain source page spans and numbered figure and table references for study provenance. The explanatory prose, diagrams, decoder tables, whiteboard scripts, and interview questions were prepared as study material.</p>
+<p>This repository does not include an open-source license. Public access does not grant reuse rights to the original publication or its protected content. Confirm the applicable rights before redistributing or adapting these materials.</p>
+</article><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

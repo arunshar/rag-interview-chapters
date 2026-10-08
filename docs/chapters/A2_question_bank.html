@@ -1,0 +1,1646 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A2. Question Bank | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A2_question_bank.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html" aria-current="page">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A2. Question Bank</h1><p class="chapter-meta">75 min estimated reading · Unit 52 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This appendix turns the book's Retrieval-Augmented Generation (RAG) material into a timed self-test with Core, Senior, and Staff prompts plus compact answer spines.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>The bank contains 123 questions. Each of the 41 chapters contributes one Core, one Senior, and one Staff prompt.</li>
+<li>Core prompts test whether you can name the mechanism and its failure mode without hiding behind vocabulary.</li>
+<li>Senior prompts test whether you can derive an answer from the stated constraints. Most strong answers include a number.</li>
+<li>Staff prompts test judgment when constraints change or two teams are partly right. Price both sides before deciding.</li>
+<li>Answer aloud before reading the key. Recognition after seeing an answer is not cold recall.</li>
+<li>Use the source pointer when an answer spine feels thin. The referenced section carries the full derivation and follow-up.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a flight simulator for RAG interviews. The cockpit is the interview room, the timer is the clock, and each prompt is a scenario injected by the instructor.</p>
+<p>Core drills ask whether you can identify the instrument that failed. You must name the mechanism, separate retrieval from generation, and avoid a vague diagnosis such as "the system hallucinated."</p>
+<p>Senior drills add weather, fuel, and distance. You must calculate from the numbers in front of you. A memorized benchmark number is like yesterday's weather report. It does not solve today's route.</p>
+<p>Staff drills put two experienced crew members in disagreement. Both see a real risk. Your job is to price each option, concede the valid concern on each side, choose a course, and name the condition that would make you turn back.</p>
+<p>The answer key is the flight recorder. It does not fly the scenario for you. It shows the first move, the derivation to narrate, and the follow-up an interviewer is likely to press.</p>
+<p>The section pointer is the simulator manual. When the recorder gives only a short spine, the pointer leads to the full mechanism rather than inviting a guess.</p>
+<p>Run one part at a time. Set ninety seconds, speak before looking, and score whether you produced the reasoning cold. Familiarity after opening the key does not count as a safe landing.</p>
+<p>The three tiers do not rank sentence difficulty. They rank the behavior under test: mechanism, derivation, and judgment under changed constraints.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieval plus generation from retrieved evidence</td>
+<td>Every prompt tests a stage, interaction, or operational constraint in this pipeline</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>A generator trained over large text collections</td>
+<td>Several prompts ask whether facts belong in its weights or in a datastore</td>
+</tr>
+<tr>
+<td>Billion-parameter suffix (B)</td>
+<td>A model-size shorthand, as in 8B or 70B</td>
+<td>Model size affects training, serving, and memory costs</td>
+</tr>
+<tr>
+<td>Million-scale suffix (M)</td>
+<td>A quantity shorthand, as in 2M chunks</td>
+<td>Corpus and identifier spaces often use this scale</td>
+</tr>
+<tr>
+<td>Machine learning (ML)</td>
+<td>Learning statistical behavior from data</td>
+<td>The Staff prompts separate model research goals from platform and legal constraints</td>
+</tr>
+<tr>
+<td>Storage units (KiB, MB, GB, TB)</td>
+<td>Kibibytes, megabytes, gigabytes, and terabytes</td>
+<td>They make memory and index trade-offs concrete</td>
+</tr>
+<tr>
+<td>Stock-keeping unit (SKU)</td>
+<td>An exact product identifier</td>
+<td>Dense semantic representations can lose rare literal strings</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Updating model weights on task data</td>
+<td>It is appropriate for behavior more often than fast-changing knowledge</td>
+</tr>
+<tr>
+<td>Supervised fine-tuning (SFT)</td>
+<td>Weight updates from labeled input-output examples</td>
+<td>Several answer spines price SFT against prompting and retrieval</td>
+</tr>
+<tr>
+<td>Datastore D</td>
+<td>The external store holding current knowledge</td>
+<td>A row can be updated or deleted without retraining the model</td>
+</tr>
+<tr>
+<td>Full-precision 32-bit floating point (fp32)</td>
+<td>Four-byte numeric storage</td>
+<td>Training and index examples use it for memory arithmetic</td>
+</tr>
+<tr>
+<td>Model editing</td>
+<td>Changing a small set of weights for a fact</td>
+<td>It can be fast but still requires a broad regression check</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>An unsupported or incorrect generated claim</td>
+<td>The bank requires a stage-specific diagnosis instead of this blanket label</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>Literal token or identifier matching</td>
+<td>It protects part numbers and SKUs that semantic pooling can blur</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>Hardware used for model training and inference</td>
+<td>GPU-hours turn architecture choices into costs</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>A count of arithmetic work</td>
+<td>Training-budget questions derive model and data scale from compute</td>
+</tr>
+<tr>
+<td>Training compute C, parameters N, and training tokens D</td>
+<td>The three quantities in the scaling relation C ≈ 6ND</td>
+<td>The compute budget does not determine model size until the parameter-token ratio is chosen</td>
+</tr>
+<tr>
+<td>Fine-tuning tokens D_SFT, prompt count k, and demonstration length t_d</td>
+<td>The quantities used to compare one training run with repeated prompt processing</td>
+<td>Their ratio sets the stated fine-tuning break-even point</td>
+</tr>
+<tr>
+<td>Prefill variables P and T</td>
+<td>Model parameters and prompt tokens in the 2PT cost relation</td>
+<td>They explain why a larger context can dominate retrieval latency</td>
+</tr>
+<tr>
+<td>Kaplan scaling</td>
+<td>The earlier compute-scaling prescription named in the bank</td>
+<td>A Senior prompt asks why it differs from Chinchilla</td>
+</tr>
+<tr>
+<td>Chinchilla scaling</td>
+<td>A compute-optimal balance of parameters and tokens</td>
+<td>The answer must also account for lifetime inference volume</td>
+</tr>
+<tr>
+<td>In-context learning (ICL)</td>
+<td>Learning behavior from examples placed in the prompt</td>
+<td>Production drift can come from ICL rather than retrieval</td>
+</tr>
+<tr>
+<td>Few-shot prompting</td>
+<td>Supplying a small fixed set of examples in context</td>
+<td>Unlike retrieval, the demonstrations are selected before the query is known</td>
+</tr>
+<tr>
+<td>Attention heat map</td>
+<td>A visualization of attention weights</td>
+<td>Attention mass does not prove causal influence on an output</td>
+</tr>
+<tr>
+<td>Leave-one-out attribution</td>
+<td>Removing one context item and rerunning the model</td>
+<td>Redundant evidence can make every single-item marginal appear to be zero</td>
+</tr>
+<tr>
+<td>Shapley value</td>
+<td>Credit averaged over subsets of evidence</td>
+<td>It handles redundancy but can require exponentially many replays</td>
+</tr>
+<tr>
+<td>Circuit analysis</td>
+<td>Tracing internal model computation paths</td>
+<td>Exhaustive per-answer analysis is too expensive at large depth</td>
+</tr>
+<tr>
+<td>Replay data</td>
+<td>Older examples mixed into an update</td>
+<td>It limits regression after a weight change</td>
+</tr>
+<tr>
+<td>Canary set</td>
+<td>A frozen evaluation slice used before release</td>
+<td>It gates an update against known regressions</td>
+</tr>
+<tr>
+<td>Context template</td>
+<td>The labels and ordering wrapped around retrieved evidence</td>
+<td>Prompt formatting can move measured accuracy enough to confound retriever comparisons</td>
+</tr>
+<tr>
+<td>Paired test</td>
+<td>A statistical comparison on the same evaluation items</td>
+<td>It distinguishes real prompt changes from sampling noise</td>
+</tr>
+<tr>
+<td>Standard error</td>
+<td>Expected sampling variation in an estimate</td>
+<td>A score movement smaller than about two errors may be noise</td>
+</tr>
+<tr>
+<td>Evaluation proportion p</td>
+<td>The observed success rate in the standard-error example</td>
+<td>It turns 500 binary outcomes into a sampling-noise estimate</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Choosing not to answer</td>
+<td>Its threshold trades wrong answers against refusals</td>
+</tr>
+<tr>
+<td>Threshold tau</td>
+<td>The gate that converts a score into answer or abstain</td>
+<td>Lowering it may violate the protected error constraint</td>
+</tr>
+<tr>
+<td>Wrong-answer cost c_w</td>
+<td>The loss assigned to an incorrect answer</td>
+<td>A checkable span can reduce its effective value without weakening the protected error rule</td>
+</tr>
+<tr>
+<td>Checkable span</td>
+<td>A cited passage a user can verify</td>
+<td>It lowers the effective cost of a wrong answer</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>A sparse lexical ranking function</td>
+<td>Saturation and length normalization improve on raw term counts</td>
+</tr>
+<tr>
+<td>Term frequency-inverse document frequency (TF-IDF)</td>
+<td>A lexical weight using term rarity and frequency</td>
+<td>The Core bank asks what BM25 fixes relative to it</td>
+</tr>
+<tr>
+<td>Sparse retrieval</td>
+<td>Search over explicit term dimensions</td>
+<td>It preserves rare exact tokens and uses posting lists</td>
+</tr>
+<tr>
+<td>Dense retrieval</td>
+<td>Search over learned vectors</td>
+<td>It handles synonymy but can blur rare strings and polysemy</td>
+</tr>
+<tr>
+<td>Tokenizer vocabulary</td>
+<td>The set of token units an encoder can represent directly</td>
+<td>An out-of-vocabulary SKU can become a pooled representation failure</td>
+</tr>
+<tr>
+<td>Mean pooling</td>
+<td>Averaging token or patch vectors</td>
+<td>A rare feature contributes only a fraction of the final vector</td>
+</tr>
+<tr>
+<td>Count n in 1/n and n + 1</td>
+<td>The number of pooled units or attribution removals, depending on context</td>
+<td>The appendix overloads n, so each formula must be read with its local mechanism</td>
+</tr>
+<tr>
+<td>Chunk</td>
+<td>The unit indexed and passed to the generator</td>
+<td>It must preserve the clause, function, row, or other answer-bearing unit</td>
+</tr>
+<tr>
+<td>Chunk overlap</td>
+<td>Repeated text across adjacent chunks</td>
+<td>It reduces severance at a storage and prefill cost</td>
+</tr>
+<tr>
+<td>Chunk symbols s, L, and o</td>
+<td>Answer-span length, chunk length, and overlap</td>
+<td>They define severance probability, the overlap guarantee, and token inflation</td>
+</tr>
+<tr>
+<td>Semantic chunking</td>
+<td>Splitting at inferred topic boundaries</td>
+<td>Synthetic evaluation boundaries can flatter it</td>
+</tr>
+<tr>
+<td>Portable Document Format (PDF)</td>
+<td>A fixed-layout document format</td>
+<td>Tables can lose headers and row relationships during ingestion</td>
+</tr>
+<tr>
+<td>Optical character recognition (OCR)</td>
+<td>Converting document pixels into text</td>
+<td>OCR can discard layout that a page-image index retains</td>
+</tr>
+<tr>
+<td>Structured Query Language (SQL)</td>
+<td>A language for querying structured tables</td>
+<td>Aggregation questions may belong in SQL rather than vector search</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN) search</td>
+<td>Fast vector search that sacrifices exactness</td>
+<td>Index latency depends on vector count, dimension, and graph parameters</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW)</td>
+<td>A layered proximity-graph index</td>
+<td>Questions derive its height, memory, deletion, and sharding behavior</td>
+</tr>
+<tr>
+<td>HNSW symbols q, M, j, L, and n</td>
+<td>Query vector, graph degree base, layer number, height, and vector count</td>
+<td>They derive the six-layer example from Pr[level ≥ j] = M^-j</td>
+</tr>
+<tr>
+<td>Skip list</td>
+<td>A layered ordered search structure</td>
+<td>It supplies the analogy used to derive HNSW</td>
+</tr>
+<tr>
+<td>k-dimensional tree (kd-tree)</td>
+<td>A tree that prunes space by coordinate gaps</td>
+<td>Pruning fails in high dimensions when the search radius dominates one coordinate</td>
+</tr>
+<tr>
+<td>kd-tree symbols q_i, s, r, and d</td>
+<td>One query coordinate, split value, search radius, and dimension</td>
+<td>The pruning test compares a coordinate gap with a radius near sqrt(2d)</td>
+</tr>
+<tr>
+<td>Random-access memory (RAM)</td>
+<td>Fast working memory available to an index</td>
+<td>Index compression starts by converting RAM into bytes per vector</td>
+</tr>
+<tr>
+<td>Flat index</td>
+<td>An uncompressed collection of full vectors</td>
+<td>It establishes the memory baseline for compression</td>
+</tr>
+<tr>
+<td>Product quantization (PQ)</td>
+<td>Compression with learned subvector codebooks</td>
+<td>It reduces vector bytes while trading some recall</td>
+</tr>
+<tr>
+<td>Product-quantization symbols k, m, and d</td>
+<td>Centroids per codebook, code bytes, and vector dimension</td>
+<td>They turn the one-gigabyte budget into the stated 96-byte code</td>
+</tr>
+<tr>
+<td>Inverted file with product quantization (IVF-PQ)</td>
+<td>Coarse partitioning followed by PQ codes</td>
+<td>It is the named compression route for the largest corpus drill</td>
+</tr>
+<tr>
+<td>Binary quantization</td>
+<td>Mapping vector signs to bits</td>
+<td>It avoids a learned codebook but fixes cells before seeing the data</td>
+</tr>
+<tr>
+<td>Codebook</td>
+<td>A learned set of representative centroids</td>
+<td>Its size determines memory, training cost, and expressiveness</td>
+</tr>
+<tr>
+<td>Hamming distance</td>
+<td>The number of differing bits</td>
+<td>Binary codes can compare it quickly with popcount</td>
+</tr>
+<tr>
+<td>Popcount</td>
+<td>Counting set bits in a machine word</td>
+<td>It makes binary-code distance cheap</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>A deletion marker hiding an indexed item</td>
+<td>It removes a result immediately while bytes wait for rebuild</td>
+</tr>
+<tr>
+<td>Re-indexing</td>
+<td>Rebuilding or refreshing an index</td>
+<td>Build cost, churn, query rate, and erasure deadlines set its cadence</td>
+</tr>
+<tr>
+<td>Mean squared error (MSE)</td>
+<td>A regression loss on score differences</td>
+<td>It can improve while rank order stays unchanged</td>
+</tr>
+<tr>
+<td>argsort(s)</td>
+<td>The ordering induced by a score vector s</td>
+<td>nDCG stays fixed when every score shifts but the ordering does not</td>
+</tr>
+<tr>
+<td>Normalized discounted cumulative gain (nDCG)</td>
+<td>A rank metric that rewards relevant items near the top</td>
+<td>It depends on ordering rather than absolute score calibration</td>
+</tr>
+<tr>
+<td>Relevance grade y</td>
+<td>The integer label used in gain 2^y - 1</td>
+<td>Nonlinear gain rejects the claim that adjacent grades are evenly spaced</td>
+</tr>
+<tr>
+<td>Precision at k</td>
+<td>Relevant results divided by the first k results</td>
+<td>It does not reveal where relevant items sit within the set</td>
+</tr>
+<tr>
+<td>Recall at k</td>
+<td>Fraction of needed evidence found in the first k results</td>
+<td>A high topical recall can still miss evidence chains or timestamps</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank (MRR)</td>
+<td>Average reciprocal rank of the first relevant result</td>
+<td>It distinguishes systems that tie on set-based metrics</td>
+</tr>
+<tr>
+<td>F1 score</td>
+<td>A balance of precision and recall</td>
+<td>Its ceiling can make a requested safety threshold unreachable</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Separate query and document encoders</td>
+<td>Offline document vectors make it fast but bind the index to encoder weights</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A joint query-document scorer</td>
+<td>It is accurate but too expensive to scan a large corpus</td>
+</tr>
+<tr>
+<td>Sparse Lexical and Expansion Model (SPLADE)</td>
+<td>A learned sparse retriever that adds predicted terms</td>
+<td>More nonzero query dimensions improve recall and lengthen posting-list work</td>
+</tr>
+<tr>
+<td>Posting list</td>
+<td>The documents attached to one sparse term</td>
+<td>Query expansion increases the number of lists traversed</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A second stage that reorders retrieved candidates</td>
+<td>It cannot recover a relevant document below rerank depth</td>
+</tr>
+<tr>
+<td>First-stage and second-stage recall (R1 and R2)</td>
+<td>Candidate coverage followed by ordering into final context</td>
+<td>Their product can hide which retrieval stage failed</td>
+</tr>
+<tr>
+<td>Candidate depth k0 and context depth k</td>
+<td>How many items reach reranking versus generation</td>
+<td>Decoupling them protects recall without overfilling the prompt</td>
+</tr>
+<tr>
+<td>Reranking depths k and m</td>
+<td>Candidate recall depth and final context depth in the Senior comparison</td>
+<td>Similar recall at both depths means the first-stage ceiling was already saturated</td>
+</tr>
+<tr>
+<td>Slice rates gamma and beta</td>
+<td>The proportions where RAG loses or wins against closed-book answering</td>
+<td>Their difference is the aggregate accuracy margin</td>
+</tr>
+<tr>
+<td>Generative retrieval</td>
+<td>Producing document identifiers as model output</td>
+<td>Its index moves into identifiers, weights, and constrained decoding</td>
+</tr>
+<tr>
+<td>Identifier symbols k, L, and N</td>
+<td>Alphabet size, identifier length, and count of real documents</td>
+<td>k^L can exceed N and create valid-looking identifiers that point nowhere</td>
+</tr>
+<tr>
+<td>Identifier (ID)</td>
+<td>A valid name for one indexed document</td>
+<td>A generative retriever must not emit IDs outside the corpus</td>
+</tr>
+<tr>
+<td>Constrained decoding</td>
+<td>Restricting output to valid identifiers</td>
+<td>It prevents well-formed but nonexistent document IDs</td>
+</tr>
+<tr>
+<td>Trie</td>
+<td>A prefix tree of valid strings</td>
+<td>It supplies the constraint during identifier generation</td>
+</tr>
+<tr>
+<td>Vocabulary mismatch</td>
+<td>Query and document using different surface forms</td>
+<td>Synonym expansion or document-side generation can repair it</td>
+</tr>
+<tr>
+<td>Synonymy</td>
+<td>Different words sharing meaning</td>
+<td>Dense retrieval absorbs it better than exact lexical search</td>
+</tr>
+<tr>
+<td>Polysemy</td>
+<td>One word carrying multiple senses</td>
+<td>Query context, not synonym expansion alone, must disambiguate it</td>
+</tr>
+<tr>
+<td>WordNet</td>
+<td>The named synonym resource in the bank</td>
+<td>Its expansion raises recall by construction and can lower ranking quality</td>
+</tr>
+<tr>
+<td>Boolean OR</td>
+<td>A query operator accepting any clause</td>
+<td>It distinguishes operator over-filtering from missing vocabulary</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>A decision to skip or invoke retrieval</td>
+<td>One threshold can trade saved calls against retrieval-only-correct answers</td>
+</tr>
+<tr>
+<td>Token-level confidence</td>
+<td>Generator probability on its next token</td>
+<td>It measures fluency more directly than truth</td>
+</tr>
+<tr>
+<td>Query popularity</td>
+<td>A signal available before generation</td>
+<td>It can gate retrieval without relying on generator confidence</td>
+</tr>
+<tr>
+<td>Multi-hop query</td>
+<td>A question requiring more than one evidence step</td>
+<td>Reordering one retrieval round cannot manufacture the missing bridge term</td>
+</tr>
+<tr>
+<td>Query decomposition</td>
+<td>Splitting a question into sequential retrieval steps</td>
+<td>It changes the query and can solve bridge-term failures</td>
+</tr>
+<tr>
+<td>Prompt comparison delta-hat, delta-star, and f0</td>
+<td>The observed shared-template gap, each arm's optimized gap, and the shared template</td>
+<td>They expose prompt format as a confound when retrievers are compared</td>
+</tr>
+<tr>
+<td>Low-rank adaptation (LoRA)</td>
+<td>A parameter-efficient fine-tuning method</td>
+<td>A nightly run is still expensive and risky for a fast policy update</td>
+</tr>
+<tr>
+<td>Application programming interface (API)</td>
+<td>A hosted model boundary</td>
+<td>It can hide generator weights and gradients from training</td>
+</tr>
+<tr>
+<td>Generator parameters theta</td>
+<td>The weights that produce answers</td>
+<td>Hosted access can make them unreachable</td>
+</tr>
+<tr>
+<td>Retriever parameters phi</td>
+<td>The weights that score candidates</td>
+<td>Updating them invalidates precomputed document vectors</td>
+</tr>
+<tr>
+<td>Rebuild interval T-star and beam-inflation fraction phi</td>
+<td>The chosen rebuild cadence and the fraction at which graph search consumes p95</td>
+<td>Here phi is an operational fraction, not the retriever parameters above</td>
+</tr>
+<tr>
+<td>Arg max</td>
+<td>The discrete choice of the top candidate</td>
+<td>It blocks an end-to-end gradient between retriever and generator</td>
+</tr>
+<tr>
+<td>Document-side query expansion</td>
+<td>Appending predicted queries to indexed documents</td>
+<td>It pays once at ingestion instead of on every live query</td>
+</tr>
+<tr>
+<td>Upsert</td>
+<td>Inserting or replacing one indexed record</td>
+<td>A policy change can use it instead of a full checkpoint run</td>
+</tr>
+<tr>
+<td>Lost in the middle</td>
+<td>Lower use of evidence placed in the center of a long context</td>
+<td>More retrieved evidence can lower end-to-end accuracy</td>
+</tr>
+<tr>
+<td>Synthetic key-value task</td>
+<td>A lookup task with reasoning removed</td>
+<td>It isolates position effects from reasoning difficulty</td>
+</tr>
+<tr>
+<td>Question answering (QA)</td>
+<td>Producing an answer to a question</td>
+<td>Multi-document and synthetic QA expose different failure causes</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>Linking a claim to the source used during generation</td>
+<td>A citation mark alone does not prove support or truth</td>
+</tr>
+<tr>
+<td>Explicature</td>
+<td>A complete claim reconstructed from context</td>
+<td>Attribution must check the resolved claim, not an ambiguous sentence fragment</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether an answer follows the supplied context</td>
+<td>It can run without an external truth oracle</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether an answer is true in the world</td>
+<td>It may need external retrieval and a recall correction</td>
+</tr>
+<tr>
+<td>FActScore</td>
+<td>The named factuality-style benchmark</td>
+<td>A weekly oracle may not fit every pull request's cost and rate limits</td>
+</tr>
+<tr>
+<td>Continuous integration (CI)</td>
+<td>Automated checks on proposed code changes</td>
+<td>Per-push and nightly truth checks need different schedules</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>A source used to judge an answer</td>
+<td>Context-only and external oracles have different cost and coverage</td>
+</tr>
+<tr>
+<td>End-to-end accuracy</td>
+<td>Correctness across retrieval and generation together</td>
+<td>Equal totals can hide opposite stage failures</td>
+</tr>
+<tr>
+<td>Accuracy symbols A, h, c1, and c0</td>
+<td>Total accuracy, retrieval hit rate, correctness with a hit, and correctness without a hit</td>
+<td>The decomposition A = h c1 + (1 - h)c0 localizes a system-level change</td>
+</tr>
+<tr>
+<td>Oracle and no-generation accuracies A_orc and A_ng, plus retrieval rate R</td>
+<td>The three measurements in the training-budget comparison</td>
+<td>Their differences price marginal retriever and generator work</td>
+</tr>
+<tr>
+<td>Trust axes</td>
+<td>Privacy, fairness, and other separate deployment properties</td>
+<td>Similar aggregate area does not make risk profiles interchangeable</td>
+</tr>
+<tr>
+<td>Personally identifiable information (PII)</td>
+<td>Data that can identify a person</td>
+<td>Pretraining provenance cannot be certified after identity is erased by tokenization</td>
+</tr>
+<tr>
+<td>Coalition for Content Provenance and Authenticity (C2PA)</td>
+<td>A content-credential standard</td>
+<td>A valid credential checks integrity and signer chain, not truth</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>Evidence about where content came from</td>
+<td>It is distinct from whether the content is authentic or true</td>
+</tr>
+<tr>
+<td>Provenance score p(d)</td>
+<td>A graded confidence assigned to document d</td>
+<td>It preserves legacy evidence while reserving 1 for verified documents and 0 for no signal</td>
+</tr>
+<tr>
+<td>Authenticity gate</td>
+<td>A check that a source itself is genuine</td>
+<td>Attribution precision on genuine-only benchmarks cannot measure this failure</td>
+</tr>
+<tr>
+<td>Service-level objective (SLO)</td>
+<td>A latency or reliability target</td>
+<td>Many Senior and Staff choices depend on the binding budget</td>
+</tr>
+<tr>
+<td>p50, p95, and p99</td>
+<td>Median, 95th-percentile, and 99th-percentile latency</td>
+<td>Tail and median bottlenecks can sit in different stages</td>
+</tr>
+<tr>
+<td>Time to first token (TTFT)</td>
+<td>Delay before generation starts</td>
+<td>Prefill often dominates it</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing the prompt before decoding</td>
+<td>Its attention cost grows quickly with context length</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>Producing output tokens one at a time</td>
+<td>It can dominate total latency and is memory-bandwidth-bound</td>
+</tr>
+<tr>
+<td>Queries per second (QPS)</td>
+<td>Request throughput</td>
+<td>It determines replica load once per-shard work is known</td>
+</tr>
+<tr>
+<td>Shard</td>
+<td>One partition of an index</td>
+<td>Capacity, load, and compliance require different partition axes</td>
+</tr>
+<tr>
+<td>Scatter-gather</td>
+<td>Sending a query to multiple shards and merging results</td>
+<td>Every shard can still see the full system query rate</td>
+</tr>
+<tr>
+<td>Federation</td>
+<td>Coordinating separate compliant stores</td>
+<td>It can preserve legal boundaries while sharing a query surface</td>
+</tr>
+<tr>
+<td>Data residency</td>
+<td>A requirement that data stay in an allowed jurisdiction</td>
+<td>Hash sharding is blind to it</td>
+</tr>
+<tr>
+<td>Replica</td>
+<td>Another serving copy of a shard</td>
+<td>Replicas add throughput without changing corpus partitioning</td>
+</tr>
+<tr>
+<td>Hybrid retrieval</td>
+<td>A lexical and dense path used together</td>
+<td>It preserves exact identifiers while retaining semantic matching</td>
+</tr>
+<tr>
+<td>Contrastive Language-Image Pre-training (CLIP)</td>
+<td>A shared image-text encoder</td>
+<td>Global pooling can lose table and chart detail</td>
+</tr>
+<tr>
+<td>ColPali</td>
+<td>A page-image retriever using patch vectors</td>
+<td>It avoids OCR loss at a large storage multiplier</td>
+</tr>
+<tr>
+<td>Modality threshold</td>
+<td>A retrieval cutoff calibrated for one data type</td>
+<td>Shared-space scores still differ by modality</td>
+</tr>
+<tr>
+<td>GraphRAG</td>
+<td>RAG over an extracted graph</td>
+<td>A stable taxonomy and raw conversations do not share extraction portability</td>
+</tr>
+<tr>
+<td>Knowledge graph</td>
+<td>Entities and relations connected as a graph</td>
+<td>Full extraction cost, duplication, and updates shape its value</td>
+</tr>
+<tr>
+<td>Dual-level indexing</td>
+<td>An incremental graph design that refreshes only touched entities</td>
+<td>It avoids repaying full extraction cost on every update</td>
+</tr>
+<tr>
+<td>Unlearning</td>
+<td>Removing learned influence from model weights</td>
+<td>Per-notice gradients and uncertain collateral effects make it different from deleting a datastore row</td>
+</tr>
+<tr>
+<td>Extractability</td>
+<td>Whether training material can be elicited from a model</td>
+<td>A small mixing weight does not measure this risk because duplication also matters</td>
+</tr>
+<tr>
+<td>Rank-constrained update</td>
+<td>A weight update limited to a small parameter structure</td>
+<td>It is one regression-control lever for an offline correction</td>
+</tr>
+<tr>
+<td>Learning-rate schedule</td>
+<td>The planned change in update size during training</td>
+<td>Mismatched schedules can bias comparisons across run lengths</td>
+</tr>
+<tr>
+<td>Masked language model (MLM) head</td>
+<td>A vocabulary-wide predictor used to create sparse expansion weights</td>
+<td>It lets absent query terms receive nonzero retrieval weight</td>
+</tr>
+<tr>
+<td>Soft matching</td>
+<td>Matching related terms instead of requiring every Boolean clause</td>
+<td>It repairs operator-driven zero results but not missing vocabulary</td>
+</tr>
+<tr>
+<td>Macro-F1</td>
+<td>F1 averaged across classes</td>
+<td>Its stated ceiling helps show when a requested precision target is unreachable</td>
+</tr>
+<tr>
+<td>Service-level agreement (SLA)</td>
+<td>A promised operational deadline</td>
+<td>Same-day updates can require incremental indexing</td>
+</tr>
+<tr>
+<td>European Union (EU) and United States (US)</td>
+<td>Jurisdictions named in the sharding prompt</td>
+<td>Their data cannot be mixed when residency rules forbid it</td>
+</tr>
+<tr>
+<td>Core difficulty tier</td>
+<td>Recall and explain the mechanism</td>
+<td>Missing one can end a phone screen</td>
+</tr>
+<tr>
+<td>Senior difficulty tier</td>
+<td>Derive from constraints and diagnose before fixing</td>
+<td>A number belongs in almost every answer</td>
+</tr>
+<tr>
+<td>Staff difficulty tier</td>
+<td>Resolve a changed constraint or partial disagreement</td>
+<td>A strong answer prices options and names its reversal condition</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<p>The source keeps all answer spines in section B.4 so the prompts can be used for self-testing. Each spine identifies what to say first, what to derive, and which follow-up to expect. It is a revision aid rather than a complete script.</p>
+<h3 id="b1-core-questions">B.1 Core Questions</h3>
+<p>Difficulty marker: Core. Expected of anyone who claims RAG on a resume. These prompts test whether the vocabulary is real and whether the mechanism is understood. Failing one can end a phone screen. Answer before reading the spine.</p>
+<h4 id="part-i---the-rag-interview-landscape">Part I - The RAG Interview Landscape</h4>
+<p><strong>Core 1, §1.1. Prompt:</strong> "We fine-tuned an 8B model on our product catalog and it still invents SKUs. What do you change?" <strong>Expected reasoning:</strong> Name the category error. A catalog is high-cardinality, low-frequency, fast-changing knowledge that weight compression destroys. Move it to datastore D, reserve fine-tuning for response format, and add an exact-match leg for SKUs.</p>
+<p><strong>Core 2, §2.2. Prompt:</strong> "One product fact in your assistant is wrong. You have a 27B model. Walk me through your options and pick one." <strong>Expected reasoning:</strong> Price three options. Full retraining needs 108 GB for the fp32 forward pass alone. Editing changes about 20,000 numbers in seconds but requires a full re-benchmark. Retrieval updates one row and ships. Name the condition that decides among them.</p>
+<p><strong>Core 3, §3.2. Prompt:</strong> "Walk me through naive RAG and tell me what breaks." <strong>Expected reasoning:</strong> Name retrieval and generation, then separate three failures. Retrieval can return an irrelevant passage. Generation can skip a required reasoning step despite correct evidence. Chunking can repeat the same fact three times. "It hallucinates" hides these causes.</p>
+<h4 id="part-ii---the-generator-side">Part II - The Generator Side</h4>
+<p><strong>Core 4, §4.1. Prompt:</strong> "Our assistant quotes last quarter's pricing. Would you fine-tune it on the new price list?" <strong>Expected reasoning:</strong> Reject the premise. Pricing changes faster than retraining, so it belongs in a datastore. One 27B refresh costs roughly 1,324 GPU-hours and expires at the next change. The same spend buys about 15 million retrieval-augmented queries.</p>
+<p><strong>Core 5, §5.1. Prompt:</strong> "Where does the training data for a model like this actually come from?" <strong>Expected reasoning:</strong> Walk through crawl, extraction, filtering and deduplication, then tokenization. Attach a source number such as 20 TB per snapshot reduced to 750 GB, and name a real composition finding. "The internet, mostly Wikipedia and books" is too weak.</p>
+<p><strong>Core 6, §6.1. Prompt:</strong> "You have 10^23 FLOPs of training budget. How many parameters should the model have?" <strong>Expected reasoning:</strong> State C ≈ 6ND and ask for expected inference volume before fixing a ratio. Derive N = sqrt(C/120) under Chinchilla. A heavily served model should be about one order of magnitude smaller. Close with the memory step function.</p>
+<p><strong>Core 7, §7.1. Prompt:</strong> "When would you fine-tune the generator instead of putting examples in the prompt?" <strong>Expected reasoning:</strong> Split behavior from knowledge. Fine-tune behavior. Retrieve or prompt knowledge. Price the one-time 6ND_SFT against the per-query 2Nk t_d cost. They cross after 3D_SFT divided by k t_d queries, often days of traffic.</p>
+<p><strong>Core 8, §8.1. Prompt:</strong> "An engineer shows you an attention heat map with most of the mass on the retrieved policy chunk and concludes the model read it and overrode it. Do you accept that?" <strong>Expected reasoning:</strong> Separate a possible information path from causal effect on the output. The cited Jain and Wallace result from 2019 found adversarial attention distributions with equivalent predictions. Use the cheap intervention. Drop the chunk, rerun, and compare the answer.</p>
+<h4 id="part-iii---prompting-and-context-construction">Part III - Prompting and Context Construction</h4>
+<p><strong>Core 9, §9.1. Prompt:</strong> "What is the difference between few-shot prompting and retrieval-augmented generation?" <strong>Expected reasoning:</strong> Concede that both fill context and leave theta untouched. Then name the distinction. Demonstrations are chosen before the query is known. Retrieved documents d[1:k] = R(q) are selected after seeing the query.</p>
+<p><strong>Core 10, §10.1. Prompt:</strong> "Someone swapped Document 1: for [1] in your context template and grounded accuracy moved four points on a 500-question set. Real, or noise?" <strong>Expected reasoning:</strong> Derive the noise floor. At p ≈ 0.64 over 500 items, standard error is 2.1 points. A four-point move is below two standard errors. Run a paired test on discordant questions before rolling back.</p>
+<p><strong>Core 11, §11.2. Prompt:</strong> "How would you make a RAG system say 'I don't know'?" <strong>Expected reasoning:</strong> Name multiple mechanisms and the query class each mishandles. Similarity can favor a topical passage without the answer. Log-probability can be dominated by formatting. Self-consistency can repeat a confident error.</p>
+<h4 id="part-iv---representing-what-you-retrieve">Part IV - Representing What You Retrieve</h4>
+<p><strong>Core 12, §12.1. Prompt:</strong> "Walk me through how text representation evolved, and tell me why BM25 is still running in production systems in 2026." <strong>Expected reasoning:</strong> Frame four eras as trades. Orthogonal axes preserve exact match but block synonymy. Static vectors add synonymy and average senses. Contextual vectors resolve sense and can pool away rare literals. Universal spaces add modalities and pay per language.</p>
+<p><strong>Core 13, §13.1. Prompt:</strong> "How do you choose a chunk size?" <strong>Expected reasoning:</strong> Start from the unit that must remain intact, such as a clause, function, or table row. Then give severance probability (s - 1)/L and the overlap guarantee s ≤ o at cost L divided by L - o.</p>
+<p><strong>Core 14, §14.1. Prompt:</strong> "Your RAG over PDF reports handles prose well and gets numbers wrong. Where do you look first?" <strong>Expected reasoning:</strong> Inspect ingestion before blaming the model. Check whether the header and data rows landed in separate chunks. The query vocabulary lives in the header, so retrieval can rank the labels without the answer.</p>
+<h4 id="part-v---indexing-and-vector-search">Part V - Indexing and Vector Search</h4>
+<p><strong>Core 15, §15.2. Prompt:</strong> "Derive HNSW from a skip list. How many layers for ten million vectors?" <strong>Expected reasoning:</strong> Replace total order with a proximity graph and stop when no neighbor is closer to q. Use Pr[level ≥ j] = M^-j and L = log base M of n. With M = 16 and n = 10^7, the answer is six layers.</p>
+<p><strong>Core 16, §16.1. Prompt:</strong> "Your flat index is 30.7 GB and you have 1 GB of RAM for it. Same embedding model, same dimension. What do you do?" <strong>Expected reasoning:</strong> Convert budget to bytes per vector first. One GB over 10^7 vectors gives 100 bytes. With k = 256, choose m ≤ 100. The source uses m = 96 because it divides 768 and yields 960 MB. Name the rescoring stage.</p>
+<p><strong>Core 17, §17.1. Prompt:</strong> "A user deletes a document at 10:00. Walk me through what happens in your vector store." <strong>Expected reasoning:</strong> Separate visibility from physical erasure. A tombstone and result filter hide the document within one query. Bytes disappear at the next scheduled rebuild. The vector remains because deleting a graph node can damage connectivity.</p>
+<h4 id="part-vi---retrieval-and-ranking">Part VI - Retrieval and Ranking</h4>
+<p><strong>Core 18, §18.2. Prompt:</strong> "What does BM25 fix relative to TF-IDF?" <strong>Expected reasoning:</strong> Name two defects. Linear term frequency values the eleventh occurrence like the first. Cosine normalization cannot separate length from repetition. BM25 adds saturation and pivoted length normalization.</p>
+<p><strong>Core 19, §19.1. Prompt:</strong> "You have query-document pairs graded 0 to 4 by humans, and you train on them with mean squared error. Training loss halves. NDCG@10 does not move. What is wrong?" <strong>Expected reasoning:</strong> State the invariance. nDCG depends on argsort(s), so a constant score shift changes MSE but not ranking. Much of the loss surface is invisible to the metric. A model can have nDCG = 1.000 and squared error 20.12.</p>
+<p><strong>Core 20, §20.1. Prompt:</strong> "Cross-encoders are more accurate. Why not use one for retrieval?" <strong>Expected reasoning:</strong> Produce the arithmetic. Cost is 2P(L_q + L_p) FLOPs per pair across N pairs. A 21 million-passage scan takes 36 minutes per query against a 50 ms budget. A bi-encoder moves the query-independent passage tower offline.</p>
+<p><strong>Core 21, §21.1. Prompt:</strong> "Our BM25 index misses documents that never use the query's words. Someone proposes SPLADE. What does it actually change?" <strong>Expected reasoning:</strong> Keep sparse scoring s(q,d) = Σ_j w_qj w_dj and the inverted index. Replace both weight functions with a masked-language-model head over 30,522 terms, so absent terms can receive weight. Posting-list length pays the cost.</p>
+<p><strong>Core 22, §22.1. Prompt:</strong> "Your pipeline returns the right document at rank 40 and the generator never sees it. What do you change?" <strong>Expected reasoning:</strong> Diagnose first. Rank 40 means it is present in a depth-100 candidate set but absent from the top 5 context. First-stage recall R1 works. Second-stage ordering R2 fails. Rerank those 100 with the query in hand.</p>
+<p><strong>Core 23, §23.1. Prompt:</strong> "In a generative retriever, where did the index go?" <strong>Expected reasoning:</strong> Trace it into the identifier scheme and training. With atomic identifiers, the index is the N by d_model output matrix. It takes 27 GB for 8.8 million passages and still performs exhaustive comparison.</p>
+<h4 id="part-vii---query-understanding-and-control-flow">Part VII - Query Understanding and Control Flow</h4>
+<p><strong>Core 24, §24.1. Prompt:</strong> "A user searches for a twin bed and gets nothing useful. Walk me through the diagnosis." <strong>Expected reasoning:</strong> Partition the failure. Check posting counts for misspellings. Check relevant documents under other words for synonymy. Inspect senses among returned documents for polysemy.</p>
+<p><strong>Core 25, §25.1. Prompt:</strong> "Your RAG system is less accurate than the base model on your most common queries, even though overall accuracy went up. What is happening?" <strong>Expected reasoning:</strong> Build the 2 by 2 of closed-book-correct and RAG-correct. Identify the slice where closed-book wins and retrieval loses. The global margin is gamma - beta, so a net gain can coexist with a common-query loss.</p>
+<p><strong>Core 26, §26.1. Prompt:</strong> "Your assistant answers 'Alexander Fleming' to 'which scientist discovered the element found in penicillin?', and retrieval recall@5 against your gold annotations is 0.94. What is wrong?" <strong>Expected reasoning:</strong> Separate the surface question from the answered question. Retrieved passages support the given answer, so this is answer drift rather than hallucination. Groundedness will not catch it. The gold annotation only covers the surface query.</p>
+<h4 id="part-viii---training-the-rag-system">Part VIII - Training the RAG System</h4>
+<p><strong>Core 27, §27.2. Prompt:</strong> "Why would you deliberately train on examples where the answer is not in the retrieved context?" <strong>Expected reasoning:</strong> Start from the gradient. If every context contains the answer, copying is a zero-loss policy. The model receives no signal for insufficient context, so its accuracy there is near zero by construction.</p>
+<p><strong>Core 28, §28.1. Prompt:</strong> "Our RAG assistant gives wrong answers. Should we fine-tune the LLM on our documents?" <strong>Expected reasoning:</strong> Reject the premise and name the two parameter sets. Fine-tuning teaches how to answer, not what is true. Describing an SFT pipeline before localizing the failure is weak.</p>
+<p><strong>Core 29, §29.1. Prompt:</strong> "Why would generating queries from a document ever help retrieval? Isn't the whole point of retrieval to match queries to documents, not the other way around?" <strong>Expected reasoning:</strong> Name vocabulary mismatch. BM25 contributes exactly zero for an absent term, however relevant the document is. Appending predicted queries changes what is indexed, not what the live system retrieves for.</p>
+<h4 id="part-ix---generation-and-context-assembly">Part IX - Generation and Context Assembly</h4>
+<p><strong>Core 30, §30.2. Prompt:</strong> "A stakeholder asks: 'We gave the model strictly more information. How can accuracy possibly go down?' What is the one-sentence answer, and what would you show them to make it concrete?" <strong>Expected reasoning:</strong> Say that attention during prefill is finite and contested, not a free skim. Plot accuracy against the gold document's position with a flat closed-book baseline. Show the middle trough falling below that line.</p>
+<p><strong>Core 31, §31.2. Prompt:</strong> "Your RAG demo returns 'It was released on September 19, 2025.' with a citation attached. How do you decide whether that's attributable?" <strong>Expected reasoning:</strong> Resolve the explicature first using the preceding query, such as "the iPhone 17 was released on September 19, 2025." Then test whether the cited source says that complete claim.</p>
+<h4 id="part-x---evaluation">Part X - Evaluation</h4>
+<p><strong>Core 32, §32.2. Prompt:</strong> "Write the formula for nDCG@k from memory." <strong>Expected reasoning:</strong> Build it in order. Compute cumulative gain. Apply the log2(i + 1) discount, whose +1 leaves rank 1 undiscounted. Divide by ideal discounted cumulative gain so queries with different relevant-set sizes are comparable.</p>
+<p><strong>Core 33, §33.1. Prompt:</strong> "Your team wants to add a truthfulness check to the pull-request pipeline. Someone proposes reusing the FActScore-style factuality benchmark you already run weekly. What do you check before agreeing?" <strong>Expected reasoning:</strong> Distinguish context and external oracles. The weekly job's latency and query volume were sized for once-a-day use. Check whether every-push call volume fits source rate limits and the CI budget.</p>
+<p><strong>Core 34, §34.1. Prompt:</strong> "Your pipeline's end-to-end accuracy dropped four points this week. What's your first move?" <strong>Expected reasoning:</strong> Change nothing yet. Label whether gold evidence reached the generator. Recompute h and c1 on the same slice. The term that moved identifies the stage. Swapping the embedding model first is weak.</p>
+<h4 id="part-xi---trust-credibility-and-adversarial-robustness">Part XI - Trust, Credibility, and Adversarial Robustness</h4>
+<p><strong>Core 35, §35.1. Prompt:</strong> "Your RAG system hits a 2% hallucination rate on your benchmark. Is it trustworthy?" <strong>Expected reasoning:</strong> Refuse to decide from one number. Name the six trust aspects. A 2% factuality-adjacent statistic covers only one axis. Ask whether the deployment question concerns retrieval privacy, generation fairness, or another stage.</p>
+<p><strong>Core 36, §36.2. Prompt:</strong> "What does it actually mean for a piece of content to have a valid C2PA credential?" <strong>Expected reasoning:</strong> Require three checks. The asset hash matches the manifest. The manifest signature verifies against the signer key. That key chains to a trusted root. None of these checks makes the content's claims true.</p>
+<h4 id="part-xii---scaling-advanced-variants-and-design-drills">Part XII - Scaling, Advanced Variants, and Design Drills</h4>
+<p><strong>Core 37, §37.1. Prompt:</strong> "Your RAG endpoint's p50 is 1.3 seconds and product wants it under 500 ms. Where do you look first?" <strong>Expected reasoning:</strong> Profile all five stages. Expect decode to consume 85% to 90% once context reaches a few thousand tokens. It is memory-bandwidth-bound and paid per output token. Then name concrete decode levers.</p>
+<p><strong>Core 38, §38.1. Prompt:</strong> "Why can't you just put all the company's document embeddings into one vector database?" <strong>Expected reasoning:</strong> Name cost, size, latency, and compliance. Treat the first three as budget problems and the fourth as legal. "Too slow" misses the one blocker money cannot solve.</p>
+<p><strong>Core 39, §39.2. Prompt:</strong> "Why not just use CLIP for every image in your RAG corpus?" <strong>Expected reasoning:</strong> CLIP globally pools an image into one vector. Dense tables and charts hide a fact in a small region. Patch-level encoding fixes that local-detail failure.</p>
+<p><strong>Core 40, §40.2. Prompt:</strong> "Why not just use an LLM to extract every triple in your corpus?" <strong>Expected reasoning:</strong> Name both costs. Pay a token-priced forward pass per chunk. Then catch duplicate entity names and unlicensed relations in a separate deduplication stage. The extraction call does not remove noise for free.</p>
+<p><strong>Core 41, §41.1. Prompt:</strong> "Design retrieval for a 100 million-document corpus serving 500 QPS. What are the first two numbers you ask for?" <strong>Expected reasoning:</strong> Ask for usable RAM per node and the recall SLA. Corpus size creates a memory-capacity problem. QPS becomes meaningful only after per-shard query cost is known. Naming a database product is weak.</p>
+<h3 id="b2-senior-questions">B.2 Senior Questions</h3>
+<p>Difficulty marker: Senior. These prompts test whether you can derive from the stated constraints rather than recall a favorite number. Several systems are already broken. Diagnose before proposing a fix.</p>
+<h4 id="part-i---the-rag-interview-landscape-1">Part I - The RAG Interview Landscape</h4>
+<p><strong>Senior 1, §1.1. Prompt:</strong> "Our datastore just grew from 2M to 200M chunks. Can we drop the generator from 70B to 8B and bank the savings?" <strong>Expected reasoning:</strong> Separate knowledge load from comprehension load. A 100-fold larger store crowds top-k with near-duplicates and contradictions. The generator's reading task gets harder while its capacity shrinks. Measure comprehension before swapping.</p>
+<p><strong>Senior 2, §2.1. Prompt:</strong> "A regulator requires the assistant to run fully offline with no datastore, so you have to write the update into the weights. Design the run so it does not regress." <strong>Expected reasoning:</strong> Accept the constraint. Rank-constrain the update, re-warm and re-decay learning rate, reserve 5% replay at a 5.3% compute surcharge, and gate release on a frozen canary set.</p>
+<p><strong>Senior 3, §3.1. Prompt:</strong> "Your p95 time to first token is 1.1 seconds against an 800 millisecond SLO. Where do you look?" <strong>Expected reasoning:</strong> Decompose all five decisions before optimizing. Prefill scales as 2PT while search grows sublinearly in N. Predict that decision five holds most latency, then state what measurement would falsify that prediction.</p>
+<h4 id="part-ii---the-generator-side-1">Part II - The Generator Side</h4>
+<p><strong>Senior 4, §4.1. Prompt:</strong> "The correct passage is in the context window and the model answers from memory anyway. Which stage owns that?" <strong>Expected reasoning:</strong> Classify it as behavior rather than missing knowledge, so SFT owns it. Train with items where the gold document is present and used, plus a deliberate fraction where it is removed.</p>
+<p><strong>Senior 5, §5.1. Prompt:</strong> "Legal wants written confirmation that no customer PII reached the pre-training corpus. What do you send back?" <strong>Expected reasoning:</strong> Refuse a certification that tokenization made impossible. Replace it with a measurement, sample-size arithmetic, and the interval obtained. Describe residual risk as extractability because document identity can no longer be enumerated.</p>
+<p><strong>Senior 6, §6.1. Prompt:</strong> "Kaplan and Chinchilla disagree by more than a factor of ten on the same question. What actually changed between them?" <strong>Expected reasoning:</strong> Data and architecture did not change. The correction matched the cosine learning-rate schedule to run length, removing a long-run measurement bias, and counted embedding parameters.</p>
+<p><strong>Senior 7, §7.1. Prompt:</strong> "Your RAG assistant scores well on the offline set and drops twelve points in production. How do you tell whether that is a retrieval failure or an ICL failure?" <strong>Expected reasoning:</strong> On production failures, check whether gold evidence entered the assembled context. If absent, retrieval failed and prompting cannot help. If present, freeze context and vary only demonstrations.</p>
+<p><strong>Senior 8, §8.1. Prompt:</strong> "Your leave-one-out attribution says no chunk in the context mattered, yet the answer is clearly drawn from the context. What happened?" <strong>Expected reasoning:</strong> Look for redundant chunks. With two chunks carrying the same fact, each single-chunk marginal is zero. Shapley values split credit 0.5 and 0.5 but cost 2^20 replays in the stated case.</p>
+<h4 id="part-iii---prompting-and-context-construction-1">Part III - Prompting and Context Construction</h4>
+<p><strong>Senior 9, §9.1. Prompt:</strong> "Your assistant returns fluent answers in the wrong format about a third of the time, and it also quotes last quarter's prices. Where do you start?" <strong>Expected reasoning:</strong> Treat these as two defects on two rungs. Format is query-independent. Staleness is query-dependent. Sample failures and ask whether the current price appeared in retrieved context.</p>
+<p><strong>Senior 10, §10.1. Prompt:</strong> "How do you compare two retrievers when the prompt format alone moves accuracy more than the retrievers differ?" <strong>Expected reasoning:</strong> Name the confound. You observe delta-hat at shared prompt f0 but care about delta-star between each arm's optimized prompt. Present the two defensible protocols and their costs.</p>
+<p><strong>Senior 11, §11.1. Prompt:</strong> "Your abstention rate is 54% and users are leaving. Bring it down without shipping more wrong answers." <strong>Expected reasoning:</strong> Do not lower tau because that trades the protected error quantity. Reduce wrong-answer cost c_w. A checkable span with a 60% open rate changes effective cost from 20 to 8.12 and the threshold from 0.929 to 0.836.</p>
+<h4 id="part-iv---representing-what-you-retrieve-1">Part IV - Representing What You Retrieve</h4>
+<p><strong>Senior 12, §12.1. Prompt:</strong> "Your dense retriever misses queries containing product SKUs. What do you change, and how do you prove it worked?" <strong>Expected reasoning:</strong> Confirm the SKU is outside tokenizer vocabulary and contributes only 1/n to a mean-pooled vector. That is representation failure, not model quality. Add a sparse leg and measure the affected query slice.</p>
+<p><strong>Senior 13, §13.1. Prompt:</strong> "Semantic chunking lifted recall@5 by three points on our evaluation set. Do we ship it?" <strong>Expected reasoning:</strong> Audit the evaluation construction. Concatenated unrelated documents create artificial topic boundaries that flatter semantic chunking. Ask whether production has the same boundary shape.</p>
+<p><strong>Senior 14, §14.1. Prompt:</strong> "Design the retrieval unit for a 200-page filing containing 60 tables." <strong>Expected reasoning:</strong> Use different units. Chunk prose normally. Keep tables atomic, with a row-atomic fallback that repeats headers, and add a surrogate summary so each table is findable by name. The fallback adds roughly 39% tokens.</p>
+<h4 id="part-v---indexing-and-vector-search-1">Part V - Indexing and Vector Search</h4>
+<p><strong>Senior 15, §15.1. Prompt:</strong> "Why not a kd-tree? It's O(log N) and it's in the standard library." <strong>Expected reasoning:</strong> State the pruning test abs(q_i - s) &gt; r. At d = 768, r ≈ sqrt(2d) = 39 while one-coordinate gaps are order 1. The test rarely fires, leaving traversal bookkeeping without pruning benefit.</p>
+<p><strong>Senior 16, §16.1. Prompt:</strong> "Why not learn one codebook with 2^32 centroids instead of four with 256? Same code length, and one codebook has to be more accurate." <strong>Expected reasoning:</strong> Concede that the free codebook is more expressive. Then price 13.2 TB of centroids and 1.7 x 10^11 training vectors against 768 KiB and about ten thousand. Expressiveness loses to feasibility.</p>
+<p><strong>Senior 17, §17.1. Prompt:</strong> "How often do you re-index, and how did you pick that number?" <strong>Expected reasoning:</strong> Give at least three quantities. Derive T-star from build cost, query rate, and churn. State the phi at which beam inflation consumes p95. State the erasure deadline. The binding constraint wins.</p>
+<h4 id="part-vi---retrieval-and-ranking-1">Part VI - Retrieval and Ranking</h4>
+<p><strong>Senior 18, §18.1. Prompt:</strong> "Thirty percent of your tail queries return zero results. Where do you start?" <strong>Expected reasoning:</strong> Split two causes with the same symptom. Rerun each failure as pure OR. If documents appear, the operator is wrong and soft matching fixes it. If none appear, vocabulary is missing.</p>
+<p><strong>Senior 19, §19.1. Prompt:</strong> "Your labels are integers 0 through 4. Argue for and against treating them as numbers." <strong>Expected reasoning:</strong> The integers encode order, while spacing comes from convention and annotator variance. nDCG itself uses gain 2^y - 1, which already rejects uniform spacing.</p>
+<p><strong>Senior 20, §20.1. Prompt:</strong> "Our bi-encoder hits 99% accuracy on its in-batch training objective, but recall@100 on the live corpus is 61%. What is happening?" <strong>Expected reasoning:</strong> The numbers measure different tasks. Training selects from 255 mostly unrelated passages. Live retrieval selects from 21 million with thousands of near-misses.</p>
+<p><strong>Senior 21, §21.1. Prompt:</strong> "We shipped SPLADE. Recall@1000 went up four points and p99 latency went from 15 ms to 900 ms. Diagnose it before you propose anything." <strong>Expected reasoning:</strong> Recall and latency moved for the same reason. Each nonzero query dimension adds a posting list. Expanding from 8 to 100 terms multiplies traversals by 12.5.</p>
+<p><strong>Senior 22, §22.1. Prompt:</strong> "We shipped a cross-encoder reranker last month. End-to-end answer accuracy did not move. Was it a waste?" <strong>Expected reasoning:</strong> End-to-end accuracy R1R2 cannot answer. Measure recall at candidate depth k and final depth m. If they are within one point, the first stage was already saturated and reranking had no ceiling to improve.</p>
+<p><strong>Senior 23, §23.1. Prompt:</strong> "Our generative retriever returns document IDs that don't exist in the corpus. What's wrong and how do you fix it?" <strong>Expected reasoning:</strong> The decoder spans k^L strings while only N identifiers are real. With L = 7 and k = 10, about 1.2 million well-formed identifiers point nowhere. Constrain decoding with a trie.</p>
+<h4 id="part-vii---query-understanding-and-control-flow-1">Part VII - Query Understanding and Control Flow</h4>
+<p><strong>Senior 24, §24.1. Prompt:</strong> "You shipped WordNet synonym expansion. Recall@100 rose 8 points and nDCG@10 fell. What happened, and what do you ship next?" <strong>Expected reasoning:</strong> Expansion makes the retrieved set a superset, so recall rises by construction. The eight points do not prove useful retrieval. The nDCG loss exposes the precision ceiling of expansion arms.</p>
+<p><strong>Senior 25, §25.1. Prompt:</strong> "You have budget for exactly one gating signal. Do you take the model's token-level confidence or a query-side popularity score?" <strong>Expected reasoning:</strong> Take popularity. Next-token probability measures fluency and cannot separate a confident falsehood from truth. Query popularity is visible before generation begins.</p>
+<p><strong>Senior 26, §26.1. Prompt:</strong> "Multi-hop accuracy is 40 points below single-hop. Do you upgrade the embedding model, raise k from 5 to 50, or add a second retrieval round?" <strong>Expected reasoning:</strong> Reject the first two on mechanism. Both rerank documents against a query missing the bridge term. Reranking cannot manufacture that term. Decomposition changes the query. Then price the extra round.</p>
+<h4 id="part-viii---training-the-rag-system-1">Part VIII - Training the RAG System</h4>
+<p><strong>Senior 27, §27.1. Prompt:</strong> "A policy changed last night and must be reflected by 9 a.m. An engineer proposes a nightly LoRA run over the changed documents. Adjudicate." <strong>Expected reasoning:</strong> Price both paths. Training costs 6ND, about 1.5 GPU-hours for 7B and 5 x 10^7 tokens. Re-embedding the document costs 2.8 ms. A checkpoint needs an evaluation gate while an upsert does not.</p>
+<p><strong>Senior 28, §28.1. Prompt:</strong> "You are on a hosted generator with no gradient access. What can you train, and what is the loss?" <strong>Expected reasoning:</strong> Theta is behind an API, and even with weights the arg max between stages blocks a gradient to phi. Use generator likelihood of the gold answer as the candidate-scoring signal.</p>
+<p><strong>Senior 29, §29.1. Prompt:</strong> "A colleague wants to run the exact same query-generation model at query time instead. Rewrite the incoming query with an LLM rather than pre-expanding the document. Same model, same prompt style, just applied to the other argument. For a corpus of 10 million documents serving 2 million queries a day, which do you pick, and why?" <strong>Expected reasoning:</strong> Derive break-even. Cumulative queries exceed corpus size within days, after which per-query model cost dominates one-time ingestion. Concede that query-time rewriting adapts to the live query.</p>
+<h4 id="part-ix---generation-and-context-assembly-1">Part IX - Generation and Context Assembly</h4>
+<p><strong>Senior 30, §30.1. Prompt:</strong> "Liu et al. ran both a multi-document QA task and a synthetic key-value retrieval task. Why bother with the second one if the first already shows the U?" <strong>Expected reasoning:</strong> Explain the control. Multi-document QA leaves open that middle chunks are harder to reason about. Synthetic lookup removes reasoning. The same U then isolates position from difficulty.</p>
+<p><strong>Senior 31, §31.1. Prompt:</strong> "Your Bing-style assistant returns an answer with three citation marks. What exactly does each mark guarantee, and what does it not guarantee?" <strong>Expected reasoning:</strong> A mark says the adjacent span was generated while that chunk was in context, giving traceable origin. It does not guarantee support or truth. Those require separate checks.</p>
+<h4 id="part-x---evaluation-1">Part X - Evaluation</h4>
+<p><strong>Senior 32, §32.1. Prompt:</strong> "Two retrievers post identical precision@10 and recall@10 on your eval set. Which one do you ship?" <strong>Expected reasoning:</strong> Refuse to choose from set metrics. Ask for relevant-document rank positions, MRR, or nDCG at production top-k. Identical precision and recall can hide recall@5 of 1.0 for one system and much less for the other.</p>
+<p><strong>Senior 33, §33.1. Prompt:</strong> "Lay out what runs on every pull request, what runs nightly, and why, for a RAG product's truthfulness evaluation." <strong>Expected reasoning:</strong> Match schedule to oracle availability. Run context-only faithfulness on every push. Run factuality with recall correction on a schedule sized to the external source. Audit with humans periodically.</p>
+<p><strong>Senior 34, §34.1. Prompt:</strong> "Two RAG systems both score 66% end-to-end accuracy on the same benchmark. Are they equally good?" <strong>Expected reasoning:</strong> Say no and derive A = h c1 + (1 - h)c0. The cases h = 0.85, c1 = 0.75 and h = 0.65, c1 = 0.97 both land near 0.66 but demand opposite investments.</p>
+<h4 id="part-xi---trust-credibility-and-adversarial-robustness-1">Part XI - Trust, Credibility, and Adversarial Robustness</h4>
+<p><strong>Senior 35, §35.1. Prompt:</strong> "You have two candidate models: A is strong on five of six trust axes but weak on privacy. B is moderate but even across all six, landing at nearly the same aggregate radar area as A. Which do you ship?" <strong>Expected reasoning:</strong> Refuse the aggregate tie. If deployment exposes sensitive retrieved content, disqualify A regardless of other strengths. Radar area cannot compensate for a binding privacy constraint.</p>
+<p><strong>Senior 36, §36.1. Prompt:</strong> "Your attribution classifier reports 95% precision on a benchmark, but production complaints about fabricated sources keep rising. What's going wrong?" <strong>Expected reasoning:</strong> The benchmark contains genuine documents by construction, so it never measured fabricated-source failures. Add an authenticity gate rather than retraining the attribution classifier.</p>
+<h4 id="part-xii---scaling-advanced-variants-and-design-drills-1">Part XII - Scaling, Advanced Variants, and Design Drills</h4>
+<p><strong>Senior 37, §37.1. Prompt:</strong> "You cut the reranker's candidate pool from 50 to 10 hoping to hit a latency target, and p50 barely moved. Why, and where should you actually look?" <strong>Expected reasoning:</strong> Compute first. At 50 candidates, reranking used 8.3 ms of a 1,320 ms budget. Cutting 80% saves only milliseconds because decode is 91% of total. Also price the miss risk.</p>
+<p><strong>Senior 38, §38.1. Prompt:</strong> "Your team hash-sharded a single vector index across twelve shards to fix a capacity problem. Compliance flags that two shards mix EU personal data with US data. What went wrong?" <strong>Expected reasoning:</strong> Hash sharding partitions by load key and is compliance-blind. Residency needs jurisdictional partitioning, which is a different axis from minimizing hot-shard skew.</p>
+<p><strong>Senior 39, §39.1. Prompt:</strong> "You migrate from a caption-based index to a CLIP-style shared embedding space. What changes about your reranking and thresholding, and why?" <strong>Expected reasoning:</strong> Similarity now operates directly on joint embeddings and removes captioning at ingestion. Score distributions still differ by modality, so one global threshold misfires and reranking must inspect raw multimodal candidates.</p>
+<p><strong>Senior 40, §40.1. Prompt:</strong> "Your team already runs GraphRAG over the product taxonomy. Leadership wants the same pipeline reused on a corpus of raw customer-call transcripts. What do you tell them?" <strong>Expected reasoning:</strong> Test portability. A taxonomy is stable and naturally hierarchical. Call transcripts contain relations inferred per call that rarely recur. Extraction prompts and traversal depth do not transfer.</p>
+<p><strong>Senior 41, §41.1. Prompt:</strong> "Your team's uncompressed HNSW cluster for this corpus needs ten memory-heavy nodes, and finance is asking why." <strong>Expected reasoning:</strong> Walk through 3,200 bytes per document uncompressed versus 100 under IVF-PQ. The 32-fold reduction turns five capacity-bound shards into one. Then name a recall-loss mitigation.</p>
+<h3 id="b3-staff-questions">B.3 Staff Questions</h3>
+<p>Difficulty marker: Staff. These prompts test judgment after a constraint changes or two teams present partly valid positions. Price options, concede the other side's real point, decide, and name the reversal condition.</p>
+<h4 id="part-i---the-rag-interview-landscape-2">Part I - The RAG Interview Landscape</h4>
+<p><strong>Staff 1, §1.1. Prompt:</strong> "Legal needs a licensed corpus out of the product in 30 days. Research says removing it costs four points on our benchmark and refuses. Adjudicate." <strong>Expected reasoning:</strong> Reject the framing that the corpus must disappear. Choose where it lives. Retrain theta only on low-risk data and serve the encumbered corpus from D, where withdrawal is an index deletion rather than a training run.</p>
+<p><strong>Staff 2, §2.1. Prompt:</strong> "Compliance says the reversed legal standard must be removed from the model, not merely superseded. One engineer wants to continually train on the corrected corpus. Another wants to leave the weights alone and fix it in the index. Adjudicate." <strong>Expected reasoning:</strong> Separate three requirements. The system must answer with the current rule, must not state the old one, and must make the old rule unrecoverable from weights. Retrieval solves the first two. Only the third requires unlearning.</p>
+<p><strong>Staff 3, §3.1. Prompt:</strong> "Retrieval wants to fan out across all three stores for recall. Generation wants k = 20 for coverage. The SLO is 800 milliseconds. Both have data. Decide." <strong>Expected reasoning:</strong> Treat fan-out and k as different decisions. Fan-out costs a few milliseconds. k = 20 adds 769 ms of prefill and consumes the overrun. Grant fan-out, deny that k, and decouple candidate depth k0 from context depth k.</p>
+<h4 id="part-ii---the-generator-side-2">Part II - The Generator Side</h4>
+<p><strong>Staff 4, §4.1. Prompt:</strong> "Legal now requires any document to be removable from the system within 24 hours of a takedown notice. A colleague proposes an unlearning pass over the weights. What do you tell them?" <strong>Expected reasoning:</strong> The objective changed from quality to deletability. Unlearning requires enumerating target sequences and running gradients per notice, with no guarantee and possible collateral damage. A delete against D avoids both problems.</p>
+<p><strong>Staff 5, §5.1. Prompt:</strong> "The licence on a corpus we already fine-tuned on is revoked in thirty days. Counsel wants the checkpoint destroyed. Your ML lead says the data was 0.3% of the mix and the effect is negligible. Adjudicate." <strong>Expected reasoning:</strong> Neither claim is measured. The 0.3% is a mixing weight, not an extraction rate. Duplication connects them, so a small repeated source can be more extractable than a large diverse source.</p>
+<p><strong>Staff 6, §6.1. Prompt:</strong> "Our research lead wants the Chinchilla-optimal 77B because it is the compute-optimal point. Infrastructure wants the 8B. We will serve 10^10 tokens a day and we already run a retrieval index. Adjudicate." <strong>Expected reasoning:</strong> Concede that 77B is better at equal training compute. Then change the objective. At 10^10 served tokens per day, annual generation is 3.7 x 10^12 tokens and lifetime serving cost dominates.</p>
+<p><strong>Staff 7, §7.1. Prompt:</strong> "Legal has ruled that no customer record may appear in a prompt at inference time. The ML team proposes fine-tuning on those records instead. Adjudicate." <strong>Expected reasoning:</strong> Concede that prompts cross a trust boundary into logs and vendor retention. Then explain why weights are a worse hiding place. A fine-tuned model has no delete operation.</p>
+<p><strong>Staff 8, §8.1. Prompt:</strong> "Compliance wants a defensible per-answer attribution on every response. The research lead wants two headcount for circuit-level analysis of your 32-layer generator. You can fund one." <strong>Expected reasoning:</strong> Reject both proposals with arithmetic. Per-response causal attribution multiplies serving cost by n + 1. Exhaustive circuit analysis faces 33^32 paths.</p>
+<h4 id="part-iii---prompting-and-context-construction-2">Part III - Prompting and Context Construction</h4>
+<p><strong>Staff 9, §9.1. Prompt:</strong> "Compliance now requires that every claim in an answer be traceable to a source document and that the model's own knowledge is never used. A senior engineer proposes adding 'answer only from the provided context' to the system prompt and shipping. Adjudicate." <strong>Expected reasoning:</strong> Grant that the instruction belongs in the prompt and helps. It is not an enforcement control. A prompt shifts a distribution. The requirement needs a verifier.</p>
+<p><strong>Staff 10, §10.1. Prompt:</strong> "Your team spent two weeks tuning the context template for a 7-point gain. Platform now wants to move the product to a hosted frontier model, and a principal engineer argues the tuned template is the team's asset and must be carried over verbatim. Adjudicate." <strong>Expected reasoning:</strong> Concede that two weeks created a real asset, then separate asset from artifact. The grammar, search harness, and held-out split transfer. The exact string is a fitted parameter of the model being retired.</p>
+<p><strong>Staff 11, §11.1. Prompt:</strong> "The clinical safety lead demands 99% correctness before the system answers anything. The head of product says a policy that refuses nine questions in ten is not a product. Adjudicate." <strong>Expected reasoning:</strong> Do not split the difference. At roughly 80% macro-F1 for attribution judgment, enforceable precision tops out near 94.5% on an 81%-accurate stack. The safety bar is unavailable at any threshold.</p>
+<h4 id="part-iv---representing-what-you-retrieve-2">Part IV - Representing What You Retrieve</h4>
+<p><strong>Staff 12, §12.1. Prompt:</strong> "Platform wants to consolidate five per-language indexes onto one multilingual model and claims a five-fold cost saving. Search says accuracy will drop. Adjudicate." <strong>Expected reasoning:</strong> Correct the cost premise. Documents remain, so the union has the same vector count and saves roughly zero storage. It can still remove five model deployments, five evaluation suites, and five on-call rotations.</p>
+<p><strong>Staff 13, §13.1. Prompt:</strong> "Legal requires every retrieved chunk to carry a clause citation. Platform requires uniform 512-token chunks so ANN latency stays predictable. Adjudicate." <strong>Expected reasoning:</strong> Correct the latency premise. Every chunk becomes one d-dimensional vector, so ANN cost depends on N, d, and graph parameters rather than source token length. Variable length changes prefill.</p>
+<p><strong>Staff 14, §14.1. Prompt:</strong> "The data team wants the tables extracted into a warehouse and queried with text-to-SQL. The search team wants everything in one vector index. Adjudicate." <strong>Expected reasoning:</strong> Partition by query type. Lookups naming a row and column fit a header-repeated row at about 420 prefill tokens. Aggregations are column properties and belong in SQL.</p>
+<h4 id="part-v---indexing-and-vector-search-2">Part V - Indexing and Vector Search</h4>
+<p><strong>Staff 15, §15.1. Prompt:</strong> "A colleague cites Beyer et al. and argues that nearest neighbor is meaningless at 768 dimensions, so semantic search over our corpus is theoretically doomed. Our offline eval says recall@10 is 0.82. Adjudicate." <strong>Expected reasoning:</strong> Judge the theorem's hypothesis, not its conclusion. It assumes unclustered coordinates. A contrastively trained encoder violates that assumption. Recall 0.82 is evidence about the real data distribution, not a contradiction.</p>
+<p><strong>Staff 16, §16.1. Prompt:</strong> "A colleague wants binary quantization instead. Also 96 bytes at d = 768, also 2^768 possible codes, no codebook, no training, and Hamming distance by popcount. Adjudicate." <strong>Expected reasoning:</strong> The code spaces are equally large. Their cells differ. Binary quantization fixes orthants before seeing data. PQ fits 96 k-means problems to observed density.</p>
+<p><strong>Staff 17, §17.1. Prompt:</strong> "Legal now requires erasure within 24 hours, and your rebuild takes an hour on a corpus growing to 500 million. Platform wants to keep the nightly job. Adjudicate." <strong>Expected reasoning:</strong> At 50 times the corpus, rebuild takes 50 hours. Nightly is impossible and any full rebuild misses the 24-hour deadline. Reframe erasure as a per-record obligation.</p>
+<h4 id="part-vi---retrieval-and-ranking-2">Part VI - Retrieval and Ranking</h4>
+<p><strong>Staff 18, §18.1. Prompt:</strong> "Legal requires that answers cite only documents the user is cleared to see. The search team wants every filter moved into the scoring function, because hard filters over-restrict and are costing them recall. Adjudicate." <strong>Expected reasoning:</strong> Concede that sparse metadata filters can silently delete documents and create a real recall bug. Then separate the non-negotiable security clause from preference filters.</p>
+<p><strong>Staff 19, §19.1. Prompt:</strong> "A colleague points out that your new labels are not human grades at all. They are dwell time in seconds, a genuine continuous quantity. They want to switch the loss back to regression. Do you agree?" <strong>Expected reasoning:</strong> Concede that the scale objection dissolves when the premise changes. Only one of three objections concerned scale. The mismatch between regression and the ranking metric remains.</p>
+<p><strong>Staff 20, §20.1. Prompt:</strong> "The retrieval team wants to ship a new embedding model monthly. The platform team says the corpus is 500M chunks and refuses. Adjudicate." <strong>Expected reasoning:</strong> Both positions follow from one efficiency trade. Precomputation makes a bi-encoder cheap, and those vectors are bound to encoder weights. Changing phi invalidates every vector. Price the full re-embedding.</p>
+<p><strong>Staff 21, §21.1. Prompt:</strong> "The platform team will fund exactly one index for a 500M-chunk corpus. The query log is half natural language and half part numbers and error codes. The ML team wants dense. The search team wants BM25. Adjudicate." <strong>Expected reasoning:</strong> Scale the arithmetic and state the reversal condition. Dense d = 768 fp32 storage is 1.54 TB and loses the exact-match half of traffic because part-number embeddings are poorly trained. A hybrid is implied by the workload.</p>
+<p><strong>Staff 22, §22.1. Prompt:</strong> "Context windows are a million tokens now. The platform team wants to delete the reranker and pass the top 200 chunks straight through. The search team refuses. Adjudicate." <strong>Expected reasoning:</strong> The platform team is right that it fits. Two hundred chunks at 256 tokens are 51,200 tokens. It is wrong about cost because prefill is quadratic and reranking is a rounding error by comparison.</p>
+<p><strong>Staff 23, §23.1. Prompt:</strong> "Infra says moving to generative retrieval deletes the vector-store line item. Retrieval says it just relocates the index onto the GPU and the bill goes up. Who is right, and what happens when the corpus grows 10 times?" <strong>Expected reasoning:</strong> Both are right on different terms. A 29.3 GB replicated host index can become 440 MB of resident weights. The cost moves into training and retraining, so corpus growth still has a bill.</p>
+<h4 id="part-vii---query-understanding-and-control-flow-2">Part VII - Query Understanding and Control Flow</h4>
+<p><strong>Staff 24, §24.1. Prompt:</strong> "Your search lead wants to retire BM25 for a dense bi-encoder to end vocabulary mismatch. On-call objects that head queries will regress. Thirty percent of traffic is exact part numbers. Adjudicate." <strong>Expected reasoning:</strong> Dense retrieval handles synonymy but not polysemy, which needs missing query context. It also turns a loud zero-postings failure into a silent wrong neighbor. Preserve the exact-match path for the 30% slice.</p>
+<p><strong>Staff 25, §25.1. Prompt:</strong> "Infrastructure wants the gate to cut retrieval calls by half. Quality will not accept any accuracy regression. Adjudicate." <strong>Expected reasoning:</strong> Both demands use one threshold and pull opposite ways. Raising skip rate from 30% to 50% enters the region where each additional skip trades a retrieval-only-correct answer for a wrong one. Reject the false promise.</p>
+<p><strong>Staff 26, §26.1. Prompt:</strong> "Retrieval owns recall@5 of 0.94 and says the generator is broken. Generation says the context is wrong. Your p95 budget is 800 ms and you cannot add a round to every query. Adjudicate." <strong>Expected reasoning:</strong> Disqualify both teams' evidence. Recall@5 measures topical surface relevance and says nothing about multi-hop chains or staleness. Annotate evidence chains and timestamps before assigning blame.</p>
+<h4 id="part-viii---training-the-rag-system-2">Part VIII - Training the RAG System</h4>
+<p><strong>Staff 27, §27.1. Prompt:</strong> "Retrieval and generator teams each want the same quarter of GPU budget. You have A_orc = 0.82, A_ng = 0.31, R = 0.75. Decide, and say what would reverse the decision." <strong>Expected reasoning:</strong> Compute marginal rates. Retrieval work pays A_orc - A_ng = 0.51 per unit of recall. Generator work pays R = 0.75 on oracle context and 1 - R = 0.25 on distractors-only context. Choose from those returns and name what change reverses them.</p>
+<p><strong>Staff 28, §28.1. Prompt:</strong> "Research wants joint end-to-end training. Platform points out the corpus turns over 5% per week. Adjudicate." <strong>Expected reasoning:</strong> With phi frozen, weekly turnover encodes 5 x 10^5 new chunks in about 83 seconds. Once phi trains, every stored vector becomes stale and the whole corpus must be re-encoded.</p>
+<p><strong>Staff 29, §29.1. Prompt:</strong> "Retrieval metrics improved after you shipped document-side query expansion, but a stakeholder insists users still can't find internal documents they know exist, and blames 'the model doesn't know it.' Two engineers disagree. One wants to regenerate predicted queries with a larger model. The other wants to leave retrieval alone and change the generation prompt. How do you adjudicate?" <strong>Expected reasoning:</strong> Localize first. Pull the document by identifier and check whether it appears anywhere in top-k. If absent, the defect is indexing and neither a bigger query generator nor a generation prompt can reach it.</p>
+<h4 id="part-ix---generation-and-context-assembly-2">Part IX - Generation and Context Assembly</h4>
+<p><strong>Staff 30, §30.1. Prompt:</strong> "Your team wants to raise top-k retrieval from 5 to 20 because recall@20 is far higher than recall@5. A colleague objects that this will hurt end-to-end accuracy. Who is right, and what would settle it?" <strong>Expected reasoning:</strong> Both can be right. Recall@20 adds relevant documents, but many new positions lie in the middle trough. More retrieval can dilute evidence use. Measure end-to-end accuracy by evidence position.</p>
+<p><strong>Staff 31, §31.1. Prompt:</strong> "Your generation team wants to strip citation markers from answers because a user study found citations don't move satisfaction scores. Product wants to keep them for a compliance audit next quarter. How do you adjudicate?" <strong>Expected reasoning:</strong> Separate value propositions. Satisfaction measures perceived answer quality. Attribution lets an auditor or incident reviewer verify a claim. The study tested the first, while compliance needs the second.</p>
+<h4 id="part-x---evaluation-2">Part X - Evaluation</h4>
+<p><strong>Staff 32, §32.1. Prompt:</strong> "Your reranking team says retrieval-stage metrics don't matter, because the reranker fixes the ordering anyway. Your generation team says garbage in, garbage out. Adjudicate." <strong>Expected reasoning:</strong> Both are partly right. A reranker only changes order inside candidate depth k0. Evidence below k0 is unreachable regardless of reranker quality.</p>
+<p><strong>Staff 33, §33.1. Prompt:</strong> "Right after a vector-store migration, your nightly factuality pipeline starts flagging a much higher share of your RAG system's answers as false. The eval team says the RAG system regressed. Infra says the eval's external verifier broke during the migration. You have two minutes before the standup. Adjudicate." <strong>Expected reasoning:</strong> Pull context-only faithfulness for the same time window because it does not depend on the external verifier. If faithfulness stayed flat while factuality fell, retrieved evidence changed rather than generation.</p>
+<p><strong>Staff 34, §34.1. Prompt:</strong> "Your retrieval team says recall@k is 92%, clean. Your generation team says faithfulness, measured against gold context in isolation, is 95%, also clean. End-to-end correctness is 58%. Both teams blame each other. Adjudicate." <strong>Expected reasoning:</strong> Faithfulness against gold context is easier than faithfulness against deployed assembled context. Neither team measured the shipping pipeline. Rerun against actual context.</p>
+<h4 id="part-xi---trust-credibility-and-adversarial-robustness-2">Part XI - Trust, Credibility, and Adversarial Robustness</h4>
+<p><strong>Staff 35, §35.1. Prompt:</strong> "Compliance now bans any personal data from entering the retrieval context. Two teams disagree on how to update the trust dashboard. One wants to zero out the privacy axis for every model going forward. The other wants to remove the axis from the chart entirely since it no longer applies. Which do you pick, and why?" <strong>Expected reasoning:</strong> Ask what the chart is for. Zeroing lowers aggregate scores for a risk excluded from this deployment. Dropping the axis erases the fact that privacy was evaluated. Preserve the evaluation record without treating it as current exposure.</p>
+<p><strong>Staff 36, §36.1. Prompt:</strong> "Legal wants every retrieved document to carry a verified content credential before it can be cited. Product says most of the corpus predates credentialing, and a hard gate would gut recall. How do you resolve this?" <strong>Expected reasoning:</strong> Reject hard pass or fail. Grade p(d). Use p = 1 for cryptographically verified post-adoption documents, a corroboration estimate for legacy content, and p = 0 only when no signal exists.</p>
+<h4 id="part-xii---scaling-advanced-variants-and-design-drills-2">Part XII - Scaling, Advanced Variants, and Design Drills</h4>
+<p><strong>Staff 37, §37.1. Prompt:</strong> "Product wants a 500 ms p50. Engineering wants to swap the 8B generator for a 30B model to fix a quality regression, keeping the same 2,048-token context and 150-token answers. Adjudicate." <strong>Expected reasoning:</strong> The 8B configuration already runs near 1,320 ms, which is 2.6 times over budget, and decode is 91%. A 30B model moves about 3.75 times the bytes per decode step and worsens the binding constraint.</p>
+<p><strong>Staff 38, §38.1. Prompt:</strong> "A director wants to merge four departmental RAG systems into one to cut infrastructure cost by a projected 40%. Legal says two of the four departments hold data that cannot legally be merged. Adjudicate, and tell the director what you'd actually ship." <strong>Expected reasoning:</strong> Treat compliance as non-negotiable, so a full merge is excluded before cost modeling. Ask how much of the projected 40% survives under federation and ship the compliant federated design.</p>
+<p><strong>Staff 39, §39.1. Prompt:</strong> "Your team is split. One engineer wants to migrate the entire corpus to a ColPali-style document-as-image index because it eliminates OCR error. Another says an 86-fold storage increase is not worth it for a corpus that is 95% plain prose. Infrastructure budget is fixed. Adjudicate." <strong>Expected reasoning:</strong> Refuse a single philosophy. Segment by content, calculate the multiplier only for the layout-heavy slice, and size a hybrid index against the real budget.</p>
+<p><strong>Staff 40, §40.1. Prompt:</strong> "Infra wants to freeze the graph index because a full re-extraction costs $2,850 and six hours. Product wants same-day updates for a compliance SLA. Adjudicate." <strong>Expected reasoning:</strong> Reject both extremes. Full extraction cost is being repaid on every update. Use incremental dual-level indexing so only touched entities are refreshed.</p>
+<p><strong>Staff 41, §41.1. Prompt:</strong> "Product wants QPS to jump from 500 to 5,000 for a new real-time surface. The corpus stays at 100 million documents. One engineer wants to add shards. Another wants to add cores to the existing shards. Adjudicate." <strong>Expected reasoning:</strong> Separate memory from load. Corpus size is unchanged, so capacity-driven shard count does not move. Scatter-gather sends full QPS to each shard, so add replicas rather than shards.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>Appendix B contains zero source figures and zero source tables. No source visual is invented here.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one large box labeled "123-question simulator."</li>
+<li>Split it into three lanes labeled Core, Senior, and Staff.</li>
+<li>Put "41 questions" under each lane.</li>
+<li>Under Core, draw "name mechanism" leading to "name failure."</li>
+<li>Under Senior, draw "diagnose" leading to "derive from constraints" and then "state number."</li>
+<li>Under Staff, draw two partly correct teams converging on "price options," "concede," "decide," and "reversal condition."</li>
+<li>Draw a ninety-second timer before all three lanes.</li>
+<li>Draw a closed answer key after the timer, then an arrow from the key to the source-section pointer.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Treat this appendix as a three-level interview simulator. Core questions test whether I can name the mechanism and its failure mode. Senior questions make me derive from the stated constraints, so I diagnose first and put a number in the answer. Staff questions introduce a changed constraint or two partly correct teams. I price both options, concede each valid concern, choose, and state what would reverse me. There are 41 questions per tier, 123 total. I set a ninety-second timer, answer aloud before opening the key, then use the section pointer when the compact reasoning spine is not enough.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-separate-the-prompts-from-their-answer-spines">1. Why separate the prompts from their answer spines?</h3>
+<p>Seeing an answer tests recognition, not cold production. The appendix requires an aloud attempt before the key so the drill matches a ninety-second interview response.</p>
+<h3 id="2-are-core-senior-and-staff-labels-just-easy-medium-and-hard">2. Are Core, Senior, and Staff labels just easy, medium, and hard?</h3>
+<p>No. Core tests mechanism, Senior tests derivation from given constraints, and Staff tests judgment when constraints change or credible teams disagree.</p>
+<h3 id="3-what-makes-a-staff-answer-stronger-than-choosing-the-team-you-agree-with">3. What makes a Staff answer stronger than choosing the team you agree with?</h3>
+<p>A strong answer prices both options, concedes the other side's valid point, and states a recommendation. It also names the condition that would reverse that recommendation.</p>
+<h3 id="4-why-should-a-senior-answer-derive-a-number-instead-of-quote-one-from-memory">4. Why should a Senior answer derive a number instead of quote one from memory?</h3>
+<p>The prompt's constraints define the current system. A remembered benchmark number can describe a different corpus, load, or budget and therefore avoid the actual derivation.</p>
+<h3 id="5-what-should-you-do-when-the-compact-answer-key-feels-obvious-or-incomplete">5. What should you do when the compact answer key feels obvious or incomplete?</h3>
+<p>First ask whether you could have produced that spine cold and aloud. Then follow the attached section pointer, which leads to the full argument and expected follow-up.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source item</th>
+<th>Number, threshold, or formula</th>
+<th>Meaning or claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Appendix structure</td>
+<td>3 tiers, 41 questions each, 123 total</td>
+<td>Every chapter contributes one Core, one Senior, and one Staff prompt</td>
+</tr>
+<tr>
+<td>Drill timing</td>
+<td>90 seconds</td>
+<td>Target time for a cold spoken answer</td>
+</tr>
+<tr>
+<td>Core 1</td>
+<td>8B</td>
+<td>Model that still invents product identifiers</td>
+</tr>
+<tr>
+<td>Core 2</td>
+<td>27B, 108 GB, about 20,000 edited numbers</td>
+<td>Model size, fp32 forward-pass memory, and editing scale</td>
+</tr>
+<tr>
+<td>Core 3</td>
+<td>2 stages, 3 failure classes, 3 repeated chunks</td>
+<td>Retrieval and generation need more precise diagnosis than hallucination</td>
+</tr>
+<tr>
+<td>Core 4</td>
+<td>27B, about 1,324 GPU-hours, about 15 million queries</td>
+<td>Retraining cost versus retrieval-serving equivalent</td>
+</tr>
+<tr>
+<td>Core 5</td>
+<td>20 TB to 750 GB</td>
+<td>Example pretraining snapshot reduction</td>
+</tr>
+<tr>
+<td>Core 6</td>
+<td>C ≈ 6ND, C = 10^23, N = sqrt(C/120), about 10 times smaller</td>
+<td>Training scaling and inference-heavy adjustment</td>
+</tr>
+<tr>
+<td>Core 7</td>
+<td>6ND_SFT, 2Nk t_d, break-even 3D_SFT divided by k t_d</td>
+<td>One-time fine-tuning versus recurring prompt cost</td>
+</tr>
+<tr>
+<td>Core 8</td>
+<td>2019</td>
+<td>Year attached to the cited adversarial-attention result</td>
+</tr>
+<tr>
+<td>Core 9</td>
+<td>d[1:k] = R(q)</td>
+<td>Retrieved documents are selected after the query is known</td>
+</tr>
+<tr>
+<td>Core 10</td>
+<td>4 points, 500 questions, p ≈ 0.64, 2.1-point standard error</td>
+<td>Four points stays below two standard errors</td>
+</tr>
+<tr>
+<td>Core 11</td>
+<td>2 or 3 mechanisms, not 1</td>
+<td>An abstention answer must compare failure modes rather than name one gate</td>
+</tr>
+<tr>
+<td>Core 12</td>
+<td>4 representation eras</td>
+<td>Exact, static, contextual, and universal trade-offs</td>
+</tr>
+<tr>
+<td>Core 13</td>
+<td>Severance (s - 1)/L, guarantee s ≤ o, cost L divided by L - o</td>
+<td>Chunk length and overlap arithmetic</td>
+</tr>
+<tr>
+<td>Core 14</td>
+<td>1 retrieved chunk</td>
+<td>Inspect ingestion evidence before blaming the model</td>
+</tr>
+<tr>
+<td>Core 15</td>
+<td>10 million, M = 16, n = 10^7, 6 layers</td>
+<td>HNSW height example</td>
+</tr>
+<tr>
+<td>Core 16</td>
+<td>30.7 GB, 1 GB, 10^7 vectors, 100 bytes, k = 256, m = 96, d = 768, 960 MB</td>
+<td>Product-quantization sizing chain</td>
+</tr>
+<tr>
+<td>Core 17</td>
+<td>10:00 and 1 query</td>
+<td>Deletion time and visibility deadline before physical rebuild</td>
+</tr>
+<tr>
+<td>Core 18</td>
+<td>11th occurrence versus 1st</td>
+<td>Linear term frequency overvalues repetition</td>
+</tr>
+<tr>
+<td>Core 19</td>
+<td>Labels 0 to 4, loss halves, nDCG@10 unchanged, nDCG 1.000, squared error 20.12</td>
+<td>Regression loss can move without rank order</td>
+</tr>
+<tr>
+<td>Core 20</td>
+<td>21 million passages, 36 minutes, 50 ms</td>
+<td>Cross-encoder corpus scan versus serving budget</td>
+</tr>
+<tr>
+<td>Core 21</td>
+<td>30,522 vocabulary entries</td>
+<td>SPLADE expansion space</td>
+</tr>
+<tr>
+<td>Core 22</td>
+<td>Rank 40, depth 100, top 5</td>
+<td>Candidate recall succeeds while context ordering fails</td>
+</tr>
+<tr>
+<td>Core 23</td>
+<td>27 GB and 8.8 million passages</td>
+<td>Atomic-identifier output-matrix footprint</td>
+</tr>
+<tr>
+<td>Core 24</td>
+<td>3 diagnostic checks</td>
+<td>Posting counts, alternate surface forms, and returned senses separate the causes</td>
+</tr>
+<tr>
+<td>Core 25</td>
+<td>2 by 2 and margin gamma - beta</td>
+<td>Slice losses can coexist with an aggregate gain</td>
+</tr>
+<tr>
+<td>Core 26</td>
+<td>Recall@5 = 0.94</td>
+<td>Topical annotations do not detect answer drift</td>
+</tr>
+<tr>
+<td>Core 27</td>
+<td>Near 0</td>
+<td>Accuracy on missing-answer context is near zero when training never supplies that case</td>
+</tr>
+<tr>
+<td>Core 28</td>
+<td>2 parameter sets</td>
+<td>Retriever and generator parameters require different interventions</td>
+</tr>
+<tr>
+<td>Core 29</td>
+<td>Exactly 0</td>
+<td>A lexical scorer gives an absent term no contribution</td>
+</tr>
+<tr>
+<td>Core 30</td>
+<td>1-sentence answer and crossover plot</td>
+<td>Compare accuracy by evidence position with the flat closed-book line</td>
+</tr>
+<tr>
+<td>Core 31</td>
+<td>September 19, 2025</td>
+<td>Date whose attributable claim must first be resolved</td>
+</tr>
+<tr>
+<td>Core 32</td>
+<td>log2(i + 1), rank 1</td>
+<td>Discount formula leaves the first rank undiscounted</td>
+</tr>
+<tr>
+<td>Core 33</td>
+<td>2 oracle types, once a day versus every push</td>
+<td>Truth checks must fit oracle availability and call limits</td>
+</tr>
+<tr>
+<td>Core 34</td>
+<td>4 points</td>
+<td>End-to-end decline that must be localized before fixing</td>
+</tr>
+<tr>
+<td>Core 35</td>
+<td>2% and 6 trust axes</td>
+<td>One hallucination statistic cannot establish trustworthiness</td>
+</tr>
+<tr>
+<td>Core 36</td>
+<td>3 checks</td>
+<td>Hash, signature, and trust-chain requirements for the credential</td>
+</tr>
+<tr>
+<td>Core 37</td>
+<td>p50 1.3 s, target 500 ms, 5 stages, decode 85% to 90%</td>
+<td>Profile before optimizing the dominant stage</td>
+</tr>
+<tr>
+<td>Core 38</td>
+<td>4 blockers, first 3 budget, fourth legal</td>
+<td>Cost, size, and latency differ from compliance</td>
+</tr>
+<tr>
+<td>Core 39</td>
+<td>1 global image vector</td>
+<td>Pooling limit that motivates patch encoding</td>
+</tr>
+<tr>
+<td>Core 40</td>
+<td>2 costs</td>
+<td>Graph extraction pays a forward pass per chunk and adds noisy duplication</td>
+</tr>
+<tr>
+<td>Core 41</td>
+<td>100 million documents, 500 QPS, first 2 questions</td>
+<td>Ask RAM per node and recall SLA before naming infrastructure</td>
+</tr>
+<tr>
+<td>Senior 1</td>
+<td>2M to 200M chunks, 70B to 8B, 100-fold growth</td>
+<td>More stored knowledge can increase generator comprehension load</td>
+</tr>
+<tr>
+<td>Senior 2</td>
+<td>5% replay and 5.3% surcharge</td>
+<td>Regression-control budget for offline weight updates</td>
+</tr>
+<tr>
+<td>Senior 3</td>
+<td>p95 1.1 s versus 800 ms</td>
+<td>Time-to-first-token SLO gap</td>
+</tr>
+<tr>
+<td>Senior 5</td>
+<td>Required customer PII count = 0</td>
+<td>Tokenization erased document identity, so the source requires measurement rather than certification</td>
+</tr>
+<tr>
+<td>Senior 6</td>
+<td>More than 10-fold disagreement</td>
+<td>Kaplan and Chinchilla optimize different parameter-token balances</td>
+</tr>
+<tr>
+<td>Senior 7</td>
+<td>12 points</td>
+<td>Production decline to localize between retrieval and ICL</td>
+</tr>
+<tr>
+<td>Senior 8</td>
+<td>2 redundant chunks, 0.5 and 0.5 credit, 2^20 replays</td>
+<td>Shapley repair and its cost</td>
+</tr>
+<tr>
+<td>Senior 9</td>
+<td>About one third</td>
+<td>Wrong-format rate separate from staleness</td>
+</tr>
+<tr>
+<td>Senior 10</td>
+<td>2 defensible protocols</td>
+<td>Prompt-template confounding must be controlled before comparing retrievers</td>
+</tr>
+<tr>
+<td>Senior 11</td>
+<td>54%, 60%, 20 to 8.12, 0.929 to 0.836</td>
+<td>Abstention rate, citation-open rate, effective cost, and threshold change</td>
+</tr>
+<tr>
+<td>Senior 12</td>
+<td>1/n</td>
+<td>Rare SKU contribution under mean pooling</td>
+</tr>
+<tr>
+<td>Senior 13</td>
+<td>Recall@5 up 3 points</td>
+<td>Result that needs an evaluation-set boundary audit</td>
+</tr>
+<tr>
+<td>Senior 14</td>
+<td>200 pages, 60 tables, about 39% more tokens</td>
+<td>Filing scale and row-fallback cost</td>
+</tr>
+<tr>
+<td>Senior 15</td>
+<td>d = 768, r ≈ 39, coordinate gap about 1</td>
+<td>Why kd-tree pruning fails</td>
+</tr>
+<tr>
+<td>Senior 16</td>
+<td>2^32, 4 codebooks of 256, 13.2 TB, 1.7 x 10^11, 768 KiB, about 10,000</td>
+<td>Expressive free codebook versus feasible product quantization</td>
+</tr>
+<tr>
+<td>Senior 17</td>
+<td>At least 3 quantities</td>
+<td>Build cost, beam-inflation point, and erasure deadline choose cadence</td>
+</tr>
+<tr>
+<td>Senior 18</td>
+<td>30%</td>
+<td>Tail-query zero-result population to split by operator and vocabulary</td>
+</tr>
+<tr>
+<td>Senior 19</td>
+<td>Grades 0 to 4 and gain 2^y - 1</td>
+<td>Ordered labels do not imply uniform numeric spacing</td>
+</tr>
+<tr>
+<td>Senior 20</td>
+<td>99%, recall@100 61%, 255, 21 million</td>
+<td>Easy in-batch discrimination does not match live retrieval</td>
+</tr>
+<tr>
+<td>Senior 21</td>
+<td>Recall@1000 up 4, p99 15 ms to 900 ms, 8 to 100 terms, 12.5 times</td>
+<td>SPLADE recall and latency share one cause</td>
+</tr>
+<tr>
+<td>Senior 22</td>
+<td>Within 1 point</td>
+<td>A saturated candidate ceiling leaves little for reranking</td>
+</tr>
+<tr>
+<td>Senior 23</td>
+<td>L = 7, k = 10, about 1.2 million invalid IDs</td>
+<td>Unconstrained identifier space</td>
+</tr>
+<tr>
+<td>Senior 24</td>
+<td>Recall@100 up 8 and nDCG@10 down</td>
+<td>Expansion raises coverage while harming precision</td>
+</tr>
+<tr>
+<td>Senior 25</td>
+<td>Exactly 1 signal and 2 grounds</td>
+<td>Query popularity wins on mechanism and operational timing</td>
+</tr>
+<tr>
+<td>Senior 26</td>
+<td>40-point gap, k from 5 to 50</td>
+<td>Larger k cannot create a missing bridge term</td>
+</tr>
+<tr>
+<td>Senior 27</td>
+<td>9 a.m., 1.5 GPU-hours, 7B, 5 x 10^7 tokens, 2.8 ms</td>
+<td>LoRA run versus document upsert</td>
+</tr>
+<tr>
+<td>Senior 28</td>
+<td>0 gradient access</td>
+<td>A hosted generator blocks direct end-to-end retriever gradients</td>
+</tr>
+<tr>
+<td>Senior 29</td>
+<td>10 million documents and 2 million queries/day</td>
+<td>Query-side costs overtake one-time ingestion within days</td>
+</tr>
+<tr>
+<td>Senior 30</td>
+<td>2 evaluation tasks</td>
+<td>Synthetic lookup isolates position from reasoning difficulty</td>
+</tr>
+<tr>
+<td>Senior 31</td>
+<td>3 citation marks</td>
+<td>Each marks origin but not support or truth</td>
+</tr>
+<tr>
+<td>Senior 32</td>
+<td>precision@10, recall@10, recall@5 = 1.0</td>
+<td>Set metrics can hide top-rank differences</td>
+</tr>
+<tr>
+<td>Senior 33</td>
+<td>3 cadences</td>
+<td>Faithfulness runs every push, factuality runs on a schedule, and humans audit periodically</td>
+</tr>
+<tr>
+<td>Senior 34</td>
+<td>66%, h = 0.85 with c1 = 0.75, h = 0.65 with c1 = 0.97</td>
+<td>Equal end-to-end totals imply different investments</td>
+</tr>
+<tr>
+<td>Senior 35</td>
+<td>5 of 6 versus all 6 axes</td>
+<td>A privacy failure cannot be averaged away</td>
+</tr>
+<tr>
+<td>Senior 36</td>
+<td>95% precision</td>
+<td>Genuine-only benchmark does not test fabricated sources</td>
+</tr>
+<tr>
+<td>Senior 37</td>
+<td>50 to 10 candidates, 8.3 ms of 1,320 ms, 80% cut, 91% decode</td>
+<td>Reranker reduction cannot fix decode-bound p50</td>
+</tr>
+<tr>
+<td>Senior 38</td>
+<td>12 shards and 2 mixed-jurisdiction shards</td>
+<td>Hash balance does not enforce residency</td>
+</tr>
+<tr>
+<td>Senior 39</td>
+<td>1 global threshold</td>
+<td>One cutoff can misfire when modality score distributions differ</td>
+</tr>
+<tr>
+<td>Senior 41</td>
+<td>10 nodes, 3,200 to 100 bytes, 32-fold, 5 shards to 1</td>
+<td>IVF-PQ capacity reduction and recall trade-off</td>
+</tr>
+<tr>
+<td>Staff 1</td>
+<td>30 days and 4 benchmark points</td>
+<td>Licensed corpus should move stores rather than remain in weights</td>
+</tr>
+<tr>
+<td>Staff 2</td>
+<td>3 requirements</td>
+<td>Current answer, suppression of old answer, and weight unlearning differ</td>
+</tr>
+<tr>
+<td>Staff 3</td>
+<td>3 stores, k = 20, 800 ms, 769 ms</td>
+<td>Fan-out is cheap while prefill depth consumes the budget</td>
+</tr>
+<tr>
+<td>Staff 4</td>
+<td>24 hours</td>
+<td>Takedown deadline makes deletability binding</td>
+</tr>
+<tr>
+<td>Staff 5</td>
+<td>30 days and 0.3% mixing weight</td>
+<td>Small mixture share does not bound extractability</td>
+</tr>
+<tr>
+<td>Staff 6</td>
+<td>77B versus 8B, 10^10 tokens/day, 3.7 x 10^12/year</td>
+<td>Serving volume changes the compute-optimal decision</td>
+</tr>
+<tr>
+<td>Staff 7</td>
+<td>0 customer records in prompts and no weight-delete operation</td>
+<td>Moving records into weights does not satisfy the trust boundary</td>
+</tr>
+<tr>
+<td>Staff 8</td>
+<td>2 headcount, 32 layers, n + 1 serving multiplier, 33^32 paths</td>
+<td>Both proposed attribution methods fail cost arithmetic</td>
+</tr>
+<tr>
+<td>Staff 9</td>
+<td>Every claim traced and no model-only knowledge</td>
+<td>A prompt instruction helps but does not enforce the requirement</td>
+</tr>
+<tr>
+<td>Staff 10</td>
+<td>2 weeks and 7 points</td>
+<td>Transfer the evaluation asset, not a model-specific prompt string</td>
+</tr>
+<tr>
+<td>Staff 11</td>
+<td>99%, 9 of 10 refusals, 80% macro-F1, 94.5% ceiling, 81% stack accuracy</td>
+<td>Requested safety precision is unreachable</td>
+</tr>
+<tr>
+<td>Staff 12</td>
+<td>5 indexes and roughly zero storage saving</td>
+<td>Consolidation saves deployments and operations, not vectors</td>
+</tr>
+<tr>
+<td>Staff 13</td>
+<td>512 tokens</td>
+<td>Source chunk length changes prefill, not ANN vector width</td>
+</tr>
+<tr>
+<td>Staff 14</td>
+<td>About 420 tokens</td>
+<td>Header-repeated row cost for lookup questions</td>
+</tr>
+<tr>
+<td>Staff 15</td>
+<td>d = 768 and recall@10 = 0.82</td>
+<td>Real clustered data can violate theorem assumptions</td>
+</tr>
+<tr>
+<td>Staff 16</td>
+<td>96 bytes, d = 768, 2^768 codes, 96 k-means fits</td>
+<td>Binary and product quantization share code count but place cells differently</td>
+</tr>
+<tr>
+<td>Staff 17</td>
+<td>24 hours, 1 hour, 500 million, 50-fold, 50 hours</td>
+<td>Whole-index rebuilding cannot meet erasure at scale</td>
+</tr>
+<tr>
+<td>Staff 18</td>
+<td>Only cleared documents</td>
+<td>Security filtering is binding even when preference filters hurt recall</td>
+</tr>
+<tr>
+<td>Staff 19</td>
+<td>1 of 3 objections changes</td>
+<td>Continuous labels remove the scale objection but not the loss-metric mismatch</td>
+</tr>
+<tr>
+<td>Staff 20</td>
+<td>Monthly and 500M chunks</td>
+<td>Encoder churn invalidates all precomputed vectors</td>
+</tr>
+<tr>
+<td>Staff 21</td>
+<td>1 index, 500M chunks, half exact traffic, d = 768 fp32, 1.54 TB</td>
+<td>One dense index loses the literal half and costs large memory</td>
+</tr>
+<tr>
+<td>Staff 22</td>
+<td>1 million-token window, 200 chunks, 256 tokens, 51,200 tokens</td>
+<td>Fit does not imply affordable quadratic prefill</td>
+</tr>
+<tr>
+<td>Staff 23</td>
+<td>29.3 GB to 440 MB and 10-fold corpus growth</td>
+<td>Generative retrieval relocates rather than deletes cost</td>
+</tr>
+<tr>
+<td>Staff 24</td>
+<td>30% exact traffic</td>
+<td>Preserve a lexical path for head identifiers</td>
+</tr>
+<tr>
+<td>Staff 25</td>
+<td>Calls cut by half, skip 30% to 50%</td>
+<td>One threshold cannot guarantee both savings and no regression</td>
+</tr>
+<tr>
+<td>Staff 26</td>
+<td>Recall@5 = 0.94 and p95 = 800 ms</td>
+<td>Topical recall does not settle multi-hop or staleness blame</td>
+</tr>
+<tr>
+<td>Staff 27</td>
+<td>A_orc = 0.82, A_ng = 0.31, R = 0.75, returns 0.51, 0.75, 0.25</td>
+<td>Compare marginal retrieval and generator improvements</td>
+</tr>
+<tr>
+<td>Staff 28</td>
+<td>5% weekly, 5 x 10^5 chunks, about 83 s</td>
+<td>Frozen retriever updates a slice, trained retriever invalidates all vectors</td>
+</tr>
+<tr>
+<td>Staff 29</td>
+<td>2 proposed fixes</td>
+<td>Localize indexing before changing query generation or the generation prompt</td>
+</tr>
+<tr>
+<td>Staff 30</td>
+<td>top-k 5 to 20</td>
+<td>Higher recall can place more evidence in the middle trough</td>
+</tr>
+<tr>
+<td>Staff 31</td>
+<td>2 value propositions</td>
+<td>User satisfaction and audit attribution answer different questions</td>
+</tr>
+<tr>
+<td>Staff 32</td>
+<td>Candidate depth k0</td>
+<td>A reranker cannot recover evidence below the handed-off candidate set</td>
+</tr>
+<tr>
+<td>Staff 33</td>
+<td>2 minutes</td>
+<td>Faithfulness is the fast migration-arbitration check</td>
+</tr>
+<tr>
+<td>Staff 34</td>
+<td>Recall 92%, faithfulness 95%, end-to-end 58%</td>
+<td>Clean isolated metrics can miss deployed-context failure</td>
+</tr>
+<tr>
+<td>Staff 35</td>
+<td>0 versus removal</td>
+<td>Zeroing a trust axis and deleting it distort evaluation in different ways</td>
+</tr>
+<tr>
+<td>Staff 36</td>
+<td>p = 1 to p = 0</td>
+<td>Graded provenance preserves legacy recall</td>
+</tr>
+<tr>
+<td>Staff 37</td>
+<td>500 ms, 8B to 30B, 2,048 input, 150 output, 1,320 ms, 2.6 times, 91%, 3.75 times</td>
+<td>Larger model worsens a decode-bound budget</td>
+</tr>
+<tr>
+<td>Staff 38</td>
+<td>4 systems, projected 40%, 2 legally separate</td>
+<td>Federation must preserve the compliance boundary</td>
+</tr>
+<tr>
+<td>Staff 39</td>
+<td>86-fold storage and 95% prose</td>
+<td>Apply page-image indexing only to the layout-heavy slice</td>
+</tr>
+<tr>
+<td>Staff 40</td>
+<td>$2,850, 6 hours, same-day SLA</td>
+<td>Incremental graph updates avoid full extraction on each change</td>
+</tr>
+<tr>
+<td>Staff 41</td>
+<td>QPS 500 to 5,000 and 100 million documents</td>
+<td>Add replicas for load because capacity is unchanged</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/A1_formula_sheet.html"><small>Previous</small>Appendix A1. Formula Sheet</a><a href="../chapters/A3_design_checklists.html"><small>Next</small>Appendix A3. Design Checklists</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

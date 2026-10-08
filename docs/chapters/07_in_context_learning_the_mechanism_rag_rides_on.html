@@ -1,0 +1,1620 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 7. In-Context Learning - The Mechanism RAG Rides On | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/07_in_context_learning_the_mechanism_rag_rides_on.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group" open><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html" aria-current="page">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part II. The Generator Side</p><h1>Chapter 7. In-Context Learning - The Mechanism RAG Rides On</h1><p class="chapter-meta">53 min estimated reading · Unit 16 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how Retrieval-Augmented Generation (RAG) uses in-context learning (ICL), when supervised fine-tuning (SFT) is the better tool, and how selection, format, order, inference theory, and cost shape the design.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li><p>SFT changes model weights once. ICL leaves the weights frozen and places examples in every prompt.</p></li>
+<li><p>Prompted examples consume context, latency, and serving compute on every query. A small fine-tune can become cheaper after surprisingly little traffic.</p></li>
+<li><p>Choose candidate examples with a cheap search, then let the generator judge which examples reduce its uncertainty about the live input.</p></li>
+<li><p>Format and order are measured model settings. A template or ordering that wins on one model may fail on another.</p></li>
+<li><p>One theory says examples help the model infer which hidden task produced the prompt. Another says attention builds a temporary update with the shape of a gradient step.</p></li>
+<li><p>More examples eventually stop helping. They can crowd out retrieved evidence, repeat one label, dilute one another, and still fail on tasks that need many optimization steps.</p></li>
+<li><p>Use fine-tuning for stable behavior. Use retrieval for missing or changing knowledge that must remain deletable and citable.</p></li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a chef working at one small counter.</p>
+<p>The chef's permanent training is the model's stored behavior.</p>
+<p>Sending the chef to a course changes those permanent habits. That is SFT, which means training on labeled examples and changing the weights.</p>
+<p>Placing sample dishes on the counter changes only the next order. That is ICL, which means guiding a frozen model with examples inside the current prompt.</p>
+<p>The counter has fixed space. Every sample dish displaces ingredients that the kitchen runner retrieved for the real order.</p>
+<p>The runner first finds plausible samples cheaply. The chef then judges which sample makes the current ticket easiest to understand.</p>
+<p>Presentation matters. The same dish on a plate, in a bowl, or inside a box can cue different habits.</p>
+<p>Sequence matters too. The last sample sits nearest the chef and can pull the answer toward its label.</p>
+<p>When the chef sees several samples, the chef first infers the event being served, such as a banquet or a tasting menu. The chef then gives more weight to samples that resemble the current ticket.</p>
+<p>The samples also rearrange the chef's temporary workspace. That rearrangement resembles a small weight update, but the kitchen rebuilds it for every order.</p>
+<p>Adding more plates does not create a larger counter or more training steps. It can merely divide attention among more plates.</p>
+<p>The practical choice is therefore concrete. Retrain stable habits once, keep changing facts in the ingredient store, and spend counter space only on samples that measurably help.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves external evidence and places it in a model prompt</td>
+<td>It inherits every selection, format, order, and context-limit problem of ICL</td>
+</tr>
+<tr>
+<td>In-context learning (ICL)</td>
+<td>Task behavior induced by examples inside the current prompt</td>
+<td>It changes conditioning without changing weights</td>
+</tr>
+<tr>
+<td>Supervised fine-tuning (SFT)</td>
+<td>Training on labeled input-output pairs</td>
+<td>It changes stable behavior once instead of paying a prompt tax forever</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>A worked input-output example placed before the live input</td>
+<td>Its tokens compete directly with retrieved evidence</td>
+</tr>
+<tr>
+<td>Shot</td>
+<td>One demonstration in the prompt</td>
+<td>Shot count controls prompt size and evidence about the task</td>
+</tr>
+<tr>
+<td>Zero-shot</td>
+<td>Answering with no demonstrations</td>
+<td>It is the fallback when no candidate lowers uncertainty</td>
+</tr>
+<tr>
+<td>Few-shot</td>
+<td>Answering with a small demonstration set</td>
+<td>It trades context and latency for task cues</td>
+</tr>
+<tr>
+<td>Next-token predictor</td>
+<td>A model trained to continue a token sequence</td>
+<td>It explains why instruction following is not automatic</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>A learned model weight</td>
+<td>SFT changes parameters while ICL does not</td>
+</tr>
+<tr>
+<td>Parametric update</td>
+<td>A change stored in model weights</td>
+<td>It persists across requests and can forget older behavior</td>
+</tr>
+<tr>
+<td>Non-parametric conditioning</td>
+<td>Guidance supplied in the current input</td>
+<td>It can change per query but must be paid for per query</td>
+</tr>
+<tr>
+<td>Maximum likelihood</td>
+<td>Training that raises the probability of labeled outputs</td>
+<td>It shapes a conditional behavior rather than an addressable fact store</td>
+</tr>
+<tr>
+<td>Conditional probability</td>
+<td>The probability of an output given an input and prefix</td>
+<td>Both SFT and ICL try to raise the desired conditional probability</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One unit of arithmetic work</td>
+<td>The chapter uses FLOPs to compare training and serving costs</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing all prompt tokens before generation starts</td>
+<td>Demonstrations add prefill latency on every uncached query</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>Generating output tokens after prefill</td>
+<td>The chapter prices prefill and decode at the same approximate FLOPs per token</td>
+</tr>
+<tr>
+<td>Time to first token</td>
+<td>Delay before the first generated token appears</td>
+<td>Demonstration prefill directly increases it</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The fixed token capacity available to one request</td>
+<td>Demonstrations can crowd out retrieved chunks</td>
+</tr>
+<tr>
+<td>Headroom</td>
+<td>Unused context capacity</td>
+<td>Figure 7.1 shows demonstrations cutting it from 3,992 to 1,992 tokens</td>
+</tr>
+<tr>
+<td>Prefix cache</td>
+<td>Reused key and value states for a fixed prompt prefix</td>
+<td>Static demonstrations can amortize, while query-selected content usually cannot</td>
+</tr>
+<tr>
+<td>Key-value cache (KV cache)</td>
+<td>Stored attention states for earlier tokens</td>
+<td>Prompted updates occupy memory per concurrent request</td>
+</tr>
+<tr>
+<td>Low-Rank Adaptation (LoRA)</td>
+<td>A small trained additive adapter</td>
+<td>It stores one shared update instead of rebuilding a prompt update per request</td>
+</tr>
+<tr>
+<td>Catastrophic forgetting</td>
+<td>Damage to older abilities during new training</td>
+<td>It is an SFT risk that frozen-weight ICL avoids</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>Unsupported model output</td>
+<td>Training new facts into weights can raise errors on facts previously answered correctly</td>
+</tr>
+<tr>
+<td>Recall at k</td>
+<td>Whether relevant evidence appears in the top k retrieved items</td>
+<td>Lost context can force recall at 10 down to recall at 5</td>
+</tr>
+<tr>
+<td>Demonstration selector</td>
+<td>A policy that chooses which examples enter the prompt</td>
+<td>Its objective must match what moves generator accuracy</td>
+</tr>
+<tr>
+<td>Candidate generator</td>
+<td>A cheap first stage that retrieves a broad pool</td>
+<td>It makes expensive model-side reranking feasible</td>
+</tr>
+<tr>
+<td>Embedding similarity</td>
+<td>Closeness between vector representations</td>
+<td>It is useful for candidate generation but does not consult the consuming model</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>A lexical retrieval score</td>
+<td>It supplies a cheap candidate pool before model-side scoring</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>The k highest-scoring items</td>
+<td>Using similarity top-k as the final selector can reward duplicates and one label</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A slower second stage that reorders a candidate pool</td>
+<td>Conditional entropy is useful as a reranking score, not a corpus scan</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A scorer that jointly processes a query and candidate</td>
+<td>A small one can be much cheaper than the generator but may measure a different objective</td>
+</tr>
+<tr>
+<td>Conditional entropy (ConE)</td>
+<td>Average uncertainty the model retains about test-input tokens after a candidate prefix</td>
+<td>A helpful demonstration should lower it</td>
+</tr>
+<tr>
+<td>Test-input conjecture</td>
+<td>The claim that ICL depends on the model understanding the live input</td>
+<td>Word-shuffling experiments support this bottleneck location</td>
+</tr>
+<tr>
+<td>Empty-prefix baseline</td>
+<td>The model's uncertainty with no candidate demonstration</td>
+<td>It supplies a zero-shot threshold rather than a ranking term</td>
+</tr>
+<tr>
+<td>Label balance</td>
+<td>Keeping selected demonstrations spread across output classes</td>
+<td>It prevents a selector from filling the prompt with one label</td>
+</tr>
+<tr>
+<td>Lexical overlap cap</td>
+<td>A limit on near-verbatim similarity to the test input</td>
+<td>It stops predictable duplicates from winning ConE without teaching the task</td>
+</tr>
+<tr>
+<td>Subset search</td>
+<td>Evaluating combinations of demonstrations</td>
+<td>Its combinatorial cost makes individual scoring the practical choice</td>
+</tr>
+<tr>
+<td>Template</td>
+<td>A rule that turns content into an exact token string</td>
+<td>It is a fitted setting for a specific model-task pair</td>
+</tr>
+<tr>
+<td>FormatSpread</td>
+<td>A budgeted sampler over plausible prompt formats</td>
+<td>It searches a large format space without enumerating every prompt</td>
+</tr>
+<tr>
+<td>Byte Pair Encoding (BPE)</td>
+<td>A tokenization method that merges byte patterns into tokens</td>
+<td>Small separator changes can produce different model inputs</td>
+</tr>
+<tr>
+<td>Induction head</td>
+<td>Attention behavior that matches an earlier pattern and copies what followed</td>
+<td>Prompt separators affect the pattern ICL relies on</td>
+</tr>
+<tr>
+<td>Valid-response rate</td>
+<td>Fraction of outputs that follow the required schema</td>
+<td>Formatting can change parseability as well as correctness</td>
+</tr>
+<tr>
+<td>JavaScript Object Notation (JSON)</td>
+<td>A structured text format often consumed by parsers</td>
+<td>Format sensitivity can surface as JSON parse failures</td>
+</tr>
+<tr>
+<td>Standard error</td>
+<td>Expected sampling variation in an evaluation score</td>
+<td>It prevents a lucky format winner from being mistaken for a real gain</td>
+</tr>
+<tr>
+<td>Paired test</td>
+<td>A comparison of two formats on the same examples</td>
+<td>It can resolve differences more cheaply than independent samples</td>
+</tr>
+<tr>
+<td>Continuous integration (CI) job</td>
+<td>An automated check run when software or models change</td>
+<td>A small format sweep can fit into each model upgrade</td>
+</tr>
+<tr>
+<td>Macro F1 score</td>
+<td>The average class-wise F1 score</td>
+<td>It exposes large order effects even when the demonstration set is unchanged</td>
+</tr>
+<tr>
+<td>Permutation</td>
+<td>One ordering of a fixed demonstration set</td>
+<td>k demonstrations create k factorial possible orders</td>
+</tr>
+<tr>
+<td>Exchangeability</td>
+<td>The assumption that demonstration order carries no information</td>
+<td>Measured order sensitivity violates it</td>
+</tr>
+<tr>
+<td>Content-free probe</td>
+<td>A prompt with the test input replaced by a placeholder</td>
+<td>Any remaining label preference measures prompt bias rather than evidence</td>
+</tr>
+<tr>
+<td>Content-free prior</td>
+<td>The label distribution produced by a content-free probe</td>
+<td>Dividing by it can correct positional bias</td>
+</tr>
+<tr>
+<td>Content-free entropy</td>
+<td>Entropy of the label distribution under a content-free probe</td>
+<td>DEmO uses it offline with a label-balance constraint</td>
+</tr>
+<tr>
+<td>DEmO</td>
+<td>A two-stage method for choosing a demonstration order without gold labels</td>
+<td>It probes orders offline, then scores a short list per query</td>
+</tr>
+<tr>
+<td>Influence score</td>
+<td>The largest shift from a content-free prior to the real-input distribution</td>
+<td>DEmO uses it to pick among shortlisted orders</td>
+</tr>
+<tr>
+<td>Contextual calibration</td>
+<td>Dividing output scores by the content-free prior</td>
+<td>It is cheaper than per-query permutation search</td>
+</tr>
+<tr>
+<td>Recency bias</td>
+<td>Preference for labels near the end of the prompt</td>
+<td>It explains why the last demonstration can dominate</td>
+</tr>
+<tr>
+<td>Latent concept</td>
+<td>A hidden topic, task, genre, or format that could generate a document</td>
+<td>The Bayesian account treats demonstrations as evidence about this concept</td>
+</tr>
+<tr>
+<td>Prior</td>
+<td>Belief over concepts before seeing the prompt</td>
+<td>Demonstrations update it into a posterior</td>
+</tr>
+<tr>
+<td>Posterior</td>
+<td>Belief over concepts after seeing prompt evidence</td>
+<td>It concentrates on the intended task as useful demonstrations accumulate</td>
+</tr>
+<tr>
+<td>Hidden Markov model</td>
+<td>A sequence model with hidden states</td>
+<td>Xie et al. use mixtures of these models to formalize concept inference</td>
+</tr>
+<tr>
+<td>Kullback-Leibler divergence (KL divergence)</td>
+<td>Per-example evidence that separates two distributions</td>
+<td>It sets the exponential rate at which wrong-concept probability falls</td>
+</tr>
+<tr>
+<td>Nat</td>
+<td>A unit of information based on natural logarithms</td>
+<td>The worked example expresses discriminating power in nats</td>
+</tr>
+<tr>
+<td>Kernel regression</td>
+<td>Prediction by a similarity-weighted local average</td>
+<td>It describes how attention can combine demonstration labels</td>
+</tr>
+<tr>
+<td>Nadaraya-Watson estimator</td>
+<td>A normalized kernel-weighted average</td>
+<td>One attention head has this form under the stated reading</td>
+</tr>
+<tr>
+<td>Query, key, and value</td>
+<td>Attention representations for matching and carrying information</td>
+<td>Their products define weights and temporary updates</td>
+</tr>
+<tr>
+<td>Softmax</td>
+<td>Normalization that turns attention logits into weights</td>
+<td>It makes demonstrations dilute rather than simply accumulate</td>
+</tr>
+<tr>
+<td>Effective sample size (ESS)</td>
+<td>The number of equally weighted examples that would give similar weight concentration</td>
+<td>It reveals when duplicates make eight demonstrations behave like far fewer</td>
+</tr>
+<tr>
+<td>Linear attention</td>
+<td>Attention with the softmax removed</td>
+<td>It exposes the exact algebraic link to a gradient update</td>
+</tr>
+<tr>
+<td>Outer product</td>
+<td>A rank-one matrix built from two vectors</td>
+<td>Both accumulated gradients and linear attention sums use this shape</td>
+</tr>
+<tr>
+<td>Meta-gradient</td>
+<td>A temporary forward-pass update induced by context</td>
+<td>It names the demonstration contribution in the gradient account</td>
+</tr>
+<tr>
+<td>Gradient descent</td>
+<td>Repeated parameter updates that reduce a loss</td>
+<td>Linear self-attention can implement a bounded number of such steps</td>
+</tr>
+<tr>
+<td>Squared-error loss</td>
+<td>A loss based on squared prediction error</td>
+<td>Its linear-layer gradient has the same outer-product form as linear attention</td>
+</tr>
+<tr>
+<td>Ridge regression</td>
+<td>Linear regression with a penalty on weight size</td>
+<td>Larger trained transformers can match its closed-form predictor in synthetic settings</td>
+</tr>
+<tr>
+<td>Ordinary least squares</td>
+<td>Linear regression that minimizes squared error</td>
+<td>Scratch-trained transformers matched it on in-context linear functions</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>Number of independent directions a matrix can express</td>
+<td>One head's temporary update is bounded by demonstration tokens and head width</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td>Number of transformer layers</td>
+<td>It bounds the implicit step budget under the one-layer, one-step construction</td>
+</tr>
+<tr>
+<td>Grouped-query attention</td>
+<td>Attention that shares fewer key-value heads across query heads</td>
+<td>It determines the worked KV-cache memory calculation</td>
+</tr>
+<tr>
+<td>Adapter</td>
+<td>A small trained parameter module added to a frozen model</td>
+<td>It trades training once for shared storage and zero demonstration prefill</td>
+</tr>
+<tr>
+<td>Generative Pre-trained Transformer (GPT)</td>
+<td>The model family name used in several cited results</td>
+<td>The chapter compares format, calibration, and ICL findings across GPT versions</td>
+</tr>
+<tr>
+<td>p99 latency</td>
+<td>The latency below which 99% of requests finish</td>
+<td>It sets a strict serving budget for demonstration selection</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="71-icl-versus-sft">7.1 ICL versus SFT</h3>
+<h4 id="what-each-method-changes">What each method changes</h4>
+<p>A pre-trained language model predicts the next token. Without post-training, a question can be continued as another question rather than answered. SFT trains on labeled pairs D = {(x_i, y_i)} and moves parameters θ to raise the desired output probability. Its objective is ordinary maximum likelihood. The same objective can make a summarizer, entity tagger, or domain-specific answerer by changing the labeled pairs. Ouyang et al. built the first InstructGPT stage this way with roughly 10^4 labeler-written prompts. ICL leaves θ frozen. It prepends k demonstrations and predicts from those pairs plus the test input. Brown et al. made this scale-dependent behavior the headline GPT-3 result. SFT changes the model side of the conditional probability. ICL changes what appears on the conditioning side.</p>
+<h4 id="why-the-distinction-exists">Why the distinction exists</h4>
+<p>SFT suits a stable behavior defect such as wrong register, wrong output schema, ignored citations, or wrong tool calls. Retrieval suits missing or changing knowledge. Maximum likelihood shapes a mapping. It does not create an addressable store from which one named fact can be read, deleted, versioned, or cited. Gekhman et al. found that new knowledge inconsistent with existing model knowledge trains more slowly. As those examples are fit, hallucination rises on facts the model previously answered correctly. RAG is ICL with a retriever choosing the context. Retrieved passages and demonstrations enter through the same prompt and consume the same window. Selection, format, and order are therefore RAG engineering variables.</p>
+<h4 id="what-fails-without-the-distinction">What fails without the distinction</h4>
+<p>The slogan that fine-tuning is expensive and prompting is cheap compares different ledgers. A growing demonstration block can consume a quarter of the window and remove chunks six through ten. Fine-tuning facts into weights also removes citation and deletion control. If perfect retrieval would fix the answer, the defect is knowledge or ranking. If perfect retrieval would not fix the answer, the defect is behavior.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>Training N non-embedding parameters on D tokens costs about 6ND FLOPs. Serving costs about 2N FLOPs per token for both prefill and decode. A block of k demonstrations with t_d tokens each adds 2Nkt_d FLOPs to every uncached query. An SFT run costs 6ND_SFT once. The costs cross at Q* = 3D_SFT divided by kt_d queries. Model size cancels because N multiplies both sides. In the worked 8 B example, SFT costs 42 minutes and $1.76 of accelerator time. Eight demonstrations add 94 ms and 2,000 tokens on every query. They cost five 400-token retrieved chunks inside an 8,192-token window. The crossover arrives after 27,000 queries, or 2.7 days at 10,000 queries per day. A LoRA run removes roughly one third of the full-weight training FLOPs and crosses near 18,000 queries. Static demonstrations can use a prefix cache. Query-selected demonstrations and retrieved chunks change per request, so the chapter prices them uncached unless measured reuse machinery exists.</p>
+<h4 id="operating-rule">Operating rule</h4>
+<p>Use ICL while the task specification still moves. Switch toward SFT after behavior has stayed frozen for a month. Reconsider once demonstrations exceed roughly 10% of the context window. Price demonstrations in lost chunks, not only in tokens or dollars. Run at least three orderings and two formats unless the serving prompt is pinned byte for byte.</p>
+<h3 id="72-demonstration-selection-and-the-test-input-conjecture">7.2 Demonstration selection and the test-input conjecture</h3>
+<h4 id="what-selection-should-measure">What selection should measure</h4>
+<p>A cheap baseline embeds the live input and every candidate, then takes the nearest k examples. Liu et al.'s KATE baseline beat random selection and became standard. The score never consults the generator that must consume the result. Min et al. replaced gold demonstration labels with random labels and saw only a marginal drop. Their result says demonstrations mainly communicate label space, input distribution, and format. Peng et al. shuffled increasing fractions of the test input while holding demonstrations fixed. Accuracy fell at one shot and three shots. Embedding-style lexical content stayed similar, but readability fell. This result locates a bottleneck on the test-input side.</p>
+<h4 id="conditional-entropy-criterion">Conditional entropy criterion</h4>
+<p>For a candidate c and m-token test input x, compute the model's average token uncertainty: H_theta(x given c) = -(1 / m) Σ from t = 1 to m of log p_theta(x_t given c and x before t). Compare it with the empty-prefix value. Delta(c) = H_theta(x given c) - H_theta(x given empty prefix). Choose the candidate with minimum Delta. The baseline is constant across candidates, so it supplies a threshold rather than changing the ranking. If the best Delta is not below zero, the pool did not help this query. Serve zero-shot in that case.</p>
+<h4 id="why-a-two-stage-funnel-exists">Why a two-stage funnel exists</h4>
+<p>ConE reads only the test input. It needs no reference output, so it can score live traffic. REPLUG instead measures how much a passage raises the probability of the reference output. That makes REPLUG useful as a training signal but unavailable as a live selector when the output is unknown. ConE needs one generator forward pass per candidate. It cannot scan a corpus. Use BM25 or embedding search to build a pool, then use ConE to rerank that pool. Peng et al. reported gains over random, BM25, and embedding top-k pools. The gain is therefore complementary to first-stage retriever quality.</p>
+<h4 id="what-fails-without-constraints">What fails without constraints</h4>
+<p>Low entropy is not proof of understanding. A near-verbatim duplicate makes test tokens predictable and can win without teaching the task. Cap lexical overlap and enforce label balance. Similarity also has no natural zero for saying that no candidate helps. Using similarity as the final decision rule can collapse the prompt onto one label and many duplicates.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>The figure's pool has 20,000 labeled items. One similarity lookup creates 50 candidates. Fifty ConE prefill passes select k = 3 demonstrations. On the 8 B worked model, three random or BM25 demonstrations make a 660-token prefill and a 40-token answer. That answer costs 1.12 x 10^13 FLOPs and 33 ms. Fifty ConE passes cover 300 tokens each and cost 2.4 x 10^14 FLOPs or 706 ms. Total latency reaches 739 ms. Selection costs 21 times the answer. Scoring all C(50, 3) = 19,600 subsets takes 609 seconds per query. Individual scoring takes about 0.7 seconds. Putting all 50 candidates directly in the prompt processes 9,120 tokens and takes 429 ms. It is cheaper than reranking because individual passes repeatedly encode the test input. It still loses on quality and consumes 9,000 tokens needed for evidence. A 110 M-parameter cross-encoder scores 50 candidates in 9.7 ms. Its ranking must be distilled against the generator's Delta because it no longer measures the generator directly.</p>
+<h4 id="operating-rule-1">Operating rule</h4>
+<p>Start with n = 20 candidates and k = 3 selected demonstrations. At the worked scale, each candidate costs about 14 ms. Twenty cost 282 ms and five cost 71 ms. Measure the Delta distribution before building the selector. If even the best member of a 50-deep pool barely lowers entropy, use a fixed cached demonstration block. Never search subsets online.</p>
+<h3 id="73-format-sensitivity">7.3 Format sensitivity</h3>
+<h4 id="what-format-changes">What format changes</h4>
+<p>A template maps the same chunks, input, and labels to one exact token string. Two templates can mean the same thing to a human and still produce very different model behavior. The chapter's modest grammar has six independent slots. Their counts are 5, 3, 4, 4, 4, and 3. They create 2,880 semantically equivalent prompts. Adding instruction wording and chunk numbering pushes the space above 10^4. Sclar et al.'s FormatSpread samples this space with a bandit-style method. It spends more budget in promising regions instead of running the full grid.</p>
+<h4 id="why-sensitivity-exists">Why sensitivity exists</h4>
+<p>There is no privileged formatting channel. Separators, brackets, labels, and evidence all enter as tokens. Demonstrations transmit format as part of their payload. BPE tokenization gives different token sequences to a colon, a colon plus a space, and a doubled colon. Induction heads match earlier patterns and copy what followed. A rare separator creates a rare matching key and can weaken that copying behavior. Format is therefore a hyperparameter of the model-task pair. It is not a universal property of the task.</p>
+<h4 id="evidence-and-failure">Evidence and failure</h4>
+<p>Sclar et al. measured a 76-point spread between semantically equivalent formats on LLaMA-2-13B. The spread persisted at 70 B and in GPT-3.5. A Japanese-template classification result placed GPT-4 at 49% under one template and 25.44% under another with the same meaning. Formatting also changes valid-response rate. A JSON parse alarm can therefore be a format regression rather than a model-quality regression. More demonstrations can reduce sensitivity without removing it. An inherited paper template or old model template is an unmeasured sample. Rankings do not transfer reliably across models.</p>
+<h4 id="cost-noise-and-complexity">Cost, noise, and complexity</h4>
+<p>The worked sweep uses an 8 B model and 250 labeled queries. Each query processes 620 tokens. One format therefore processes 155,000 tokens. All 2,880 formats cost 4.46 x 10^8 tokens, 7.14 x 10^18 FLOPs, and 5.8 accelerator hours. A 20-format sample costs 3.1 x 10^6 tokens, 4.96 x 10^16 FLOPs, and 146 seconds. At 70% accuracy on 250 examples, one score has a standard error of 2.9 points. The best of 20 equally good formats wins by about 5.4 points through luck alone. The expected best-minus-worst range is about 10.8 points. A six-point win is not a result at that sample size. Resolving a true two-point difference at 95% confidence with independent samples needs about 4,000 examples. A paired test on the same examples can be cheaper. The published 76-point spread is about seven times the 10.8-point noise range.</p>
+<h4 id="operating-rule-2">Operating rule</h4>
+<p>Sweep 15 to 25 formats for every model-task pair and every generator version bump. Track valid-response rate beside accuracy. Reject a format if more than 1% of outputs are unparseable. Use a held-out set or paired test before shipping a winner. Keep evidence in a cacheable prefix unless a question-first template wins beyond the noise range. Version the exact format string with its evaluation baseline.</p>
+<h3 id="74-ordering-and-content-free-calibration">7.4 Ordering and content-free calibration</h3>
+<h4 id="why-order-is-a-real-variable">Why order is a real variable</h4>
+<p>One refactor changed only the order of eight demonstrations. Macro F1 fell from 0.78 to 0.69. Eight examples have 8! = 40,320 arrangements. Lu et al. found accuracy ranging from near chance to near state of the art across permutations of one fixed set. The best order did not transfer across models. Larger models did not remove the variance. Exchangeability predicts that order should not matter. The observation falsifies that assumption for real prompts.</p>
+<h4 id="why-search-loses">Why search loses</h4>
+<p>Four examples have 24 orders. Ten have 3,628,800. Selecting and ordering k from n creates n! divided by (n - k)! possibilities. For n = 50 and k = 8, the space is about 2.2 x 10^13. A development-set winner may not be best for the live query. Per-query order changes also invalidate the prefix cache from the first swapped demonstration.</p>
+<h4 id="demo">DEmO</h4>
+<p>DEmO replaces the live input with a content-free placeholder such as not applicable (N/A) or a mask token. It measures the label distribution when there is nothing to classify. Any variation across orders is positional artifact. Stage 1 samples orders offline. It keeps low content-free entropy orders under a label-balance constraint. Entropy alone would choose orders already committed to one label. Stage 2 runs on the real input. It chooses the shortlisted order that moves the model furthest from its own content-free prior. This score needs no gold label.</p>
+<h4 id="contextual-calibration">Contextual calibration</h4>
+<p>Zhao et al. keep one order and estimate p_cf from content-free probes. They divide each real-input label score by the corresponding p_cf value. They reported up to 30.0 absolute accuracy points on GPT-3 and GPT-2. They also reduced variance from format, selection, and order. The diagnosis includes majority-label bias, common-token bias, and recency bias. Recency bias gives later demonstration labels extra influence. Content-free does not mean empty. N/A, an empty string, and a mask token can produce different priors. Average several fixed probes and version them with the model.</p>
+<h4 id="cost-and-worked-correction">Cost and worked correction</h4>
+<p>One order pass processes 1,560 tokens and costs 73.4 ms on the worked 8 B model. All 40,320 orders take 49 minutes, 1.006 x 10^18 FLOPs, or $18.87 of hosted input tokens per query. DEmO stage 1 samples 128 orders offline and costs 8.7 seconds. Stage 2 evaluates five survivors online and costs 367 ms per query. A fixed-order content-free probe costs 68 ms once. Per query, calibration then needs four divisions. The worked prior is (0.52, 0.24, 0.16, 0.08) against uniform 0.25. Label A starts with 2.08 times its uniform mass. The raw query distribution is (0.41, 0.38, 0.13, 0.08), which predicts A by 0.03. Division gives (0.788, 1.583, 0.813, 1.000). Renormalization gives (0.188, 0.378, 0.194, 0.239), which predicts B. A frozen cached order prefills only the 120-token input in 5.7 ms. Calibration is 65 times cheaper per query than the five-order stage 2.</p>
+<h4 id="operating-rule-3">Operating rule</h4>
+<p>Freeze one prefix-cached order and apply content-free calibration for finite-label tasks. Treat a label above roughly twice uniform as bias that needs correction. Balance labels across positions and inspect the tail of the block for recency bias. Report accuracy across 10 random orders unless the serving prompt is byte-identical. For free-form generation, a finite label distribution does not exist. Probe a constrained first-token decision if one exists, choose an order offline, and measure the spread.</p>
+<h3 id="75-bayesian-and-kernel-accounts">7.5 Bayesian and kernel accounts</h3>
+<h4 id="bayesian-concept-inference">Bayesian concept inference</h4>
+<p>Pre-training data is a mixture of topics, genres, tasks, and formats. Treat each document as emitted by a latent concept drawn from a prior. The model predicts by averaging concept-specific predictions under a posterior conditioned on the prompt. The prompt supplies evidence about which concept generated the text. Xie et al. formalized this with a mixture of hidden Markov models. Demonstrations separated by delimiters may be improbable as natural documents. Their evidence can still accumulate faster than the bounded transition penalty. The posterior then converges toward the Bayes-optimal predictor for the shared concept.</p>
+<h4 id="exponential-evidence">Exponential evidence</h4>
+<p>Log posterior odds equal prior log odds plus a sum of demonstration log-likelihood ratios. Each demonstration from the intended concept contributes expected KL divergence D nats against a competitor. Wrong-concept mass falls approximately as e^(-kD). Returns are log-linear rather than linear. The useful quantity is D, the example's discriminating power. An example that every plausible concept could emit has D near zero and still pays full prefill cost. Format quality and shot count can substitute for each other.</p>
+<h4 id="kernel-regression">Kernel regression</h4>
+<p>At the answer position, attention compares the live query representation with demonstration keys. Softmax converts those comparisons into normalized weights. Values carry demonstration information such as labels. The resulting weighted average has the Nadaraya-Watson form under a kernel induced by the model. Han et al. argued for this correspondence in large language models. With few examples, the broad posterior and pre-trained prior dominate. With more examples, the posterior concentrates and prediction becomes more local.</p>
+<h4 id="what-the-theories-explain-and-miss">What the theories explain and miss</h4>
+<p>The demonstrations identify which task is intended. They need not teach the literal input-to-label map. Min et al. found random labels cost only a few points across 12 datasets. Removing the label space or replacing inputs with out-of-distribution text hurt more. The Bayesian account describes an effective computation rather than the circuit that implements it. It assumes exchangeability, which order sensitivity contradicts. Pure kernel averaging cannot create a reasoning chain absent from all demonstrations. Scrambling labels should pull a strong kernel average toward uniform, yet the observed drop is small. That result weakens literal local averaging and leaves concept identification standing.</p>
+<h4 id="cost-and-worked-posterior">Cost and worked posterior</h4>
+<p>The worked prior odds are 50 to 1 against the intended concept. To push wrong-concept mass below 5%, kD must exceed ln(950) = 6.856 nats. At D = 1.2 nats, six demonstrations cross the threshold. Wrong-concept mass is 29.2% at k = 4, 3.60% at k = 6, 0.34% at k = 8, and 0.0028% at k = 12. Moving from eight to twelve buys 0.33 points for 720 tokens and 33.9 ms. At D = 0.35 nats, twenty demonstrations reach the same target. They require 3,600 prefill tokens and 169.6 ms instead of 1,080 tokens and 50.9 ms. That is 3.3 times the prefill.</p>
+<h4 id="duplicate-weights">Duplicate weights</h4>
+<p>The worked block has eight demonstrations. Three near-duplicates labeled A have attention logit 4.0. Five diverse examples have logit 2.0 and labels B, B, C, D, A. The unnormalized weights are e^4 = 54.60 and e^2 = 7.389. Their sum is 200.74. Each duplicate receives 0.272 of the mass. Label A receives 85.3% in total. ESS falls to 4.4 despite paying for eight demonstrations. Capping the duplicate cluster at one drops A to 67.7%. The figure reports ESS = 2.6 of 6 after that cap.</p>
+<h4 id="operating-rule-4">Operating rule</h4>
+<p>Start with four to eight demonstrations. Treat a request for 32 as a possible format, coverage, or diversity problem. For classification, k must at least cover the label count when the kernel can only average labels that appear. Cluster the pool and cap one example per near-duplicate group unless frequency represents a real prior. Alert when ESS falls below k divided by 2. Sweep k in {2, 4, 8, 16} and inspect the slope. A curve that is flat from k = 2 can indicate that the required concept is absent from the pre-training mixture.</p>
+<h3 id="76-gradient-descent-as-inference">7.6 Gradient descent as inference</h3>
+<h4 id="the-algebraic-identity">The algebraic identity</h4>
+<p>Remove the softmax from one attention head. For context representation x_i, the value projection W_V x_i and key projection W_K x_i form an outer product. Summing across tokens creates a matrix that acts on the query q. Split ordinary context tokens from demonstration tokens. The demonstration tokens contribute an additive matrix Delta W_ICL. Gradient descent on a linear layer under squared error also accumulates error-input outer products. Under the linear-attention identification, the two objects are the same algebraic shape. Irie et al. established the dual form. Dai et al. called the demonstration contribution a meta-gradient produced during the forward pass.</p>
+<h4 id="evidence-for-the-mechanism">Evidence for the mechanism</h4>
+<p>Von Oswald et al. constructed weights for which one linear self-attention layer executes exactly one gradient step on least squares. Models trained on those tasks converged toward that construction. Akyurek et al. found small trained transformers matching one gradient step. At larger scale, their models matched closed-form ridge regression. Garg et al. trained transformers from scratch to learn linear functions in context at accuracy comparable with ordinary least squares. The targets were continuous and unavailable for direct copying.</p>
+<h4 id="limits-and-failure-modes">Limits and failure modes</h4>
+<p>The exact identity requires linearized attention. Served transformers use softmax, so the relationship is approximate. With comparable logits, k demonstrations each receive about 1 divided by k of the attention mass. Moving from k = 8 to k = 32 cuts each share from 12.5% to 3.1%. Prefill still rises from 1,440 to 5,760 tokens. Demonstrations dilute rather than simply accumulate. Per-head update rank is at most the smaller of demonstration-token count m and head width d_h. Rank can saturate inside the first demonstration. The implicit step budget is bounded by depth, not shot count. Shen et al. found ICL and gradient descent diverging on ordinary pre-trained language models, including order sensitivity. Deutch et al. found that untrained transformers can score similarly on gradient-similarity metrics. Treat those plots as hypotheses rather than mechanism evidence.</p>
+<h4 id="worked-capacity-and-residency">Worked capacity and residency</h4>
+<p>The worked 8 B model has width 4,096, 32 layers, 32 attention heads of width 128, and eight key-value heads. Eight 180-token demonstrations make 1,440 tokens and 67.8 ms of prefill. One head's temporary update lives in a 128 by 128 space. Its maximum rank is 128. It reaches that ceiling after 128 tokens, or 71% of one demonstration. A 32-layer stack has at most 32 implicit steps under the construction. An explicit fine-tune with 1,000 examples, batch size 8, and three epochs has 375 steps. That is 11.7 times more. Each token stores 2,048 key-value numbers per layer in the worked grouped-query shape. Across 32 layers at two bytes per number, that is 131,072 bytes or 128 KiB per token. The 1,440-token block occupies about 189 MB per concurrent request. A rank-16 LoRA on query and output projections across all 32 layers has 8.39 million parameters. It occupies 16.8 MB in half precision and is shared by all requests. The prompt copy uses about 11 times the memory and adds 67.8 ms each time.</p>
+<h4 id="operating-rule-5">Operating rule</h4>
+<p>Prefix-cache a static demonstration block before distilling it. At 10,000 requests per day, caching the 67.8 ms block recovers 11.3 accelerator minutes daily. If demonstrations change per query, the cache misses. Treat depth as the ceiling on in-context task difficulty. Use an explicit reasoning scaffold or fine-tune when a multi-step task has a flat k-sweep. Cap demonstrations near eight for classification-shaped tasks and spend marginal context on evidence. Convert a prompt into weights by training or distillation, not by algebra alone. Keep the prompt when tasks change faster than retraining can follow.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="table-71">Table 7.1</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>SFT</th>
+<th>ICL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What it changes</td>
+<td>θ (parametric)</td>
+<td>the conditioning (non-parametric)</td>
+</tr>
+<tr>
+<td>When you pay</td>
+<td>once, 6ND_SFT</td>
+<td>every query, 2Nkt_d</td>
+</tr>
+<tr>
+<td>Edit latency</td>
+<td>label, train, evaluate</td>
+<td>rewrite the prompt</td>
+</tr>
+<tr>
+<td>Forgetting</td>
+<td>catastrophic forgetting is a risk</td>
+<td>none. Weights untouched</td>
+</tr>
+<tr>
+<td>Capacity ceiling</td>
+<td>labeled data and compute</td>
+<td>the context window</td>
+</tr>
+<tr>
+<td>Dominant variance</td>
+<td>data mix and seed</td>
+<td>demo choice, format, order</td>
+</tr>
+<tr>
+<td>Right tool for</td>
+<td>wrong behavior, register, format</td>
+<td>missing or changing knowledge</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Table 7.1: The two methods differ on when the bill arrives and on what fails when they are misapplied - which is why the deciding question is not cost but whether the defect is one of behavior or one of knowledge.</p>
+</blockquote>
+<h3 id="figure-71">Figure 7.1</h3>
+<pre class="text"><code>(a) Context window, 8,192 tokens
+
+Fine-tuned theta prime, no demonstrations, prompt = 4,200
+[ question + instructions + 10 chunks = 4,200 ][ headroom = 3,992 ]
+
+Frozen theta, k = 8 demonstrations, prompt = 6,200
+[ 8 demos = 2,000 ][ question + instructions + 10 chunks = 4,200 ][ 1,992 ]
+0                                                                            8,192
+
+(b) Cumulative FLOPs
+
+ICL, 3.2 x 10^13 FLOPs per query
+^                                                /
+|                                              /
+| SFT, one-time 8.64 x 10^17 FLOPs ---------o
+|                                           /  Q* = 27,000 queries
+|                                         /    about 2.7 days at 10^4 per day
+|                                       /
++---------------------+-----------------------+----&gt; queries served
+                      27,000                  54,000</code></pre>
+<blockquote>
+<p>Figure 7.1: (a) Demonstrations and retrieved passages compete for one window, so an 8-demo block at 250 tokens each costs exactly five 400-token chunks of head-room. (b) The one-time fine-tuning cost is constant in query volume while the demonstration tax is linear, so the two cross once - here after 27,000 queries, under three days of traffic.</p>
+</blockquote>
+<h3 id="figure-72">Figure 7.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    P[&quot;Labeled pool P, size 20,000&quot;] --&gt;|&quot;Stage 1: similarity, one index lookup&quot;| C[&quot;Candidate pool n = 50&quot;]
+    X[&quot;Test input x&quot;] -.-&gt; C
+    X -.-&gt; S
+    C --&gt;|&quot;Stage 2: ConE, 50 prefill passes&quot;| S[&quot;Choose k = 3 by minimum conditional entropy&quot;]
+    S --&gt; G[&quot;Prompt to frozen model&quot;]</code></pre></details></figure>
+<pre class="text"><code>(b) ICL accuracy
+high  *  3-shot
+      |\
+      | \        *
+      |  \        \
+      *---\--------*  3-shot
+      |    \        \
+      |     \--------  1-shot
+low   +----------------------&gt; fraction of test-input words shuffled
+      0                      1
+
+Both trends fall. The magnitudes are schematic.</code></pre>
+<blockquote>
+<p>Figure 7.2: (a) Demonstration selection is retrieve-then-rerank with the generator as the reranker: a cheap similarity stage builds a pool, and one prefill pass per candidate picks the demonstrations that minimize the model's conditional entropy on the test input. (b) Corrupting only the test input, while holding the demonstrations fixed, degrades ICL accuracy at both 1 and 3 shots - the experiment that locates the bottleneck on the test-input side (Peng et al., 2024). The trend is the finding. The magnitudes here are schematic.</p>
+</blockquote>
+<h3 id="figure-73">Figure 7.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Surface-form slot</th>
+<th>Choices</th>
+<th style="text-align: right;">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>field separator</td>
+<td>colon, colon plus space, dash, tab, doubled</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td>descriptor casing</td>
+<td>lower, Title, UPPER</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>value wrapper</td>
+<td>none, quotes, brackets, backticks</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>demo separator</td>
+<td>newline, blank line, space, rule</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>label verbalizer</td>
+<td>positive, Positive, 1, P</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td>template style</td>
+<td>plain, markdown, JSON</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table></div>
+<p>Semantically equivalent prompts: 5 x 3 x 4 x 4 x 4 x 3 = 2,880.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Rank, better to worse</th>
+<th>Model M1</th>
+<th>Model M2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>format A</td>
+<td>format B</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>format B</td>
+<td>format C</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>format C</td>
+<td>format D</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>format D</td>
+<td>format A</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 7.3: (a) Six independent surface-form slots, none of them exotic, already generate 2,880 prompts with identical meaning - which is why format selection is a search problem under budget rather than a style choice. (b) Rankings over that space do not transfer: the format that wins on one model can sit at the bottom on another, so an inherited template is an unmeasured sample. The crossing pattern is the finding. The specific ranks here are schematic.</p>
+</blockquote>
+<h3 id="figure-74">Figure 7.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;k factorial orders of k = 8 demos: 40,320&quot;] --&gt;|&quot;Sample M = 128&quot;| B[&quot;M candidate orders&quot;]
+    B --&gt;|&quot;Stage 1 offline: content-free probe&quot;| C[&quot;Low content-free entropy and label balance, m = 5&quot;]
+    C --&gt;|&quot;Stage 2 online: influence with real input&quot;| D[&quot;Chosen order&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Label</th>
+<th style="text-align: right;">Content-free p_cf</th>
+<th style="text-align: right;">Raw p given x</th>
+<th style="text-align: right;">Divide by p_cf</th>
+<th style="text-align: right;">Calibrated q given x</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.41</td>
+<td style="text-align: right;">0.788</td>
+<td style="text-align: right;">0.188</td>
+</tr>
+<tr>
+<td>B</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">1.583</td>
+<td style="text-align: right;">0.378</td>
+</tr>
+<tr>
+<td>C</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.813</td>
+<td style="text-align: right;">0.194</td>
+</tr>
+<tr>
+<td>D</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.239</td>
+</tr>
+</tbody>
+</table></div>
+<p>Uniform reference: 1 divided by 4 = 0.25. The raw winner is A. The calibrated winner is B.</p>
+<blockquote>
+<p>Figure 7.4: Both defenses against ordering bias probe the prompt with the test input deleted. (a) DEmO shortlists permutations offline by content-free entropy under a label-balance constraint, then ranks the survivors per query by how far each moves the model off its own content-free prior. (b) The same probe supports the cheaper fix: with no content in the prompt the label distribution should be uniform, so the gap between p_cf and the dashed 1/|Y| line is the prompt's positional bias - dividing it out flips this query's prediction from A to B. The probabilities are the worked example's.</p>
+</blockquote>
+<h3 id="figure-75">Figure 7.5</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Demonstrations k</th>
+<th style="text-align: right;">Wrong-concept mass at D = 1.2 nats</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">29.2%</td>
+</tr>
+<tr>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3.60%</td>
+</tr>
+<tr>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.34%</td>
+</tr>
+<tr>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">0.0028%</td>
+</tr>
+</tbody>
+</table></div>
+<p>The D = 0.35 curve reaches the same 5% reference near k = 20. The D = 1.2 curve reaches it at k = 6.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Duplicate treatment</th>
+<th style="text-align: right;">Demonstrations represented</th>
+<th style="text-align: right;">Kernel mass on A</th>
+<th style="text-align: right;">ESS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Three near-duplicates retained</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">85.3%</td>
+<td style="text-align: right;">4.4 of 8</td>
+</tr>
+<tr>
+<td>Duplicate cluster capped at one</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">67.7%</td>
+<td style="text-align: right;">2.6 of 6</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 7.5: Evidence accumulates exponentially and then averages locally. (a) Posterior mass on the wrong concept falls as e^(-kD), so a format that raises per-demonstration discriminating power from 0.35 to 1.2 nats reaches the same 5% residual ambiguity at k = 6 instead of k = 20 - shot count is a substitute for format quality, at 3.3× the prefill. (b) The same softmax that averages the demonstrations counts three near-duplicates three times, putting 85.3% of the kernel mass on label A before the query is read. Capping the cluster at one drops that to 67.7% and exposes how much of the remaining mass rides on a single neighbor.</p>
+</blockquote>
+<h3 id="figure-76">Figure 7.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    D[&quot;1,440 demonstration tokens in prompt&quot;] --&gt; I[&quot;Temporary additive update, rank at most 128&quot;]
+    I --&gt; FW1[&quot;Frozen weights plus update at every layer&quot;]
+    FW1 --&gt; C1[&quot;67.8 ms prefill and 189 MB KV per concurrent request&quot;]
+    A[&quot;8.39 M adapter parameters trained offline&quot;] --&gt; L[&quot;LoRA additive update, rank 16&quot;]
+    L --&gt; FW2[&quot;Frozen weights plus update at every layer&quot;]
+    FW2 --&gt; C2[&quot;0 ms demonstration prefill and 16.8 MB shared weights&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Update path</th>
+<th style="text-align: right;">Optimization-step budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Implicit, one per layer</td>
+<td style="text-align: right;">at most 32</td>
+</tr>
+<tr>
+<td>Explicit SFT, 1,000 examples x 3 epochs, batch 8</td>
+<td style="text-align: right;">375</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 7.6: Prompting and adapter fine-tuning build updates of the same algebraic shape and pay for them in different currencies. (a) The demonstration block's contribution to one head is an additive, rank-bounded matrix rebuilt on every request and carried as 189 MB of KV cache per concurrent request. A rank-16 LoRA is the same kind of additive term, trained once and shared across every request at 16.8 MB. (b) What the prompt cannot buy is optimization steps: one linear self-attention layer executes at most one gradient step, so a 32-layer stack has a step budget an order of magnitude below a modest fine-tune - which is why raising the shot count does not make a multi-step task learnable in-context.</p>
+</blockquote>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li><p>Draw one large rectangle labeled context window.</p></li>
+<li><p>Put retrieved passages on the left and demonstrations beside them to show their competition for space.</p></li>
+<li><p>Draw a fork below it. Label one branch SFT changes weights once and the other ICL changes each prompt.</p></li>
+<li><p>On the ICL branch, draw cheap retrieval into a candidate pool, then generator-side entropy reranking.</p></li>
+<li><p>Add three small knobs labeled format, order, and shot count.</p></li>
+<li><p>Under order, draw a content-free probe leading to a bias vector and division.</p></li>
+<li><p>Under shot count, draw a falling e^(-kD) curve that flattens.</p></li>
+<li><p>Finish with two update boxes. Label one temporary prompt update per request and one shared trained adapter.</p></li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>RAG works because the model can change behavior from what sits in its current context, even while its weights stay frozen. Demonstrations and retrieved passages use the same limited window, so I price examples in lost evidence, latency, and repeated compute. I retrieve a candidate pool cheaply, then let the generator rerank examples by how much they reduce uncertainty about the live input. I also measure format and order because both can move accuracy sharply. More shots eventually saturate. They identify the task and build a temporary update, but they cannot create more context, more depth, or unlimited optimization steps.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-when-would-you-fine-tune-instead-of-adding-demonstrations">1. When would you fine-tune instead of adding demonstrations?</h3>
+<p>Fine-tune stable behavior such as format, register, or tool use, and keep changing knowledge in a retrievable datastore because it remains citable, versioned, and deletable.</p>
+<p>A prompt changes in minutes, while training needs labels and evaluation. However, a permanent demonstration tax can cross the one-time fine-tune after only 27,000 queries in the worked case.</p>
+<h3 id="2-why-not-choose-the-most-similar-few-shot-examples">2. Why not choose the most similar few-shot examples?</h3>
+<p>Similarity is a cheap recall-oriented first stage, but it does not ask whether the consuming generator finds the live input easier after seeing the example.</p>
+<p>Rerank a small pool by generator-side conditional entropy, then constrain lexical overlap and label balance. The trade-off is one expensive prefill pass per candidate, so never use this score to scan the full corpus.</p>
+<h3 id="3-does-demonstration-order-matter-and-should-you-search-it">3. Does demonstration order matter, and should you search it?</h3>
+<p>Order matters enough to move a fixed eight-example set from near chance to near state of the art, and eight examples already create 40,320 permutations.</p>
+<p>Do not search them per query. Instead, freeze one prefix-cached order and divide output scores by a content-free prior when the task has a finite label set.</p>
+<h3 id="4-if-icl-resembles-gradient-descent-why-not-keep-adding-examples">4. If ICL resembles gradient descent, why not keep adding examples?</h3>
+<p>The exact identity holds for linearized attention and constrains the update's shape, but softmax attention dilutes each example while per-head rank and depth impose hard limits.</p>
+<p>More examples can therefore add prefill without adding expressive rank or optimization steps. A rising held-out k-sweep can override this expectation, but the measurement must show it.</p>
+<h3 id="5-a-model-upgrade-drops-accuracy-while-retrieval-is-unchanged-what-do-you-test-first">5. A model upgrade drops accuracy while retrieval is unchanged. What do you test first?</h3>
+<p>Check parse and refusal rates before sweeping the same small format set on both models over the same examples. Compare best-format with best-format, not the old tuned template with an untuned new model.</p>
+<p>Keep a house template for maintainability unless a per-model override clears sampling noise on a held-out comparison.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Number, formula, or threshold</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>InstructGPT SFT scale</td>
+<td>order 10^4 prompts</td>
+<td>Approximate size of the labeler-written supervised split</td>
+</tr>
+<tr>
+<td>SFT objective</td>
+<td>maximize the sum of log p_theta of each target token given its input and earlier target tokens</td>
+<td>Maximum-likelihood update over labeled pairs</td>
+</tr>
+<tr>
+<td>ICL prediction</td>
+<td>choose y that maximizes p_theta of y given k demonstrations and test input x</td>
+<td>Frozen-weight conditioning rule</td>
+</tr>
+<tr>
+<td>SFT compute</td>
+<td>about 6ND_SFT FLOPs</td>
+<td>One-time training cost</td>
+</tr>
+<tr>
+<td>Serving compute</td>
+<td>about 2N FLOPs per token</td>
+<td>Approximate prefill and decode cost</td>
+</tr>
+<tr>
+<td>Demonstration tax</td>
+<td>2Nkt_d FLOPs per query</td>
+<td>Uncached recurring ICL cost</td>
+</tr>
+<tr>
+<td>Breakeven</td>
+<td>Q* = 3D_SFT divided by kt_d</td>
+<td>Query count where recurring prompt compute equals SFT compute</td>
+</tr>
+<tr>
+<td>Opening failure</td>
+<td>one third of answers rejected</td>
+<td>Behavior fails even when retrieval and citations are correct</td>
+</tr>
+<tr>
+<td>Prompt-growth story</td>
+<td>6 weeks, 8 examples, 10,000 daily queries</td>
+<td>Demonstrations grow into a recurring production cost</td>
+</tr>
+<tr>
+<td>Lost context story</td>
+<td>one quarter of the window, chunks 6 through 10</td>
+<td>Examples displace evidence</td>
+</tr>
+<tr>
+<td>Figure 7.1 fine-tuned prompt</td>
+<td>4,200 tokens</td>
+<td>Question, instructions, and 10 chunks</td>
+</tr>
+<tr>
+<td>Figure 7.1 fine-tuned headroom</td>
+<td>3,992 tokens</td>
+<td>Space left in an 8,192-token window</td>
+</tr>
+<tr>
+<td>Figure 7.1 ICL prompt</td>
+<td>6,200 tokens</td>
+<td>Adds eight demonstrations totaling 2,000 tokens</td>
+</tr>
+<tr>
+<td>Figure 7.1 ICL headroom</td>
+<td>1,992 tokens</td>
+<td>Space left after demonstrations</td>
+</tr>
+<tr>
+<td>Figure 7.1 crossover</td>
+<td>27,000 queries</td>
+<td>Point where the two compute lines cross</td>
+</tr>
+<tr>
+<td>Figure 7.1 traffic time</td>
+<td>about 2.7 days at 10^4 queries per day</td>
+<td>Time to breakeven</td>
+</tr>
+<tr>
+<td>Worked generator</td>
+<td>8 B parameters</td>
+<td>Model used throughout the cost examples</td>
+</tr>
+<tr>
+<td>Worked retrieval</td>
+<td>10 chunks x 400 tokens</td>
+<td>4,000 retrieved tokens per query</td>
+</tr>
+<tr>
+<td>Other query tokens</td>
+<td>200 input and 300 output</td>
+<td>Total input and output becomes 4,500 without demonstrations</td>
+</tr>
+<tr>
+<td>Sustained throughput</td>
+<td>3.4 x 10^14 FLOP per second</td>
+<td>Accelerator constant used by the chapter</td>
+</tr>
+<tr>
+<td>Accelerator price</td>
+<td>$2.50 per hour</td>
+<td>Cost constant for the first worked example</td>
+</tr>
+<tr>
+<td>SFT data</td>
+<td>10,000 pairs x 600 tokens x 3 epochs</td>
+<td>D_SFT = 1.8 x 10^7 tokens</td>
+</tr>
+<tr>
+<td>SFT run</td>
+<td>8.64 x 10^17 FLOPs</td>
+<td>2,541 seconds, 42 minutes, and $1.76</td>
+</tr>
+<tr>
+<td>Baseline serving</td>
+<td>7.20 x 10^13 FLOPs per query</td>
+<td>$0.147 per thousand queries</td>
+</tr>
+<tr>
+<td>ICL demonstrations</td>
+<td>8 x 250 = 2,000 tokens</td>
+<td>24% of the 8,192-token window and five 400-token chunks</td>
+</tr>
+<tr>
+<td>ICL serving</td>
+<td>1.04 x 10^14 FLOPs per query</td>
+<td>1.44x baseline and $0.212 per thousand</td>
+</tr>
+<tr>
+<td>Marginal ICL</td>
+<td>3.2 x 10^13 FLOPs per query</td>
+<td>94 ms added time to first token</td>
+</tr>
+<tr>
+<td>LoRA training approximation</td>
+<td>about 4ND_SFT</td>
+<td>Removes roughly one third of full-weight training FLOPs</td>
+</tr>
+<tr>
+<td>LoRA breakeven</td>
+<td>1.8 x 10^4 queries</td>
+<td>Under two days at the worked traffic</td>
+</tr>
+<tr>
+<td>Pre-training cross-check</td>
+<td>20 tokens per parameter</td>
+<td>An 8 B model uses 1.6 x 10^11 tokens</td>
+</tr>
+<tr>
+<td>Pre-training compute</td>
+<td>7.68 x 10^21 FLOPs</td>
+<td>Fine-tune is 1.1 x 10^-4, about one part in 9,000</td>
+</tr>
+<tr>
+<td>Practical ICL threshold</td>
+<td>roughly 10% of the window</td>
+<td>Point to reconsider a permanent demonstration block</td>
+</tr>
+<tr>
+<td>Specification stability</td>
+<td>frozen for 1 month</td>
+<td>Practical point for moving from ICL toward SFT</td>
+</tr>
+<tr>
+<td>Parser case</td>
+<td>1 or 2 format demonstrations</td>
+<td>Can move a 30% JSON failure rate toward zero in the stated example</td>
+</tr>
+<tr>
+<td>Behavior examples</td>
+<td>40 tools or 30 report sections</td>
+<td>Cases that may not fit as demonstrations</td>
+</tr>
+<tr>
+<td>Evaluation spread</td>
+<td>at least 3 orders and 2 formats</td>
+<td>Minimum recommended prompt variation check</td>
+</tr>
+<tr>
+<td>Selection story</td>
+<td>3 examples from 20,000 tickets</td>
+<td>Initial triage example</td>
+</tr>
+<tr>
+<td>Embedding gain</td>
+<td>half a point</td>
+<td>Change described as inside the noise band</td>
+</tr>
+<tr>
+<td>Test-input probe</td>
+<td>1 shot and 3 shots</td>
+<td>Both degrade as shuffled-word fraction rises</td>
+</tr>
+<tr>
+<td>ConE zero-shot gate</td>
+<td>best Delta(c) below 0</td>
+<td>No negative candidate means the pool does not help</td>
+</tr>
+<tr>
+<td>Conditional entropy</td>
+<td>H_theta(x given c) = negative mean token log probability under candidate c</td>
+<td>Generator-side test-input uncertainty</td>
+</tr>
+<tr>
+<td>ConE score</td>
+<td>Delta(c) = H_theta(x given c) minus H_theta(x given empty prefix)</td>
+<td>Candidate ranking and zero-shot gate</td>
+</tr>
+<tr>
+<td>Figure 7.2 funnel</td>
+<td>20,000 to 50 to 3</td>
+<td>Pool size, candidate count, and selected count</td>
+</tr>
+<tr>
+<td>Selection input lengths</td>
+<td>120-token test, 180-token demonstration, 40-token answer</td>
+<td>Worked ConE sizes</td>
+</tr>
+<tr>
+<td>Random or BM25 prompt</td>
+<td>660 prefill plus 40 decode tokens</td>
+<td>1.12 x 10^13 FLOPs and 33 ms</td>
+</tr>
+<tr>
+<td>ConE candidate pass</td>
+<td>300 tokens and 4.8 x 10^12 FLOPs</td>
+<td>One candidate cost</td>
+</tr>
+<tr>
+<td>ConE top-50</td>
+<td>2.4 x 10^14 FLOPs and 706 ms</td>
+<td>Total becomes 739 ms</td>
+</tr>
+<tr>
+<td>Selection ratio</td>
+<td>21x</td>
+<td>Selector cost relative to answering</td>
+</tr>
+<tr>
+<td>Subset space</td>
+<td>C(50, 3) = 19,600</td>
+<td>Each subset needs a 660-token pass</td>
+</tr>
+<tr>
+<td>Subset cost</td>
+<td>2.07 x 10^17 FLOPs and 609 seconds</td>
+<td>About ten minutes per query</td>
+</tr>
+<tr>
+<td>Stuff all 50</td>
+<td>9,120 tokens, 1.46 x 10^14 FLOPs, 429 ms</td>
+<td>Cheaper compute but consumes 9,000 demo tokens</td>
+</tr>
+<tr>
+<td>Re-encoding ratio</td>
+<td>15,000 divided by 9,120 = 1.65</td>
+<td>Why individual scoring costs more than stuffing</td>
+</tr>
+<tr>
+<td>Small scorer</td>
+<td>110 M parameters</td>
+<td>6.6 x 10^10 FLOPs per pair and 9.7 ms for 50</td>
+</tr>
+<tr>
+<td>Scorer ratio</td>
+<td>72.8 measured versus 72.7 parameter ratio</td>
+<td>Arithmetic cross-check</td>
+</tr>
+<tr>
+<td>Default selector</td>
+<td>n = 20 and k = 3</td>
+<td>Recommended starting funnel</td>
+</tr>
+<tr>
+<td>Candidate latency</td>
+<td>about 14 ms each</td>
+<td>n = 20 costs 282 ms and n = 5 costs 71 ms</td>
+</tr>
+<tr>
+<td>Latency scenario</td>
+<td>p99 falls from 800 ms to 250 ms</td>
+<td>Interview trade-off between selector, chunks, and zero-shot</td>
+</tr>
+<tr>
+<td>Chunk-cut proposal</td>
+<td>10 chunks to 4</td>
+<td>Retrieval recall cost considered in that scenario</td>
+</tr>
+<tr>
+<td>Format slots</td>
+<td>5 x 3 x 4 x 4 x 4 x 3</td>
+<td>2,880 equivalent prompts</td>
+</tr>
+<tr>
+<td>Format accuracy story</td>
+<td>71% to 65% exact match</td>
+<td>Same corpus, top-5 chunks, and prompt after a model swap</td>
+</tr>
+<tr>
+<td>Format-space formula</td>
+<td>size of T = 5 x 3 x 4 x 4 x 4 x 3</td>
+<td>Six independent surface-form choices</td>
+</tr>
+<tr>
+<td>Expanded format space</td>
+<td>above 10^4</td>
+<td>Result after adding more phrasing and numbering choices</td>
+</tr>
+<tr>
+<td>Published spread</td>
+<td>76 accuracy points</td>
+<td>LLaMA-2-13B format spread</td>
+</tr>
+<tr>
+<td>Larger models</td>
+<td>70 B, GPT-3.5</td>
+<td>Format sensitivity persists</td>
+</tr>
+<tr>
+<td>GPT-4 formats</td>
+<td>49% versus 25.44%</td>
+<td>Same-meaning Japanese templates</td>
+</tr>
+<tr>
+<td>Format evaluation</td>
+<td>250 queries, 620 tokens each</td>
+<td>155,000 tokens per format</td>
+</tr>
+<tr>
+<td>Exhaustive format grid</td>
+<td>4.46 x 10^8 tokens and 7.14 x 10^18 FLOPs</td>
+<td>21,007 seconds or 5.8 hours</td>
+</tr>
+<tr>
+<td>Sampled sweep</td>
+<td>20 formats</td>
+<td>3.1 x 10^6 tokens, 4.96 x 10^16 FLOPs, 146 seconds</td>
+</tr>
+<tr>
+<td>Format standard error</td>
+<td>2.9 points at p = 0.70 and n = 250</td>
+<td>Single-format sampling noise</td>
+</tr>
+<tr>
+<td>Best-of-20 luck</td>
+<td>about 1.87 standard errors or 5.4 points</td>
+<td>Expected winner advantage with equal formats</td>
+</tr>
+<tr>
+<td>Noise range</td>
+<td>about 3.74 standard errors or 10.8 points</td>
+<td>Expected best-minus-worst spread</td>
+</tr>
+<tr>
+<td>Standard-error formula</td>
+<td>square root of p times (1 minus p) divided by n</td>
+<td>Gives 0.029 at p = 0.70 and n = 250</td>
+</tr>
+<tr>
+<td>Independent-sample formula</td>
+<td>n at least 1.96 squared x 2p(1-p) divided by 0.02 squared</td>
+<td>About 4,000 examples for a two-point gap</td>
+</tr>
+<tr>
+<td>Two-point resolution</td>
+<td>about 4,000 independent examples at 95% confidence</td>
+<td>Sample size estimate</td>
+</tr>
+<tr>
+<td>Practical sweep</td>
+<td>15 to 25 formats</td>
+<td>Recommended model-upgrade search</td>
+</tr>
+<tr>
+<td>Parse failure gate</td>
+<td>more than 1%</td>
+<td>Makes a format ineligible</td>
+</tr>
+<tr>
+<td>Interpretable subgrid</td>
+<td>5 separators x 4 verbalizers = 20</td>
+<td>Exhaustive factor check inside the larger format space</td>
+</tr>
+<tr>
+<td>Router scenario</td>
+<td>3 generators and a 4-point claimed win</td>
+<td>Four points on 250 examples is inside best-of-20 noise</td>
+</tr>
+<tr>
+<td>Order regression</td>
+<td>macro F1 0.78 to 0.69</td>
+<td>Same examples, template, and model with new order</td>
+</tr>
+<tr>
+<td>Order spaces</td>
+<td>4! = 24, 8! = 40,320, 10! = 3,628,800</td>
+<td>Factorial growth</td>
+</tr>
+<tr>
+<td>Select-and-order space</td>
+<td>50! divided by 42! is about 2.2 x 10^13</td>
+<td>n = 50 and k = 8</td>
+</tr>
+<tr>
+<td>Content-free entropy</td>
+<td>H_cf(pi) = negative sum over vocabulary probabilities times their logs</td>
+<td>Offline order score with no live content</td>
+</tr>
+<tr>
+<td>DEmO influence</td>
+<td>maximum label shift from content-free probability to real-input probability</td>
+<td>Online score over shortlisted orders</td>
+</tr>
+<tr>
+<td>Calibration formula</td>
+<td>q(y given x) proportional to p_theta(y given order and x) divided by p_cf(y)</td>
+<td>Diagonal content-free correction</td>
+</tr>
+<tr>
+<td>Contextual calibration result</td>
+<td>up to 30.0 absolute points</td>
+<td>Reported GPT-3 and GPT-2 gain</td>
+</tr>
+<tr>
+<td>Order worked prompt</td>
+<td>8 x 180 = 1,440 tokens</td>
+<td>Test input is 120, labels are 4, answer is 1 token</td>
+</tr>
+<tr>
+<td>One order</td>
+<td>1,560 tokens, 2.496 x 10^13 FLOPs, 73.4 ms</td>
+<td>Candidate permutation pass</td>
+</tr>
+<tr>
+<td>All eight-order permutations</td>
+<td>6.29 x 10^7 tokens and 1.006 x 10^18 FLOPs</td>
+<td>2,960 seconds or 49 minutes</td>
+</tr>
+<tr>
+<td>DEmO stage 1</td>
+<td>M = 128 and 1,444 tokens each</td>
+<td>184,832 tokens, 2.96 x 10^15 FLOPs, 8.7 seconds offline</td>
+</tr>
+<tr>
+<td>DEmO stage 2</td>
+<td>m = 5</td>
+<td>367 ms per query versus 73.5 ms to answer once</td>
+</tr>
+<tr>
+<td>Fixed calibration probe</td>
+<td>1,444 tokens and 68 ms</td>
+<td>Paid once</td>
+</tr>
+<tr>
+<td>Content-free prior</td>
+<td>0.52, 0.24, 0.16, 0.08</td>
+<td>Uniform reference is 0.25 and A is 2.08x uniform</td>
+</tr>
+<tr>
+<td>Raw distribution</td>
+<td>0.41, 0.38, 0.13, 0.08</td>
+<td>Raw winner A has margin 0.03</td>
+</tr>
+<tr>
+<td>Divided values</td>
+<td>0.788, 1.583, 0.813, 1.000</td>
+<td>Elementwise correction</td>
+</tr>
+<tr>
+<td>Calibrated distribution</td>
+<td>0.188, 0.378, 0.194, 0.239</td>
+<td>Winner flips to B</td>
+</tr>
+<tr>
+<td>Cached input prefill</td>
+<td>120 tokens and 5.7 ms</td>
+<td>Frozen demonstration block is reused</td>
+</tr>
+<tr>
+<td>Calibration saving</td>
+<td>65x</td>
+<td>Compared with five-order online search</td>
+</tr>
+<tr>
+<td>Hosted input price</td>
+<td>$0.30 per million tokens</td>
+<td>62,899,200 tokens cost $18.87 per query</td>
+</tr>
+<tr>
+<td>One answer price</td>
+<td>$0.00047</td>
+<td>Hosted-token comparison</td>
+</tr>
+<tr>
+<td>Bias flag</td>
+<td>roughly 2x uniform</td>
+<td>Practical probe threshold</td>
+</tr>
+<tr>
+<td>Probe set</td>
+<td>N/A, empty string, and mask token</td>
+<td>Three content-free choices to average</td>
+</tr>
+<tr>
+<td>Order reporting</td>
+<td>10 random orders</td>
+<td>Recommended spread estimate</td>
+</tr>
+<tr>
+<td>Wrong-concept decay</td>
+<td>e^(-kD)</td>
+<td>D is per-demo KL evidence in nats</td>
+</tr>
+<tr>
+<td>Bayesian marginal</td>
+<td>prediction equals the concept-specific prediction averaged under the posterior</td>
+<td>Prompt changes the posterior over latent concepts</td>
+</tr>
+<tr>
+<td>Posterior log odds</td>
+<td>prior log odds plus the sum of demonstration log-likelihood ratios</td>
+<td>Evidence adds linearly in log space</td>
+</tr>
+<tr>
+<td>Random-label evidence</td>
+<td>12 datasets</td>
+<td>Gold-label replacement costs only a few points</td>
+</tr>
+<tr>
+<td>Prior odds</td>
+<td>50 to 1 against intended concept</td>
+<td>Worked Bayesian starting point</td>
+</tr>
+<tr>
+<td>Residual target</td>
+<td>below 5%</td>
+<td>Requires kD greater than ln(950) = 6.856</td>
+</tr>
+<tr>
+<td>Strong format</td>
+<td>D = 1.2 nats</td>
+<td>Six demos reach the target</td>
+</tr>
+<tr>
+<td>Strong-format masses</td>
+<td>29.2%, 3.60%, 0.34%, 0.0028%</td>
+<td>Values at k = 4, 6, 8, and 12</td>
+</tr>
+<tr>
+<td>Extra shots</td>
+<td>k = 8 to 12</td>
+<td>0.33 points for 720 tokens and 33.9 ms</td>
+</tr>
+<tr>
+<td>Weak format</td>
+<td>D = 0.35 nats</td>
+<td>Twenty demos reach the target</td>
+</tr>
+<tr>
+<td>Weak-format prefill</td>
+<td>3,600 tokens and 169.6 ms</td>
+<td>Versus 1,080 tokens and 50.9 ms, or 3.3x</td>
+</tr>
+<tr>
+<td>Duplicate logits</td>
+<td>3 at 4.0 and 5 at 2.0</td>
+<td>Labels are A,A,A and B,B,C,D,A</td>
+</tr>
+<tr>
+<td>Kernel weights</td>
+<td>e^4 = 54.60 and e^2 = 7.389</td>
+<td>Total is 200.74</td>
+</tr>
+<tr>
+<td>Kernel formula</td>
+<td>K(x, x_i) = exp of query-key similarity divided by square root of head width</td>
+<td>Model-induced similarity weight</td>
+</tr>
+<tr>
+<td>Kernel prediction</td>
+<td>weighted sum of labels divided by total kernel weight</td>
+<td>Nadaraya-Watson form</td>
+</tr>
+<tr>
+<td>ESS formula</td>
+<td>square of total weight divided by sum of squared weights</td>
+<td>Converts concentrated weights into effective examples</td>
+</tr>
+<tr>
+<td>Duplicate mass</td>
+<td>0.272 each</td>
+<td>Label A reaches 85.3%</td>
+</tr>
+<tr>
+<td>Duplicate ESS</td>
+<td>4.4 of 8</td>
+<td>1,440 tokens and 67.8 ms were paid</td>
+</tr>
+<tr>
+<td>Effective cost</td>
+<td>15.4 ms per effective demo</td>
+<td>Derived in the worked example</td>
+</tr>
+<tr>
+<td>Deduplicated mass</td>
+<td>61.99 divided by 91.54 = 67.7%</td>
+<td>Figure ESS becomes 2.6 of 6</td>
+</tr>
+<tr>
+<td>Shot default</td>
+<td>k from 4 to 8</td>
+<td>Classification-shaped starting range</td>
+</tr>
+<tr>
+<td>ESS alert</td>
+<td>below k divided by 2</td>
+<td>Duplicate-concentration threshold</td>
+</tr>
+<tr>
+<td>Shot sweep</td>
+<td>2, 4, 8, 16</td>
+<td>Diagnostic slope check</td>
+</tr>
+<tr>
+<td>Gradient scenario</td>
+<td>3,000 prompt tokens, 1,440 demo tokens, 10,000 daily queries</td>
+<td>Motivation for prompt-to-adapter conversion</td>
+</tr>
+<tr>
+<td>Linear-attention output</td>
+<td>F(q) = sum of value-key outer products, then multiplied by q</td>
+<td>Context builds the operator applied to the query</td>
+</tr>
+<tr>
+<td>Prompt update</td>
+<td>Delta W_ICL = sum over demonstration value-key outer products</td>
+<td>Temporary additive update</td>
+</tr>
+<tr>
+<td>Gradient update</td>
+<td>Delta W = learning rate times sum of error-input outer products</td>
+<td>Same algebraic shape under the stated identification</td>
+</tr>
+<tr>
+<td>Softmax dilution</td>
+<td>k = 8 to 32 changes 12.5% to 3.1% each</td>
+<td>Prefill grows 1,440 to 5,760 tokens</td>
+</tr>
+<tr>
+<td>Worked model width</td>
+<td>4,096</td>
+<td>32 layers and 32 query heads</td>
+</tr>
+<tr>
+<td>Attention head width</td>
+<td>128</td>
+<td>4,096 divided by 32</td>
+</tr>
+<tr>
+<td>Key-value heads</td>
+<td>8</td>
+<td>Grouped-query attention configuration</td>
+</tr>
+<tr>
+<td>Prefill cost per token</td>
+<td>4.71 x 10^-5 seconds or 0.0471 ms</td>
+<td>From 1.6 x 10^10 FLOPs at stated throughput</td>
+</tr>
+<tr>
+<td>Demonstration block</td>
+<td>8 x 180 = 1,440 tokens</td>
+<td>67.8 ms per uncached request</td>
+</tr>
+<tr>
+<td>Temporary update rank</td>
+<td>at most min(1,440, 128) = 128</td>
+<td>Full rank after 128 tokens</td>
+</tr>
+<tr>
+<td>General rank bound</td>
+<td>rank at most min(m, d_h)</td>
+<td>Demonstration tokens and head width limit expressive rank</td>
+</tr>
+<tr>
+<td>Rank saturation</td>
+<td>128 divided by 180 = 71%</td>
+<td>Inside the first demonstration</td>
+</tr>
+<tr>
+<td>Implicit steps</td>
+<td>at most 32</td>
+<td>One step per layer under the construction</td>
+</tr>
+<tr>
+<td>Explicit steps</td>
+<td>1,000 x 3 divided by 8 = 375</td>
+<td>11.7x the implicit bound</td>
+</tr>
+<tr>
+<td>KV values per token per layer</td>
+<td>2 x 8 x 128 = 2,048</td>
+<td>Keys plus values</td>
+</tr>
+<tr>
+<td>KV bytes per token</td>
+<td>131,072 bytes or 128 KiB</td>
+<td>Across 32 layers at two bytes each</td>
+</tr>
+<tr>
+<td>Prompt KV residency</td>
+<td>1.89 x 10^8 bytes or about 189 MB</td>
+<td>Per concurrent request</td>
+</tr>
+<tr>
+<td>LoRA rank</td>
+<td>16</td>
+<td>Adapter comparison</td>
+</tr>
+<tr>
+<td>LoRA update</td>
+<td>Delta W_LoRA = B times A</td>
+<td>Stored additive adapter term</td>
+</tr>
+<tr>
+<td>LoRA parameters</td>
+<td>8.39 x 10^6</td>
+<td>Query and output projections across 64 matrices</td>
+</tr>
+<tr>
+<td>LoRA residency</td>
+<td>16.8 MB</td>
+<td>Half precision and shared across requests</td>
+</tr>
+<tr>
+<td>Residency ratio</td>
+<td>about 11x</td>
+<td>Prompt KV versus shared adapter</td>
+</tr>
+<tr>
+<td>Cache recovery</td>
+<td>11.3 accelerator minutes per day</td>
+<td>67.8 ms across 10,000 requests</td>
+</tr>
+<tr>
+<td>Context conflict</td>
+<td>8k context, 32 demos, 20 passages</td>
+<td>Cutting to eight demos returns 4,320 tokens to passages</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html"><small>Previous</small>Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html"><small>Next</small>Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

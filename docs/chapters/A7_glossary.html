@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A7. Glossary | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A7_glossary.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html" aria-current="page">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A7. Glossary</h1><p class="chapter-meta">31 min estimated reading · Unit 57 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This appendix decodes the overlapping vocabulary of Retrieval-Augmented Generation (RAG) and preserves the book's exact conventions, distinctions, qualifications, and source pointers.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Three literatures often give the same RAG object different names: information retrieval, representation learning, and systems.</li>
+<li>An alias is not always an exact synonym. A role, a product label, and one implementation can sound interchangeable while meaning different things.</li>
+<li>Faithfulness asks whether an answer follows the retrieved context. Factuality asks whether the answer is true of the world.</li>
+<li>Index recall compares approximate search with exact search under one scorer. Retrieval relevance compares results with human judgment.</li>
+<li>Retrieval depth k' feeds the reranker. The separate count k reaches the generator.</li>
+<li>Use the book's stated convention and source pointer when a term is contested. Do not average incompatible definitions.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a railway station shared by three rail companies. One company calls a boarding area a platform, another calls it a gate, and the third calls it a bay. The object stays the same, but a traveler can miss the train by treating a familiar object as unfamiliar.</p>
+<p>The alias list is the station's translation board. It groups names that point to one object. It also posts warnings when a label is broader than the object. A reranker, for example, is a job at the station. A cross-encoder is one worker that can perform that job.</p>
+<p>The glossary is the station handbook. Each entry gives the local meaning and the location of the full operating rule. The handbook follows this station's convention instead of averaging every railway's usage.</p>
+<p>Three red warning cards prevent the worst transfers. The first separates a conductor who repeats the printed schedule faithfully from a train that actually arrives on time. That is faithfulness versus factuality.</p>
+<p>The second separates a routing machine that reproduces its own exact route from a route that takes a passenger where people say they need to go. That is index recall versus retrieval relevance.</p>
+<p>The third separates passengers sent to inspection from passengers allowed onto the train. Those counts are k' and k. They serve different objectives.</p>
+<p>The traveler succeeds by reading the translation board, checking each warning card, and opening the handbook at the cited rule. Vocabulary then becomes a navigation tool instead of a trap.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chunk</td>
+<td>Also called passage, segment, span, node, or document. It is the unit stored, embedded, and retrieved</td>
+<td>Document can mean either the source file or the retrieval unit. Chunk size and overlap are design parameters. Chapter 13</td>
+</tr>
+<tr>
+<td>Datastore</td>
+<td>Also called index, corpus, knowledge base, vector store, or non-parametric memory. It is the retrievable text plus its index and is written D</td>
+<td>Index strictly means the search structure, not the text. A datastore is usually a union of stores. Section 1.1</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>Also called dense vector, representation, latent, or encoding</td>
+<td>The aliases name the represented object under different literatures. The source states no extra caveat</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Also called dual encoder, two-tower, siamese network, or dense retriever. It encodes query and document independently</td>
+<td>Dense Passage Retrieval (DPR) is one instance, not a synonym. Precomputation gives efficiency but removes query-document interaction. Section 20.1</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>Also called interaction model, joint encoder, reranker, or scorer. It scores query and document jointly</td>
+<td>Reranker is a role. A cross-encoder is one way to fill it. Joint scoring is accurate but unindexable. Chapter 22</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor (ANN) search</td>
+<td>Also called vector search, similarity search, semantic search, or nearest-neighbor search. It trades exactness for speed</td>
+<td>Semantic search is a product term for the whole pipeline. Approximation enables billion-scale retrieval and makes recall tunable. Chapter 15</td>
+</tr>
+<tr>
+<td>Retrieval depth k'</td>
+<td>Also called candidate set size, fan-out, recall set, or first-stage depth</td>
+<td>It feeds the reranker. It is distinct from k, the count reaching the generator</td>
+</tr>
+<tr>
+<td>Query reformulation</td>
+<td>Also called query rewriting, query expansion, query transformation, or query understanding</td>
+<td>Expansion adds terms. Rewriting replaces terms. The umbrella name varies by paper</td>
+</tr>
+<tr>
+<td>Relevance judgment</td>
+<td>Also called query relevance judgment (qrel), label, annotation, ground truth, or gold</td>
+<td>Retrieval relevance is measured against this human judgment, not against exact index search</td>
+</tr>
+<tr>
+<td>Hard negative</td>
+<td>Also called distractor, confusing negative, or mined negative. It is a non-relevant document that scores highly</td>
+<td>In Retrieval-Augmented Fine-Tuning (RAFT), a distractor is deliberately trained on. Mining strategy dominates retriever quality. Section 20.3</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Also called groundedness, consistency, or attribution to source. It asks whether an answer follows retrieved context</td>
+<td>It is distinct from factuality, which asks about the world. Section 33.1</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Also called correctness, truthfulness, or factual accuracy. It asks whether an answer is true of the world</td>
+<td>An answer can be faithful to a wrong document and still be non-factual. Section 33.1</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Also called refusal, deferral, rejection, or "I don't know." It means declining to answer a low-confidence question</td>
+<td>Five mechanisms exist and fail differently. Chapter 11</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>Also called adaptive retrieval, active retrieval, when-to-retrieve, or routing. It is g(x), which decides whether to retrieve</td>
+<td>Routing usually also covers where to retrieve. The gate is decision one. Section 25.1</td>
+</tr>
+<tr>
+<td>Lost in the middle</td>
+<td>Also called positional bias, serial position effect, or primacy and recency</td>
+<td>Answer accuracy follows a U shape as supporting evidence moves through the context. Chapter 30</td>
+</tr>
+<tr>
+<td>Learned sparse</td>
+<td>Also called sparse neural, expansion-based sparse, or Sparse Lexical and Expansion Model (SPLADE)-style retrieval</td>
+<td>It predicts vocabulary-term importance while retaining sparse retrieval structure</td>
+</tr>
+<tr>
+<td>Late interaction</td>
+<td>Also called multi-vector retrieval, token-level matching, or ColBERT-style retrieval</td>
+<td>The alias row states no separate caveat. The glossary definition explains the per-token representation. Section 21.3</td>
+</tr>
+<tr>
+<td>Prompt injection</td>
+<td>Also called indirect injection, context injection, or instruction hijacking</td>
+<td>Indirect means the instruction arrives through retrieval rather than through user input. Section 36.4</td>
+</tr>
+<tr>
+<td>Agentic RAG</td>
+<td>A control flow where the generator decides at each step whether and what to retrieve</td>
+<td>Tool calls and a stopping rule control the process. Cost grows with rounds, and tail behavior matters more than the mean. Section 26.8</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>The property that a statement is supported by a cited source</td>
+<td>It differs from citation, which is the act of pointing. Chapter 31</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>The book's name for a lexical ranker using inverse document frequency (IDF) times saturating, length-normalized term frequency</td>
+<td>It states the standard lexical scoring convention. Section A.1</td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>Agreement between stated model confidence and observed accuracy</td>
+<td>Failure prediction only needs to rank confidence, so it is a different requirement. Section 11.4</td>
+</tr>
+<tr>
+<td>Contrastive Language-Image Pre-training (CLIP)</td>
+<td>Jointly trained image and text encoders place matching image-text pairs near each other</td>
+<td>It is the default multimodal retriever in the source and carries three biases worth naming. Section 39.3</td>
+</tr>
+<tr>
+<td>Closed-book</td>
+<td>Answering only from knowledge in model weights, with no retrieved context</td>
+<td>It is the baseline every RAG evaluation needs and most omit. Section 30.2</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td>A late-interaction retriever that stores one vector per token and scores with maximum-similarity matching, called MaxSim</td>
+<td>It recovers much cross-encoder accuracy at index-time cost. Section 21.3</td>
+</tr>
+<tr>
+<td>Generative retrieval</td>
+<td>A model produces document identifiers directly instead of searching an index</td>
+<td>It has constant-time lookup, a quality ceiling, and an unsolved incremental-indexing problem. Chapter 23</td>
+</tr>
+<tr>
+<td>Graph RAG</td>
+<td>Retrieval over an extracted entity-relation graph rather than a flat chunk store</td>
+<td>Its cost pays off for relational and global-sense-making queries, not otherwise. Chapter 40</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>A generated statement unsupported by the context or the world</td>
+<td>The useful taxonomy separates factuality from faithfulness and intrinsic from extrinsic. Section 4.4</td>
+</tr>
+<tr>
+<td>High-bandwidth memory (HBM)</td>
+<td>Accelerator-attached memory that a decode step reads in full for every token</td>
+<td>Decode becomes bandwidth-bound, and its cost does not fall merely because the model gets smarter. Section 37.1</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW)</td>
+<td>A graph index derived from a skip list with layered proximity graphs and greedy descent</td>
+<td>It is fast and memory-hungry. Its link term cannot be compressed. Section 15.2</td>
+</tr>
+<tr>
+<td>HyDE</td>
+<td>The source's name for generating a hypothetical answer and retrieving with it</td>
+<td>It moves the query into document space. Section 24.6</td>
+</tr>
+<tr>
+<td>Hybrid retrieval</td>
+<td>Lexical and dense retrieval run in parallel, then their ranked lists are fused</td>
+<td>The source usually uses reciprocal rank fusion. Section 21.6</td>
+</tr>
+<tr>
+<td>In-context learning</td>
+<td>A model conditions on examples or evidence in its prompt without weight updates</td>
+<td>RAG depends on this mechanism. Chapter 7</td>
+</tr>
+<tr>
+<td>Inverted file index (IVF)</td>
+<td>It partitions space into Voronoi cells around centroids</td>
+<td>It searches only the nearest n_probe cells. Section 15.3</td>
+</tr>
+<tr>
+<td>Locality-sensitive hashing (LSH)</td>
+<td>Hash functions collide more often when inputs are more similar</td>
+<td>Retrieval becomes bucket lookup. It is sublinear in theory and usually loses to a graph index on memory in practice. Section 15.4</td>
+</tr>
+<tr>
+<td>Modularity</td>
+<td>The objective maximized by community-detection algorithms</td>
+<td>It defines a GraphRAG community. Section A.5</td>
+</tr>
+<tr>
+<td>Parametric memory</td>
+<td>Knowledge stored in model weights</td>
+<td>Capacity is fixed, updates are expensive, and there is no undo. Section 1.1</td>
+</tr>
+<tr>
+<td>Product quantization</td>
+<td>Split a vector into subvectors and quantize each with its own codebook</td>
+<td>It represents k^m vectors from km stored centroids. Section A.6</td>
+</tr>
+<tr>
+<td>Prompt injection, indirect</td>
+<td>Instructions enter through retrieved content rather than direct user input</td>
+<td>The source calls it RAG's native threat model. Section 36.4</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>The fraction of relevant documents found in the top k</td>
+<td>Index recall uses exact search as reference. Retrieval recall uses human judgment. Chapter 32</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>A second scoring stage over first-stage candidates</td>
+<td>It trades compute for accuracy on a short list. Chapter 22</td>
+</tr>
+<tr>
+<td>Reciprocal rank fusion (RRF)</td>
+<td>It sums 1 / (k + r_l(d)) across ranked lists</td>
+<td>It combines rankings whose scores cannot be compared directly. Section A.2</td>
+</tr>
+<tr>
+<td>Self-RAG</td>
+<td>A generator emits reflection tokens that control retrieval and critique its own output</td>
+<td>The generator learns control as well as generation. Section 26.6</td>
+</tr>
+<tr>
+<td>Semi-parametric</td>
+<td>A system combines parametric model weights with a non-parametric datastore</td>
+<td>This is the frame behind every RAG design question in the source. Section 1.1</td>
+</tr>
+<tr>
+<td>SPLADE</td>
+<td>The source's name for a learned sparse retriever with a masked language model head</td>
+<td>It predicts term importance across the vocabulary and expands documents implicitly. Section 21.1</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>A deletion marker in an index that cannot be repaired cheaply</td>
+<td>Accumulation degrades recall and eventually forces a rebuild. Section 17.1</td>
+</tr>
+<tr>
+<td>Vocabulary mismatch</td>
+<td>A user and a relevant document use different words</td>
+<td>Query expansion, document expansion, and dense retrieval attack the gap differently. Section 24.1</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="introduction-why-a-glossary-is-needed">Introduction: why a glossary is needed</h3>
+<p>What: Two obstacles get in a reader's way. Only one is conceptual.</p>
+<p>Why: Three independent literatures use different names for the same objects. All three vocabularies remain active.</p>
+<p>Failure without the aliasing table: A familiar object can sound unfamiliar in a paper, vendor document, or interview question.</p>
+<p>What the glossary adds: It gives a needed definition at the moment it is needed and points to the full argument.</p>
+<p>Convention: Each definition states this book's usage. It does not average the field.</p>
+<p>Qualifier: The source calls out contested distinctions instead of smoothing them over. These distinctions test whether the candidate's vocabulary is real.</p>
+<p>Cost or complexity: The source states no numeric implementation cost for the glossary itself.</p>
+<h3 id="g1-the-same-idea-under-four-names">G.1 The Same Idea Under Four Names</h3>
+<p>Retrieval-Augmented Generation sits where information retrieval, representation learning, and systems meet. The three literatures developed independently. Their names survive in current papers, vendor documentation, and interview questions.</p>
+<p>The source uses a bi-encoder and a two-tower model as its example. A candidate who misses the alias hears a familiar question as an unfamiliar one.</p>
+<p>Terms on one alias row denote the same broad idea. The caveat column preserves the places where that equivalence is incomplete.</p>
+<h4 id="chunk">Chunk</h4>
+<p>Also called: passage, segment, span, node, and document.</p>
+<p>Qualifier: Document is ambiguous. It can mean the source file or the retrieval unit.</p>
+<p>Failure without the qualifier: A design can confuse the stored unit with the original file.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="datastore">Datastore</h4>
+<p>Also called: index, corpus, knowledge base, vector store, and non-parametric memory.</p>
+<p>Qualifier: Index strictly means the search structure, not the text.</p>
+<p>Failure without the qualifier: A discussion can merge retrievable content with the structure used to search it.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="embedding">Embedding</h4>
+<p>Also called: dense vector, representation, latent, and encoding.</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: Representation-learning vocabulary can hide a familiar vector object.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="bi-encoder">Bi-encoder</h4>
+<p>Also called: dual encoder, two-tower, siamese network, and dense retriever.</p>
+<p>Qualifier: DPR is one instance, not a synonym.</p>
+<p>Failure without the qualifier: One named implementation can be mistaken for the entire architecture class.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="cross-encoder">Cross-encoder</h4>
+<p>Also called: interaction model, joint encoder, reranker, and scorer.</p>
+<p>Qualifier: Reranker is a role. A cross-encoder is one way to fill that role.</p>
+<p>Failure without the qualifier: A pipeline position can be mistaken for one architecture.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="ann-search">ANN search</h4>
+<p>Also called: vector search, similarity search, semantic search, and nearest-neighbor search.</p>
+<p>Qualifier: Semantic search is a product term that covers the whole pipeline.</p>
+<p>Failure without the qualifier: A full product can be confused with its approximate search component.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="retrieval-depth-k">Retrieval depth k'</h4>
+<p>Also called: candidate set size, fan-out, recall set, and first-stage depth.</p>
+<p>Qualifier: k' differs from k, the count that reaches the generator.</p>
+<p>Failure without the qualifier: One depth can be optimized as if it served two separate objectives.</p>
+<p>Cost or complexity: The source gives no fixed values for k' or k in this appendix.</p>
+<h4 id="query-reformulation">Query reformulation</h4>
+<p>Also called: query rewriting, query expansion, query transformation, and query understanding.</p>
+<p>Qualifier: Expansion adds terms. Rewriting replaces them. The umbrella term varies by paper.</p>
+<p>Failure without the qualifier: Two different transformations can be treated as identical operations.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="relevance-judgment">Relevance judgment</h4>
+<p>Also called: qrel, label, annotation, ground truth, and gold.</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: Evaluation vocabulary can hide that each name denotes a relevance judgment.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="hard-negative">Hard negative</h4>
+<p>Also called: distractor, confusing negative, and mined negative.</p>
+<p>Qualifier: In RAFT, a distractor is deliberately trained on.</p>
+<p>Failure without the qualifier: An ordinary distractor can be confused with a deliberately selected training example.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="faithfulness">Faithfulness</h4>
+<p>Also called: groundedness, consistency, and attribution to source.</p>
+<p>Qualifier: Faithfulness is distinct from factuality, which asks about the world.</p>
+<p>Failure without the qualifier: Support from context can be mistaken for truth about the world.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="factuality">Factuality</h4>
+<p>Also called: correctness, truthfulness, and factual accuracy.</p>
+<p>Qualifier: An answer can be faithful and non-factual.</p>
+<p>Failure without the qualifier: A wrong source can make a supported answer false.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="abstention">Abstention</h4>
+<p>Also called: refusal, deferral, rejection, and "I don't know."</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: Different labels can hide the same decision to decline an answer.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="retrieval-gate">Retrieval gate</h4>
+<p>Also called: adaptive retrieval, active retrieval, when-to-retrieve, and routing.</p>
+<p>Qualifier: Routing usually also covers where to retrieve.</p>
+<p>Failure without the qualifier: A broader routing decision can be reduced to a yes-or-no gate.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="lost-in-the-middle">Lost in the middle</h4>
+<p>Also called: positional bias, serial position effect, and primacy and recency.</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: The position effect can look like several unrelated phenomena.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="learned-sparse">Learned sparse</h4>
+<p>Also called: sparse neural, expansion-based sparse, and SPLADE-style.</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: A learned sparse method can be mistaken for a different retrieval family.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="late-interaction">Late interaction</h4>
+<p>Also called: multi-vector retrieval, token-level matching, and ColBERT-style.</p>
+<p>Qualifier: G.1 states no additional caveat for this row.</p>
+<p>Failure without the aliases: A per-token retrieval architecture can sound like a separate method family.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h4 id="prompt-injection">Prompt injection</h4>
+<p>Also called: indirect injection, context injection, and instruction hijacking.</p>
+<p>Qualifier: Indirect marks arrival through retrieval rather than through user input.</p>
+<p>Failure without the qualifier: Retrieved instructions can be confused with instructions supplied directly by the user.</p>
+<p>Cost or complexity: No separate cost is stated in G.1.</p>
+<h3 id="three-distinctions-worth-keeping">Three distinctions worth keeping</h3>
+<p>Not every pair of terms is synonymous. The source identifies three collapses that can lose an interview exchange.</p>
+<h4 id="faithfulness-is-not-factuality">Faithfulness is not factuality</h4>
+<p>What: Faithfulness asks whether the answer follows from retrieved context. Factuality asks whether it is true of the world.</p>
+<p>Example: A perfectly faithful answer to a wrong document is faithful and false.</p>
+<p>Failure without the distinction: The two failure types receive the same diagnosis even though they require different fixes.</p>
+<p>Cross-reference: Section 33.1.</p>
+<h4 id="recall-is-not-relevance">Recall is not relevance</h4>
+<p>What: Index recall compares approximate search with exact search under the same scoring function. Retrieval relevance compares results with human judgment.</p>
+<p>Example: An index with 0.99 recall against a bad scorer retrieves the wrong documents very reliably.</p>
+<p>Failure without the distinction: Strong agreement with exact search can be misreported as strong agreement with people.</p>
+<p>Cross-reference: Section 15.6.</p>
+<h4 id="k-is-not-k">k is not k'</h4>
+<p>What: Retrieval depth k' feeds the reranker. The separate count k reaches the generator.</p>
+<p>Why: The two variables serve separate objectives.</p>
+<p>Interview signal: The question "How do you choose k?" tests whether the candidate separates them.</p>
+<p>Cross-reference: Section 22.2.</p>
+<h3 id="g2-glossary-of-terms">G.2 Glossary of Terms</h3>
+<p>The following entries keep the source's exact alphabetical order. Each definition uses the book's convention and retains its source pointer.</p>
+<h4 id="abstention-1">Abstention</h4>
+<p>What: Declining to answer instead of producing a low-confidence answer.</p>
+<p>Why: It gives the system an alternative to an answer it does not support confidently.</p>
+<p>Failure or qualifier: Five mechanisms exist, and each fails differently.</p>
+<p>Cost or complexity: The appendix states the mechanism count but no shared cost.</p>
+<p>Cross-reference: Chapter 11.</p>
+<h4 id="agentic-rag">Agentic RAG</h4>
+<p>What: A control flow where the generator decides at each step whether and what to retrieve. It usually uses tool calls and a stopping rule.</p>
+<p>Why: Retrieval becomes a per-step decision rather than a fixed single stage.</p>
+<p>Failure or qualifier: The tail matters more than the mean.</p>
+<p>Cost or complexity: Cost scales with the number of rounds.</p>
+<p>Cross-reference: Section 26.8.</p>
+<h4 id="ann-search-1">ANN search</h4>
+<p>What: Approximate nearest-neighbor search.</p>
+<p>Why: Trading exactness for speed makes billion-scale retrieval possible.</p>
+<p>Failure or qualifier: Approximation makes recall a tunable rather than a fixed guarantee.</p>
+<p>Cost or complexity: The source states the speed-exactness trade but no numeric cost here.</p>
+<p>Cross-reference: Chapter 15.</p>
+<h4 id="attribution">Attribution</h4>
+<p>What: The property that a statement is supported by a cited source.</p>
+<p>Why: It tests support rather than merely displaying a pointer.</p>
+<p>Failure or qualifier: Citation is the act of pointing. It is distinct from attribution.</p>
+<p>Cost or complexity: No separate cost is stated.</p>
+<p>Cross-reference: Chapter 31.</p>
+<h4 id="bi-encoder-1">Bi-encoder</h4>
+<p>What: An architecture that encodes the query and document independently.</p>
+<p>Why: Document vectors can be precomputed and indexed, which makes retrieval tractable.</p>
+<p>Failure or qualifier: It has no query-document interaction.</p>
+<p>Cost or complexity: Efficiency comes at the cost of that missing interaction.</p>
+<p>Cross-reference: Section 20.1.</p>
+<h4 id="bm25">BM25</h4>
+<p>What: The standard lexical ranking function in the source.</p>
+<p>Why: It combines inverse document frequency weighting with saturating, length-normalized term frequency.</p>
+<p>Failure or qualifier: The appendix states no additional qualifier.</p>
+<p>Cost or complexity: No numeric cost is stated.</p>
+<p>Cross-reference: Section A.1.</p>
+<h4 id="calibration">Calibration</h4>
+<p>What: Agreement between stated model confidence and observed accuracy.</p>
+<p>Why: A calibrated confidence value matches empirical outcomes.</p>
+<p>Failure or qualifier: Failure prediction only needs to rank confidence. It is distinct from calibration.</p>
+<p>Cost or complexity: No separate cost is stated.</p>
+<p>Cross-reference: Section 11.4.</p>
+<h4 id="chunk-1">Chunk</h4>
+<p>What: The unit stored, embedded, and retrieved.</p>
+<p>Why: It defines the object that moves through retrieval.</p>
+<p>Failure or qualifier: Chunk size and overlap are design parameters, not defaults.</p>
+<p>Cost or complexity: No fixed size or overlap is stated here.</p>
+<p>Cross-reference: Chapter 13.</p>
+<h4 id="clip">CLIP</h4>
+<p>What: Contrastive Language-Image Pre-training. An image encoder and a text encoder train together so matching image-text pairs land near each other in one shared space.</p>
+<p>Why: It is the default multimodal retriever in the source.</p>
+<p>Failure or qualifier: It is the source of three biases worth naming.</p>
+<p>Cost or complexity: No numeric compute or storage cost is stated here.</p>
+<p>Cross-reference: Section 39.3.</p>
+<h4 id="closed-book">Closed-book</h4>
+<p>What: Answering from parametric knowledge with no retrieved context.</p>
+<p>Why: It supplies the baseline every RAG evaluation needs.</p>
+<p>Failure or qualifier: Most evaluations omit that baseline.</p>
+<p>Cost or complexity: No separate cost is stated.</p>
+<p>Cross-reference: Section 30.2.</p>
+<h4 id="colbert">ColBERT</h4>
+<p>What: A late-interaction retriever that keeps one vector per token and scores with maximum-similarity matching, called MaxSim.</p>
+<p>Why: It recovers much of a cross-encoder's accuracy.</p>
+<p>Failure or qualifier: The recovery comes with index-time cost.</p>
+<p>Cost or complexity: One vector per token increases index work. The appendix gives no numeric factor.</p>
+<p>Cross-reference: Section 21.3.</p>
+<h4 id="cross-encoder-1">Cross-encoder</h4>
+<p>What: A model that scores a query and document jointly in one forward pass.</p>
+<p>Why: Joint interaction makes the score accurate.</p>
+<p>Failure or qualifier: The model is unindexable, so it belongs in the second stage.</p>
+<p>Cost or complexity: It uses one forward pass for each scored query-document pair. No numeric cost is stated here.</p>
+<p>Cross-reference: Chapter 22.</p>
+<h4 id="datastore-1">Datastore</h4>
+<p>What: The non-parametric component made of retrievable text plus its index. The source writes it as D.</p>
+<p>Why: It holds knowledge outside model weights.</p>
+<p>Failure or qualifier: It is usually a union of several stores.</p>
+<p>Cost or complexity: No numeric storage cost is stated here.</p>
+<p>Cross-reference: Section 1.1.</p>
+<h4 id="faithfulness-1">Faithfulness</h4>
+<p>What: Whether an answer follows from retrieved context.</p>
+<p>Why: It tests support by the evidence given to the generator.</p>
+<p>Failure or qualifier: It is not the same as factuality.</p>
+<p>Cost or complexity: No separate cost is stated.</p>
+<p>Cross-reference: Section 33.1.</p>
+<h4 id="generative-retrieval">Generative retrieval</h4>
+<p>What: Producing document identifiers directly from a model instead of searching an index.</p>
+<p>Why: Retrieval becomes direct identifier generation.</p>
+<p>Failure or qualifier: It has a quality ceiling and an unsolved incremental-indexing problem.</p>
+<p>Cost or complexity: The source calls it constant-time.</p>
+<p>Cross-reference: Chapter 23.</p>
+<h4 id="graph-rag">Graph RAG</h4>
+<p>What: Retrieval over an extracted entity-relation graph instead of a flat chunk store.</p>
+<p>Why: It serves relational and global-sense-making queries.</p>
+<p>Failure or qualifier: It earns its cost on those query types and not otherwise.</p>
+<p>Cost or complexity: The appendix names a cost but gives no numeric amount.</p>
+<p>Cross-reference: Chapter 40.</p>
+<h4 id="hallucination">Hallucination</h4>
+<p>What: A generated statement unsupported by the context or the world.</p>
+<p>Why: The term names unsupported generation.</p>
+<p>Failure or qualifier: The useful taxonomy separates factuality from faithfulness and intrinsic from extrinsic.</p>
+<p>Cost or complexity: No separate cost is stated.</p>
+<p>Cross-reference: Section 4.4.</p>
+<h4 id="hard-negative-1">Hard negative</h4>
+<p>What: A non-relevant document that scores highly.</p>
+<p>Why: Training on it sharpens the decision boundary.</p>
+<p>Failure or qualifier: Mining strategy dominates retriever quality.</p>
+<p>Cost or complexity: No numeric mining cost is stated here.</p>
+<p>Cross-reference: Section 20.3.</p>
+<h4 id="hbm">HBM</h4>
+<p>What: High-bandwidth memory attached to an accelerator.</p>
+<p>Why: A decode step must read it in full for every token.</p>
+<p>Failure or qualifier: Decode is bandwidth-bound. Its cost does not fall when the model becomes smarter.</p>
+<p>Cost or complexity: The full memory read repeats for every generated token.</p>
+<p>Cross-reference: Section 37.1.</p>
+<h4 id="hnsw">HNSW</h4>
+<p>What: Hierarchical Navigable Small World. It is a graph index derived from the skip list, with layered proximity graphs and greedy descent.</p>
+<p>Why: The layered graph supports fast search.</p>
+<p>Failure or qualifier: It is memory-hungry and has an incompressible link term.</p>
+<p>Cost or complexity: The source states memory pressure but gives no numeric amount here.</p>
+<p>Cross-reference: Section 15.2.</p>
+<h4 id="hyde">HyDE</h4>
+<p>What: Generate a hypothetical answer and retrieve with it.</p>
+<p>Why: The generated answer moves the query into document space.</p>
+<p>Failure or qualifier: The appendix states no additional qualifier.</p>
+<p>Cost or complexity: No numeric generation or retrieval cost is stated here.</p>
+<p>Cross-reference: Section 24.6.</p>
+<h4 id="hybrid-retrieval">Hybrid retrieval</h4>
+<p>What: Run lexical and dense retrieval in parallel, then fuse their ranked lists.</p>
+<p>Why: The pipeline combines the two retrieval paths.</p>
+<p>Failure or qualifier: The source says it usually uses RRF.</p>
+<p>Cost or complexity: It runs two retrieval paths. No numeric overhead is stated here.</p>
+<p>Cross-reference: Section 21.6.</p>
+<h4 id="in-context-learning">In-context learning</h4>
+<p>What: A model conditions on examples or evidence in the prompt without weight updates.</p>
+<p>Why: RAG rides on this mechanism.</p>
+<p>Failure or qualifier: The definition excludes weight updates.</p>
+<p>Cost or complexity: No numeric prompt cost is stated here.</p>
+<p>Cross-reference: Chapter 7.</p>
+<h4 id="ivf">IVF</h4>
+<p>What: Inverted file index. It partitions the space into Voronoi cells around centroids.</p>
+<p>Why: Search visits only the nearest n_probe cells.</p>
+<p>Failure or qualifier: The appendix states no additional qualifier beyond searching only the nearest cells.</p>
+<p>Cost or complexity: n_probe controls the searched subset. No fixed value is stated here.</p>
+<p>Cross-reference: Section 15.3.</p>
+<h4 id="lost-in-the-middle-1">Lost in the middle</h4>
+<p>What: A U-shaped relationship between answer accuracy and the position of supporting evidence in context.</p>
+<p>Why: Evidence position can change whether the model uses it.</p>
+<p>Failure or qualifier: Evidence in the middle can receive lower effective use than evidence near the ends.</p>
+<p>Cost or complexity: No numeric accuracy gap is stated here.</p>
+<p>Cross-reference: Chapter 30.</p>
+<h4 id="lsh">LSH</h4>
+<p>What: Locality-sensitive hashing. Its hash functions collide more often as inputs become more similar.</p>
+<p>Why: Retrieval becomes a bucket lookup.</p>
+<p>Failure or qualifier: It is sublinear in theory and usually beaten on memory by a graph index in practice.</p>
+<p>Cost or complexity: The source states the theory-practice trade but no numeric memory amount here.</p>
+<p>Cross-reference: Section 15.4.</p>
+<h4 id="modularity">Modularity</h4>
+<p>What: The objective maximized by community-detection algorithms.</p>
+<p>Why: It defines a GraphRAG community.</p>
+<p>Failure or qualifier: The definition follows the optimization objective rather than an informal grouping.</p>
+<p>Cost or complexity: No numeric computation cost is stated here.</p>
+<p>Cross-reference: Section A.5.</p>
+<h4 id="parametric-memory">Parametric memory</h4>
+<p>What: Knowledge stored in model weights.</p>
+<p>Why: It names the model-side store in the RAG frame.</p>
+<p>Failure or qualifier: Capacity is fixed, there is no undo, and updates are expensive.</p>
+<p>Cost or complexity: Update expense is stated without a numeric amount here.</p>
+<p>Cross-reference: Section 1.1.</p>
+<h4 id="product-quantization">Product quantization</h4>
+<p>What: Split a vector into subvectors and quantize each against its own codebook.</p>
+<p>Why: The construction gives k^m representable vectors from km stored centroids.</p>
+<p>Failure or qualifier: The representation depends on separate subvector codebooks.</p>
+<p>Cost or complexity: Store km centroids to represent k^m combinations.</p>
+<p>Cross-reference: Section A.6.</p>
+<h4 id="prompt-injection-indirect">Prompt injection, indirect</h4>
+<p>What: An attack where instructions arrive through retrieved content rather than user input.</p>
+<p>Why: It identifies the instruction channel unique to retrieved content.</p>
+<p>Failure or qualifier: The source calls it RAG's native threat model.</p>
+<p>Cost or complexity: No attack rate or defense cost is stated here.</p>
+<p>Cross-reference: Section 36.4.</p>
+<h4 id="recallk">Recall@k</h4>
+<p>What: The fraction of relevant documents appearing in the top k.</p>
+<p>Why: It measures coverage at a chosen retrieval depth.</p>
+<p>Failure or qualifier: Index recall compares with exact search. Retrieval recall compares with human judgment. They are different numbers.</p>
+<p>Cost or complexity: The source gives no fixed k in this definition.</p>
+<p>Cross-reference: Chapter 32.</p>
+<h4 id="reranking">Reranking</h4>
+<p>What: A second scoring stage over the first stage's candidates.</p>
+<p>Why: It improves accuracy on a short list.</p>
+<p>Failure or qualifier: It does not replace first-stage candidate generation.</p>
+<p>Cost or complexity: It trades compute for accuracy. No numeric budget is stated here.</p>
+<p>Cross-reference: Chapter 22.</p>
+<h4 id="retrieval-gate-1">Retrieval gate</h4>
+<p>What: The function g(x) that decides whether to retrieve at all.</p>
+<p>Why: It controls decision one in the retrieval flow.</p>
+<p>Failure or qualifier: The definition covers whether to retrieve, while routing can also cover where.</p>
+<p>Cost or complexity: No threshold or gate cost is stated here.</p>
+<p>Cross-reference: Section 25.1.</p>
+<h4 id="rrf">RRF</h4>
+<p>What: Reciprocal rank fusion. It sums 1 / (k + r_l(d)) across lists.</p>
+<p>Why: It fuses rankings whose raw scores are not comparable.</p>
+<p>Failure or qualifier: The method operates on rank positions rather than shared score scales.</p>
+<p>Cost or complexity: The appendix states the sum but no list-count limit.</p>
+<p>Cross-reference: Section A.2.</p>
+<h4 id="self-rag">Self-RAG</h4>
+<p>What: Train a generator to emit reflection tokens that control retrieval and critique its output.</p>
+<p>Why: The generator learns when to retrieve and how to assess its response.</p>
+<p>Failure or qualifier: Control depends on emitted reflection tokens.</p>
+<p>Cost or complexity: No numeric training or serving cost is stated here.</p>
+<p>Cross-reference: Section 26.6.</p>
+<h4 id="semi-parametric">Semi-parametric</h4>
+<p>What: A system that combines parametric weights with a non-parametric datastore.</p>
+<p>Why: This combination frames every RAG design question in the source.</p>
+<p>Failure or qualifier: Neither store alone represents the full system.</p>
+<p>Cost or complexity: No numeric cost is stated here.</p>
+<p>Cross-reference: Section 1.1.</p>
+<h4 id="splade">SPLADE</h4>
+<p>What: A learned sparse retriever that predicts term importance across the vocabulary with a masked language model head.</p>
+<p>Why: It expands documents implicitly.</p>
+<p>Failure or qualifier: The prediction remains vocabulary-based and sparse.</p>
+<p>Cost or complexity: No numeric expansion or index cost is stated here.</p>
+<p>Cross-reference: Section 21.1.</p>
+<h4 id="tombstone">Tombstone</h4>
+<p>What: A deletion marker in an index that cannot be repaired cheaply.</p>
+<p>Why: It records a deletion inside the index.</p>
+<p>Failure or qualifier: Accumulating tombstones degrade recall and eventually force a rebuild.</p>
+<p>Cost or complexity: Repair is not cheap. No numeric rebuild threshold is stated here.</p>
+<p>Cross-reference: Section 17.1.</p>
+<h4 id="vocabulary-mismatch">Vocabulary mismatch</h4>
+<p>What: The gap between the words a user types and the words a document uses.</p>
+<p>Why: A relevant document can express the idea with different vocabulary.</p>
+<p>Failure or qualifier: Query expansion, document expansion, and dense retrieval attack the gap differently.</p>
+<p>Cost or complexity: No numeric mismatch rate or remedy cost is stated here.</p>
+<p>Cross-reference: Section 24.1.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest lists zero figures and zero counted source tables for this appendix. The unnumbered G.1 table contains 18 alias rows, all preserved in the Decoder table and Core mechanics.</p>
+<p>Source layout defect: The final two alias rows extend below the visible page boundary in the source Portable Document Format (PDF). The PDF content layer retains Late interaction and Prompt injection, so both clipped rows are preserved here. This does not change the manifest's numbered table count.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one station labeled "RAG vocabulary."</li>
+<li>Draw three rail lines entering it. Label them "information retrieval," "representation learning," and "systems."</li>
+<li>Draw one shared object with several name tags around it.</li>
+<li>Add a translation board labeled "alias rows plus caveats."</li>
+<li>Draw two boxes labeled "faithfulness" and "factuality." Put "context" under the first and "world" under the second.</li>
+<li>Draw two boxes labeled "index recall" and "retrieval relevance." Put "exact search" and "human judgment" beneath them.</li>
+<li>Draw k' candidates entering a reranker, then k items reaching a generator.</li>
+<li>Add a handbook arrow labeled "definition plus source pointer."</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>This glossary is a translation board for three literatures that named the same RAG objects differently. First, I map aliases but keep the caveats. A reranker is a role, while a cross-encoder is one way to perform it. Then I protect three distinctions. Faithfulness asks whether an answer follows the context, while factuality asks whether it is true. Index recall compares approximate with exact search, while relevance uses human judgment. Finally, k' feeds the reranker and k reaches the generator. Each glossary entry states this book's convention and points to the section with the full argument.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-are-all-terms-on-an-alias-row-perfect-synonyms">1. Are all terms on an alias row perfect synonyms?</h3>
+<p>No. The rows identify one broad idea, but the caveats preserve scope. DPR is one bi-encoder instance, a reranker is a role rather than a cross-encoder synonym, and semantic search can name the whole product pipeline.</p>
+<h3 id="2-can-an-answer-be-faithful-and-false">2. Can an answer be faithful and false?</h3>
+<p>Yes. Faithfulness asks whether the answer follows the retrieved context. If the retrieved document is wrong, an answer can follow it perfectly and still be non-factual about the world.</p>
+<h3 id="3-does-index-recall-of-099-prove-relevant-retrieval">3. Does index recall of 0.99 prove relevant retrieval?</h3>
+<p>No. Index recall compares approximate search with exact search under the same scorer. A bad scorer can retrieve the wrong documents very reliably, while retrieval relevance still fails against human judgment.</p>
+<h3 id="4-why-does-the-source-separate-k-from-k">4. Why does the source separate k' from k?</h3>
+<p>k' is the first-stage depth sent to the reranker. k is the count sent to the generator. They serve different objectives, so one shared depth hides a design decision.</p>
+<h3 id="5-when-should-you-reject-a-field-wide-average-definition">5. When should you reject a field-wide average definition?</h3>
+<p>Use the book's convention when the literature contests a term. State the local definition, name the competing meaning, and use the source pointer. Smoothing over faithfulness versus factuality or recall versus relevance destroys the distinction the interviewer is testing.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source item</th>
+<th>Number or formula</th>
+<th>Meaning and claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introduction obstacles</td>
+<td>2 obstacles, only 1 conceptual</td>
+<td>Aliasing is conceptual. Point-of-need definition is ordinary navigation</td>
+</tr>
+<tr>
+<td>Naming traditions</td>
+<td>3 literatures</td>
+<td>Information retrieval, representation learning, and systems developed separate vocabularies</td>
+</tr>
+<tr>
+<td>G.1 title</td>
+<td>4 names</td>
+<td>The title emphasizes several names for one idea. It does not claim every row has exactly four aliases</td>
+</tr>
+<tr>
+<td>G.1 alias inventory</td>
+<td>18 rows, final 2 clipped</td>
+<td>The PDF content layer retains the two rows that extend below the visible page boundary</td>
+</tr>
+<tr>
+<td>Explicit distinction tests</td>
+<td>3</td>
+<td>Faithfulness versus factuality, recall versus relevance, and k versus k'</td>
+</tr>
+<tr>
+<td>Retrieval depths</td>
+<td>k' to the reranker, k to the generator</td>
+<td>The two depths serve separate objectives</td>
+</tr>
+<tr>
+<td>Bad-scorer example</td>
+<td>Index recall 0.99</td>
+<td>High agreement with exact search does not establish human relevance</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>5 mechanisms</td>
+<td>The mechanisms fail differently. The appendix does not enumerate them here</td>
+</tr>
+<tr>
+<td>Agentic RAG</td>
+<td>Cost scales with rounds</td>
+<td>Tail behavior matters more than the mean. No fixed round count is stated</td>
+</tr>
+<tr>
+<td>ANN search</td>
+<td>Billion-scale retrieval</td>
+<td>Approximation enables this scale. No corpus size is fixed here</td>
+</tr>
+<tr>
+<td>CLIP</td>
+<td>3 biases</td>
+<td>The appendix says they are worth naming but does not enumerate them here</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td>1 vector per token</td>
+<td>Late interaction recovers accuracy at index-time cost</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>1 joint forward pass</td>
+<td>Query and document interact directly, but the model is unindexable</td>
+</tr>
+<tr>
+<td>Generative retrieval</td>
+<td>Constant-time</td>
+<td>The source also states a quality ceiling and unresolved incremental indexing</td>
+</tr>
+<tr>
+<td>High-bandwidth memory</td>
+<td>1 full read per generated token</td>
+<td>Decode remains bandwidth-bound</td>
+</tr>
+<tr>
+<td>Hybrid retrieval</td>
+<td>2 parallel retrieval paths</td>
+<td>Lexical and dense rankings are fused after retrieval</td>
+</tr>
+<tr>
+<td>Inverted file index</td>
+<td>n_probe nearest cells</td>
+<td>The appendix gives no fixed probe count</td>
+</tr>
+<tr>
+<td>Locality-sensitive hashing</td>
+<td>Sublinear in theory</td>
+<td>A graph index usually wins on memory in practice</td>
+</tr>
+<tr>
+<td>Product quantization</td>
+<td>k^m vectors from km stored centroids</td>
+<td>The formula states representational combinations, not a fixed codebook size</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>Top k</td>
+<td>Index and retrieval recall use different reference standards</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Stage 2 over stage 1 candidates</td>
+<td>More scoring compute buys accuracy only on the short candidate list</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>g(x), decision 1</td>
+<td>The function decides whether to retrieve at all</td>
+</tr>
+<tr>
+<td>Reciprocal rank fusion</td>
+<td>Sum 1 / (k + r_l(d))</td>
+<td>The sum combines rank positions across lists with incomparable scores</td>
+</tr>
+<tr>
+<td>Semi-parametric system</td>
+<td>2 stores</td>
+<td>Parametric weights and a non-parametric datastore form the complete system</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/A6_notation_quick_reference.html"><small>Previous</small>Appendix A6. Notation Quick Reference</a><a href="../index.html"><small>Book home</small>Return to the roadmap</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

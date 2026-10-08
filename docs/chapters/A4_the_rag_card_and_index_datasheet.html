@@ -1,0 +1,1484 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A4. The RAG Card and Index Datasheet | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A4_the_rag_card_and_index_datasheet.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html" aria-current="page">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A4. The RAG Card and Index Datasheet</h1><p class="chapter-meta">32 min estimated reading · Unit 54 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This appendix supplies two handoff templates for a Retrieval-Augmented Generation (RAG) system, with the RAG Card documenting scope, retrieval decisions, measured behavior, and known failures while the Index Datasheet documents artifact composition, representation, structure, footprint, performance, and lifecycle.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Keep the RAG Card and Index Datasheet separate because they change on different schedules and usually have different owners.</li>
+<li>Rewrite the card when a retrieval decision changes. Rewrite the datasheet when the index is rebuilt.</li>
+<li>Fill every field. An unfillable field is an audit finding, not harmless missing paperwork.</li>
+<li>The RAG Card records identity, the five decisions, measured behavior, and known failures.</li>
+<li>The Index Datasheet records composition, representation, structure, performance, and lifecycle.</li>
+<li>Report quantities and evidence, including baselines, ceilings, judgment details, concurrency, recall curves, ownership, and freshness.</li>
+<li>Read fields together. Reviewed ownership beside unreviewed automated ingest can reveal an injection surface that neither field exposes alone. Capacity planning must separate the index from payload. In the source example, 2.0 GB of text dominates a 138 MB index.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of a retrieval system handoff as transferring a ship to a new crew.</p>
+<p>The RAG Card is the bridge log. It states the vessel's mission, forbidden waters, captain, operating decisions, measured behavior, and known hazards.</p>
+<p>The Index Datasheet is the engine-room ledger. It records what physical cargo is aboard, how it is packed, how much space it consumes, how fast the machinery runs, and what happens during maintenance.</p>
+<p>The two books live on different clocks. Change the navigation policy and the bridge log changes. Rebuild the engine or repack the cargo and the engine-room ledger changes.</p>
+<p>They also have different keepers. The team that owns the user-facing system and on-call rotation may not own the underlying store, embedding, or rebuild job.</p>
+<p>A blank line is a red warning lamp. If nobody can state the closed-book baseline, the system's added value is unmeasured. If nobody can state the tombstone threshold, deletion risk is unmeasured.</p>
+<p>The most important warning can span books or rows. An authoritative store plus unreviewed automated ingest creates an injection surface. A small compressed index plus a large payload means text, not vectors, drives capacity.</p>
+<p>The handoff succeeds when a new crew can answer what the system does, what it costs, who owns each moving part, what evidence supports it, and which conditions make it fail.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term or field</th>
+<th>Decode</th>
+<th>Required evidence or decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>Generator augmented with retrieved evidence</td>
+<td>The card documents the full system rather than only the generator</td>
+</tr>
+<tr>
+<td>RAG Card</td>
+<td>One-page system record</td>
+<td>Scope, five decisions, measurements, and failures</td>
+</tr>
+<tr>
+<td>Index Datasheet</td>
+<td>Physical index record</td>
+<td>Contents, representation, cost, performance, and lifecycle</td>
+</tr>
+<tr>
+<td>Model card</td>
+<td>Preceding model documentation practice</td>
+<td>Records training context and inappropriate uses</td>
+</tr>
+<tr>
+<td>Datasheet for datasets</td>
+<td>Preceding dataset documentation practice</td>
+<td>Records provenance, composition, and intended use</td>
+</tr>
+<tr>
+<td>Datastore</td>
+<td>Store searched by retrieval</td>
+<td>Its contents and writers affect system behavior</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>Model that answers from retrieved context</td>
+<td>Receives the final presented evidence</td>
+</tr>
+<tr>
+<td>Last accurate date</td>
+<td>Date the card still described reality</td>
+<td>Makes staleness visible</td>
+</tr>
+<tr>
+<td>System name and version</td>
+<td>Identity of one deployed system state</td>
+<td>Binds measurements to a concrete release</td>
+</tr>
+<tr>
+<td>Intended use</td>
+<td>Question types the system is built to answer</td>
+<td>Positive operating boundary</td>
+</tr>
+<tr>
+<td>Out of scope</td>
+<td>Question types it answers badly</td>
+<td>Specific negative boundary</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Responsible team and on-call rotation</td>
+<td>Operational accountability</td>
+</tr>
+<tr>
+<td>When</td>
+<td>Retrieval gate decision</td>
+<td>Gate family, fire rate, and unnecessary-retrieval cost</td>
+</tr>
+<tr>
+<td>Where</td>
+<td>Datastore decision</td>
+<td>Every store, size, owner, and conflict rule</td>
+</tr>
+<tr>
+<td>What</td>
+<td>Query-transformation decision</td>
+<td>Transformation and triggering query subset</td>
+</tr>
+<tr>
+<td>How</td>
+<td>Retrieval method decision</td>
+<td>Scorer, index, <code>k_prime</code>, rerank depth, lexical channel</td>
+</tr>
+<tr>
+<td>Present</td>
+<td>Generator-context decision</td>
+<td>Final <code>k</code>, order, serialization, and prompt position</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>Rule that decides whether retrieval runs</td>
+<td>Requires family, fire rate, and cost when unnecessary</td>
+</tr>
+<tr>
+<td>Always-on retrieval</td>
+<td>Retrieval on every query</td>
+<td>Must report cost on queries that did not need it</td>
+</tr>
+<tr>
+<td>Query transformation</td>
+<td>Rewrite applied before retrieval</td>
+<td>Must name both the rewrite and triggering queries</td>
+</tr>
+<tr>
+<td>Identity transformation</td>
+<td>Leaving the query unchanged</td>
+<td>Worked fallback when no conversational rewrite runs</td>
+</tr>
+<tr>
+<td>Rerank depth</td>
+<td>Candidate count scored by the reranker</td>
+<td>Sits between initial retrieval and final context depth</td>
+</tr>
+<tr>
+<td>Lexical channel</td>
+<td>Exact-token retrieval path</td>
+<td>Worked card uses BM25 beside dense retrieval</td>
+</tr>
+<tr>
+<td>Dense channel</td>
+<td>Embedding-based retrieval path</td>
+<td>Worked card fuses it with BM25</td>
+</tr>
+<tr>
+<td>Cross-encoder reranker</td>
+<td>Pairwise query-document scorer</td>
+<td>Reduces the worked candidate set before presentation</td>
+</tr>
+<tr>
+<td>Context ordering</td>
+<td>Placement order of final evidence</td>
+<td>Worked card places strongest evidence first and last</td>
+</tr>
+<tr>
+<td>Serialization</td>
+<td>Format used for retrieved blocks</td>
+<td>Worked card uses JSON</td>
+</tr>
+<tr>
+<td>Prompt position</td>
+<td>Location of retrieved text relative to instructions</td>
+<td>Makes instruction and evidence layout explicit</td>
+</tr>
+<tr>
+<td><code>k_prime</code></td>
+<td>Initial retrieval depth</td>
+<td>Candidate depth before reranking</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Context depth after reranking</td>
+<td>Evidence count passed to the generator</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>Lexical scorer in the worked card</td>
+<td>Exact-token retrieval channel</td>
+</tr>
+<tr>
+<td>Reciprocal Rank Fusion (RRF)</td>
+<td>Rank-based list fusion</td>
+<td>Combines lexical and dense channels</td>
+</tr>
+<tr>
+<td>JavaScript Object Notation (JSON)</td>
+<td>Worked serialization format</td>
+<td>Places retrieved blocks after instructions</td>
+</tr>
+<tr>
+<td>Recall at <code>k_prime</code></td>
+<td>Relevant evidence found by retrieval depth</td>
+<td>Requires a described judgment set</td>
+</tr>
+<tr>
+<td>nDCG at <code>k</code></td>
+<td>Normalized Discounted Cumulative Gain at final depth</td>
+<td>Measures ranked quality at generator depth</td>
+</tr>
+<tr>
+<td>Judgment-set size</td>
+<td>Count of evaluated queries or items</td>
+<td>Defines evidence volume</td>
+</tr>
+<tr>
+<td>Judge</td>
+<td>Human or other judging source</td>
+<td>Defines who assigned relevance</td>
+</tr>
+<tr>
+<td>Relevance scale</td>
+<td>Labels used for relevance</td>
+<td>Makes metric interpretation possible</td>
+</tr>
+<tr>
+<td>Agreement</td>
+<td>Inter-judge consistency</td>
+<td>Shows reliability of relevance labels</td>
+</tr>
+<tr>
+<td>Kappa (<code>κ</code>)</td>
+<td>Agreement statistic shown in the worked card</td>
+<td>Reports the worked three-way human-judgment consistency</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether answer claims follow provided evidence</td>
+<td>Report separately at claim level</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether answer claims are factually correct</td>
+<td>Report separately from faithfulness</td>
+</tr>
+<tr>
+<td>Claim level</td>
+<td>Evaluating individual answer claims</td>
+<td>Prevents one answer-level score from hiding unsupported claims</td>
+</tr>
+<tr>
+<td>Closed-book baseline</td>
+<td>Accuracy with retrieval disabled</td>
+<td>Measures the generator-only path</td>
+</tr>
+<tr>
+<td>Gold-context ceiling</td>
+<td>Accuracy under perfect retrieval</td>
+<td>Upper-bounds retrieval improvements</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Refusal behavior</td>
+<td>Refusal rate plus accuracy when answering</td>
+</tr>
+<tr>
+<td>Refusal rate</td>
+<td>Fraction of requests not answered</td>
+<td>Must be paired with accuracy on answered requests</td>
+</tr>
+<tr>
+<td>Accuracy conditioned on answering</td>
+<td>Accuracy after excluding refusals</td>
+<td>Separates safer refusal behavior from answer quality</td>
+</tr>
+<tr>
+<td>p50</td>
+<td>Fiftieth percentile</td>
+<td>Reports median index latency</td>
+</tr>
+<tr>
+<td>p95</td>
+<td>Ninety-fifth percentile</td>
+<td>Tail metric for total and first-token latency</td>
+</tr>
+<tr>
+<td>p99</td>
+<td>Ninety-ninth percentile</td>
+<td>Tail metric for freshness lag</td>
+</tr>
+<tr>
+<td>TTFT</td>
+<td>Time to first token</td>
+<td>Separates prompt and prefill delay from total time</td>
+</tr>
+<tr>
+<td>Stage cost</td>
+<td>Cost per query by pipeline stage</td>
+<td>Prevents one blended cost number</td>
+</tr>
+<tr>
+<td>Freshness lag</td>
+<td>Source change to retrievability</td>
+<td>Report median and p99 where requested</td>
+</tr>
+<tr>
+<td>Attribution quality</td>
+<td>How citations attach and whether claims are attributable</td>
+<td>Method plus measured attributable rate</td>
+</tr>
+<tr>
+<td>Inline citation</td>
+<td>Citation generated with the answer</td>
+<td>Distinguished from a citation attached afterwards</td>
+</tr>
+<tr>
+<td>Attributable rate</td>
+<td>Fraction of answers or claims supported through attribution</td>
+<td>Requires a reported evaluation sample</td>
+</tr>
+<tr>
+<td>Adversarial surface</td>
+<td>Write access and poisoning impact</td>
+<td>Writers plus one-chunk blast radius</td>
+</tr>
+<tr>
+<td>Write access</td>
+<td>People or processes allowed to alter a store</td>
+<td>Exposes reviewed and automated ingestion paths</td>
+</tr>
+<tr>
+<td>Automated ingest</td>
+<td>Programmatic datastore write path</td>
+<td>Becomes an injection surface when unreviewed</td>
+</tr>
+<tr>
+<td>Authoritative store</td>
+<td>Store the generator is expected to trust</td>
+<td>Makes an unreviewed writer especially risky</td>
+</tr>
+<tr>
+<td>Injection surface</td>
+<td>Path by which hostile content can enter retrieval</td>
+<td>Emerges from write access and generator trust together</td>
+</tr>
+<tr>
+<td>Poisoned chunk</td>
+<td>One adversarial retrieval unit</td>
+<td>Supplies the blast-radius measurement unit</td>
+</tr>
+<tr>
+<td>Corpus snapshot</td>
+<td>Source systems, counts, and date</td>
+<td>Fixes index composition in time</td>
+</tr>
+<tr>
+<td>Document count</td>
+<td>Number of source documents</td>
+<td>Distinguishes source items from derived chunks</td>
+</tr>
+<tr>
+<td>Chunk count</td>
+<td>Number of retrieval units</td>
+<td>Drives index and payload scale</td>
+</tr>
+<tr>
+<td>Snapshot date</td>
+<td>Date represented by the corpus</td>
+<td>Binds composition to a point in time</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>Scheme, target, overlap, and selection evidence</td>
+<td>Shows whether the policy was chosen or inherited</td>
+</tr>
+<tr>
+<td>Target chunk size</td>
+<td>Intended tokens per chunk</td>
+<td>Defines the worked chunking granularity</td>
+</tr>
+<tr>
+<td>Chunk overlap</td>
+<td>Tokens repeated across neighboring chunks</td>
+<td>Must be recorded with target size</td>
+</tr>
+<tr>
+<td>Chunk prefix</td>
+<td>Heading retained with chunk text</td>
+<td>Worked example preserves document structure</td>
+</tr>
+<tr>
+<td>Dropped content</td>
+<td>Excluded modalities, boilerplate, and oversize documents</td>
+<td>Makes silent exclusions visible</td>
+</tr>
+<tr>
+<td>Silent exclusion</td>
+<td>Content removed without an explicit record</td>
+<td>Can mimic retrieval failure even when the source held the answer</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Filterable fields</td>
+<td>Cardinality and fill rate for each field</td>
+</tr>
+<tr>
+<td>Filterable field</td>
+<td>Metadata usable in retrieval filtering</td>
+<td>Requires cardinality and fill rate</td>
+</tr>
+<tr>
+<td>Cardinality</td>
+<td>Count of distinct field values</td>
+<td>Describes a filter's selectivity</td>
+</tr>
+<tr>
+<td>Embedding model</td>
+<td>Name, version, and dimension</td>
+<td>Pins a representation that cannot migrate partially</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Embedding dimensionality</td>
+<td>Sets the worked vector width</td>
+</tr>
+<tr>
+<td>L2 normalization</td>
+<td>Unit-length vector normalization</td>
+<td>Must match the selected distance metric</td>
+</tr>
+<tr>
+<td>Distance metric</td>
+<td>Rule used to compare vectors</td>
+<td>Must agree with normalization</td>
+</tr>
+<tr>
+<td>Cosine</td>
+<td>Worked vector similarity measure</td>
+<td>Used with L2-normalized embeddings</td>
+</tr>
+<tr>
+<td>Partial migration</td>
+<td>Mixing vectors from old and new embedding models</td>
+<td>Invalid because the representations are incompatible</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>Stored numeric precision and quantization</td>
+<td>Requires measured recall cost</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>Compressed numeric representation</td>
+<td>Must include its measured recall cost</td>
+</tr>
+<tr>
+<td>HNSW</td>
+<td>Hierarchical Navigable Small World index</td>
+<td>Graph-family option with link memory</td>
+</tr>
+<tr>
+<td>IVF</td>
+<td>Inverted File index</td>
+<td>Coarse-partitioned index family</td>
+</tr>
+<tr>
+<td>IVF-PQ</td>
+<td>Inverted File with Product Quantization</td>
+<td>Compressed index used in the example</td>
+</tr>
+<tr>
+<td>Disk-resident index</td>
+<td>Index stored beyond memory</td>
+<td>Must include build parameters</td>
+</tr>
+<tr>
+<td>Build parameters</td>
+<td>Settings used to construct the chosen index</td>
+<td>Needed to reproduce the artifact</td>
+</tr>
+<tr>
+<td>Per-vector bytes</td>
+<td>Vector, identifier, and link terms</td>
+<td>State the incompressible link share</td>
+</tr>
+<tr>
+<td>PQ code bytes</td>
+<td>Compressed vector representation</td>
+<td>Worked example assigns 96 bytes per vector</td>
+</tr>
+<tr>
+<td>Vector compression</td>
+<td>Raw vector bytes divided by compressed code bytes</td>
+<td>Must not be confused with full per-vector or fleet compression</td>
+</tr>
+<tr>
+<td>Identifier bytes</td>
+<td>Posting identifier storage</td>
+<td>Worked example assigns four bytes per vector</td>
+</tr>
+<tr>
+<td>Link bytes</td>
+<td>Graph-neighbor storage</td>
+<td>Zero for the worked IVF-PQ index</td>
+</tr>
+<tr>
+<td>Link share</td>
+<td>Fraction of per-vector memory spent on graph edges</td>
+<td>Does not shrink with vector quantization</td>
+</tr>
+<tr>
+<td><code>nlist</code></td>
+<td>IVF coarse-centroid count</td>
+<td>Sets the worked partition count</td>
+</tr>
+<tr>
+<td><code>m</code> in IVF-PQ</td>
+<td>Product Quantization subvector count</td>
+<td>Sets the worked code length</td>
+</tr>
+<tr>
+<td><code>k</code> in IVF-PQ</td>
+<td>Centroids per Product Quantization subspace</td>
+<td>Distinct from retrieval depth <code>k</code></td>
+</tr>
+<tr>
+<td>Centroids</td>
+<td>Coarse or quantization representatives</td>
+<td>Contribute memory outside per-vector codes</td>
+</tr>
+<tr>
+<td>Codebook</td>
+<td>Stored Product Quantization centroids</td>
+<td>Adds a separate memory term</td>
+</tr>
+<tr>
+<td><code>M_index</code></td>
+<td>Standalone index footprint</td>
+<td>Excludes replicas, rebuild, and payload</td>
+</tr>
+<tr>
+<td><code>M_fleet</code></td>
+<td>Replicated index with rebuild headroom</td>
+<td>Report before payload as its own quantity</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Replication factor</td>
+<td>Multiplies the index footprint</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Rebuild headroom fraction</td>
+<td>Reserves extra capacity during replacement</td>
+</tr>
+<tr>
+<td>Rebuild headroom</td>
+<td>Capacity for old and new artifact overlap</td>
+<td>Separates in-place and separate-box strategies</td>
+</tr>
+<tr>
+<td>Payload store</td>
+<td>Retrieved text and related content</td>
+<td>Keep separate from vector index footprint</td>
+</tr>
+<tr>
+<td>Shards and replicas</td>
+<td>Partition and redundancy counts</td>
+<td>Include nonrandom partition key</td>
+</tr>
+<tr>
+<td>Partitioning key</td>
+<td>Rule that assigns items to shards</td>
+<td>Must be stated when sharding is not random</td>
+</tr>
+<tr>
+<td>Exact-search recall</td>
+<td>Approximate recall against exact search</td>
+<td>Different from semantic relevance</td>
+</tr>
+<tr>
+<td>Exact search</td>
+<td>Exhaustive nearest-neighbor reference</td>
+<td>Supplies the comparison target for approximate recall</td>
+</tr>
+<tr>
+<td>Held-out sample</td>
+<td>Evaluation items excluded from index tuning</td>
+<td>Supplies the exact-search recall test set</td>
+</tr>
+<tr>
+<td><code>ef</code></td>
+<td>HNSW search-time parameter</td>
+<td>Needs a recall-latency curve</td>
+</tr>
+<tr>
+<td><code>nprobe</code></td>
+<td>IVF search-time probe count</td>
+<td>Needs at least three measured values</td>
+</tr>
+<tr>
+<td>Recall-latency curve</td>
+<td>Recall and latency across search settings</td>
+<td>Requires at least three values</td>
+</tr>
+<tr>
+<td>Production concurrency</td>
+<td>Simultaneous serving load</td>
+<td>Required context for p50 and p95 latency</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Wall-clock time, cost, and location</td>
+<td>State in-place versus separate box</td>
+</tr>
+<tr>
+<td>In-place build</td>
+<td>Rebuild on the serving environment</td>
+<td>Must state what queries return during it</td>
+</tr>
+<tr>
+<td>Separate-box build</td>
+<td>Build away from the serving index</td>
+<td>Worked example hot-swaps the artifact afterwards</td>
+</tr>
+<tr>
+<td>Hot swap</td>
+<td>Replace the served artifact after an external build</td>
+<td>Reduces in-place overlap requirements</td>
+</tr>
+<tr>
+<td>Churn</td>
+<td>Insert, update, and delete rates</td>
+<td>Describes index change pressure</td>
+</tr>
+<tr>
+<td>Upsert</td>
+<td>Insert or update operation</td>
+<td>Worked lifecycle reports a daily rate</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>Logical deletion marker</td>
+<td>Track policy, current fraction, and failure threshold</td>
+</tr>
+<tr>
+<td>Tombstone fraction</td>
+<td>Share of entries marked deleted</td>
+<td>Drives the measured rebuild trigger</td>
+</tr>
+<tr>
+<td>Rebuild trigger</td>
+<td>Condition that starts a rebuild</td>
+<td>Should precede the observed recall-fall region</td>
+</tr>
+<tr>
+<td>Rebuild cadence</td>
+<td>Scheduled replacement frequency</td>
+<td>Part of the lifecycle record</td>
+</tr>
+<tr>
+<td>Rebuild</td>
+<td>Artifact replacement process</td>
+<td>Trigger, cadence, duration, and query behavior</td>
+</tr>
+<tr>
+<td>Fill rate</td>
+<td>Fraction of records with a metadata field</td>
+<td>Exposes unreliable filters</td>
+</tr>
+<tr>
+<td>Conflict rule</td>
+<td>Which store wins disagreement</td>
+<td>Prevents undefined multi-store behavior</td>
+</tr>
+<tr>
+<td>Fire rate</td>
+<td>Fraction of queries that trigger retrieval</td>
+<td>Makes gate behavior measurable</td>
+</tr>
+<tr>
+<td>Blast radius</td>
+<td>Impact of one poisoned chunk</td>
+<td>Quantifies adversarial exposure</td>
+</tr>
+<tr>
+<td>USD</td>
+<td>United States dollar amount</td>
+<td>States worked query and build costs without a currency symbol</td>
+</tr>
+<tr>
+<td><code>M</code> and <code>k</code> count suffixes</td>
+<td>Million and thousand in corpus or churn counts</td>
+<td>Distinct from model names and retrieval or quantization symbols</td>
+</tr>
+<tr>
+<td>MB, GB, ms, minutes, and hours</td>
+<td>Megabytes, gigabytes, milliseconds, minutes, and hours</td>
+<td>Keep memory, latency, build, and freshness units distinct</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="introduction">Introduction</h3>
+<p>Retrieval systems pass between teams more often than teams rewrite them. A new owner asks predictable questions, so the two templates answer those questions in advance.</p>
+<p>The RAG Card documents the system. The Index Datasheet documents the artifact underneath it. Keep them separate because a card changes when a decision changes, a datasheet changes when the index is rebuilt, and different people usually own them.</p>
+<p>The source carries forward the discipline of model cards from Mitchell et al. (2019) and datasheets for datasets from Gebru et al. (2021). Both records use quantities derived in the book rather than vague prose.</p>
+<p>The template itself is not the value. The value appears when a field cannot be filled. An unfillable field creates the fastest available retrieval-system audit and an interview question in either direction.</p>
+<h3 id="d1-the-rag-card">D.1 The RAG Card</h3>
+<h4 id="purpose-ownership-and-use">Purpose, ownership, and use</h4>
+<p>The RAG Card answers what the system does and does not do. It exposes behavior that is otherwise hidden behind the generator, including the datastore and five retrieval decisions.</p>
+<p>Rewrite it when a decision changes. The system owner and on-call rotation belong on the card.</p>
+<p>Fill every field. A field that cannot be filled is the finding.</p>
+<h4 id="template-1-identity-and-scope">Template 1: Identity and scope</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System name and version</td>
+<td>Give the system name and version. Include the date the card was last accurate.</td>
+</tr>
+<tr>
+<td>Intended use</td>
+<td>Name the question types this system is built to answer.</td>
+</tr>
+<tr>
+<td>Out of scope</td>
+<td>Name question types it will answer badly. Be specific. <code>General knowledge</code> is not an answer.</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Name the team and on-call rotation.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="template-2-the-five-decisions">Template 2: The five decisions</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>When</td>
+<td>State the retrieval gate, gate family, and measured fire rate. If always-on, say so and give the measured cost on queries that did not need retrieval. Source section 25.1.</td>
+</tr>
+<tr>
+<td>Where</td>
+<td>List every store, its size, its owner, and the conflict-resolution rule between stores. Source section 25.3.</td>
+</tr>
+<tr>
+<td>What</td>
+<td>State the query transformation and the queries on which it is applied. Source chapter 24.</td>
+</tr>
+<tr>
+<td>How</td>
+<td>State the scorer, index family, retrieval depth <code>k_prime</code>, rerank depth, and whether a lexical channel exists.</td>
+</tr>
+<tr>
+<td>Present</td>
+<td>State final <code>k</code>, generator ordering rule, serialization format, and retrieved text position relative to instructions. Source chapter 30.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="template-3-measured-behavior">Template 3: Measured behavior</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval</td>
+<td>Report Recall at <code>k_prime</code> and nDCG at <code>k</code>. Describe judgment-set size, judge, relevance scale, and agreement. Source chapter 32.</td>
+</tr>
+<tr>
+<td>Generation</td>
+<td>Report faithfulness and factuality separately at claim level. Source chapter 33.</td>
+</tr>
+<tr>
+<td>Closed-book baseline</td>
+<td>Report end-to-end accuracy with retrieval disabled. Without it, system value is unmeasured.</td>
+</tr>
+<tr>
+<td>Gold-context ceiling</td>
+<td>Report accuracy under perfect retrieval. This bounds every proposed retrieval improvement.</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Report refusal rate and accuracy conditioned on answering. Source chapter 11.</td>
+</tr>
+<tr>
+<td>Latency and cost</td>
+<td>Report p95 total latency, p95 TTFT, and cost per query broken out by stage. Source section A.7.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="template-4-known-failure-modes">Template 4: Known failure modes</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Query types that fail</td>
+<td>Name each failing query type and give an example.</td>
+</tr>
+<tr>
+<td>Freshness lag</td>
+<td>Report time from a document change until the change is retrievable.</td>
+</tr>
+<tr>
+<td>Attribution quality</td>
+<td>State whether citations are generated with the answer or attached later. Report measured attributable rate. Source section 31.3.</td>
+</tr>
+<tr>
+<td>Adversarial surface</td>
+<td>State who can write into the datastore and the measured blast radius of one poisoned chunk. Source chapter 36.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="filled-rag-card-example-abbreviated">Filled RAG Card example, abbreviated</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System</td>
+<td>Support Assistant retrieval, v4.2, accurate as of 2026-06-01</td>
+</tr>
+<tr>
+<td>Intended use</td>
+<td>Product how-to and troubleshooting from published docs</td>
+</tr>
+<tr>
+<td>Out of scope</td>
+<td>Pricing, contractual terms, and anything account-specific</td>
+</tr>
+<tr>
+<td>When</td>
+<td>Classifier gate fires on 68 percent of traffic. Closed-book path abstains rather than guessing.</td>
+</tr>
+<tr>
+<td>Where</td>
+<td>Docs contain 1.2M chunks. Tickets contain 400k resolved-only chunks. Docs win on conflict.</td>
+</tr>
+<tr>
+<td>What</td>
+<td>Conversational rewrite on turns greater than one. Identity otherwise.</td>
+</tr>
+<tr>
+<td>How</td>
+<td>BM25 plus dense, RRF <code>k=60</code>, <code>k_prime=100</code>, cross-encoder rerank to 20</td>
+</tr>
+<tr>
+<td>Present</td>
+<td><code>k=5</code>, most-relevant first and last, JSON blocks after the instruction</td>
+</tr>
+<tr>
+<td>Recall at 100</td>
+<td>0.91 on 2,000 queries, three-way human judged, <code>κ=0.71</code></td>
+</tr>
+<tr>
+<td>nDCG at 5</td>
+<td>0.68</td>
+</tr>
+<tr>
+<td>Closed-book</td>
+<td>0.42 end-to-end</td>
+</tr>
+<tr>
+<td>Gold-context</td>
+<td>0.88 end-to-end</td>
+</tr>
+<tr>
+<td>Deployed</td>
+<td>0.79 end-to-end. Abstains on 9 percent.</td>
+</tr>
+<tr>
+<td>p95 latency</td>
+<td>1.9 seconds total, 640 ms TTFT, USD 0.0041 per query</td>
+</tr>
+<tr>
+<td>Freshness lag</td>
+<td>45 minute median, 4 hour p99</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>Generated inline. 81 percent attributable on a 200-answer sample.</td>
+</tr>
+<tr>
+<td>Write access</td>
+<td>Docs team is reviewed. Ticket ingest is automated and unreviewed.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="cross-field-audit">Cross-field audit</h4>
+<p>Read attribution and write access together. The worked system treats retrieved stores as authoritative, yet ticket ingestion is automated and unreviewed. That combination is the injection surface. The template makes it visible by forcing evidence and ownership onto one page.</p>
+<h3 id="d2-the-index-datasheet">D.2 The Index Datasheet</h3>
+<h4 id="purpose-ownership-and-use-1">Purpose, ownership, and use</h4>
+<p>The Index Datasheet adapts dataset documentation of provenance, composition, and intended use to a physical artifact with a memory footprint, rebuild cost, recall curve, and pinned embedding representation. It lets downstream users judge fitness instead of guessing.</p>
+<p>Rewrite it when the index is rebuilt. Its owner may differ from the system and on-call owner named on the RAG Card.</p>
+<p>The datasheet exists because dashboard summaries do not preserve every assumption that determines migration cost.</p>
+<h4 id="template-1-composition">Template 1: Composition</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Corpus</td>
+<td>List source systems, document count, chunk count, and snapshot date.</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>State scheme, target size, overlap, and evidence that the scheme was chosen rather than inherited. Source chapter 13.</td>
+</tr>
+<tr>
+<td>What was dropped</td>
+<td>List tables, images, boilerplate, and documents over a size limit. Silent exclusions are the most common cause when someone says the answer is definitely in the docs.</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>List every filterable field, its cardinality, and its fill rate. Source section 17.4.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Composition fixes what the artifact contains at one point in time. Counts without a snapshot date cannot establish freshness. A chunking scheme without selection evidence can be inherited debt rather than a tested choice.</p>
+<p>Dropped content is an explicit negative inventory. It separates retrieval failure from ingestion exclusion.</p>
+<h4 id="template-2-representation">Template 2: Representation</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedding model</td>
+<td>Give name, version, and dimensionality. Pin the model because a change invalidates every vector and allows no partial migration.</td>
+</tr>
+<tr>
+<td>Normalization</td>
+<td>State whether vectors are L2-normalized and name the distance metric that assumes it.</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>State stored precision and quantization. Include the measured recall cost. Source chapter 16.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Representation fields travel together. Model, dimension, normalization, metric, and precision define vector compatibility. A migration cannot mix old and new embedding vectors as a partial transition.</p>
+<p>Quantization is incomplete without its measured recall cost.</p>
+<h4 id="template-3-structure-and-footprint">Template 3: Structure and footprint</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Index family</td>
+<td>Name HNSW, IVF, IVF-PQ, disk-resident, or another family. Include build parameters.</td>
+</tr>
+<tr>
+<td>Per-vector bytes</td>
+<td>Break bytes into vector, identifier, and link terms. State link share because it is incompressible. Source section A.8.</td>
+</tr>
+<tr>
+<td>Footprint</td>
+<td>Report <code>M_index</code>, then <code>M_fleet</code> with replication and rebuild headroom, then payload as a separate line.</td>
+</tr>
+<tr>
+<td>Shards and replicas</td>
+<td>Give counts and the partitioning key when partitioning is not random. Source section 17.2.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Per-vector compression does not equal fleet compression. Identifier and graph-link terms remain after the vector shrinks. Replication and rebuild overlap multiply the artifact before payload is added.</p>
+<p>The payload must remain a separate line so text cannot disappear inside an index-only total.</p>
+<h4 id="template-4-performance">Template 4: Performance</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recall</td>
+<td>Report Recall at <code>k</code> against exact search on a held-out sample at the production search parameter. State that this differs from relevance.</td>
+</tr>
+<tr>
+<td>Search parameters</td>
+<td>Give current <code>ef</code> or <code>nprobe</code> and a recall-latency curve across at least three values.</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Report p50 and p95 at production concurrency, not one query in isolation.</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>Report wall-clock build time, cost, and whether the build is in place or on a separate box.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Approximate-search recall asks whether the index matches exact search. It is not the human relevance measurement on the RAG Card.</p>
+<p>One search parameter cannot show a trade-off curve. One single-query latency cannot represent production concurrency.</p>
+<h4 id="template-5-lifecycle">Template 5: Lifecycle</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Prompt to fill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Churn</td>
+<td>Report insert, update, and delete rates.</td>
+</tr>
+<tr>
+<td>Deletion</td>
+<td>State tombstone policy, current tombstone fraction, and the measured fraction where recall begins to fall. Source section 17.1.</td>
+</tr>
+<tr>
+<td>Rebuild</td>
+<td>State trigger, cadence, duration, and what queries return during the rebuild.</td>
+</tr>
+<tr>
+<td>Freshness</td>
+<td>Report median and p99 lag from source change to retrievability.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Lifecycle fields define what happens after the build completes. Delete rate without tombstone policy cannot predict degradation. A rebuild duration without query behavior leaves availability unspecified.</p>
+<p>Freshness reports the full source-to-index path rather than the age of a source document alone.</p>
+<h4 id="filled-index-datasheet-example-abbreviated">Filled Index Datasheet example, abbreviated</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Corpus</td>
+<td>Product docs, snapshot 2026-05-28. 180k documents become 1.24M chunks.</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>Recursive, 512 tokens, 64 overlap. Headings retained as chunk prefix.</td>
+</tr>
+<tr>
+<td>Dropped</td>
+<td>Images, code blocks over 200 lines, and 3.1 percent of documents over the size cap</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>e5-base-v2, <code>d=768</code>, L2-normalized, cosine</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>IVF-PQ, <code>nlist=4096</code>, <code>m=96</code>, <code>k=256</code></td>
+</tr>
+<tr>
+<td>Bytes per vector</td>
+<td>96 code + 4 id + 0 link = 100</td>
+</tr>
+<tr>
+<td><code>M_index</code></td>
+<td>124 MB + 12.6 MB centroids + 0.8 MB codebook = 138 MB</td>
+</tr>
+<tr>
+<td><code>M_fleet</code></td>
+<td><code>R=2</code>, <code>h=0.2</code>, 331 MB. Payload store is 2.0 GB.</td>
+</tr>
+<tr>
+<td>Shards</td>
+<td>1 because the footprint fits one node with headroom</td>
+</tr>
+<tr>
+<td>Recall at 10</td>
+<td>0.94 versus exact at <code>nprobe=32</code></td>
+</tr>
+<tr>
+<td>Recall curve</td>
+<td>0.87 at 8, 0.94 at 32, 0.97 at 128 probes</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>p50 4 ms, p95 11 ms at 40 concurrent</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>38 minutes, USD 14, on a separate box then hot-swapped</td>
+</tr>
+<tr>
+<td>Churn</td>
+<td>About 2k upserts per day and about 200 deletes per day</td>
+</tr>
+<tr>
+<td>Tombstones</td>
+<td>1.8 percent now. Recall measured flat to 6 percent. Rebuild triggers at 5 percent.</td>
+</tr>
+<tr>
+<td>Freshness</td>
+<td>45 minute median, 4 hour p99</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="cross-field-capacity-audit">Cross-field capacity audit</h4>
+<p>Read <code>M_index</code> and payload together. The worked index is 138 MB while payload is 2.0 GB. After 32 times vector compression, text dominates by more than an order of magnitude. A capacity plan that reports only the compressed index omits the dominant term.</p>
+<p>The source reports 32 times vector compression, but the abbreviated example omits the Precision field required by its own blank template. This appendix alone therefore does not state the raw bytes needed to reconstruct that ratio. The 100-byte per-vector row also includes a four-byte identifier, so it is not the same quantity as the 96-byte vector code.</p>
+<p>The displayed index components sum to 137.4 MB from rounded subterms, while the source reports 138 MB. Using the reported total gives <code>2 x 1.2 x 138 = 331.2 MB</code>. This matches the reported 331 MB after rounding.</p>
+<p>The tombstone rows also encode a condition. Recall stayed flat through 6 percent in measurement, while the rebuild trigger is 5 percent. The trigger acts before the observed fall region.</p>
+<h4 id="handoff-audit-sequence">Handoff audit sequence</h4>
+<ol type="1">
+<li>Check the card's last-accurate date and the datasheet's snapshot date.</li>
+<li>Match every card store to a datasheet corpus or to an explicitly separate artifact.</li>
+<li>Match the card's scorer and index family to the datasheet's pinned representation and build parameters.</li>
+<li>Match retrieval depth, rerank depth, and final context depth to the metrics reported at those depths.</li>
+<li>Keep human relevance Recall separate from approximate-index Recall against exact search.</li>
+<li>Compare end-to-end p95 and TTFT with index-only p50 and p95 at production concurrency.</li>
+<li>Compare card freshness with datasheet freshness to verify one source-to-retrieval path.</li>
+<li>Read store ownership, write access, review status, and poisoned-chunk blast radius together.</li>
+<li>Read vector compression, link share, fleet memory, and payload on separate lines.</li>
+<li>Assign every missing quantity to an owner rather than leaving the field silently blank.</li>
+</ol>
+<h4 id="cross-record-consistency-matrix">Cross-record consistency matrix</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>RAG Card field</th>
+<th>Index Datasheet field</th>
+<th>Consistency question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>System version and last-accurate date</td>
+<td>Snapshot date</td>
+<td>Do the documents describe the same operating period?</td>
+</tr>
+<tr>
+<td>Intended use</td>
+<td>Corpus and dropped content</td>
+<td>Does the index contain the modalities needed by the intended questions?</td>
+</tr>
+<tr>
+<td>Out of scope</td>
+<td>What was dropped</td>
+<td>Are exclusions reflected in the negative system boundary?</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Shards, replicas, build, and rebuild</td>
+<td>Is artifact operation assigned as clearly as system on-call?</td>
+</tr>
+<tr>
+<td>When</td>
+<td>Latency and build cost</td>
+<td>Is gate behavior justified by the downstream cost it avoids?</td>
+</tr>
+<tr>
+<td>Where</td>
+<td>Corpus and metadata</td>
+<td>Does every routed store have composition and filter evidence?</td>
+</tr>
+<tr>
+<td>What</td>
+<td>Chunking and representation</td>
+<td>Does transformation match the artifact being searched?</td>
+</tr>
+<tr>
+<td>How</td>
+<td>Index family and search parameters</td>
+<td>Do serving settings match the documented index?</td>
+</tr>
+<tr>
+<td>Present</td>
+<td>Recall and recall curve</td>
+<td>Do final evidence depth and retrieval settings support the claimed behavior?</td>
+</tr>
+<tr>
+<td>Retrieval metrics</td>
+<td>Exact-search Recall</td>
+<td>Are relevance and approximation quality kept separate?</td>
+</tr>
+<tr>
+<td>Latency and cost</td>
+<td>Latency and build</td>
+<td>Can stage numbers reconcile with the end-to-end number?</td>
+</tr>
+<tr>
+<td>Freshness lag</td>
+<td>Freshness, churn, and rebuild</td>
+<td>Can the lifecycle explain the observed lag?</td>
+</tr>
+<tr>
+<td>Attribution quality</td>
+<td>Dropped content and payload</td>
+<td>Is cited evidence present in the stored payload?</td>
+</tr>
+<tr>
+<td>Adversarial surface</td>
+<td>Corpus writers and lifecycle</td>
+<td>Are automated write paths measured and bounded?</td>
+</tr>
+</tbody>
+</table></div>
+<p>These checks do not merge the records. They use one record to test whether the other is internally plausible.</p>
+<p>The strongest handoff evidence is reconciled evidence. A system-level number should point to an artifact-level condition, while an artifact-level change should identify which card decision or measurement it can invalidate.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>Manifest accounting is 0 numbered figures and 0 numbered tables. The source contains two unnumbered blank templates and two unnumbered abbreviated filled examples. All four are recreated as Markdown tables under Core mechanics. No figure number, table number, or source caption is invented.</p>
+<h3 id="unnumbered-template-accounting">Unnumbered template accounting</h3>
+<ul>
+<li>Blank RAG Card: four category tables and 19 prompts.</li>
+<li>Filled RAG Card: one abbreviated table with 17 rows.</li>
+<li>Blank Index Datasheet: five category tables and 19 prompts.</li>
+<li>Filled Index Datasheet: one abbreviated table with 16 rows.</li>
+</ul>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw two adjacent boxes labeled RAG Card and Index Datasheet.</li>
+<li>Write decision change above the card and index rebuild above the datasheet.</li>
+<li>Divide the card into identity, five decisions, measured behavior, and failures.</li>
+<li>Put When, Where, What, How, and Present down the card's center.</li>
+<li>Add baseline, ceiling, abstention, latency, freshness, attribution, and write access.</li>
+<li>Divide the datasheet into composition, representation, structure, performance, and lifecycle.</li>
+<li>Add model pinning, vector-id-link bytes, exact-search recall, concurrency, and tombstones.</li>
+<li>Draw separate index and payload boxes, then circle the larger payload in the example.</li>
+<li>Connect unreviewed ingest to the adversarial surface.</li>
+<li>Mark every blank field as an audit finding with an owner and evidence gap.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Draw two handoff records with different clocks. The RAG Card changes when a retrieval decision changes. It records scope, owner, When, Where, What, How, Present, measured behavior, and failures. The Index Datasheet changes when the artifact is rebuilt. It records corpus, chunking, representation, vector and link bytes, recall curves, concurrency, build, churn, deletion, rebuild, and freshness. Then connect related fields. Unreviewed automated ingest plus authoritative retrieval exposes injection risk. A 138 MB index plus a 2.0 GB payload exposes the true capacity driver. Any blank field is an audit finding that needs evidence and ownership.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-are-there-two-templates-instead-of-one">1. Why are there two templates instead of one?</h3>
+<p>They describe different objects, schedules, and owners. The card changes with system decisions, while the datasheet changes with an index rebuild. Combining them encourages one owner to leave the other object's fields stale.</p>
+<h3 id="2-which-five-decision-answer-is-incomplete">2. Which five-decision answer is incomplete?</h3>
+<p><code>When</code> needs gate family, fire rate, and unnecessary-retrieval cost, while <code>Where</code> needs every store, size, owner, and conflict rule. <code>What</code> needs transformation and triggering queries, while <code>How</code> needs scorer, index, <code>k_prime</code>, rerank, and lexical channel. <code>Present</code> needs final <code>k</code>, order, serialization, and position relative to instructions.</p>
+<h3 id="3-what-measurements-must-not-be-conflated">3. What measurements must not be conflated?</h3>
+<p>Retrieval Recall and normalized Discounted Cumulative Gain (nDCG) need judgment details, while Exact-search Recall compares an approximate index with exact search rather than relevance. Faithfulness and factuality are separate claim-level properties, while closed-book accuracy measures value without retrieval and gold-context accuracy sets the retrieval ceiling. Median or 95th-percentile latency needs production concurrency.</p>
+<h3 id="4-how-does-the-card-reveal-an-adversarial-failure">4. How does the card reveal an adversarial failure?</h3>
+<p>Read fields together. The worked card says citations are generated inline and ticket ingestion is automated and unreviewed, so treating that store as authoritative makes the write path an injection surface. The blank template also requires the measured blast radius of one poisoned chunk.</p>
+<h3 id="5-why-can-a-compressed-index-still-require-more-capacity-than-expected">5. Why can a compressed index still require more capacity than expected?</h3>
+<p>Per-vector bytes are only one layer because identifiers, links, centroids, replication, rebuild headroom, and payload also consume capacity. In the example, the 138 MB index sits under a 2.0 GB payload. Vector compression reached 32 times, but text dominates by more than an order of magnitude.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Number or value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source manifest</td>
+<td>0 figures, 0 tables</td>
+<td>Templates are unnumbered source layouts</td>
+</tr>
+<tr>
+<td>Documentation precedents</td>
+<td>Model cards in 2019 and datasheets for datasets in 2021</td>
+<td>Cited traditions behind the two records</td>
+</tr>
+<tr>
+<td>RAG Card scope</td>
+<td>One page and 5 retrieval decisions</td>
+<td>System-level handoff record</td>
+</tr>
+<tr>
+<td>RAG Card blank template</td>
+<td>4 categories, 19 prompts</td>
+<td>Identity 4, decisions 5, behavior 6, failures 4</td>
+</tr>
+<tr>
+<td>Index Datasheet blank template</td>
+<td>5 categories, 19 prompts</td>
+<td>Composition 4, representation 3, structure 4, performance 4, lifecycle 4</td>
+</tr>
+<tr>
+<td>Filled RAG Card</td>
+<td>17 rows</td>
+<td>Abbreviated worked example</td>
+</tr>
+<tr>
+<td>Filled Index Datasheet</td>
+<td>16 rows</td>
+<td>Abbreviated worked example</td>
+</tr>
+<tr>
+<td>Card version</td>
+<td>v4.2, accurate 2026-06-01</td>
+<td>Worked system identity</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>68 percent of traffic</td>
+<td>Closed-book path abstains</td>
+</tr>
+<tr>
+<td>Stores</td>
+<td>1.2M doc chunks and 400k resolved ticket chunks</td>
+<td>Docs win conflicts</td>
+</tr>
+<tr>
+<td>Query rewrite</td>
+<td>Turns greater than 1</td>
+<td>Identity transformation otherwise</td>
+</tr>
+<tr>
+<td>Retrieval funnel</td>
+<td><code>k_prime=100</code>, rerank 20, final <code>k=5</code></td>
+<td>BM25 plus dense with RRF 60</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>0.91 at 100</td>
+<td>2,000 queries, three-way human judged, <code>κ=0.71</code></td>
+</tr>
+<tr>
+<td>nDCG</td>
+<td>0.68 at 5</td>
+<td>Ranked final-context quality</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>0.42 closed, 0.88 gold, 0.79 deployed</td>
+<td>Baseline, ceiling, and deployed result</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>9 percent</td>
+<td>Deployed refusal behavior</td>
+</tr>
+<tr>
+<td>Card latency</td>
+<td>1.9 seconds total, 640 ms TTFT</td>
+<td>p95 worked value</td>
+</tr>
+<tr>
+<td>Card cost</td>
+<td>USD 0.0041 per query</td>
+<td>Worked end-to-end cost</td>
+</tr>
+<tr>
+<td>Card freshness</td>
+<td>45 minute median, 4 hour p99</td>
+<td>Source-to-retrieval lag</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>81 percent on 200 answers</td>
+<td>Generated inline</td>
+</tr>
+<tr>
+<td>Adversarial measurement</td>
+<td>One poisoned chunk</td>
+<td>Unit for the required blast-radius measurement</td>
+</tr>
+<tr>
+<td>Corpus</td>
+<td>180k documents to 1.24M chunks</td>
+<td>Snapshot 2026-05-28</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>512 tokens, 64 overlap</td>
+<td>Recursive with heading prefix</td>
+</tr>
+<tr>
+<td>Dropped</td>
+<td>Code blocks over 200 lines, 3.1 percent over cap</td>
+<td>Images also excluded</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>e5-base-v2, dimension 768</td>
+<td>L2-normalized cosine</td>
+</tr>
+<tr>
+<td>IVF-PQ</td>
+<td><code>nlist=4096</code>, <code>m=96</code>, <code>k=256</code></td>
+<td>Worked index parameters</td>
+</tr>
+<tr>
+<td>Bytes per vector</td>
+<td>96 code + 4 id + 0 link = 100</td>
+<td>Worked compressed layout</td>
+</tr>
+<tr>
+<td>Vector compression</td>
+<td>Source-reported 32 times</td>
+<td>Abbreviated example omits the precision needed to reconstruct raw vector bytes</td>
+</tr>
+<tr>
+<td>Index memory</td>
+<td>124 + 12.6 + 0.8 = 138 MB</td>
+<td>Codes plus identifiers, centroids, and codebook</td>
+</tr>
+<tr>
+<td>Fleet memory</td>
+<td>331 MB</td>
+<td><code>R=2</code>, <code>h=0.2</code></td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>2.0 GB</td>
+<td>More than one order above 138 MB</td>
+</tr>
+<tr>
+<td>Shards</td>
+<td>1</td>
+<td>Fits one node with headroom</td>
+</tr>
+<tr>
+<td>Exact Recall</td>
+<td>0.94 at 10 and <code>nprobe=32</code></td>
+<td>Approximate versus exact search</td>
+</tr>
+<tr>
+<td>Recall curve</td>
+<td>0.87 at 8, 0.94 at 32, 0.97 at 128</td>
+<td>Three probe settings</td>
+</tr>
+<tr>
+<td>Search-curve minimum</td>
+<td>At least 3 values</td>
+<td>Required to show the recall-latency trade-off</td>
+</tr>
+<tr>
+<td>Index latency</td>
+<td>p50 4 ms, p95 11 ms</td>
+<td>Measured at 40 concurrent</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>38 minutes, USD 14</td>
+<td>Separate box, then hot swap</td>
+</tr>
+<tr>
+<td>Churn</td>
+<td>About 2k upserts and 200 deletes daily</td>
+<td>Worked lifecycle rate</td>
+</tr>
+<tr>
+<td>Tombstones</td>
+<td>1.8 percent current, flat through 6 percent, trigger 5 percent</td>
+<td>Rebuild precedes measured recall fall</td>
+</tr>
+<tr>
+<td>Datasheet freshness</td>
+<td>45 minute median, 4 hour p99</td>
+<td>Matches worked card lag</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/A3_design_checklists.html"><small>Previous</small>Appendix A3. Design Checklists</a><a href="../chapters/A5_annotated_reading_list.html"><small>Next</small>Appendix A5. Annotated Reading List</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

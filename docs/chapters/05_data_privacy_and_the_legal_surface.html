@@ -1,0 +1,1626 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 5. Data, Privacy, and the Legal Surface | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/05_data_privacy_and_the_legal_surface.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group" open><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html" aria-current="page">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part II. The Generator Side</p><h1>Chapter 5. Data, Privacy, and the Legal Surface</h1><p class="chapter-meta">60 min estimated reading · Unit 14 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to explain how Retrieval-Augmented Generation (RAG) architecture changes the cost, evidence, and reversibility of data decisions without claiming that it resolves the underlying legal questions.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A training pipeline destroys provenance in stages, so a trained model cannot answer document-level questions about its own corpus.</li>
+<li>Alignment can suppress memorized text in ordinary prompts, but it does not delete that text from the weights.</li>
+<li>Duplication makes a sequence easier to extract, and a divergence prompt can move generation outside the behavior covered by alignment.</li>
+<li>Copyright exposure starts with acquisition and copying, while output filters only test a limited class of later emissions.</li>
+<li>Exact unlearning means retraining without the target data. Approximate unlearning is cheaper, but it cannot enumerate the true target or isolate every side effect.</li>
+<li>Repeated approximate deletion can compound small capability losses into a large system loss.</li>
+<li>SILO keeps low-risk content in weights and revocable content in a keyed datastore, where removal is selectable and verifiable. The datastore boundary changes the available remedy. It does not by itself make copying lawful or eliminate legal risk.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a library that must answer a publisher's request to remove a collection. The receiving clerk starts with shipping records, dates, and license labels. The scanning clerk turns each book into plain text and throws away much of that paperwork. The cleaning clerk removes duplicates and low-quality pages, but keeps whole documents that can still be sampled. The shredding clerk then cuts every document into tokens, mixes the pieces, and packs them into anonymous boxes. Those boxes feed an apprentice who learns patterns and stores them in memory. The library can no longer point to the publisher's books inside the apprentice's memory. It can only ask questions and observe what the apprentice recites.</p>
+<p>A manners coach later teaches the apprentice to refuse sensitive requests. The coaching changes normal behavior, but it does not remove remembered names, addresses, or passages. An attacker can force the apprentice outside the coached routine with a long repetition task. Once there, the apprentice may recite heavily repeated material because repetition made that material easy to learn. The library can compare a recited passage with a known book, but that only detects a literal match. It does not reconstruct how the copy was acquired. It also does not settle broader questions about non-literal similarity.</p>
+<p>The director next proposes memory surgery. Exact surgery means training a new apprentice without the collection. Approximate surgery punishes the apprentice for repeating examples that a probe found. The probe cannot reveal every relevant example, and the surgery can also damage unrelated knowledge stored in shared memory. Doing this once may look cheap. Doing it for hundreds of requests can steadily erode the apprentice's capability.</p>
+<p>The better library design uses two shelves. Permanent, low-risk material may train the apprentice. Revocable material stays in a cataloged reading room. At answer time, a librarian retrieves relevant pages from that room and gives them to the apprentice. When a publisher revokes a license, the librarian selects the publisher's rows, blocks them immediately, rebuilds the index later, and verifies that the pages no longer appear. The library still needed a lawful basis to make and hold the reading-room copy. The architectural gain is narrower and concrete: the library preserved a key, a delete operation, and evidence that the removal took effect.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A generator answers with text retrieved from an external store</td>
+<td>It keeps some knowledge outside model weights and therefore addressable</td>
+</tr>
+<tr>
+<td>pre-training corpus</td>
+<td>The text collection used to train a base model</td>
+<td>Its composition determines what the weights can memorize</td>
+</tr>
+<tr>
+<td>Common Crawl</td>
+<td>The recurring web crawl that supplies raw pages to many corpus pipelines</td>
+<td>Its monthly snapshot begins the chapter's provenance funnel</td>
+</tr>
+<tr>
+<td>Colossal Clean Crawled Corpus (C4)</td>
+<td>A filtered English web corpus used for the chapter's funnel numbers</td>
+<td>It supplies the 20 TB, 750 GB, and token figures</td>
+</tr>
+<tr>
+<td>The Pile</td>
+<td>The 825 GiB mixture assembled from 22 named sources</td>
+<td>Its composition shows why a corpus cannot be summarized as merely the web</td>
+</tr>
+<tr>
+<td>Books3</td>
+<td>A roughly 196,000-book shadow-library corpus included in The Pile</td>
+<td>It anchors the copyright, acquisition, and revocability example</td>
+</tr>
+<tr>
+<td>corpus funnel</td>
+<td>Crawl, extraction, filtering, tokenization, and training in sequence</td>
+<td>Each stage removes metadata needed by later audits</td>
+</tr>
+<tr>
+<td>Web ARChive (WARC)</td>
+<td>A raw crawl record that can retain source metadata</td>
+<td>It preserves more provenance than extracted text</td>
+</tr>
+<tr>
+<td>Web Extracted Text (WET)</td>
+<td>Plain text extracted from a web crawl</td>
+<td>It can carry boilerplate while dropping license-bearing markup</td>
+</tr>
+<tr>
+<td>trafilatura</td>
+<td>A tool for extracting main text from raw web records</td>
+<td>Extractor choice changes the corpus and therefore the model</td>
+</tr>
+<tr>
+<td>HyperText Markup Language (HTML) extraction</td>
+<td>Turning web pages into training text</td>
+<td>It acts like a model hyperparameter because it changes the input distribution</td>
+</tr>
+<tr>
+<td>language identification</td>
+<td>A classifier that keeps text in selected languages</td>
+<td>It removes large parts of a crawl before training</td>
+</tr>
+<tr>
+<td>heuristic filter</td>
+<td>A hand-written content rule</td>
+<td>It can reduce noise while introducing blind spots and coverage bias</td>
+</tr>
+<tr>
+<td>blocklist</td>
+<td>A list of forbidden strings</td>
+<td>It guarantees literal exclusions but cannot capture broad semantic categories</td>
+</tr>
+<tr>
+<td>quality classifier</td>
+<td>A learned filter that predicts document quality</td>
+<td>It can outperform simple keyword rules but still does not prove a corpus is clean</td>
+</tr>
+<tr>
+<td>deduplication</td>
+<td>Removing repeated text</td>
+<td>It lowers duplication-driven memorization without requiring a smaller model</td>
+</tr>
+<tr>
+<td>provenance</td>
+<td>Evidence of source, ownership, license, and history</td>
+<td>It determines whether a later claim about a document can be checked</td>
+</tr>
+<tr>
+<td>provenance boundary</td>
+<td>The pipeline point where document identity disappears</td>
+<td>Above it removal can be a file operation. Below it removal means model work</td>
+</tr>
+<tr>
+<td>tokenization</td>
+<td>Splitting text into model units</td>
+<td>Shuffling and packing tokens dissolves the document as an addressable object</td>
+</tr>
+<tr>
+<td>sampled audit</td>
+<td>Reviewing a random subset to estimate a rate</td>
+<td>It yields a confidence interval at tractable cost</td>
+</tr>
+<tr>
+<td>enumeration</td>
+<td>Listing every matching instance</td>
+<td>Many legal and deletion questions ask for it, but trained weights do not provide it</td>
+</tr>
+<tr>
+<td>confidence interval</td>
+<td>A range that quantifies uncertainty around an estimated rate</td>
+<td>It replaces an unsupported claim of zero contamination</td>
+</tr>
+<tr>
+<td>extraction probe</td>
+<td>Prompts designed to test whether a model emits target training text</td>
+<td>It measures behavior when corpus membership cannot be listed</td>
+</tr>
+<tr>
+<td>parametric weights</td>
+<td>Knowledge compressed into learned parameters</td>
+<td>It is cheap to use but lacks keys and exact delete operations</td>
+</tr>
+<tr>
+<td>non-parametric datastore</td>
+<td>An external collection read at inference time</td>
+<td>Its rows remain selectable, deletable, and auditable</td>
+</tr>
+<tr>
+<td>personally identifiable information (PII)</td>
+<td>Information tied to an identifiable person</td>
+<td>It includes combinations that a simple regular expression cannot recognize</td>
+</tr>
+<tr>
+<td>General Data Protection Regulation (GDPR) Article 4(1)</td>
+<td>The personal-data definition quoted by the source</td>
+<td>It makes clear why formatted-field redaction does not cover every identifying combination</td>
+</tr>
+<tr>
+<td>GDPR Article 12(3)</td>
+<td>The response-window provision cited by the source</td>
+<td>The chapter uses its one-month window when discussing verifiable datastore deletion</td>
+</tr>
+<tr>
+<td>alignment</td>
+<td>Post-training that shapes assistant behavior</td>
+<td>It changes reachable continuations but does not erase pre-training memories</td>
+</tr>
+<tr>
+<td><code>θ</code> and <code>φ</code></td>
+<td>The pre-training parameters and the later aligned parameters</td>
+<td>Their distinction separates stored associations from ordinary refusal behavior</td>
+</tr>
+<tr>
+<td>supervised fine-tuning</td>
+<td>Gradient updates on labeled demonstrations</td>
+<td>It changes behavior in covered contexts and can also memorize private examples</td>
+</tr>
+<tr>
+<td>preference optimization</td>
+<td>Training toward preferred assistant responses</td>
+<td>It discourages outputs but is not a deletion operation</td>
+</tr>
+<tr>
+<td>maximum-likelihood training</td>
+<td>Training that raises probability on observed corpus sequences</td>
+<td>It drives the model distribution toward the duplication-weighted empirical marginal</td>
+</tr>
+<tr>
+<td>empirical marginal</td>
+<td>A sequence's observed frequency in a corpus</td>
+<td>It explains why duplicated sequences dominate unconditional sampling</td>
+</tr>
+<tr>
+<td>duplication count d</td>
+<td>The number of times a sequence appears</td>
+<td>Higher d makes lock-on and extraction more likely</td>
+</tr>
+<tr>
+<td>aligned manifold</td>
+<td>The region of contexts represented by alignment demonstrations</td>
+<td>Ordinary prompts tend to stay inside it</td>
+</tr>
+<tr>
+<td>off-support prompt</td>
+<td>A context unlike any alignment demonstration</td>
+<td>It can expose pre-training behavior that alignment never changed</td>
+</tr>
+<tr>
+<td>divergence attack</td>
+<td>A prompt that drives generation outside aligned behavior</td>
+<td>Long token repetition sharply increases training-data emission</td>
+</tr>
+<tr>
+<td>indirect prompt injection</td>
+<td>Retrieved adversarial text that rewrites instructions</td>
+<td>It attacks the datastore path, unlike a divergence attack on the weights</td>
+</tr>
+<tr>
+<td>output-side redaction</td>
+<td>A filter that removes detected sensitive strings from responses</td>
+<td>It must work on every response and cannot recognize all personal data</td>
+</tr>
+<tr>
+<td>release gate</td>
+<td>A test that must pass before a model ships</td>
+<td>It turns a known extraction method into a repeatable decision point</td>
+</tr>
+<tr>
+<td>verbatim continuation</td>
+<td>Exact reproduction of a known work after a prefix</td>
+<td>It provides strong evidence of memorization, but the chapter does not call it proof of training membership</td>
+</tr>
+<tr>
+<td>induction head</td>
+<td>A model mechanism that copies what followed a matching earlier token</td>
+<td>It helps a model lock onto a known document and continue it</td>
+</tr>
+<tr>
+<td>lock-on</td>
+<td>A state where the model recognizes and follows a specific source text</td>
+<td>It creates long exact runs that independent token errors do not predict</td>
+</tr>
+<tr>
+<td><code>p</code>, <code>q</code>, and <code>π(d, k)</code></td>
+<td>Independent next-token accuracy, locked-on accuracy, and document lock-on probability</td>
+<td>Together they distinguish geometric decay from the long-run copying plateau</td>
+</tr>
+<tr>
+<td>longest exact run</td>
+<td>The largest consecutive literal match to a known work</td>
+<td>It targets the tail that can become an exhibit</td>
+</tr>
+<tr>
+<td>mean overlap</td>
+<td>Average shared text across many outputs</td>
+<td>It hides rare but very long copied passages</td>
+</tr>
+<tr>
+<td>n-gram filter</td>
+<td>A detector for exact short text sequences</td>
+<td>It bounds literal matches only against indexed works</td>
+</tr>
+<tr>
+<td>substantial similarity</td>
+<td>A broader comparison that can include non-literal expression</td>
+<td>A clean n-gram result does not address it</td>
+</tr>
+<tr>
+<td>exact unlearning</td>
+<td>Retraining on the retained corpus after removing the target set</td>
+<td>It has the clean guarantee but full training cost</td>
+</tr>
+<tr>
+<td>approximate unlearning</td>
+<td>Gradient updates that suppress a written forget set</td>
+<td>It is cheap but depends on an incomplete target and causes interference</td>
+</tr>
+<tr>
+<td>TOFU</td>
+<td>A benchmark that inserts fictitious author profiles before testing forgetting</td>
+<td>It supplies the true forget set by construction and therefore does not test production enumeration</td>
+</tr>
+<tr>
+<td>WMDP</td>
+<td>A benchmark with a curated hazardous-knowledge forget domain</td>
+<td>It measures the optimizer under a named scope rather than discovery of an unknown forget set</td>
+</tr>
+<tr>
+<td>forget set F</td>
+<td>The true training sequences that an obligation asks to remove</td>
+<td>Production systems usually cannot enumerate it</td>
+</tr>
+<tr>
+<td>observed forget set F̂</td>
+<td>The subset surfaced and written down by probes</td>
+<td>The optimizer can act on it, but its recall against F is unknown</td>
+</tr>
+<tr>
+<td>retain set R</td>
+<td>Training data that should remain</td>
+<td>Unlearning should preserve its capability</td>
+</tr>
+<tr>
+<td>replay sample</td>
+<td>Retained examples mixed into approximate unlearning</td>
+<td>It reduces collapse but cannot guarantee zero side effects</td>
+</tr>
+<tr>
+<td>interference</td>
+<td>A weight update for one sequence changing performance on another</td>
+<td>Shared parameter directions prevent perfectly local deletion</td>
+</tr>
+<tr>
+<td>superposition</td>
+<td>Many facts sharing the same parameter space</td>
+<td>It explains why no fact owns an isolated delete direction</td>
+</tr>
+<tr>
+<td>retained-capability delta δ</td>
+<td>The capability fraction lost in one unlearning run</td>
+<td>Repeated losses compound as (1 - δ)^n</td>
+</tr>
+<tr>
+<td>sharded exact unlearning</td>
+<td>Training many corpus slices so one slice can be retrained</td>
+<td>It makes deletion cheaper while multiplying serving cost and memory</td>
+</tr>
+<tr>
+<td>SILO</td>
+<td>A design that separates training data by license risk</td>
+<td>Only lower-risk tiers reach gradients while higher-risk tiers stay revocable</td>
+</tr>
+<tr>
+<td>Open License Corpus</td>
+<td>The 228-billion-token corpus built from the three low-risk tiers</td>
+<td>It supplies the source's SILO training configurations</td>
+</tr>
+<tr>
+<td>OpenWebText2</td>
+<td>The evaluation corpus used for the reported low-risk quality tax</td>
+<td>Its perplexity gap measures composition rather than unmatched compute</td>
+</tr>
+<tr>
+<td>Pythia-1.4B</td>
+<td>The compute-matched model trained on The Pile</td>
+<td>Its 11.5 perplexity is the comparison point for the SILO quality gap</td>
+</tr>
+<tr>
+<td>public domain (PD) tier</td>
+<td>Content treated as public domain in the source system</td>
+<td>It is the first low-risk tier admitted to weights</td>
+</tr>
+<tr>
+<td>permissive software (SW) tier</td>
+<td>Software content under permissive licenses</td>
+<td>It expands the low-risk training corpus</td>
+</tr>
+<tr>
+<td>attribution license (BY) tier</td>
+<td>Content whose license requires attribution</td>
+<td>It enters weights only when attribution obligations can be honored</td>
+</tr>
+<tr>
+<td>license field</td>
+<td>A key stored with every document or chunk</td>
+<td>It turns a publisher removal into a database selection</td>
+</tr>
+<tr>
+<td>perplexity</td>
+<td>A language-model uncertainty score where lower is better</td>
+<td>It measures the quality tax of restricting the training corpus</td>
+</tr>
+<tr>
+<td>nats per token</td>
+<td>A log-loss unit</td>
+<td>It makes perplexity gaps additive and supports the 90% gap calculation</td>
+</tr>
+<tr>
+<td>nearest-neighbor language model (kNN-LM)</td>
+<td>A model that mixes token probabilities with a datastore lookup</td>
+<td>It can repair corpus-composition gaps but uses a very large datastore</td>
+</tr>
+<tr>
+<td>retrieved-in-context language model (RIC-LM)</td>
+<td>A system that puts retrieved chunks in the prompt</td>
+<td>It is much smaller and works with a hosted generation interface</td>
+</tr>
+<tr>
+<td>mixture weight λ</td>
+<td>The fraction assigned to parametric predictions</td>
+<td>Setting λ to 1 removes the datastore's contribution exactly for a query</td>
+</tr>
+<tr>
+<td>32-bit floating point (fp32)</td>
+<td>Four-byte storage for each vector dimension</td>
+<td>It determines the 120 GB Books3 index estimate</td>
+</tr>
+<tr>
+<td>16-bit floating point (fp16)</td>
+<td>Two-byte storage for each vector dimension</td>
+<td>It determines model and datastore memory estimates</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW) graph</td>
+<td>A graph index for approximate nearest-neighbor search</td>
+<td>Its neighbor links add storage and support fast retrieval</td>
+</tr>
+<tr>
+<td>tombstone</td>
+<td>A deletion marker checked during reads</td>
+<td>It blocks revoked rows before a full index rebuild</td>
+</tr>
+<tr>
+<td>ablation</td>
+<td>An evaluation with one source or tier removed</td>
+<td>It measures the quality impact of a future revocation in advance</td>
+</tr>
+<tr>
+<td>low-rank adaptation (LoRA) adapter</td>
+<td>A small separate file of learned parameter updates</td>
+<td>A tenant-specific adapter can be deleted if it is never merged</td>
+</tr>
+<tr>
+<td>residual risk</td>
+<td>Exposure that remains after the available controls</td>
+<td>It must be stated rather than hidden behind an unverified claim</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="51-what-is-actually-in-the-pre-training-corpus">5.1 What is actually in the pre-training corpus</h3>
+<h4 id="the-lossy-funnel">The lossy funnel</h4>
+<p>A monthly Common Crawl snapshot begins at roughly 20 terabytes of scraped text. Raffel et al. report that filtering leaves about 750 gigabytes. The filters include English-only classification, deduplication, terminal-punctuation rules, code-brace rules, and blocklisted terms. Only 750 / 20,000 = 0.0375, or 3.75%, of the bytes survive. The cleaned corpus contains about 1.56 × 10^11 tokens. That ratio gives about 4.8 bytes per token. The conversion matters because corpus reports alternate between bytes and tokens.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>750</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">GB</mtext></mrow><mrow><mn>20</mn><mo>,</mo><mn>000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">GB</mtext></mrow></mfrac><mo>=</mo><mn>0.0375</mn><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mn>750</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">bytes</mtext></mrow><mrow><mn>1.56</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">tokens</mtext></mrow></mfrac><mo>≈</mo><mn>4.8</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">bytes per token</mtext></mrow><annotation encoding="application/x-tex">\frac{750\ \text{GB}}{20{,}000\ \text{GB}} = 0.0375, \qquad \frac{750 \times 10^9\ \text{bytes}}{1.56 \times 10^{11}\ \text{tokens}} \approx 4.8\ \text{bytes per token}</annotation></semantics></math></p>
+<p>A 15.6-trillion-token run at the reported scale corresponds to about 75 terabytes of text. Bidirectional Encoder Representations from Transformers (BERT) used a 16-gigabyte training corpus according to Liu et al. The comparison is about 4,700 times larger in six years. Review, licensing, and consent processes did not scale at the same rate. Without the funnel view, an engineer may call the corpus "the internet" and miss every stage that changed it.</p>
+<h4 id="composition-and-extractor-choice">Composition and extractor choice</h4>
+<p>The Pile contains 825 gibibytes from 22 sources. Its sources include web text, PubMed Central, GitHub, arXiv, FreeLaw, Stack Exchange, Wikipedia, and Books3. Books3 contributes roughly 12% of The Pile by bytes. Dodge et al. found that patents.google.com was the largest single source domain in C4. That result undercuts the casual assumption that Wikipedia or news dominates the corpus. Gehman et al. found 2% to 4% of documents above a toxicity threshold after cleaning. Two percent of 750 gigabytes is 15 gigabytes, which is roughly the size of BERT's full training corpus. Common Crawl WET files preserve navigation menus, cookie banners, and footer links as text. Penedo et al. instead re-extracted raw WARC records with trafilatura and deduplicated aggressively. They reported that carefully processed web data could match corpora built from human-selected sources. The same crawl therefore produces a different model when the extractor changes. Without extractor name, version, and thresholds, the training recipe is incomplete and unrecoverable.</p>
+<h4 id="the-provenance-boundary">The provenance boundary</h4>
+<p>Raw crawl records can retain a Uniform Resource Locator (URL), timestamp, and license header. Text extraction keeps the URL but can drop license-bearing markup. Filtering retains document objects, so an auditor can still sample and estimate a rate. Tokenization, shuffling, and packing dissolve document identity. Below that point, prompting is an extraction test rather than a lookup. A closed-data model therefore supports behavior measurements, not exact claims about corpus membership. Open weights do not imply open training data. Composition reports for released corpora do not establish the composition of a different closed corpus.</p>
+<p>The curation-first alternative also fails as a complete answer. Reading a paragraph reveals content but not who owns it, whether the site could post it, or when a license may end. That information is provenance metadata discarded earlier in the funnel. Without a retained key, removing a document changes from a file operation into a retraining problem.</p>
+<h4 id="worked-audit-economics">Worked audit economics</h4>
+<p>For a proportion p = 0.02 and a 95% confidence interval with half-width 0.005, the standard sample-size calculation gives about 3,000 documents.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mfrac><mrow><msup><mi>z</mi><mn>2</mn></msup><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow><msup><mi>e</mi><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mrow><msup><mn>1.96</mn><mn>2</mn></msup><mo>×</mo><mn>0.02</mn><mo>×</mo><mn>0.98</mn></mrow><msup><mn>0.005</mn><mn>2</mn></msup></mfrac><mo>=</mo><mfrac><mn>0.0753</mn><mrow><mn>2.5</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup></mrow></mfrac><mo>≈</mo><mn>3</mn><mo>,</mo><mn>000</mn></mrow><annotation encoding="application/x-tex">n = \frac{z^2 p(1-p)}{e^2} = \frac{1.96^2 \times 0.02 \times 0.98}{0.005^2} = \frac{0.0753}{2.5 \times 10^{-5}} \approx 3{,}000</annotation></semantics></math></p>
+<p>At five minutes per document, the audit takes 250 person-hours. At $15 per hour, it costs $3,750. Two reviewers can finish within a week. Enumeration has a different scale. A reader at 250 words per minute covers about 300 tokens per minute under the chapter's byte conversion. That is 18,000 tokens per person-hour. Reading 15.6 trillion tokens then takes 870 million person-hours. At 2,000 hours per person-year, that is 430,000 person-years. At $15 per hour, it costs about $13 billion.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>15.6</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">tokens</mtext></mrow><mrow><mn>1.8</mn><mo>×</mo><msup><mn>10</mn><mn>4</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">tokens per person-hour</mtext></mrow></mfrac><mo>=</mo><mn>8.7</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">person-hours</mtext><mo>=</mo><mn>4.3</mn><mo>×</mo><msup><mn>10</mn><mn>5</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">person-years</mtext></mrow><annotation encoding="application/x-tex">\frac{15.6 \times 10^{12}\ \text{tokens}}{1.8 \times 10^4\ \text{tokens per person-hour}} = 8.7 \times 10^8\ \text{person-hours} = 4.3 \times 10^5\ \text{person-years}</annotation></semantics></math></p>
+<p>The Llama 3 405-billion-parameter run used 30.84 million H100 graphics processing unit (GPU) hours. At $2.50 per GPU-hour, the chapter prices that run at $77 million. Reading the corpus once is about 170 times the training cost. The sampled estimate is about 3.5 million times cheaper than enumeration. A $3,750 audit against a $77 million run is about five parts in 100,000. A 300-page book is approximated as 100,000 words and 120,000 tokens. The 15.6-trillion-token corpus is therefore about 130 million book-equivalents. The chapter compares that order with Google's 2010 count of 129,864,880 distinct published books. The agreement is only an order-of-magnitude check.</p>
+<h4 id="practice-decisions">Practice decisions</h4>
+<p>Default to a sampled audit with a stated interval. Do not replace the interval with the word "clean." When p falls below about 0.005, switch toward exact matching with a hash or n-gram index because a useful random-sample bound becomes inefficient. Record the extractor, its version, and all filter thresholds next to the seed and learning rate. Route content that can be revoked in under a year to a datastore by default. The source allows an exception for public-domain and permissively licensed text where revocation risk is treated as zero. Prefer a trained quality classifier to a keyword blocklist, except where a legal prohibition names literal strings. The source reports that C4's blocklist removed documents about minority identities at a disproportionate rate, so its toxicity benefit also costs long-tail coverage. For a corpus you did not build, report an extraction probe rather than asserting that a filter removed the content. Treat a stated 0.3% training mixture as a mixing weight, not as an extraction rate, because a small duplicated source can be easier to extract than a larger diverse source.</p>
+<h3 id="52-pii-extraction-and-the-divergence-attack">5.2 PII extraction and the divergence attack</h3>
+<h4 id="alignment-changes-behavior-not-stored-associations">Alignment changes behavior, not stored associations</h4>
+<p>Pre-training fits parameters θ to a next-token distribution over the corpus. Supervised fine-tuning and preference optimization produce later parameters φ from a much smaller set of demonstrations. Those updates reshape likely continuations in covered contexts. They do not selectively erase a phone number repeated hundreds of times in pre-training. Every memorized sequence can remain after alignment because the objective contains no delete operation. Without this distinction, refusal behavior gets mistaken for proof that sensitive data is absent.</p>
+<h4 id="duplication-and-marginal-sampling">Duplication and marginal sampling</h4>
+<p>If a corpus contains M sequences and sequence s appears d times, its empirical marginal is p_hat(s) = d / M. Maximum-likelihood training pushes the model distribution toward that frequency.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>p</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mi>d</mi><mi>M</mi></mfrac><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>p</mi><mi>θ</mi></msub><mo>→</mo><mover><mi>p</mi><mo accent="true">̂</mo></mover></mrow><annotation encoding="application/x-tex">\hat p(s) = \frac{d}{M}, \qquad p_{\theta} \rightarrow \hat p</annotation></semantics></math></p>
+<p>An unconditional sample therefore favors heavily duplicated sequences. Regurgitation in this regime is sampling that reflects the corpus distribution. Alignment normally starts sampling inside contexts covered by assistant demonstrations. Its security property belongs to that starting region, not to deletion from weights.</p>
+<h4 id="divergence">Divergence</h4>
+<p>A repetition instruction can drive the model outside the support of alignment data. No ordinary assistant demonstration contains hundreds of copies of one token. The repeated context also carries little information about topic or task. When the loop breaks, the continuation approaches a draw from the pre-training marginal where duplicated text is prominent. Nasr et al. measured roughly 150 times more training-data emission under divergence than during normal behavior. They found memorized PII in 16.9% of tested divergent generations. About $200 in hosted queries recovered more than 10,000 unique verbatim training examples. Carlini et al. sampled from a 1.5-billion-parameter Generative Pre-trained Transformer 2 (GPT-2) model and hand-checked 1,800 candidates. They confirmed 604 verbatim training examples, or about 34% precision. One example combined a person's name, email address, phone number, fax number, and physical address. The chapter cites General Data Protection Regulation (GDPR) Article 4(1) for the definition of personal data as information relating to an identifiable natural person. A name beside an employer and city can qualify under that definition even when no regular expression marks it. This chapter preserves that legal statement as reported and does not extend it into case-specific advice.</p>
+<h4 id="why-the-common-defenses-lose">Why the common defenses lose</h4>
+<p>Blocking the literal repeat-forever string patches one prompt, not the off-support state. The space of ways to reach that state is unbounded while a blocklist is enumerable. Output redaction also faces an aggregate attacker who needs one failure across many requests. It recognizes only a subset of information that can identify a person. Both controls must run forever because the sensitive associations remain in the weights. A divergence attack is not indirect prompt injection. Injection uses adversarial text retrieved from a datastore. Divergence never touches the index, so retrieval-side controls do not stop it.</p>
+<h4 id="worked-probe-economics">Worked probe economics</h4>
+<p>The worked example uses a 7-billion-parameter generator fine-tuned on 200,000 support transcripts. It assumes 2N = 1.4 × 10^10 floating-point operations (FLOPs) per generated token. It assumes sustained throughput of 3.4 × 10^14 FLOPs per second and $2.50 per GPU-hour. Dividing 16.9% by the 150-times multiplier gives a constructed normal-prompt baseline of 0.11%. The chapter labels that combination as its own estimate rather than a direct result from Nasr et al. Ten thousand normal queries with 100 prompt tokens and 200 completion tokens total 3 million tokens. They cost about 124 seconds, 0.034 GPU-hours, or $0.086. The estimate yields 11 hits at about $0.0076 per record. Ten thousand divergence queries with 50 prompt tokens and 2,000 completion tokens total 20.5 million tokens. They cost about 844 seconds, 0.234 GPU-hours, or $0.586.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mtext mathvariant="normal">normal</mtext></msub><mo>=</mo><mfrac><mrow><mn>3</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>124</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">s</mtext><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>t</mi><mtext mathvariant="normal">divergence</mtext></msub><mo>=</mo><mfrac><mrow><mn>2.05</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>844</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">s</mtext></mrow><annotation encoding="application/x-tex">t_{\text{normal}} = \frac{3 \times 10^6 \times 1.4 \times 10^{10}}{3.4 \times 10^{14}} = 124\ \text{s}, \qquad t_{\text{divergence}} = \frac{2.05 \times 10^7 \times 1.4 \times 10^{10}}{3.4 \times 10^{14}} = 844\ \text{s}</annotation></semantics></math></p>
+<p>At 16.9%, they yield 1,690 PII-bearing generations at about $0.00035 each. The divergence probe uses just under seven times more compute and returns records 22 times cheaper. At most 1,690 distinct customers would be 0.85% of the 200,000-transcript population. The hosted attack's $0.02 per unique example is 58 times the local estimate. The local estimate implies $0.029 per million tokens, while the cited hosted output price was $2.00 per million tokens. That price ratio is 70, which the chapter treats as agreeing within 20% after retail margin and deduplication.</p>
+<h4 id="practice-decisions-1">Practice decisions</h4>
+<p>Use a divergence probe as a release gate. The default is 10,000 repetition prompts at the production completion limit. On the worked 7-billion-parameter model, the gate costs about $0.59 and takes under 15 minutes on one GPU. For a third-party Application Programming Interface (API), use a smaller 500-query sample when flooding is not possible and label extrapolation as extrapolation. Do not fine-tune the generator on records subject to erasure requests. Use synthetic or consented transcripts for tone when that satisfies the product goal. Treat output PII redaction as a detector, not as the control that proves release safety. The source permits a narrower exception for checksum-verifiable fields such as card numbers. Limit completion length to product need because divergence needs a long run. The source expects the attacker's cost per record to rise roughly linearly as the completion cap falls. On long-form surfaces, stop repeated n-grams before the model clears the repetition phase. Report records per dollar because it makes the attack economics legible to decision makers. Route a confirmed finding to the weights-datastore boundary rather than treating more guardrails as a durable repair.</p>
+<h3 id="53-copyright-books3-and-verbatim-continuation">5.3 Copyright, Books3, and verbatim continuation</h3>
+<h4 id="what-the-evidence-can-and-cannot-show">What the evidence can and cannot show</h4>
+<p>Books3 contains roughly 196,000 English-language books. It was assembled in 2020 from a shadow library and released as about 101 gibibytes of plain text. The Pile included it as roughly 12% of 825 gibibytes. The chapter reports that Books3 was named in the complaint in Kadrey v. Meta Platforms, filed in the Northern District of California in July 2023. It also reports that the Danish Rights Alliance had the dataset removed from public distribution in 2023. That removal did not change models already trained on the dataset. Given a canonical book, a team can prefix the model with k tokens and measure its longest exact continuation. A long verbatim continuation is strong evidence of training exposure, but the chapter does not call it proof of corpus membership. The opening legal exhibit is a 400-word exact continuation from a novel. Without that calibration, an engineering measurement can be overstated in a legal setting.</p>
+<h4 id="independent-errors-versus-lock-on">Independent errors versus lock-on</h4>
+<p>The naive model assigns independent probability p to each correct next token. A run of length L then has probability p^L. At p = 0.95, a 100-token run has probability 0.95^100 = 5.9 × 10^-3. A 300-token run has probability 0.95^300 = 2.1 × 10^-7.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">run</mtext><mo>≥</mo><mi>L</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msup><mi>p</mi><mi>L</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><msup><mn>0.95</mn><mn>100</mn></msup><mo>=</mo><mn>5.9</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><msup><mn>0.95</mn><mn>300</mn></msup><mo>=</mo><mn>2.1</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>7</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\Pr[\text{run} \ge L] = p^L, \qquad 0.95^{100} = 5.9 \times 10^{-3}, \qquad 0.95^{300} = 2.1 \times 10^{-7}</annotation></semantics></math></p>
+<p>The exhibit contradicts the useful independence assumption. Each correct token gives more evidence that the context is a specific document. Induction heads can match a token against earlier context and copy what followed it. The chapter models a lock-on probability π(d, k) that grows with duplication count d and supplied prefix length k. After lock-on, per-token accuracy can be near q = 0.999. Then q^300 = 0.999^300 = 0.74.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>q</mi><mn>300</mn></msup><mo>=</mo><msup><mn>0.999</mn><mn>300</mn></msup><mo>=</mo><mn>0.74</mn></mrow><annotation encoding="application/x-tex">q^{300} = 0.999^{300} = 0.74</annotation></semantics></math></p>
+<p>About three quarters of locked-on generations can therefore run 300 tokens clean in the schematic model. The resulting distribution is bimodal, with many short failures and a long plateau. Mean overlap is dominated by the non-locked outputs. The maximum run captures the tail that can become an exhibit.</p>
+<h4 id="output-filters-and-reported-legal-holdings">Output filters and reported legal holdings</h4>
+<p>An n-gram filter can block literal matches to indexed works. The chapter cites a roughly 150-character public-code match window documented for GitHub Copilot. That filter misses works not present in its index. It also does not test non-literal copying. The chapter states that substantial similarity can reach structure, sequence, and expression beyond exact text. A clean report should therefore say "no literal matches above 150 characters against the works we indexed." It should not be restated as "no infringement." The chapter reports that in Bartz v. Anthropic, in June 2025, Judge Alsup held training on lawfully acquired books transformative fair use and separately held that downloading and retaining pirated copies for the training library was not. It reports that the case settled in 2025 for roughly $1.5 billion. It reports that Kadrey granted summary judgment to Meta on the record those plaintiffs built while stating that the ruling did not establish that training on pirated books is lawful. These are the chapter's descriptions of specific proceedings, not a general legal rule or present legal advice. An output filter cannot reach an acquisition act that occurred before training.</p>
+<h4 id="three-books3-configurations">Three Books3 configurations</h4>
+<p>The worked example uses 196,640 books at 80,000 words and 1.3 tokens per word. That is about 104,000 tokens per book. For shadow-library acquisition, the example divides a $1.5 billion settlement by roughly 500,000 works. It gets $3,000 per work and applies that observed rate to Books3 for about $590 million. For lawful acquisition at $15 per ebook, the same corpus costs $2.95 million. The ratio is 200 to 1. The chapter treats acquisition provenance as the decision that separates these two configurations. For a test-time datastore, the corpus totals about 20 billion tokens. At 512-token chunks, that is about 39 million vectors. At 768 dimensions in fp32, each vector occupies 3,072 bytes. The vectors occupy about 120 gigabytes. Embedding at $0.02 per million tokens costs about $400. Removing one title deletes about 200 vectors. The datastore does not make the acquisition lawful by itself. It changes the mechanics of a later opt-out. The chapter reports United States Copyright Act Section 504(c) statutory damages of $750 to $30,000 per work, rising to $150,000 for willful infringement. The $3,000 settlement rate is four times the floor and 2% of the cited willful ceiling. Applying $150,000 to 196,640 books gives a schematic $29 billion upper calculation.</p>
+<h4 id="practice-decisions-2">Practice decisions</h4>
+<p>Require acquisition provenance before accepting a training corpus. Use a receipt, license, or public-domain designation per source. Probe at production prefix length and report the maximum exact run. The source suggests drawing a few thousand prefixes from works that can be named. Use a high percentile for a stable trend only when the strict maximum remains the gate. Ship an n-gram filter as a symptom control, not as the complete risk control. Deduplicate before reducing model size because the chapter cites roughly ten times less memorized emission after deduplication with no held-out perplexity cost. Route revocable content to a datastore before training. Record a retirement date for checkpoints trained on data with unproven provenance. When a retrieval-only license costs four times a training-inclusive license, price revocation, termination notice, and retraining before treating the cheaper license as lower cost.</p>
+<h3 id="54-unlearning-and-why-it-cannot-scale">5.4 Unlearning and why it cannot scale</h3>
+<h4 id="exact-and-approximate-objectives">Exact and approximate objectives</h4>
+<p>Let D be the training corpus. Let F be the true sequences to forget. Let R = D minus F be what remains. Exact unlearning returns a model trained on R, so it never saw F.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>R</mi></msub><mo>=</mo><mo>Train</mo><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>R</mi><mo>=</mo><mi>D</mi><mo>\</mo><mi>F</mi></mrow><annotation encoding="application/x-tex">\theta_R = \mathop{\text{Train}}(R), \qquad R = D \setminus F</annotation></semantics></math></p>
+<p>Bourtoule et al. made exact deletion cheaper for classifiers by sharding data and retraining one shard. For the chapter's 7-billion-parameter generator, full retraining costs about $1.34 million and 22.3 days on 1,000 GPUs. Approximate unlearning instead lowers probability on F̂ while replaying a sample R' of retained data. The weighting λ trades forgetting against preservation.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mi>max</mi><mi>θ</mi></munder><mrow><mo stretchy="true" form="prefix">[</mo><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><msup><mi>R</mi><mo>′</mo></msup></mrow></munder><mi>log</mi><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>λ</mi><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mover><mi>F</mi><mo accent="true">̂</mo></mover></mrow></munder><mi>log</mi><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\max_{\theta}\left[\sum_{x \in R&#39;} \log p_{\theta}(x) - \lambda \sum_{x \in \hat F} \log p_{\theta}(x)\right]</annotation></semantics></math></p>
+<p>The update can reduce probability on every sequence it receives. Its compute cost in the worked example is $0.66. The hard failures are enumeration and interference, not compute.</p>
+<h4 id="enumeration-failure">Enumeration failure</h4>
+<p>An erasure request names a person, book, or customer. The optimizer consumes token sequences. Tokenization destroyed the map from the named entity to every sequence in training. F̂ therefore contains only what finite prompts surfaced. Its recall against F is unmeasurable without the missing corpus membership list. Re-running the same prompts after optimization creates a circular acceptance test. It proves suppression of the prompts used to build F̂, not absence under untried prompts. Benchmarks can make a stronger claim because they provide the forget set by construction. The chapter cites a fictitious-author benchmark and a curated hazardous-knowledge benchmark as legitimate optimizer tests that do not measure production enumeration. It also cites evaluations where reported forgetting reappears under adjacent-data relearning or another language.</p>
+<h4 id="interference-failure">Interference failure</h4>
+<p>An ascent step that suppresses F̂ changes retained sequence y in proportion to the alignment between their gradients. That change is zero only when the forget and retain directions are orthogonal.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>θ</mi><mo>′</mo></msup><mo>=</mo><mi>θ</mi><mo>+</mo><mi>η</mi><msub><mi>g</mi><mover><mi>F</mi><mo accent="true">̂</mo></mover></msub><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>g</mi><mover><mi>F</mi><mo accent="true">̂</mo></mover></msub><mo>=</mo><msub><mi>∇</mi><mi>θ</mi></msub><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mover><mi>F</mi><mo accent="true">̂</mo></mover></mrow></munder><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><msup><mi>θ</mi><mo>′</mo></msup></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mi>η</mi><msubsup><mi>g</mi><mi>y</mi><mi>𝖳</mi></msubsup><msub><mi>g</mi><mover><mi>F</mi><mo accent="true">̂</mo></mover></msub></mrow><annotation encoding="application/x-tex">\theta&#39; = \theta + \eta g_{\hat F}, \qquad g_{\hat F} = \nabla_{\theta}\sum_{x \in \hat F}\log p_{\theta}(x), \qquad \log p_{\theta&#39;}(y) - \log p_{\theta}(y) \approx \eta g_y^{\mathsf T} g_{\hat F}</annotation></semantics></math></p>
+<p>A finite parameter space cannot give every corpus sequence an independent direction. The chapter uses a memorization estimate of 3.6 bits per parameter. A 7-billion-parameter model then stores about 3.2 gigabytes of memorized information.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>×</mo><mn>3.6</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">bits</mtext></mrow><mrow><mn>8</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">bits per byte</mtext></mrow></mfrac><mo>=</mo><mn>3.2</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">bytes</mtext></mrow><annotation encoding="application/x-tex">\frac{7 \times 10^9 \times 3.6\ \text{bits}}{8\ \text{bits per byte}} = 3.2 \times 10^9\ \text{bytes}</annotation></semantics></math></p>
+<p>The source compares that with a 75-terabyte corpus. The corpus is about 23,000 times larger than the estimated memorization storage. Facts must therefore share parameter directions in superposition. An update for one fact can damage neighbors with a sign the operator does not control. Replay can reduce the damage but cannot guarantee that every retained gradient is orthogonal to the forget gradient.</p>
+<h4 id="stream-compounding">Stream compounding</h4>
+<p>If one run loses fraction δ of retained capability, n runs retain (1 - δ)^n.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>δ</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>n</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><mi>δ</mi><mo>≤</mo><mn>1</mn><mo>−</mo><msup><mn>0.95</mn><mrow><mn>1</mn><mi>/</mi><mn>400</mn></mrow></msup><mo>=</mo><mn>1.3</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup></mrow><annotation encoding="application/x-tex">(1 - \delta)^n, \qquad \delta \le 1 - 0.95^{1/400} = 1.3 \times 10^{-4}</annotation></semantics></math></p>
+<p>At δ = 1% and n = 400, the retained fraction is 0.99^400 = 1.8%. At δ = 0.1%, it is 0.999^400 = 67%. Keeping 95% after 400 requests requires δ no greater than 1.3 × 10^-4 per run. That is 1.3 parts in 10,000. No evaluation harness in the chapter resolves damage at that level. At 12 requests per month, n = 144 in one year, and 1% damage per run leaves 0.99^144 = 24% retained capability. The system pays for a request stream, not one apparently cheap request.</p>
+<h4 id="why-sharding-loses-for-generation">Why sharding loses for generation</h4>
+<p>With S = 100, sharded exact unlearning trains 100 models. For 7 billion parameters each, the system carries 700 billion parameters. At fp16, that is about 1.4 terabytes of accelerator memory instead of 14 gigabytes. Serving also uses 100 times the FLOPs on every query. Each shard model sees only one hundredth of the corpus facts. The design makes occasional deletion cheaper by making every inference expensive. A datastore keeps exact row deletion without multiplying parametric models.</p>
+<h4 id="worked-erasure-economics">Worked erasure economics</h4>
+<p>The example uses 200,000 support transcripts. One customer appears in 40 transcripts of 500 tokens each, or 20,000 forget tokens. It assumes 0.2% of customers request erasure in one year, which gives 400 requests. Training uses 6N = 4.2 × 10^10 FLOPs per token. Exact retraining over 15.6 trillion tokens costs 535,000 GPU-hours and $1.34 million. On 1,000 GPUs, one run takes 22.3 days. Four hundred sequential runs take 8,920 days, or about 24 years. Approximate unlearning uses a replay set 100 times larger than the 20,000-token forget set. Three epochs process 6.06 million tokens. The update takes 749 seconds and costs $0.52. A 5,000-question acceptance evaluation with 1,000 tokens each takes 206 seconds and costs $0.14. The total is $0.66 per request and $264 for 400 requests. Exact retraining is about 2 million times more expensive per request. The 5,000-item evaluation resolves accuracy only to about 1.4%. That is about 100 times coarser than the required 1.3 × 10^-4 damage budget. Matching that resolution would require about 10,000 times as many questions, or roughly 50 million items. The source cross-checks with 1.3 million GPU-hours for Llama 3 8B, priced at $3.25 million. Scaling the 7B estimate to 8B gives $1.53 million, about 2.1 times lower. The source attributes the gap to model FLOPs utilization assumptions of 34% versus an implied 16% and to bandwidth limits for small models.</p>
+<h4 id="practice-decisions-3">Practice decisions</h4>
+<p>Answer erasure requests against datastores and logs when those are the serving systems that hold the records. The chapter cites the one-month GDPR Article 12(3) window in support of verifiable deletion from those stores. It recommends refusing a promise of removal from model weights. It proposes a narrower promise: delete from systems that serve the customer's data and exclude the data from later training within 30 days. That proposed language is the source's operational framing, not legal advice from this chapter file. Batch requests into one approximate-unlearning run when such a run is required, so capability damage is paid once per batch. Use an independent team to build the verification probe. Report evaluation resolution beside any claim of no detected regression. Protect F̂ as sensitive data because it is a concentrated list of target sequences.</p>
+<h3 id="55-silo-low-risk-weights-high-risk-datastore">5.5 SILO: low-risk weights, high-risk datastore</h3>
+<h4 id="two-memories-and-one-boundary">Two memories and one boundary</h4>
+<p>SILO writes generation as a combination of parametric weights θ and a non-parametric datastore D.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>∼</mo><msub><mi>p</mi><mi>θ</mi></msub><mspace width="-0.167em"></mspace><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo>,</mo><mo>RET</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">y \sim p_{\theta}\!\left(y \mid x, \mathop{\text{RET}}(x, D)\right)</annotation></semantics></math></p>
+<p>Both sides may require a copy of source text. The architecture does not claim that making the datastore copy is lawful. The difference is what the system can do after the copy exists. D can enumerate rows, select them by key, delete them, and show that retrieval no longer returns them. Weights offer none of those exact operations. The source therefore partitions data by license before any gradient step. Public-domain, permissive-software, and attribution-license tiers may train the parametric model under the source's policy. Copyrighted, private, or otherwise encumbered content stays in a datastore read at inference. Min et al.'s Open License Corpus has 228 billion tokens across the three low-risk tiers. They trained 1.3-billion-parameter models cumulatively on 60 billion, 250 billion, and 350 billion tokens for the PD, PD+SW, and PD+SW+BY configurations. Without a license field at ingestion, the later removal operation loses its key.</p>
+<h4 id="the-measured-quality-tax">The measured quality tax</h4>
+<p>On OpenWebText2, parametric-only perplexity is 37.8 for PD. It is 21.1 for PD+SW. It is 18.8 for PD+SW+BY. The compute-matched Pythia-1.4B comparison trained on The Pile reaches 11.5. The strongest low-risk model therefore has a ratio of 18.8 / 11.5 = 1.63. Its loss gap is ln(1.63) = 0.49 nats per token.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>18.8</mn><mn>11.5</mn></mfrac><mo>=</mo><mn>1.63</mn><mo>,</mo><mspace width="2.0em"></mspace><mi mathvariant="normal">Δ</mi><mi>L</mi><mo>=</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1.63</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.49</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nats per token</mtext></mrow><annotation encoding="application/x-tex">\frac{18.8}{11.5} = 1.63, \qquad \Delta L = \ln(1.63) = 0.49\ \text{nats per token}</annotation></semantics></math></p>
+<p>Because compute is matched, the chapter attributes the gap to corpus composition rather than insufficient scaling. Adding a datastore closes 90% of the out-of-domain gap. Ten percent remains, or 0.049 nats. That gives effective perplexity 11.5 × e^0.049 = 12.1. The residual is about 5% over 11.5. Stopping at low-risk weights costs 63% in perplexity. Finishing the two-memory architecture reduces that cost to about 5% in this measurement. The benefit is not monotonic across every task. Adding the BY tier improves OpenWebText2 from 21.1 to 18.8 but moves Amazon from 34.8 to 37.0.</p>
+<h4 id="how-the-datastore-changes-removal">How the datastore changes removal</h4>
+<p>kNN-LM mixes pθ(y given x) with a neighbor distribution from D. The mixture weight λ lies between 0 and 1.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>λ</mi><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>λ</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">N</mi><mi mathvariant="normal">N</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>λ</mi><mo>∈</mo><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">p(y \mid x) = \lambda p_{\theta}(y \mid x) + (1 - \lambda)p_{\mathrm{kNN}}(y \mid x, D), \qquad \lambda \in [0, 1]</annotation></semantics></math></p>
+<p>Setting λ = 1 turns off the datastore contribution exactly for that computation. Deleting rows changes the neighbor set on the next query. No gradient integrated those rows into the weights. The removal argument is expressible as a key query such as all rows for one publisher. Its effect stays in the additive datastore term. Verification reissues a query and confirms that revoked rows are absent. This non-circular test is the structural gain that approximate unlearning lacks. The split does not settle fair use or make retrieval indexing categorically lawful. The chapter states that no court has held indexing for retrieval categorically fair use. It frames SILO as management of a risk-performance trade-off, not elimination of risk.</p>
+<h4 id="treatise-collection-configurations">Treatise collection configurations</h4>
+<p>The worked collection has 2 million pages at 500 tokens per page. It totals 1 billion tokens and comes equally from three publishers. Each license has a 30-day revocation clause. The system receives 1 million queries per month. Putting the text in weights creates a $1.34 million, 22.3-day retraining event for one publisher. The run has only 7.7 days of margin inside the 30-day deadline and does not prove removal when complete. RIC-LM chunks 1 billion tokens into 4 million chunks of 250 tokens. At 768 dimensions in fp16, each vector is 1,536 bytes. The vectors occupy 6.1 gigabytes. An HNSW graph with M = 32 uses about 64 neighbor slots of four bytes each. That adds 256 bytes per vector, or about 1.0 gigabyte. The total index is 7.2 gigabytes. Revoking one publisher deletes 1.33 million rows selected by license. A 4-million-bit tombstone bitmap occupies 500 kilobytes. Serving blocks the rows immediately while a rebuild runs on schedule. kNN-LM stores one vector per token at 2,048 dimensions. At fp16, 1 billion vectors occupy 4.1 terabytes. That is about 570 times the 7.2-gigabyte RIC-LM index for the same text. The source reports stronger quality and better datastore-size scaling for kNN-LM. It also notes that kNN-LM requires control of the serving path and does not fit a hosted generation API.</p>
+<h4 id="retrieval-serving-cost">Retrieval serving cost</h4>
+<p>RIC-LM retrieves k = 5 chunks of 250 tokens each. That adds 1,250 prompt tokens per query. The worked compute model gives 0.051 seconds of prefill and $3.6 × 10^-5 per query. At 1 million queries per month, that is $36 monthly. One $1.34 million retraining event equals about 37,000 months of that retrieval overhead. That is about 3,100 years. The source cross-checks the 4.1-terabyte design against a published 1-billion-vector, 2,048-dimension datastore. It also reports a 1.4-trillion-token datastore where quality improved with datastore size and a smaller model plus a large datastore beat a larger model alone on knowledge-intensive tasks.</p>
+<h4 id="practice-decisions-4">Practice decisions</h4>
+<p>Stamp every document with PD, SW, BY, or high-risk at ingestion. Carry that field onto every chunk and training shard. Default to RIC-LM because it is 570 times smaller in the worked example and works with a hosted API. Use kNN-LM when domain shift makes quality the binding constraint and you own the serving stack. Soft-delete at read time, then rebuild on the normal schedule. Rebuild immediately when the removed tier exceeds roughly one fifth of the index because recall can become visibly degraded. Measure the high-risk tier's contribution before a license ends. Run per-publisher ablation when one source exceeds one quarter of retrieved context. Do not fine-tune on high-risk text or synthetic paraphrases distilled from it under the source's policy. The source characterizes a generated paraphrase of a licensed treatise as a derivative work that crosses the boundary without the original provenance. The chapter treats content owned outright as an exception. For a tenant-specific quality gain, a separate LoRA adapter can remain deletable if it is never merged, never served across tenants, and contains the only gradients from that tenant. The interview scenario assigns that adapter an eight-point exact-match gain, then makes deletion rather than quality the deciding requirement. Merging the adapter destroys that file-level deletion guarantee. Name the residual risk in a contract rather than promising removal from weights that the architecture cannot verify.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest records five figures and zero source tables. All five figures appear below.</p>
+<h3 id="figure-51">Figure 5.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;Crawled pages in WARC: about 20 TB per monthly snapshot. URL, timestamp, and license header intact&quot;]
+    B[&quot;Text extraction: WET versus trafilatura. URL kept. Markup, boilerplate, and license markup discarded&quot;]
+    C[&quot;Language identification, heuristics, deduplication, and quality classification: about 750 GB or 3.75% of bytes. Documents remain addressable&quot;]
+    D[&quot;Tokenize, shuffle, and pack: 1.56 × 10^11 tokens. Document identity dissolves&quot;]
+    E[[&quot;Weights θ: no index and no delete. Prompt probes only&quot;]]
+    A --&gt; B
+    B --&gt; C
+    C -.-&gt;|&quot;Provenance boundary: above, delete a file. Below, retrain&quot;| D
+    D --&gt; E</code></pre></details></figure>
+<p>Figure 5.1: Each stage destroys the handle the next legal question needs, and the dashed line is where the cost of answering "remove this document" jumps from a file operation to a full retrain. Byte and token figures are the C4 pipeline as reported by Raffel et al. (2020).</p>
+<h3 id="figure-52">Figure 5.2</h3>
+<pre class="text"><code>pre-training distribution pθ
+alignment deleted nothing in here
+
+      |             |                  |        |
+   |  |       |     |        |      |  |        |    memorized bars
+   |  |   |   |     |   |    |  |   |  |   |    |    height = duplication d
+
+       +-------------------------------------+
+       | aligned manifold pφ                 |
+       | everything a well-formed prompt     |
+       | can normally reach                  |
+       +-------------------------------------+
+                 ^                    . . . . . . . . . . ^
+                 |                    off-support: no alignment
+      normal support query            demonstration covers a
+                                      500-token repetition
+                                               ^
+                                               |
+                                      repeat &quot;poem&quot; forever
+
+One tall bar represents one person&#39;s name, email, phone, and address.</code></pre>
+<p>Figure 5.2: Each bar is a memorized sequence and its height is the duplication count d that made it extractable. Alignment fences the sampler into the shaded manifold rather than removing the bars, so a prompt that leaves the manifold reaches them all. Nasr et al. (2023) measured the emission rate outside the fence at roughly 150× the rate inside it.</p>
+<h3 id="figure-53">Figure 5.3</h3>
+<pre class="text"><code>Pr[run ≥ L]
+10^0 |\  independence model p^L at p = 0.95
+     | \
+10^-2|  \.
+     |    \.
+10^-4|-----================ measured lock-on plateau =================
+     |       \                 shaded exhibit region begins near L=200
+10^-6|         \............................x at L=300
+     |                                      vertical gap about 10^2
+10^-8|_______________________________________________
+       0        100        200        300        400
+                    verbatim run length L in tokens
+
+At L=300: independence 0.95^300 = 2.1 × 10^-7.
+Once locked on: 0.999^300 = 0.74 before weighting by lock-on probability.</code></pre>
+<p>Figure 5.3: Under independent per-token errors, exposure vanishes geometrically and no exhibit is possible. Under lock-on, the tail flattens into a plateau, so the gap between the two models grows without bound in L - which is why a low mean overlap says nothing about the longest run a plaintiff will find. Axes are schematic. The two endpoints, 0.95^300 and 0.999^300, are computed in the text.</p>
+<h3 id="figure-54">Figure 5.4</h3>
+<p>Panel a:</p>
+<pre class="text"><code>+----------------------------------------------------------------------------+
+| corpus D: 7.5 × 10^13 bytes, no membership list below tokenization         |
+|      +----------------------------------------------------------------+    |
+|      | memorized in θ: about 3.2 GB, in superposition                 |    |
+|      |        +---------------------------------------------+         |    |
+|      |        | surfaced by the probes you ran             |         |    |
+|      |        |                    [F̂] &lt;-------------------+---------+---- what the optimizer can take as input
+|      |        +---------------------------------------------+         |    |
+|      +-----------------------------^----------------------------------+    |
++------------------------------------|---------------------------------------+
+                                     +--------------------------------------- what the request obliges you to remove</code></pre>
+<p>Panel b:</p>
+<pre class="text"><code>retained capability (1 - δ)^n
+1.0 |.... 95% floor. Requires δ ≤ 1.3 × 10^-4 per run ....
+    |\  - - - - - - - - - - - - - - - - - - - - 67% at δ=10^-3
+0.5 | \__
+    |    \____
+    |         \________
+0.0 |__________________\_______________________ 1.8% at δ=10^-2
+     0        100        200        300        400
+                 cumulative unlearning requests n</code></pre>
+<p>Figure 5.4: (a) The request obliges you to remove everything in the shaded region, while the optimizer only ever receives F̂, and the gap between them is unmeasurable because the corpus is not an object you hold. (b) Even a run that damages 1% of retained capability compounds to 0.99^400 = 1.8% over a year of a modest request stream. The dotted floor is the 1.3 × 10^-4 per-run budget derived in the text.</p>
+<h3 id="figure-55">Figure 5.5</h3>
+<p>Panel a:</p>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    PD[&quot;Public domain, PD&quot;] --&gt; W[&quot;Weights θ: one gradient step, permanent, no key, no delete. Removal costs $1.34 M and 22.3 days&quot;]
+    SW[&quot;Permissive software, SW&quot;] --&gt; W
+    BY[&quot;Attribution licenses, BY&quot;] --&gt; W
+    HR[[&quot;Copyrighted, private, or encumbered&quot;]] --&gt; D[[&quot;Datastore D: one keyed row per chunk, read only at inference. Removal is one filtered write&quot;]]
+    HR -.-&gt;|&quot;Never cross the licensing boundary into weights&quot;| X[&quot;Blocked gradient path&quot;]</code></pre></details></figure>
+<p>Panel b:</p>
+<pre class="text"><code>                                                    30-day deadline
+                                                           |
+datastore  [#] filter on license field, about 1 second, verifiable
+weights    [==========================================] 1.93 × 10^6 seconds, 22.3 days, $1.34 million, unverifiable by exact membership
+           1 s          1 min          1 h          1 day          1 month
+                     wall clock to honor a removal request, log scale</code></pre>
+<p>The 30-day deadline leaves 7.7 days after the weights retrain and nearly the full window after the datastore write.</p>
+<p>Figure 5.5: (a) The three low-risk tiers are the only ones permitted to reach a gradient step. High-risk content is admitted at inference through a keyed datastore, which is what makes it revocable. (b) The same removal request costs one filtered write on the datastore side and a $1.34 M retrain on the weights side, landing 7.7 days inside a 30-day contractual deadline on a run that must not fail.</p>
+<p>The source chapter contains no tables.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a vertical pipeline with crawl, extract, filter, tokenize, and weights.</li>
+<li>Add a dashed line between filtering and tokenization. Label it "provenance boundary."</li>
+<li>Write "file delete" above the line and "retrain" below it.</li>
+<li>Draw a small aligned region inside a larger weight space. Add a repetition prompt leaving the small region.</li>
+<li>Draw two run-length curves. Make the independent curve decay and the lock-on curve form a long plateau.</li>
+<li>Draw F as a large target and F̂ as a small observed subset. Add the compounding formula (1 - δ)^n.</li>
+<li>Split the final board into weights and datastore. Route PD, SW, and BY to weights, and route high-risk text to the datastore.</li>
+<li>End with the removal comparison: about one second and verifiable versus $1.34 million, 22.3 days, and unverifiable by membership.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Think of the model as two memories. Weights are compressed memory. They are cheap to query, but tokenization erased document identity, so you cannot list or delete one source. Alignment changes behavior without erasing memorized sequences, and approximate unlearning acts only on examples a probe found while risking collateral damage. A datastore is addressable memory. If every chunk keeps a license key, a revocation becomes a filtered write that you can verify. SILO therefore sends low-risk text to gradients and keeps revocable text behind retrieval. That boundary manages reversibility and performance. It does not decide whether the copy was lawful.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-legal-asks-whether-partner-content-is-in-a-closed-models-corpus-do-you-certify-that-it-is-absent">1. "Legal asks whether partner content is in a closed model's corpus. Do you certify that it is absent?"</h3>
+<p>No, because tokenization erased the membership list and absence is not enumerable from the weights. Offer a sampled audit with a confidence interval or a targeted extraction probe, then state the residual uncertainty. The trade-off is that sampling estimates a rate cheaply while exact matching needs a retained source index.</p>
+<h3 id="2-the-aligned-assistant-refuses-pii-why-run-a-divergence-probe">2. "The aligned assistant refuses PII. Why run a divergence probe?"</h3>
+<p>Alignment fences ordinary sampling into covered contexts but does not delete associations in the weights. A long repetition prompt can leave that region and expose duplicated training text. The probe costs more tokens than a normal evaluation, but the worked example returns records far more cheaply.</p>
+<h3 id="3-mean-overlap-with-protected-works-is-low-is-that-enough">3. "Mean overlap with protected works is low. Is that enough?"</h3>
+<p>No, because lock-on makes the run-length distribution bimodal and many harmless outputs can hide one long exact continuation. Gate on the maximum run at production prefix length and use a high percentile only for stable trend tracking. An n-gram filter reduces literal emission against indexed works but does not answer acquisition or non-literal similarity questions.</p>
+<h3 id="4-approximate-unlearning-costs-only-066-why-not-run-it-after-every-request">4. "Approximate unlearning costs only $0.66. Why not run it after every request?"</h3>
+<p>Compute is not the binding limit. The optimizer sees F̂ rather than the true F, and each update can interfere with retained facts. At 1% damage per run, 400 runs retain only 1.8% capability, so batching reduces repeated damage but does not solve enumeration or verification.</p>
+<h3 id="5-when-would-you-not-put-high-risk-content-in-a-datastore">5. "When would you not put high-risk content in a datastore?"</h3>
+<p>The source permits weights for content classified as public domain, permissively licensed, or attribution-licensed when its obligations can be honored and revocation risk is treated as zero. Use a datastore when content can be withdrawn, when provenance must remain selectable, or when per-source ablation matters. The datastore adds retrieval latency, storage, and a copy that still needs its own lawful basis.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Section</th>
+<th style="text-align: right;">Number</th>
+<th>What it measures</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 20 TB</td>
+<td>One monthly Common Crawl snapshot</td>
+<td>Starting scale of the corpus funnel</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 750 GB</td>
+<td>Text left after the cited filter cascade</td>
+<td>Shows the loss before tokenization</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">3.75%, under 4%</td>
+<td>Surviving bytes</td>
+<td>Quantifies funnel selectivity</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">1.56 × 10^11 tokens</td>
+<td>Cleaned C4 corpus</td>
+<td>Connects byte and token accounting</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 4.8 bytes per token</td>
+<td>750 GB divided by 1.56 × 10^11</td>
+<td>Conversion used throughout the chapter</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 5.7 bytes per English word</td>
+<td>Worked word-to-token assumption</td>
+<td>Converts reading speed to about 300 tokens per minute</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">15.6 trillion tokens</td>
+<td>Llama 3 pre-training scale used in examples</td>
+<td>Sets modern corpus size</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 75 TB</td>
+<td>Byte equivalent of 15.6 trillion tokens</td>
+<td>Supports review and unlearning costs</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">16 GB</td>
+<td>Reported BERT training corpus</td>
+<td>Historical comparison point</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 4,700 times in six years</td>
+<td>Growth from 16 GB to 75 TB</td>
+<td>Shows governance did not scale with data</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">825 GiB and 22 sources</td>
+<td>The Pile size and composition count</td>
+<td>Shows heterogeneous sources</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 12%</td>
+<td>Books3 share of The Pile</td>
+<td>Measures one high-risk component</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">2% to 4%</td>
+<td>Documents above a toxicity threshold after cleaning</td>
+<td>Shows filters leave significant residuals</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">15 GB</td>
+<td>Two percent of 750 GB</td>
+<td>Equals roughly one earlier full corpus</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">p = 0.02</td>
+<td>Worked contamination rate</td>
+<td>Input to sample sizing</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">95%</td>
+<td>Confidence level</td>
+<td>States audit certainty</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">e = 0.005</td>
+<td>Confidence-interval half-width</td>
+<td>Means half a percentage point</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 3,000 documents</td>
+<td>Required sample</td>
+<td>Tractable alternative to enumeration</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">Five minutes per document</td>
+<td>Review speed</td>
+<td>Converts sample size to labor</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">250 person-hours</td>
+<td>Sample review labor</td>
+<td>Two reviewers can finish within a week</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">$15 per hour and $3,750 total</td>
+<td>Review wage and audit cost</td>
+<td>Prices the bounded estimate</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">250 words per minute</td>
+<td>Enumeration reading rate</td>
+<td>Input to full-corpus review cost</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 300 tokens per minute</td>
+<td>Converted reading rate</td>
+<td>Connects words to corpus tokens</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">18,000 tokens per hour</td>
+<td>Reader throughput</td>
+<td>Makes enumeration arithmetic explicit</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">870 million person-hours</td>
+<td>Full-corpus reading time</td>
+<td>Demonstrates infeasibility</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">430,000 person-years</td>
+<td>Full-corpus reading at 2,000 hours per year</td>
+<td>Human-scale interpretation</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About $13 billion</td>
+<td>Full-corpus reading cost</td>
+<td>About 170 times training cost</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">30.84 million H100 GPU-hours</td>
+<td>Reported 405B pre-training compute</td>
+<td>Training-cost reference</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">$2.50 per GPU-hour</td>
+<td>Worked hardware price</td>
+<td>Gives $77 million training cost</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About $77 million</td>
+<td>Worked 405B training cost</td>
+<td>Budget comparison point</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 170 times</td>
+<td>Reading cost over training cost</td>
+<td>Rejects curation by exhaustive reading</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 3.5 million times</td>
+<td>Enumeration cost over sampled audit cost</td>
+<td>Favors bounded measurement</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About five parts in 100,000</td>
+<td>$3,750 audit divided by $77 million run</td>
+<td>Audit cost is negligible beside training</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">300 pages and 100,000 words</td>
+<td>Book-equivalent assumption</td>
+<td>Sanity check only</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 120,000 tokens per book</td>
+<td>Converted book size</td>
+<td>Used for corpus book-equivalents</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">About 130 million books</td>
+<td>15.6-trillion-token corpus equivalent</td>
+<td>Order-of-magnitude illustration</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">129,864,880 books</td>
+<td>Google's 2010 published-book census</td>
+<td>External sanity check reported by the source</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">Below p about 0.005</td>
+<td>Rare-target threshold</td>
+<td>Switch toward exact indexed matching</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">Under one year</td>
+<td>Revocability test</td>
+<td>Route the source to a datastore by default</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td style="text-align: right;">0.3%</td>
+<td>Example training mixture weight</td>
+<td>Does not equal extraction probability</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">About 400 repetitions in the opening scene</td>
+<td>Point before divergence produced sensitive text</td>
+<td>Illustrates long-context risk</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">200,000 transcripts</td>
+<td>Fine-tuning set in the worked system</td>
+<td>Defines exposed population</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">400 repeated sightings in the example explanation</td>
+<td>Duplicated phone-number association</td>
+<td>Shows why d matters</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">500-token repetition</td>
+<td>Example off-support context</td>
+<td>Alignment has no matching demonstration</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">About 150 times</td>
+<td>Divergent versus normal emission rate</td>
+<td>Main measured attack amplification</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">16.9%</td>
+<td>Divergent generations with memorized PII</td>
+<td>Main measured attack rate</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">About $200 and over 10,000 examples</td>
+<td>Hosted attack spend and unique yield</td>
+<td>Demonstrates practical extraction</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">1.5B parameters</td>
+<td>GPT-2 extraction target</td>
+<td>Shows the issue is not limited to larger models</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">1,800 candidates and 604 confirmed</td>
+<td>Manual check results</td>
+<td>About 34% precision</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">7B parameters</td>
+<td>Worked generator size</td>
+<td>Basis for compute estimates</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">1.4 × 10^10 FLOPs per token</td>
+<td>Forward compute</td>
+<td>Converts tokens to time</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">3.4 × 10^14 FLOPs per second</td>
+<td>Sustained throughput</td>
+<td>Converts FLOPs to seconds</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">0.11%</td>
+<td>Constructed normal-prompt baseline</td>
+<td>16.9% divided by 150</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">10,000 queries</td>
+<td>Default full divergence gate</td>
+<td>Main release-test size</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">100 prompt and 200 completion tokens</td>
+<td>Normal-probe lengths</td>
+<td>Totals 3 million tokens</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">124 seconds, 0.034 GPU-hours, $0.086</td>
+<td>Normal-probe compute and cost</td>
+<td>Yields about 11 hits</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">$0.0076 per record</td>
+<td>Normal-probe record cost</td>
+<td>Comparison baseline</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">50 prompt and 2,000 completion tokens</td>
+<td>Divergence-probe lengths</td>
+<td>Totals 20.5 million tokens</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">844 seconds, 0.234 GPU-hours, $0.586</td>
+<td>Divergence compute and cost</td>
+<td>Yields about 1,690 hits</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">$0.00035 per record</td>
+<td>Divergence extraction cost</td>
+<td>About 22 times cheaper per record</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">Just under seven times</td>
+<td>Divergence compute over normal probe</td>
+<td>More compute but much better attack economics</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">0.85%</td>
+<td>1,690 out of 200,000</td>
+<td>Maximum distinct-population share in the example</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">$0.02 per unique example</td>
+<td>Hosted attack result</td>
+<td>Real-world price check</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">58 times and ratio 70</td>
+<td>Local-price gap and retail-token ratio</td>
+<td>Agreement within 20% under the source's check</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">$0.029 versus $2.00 per million tokens</td>
+<td>Local silicon and cited hosted output price</td>
+<td>Explains retail margin</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">About $0.59 and under 15 minutes</td>
+<td>Recommended 10,000-query gate on one GPU</td>
+<td>Low release cost</td>
+</tr>
+<tr>
+<td>5.2</td>
+<td style="text-align: right;">500 queries</td>
+<td>Suggested third-party API sample</td>
+<td>Reduced-load alternative</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">Roughly 196,000 books</td>
+<td>Books3 scale</td>
+<td>Sets corpus and exposure size</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">400 words</td>
+<td>Opening exact-continuation exhibit</td>
+<td>Strong evidence but not stated as membership proof</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">196,640 books</td>
+<td>Worked Books3 count</td>
+<td>Used in all three configurations</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">2020 and about 101 GiB</td>
+<td>Assembly year and plain-text size</td>
+<td>Dataset provenance facts reported by source</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">July 2023</td>
+<td>Kadrey complaint timing reported by source</td>
+<td>Preserves case chronology</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">2023</td>
+<td>Public-distribution takedown timing</td>
+<td>Shows upstream deletion did not change weights</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">p = 0.95</td>
+<td>Naive per-token accuracy</td>
+<td>Independence baseline</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">0.95^100 = 5.9 × 10^-3</td>
+<td>Naive 100-token run probability</td>
+<td>Appears rare but possible</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">0.95^300 = 2.1 × 10^-7</td>
+<td>Naive 300-token run probability</td>
+<td>Predicts almost no exhibit</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">q = 0.999</td>
+<td>Locked-on per-token accuracy</td>
+<td>Produces a long tail</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">0.999^300 = 0.74</td>
+<td>Clean 300-token continuation after lock-on</td>
+<td>About three quarters</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">Roughly 150 characters</td>
+<td>Cited Copilot literal-match window</td>
+<td>Defines the output filter's narrow measurement</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">June 2025</td>
+<td>Bartz holding timing reported by source</td>
+<td>Preserves case-specific statement</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About $1.5 billion</td>
+<td>Reported 2025 Bartz settlement</td>
+<td>Observed pricing input</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">500,000 works and $3,000 per work</td>
+<td>Settlement division</td>
+<td>Used to price Books3</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">80,000 words and 1.3 tokens per word</td>
+<td>Average-book assumptions</td>
+<td>Gives 104,000 tokens per book</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About $590 million</td>
+<td>Books3 at settlement rate</td>
+<td>Shadow-library configuration estimate</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">$15 per ebook and $2.95 million total</td>
+<td>Lawful-purchase configuration</td>
+<td>About one two-hundredth of $590 million</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">200 to 1</td>
+<td>Settlement-rate cost over purchase cost</td>
+<td>Acquisition dominates the delta</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About 20 billion tokens</td>
+<td>Books3 token total</td>
+<td>Datastore size input</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">512-token chunks and 39 million vectors</td>
+<td>Chunking configuration</td>
+<td>Determines index rows</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">768 dimensions and 3,072 bytes in fp32</td>
+<td>Vector configuration</td>
+<td>Determines storage</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About 120 GB</td>
+<td>Books3 vector storage</td>
+<td>Makes a test-time index practical</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">$0.02 per million tokens and $400 total</td>
+<td>Embedding price</td>
+<td>One-time index build cost</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About 200 vectors</td>
+<td>One title's rows</td>
+<td>Makes opt-out a small delete</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">$750 to $30,000 per work</td>
+<td>Reported statutory range</td>
+<td>Source's exposure check</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">$150,000 per work</td>
+<td>Reported willful ceiling</td>
+<td>Upper sensitivity calculation</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">Four times and 2%</td>
+<td>$3,000 relative to floor and willful ceiling</td>
+<td>Places settlement rate in range</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">About $29 billion</td>
+<td>196,640 works at $150,000</td>
+<td>Source's schematic verdict calculation</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">Roughly ten times less emission</td>
+<td>Reported effect of deduplication</td>
+<td>Favors deduplication over model shrinking</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">A few thousand prefixes</td>
+<td>Suggested probe scale</td>
+<td>Measure maximum run on named works</td>
+</tr>
+<tr>
+<td>5.3</td>
+<td style="text-align: right;">Four times the price</td>
+<td>Retrieval-only license premium in the staff scenario</td>
+<td>Must be weighed against revocation and retraining</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">30 days</td>
+<td>Contract deletion promise in opening example</td>
+<td>Exposes the operational gap</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">11 more requests in the same month</td>
+<td>Early request stream</td>
+<td>Shows one request is not the unit of cost</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">3.6 bits per parameter</td>
+<td>Memorization-capacity estimate</td>
+<td>Gives 3.2 GB for a 7B model</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">About 3.2 GB</td>
+<td>Estimated memorized information</td>
+<td>Compared with a 75 TB corpus</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">About 23,000 to 1</td>
+<td>Corpus bytes over memorization storage</td>
+<td>Motivates superposition and interference</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">δ = 1% and n = 400</td>
+<td>Benign-looking per-run damage and annual stream</td>
+<td>Leaves 1.8% capability</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">δ = 0.1% and n = 400</td>
+<td>Smaller per-run damage</td>
+<td>Leaves 67% capability</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">95% floor</td>
+<td>Desired retained capability</td>
+<td>Requires δ no greater than 1.3 × 10^-4</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">1.3 × 10^-4</td>
+<td>Per-run damage budget</td>
+<td>1.3 parts in 10,000</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">Over 90% suppression at under 1% degradation</td>
+<td>Benchmark claim in the staff scenario</td>
+<td>Does not transfer when F is unknown or requests repeat</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">12 per month, 144 per year, 24% retained</td>
+<td>Staff-scenario request stream at 1% damage</td>
+<td>Shows benchmark damage compounds</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">S = 100</td>
+<td>Shard count</td>
+<td>Makes deletions touch one slice</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">700B parameters</td>
+<td>100 models of 7B</td>
+<td>Serving burden</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">1.4 TB versus 14 GB</td>
+<td>Sharded versus single-model fp16 memory</td>
+<td>100-fold memory tax</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">100 times FLOPs</td>
+<td>Sharded inference cost</td>
+<td>Makes every query expensive</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">40 transcripts at 500 tokens</td>
+<td>One customer's appearances</td>
+<td>20,000 forget tokens</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">0.2% and 400 requests</td>
+<td>Annual erasure rate and count</td>
+<td>Drives compounding example</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">4.2 × 10^10 FLOPs per training token</td>
+<td>Training compute constant</td>
+<td>Prices exact and approximate updates</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">535,000 GPU-hours and $1.34 million</td>
+<td>One exact 7B retrain</td>
+<td>Exact deletion cost</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">1,000 GPUs and 22.3 days</td>
+<td>Exact retrain deployment</td>
+<td>Leaves little contract margin</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">8,920 days, about 24 years</td>
+<td>Four hundred sequential retrains</td>
+<td>Schedule is infeasible</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">100 times replay and three epochs</td>
+<td>Approximate-unlearning configuration</td>
+<td>Processes 6.06 million tokens</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">749 seconds and $0.52</td>
+<td>Approximate update</td>
+<td>Compute is cheap</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">5,000 questions at 1,000 tokens</td>
+<td>Acceptance evaluation</td>
+<td>Costs 206 seconds and $0.14</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">$0.66 per request and $264 per year</td>
+<td>Approximate total</td>
+<td>About 2 million times cheaper per request</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">About 1.4%</td>
+<td>Evaluation resolution</td>
+<td>About 100 times too coarse</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">About 10,000 times and 50 million items</td>
+<td>Extra evaluation scale needed</td>
+<td>Shows resolution cannot be bought easily</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">1.3 million GPU-hours and $3.25 million</td>
+<td>Reported Llama 3 8B cross-check</td>
+<td>Validates million-dollar order</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">$1.53 million and factor 2.1</td>
+<td>Scaled worked estimate and gap</td>
+<td>Attributed to utilization assumptions</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">34% versus 16%</td>
+<td>Assumed versus implied model FLOPs utilization</td>
+<td>Explains cross-check difference</td>
+</tr>
+<tr>
+<td>5.4</td>
+<td style="text-align: right;">40 requests per batch</td>
+<td>Source batching example</td>
+<td>Pays δ once instead of 40 times</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">228 billion tokens</td>
+<td>Open License Corpus size</td>
+<td>Low-risk source pool</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1.3 billion parameters</td>
+<td>SILO experimental model size</td>
+<td>Quality comparison scale</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">60B, 250B, and 350B tokens</td>
+<td>Cumulative PD, PD+SW, and PD+SW+BY training</td>
+<td>Tier progression</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">37.8, 21.1, and 18.8</td>
+<td>Tiered OpenWebText2 perplexities</td>
+<td>More low-risk tiers improve this task</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">11.5</td>
+<td>Pythia-1.4B comparison perplexity</td>
+<td>Compute-matched baseline</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1.63 and 0.49 nats per token</td>
+<td>Low-risk quality ratio and loss gap</td>
+<td>63% perplexity tax without retrieval</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">90%</td>
+<td>Gap closed by datastore access</td>
+<td>Main quality recovery</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">0.049 nats, 12.1 perplexity, about 5%</td>
+<td>Residual after retrieval</td>
+<td>Fully built architecture's tax</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">34.8 to 37.0</td>
+<td>Amazon perplexity after adding BY</td>
+<td>More low-risk data is not monotonic</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">λ in [0, 1]</td>
+<td>kNN-LM mixture range</td>
+<td>λ = 1 removes datastore contribution</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">2 million pages at 500 tokens</td>
+<td>Treatise collection</td>
+<td>Totals 1 billion tokens</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">Three publishers</td>
+<td>Equal license partitions</td>
+<td>One revocation removes one third</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">30 days and 7.7 days margin</td>
+<td>Contract window and retrain slack</td>
+<td>Run cannot fail</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1 million queries per month</td>
+<td>Serving traffic</td>
+<td>Retrieval cost basis</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">250-token chunks and 4 million rows</td>
+<td>RIC-LM chunking</td>
+<td>Defines index size</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">768 dimensions and 1,536 bytes</td>
+<td>fp16 RIC-LM vector</td>
+<td>Gives 6.1 GB vectors</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">M = 32 and 64 neighbor slots</td>
+<td>HNSW configuration</td>
+<td>Adds 256 bytes per vector</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1.0 GB and 7.2 GB total</td>
+<td>Graph overhead and complete index</td>
+<td>Fits one machine</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1.33 million rows</td>
+<td>One publisher's share</td>
+<td>Selected on license field</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">4 million bits and 500 KB</td>
+<td>Tombstone bitmap</td>
+<td>Immediate soft-delete state</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">2,048 dimensions and 4.1 TB</td>
+<td>kNN-LM datastore</td>
+<td>One vector per token</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">About 570 times</td>
+<td>kNN-LM storage over RIC-LM</td>
+<td>Main deployment trade-off</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">k = 5 and 1,250 extra tokens</td>
+<td>Retrieved context per query</td>
+<td>Prefill overhead</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">0.051 seconds and $3.6 × 10^-5</td>
+<td>Per-query retrieval prefill</td>
+<td>Low recurring cost</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">$36 per month</td>
+<td>Retrieval overhead at one million queries</td>
+<td>Cost comparison with retraining</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">37,000 months, about 3,100 years</td>
+<td>Retrieval overhead equal to one retrain</td>
+<td>Favors revocable datastore design</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">1.4 trillion tokens</td>
+<td>Larger published datastore reported by source</td>
+<td>Quality improved with datastore size</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">Roughly one fifth of index</td>
+<td>Immediate-rebuild threshold</td>
+<td>Avoid visible recall loss</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">More than one quarter of context</td>
+<td>Per-publisher ablation threshold</td>
+<td>Measure source dependence</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td style="text-align: right;">Eight exact-match points</td>
+<td>Tenant adapter quality gain in the staff scenario</td>
+<td>Deletion guarantee still controls the architecture</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html"><small>Previous</small>Chapter 4. What the LLM Brings and What It Breaks</a><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html"><small>Next</small>Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

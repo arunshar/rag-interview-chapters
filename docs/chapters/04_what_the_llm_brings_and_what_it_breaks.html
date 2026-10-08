@@ -1,0 +1,1473 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 4. What the LLM Brings and What It Breaks | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/04_what_the_llm_brings_and_what_it_breaks.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group" open><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html" aria-current="page">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part II. The Generator Side</p><h1>Chapter 4. What the LLM Brings and What It Breaks</h1><p class="chapter-meta">61 min estimated reading · Unit 13 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains what the Large Language Model (LLM) contributes to Retrieval-Augmented Generation (RAG), what it breaks, and how to assign each failure to the right owner before choosing a fix.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Pre-training installs capability and uneven factual memory. Supervised fine-tuning shapes answers. Post-training shapes preferences. A datastore owns facts that change.</li>
+<li>Memorized text becomes easier to extract as model size, corpus duplication, and supplied context length rise.</li>
+<li>The model knows common facts better than rare facts. Retrieval helps the rare tail, but an off-target passage can overwrite a correct answer on common facts.</li>
+<li>Faithfulness asks whether a claim follows the supplied context. Factuality asks whether it is true in the world. One score cannot replace the other.</li>
+<li>Factual errors come from outdated data, ambiguous prompts, retention limits, over-generalization, or failed knowledge integration. Retrieval shrinks some causes and enlarges others.</li>
+<li>Verification is statistical because generation varies. It also faces moving truth and shared blind spots between generator and judge.</li>
+<li>Diagnose the stage, error bucket, traffic slice, and verifier oracle before spending money on more training, more retrieval, or a stronger judge.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture one newsroom. The reporter is the LLM. Pre-training is the reporter's broad education from years of reading. It gives writing ability and uneven memory, but it ends at a cutoff date. Supervised fine-tuning is the newsroom stylebook. It teaches the reporter to answer the assignment instead of continuing a random conversation. Post-training is the editor who shapes tone, refusal, and when to say "I do not know." The datastore is the live news wire. It owns current prices, office holders, policies, provenance, and deletions because editors can update it without retraining the reporter. The archive clerk is the retriever. The clerk is most useful for an obscure local story that the reporter barely saw during training. On a famous story, however, the reporter may already be right, and a bad clipping can make the answer worse. Faithfulness asks whether the reporter copied the supplied clipping correctly. Factuality asks whether the story is actually true today. A stale clipping can produce a faithful but false article. The copy desk sorts each wrong claim by cause. It asks whether the source was stale, the assignment was ambiguous, the reporter forgot a rare fact, the reporter followed a familiar pattern, or several sources were combined badly. The final verifier is another copy editor. If that editor learned the same false rumor as the reporter, greater editing skill does not help. The verifier needs a dated, independent source that the reporter did not already use. The newsroom lesson is simple. Train the reporter for capability and behavior. Use the live wire for changing facts. Retrieve selectively. Grade against the right source. Verify with independent evidence.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large Language Model (LLM)</td>
+<td>A generator trained to predict and produce text</td>
+<td>It supplies capability, memory, and fluent answers, but it also creates the chapter's failure modes</td>
+</tr>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves passages and gives them to a generator</td>
+<td>It moves some knowledge outside the weights and into editable context</td>
+</tr>
+<tr>
+<td>Parametric memory</td>
+<td>Information represented inside model weights</td>
+<td>It can answer without retrieval, but it becomes stale and is hard to delete</td>
+</tr>
+<tr>
+<td>Datastore</td>
+<td>An external collection queried at answer time</td>
+<td>It owns freshness, provenance, and per-document deletion</td>
+</tr>
+<tr>
+<td>Pre-training</td>
+<td>Large-scale next-token learning on collected text</td>
+<td>It installs capability and uneven latent knowledge</td>
+</tr>
+<tr>
+<td>Causal next-token objective</td>
+<td>The rule that rewards predicting the next true token from earlier tokens</td>
+<td>It explains why the base model learns continuations rather than instructions</td>
+</tr>
+<tr>
+<td>Capability</td>
+<td>An ability such as reading a table or doing arithmetic</td>
+<td>Later stages and retrieval cannot reliably add reasoning that pre-training never installed</td>
+</tr>
+<tr>
+<td>Latent knowledge</td>
+<td>Facts absorbed into weights during training</td>
+<td>It helps common questions but weakens on rare and changing facts</td>
+</tr>
+<tr>
+<td>Training cutoff</td>
+<td>The latest date represented in training data</td>
+<td>Facts after this date were preventable at no training stage</td>
+</tr>
+<tr>
+<td>Supervised fine-tuning (SFT)</td>
+<td>Training on curated input and desired-output pairs</td>
+<td>It teaches output shape, instruction following, and use of supplied passages</td>
+</tr>
+<tr>
+<td>InstructGPT</td>
+<td>The cited supervised fine-tuning and preference-training recipe</td>
+<td>It anchors the source's claim about how instruction-following behavior is installed</td>
+</tr>
+<tr>
+<td>Output shape</td>
+<td>The required form of an answer</td>
+<td>It includes prose, JavaScript Object Notation (JSON), tone, and citation format</td>
+</tr>
+<tr>
+<td>Grounding discipline</td>
+<td>The behavior of using or ignoring supplied evidence correctly</td>
+<td>A model can possess a fact yet still answer against the passage</td>
+</tr>
+<tr>
+<td>Post-training</td>
+<td>Preference or reward training after SFT</td>
+<td>It shapes helpfulness, refusal, abstention, and elicited reasoning</td>
+</tr>
+<tr>
+<td>Reinforcement learning from human feedback (RLHF)</td>
+<td>Training from human rankings of candidate answers</td>
+<td>Ranking is cheaper than asking annotators to write every ideal answer</td>
+</tr>
+<tr>
+<td>Direct preference optimization (DPO)</td>
+<td>Preference training without a separate reward model</td>
+<td>It targets the same preference layer with a different procedure</td>
+</tr>
+<tr>
+<td>Reinforcement learning from verifiable rewards (RLVR)</td>
+<td>Reward training where correctness can be checked automatically</td>
+<td>It removes the human judge when outcomes are decidable</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Declining to answer when evidence is inadequate</td>
+<td>It trades answer coverage for fewer unsupported claims</td>
+</tr>
+<tr>
+<td>Continual pre-training</td>
+<td>Re-running next-token training on fresh data</td>
+<td>It can refresh weights, but it risks forgetting and demands replay data</td>
+</tr>
+<tr>
+<td>Catastrophic forgetting</td>
+<td>Loss of earlier knowledge during new training</td>
+<td>It makes frequent weight refreshes operationally expensive</td>
+</tr>
+<tr>
+<td>Replay data</td>
+<td>Older training data mixed into a refresh run</td>
+<td>It protects prior knowledge but may no longer be available</td>
+</tr>
+<tr>
+<td>Model editing</td>
+<td>Changing weights tied to a chosen association</td>
+<td>It requires enumerating facts to change and can damage neighbors</td>
+</tr>
+<tr>
+<td>Unlearning</td>
+<td>A gradient procedure intended to remove named training influence</td>
+<td>It does not scale to unknown future deletion requests</td>
+</tr>
+<tr>
+<td>Parameter-efficient fine-tuning (PEFT)</td>
+<td>Updating a small set of added parameters</td>
+<td>It changes behavior more cheaply than full-parameter training</td>
+</tr>
+<tr>
+<td>Low-Rank Adaptation (LoRA)</td>
+<td>A PEFT method that trains low-rank matrices beside frozen weights</td>
+<td>It moves format and grounding behavior without refreshing stale facts</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>The small inner dimension of a LoRA update</td>
+<td>It sets adapter parameter count and capacity</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>A measure of compute work</td>
+<td>The chapter uses it to compare retraining, auditing, and serving</td>
+</tr>
+<tr>
+<td>Gigabyte (GB)</td>
+<td>A billion-byte storage unit in the source's decimal accounting</td>
+<td>It converts weight and accelerator capacity into hardware counts</td>
+</tr>
+<tr>
+<td>32-bit floating point (FP32)</td>
+<td>A four-byte numeric format used in the weight-memory calculation</td>
+<td>It turns 27 billion weights into 108 GB before training state</td>
+</tr>
+<tr>
+<td>Adam optimizer state</td>
+<td>Weights, gradients, and two moment estimates stored for training</td>
+<td>Its 16-byte-per-parameter footprint makes a refresh a multi-accelerator job</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing all prompt tokens before generation</td>
+<td>Retrieved chunks add prefill cost and latency</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>An accelerator used to train and serve models</td>
+<td>GPU memory and hours convert designs into capacity and dollar costs</td>
+</tr>
+<tr>
+<td>k-extractability</td>
+<td>Exact reproduction of a training continuation after k prefix tokens</td>
+<td>It makes memorization measurable for a specific probe</td>
+</tr>
+<tr>
+<td>Greedy decoding</td>
+<td>Always selecting the highest-probability next token</td>
+<td>The standard extraction definition depends on this decoding rule</td>
+</tr>
+<tr>
+<td>GPT-Neo family</td>
+<td>The 125-million through 6-billion parameter family used in the memorization measurements</td>
+<td>It supplies the measured capacity ordering in Figure 4.2</td>
+</tr>
+<tr>
+<td>Duplication count</td>
+<td>How often a sequence appears in the corpus</td>
+<td>More copies make verbatim extraction more likely</td>
+</tr>
+<tr>
+<td>Context length</td>
+<td>The number of prompt tokens supplied at inference</td>
+<td>Longer matching prefixes make memorized continuations easier to unlock</td>
+</tr>
+<tr>
+<td>Induction head</td>
+<td>Attention circuitry that copies what followed a matched pattern</td>
+<td>It supports both useful in-context learning and verbatim regurgitation</td>
+</tr>
+<tr>
+<td>In-context learning</td>
+<td>Learning a pattern from examples inside the prompt</td>
+<td>It shares machinery with memorized copying, so the two cannot be cleanly separated</td>
+</tr>
+<tr>
+<td>Divergence attack</td>
+<td>A prompt that pushes a chat model away from aligned behavior</td>
+<td>It can expose raw pre-training continuations missed by normal probes</td>
+</tr>
+<tr>
+<td>Application Programming Interface (API)</td>
+<td>The paid query interface used in the outside extraction experiment</td>
+<td>It makes the external attack cost comparable with the internal audit cost</td>
+</tr>
+<tr>
+<td>Deduplication</td>
+<td>Removing duplicate or near-duplicate training text</td>
+<td>It cuts memorized emissions without the capability loss of shrinking the model</td>
+</tr>
+<tr>
+<td>Perplexity</td>
+<td>A held-out next-token prediction measure</td>
+<td>Unchanged perplexity shows that deduplication did not reduce measured language quality</td>
+</tr>
+<tr>
+<td>n-gram containment check</td>
+<td>A search for long generated spans that match licensed text</td>
+<td>It catches continuation beyond a retrieved chunk boundary</td>
+</tr>
+<tr>
+<td>MinHash</td>
+<td>A compact near-duplicate detector</td>
+<td>It estimates duplicate rates and wasted retrieval slots</td>
+</tr>
+<tr>
+<td>Personally identifiable information (PII)</td>
+<td>Person-linked information named among sensitive corpus contents</td>
+<td>It is one kind of material the chapter says should remain outside weights when extraction is unacceptable</td>
+</tr>
+<tr>
+<td>Long-tail knowledge</td>
+<td>Facts supported by very few training documents</td>
+<td>These facts remain weak even in large models</td>
+</tr>
+<tr>
+<td>Fact triple</td>
+<td>A subject, relation, and object representation of one fact</td>
+<td>It makes support and co-occurrence countable</td>
+</tr>
+<tr>
+<td>Support count d</td>
+<td>The number of pre-training documents containing a fact's subject and object</td>
+<td>Accuracy rises roughly with log10 d</td>
+</tr>
+<tr>
+<td>Co-occurrence bias</td>
+<td>Preference for the word most often seen near a subject</td>
+<td>It explains confident wrong answers when the true object is rare</td>
+</tr>
+<tr>
+<td>Modal companion</td>
+<td>The object most frequently associated with a subject</td>
+<td>Greedy decoding can choose it instead of the relation's true object</td>
+</tr>
+<tr>
+<td>Stock keeping unit (SKU)</td>
+<td>A catalog product identifier</td>
+<td>It represents a private tail entity in the chapter's support example</td>
+</tr>
+<tr>
+<td>Copy path</td>
+<td>The mechanism that reads a relation from supplied context</td>
+<td>It can rescue a tail fact or faithfully copy an off-target passage</td>
+</tr>
+<tr>
+<td>Popularity threshold τ</td>
+<td>The traffic-dependent point where weights overtake retrieval</td>
+<td>It separates queries that should retrieve from queries that should trust memory</td>
+</tr>
+<tr>
+<td>Adaptive retrieval</td>
+<td>Retrieving only for selected queries</td>
+<td>It can avoid overwriting correct head answers and save context cost</td>
+</tr>
+<tr>
+<td>PopQA</td>
+<td>The cited question-answering benchmark used to measure retrieval flips and popularity routing</td>
+<td>It supports the crossover between trusting weights and retrieving</td>
+</tr>
+<tr>
+<td>Zipfian traffic</td>
+<td>A distribution where a small head receives much of the demand</td>
+<td>Entity share and traffic share can differ sharply</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether a claim follows the supplied context</td>
+<td>It is computable per request because the context is available</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether a claim is true in the world</td>
+<td>It requires an external oracle and usually an offline audit</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>The evidence source used to grade a claim</td>
+<td>Changing the oracle can change the verdict without changing the answer</td>
+</tr>
+<tr>
+<td>Large Language Model judge</td>
+<td>A model used to grade generated claims</td>
+<td>It can share false beliefs with the generator and hide its own oracle</td>
+</tr>
+<tr>
+<td>Gold label</td>
+<td>A reference answer used to grade a system</td>
+<td>It can rot when the underlying fact changes after annotation</td>
+</tr>
+<tr>
+<td>Entailed claim</td>
+<td>A claim supported by the context</td>
+<td>It passes faithfulness but can still be false if the context is stale</td>
+</tr>
+<tr>
+<td>Not enough information (NEI)</td>
+<td>The label for a claim the source does not address</td>
+<td>It is the fact-checking name for the extrinsic column of the taxonomy</td>
+</tr>
+<tr>
+<td>Extrinsic hallucination</td>
+<td>An unsupported claim not addressed by the context</td>
+<td>It points to retrieval coverage or abstention policy</td>
+</tr>
+<tr>
+<td>Intrinsic hallucination</td>
+<td>A claim that contradicts the supplied context</td>
+<td>It points to the generator, distractors, position, or context limits</td>
+</tr>
+<tr>
+<td>Atomic claim</td>
+<td>One independently checkable proposition</td>
+<td>Claim decomposition makes long answers measurable</td>
+</tr>
+<tr>
+<td>FActScore</td>
+<td>A method that decomposes long text into atomic claims for factuality checks</td>
+<td>It supplies the unit of analysis used in the chapter</td>
+</tr>
+<tr>
+<td>RAGAS faithfulness</td>
+<td>The fraction of emitted claims entailed by retrieved context</td>
+<td>It measures grounding with the retrieved corpus as oracle</td>
+</tr>
+<tr>
+<td>Corpus correctness q</td>
+<td>The chance that a context-entailed claim is true in the world</td>
+<td>It sets the ceiling of perfectly grounded output</td>
+</tr>
+<tr>
+<td>Closed-book accuracy pθ</td>
+<td>Accuracy on the same traffic with retrieval removed</td>
+<td>It values unsupported fallback to parametric memory</td>
+</tr>
+<tr>
+<td>Inaccurate or outdated data</td>
+<td>A source that was false or became stale</td>
+<td>Retrieval helps only if it brings a corrected source</td>
+</tr>
+<tr>
+<td>Ambiguous prompt</td>
+<td>A query with multiple plausible readings</td>
+<td>Retrieval can amplify the wrong reading with confident-looking evidence</td>
+</tr>
+<tr>
+<td>Retention limit</td>
+<td>A fact that training included too rarely to survive in weights</td>
+<td>Retrieval can repair it when the answer passage arrives</td>
+</tr>
+<tr>
+<td>Over-generalization</td>
+<td>Answering from a familiar surface pattern</td>
+<td>An on-target passage can correct it, while an off-target passage can reinforce it</td>
+</tr>
+<tr>
+<td>Knowledge integration error</td>
+<td>Bad reconciliation of several sources or entities</td>
+<td>More retrieved passages can increase this error</td>
+</tr>
+<tr>
+<td>Answer-passage recall r</td>
+<td>The chance that retrieval places the answer-bearing passage in the prompt</td>
+<td>It controls residual knowledge-absence errors</td>
+</tr>
+<tr>
+<td>Error multiplier mi</td>
+<td>The factor by which retrieval scales cause i</td>
+<td>It exposes that retrieval helps some causes and hurts others</td>
+</tr>
+<tr>
+<td>Retrieval flip rate φ</td>
+<td>The share of previously correct answers made wrong by retrieval</td>
+<td>It creates an error floor that better recall cannot remove</td>
+</tr>
+<tr>
+<td>Break-even error ε0*</td>
+<td>The closed-book error below which retrieval loses overall</td>
+<td>It supports per-query routing instead of always retrieving</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor (ANN) lookup</td>
+<td>A fast index search for candidate passages</td>
+<td>It is the inference-time alternative to buying more parameter decades</td>
+</tr>
+<tr>
+<td>Cross-encoder reranker</td>
+<td>A model that scores query-passage pairs after broad retrieval</td>
+<td>It can retrieve many candidates while feeding only a few to the generator</td>
+</tr>
+<tr>
+<td>Black-box generator</td>
+<td>A model whose internal cause is not visible from its output</td>
+<td>Verification can observe samples but cannot directly localize faults</td>
+</tr>
+<tr>
+<td>Sampling temperature T</td>
+<td>A control over generation randomness</td>
+<td>At T above zero, one test run is only one draw</td>
+</tr>
+<tr>
+<td>Bernoulli draw</td>
+<td>One yes-or-no observation of whether a claim appeared</td>
+<td>Repeated draws are needed to estimate an emission probability</td>
+</tr>
+<tr>
+<td>Normal approximation</td>
+<td>The sample-size estimate applied to repeated Bernoulli draws</td>
+<td>It produces the 385-sample worst-case requirement</td>
+</tr>
+<tr>
+<td>Emission rate</td>
+<td>The probability that a generator produces a claim</td>
+<td>It is more informative than one pass or fail</td>
+</tr>
+<tr>
+<td>SelfCheckGPT</td>
+<td>A detector that resamples answers and flags unstable claims</td>
+<td>It uses black-box variation without inspecting weights</td>
+</tr>
+<tr>
+<td>Feature attribution</td>
+<td>A method that connects outputs to influential inputs or features</td>
+<td>It can partially localize black-box failures at a cost</td>
+</tr>
+<tr>
+<td>Mechanistic interpretability</td>
+<td>Analysis of internal model circuits</td>
+<td>It seeks causal explanations but is expensive</td>
+</tr>
+<tr>
+<td>Poisson change process</td>
+<td>A model where truth-changing events arrive randomly at a fixed rate</td>
+<td>It converts fact lifetime into a label-refresh cadence</td>
+</tr>
+<tr>
+<td>Mean lifetime τ</td>
+<td>The average time before a fact changes</td>
+<td>It determines how quickly answers and gold labels decay</td>
+</tr>
+<tr>
+<td>Label rot</td>
+<td>A gold answer becoming wrong as the world changes</td>
+<td>It can be as large as the measured system gain</td>
+</tr>
+<tr>
+<td>FreshQA</td>
+<td>The cited benchmark separating fast-changing from never-changing questions</td>
+<td>It shows why model evaluation must classify facts by lifetime</td>
+</tr>
+<tr>
+<td>PageRank</td>
+<td>A link-graph prestige signal used by search systems</td>
+<td>It contrasts source authority with a model's frequency signal</td>
+</tr>
+<tr>
+<td>Allowlist and blocklist</td>
+<td>Explicit rules admitting or rejecting sources</td>
+<td>They are authority controls that parametric frequency does not provide</td>
+</tr>
+<tr>
+<td>n-gram frequency</td>
+<td>The model's repetition-based evidence signal</td>
+<td>Frequency can support learning without establishing source trust</td>
+</tr>
+<tr>
+<td>Shared blind-spot share s</td>
+<td>The fraction of false claims the verifier also believes</td>
+<td>It creates a residual floor that judge quality cannot cross</td>
+</tr>
+<tr>
+<td>Independent miss rate μ0</td>
+<td>The verifier's miss rate on errors outside shared blind spots</td>
+<td>Better judge capacity can reduce only this term</td>
+</tr>
+<tr>
+<td>Macro-averaged F1 (macro-F1)</td>
+<td>The cited aggregate attribution-judge score</td>
+<td>Its roughly 80 percent value motivates the incorrect independence baseline</td>
+</tr>
+<tr>
+<td>Information-access symmetry</td>
+<td>The judge and annotator seeing the same amount of source evidence</td>
+<td>Violating it causes attribution errors unrelated to judge capability</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Resampling and voting within one model distribution</td>
+<td>It misses confident falsehoods that sit at the mode</td>
+</tr>
+<tr>
+<td>Oracle independence</td>
+<td>Giving the verifier evidence the generator did not have</td>
+<td>It reduces shared blind spots more than a same-source judge upgrade</td>
+</tr>
+<tr>
+<td>VeriScore</td>
+<td>A correction that separates unverifiable claims and rewards factual recall</td>
+<td>It prevents precision-only scoring from rewarding silence</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="41-pre-training-sft-post-training-which-stage-owns-which-failure">4.1 Pre-training, SFT, post-training: which stage owns which failure</h3>
+<h4 id="stage-ownership">Stage ownership</h4>
+<p>The opening assistant was shipped last quarter with a 27-billion-parameter open-weight model fine-tuned on 40,000 internal tickets. It names a vice president who left in March, returns prose when the frontend expects JSON, and invents a refund window for a product line launched six weeks earlier. The stale name, wrong output form, and absent new fact belong to different owners. Pre-training maximizes the sum over t of log Pθ(xt given the tokens before t) over collected text. Here θ is the full parameter vector. It has no gold labels, so scale tends to beat curation. It installs capability and uneven knowledge. The source frames a working hypothesis: a competence absent from the pre-training corpus cannot be added later. Accuracy rises with the number of documents that mention an entity, and frequent text can be memorized. SFT maximizes log Pθ(Y | X) over curated input-output pairs. Ouyang et al. (2022) established this instruction-tuning recipe with InstructGPT. It changes "continue this text" into "produce this output for this input." The National University of Singapore (NUS) example shows the difference. A pure base model may continue one question with more questions because web text does that. SFT fixes this wrong behavior. It also trains instruction following, output form, and grounding discipline. Post-training replaces gold answers with preference or verifiable reward signals. RLHF lowers the annotation burden from writing an ideal answer to ranking two answers. DPO removes the separate reward model. RLVR removes the human judge when correctness is decidable. Post-training owns helpfulness, honesty, harmlessness, tone, refusal, abstention, and elicited reasoning. It remains unresolved whether post-training adds capability or mostly raises the probability of behavior the base model could already produce. Use the conservative view. The base model sets the ceiling for all downstream stages, including whether it can reason over a retrieved passage.</p>
+<h4 id="what-training-cannot-own">What training cannot own</h4>
+<p>The stale vice president is not a capability, shape, or preference failure. The model learned the fact correctly, then the world changed after the cutoff. Continual pre-training can refresh it, but models with only a few hundred million parameters can suffer substantial catastrophic forgetting. Each refresh then needs replay data that may no longer exist. Model editing changes named associations, but it inherits the enumeration problem of unlearning. You must know every future fact or sequence that will need a change. It also cannot guarantee complete removal and can damage neighboring associations. Scale cannot close the tail economically. Kandpal et al. (2023) extrapolated competitive accuracy on sparsely supported facts to about 10^18 parameters. At two bytes per weight, storage is 2 x 10^18 bytes. Dividing by 8 x 10^10 bytes per 80 GB accelerator gives 2.5 x 10^7 accelerators before processing one token. The datastore owns facts that outlive gradient descent because it supports freshness, provenance, and deletion. Deleting a datastore row removes future retrieved exposure, but it cannot erase text the base model already memorized during pre-training. Domain SFT loses as a knowledge patch. It raises Pθ(Y | X) for written examples but does not erase far more frequent contradictory pre-training evidence. It creates internal conflict and returns the bill when the fact changes again.</p>
+<h4 id="worked-example-and-costs">Worked example and costs</h4>
+<p>The assistant fails 370 of 1,000 queries: 180 stale facts, 90 contradictions of correct context, 60 format violations, and 40 errors on low-presence entities. For a weight refresh, use N = 27 x 10^9 parameters and D = 10^10 fresh tokens. 32-bit floating point (FP32) weights occupy 108 GB. Adam training uses about 16 bytes per parameter for weights, gradients, and two moments, or 432 GB total. That needs six 80 GB accelerators before activations. Training work is approximately 6ND = 1.62 x 10^21 FLOPs. At 3.4 x 10^14 FLOP/s, that is 4.76 x 10^6 seconds or 1,324 GPU-hours. At $2.50 per GPU-hour, the refresh costs about $3,310. It fixes the 180 stale facts and some of the 40 tail errors until the next refresh. For context repair, retrieve five 400-token chunks, adding 2,000 prefill tokens. At about 2N FLOPs per token, this adds 1.08 x 10^14 FLOPs or 0.32 GPU-seconds per query. The cost is $2.2 x 10^-4 per query. One $3,310 refresh therefore buys about 15 million retrieval-augmented queries with no refresh schedule and with per-document deletion. For behavior repair, a few thousand supervised pairs can move the 60 format failures and most of the 90 context contradictions. A rank-16 LoRA update on one 4,096 by 4,096 projection trains 16 x (4,096 + 4,096) = 131,072 parameters instead of 16,777,216. That is a 128-fold reduction, but it moves none of the 180 stale answers. The compute sanity check uses Llama 3 405B and 15.6 trillion tokens. The 6ND estimate gives 3.79 x 10^25 FLOPs against the reported 3.8 x 10^25. Dividing by 30.84 million H100-hours gives the sustained 3.4 x 10^14 FLOP/s rate used here.</p>
+<h4 id="practical-decisions">Practical decisions</h4>
+<ul>
+<li>Reproduce a failure on the base checkpoint before blaming SFT. If that checkpoint cannot run, probe the smallest sibling in its family.</li>
+<li>Put any fact with a change cadence shorter than retraining in the datastore. For fewer than roughly 100 bounded facts, a templated system prompt can beat an index on latency and operational surface.</li>
+<li>Use LoRA for shape and full-parameter training for capability. Frozen embeddings may not add a language or domain vocabulary the tokenizer never saw.</li>
+<li>Ask refresh cadence before model size. A static million-document domain on an annual cadence can justify continual pre-training.</li>
+<li>Keep a retrieval-free capability probe. About a dozen supplied-text arithmetic and two-hop questions can separate base-model regressions from index regressions. Run it on each base-model swap rather than each index rebuild.</li>
+</ul>
+<h3 id="42-memorization-three-laws-and-their-consequences">4.2 Memorization: three laws and their consequences</h3>
+<h4 id="definition-and-laws">Definition and laws</h4>
+<p>A security probe samples 3,000 training documents, supplies 50 tokens, greedily decodes 50 more, and finds two exact matches. The reported 0.07 percent looks reassuring. Production later receives four paragraphs of a paywalled report and continues with the next 300 words verbatim, even though retrieval never supplied them. The model did not change. The prompt grew from 50 to about 2,000 tokens. A sequence is k-extractable when greedy decoding after a k-token training prefix reproduces the following sequence exactly. Extractability belongs to the model, decoding rule, and context together. Every probe is a lower bound because it tests only sampled prefixes. Carlini et al. (2023) measured a log-linear relation across GPT-Neo models from 125 million to 6 billion parameters. Pr[k-extractable] is approximately α log N + β log d + γ log k + δ, with α, β, and γ positive. The transferable findings are the signs, not family-specific coefficients. Law one says larger models memorize a larger fraction. Law two says duplicated sequences are more extractable. Law three says longer supplied context increases extraction. Duplication adds repeated gradient steps on the same continuation until greedy decoding follows it deterministically. Longer context gives more evidence that the prompt is one exact document rather than a similar one. Induction heads perform the matching and copying. The same circuitry supports in-context learning and verbatim regurgitation. No intervention can simply remove one while preserving the other.</p>
+<h4 id="why-the-short-audit-fails">Why the short audit fails</h4>
+<p>The 50-token result describes a regime the product does not use. Alignment also provides no extraction floor outside normal prompts. Nasr et al. (2023) used a divergence attack that asked an aligned chat model to repeat one word. It recovered more than 10,000 unique memorized examples from ChatGPT for about $200 in application programming interface (API) queries. The controls follow the laws. Probe at deployed context length. Deduplicate the corpus. Lee et al. (2022) reported memorized text about ten times less often with no held-out perplexity loss. Keep material that cannot be extracted safely outside the weights. Detector audits using the approach of Gehman et al. (2020) estimate toxic documents at 2 to 4 percent of web-crawled corpora, alongside personally identifiable information (PII) and copyrighted books. RAG supplies long verbatim corpus prefixes, so it operates in the highest-extraction prompt regime. Serving a smaller model does reduce extraction, but it loses capability on every query. Deduplication dominates when available because it gives a tenfold reduction without measured perplexity loss. Heavily duplicated text remains extractable at each useful model scale. This is not classical overfitting. The measured models saw roughly one corpus pass, and held-out loss was still falling. Early stopping and weight decay therefore do not address the cause.</p>
+<h4 id="audit-cost">Audit cost</h4>
+<p>Take a 7-billion-parameter generator and 100,000 sampled sequences. At k = 500, the probe processes a 500-token prefix and 500-token continuation, or 1,000 tokens per sequence. Work is 1.4 x 10^13 FLOPs per sequence and 1.4 x 10^18 FLOPs overall. At 3.4 x 10^14 FLOP/s, this takes 4.1 x 10^3 seconds or 1.1 GPU-hours. At $2.50 per GPU-hour, it costs $2.90. At deployed k = 2,000, five 400-token chunks form the prefix and the 500-token continuation makes 2,500 tokens of work. Work is 3.5 x 10^13 FLOPs per sequence, 3.5 x 10^18 FLOPs overall, and 1.03 x 10^4 seconds overall. That is 2.9 GPU-hours or $7.15, about 2.5 times the short probe. If 1 percent of the sample reproduces exactly, the audit confirms 1,000 memorized sequences at $0.007 each. A tenfold deduplication effect predicts roughly 100 after rebuilding. The outside attack cost about $0.02 per extracted example. The internal audit is about three times cheaper because it knows the corpus, yet both costs share the same order of magnitude.</p>
+<h4 id="practical-decisions-1">Practical decisions</h4>
+<ul>
+<li>Probe at the 95th-percentile production prompt length. Use the fixed template maximum when the product caps context.</li>
+<li>Deduplicate before shrinking a model. If pre-training is outside your control, keep licensed text out of later gradient updates.</li>
+<li>If a license permits indexing but forbids training, do not fine-tune on retrieved licensed passages. Popular passages repeat across pairs, so epoch count becomes a legal parameter. Train grounding on permissive or paraphrased passages and keep the licensed corpus at test time.</li>
+<li>Report a lower bound with k, duplication threshold, and sample frame. Bias sampling toward highly duplicated sequences.</li>
+<li>Flag generated spans of roughly 50 or more tokens that match a licensed-content index. Log rather than block when verbatim extraction is the requested product.</li>
+<li>Measure the datastore's duplication distribution with near-duplicate checks. A curated single-source manual is a reasonable exception.</li>
+</ul>
+<h3 id="43-long-tail-knowledge-and-co-occurrence-bias">4.3 Long-tail knowledge and co-occurrence bias</h3>
+<h4 id="support-and-wrong-answer-selection">Support and wrong-answer selection</h4>
+<p>A 70-billion-parameter model correctly names Microsoft's founders, their birth years, and the company's founding date while missing an internal product rule documented across 40 pages. For stock keeping unit (SKU) 4471, it says 30 days instead of the true 14 days with equal confidence. This gap can produce 90 percent accuracy on head-heavy public benchmarks and 40 percent on tail-heavy product traffic. Represent a fact as subject s, relation r, and object o. Let d(f) count pre-training documents containing both s and o. Question-answering accuracy follows A(d) approximately β log10 d + c. Near d = 0, no prompt or decoding trick can recover evidence that never entered the weights. Accuracy is bought in decades of support, not percentage increases. At fixed d, A(N, d) is approximately α log10 N + β log10 d + c, where α is smaller than β. Holding accuracy fixed gives Δ log10 N = (β / α) Δ log10 d. The estimated exchange rate is about two decades of parameters for one decade of missing documents. Human-level accuracy on the least-supported questions extrapolates beyond 10^18 parameters from measured models around 2 x 10^11. Tail support is roughly 10^0.5 documents against about 10^4 for head facts. The implied ratio is β / α approximately log10(10^18 / (2 x 10^11)) / log10(10^4 / 10^0.5) = 6.7 / 3.5, or about 1.9. A decade of parameters multiplies training FLOPs and serving memory by ten on every query. A decade of documents supplied at inference costs one approximate nearest-neighbor lookup. Five times more web data adds only log10 5 = 0.70 decades, and correlated crawls mostly repeat earlier data. When support is weak, next-token learning favors Pθ(o | context(s)) proportional to count(s, o). Greedy decoding returns arg max over o of count(s, o), so it selects the subject's most frequent companion rather than necessarily selecting the true relation object. If Tokyo appears with Toyota ten times as often as Toyota City, relation words must overturn a tenfold prior. Kang and Choi (2023) found that about 30 percent of measured failures selected a high-co-occurrence word instead of the correct object. The rare true object is both unsupported and outvoted, which explains confident error instead of abstention.</p>
+<h4 id="retrieval-crossover">Retrieval crossover</h4>
+<p>Retrieval changes the estimator rather than the storage. One occurrence in the prompt can outvote 10^5 corpus occurrences through the copy path. An off-target passage activates the same path and gets copied faithfully. Mallen et al. (2023) found that retrieval flipped a previously correct unassisted answer on around 10 percent of PopQA questions. Damage concentrated on popular subjects where parametric memory was already strong. The weights-only and weights-plus-retrieval curves therefore cross at threshold τ. Traffic sets τ. Model identity alone does not. Training a narrowed domain corpus for more epochs loses in three ways. It amplifies the modal association, ties freshness to training cadence, and catastrophically forgets uncovered knowledge. Entity popularity only approximates fact support. A famous entity can have a rare attribute, so routing must include the relation.</p>
+<h4 id="routing-example">Routing example</h4>
+<p>The assistant handles 10,000 questions per day across 5,000 products. Assume product mentions and traffic follow a Zipf law with exponent 1. These constants are assumed rather than measured. Traffic on the top r entities is Hr / H5000, where Hr is approximately ln r + 0.577. H5000 is about 9.09 and H50 is about 4.50. The top 50 entities are 1 percent of the catalog but carry 49.5 percent of traffic. Label 500 questions and place τ near rank 50. Closed-book accuracy is 82 percent on the head and 24 percent on the tail. Retrieval accuracy is 68 percent on the tail. Applying a 10 percent flip rate to the head loses 8.2 points and gives a pessimistic 73.8 percent with retrieval. Always retrieving scores 0.495 x 73.8 + 0.505 x 68.0 = 70.9 percent. Never retrieving scores 0.495 x 82.0 + 0.505 x 24.0 = 52.7 percent. Routing below τ scores 0.495 x 82.0 + 0.505 x 68.0 = 74.9 percent and retrieves on 50.5 percent of queries. Routing gains 4.1 points over always retrieving and 22.2 points over never retrieving. Five 400-token chunks add 2,000 input tokens per retrieved query. Always retrieving uses 2 x 10^7 input tokens per day. Routing uses 1.01 x 10^7. At $0.30 per million tokens, the daily costs are $6.00 and $3.03. Annual savings are under $1,100, so accuracy is the main argument. Routing also removes roughly 120 milliseconds of retrieval and reranking latency from half the traffic. The gain check is 0.495 x 8.2 = 4.06 points, which matches the reported 4.1-point gap. Mallen et al. (2023) reported the same ordering on PopQA, with adaptive retrieval above always-retrieve and never-retrieve.</p>
+<h4 id="practical-decisions-2">Practical decisions</h4>
+<ul>
+<li>Stratify accuracy by log d and weight by query logs. Entity share does not size traffic cost.</li>
+<li>If every entity is internal, treat every query as tail and skip threshold fitting.</li>
+<li>Start with always-retrieve until a labeled set measures τ. Routing becomes attractive when head traffic exceeds roughly one third. Refit τ when campaigns change traffic, weekly in the source scenario.</li>
+<li>Use popularity and relation support before model confidence. Co-occurrence bias can make the modal wrong answer highly confident. For novel or internal entities with no frequency signal, use confidence and accept its calibration risk.</li>
+<li>Build one co-occurrence trap per relation. Use search hit counts when direct corpus counts are unavailable.</li>
+<li>Put tail facts in the datastore. A small, closed, static domain on an annual update cadence is the defensible exception for repeated domain training.</li>
+</ul>
+<h3 id="44-hallucination-taxonomy-factuality-versus-faithfulness-intrinsic-versus-extrinsic">4.4 Hallucination taxonomy: factuality versus faithfulness, intrinsic versus extrinsic</h3>
+<h4 id="two-oracles-and-three-source-relations">Two oracles and three source relations</h4>
+<p>One reviewer compares "refunds are processed within 14 days" with a retrieved 30-day passage and marks a hallucination. Another checks a live page updated three weeks earlier to 14 days and marks it correct. The first measures faithfulness against supplied context. The second measures factuality against the world. Maynez et al. (2020) fixed this distinction for abstractive summarization, and Ji et al. (2023) carried it into the LLM literature. A rise from 0.70 to 0.93 faithfulness can accompany more complaints when the corpus is stale or the model abstains more. The source relation has three labels. An entailed claim is supported or attributable. An unaddressed claim is not enough information (NEI), extrinsic, or extrapolatory. A contradicted claim is refuted, intrinsic, or contradictory. Decompose each answer into atomic claims as FActScore does. Let f be the fraction entailed by context, as in RAGAS faithfulness. Let q be corpus correctness, equal to one minus staleness. Let pθ be closed-book accuracy on the same traffic. Assuming the generator falls back to memory outside context, Pr(factual) = f q + (1 - f) pθ. Grounding changes factuality at rate ∂Pr(factual) / ∂f = q - pθ. Grounding helps only when the corpus is more reliable than model memory. The metric gap is Pr(factual) - f = (1 - f)pθ - f(1 - q). The positive term is true but unsupported content. The negative term is faithful but false content. As f approaches 1, the first term vanishes and the second approaches the corpus error 1 - q. Perfect grounding transcribes corpus error rather than guaranteeing truth. Intrinsic hallucinations contradict evidence already in the prompt and belong to generation. Extrinsic hallucinations fill retrieval gaps and belong to coverage or abstention. A single judge prompt hides its oracle, mis-scores a whole cell, and cannot route the bug. Factuality alone also fails as an online gate because the world oracle is unavailable in the request path. Instruction-following and logical hallucinations fit neither axis. A true, grounded translation that answers the capital instead still violates the instruction. A correct method with bad arithmetic can support every intermediate claim yet fail at the conclusion.</p>
+<h4 id="worked-example">Worked example</h4>
+<p>Audit 200 questions with about five atomic claims each. Measured corpus staleness is 4 percent, so q = 0.96. Closed-book accuracy is 30 percent, so pθ = 0.30. Without a grounding constraint, 1,000 claims split into 700 entailed, 80 contradicting, and 220 unaddressed. Faithfulness is 0.70. Staleness makes 28 of the 700 entailed claims false. Of the 300 unfaithful claims, 30 percent are true: 8 contradictions and 82 unsupported claims. Factuality is 762 of 1,000, or 76.2 percent. Faithfulness understates truth by 6.2 points. With grounded-or-abstain, the model declines 50 of 200 questions and emits 750 claims. The claims split into 700 entailed, 10 contradicting, and 40 unsupported. Faithfulness is 700 / 750 = 0.933. Factuality is 0.933 x 0.96 + 0.067 x 0.30 = 0.916, or 687 true claims. Faithfulness now overstates truth by 1.7 points. The first setup delivers 3.81 true and 1.19 false claims per question. The second delivers 3.44 true and 0.32 false claims. It removes 175 false claims while surrendering 75 true claims. The exchange rate is 2.33 false claims removed per true claim lost. Ship that trade only when a wrong claim costs more than 2.33 times a missing one. The compliance variant makes the same trade visible. Zero unsupported claims can cut answer coverage by 20 points while a 30-day refresh cadence still leaves faithful but stale answers. Batching five claims per judge call requires 200 calls and about 440,000 input tokens. At $0.30 per million tokens, the faithfulness pass costs about $0.13. In an outside summarization audit, more than 70 percent of summaries contained hallucinated content and roughly 90 percent of those hallucinations were false. That leaves about one in ten hallucinations true but unsupported, or pθ near 0.10. The support assistant's pθ of 0.30 is three times higher because its unsupported content is often generic background.</p>
+<h4 id="practical-decisions-3">Practical decisions</h4>
+<ul>
+<li>Report faithfulness, sampled factuality, and the intrinsic-extrinsic split. If no world oracle exists, make faithfulness the contract and corpus freshness the service obligation.</li>
+<li>Gate on faithfulness online. Audit factuality offline unless a high-stakes error justifies a second retrieval loop.</li>
+<li>Route contradictions to generation and unsupported claims to retrieval or abstention. A post-update contradiction spike may instead signal disagreeing documents.</li>
+<li>Sample supported claims to estimate q. Start with 100 entailed claims per corpus per month and increase frequency when freshness exceeds 30 days or documents have legal owners.</li>
+<li>Pair faithfulness with true claims per question. In regulated settings, state the precision-coverage trade and obtain explicit ownership. Require attribution for answer-bearing claims while allowing a stated policy for extrinsic background claims.</li>
+</ul>
+<h3 id="45-the-five-causes-of-factual-error">4.5 The five causes of factual error</h3>
+<h4 id="cause-model">Cause model</h4>
+<p>The closed-book assistant is wrong on 38 percent of graded answers. After retrieval it is wrong on 23.5 percent. The residual errors concentrate in causes that retrieval can enlarge, so a better retriever is not automatically the next fix. Cause 1 is inaccurate or outdated training data. Cause 2 is an ambiguous or under-specified prompt. Cause 3 is a knowledge-retention limit on a rare fact. Cause 4 is over-generalization from a surface pattern. Cause 5 is failed integration of disagreeing sources or crossed entity attributes. Let ε0 be closed-book error and ei each cause's share, with Σi ei = 1. Let mi be retrieval's multiplier for cause i and φ its correct-to-wrong flip rate. Then εR = ε0 Σi ei mi + φ(1 - ε0). For causes 1 and 3, m1 = m3 = 1 - r because retrieval repairs them when the answer passage arrives. For cause 4, m4 is greater than 1 - r because off-target but plausible context can reinforce the pattern. Ambiguity makes a bad retrieval query and can give the wrong interpretation confident evidence, so m2 exceeds 1. Shi et al. (2023) showed that irrelevant context can reduce accuracy rather than being ignored. Knowledge integration also worsens because the model reconciles weights plus k passages. The number of source pairs is (k + 1)k / 2, or 15 at k = 5 and 210 at k = 20. Longpre et al. (2021) showed that models often retain memorized answers when retrieved context contradicts them. Retrieval therefore shrinks missing-knowledge causes and enlarges reconciliation causes. Let S = Σi ei mi. Retrieval helps only above ε0* = φ / (1 - S + φ). The flip term does not improve with recall. Global scale levers miss ambiguity and integration. Five times more data buys only 0.70 decades of support. Parameter scaling reaches the 10^18 long-tail extrapolation. More domain epochs sacrifice broad coverage. The five labels can overlap in reality. The ordered cascade assigns one operational owner so counts add up. Changing the test order changes the attribution, so teams must not compare differently ordered counts.</p>
+<h4 id="audit-and-alternatives">Audit and alternatives</h4>
+<p>Take 1,000 questions with one graded atomic claim each. At ε0 = 0.38, there are 380 wrong claims. The ordered tests assign 140 to outdated data, 60 to ambiguity, 120 to retention, 40 to over-generalization, and 20 to integration. With top-k = 5 and r = 0.85, use m1 = m3 = 0.15, m2 = 1.30, m4 = 0.40, and m5 = 2.00. The surviving buckets are 21, 78, 18, 16, and 40. They total 173, so S = 173 / 380 = 0.455. A 10 percent flip rate turns 62 of the 620 correct answers wrong. Total error is 235 of 1,000, or 23.5 percent. The net gain is 14.5 points, but ambiguity becomes the largest bucket. Ambiguity and integration hold 118 of 173 carried errors, or 68 percent. Raising recall from 0.85 to 0.95 cuts causes 1 and 3 to 7 and 6. Carried error becomes 147 and total error becomes 209, or 20.9 percent. The recall upgrade gains 2.6 points. A clarification turn matches that gain by removing 26 ambiguity errors. It changes m2 from 1.30 to 0.87 because 60 x 0.87 = 52. It needs one short rewrite call, which is cheaper than the larger retrieval and reranking path. The recall upgrade raises prefill from five 400-token chunks, or 2,000 tokens, to twenty chunks, or 8,000 tokens. Across 1,000 questions, that adds 6 million input tokens and costs about $1.80 at $0.30 per million. It also adds 20 cross-encoder passes per query and increases conflict pairs from 15 to 210. The break-even is 0.10 / (1 - 0.455 + 0.10) = 0.155. Retrieval stops paying when closed-book accuracy reaches about 84.5 percent.</p>
+<h4 id="practical-decisions-4">Practical decisions</h4>
+<ul>
+<li>Triage 100 failures through the four tests before changing retrieval. About two engineer-days can estimate the cause vector.</li>
+<li>Track ambiguity and integration separately. A single authoritative source with k at most 2 is the main low-conflict exception.</li>
+<li>Set generator top-k against conflict, not recall alone. Retrieve 50 candidates, rerank them, and feed 5 unless near-duplicate canonical passages justify more.</li>
+<li>Run the same evaluation closed-book to measure flips in both directions. A 14.5-point net gain can hide 62 newly wrong answers.</li>
+<li>Gate retrieval once a slice falls below roughly 15 percent closed-book error. Retrieve anyway when contractual attribution, rather than accuracy, is the requirement.</li>
+</ul>
+<h3 id="46-why-verification-is-hard-black-box-moving-truth-biased-verifiers">4.6 Why verification is hard: black box, moving truth, biased verifiers</h3>
+<h4 id="three-structural-difficulties">Three structural difficulties</h4>
+<p>A radiology assistant claims the liver has multiple small hypodense masses when the computed tomography (CT) series excludes the liver. A judge scores it 0.91 faithful because it forms the same impression. An attending radiologist catches the problem in four seconds. A dashboard claim of 94 percent faithfulness is meaningful only if its verifier and oracle are understood. First, a sampled generator is a distribution rather than a deterministic function. At temperature T above zero, one run is a Bernoulli draw. To estimate a claim probability within plus or minus 0.05 at 95 percent confidence, use n = z^2 p(1 - p) / Δ^2. At worst-case p = 0.5 and z = 1.96, n is 385 samples per claim. Verification has become estimation, increasing the cost by about two orders of magnitude. Manakul et al. (2023) turned variation into the SelfCheckGPT detector by resampling and flagging claims that do not survive. The output still does not localize error to corpus, retrieval, or decoding. Feature attribution and mechanistic interpretability offer partial but expensive localization. Second, truth and gold labels move. Under a Poisson change process with mean lifetime τ, survival after time t is e^(-t / τ). The question about the United States president had four correct answers in sixteen years. Vu et al. (2023) built FreshQA to separate fast-changing questions from never-changing ones because model scores differ across them. The honest refresh cadence for label-rot tolerance δ is t* = τ ln[1 / (1 - δ)]. At τ = 2 years and δ = 1 percent, t* is 0.0201 years or 7.3 days. Parametric answers supply no web address, retrieval date, or authority for rechecking. Search ranking uses link prestige such as PageRank from Page et al. (1999), hundreds of engineered features, allowlists, and blocklists. The model mainly has n-gram frequency, which does not establish trust. Third, verifier errors correlate with generator errors. Let ε be generator false-claim rate, s the shared blind-spot share, and μ0 the independent miss rate. Residual error is εpost = ε[s + (1 - s)μ0], which is at least sε. Judge quality changes μ0 but cannot change s. Oracle independence changes s and therefore moves the floor. Self-verification methods measure dispersion. They include the self-consistency of Wang et al. (2023), the calibrated P(true) evaluation of Kadavath et al. (2022), and same-distribution voting. Shared false beliefs sit at the mode, so every resample can repeat them confidently. A frontier judge trained on the same crawl can share the same floor. Some claims have no settleable truth condition, such as vague statements about what many people believe. Route these claims out of the numerator and report their share separately. Otherwise, marking them wrong punishes hedging and marking them right inflates the metric. Precision-only factuality also rewards silence, which VeriScore corrects with a recall term.</p>
+<h4 id="verifier-audit-and-costs">Verifier audit and costs</h4>
+<p>Audit 1,000 atomic claims with ε = 0.20, so 200 are false. Replay the 200 known-false claims through the judge. It passes 120, so s = 0.60. Judge recall on injected errors is 0.85, so μ0 = 0.15. With a same-family judge, all 120 shared blind spots pass. The judge catches 68 of the remaining 80 and misses 12. Residual error is 132 claims, or 13.2 percent. Verification gains 6.8 points. A perfect judge removes the 12 independent misses but leaves 120 claims, or 12.0 percent. All remaining judge-quality headroom is 1.2 points. Now attach one retrieved, dated passage per claim. Retrieval is on target for 70 percent of claims and correct on 95 percent of those. A usable external check exists with probability 0.70 x 0.95 = 0.665. The new blind-spot share is about 0.60 x (1 - 0.665) = 0.201. That gives 40 blind-spot claims and 160 catchable claims. At 0.85 recall, the judge misses 24 and residual error is 64, or 6.4 percent. Oracle independence buys 6.8 points where judge capacity can buy at most 1.2, a factor of 5.7. A small judge costs $0.24 for 1,000 claims with 800-token prompts at $0.30 per million tokens. Adding one 400-token passage per claim costs $0.12 plus one lookup, for $0.36 total. A frontier judge at $3.00 per million costs $2.40. That is 6.7 times the independent-oracle configuration for one sixth of its effect. An independence assumption with the 20 percent error implied by roughly 80 percent macro-F1 predicts only 40 residual claims, or 4.0 percent. The correlated result of 132 is 3.3 times larger. Replay distinguishes these models in an afternoon. If 30 percent of 1,000 gold labels are time-sensitive with τ = 2 years, then 66 rot after six months. The calculation is 300 x (1 - e^(-0.25)) = 66. That 6.6-point measurement error nearly equals the measured 6.8-point gain.</p>
+<h4 id="practical-decisions-5">Practical decisions</h4>
+<ul>
+<li>Estimate s before upgrading a judge. Replay 100 to 200 confirmed false claims, or inject known errors when no incident corpus exists.</li>
+<li>Give the verifier a retrieved passage with a web address and timestamp that the generator did not have. Shared context is already an independent oracle for pure faithfulness checks.</li>
+<li>Check information-access symmetry. Roughly one quarter of attribution-judge errors arise when judges and annotators see different amounts of source text.</li>
+<li>Stamp gold labels with validity dates and lifetime classes. Recheck the τ = 2 year, 1 percent-tolerance slice weekly, stable facts annually, and fast-changing prices, headcounts, or org charts daily.</li>
+<li>Report claim emission rates at production temperature. Start with five samples per item because three emissions in five differ from five in five. Use temperature zero only for explicitly labeled regression gates.</li>
+<li>Send clinical, legal, and financial claims to experts when generator and judge share a distribution and s approaches 1. Use an authoritative curated source instead when one exists.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-41">Figure 4.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    A[&quot;Pre-training: owns capability, latent facts, and long-tail coverage. Blind after the cutoff.&quot;]
+    B[&quot;SFT and PEFT: own output shape, instruction following, and use-the-passage discipline. Blind to absent facts.&quot;]
+    C[&quot;Post-training: owns preference, refusal, abstention, and elicited reasoning. Blind to missing competence.&quot;]
+    D[&quot;Datastore: owns freshness, provenance, and deletion. Edited without gradients and consulted per query.&quot;]
+    A --&gt; B
+    B --&gt; C
+    C -. &quot;gradient descent ends here&quot; .-&gt; D
+    classDef datastore stroke-width:2px,stroke-dasharray:5 5
+    class D datastore</code></pre></details></figure>
+<p>Figure 4.1: Each training stage installs one class of behavior and is structurally blind to another. The failures that outlive all three are what the datastore exists to own.</p>
+<h3 id="figure-42">Figure 4.2</h3>
+<pre class="text"><code>fraction k-extractable, log scale
+^
+|          x10 duplication                              6B
+|              ^                           ____________/
+|              |                 __________           1.3B
+|                    - - - - - -
+|          . . . . . . . . . . . . . . . . . .       125M
+|
++----------|------------|----------|----------------|----&gt; context tokens k, log scale
+          50           200        500             2,000
+       audit probe                     RAG prompt
+          [ range a probe at k = 50 never measures ]</code></pre>
+<p>Figure 4.2: The three laws push in one direction: capacity separates the curves, duplication shifts a sequence upward, and context length carries every curve to the right - so an audit run at 50 tokens of context reports a lower bound for a system that prompts at two thousand. Axes are schematic. The log-linear shape and the ordering by capacity are the measured findings of Carlini et al. (2023).</p>
+<h3 id="figure-43">Figure 4.3</h3>
+<pre class="text"><code>answer accuracy (%)
+^
+| 80                                      / weights only
+|                                      __/ | answers retrieval flips wrong
+|                         . . . . . . X . . weights plus retrieval
+| 60              . . . .             | tau
+|           . . .                     |
+| 40                         _________/
+|                    _______/
+| 20          ______/
+|
++---------|---------|---------|---------|---------|----&gt; supporting documents d, log scale
+         10^0      10^1      10^2      10^3      10^4
+         retrieve                         trust the weights</code></pre>
+<p>Figure 4.3: The parametric model is worthless where the corpus gave it nothing and overtakes retrieval where the corpus gave it plenty, so the curves cross at a threshold τ set by your traffic rather than by your model - and every query right of τ that you retrieve for is a chance to overwrite a correct answer. Shape after Kandpal et al. (2023) and Mallen et al. (2023). Axis values are schematic.</p>
+<h3 id="figure-44">Figure 4.4</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>World verdict</th>
+<th>Supported, attributable. Faithfulness passes</th>
+<th>Not addressed, extrinsic. Faithfulness fails</th>
+<th>Contradicted, intrinsic. Faithfulness fails</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True. Factuality passes</td>
+<td>SHADED: grounded. Context says 14 days and so does the world. Ship it. Owner: none</td>
+<td>True, unsupported. Adds a correct fact the context never had. Owner: policy call</td>
+<td>True, contradicting. Memory overrides a stale passage. Owner: corpus</td>
+</tr>
+<tr>
+<td>False. Factuality fails</td>
+<td>Faithful, false. Copies the stale 30-day policy page. Owner: corpus freshness</td>
+<td>Extrinsic, false. Invents a number nobody supplied. Owner: coverage and abstention</td>
+<td>Intrinsic, false. Contradicts a passage that was in the prompt. Owner: generator</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 4.4: Faithfulness grades the columns and factuality grades the rows, so the two verdicts differ in three of the six cells - most dangerously in the faithful-but-false cell directly below the shaded one, which no faithfulness metric can ever see. Each cell names a different owner, which is the taxonomy's operational value.</p>
+<h3 id="figure-45">Figure 4.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    A[&quot;One wrong atomic claim&quot;] --&gt; B[&quot;1. Re-ask with ambiguity resolved. Fixed?&quot;]
+    B -- yes --&gt; C2[&quot;Cause 2: ambiguous prompt. m2 = 1.30 up&quot;]
+    B -- no --&gt; D[&quot;2. Was the wrong answer true earlier, or asserted by the corpus?&quot;]
+    D -- yes --&gt; C1[&quot;Cause 1: outdated training data. m1 = 0.15 down&quot;]
+    D -- no --&gt; E[&quot;3. Paste the answer-bearing passage. Fixed?&quot;]
+    E -- yes --&gt; C3[&quot;Cause 3: retention limit. m3 = 0.15 down&quot;]
+    E -- no --&gt; F[&quot;4. Does a second prompt passage contradict the first?&quot;]
+    F -- yes --&gt; C5[&quot;Cause 5: knowledge integration. m5 = 2.00 up&quot;]
+    F -- no --&gt; C4[&quot;Cause 4: over-generalization. m4 = 0.40 down&quot;]
+    classDef initial stroke-width:2px
+    classDef shrinks stroke-width:2px,stroke-dasharray:5 5
+    classDef grows stroke-width:3px
+    class A initial
+    class C1,C3,C4 shrinks
+    class C2,C5 grows</code></pre></details></figure>
+<p>Figure 4.5: Four cheap tests, run in this order, assign every failure to exactly one cause - and the order matters, because a stale-correct answer is also repaired by pasting the passage, so staleness must be tested before absence. Dashed boxes are the causes retrieval shrinks. Heavy solid boxes are the two it enlarges. Multipliers are from the audit below.</p>
+<h3 id="figure-46">Figure 4.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    subgraph SAME[&quot;Verifier: same model family&quot;]
+        direction TB
+        A1[&quot;200 false claims enter&quot;] --&gt; B1[&quot;Shared blind spot: s = 0.60, 120 claims. Verifier believes them too.&quot;]
+        B1 --&gt; C1[&quot;Catchable: 80. Judge recall 0.85. 12 missed.&quot;]
+        C1 --&gt; D1[&quot;Residual 132, or 13.2 percent. Floor 120 at perfect recall.&quot;]
+    end
+    subgraph SOURCE[&quot;Verifier: retrieved, dated source&quot;]
+        direction TB
+        A2[&quot;200 false claims enter&quot;] --&gt; B2[&quot;Shared blind spot: s = 0.20, 40 claims. No on-target passage exists.&quot;]
+        B2 --&gt; C2[&quot;Catchable: 160. Judge recall 0.85. 24 missed.&quot;]
+        C2 --&gt; D2[&quot;Residual 64, or 6.4 percent. Floor 40 at perfect recall.&quot;]
+    end
+    SAME ~~~ SOURCE
+    classDef blind stroke-width:3px
+    classDef catchable stroke-width:2px,stroke-dasharray:5 5
+    class B1,B2 blind
+    class C1,C2 catchable</code></pre></details></figure>
+<p>Figure 4.6: Judge accuracy moves only the dashed middle box. The oracle the judge is allowed to read moves the heavy box, which is where the floor lives - so the left configuration cannot fall below 120 residual errors however good its judge becomes. Counts are from the audit below.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="numbered-drawing-order">Numbered drawing order</h3>
+<ol type="1">
+<li>Draw a vertical stack labeled pre-training, SFT, and post-training.</li>
+<li>Write capability beside pre-training, shape beside SFT, and preference beside post-training.</li>
+<li>Draw a dotted boundary under gradient descent.</li>
+<li>Add a datastore below it with freshness, provenance, and deletion.</li>
+<li>Draw two accuracy curves against fact support d. Mark their crossover τ.</li>
+<li>Label the left side retrieve and the right side trust the weights.</li>
+<li>Draw a two-row by three-column grid for factuality and faithfulness.</li>
+<li>Add the five-cause diagnostic cascade beside the grid.</li>
+<li>Finish with two verifier boxes. Give one the same model family and the other a dated source.</li>
+<li>Circle the shared blind-spot floor and write oracle independence first.</li>
+</ol>
+<h3 id="90-to-100-word-script">90 to 100 word script</h3>
+<p>Start by separating what lives in the model from what lives outside it. Pre-training gives the model capability and uneven memory. Supervised fine-tuning shapes how it answers, and post-training shapes preferences and abstention. A datastore owns facts that change. Retrieval helps rare facts, but it can overwrite a correct memory with a bad passage. So I grade claims on two axes: faithful to the supplied context and factual in the world. Then I bucket errors by cause. Finally, I verify with dated evidence the generator did not see, because a stronger judge cannot detect a blind spot both models share.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-would-you-fine-tune-on-a-new-price-list">1. Would you fine-tune on a new price list?</h3>
+<p>No, unless the prices are static for longer than the retraining cycle. SFT fixes output shape and grounding behavior, while a datastore fixes freshness cheaply and supports immediate deletion.</p>
+<h3 id="2-a-50-token-probe-found-007-percent-extractability-is-licensed-content-safe">2. A 50-token probe found 0.07 percent extractability. Is licensed content safe?</h3>
+<p>That number is only a lower bound for k = 50 and the chosen prefixes. Re-run at the deployed context, such as k = 2,000, then deduplicate and report the sample frame because longer context and duplication both raise extraction.</p>
+<h3 id="3-when-should-retrieval-be-skipped">3. When should retrieval be skipped?</h3>
+<p>Skip it on traffic where closed-book memory already beats retrieval, or where closed-book error falls below the measured break-even. An off-target passage can flip a correct head answer, so measure the popularity crossover and route by fact support rather than retrieve everywhere.</p>
+<h3 id="4-does-higher-faithfulness-mean-higher-truth">4. Does higher faithfulness mean higher truth?</h3>
+<p>Only when corpus correctness q exceeds closed-book accuracy pθ. Perfect faithfulness copies the corpus's error rate, so pair online faithfulness with sampled factuality, freshness audits, and true claims delivered per question.</p>
+<h3 id="5-should-verification-budget-buy-a-stronger-judge-or-dated-sources">5. Should verification budget buy a stronger judge or dated sources?</h3>
+<p>Measure shared blind spots first. A stronger judge only lowers independent misses, while a dated source lowers the shared-error floor, so oracle independence wins unless the verifier already has independent evidence.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Number or threshold</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening assistant</td>
+<td>27B parameters and 40,000 tickets</td>
+<td>Scale and domain data of the deployed model</td>
+</tr>
+<tr>
+<td>Opening failures</td>
+<td>Vice president left in March. Product launched six weeks earlier</td>
+<td>Examples of stale and post-cutoff facts</td>
+</tr>
+<tr>
+<td>Weight-scale extrapolation</td>
+<td>10^18 parameters</td>
+<td>Estimated scale for competitive long-tail accuracy</td>
+</tr>
+<tr>
+<td>Weight storage</td>
+<td>2 bytes per parameter and 2 x 10^18 bytes total</td>
+<td>Weight-only storage assumption at the extrapolated scale</td>
+</tr>
+<tr>
+<td>Accelerator count</td>
+<td>80 GB each and 2.5 x 10^7 accelerators</td>
+<td>Capacity needed just to hold 10^18 two-byte weights</td>
+</tr>
+<tr>
+<td>Evaluation mix</td>
+<td>1,000 queries and 370 failures</td>
+<td>Baseline for the stage-ownership example</td>
+</tr>
+<tr>
+<td>Failure buckets</td>
+<td>180 stale, 90 context contradictions, 60 format, 40 tail</td>
+<td>Symptoms assigned to datastore, behavior, and coverage owners</td>
+</tr>
+<tr>
+<td>Refresh data</td>
+<td>10^10 tokens</td>
+<td>Continual pre-training volume in the worked example</td>
+</tr>
+<tr>
+<td>FP32 storage</td>
+<td>4 bytes per weight and 108 GB</td>
+<td>Weight memory for 27 x 10^9 parameters</td>
+</tr>
+<tr>
+<td>Adam state</td>
+<td>16 bytes per parameter, 432 GB, six 80 GB accelerators</td>
+<td>Training-state memory before activations</td>
+</tr>
+<tr>
+<td>Refresh compute</td>
+<td>6ND and 1.62 x 10^21 FLOPs</td>
+<td>Estimated work for the 27B refresh</td>
+</tr>
+<tr>
+<td>Sustained rate</td>
+<td>3.4 x 10^14 FLOP/s</td>
+<td>Published-run-derived rate used throughout the chapter</td>
+</tr>
+<tr>
+<td>Refresh time and cost</td>
+<td>4.76 x 10^6 seconds, 1,324 GPU-hours, $2.50 per GPU-hour, about $3,310</td>
+<td>Price of one weight refresh</td>
+</tr>
+<tr>
+<td>Retrieval context</td>
+<td>Five chunks x 400 tokens = 2,000 tokens</td>
+<td>Added prefill per query</td>
+</tr>
+<tr>
+<td>Retrieval work</td>
+<td>2N FLOPs per token, 1.08 x 10^14 FLOPs, 0.32 GPU-seconds</td>
+<td>Per-query generator work from context repair</td>
+</tr>
+<tr>
+<td>Retrieval price</td>
+<td>$2.2 x 10^-4 per query and about 15 million queries per $3,310</td>
+<td>Query-equivalent of one refresh bill</td>
+</tr>
+<tr>
+<td>LoRA example</td>
+<td>Rank 16 on a 4,096 by 4,096 projection</td>
+<td>Adapter setup for behavior repair</td>
+</tr>
+<tr>
+<td>LoRA parameters</td>
+<td>131,072 instead of 16,777,216, a 128-fold reduction</td>
+<td>Trainable parameter savings</td>
+</tr>
+<tr>
+<td>Scale sanity check</td>
+<td>405B parameters and 15.6T tokens</td>
+<td>Llama 3 run used to check 6ND</td>
+</tr>
+<tr>
+<td>Reported compute check</td>
+<td>3.79 x 10^25 estimated versus 3.8 x 10^25 reported FLOPs</td>
+<td>Agreement of the compute approximation</td>
+</tr>
+<tr>
+<td>Hardware-time check</td>
+<td>30.84 million H100-hours</td>
+<td>Source of the sustained rate</td>
+</tr>
+<tr>
+<td>Small changing set</td>
+<td>Fewer than roughly 100 facts</td>
+<td>Range where a system-prompt template may beat an index</td>
+</tr>
+<tr>
+<td>Forgetting regime</td>
+<td>A few hundred million parameters</td>
+<td>Scale where continual pre-training can substantially degrade prior knowledge</td>
+</tr>
+<tr>
+<td>Behavior data</td>
+<td>A few thousand supervised pairs</td>
+<td>Order of data needed to move format and most context-use failures in the example</td>
+</tr>
+<tr>
+<td>Capability probe</td>
+<td>About 12 questions</td>
+<td>Small retrieval-free regression set</td>
+</tr>
+<tr>
+<td>Deletion requirement probe</td>
+<td>Within 24 hours</td>
+<td>Example where datastore deletion dominates unlearning</td>
+</tr>
+<tr>
+<td>Initial extraction audit</td>
+<td>3,000 documents, 50-token prefixes, 50-token continuations, two hits</td>
+<td>Short-context security probe</td>
+</tr>
+<tr>
+<td>Initial extraction result</td>
+<td>0.07 percent</td>
+<td>Lower bound that did not describe production</td>
+</tr>
+<tr>
+<td>Production leak</td>
+<td>Four supplied paragraphs and 300 extra words</td>
+<td>Verbatim continuation missed by the audit</td>
+</tr>
+<tr>
+<td>Measured model sizes</td>
+<td>125M through 6B, with 1.3B shown between</td>
+<td>Capacity ordering in the memorization law</td>
+</tr>
+<tr>
+<td>Divergence attack</td>
+<td>More than 10,000 examples for about $200</td>
+<td>Extraction outside normal instruction-following prompts</td>
+</tr>
+<tr>
+<td>Deduplication effect</td>
+<td>About 10 times fewer emissions</td>
+<td>Reduction with no measured held-out perplexity loss</td>
+</tr>
+<tr>
+<td>Toxic-corpus estimate</td>
+<td>2 to 4 percent</td>
+<td>Threshold-dependent estimate in web-crawled corpora</td>
+</tr>
+<tr>
+<td>Figure 4.2 contexts</td>
+<td>50, 200, 500, and 2,000 tokens</td>
+<td>Schematic context-axis points</td>
+</tr>
+<tr>
+<td>Memorization audit model</td>
+<td>7B parameters and 100,000 sequences</td>
+<td>Cost example setup</td>
+</tr>
+<tr>
+<td>Short audit</td>
+<td>k = 500 and 1,000 total tokens per sequence</td>
+<td>Prefix plus continuation work</td>
+</tr>
+<tr>
+<td>Short audit compute</td>
+<td>1.4 x 10^13 FLOPs per sequence and 1.4 x 10^18 total</td>
+<td>Work for 100,000 samples</td>
+</tr>
+<tr>
+<td>Short audit cost</td>
+<td>4.1 x 10^3 seconds, 1.1 GPU-hours, $2.90</td>
+<td>Cost at the sustained rate</td>
+</tr>
+<tr>
+<td>Deployment audit</td>
+<td>k = 2,000 and 2,500 total tokens per sequence</td>
+<td>Five chunks plus continuation</td>
+</tr>
+<tr>
+<td>Deployment audit compute</td>
+<td>3.5 x 10^13 FLOPs per sequence, 3.5 x 10^18 total, and 1.03 x 10^4 seconds</td>
+<td>Long-context work</td>
+</tr>
+<tr>
+<td>Deployment audit cost</td>
+<td>2.9 GPU-hours and $7.15, about 2.5 times the short audit</td>
+<td>Cost of the honest probe</td>
+</tr>
+<tr>
+<td>Confirmed extraction example</td>
+<td>1 percent, 1,000 sequences, $0.007 each</td>
+<td>Internal audit unit cost</td>
+</tr>
+<tr>
+<td>After deduplication</td>
+<td>Roughly 100 sequences</td>
+<td>Tenfold-effect expectation</td>
+</tr>
+<tr>
+<td>Outside attack unit cost</td>
+<td>About $0.02 per example</td>
+<td>Roughly three times the internal cost</td>
+</tr>
+<tr>
+<td>Generated-span check</td>
+<td>Roughly 50 or more matching tokens</td>
+<td>Licensed-content containment flag</td>
+</tr>
+<tr>
+<td>Tail example</td>
+<td>70B model, 40 internal pages, 30-day answer versus 14-day truth</td>
+<td>Common-versus-rare knowledge contrast</td>
+</tr>
+<tr>
+<td>Benchmark shift</td>
+<td>90 percent versus 40 percent</td>
+<td>Head-heavy benchmark against tail-heavy traffic example</td>
+</tr>
+<tr>
+<td>Capacity extrapolation base</td>
+<td>About 2 x 10^11 measured parameters to beyond 10^18</td>
+<td>Starting and extrapolated scales</td>
+</tr>
+<tr>
+<td>Support regimes</td>
+<td>About 10^0.5 tail documents versus 10^4 head documents</td>
+<td>Support gap used for the exchange rate</td>
+</tr>
+<tr>
+<td>Scale-to-data exchange</td>
+<td>6.7 / 3.5 about 1.9</td>
+<td>Roughly two parameter decades per document decade</td>
+</tr>
+<tr>
+<td>Extra web data</td>
+<td>5 times data equals 0.70 decades</td>
+<td>Logarithmic support gain</td>
+</tr>
+<tr>
+<td>Co-occurrence prior</td>
+<td>Tokyo with Toyota 10 times Toyota City</td>
+<td>Example of a modal companion outvoting truth</td>
+</tr>
+<tr>
+<td>Co-occurrence failures</td>
+<td>About 30 percent</td>
+<td>Failures choosing a high-co-occurrence word</td>
+</tr>
+<tr>
+<td>Context override</td>
+<td>One prompt occurrence can outvote 10^5 corpus occurrences</td>
+<td>Strength of the copy path</td>
+</tr>
+<tr>
+<td>Retrieval flips</td>
+<td>Around 10 percent</td>
+<td>Previously correct PopQA answers made wrong</td>
+</tr>
+<tr>
+<td>Routing traffic</td>
+<td>10,000 questions per day and 5,000 entities</td>
+<td>Adaptive retrieval example</td>
+</tr>
+<tr>
+<td>Traffic law</td>
+<td>Zipf exponent 1</td>
+<td>Assumed traffic and mention distribution</td>
+</tr>
+<tr>
+<td>Harmonic values</td>
+<td>H5000 about 9.09 and H50 about 4.50</td>
+<td>Values behind the traffic concentration</td>
+</tr>
+<tr>
+<td>Head concentration</td>
+<td>Top 50 entities, 1 percent of catalog, 49.5 percent of traffic</td>
+<td>Why entity share and traffic share differ</td>
+</tr>
+<tr>
+<td>Routing labels</td>
+<td>500 questions and τ near rank 50</td>
+<td>Threshold fitting setup</td>
+</tr>
+<tr>
+<td>Closed-book accuracy</td>
+<td>82 percent head and 24 percent tail</td>
+<td>Parametric performance by support</td>
+</tr>
+<tr>
+<td>Retrieval accuracy</td>
+<td>68 percent tail and pessimistic 73.8 percent head</td>
+<td>Retrieval performance after head flips</td>
+</tr>
+<tr>
+<td>Routing scores</td>
+<td>74.9 percent route, 70.9 percent always, 52.7 percent never</td>
+<td>Accuracy comparison</td>
+</tr>
+<tr>
+<td>Routing gains</td>
+<td>4.1 points over always and 22.2 over never</td>
+<td>Benefit of avoiding head flips</td>
+</tr>
+<tr>
+<td>Retrieval share</td>
+<td>50.5 percent</td>
+<td>Queries sent to the datastore</td>
+</tr>
+<tr>
+<td>Daily input volume</td>
+<td>2 x 10^7 always versus 1.01 x 10^7 routed tokens</td>
+<td>Context use</td>
+</tr>
+<tr>
+<td>Input price</td>
+<td>$0.30 per million tokens</td>
+<td>Cost assumption in several examples</td>
+</tr>
+<tr>
+<td>Routing cost</td>
+<td>$6.00 versus $3.03 per day and under $1,100 per year saved</td>
+<td>Small monetary effect</td>
+</tr>
+<tr>
+<td>Routing latency</td>
+<td>Roughly 120 milliseconds removed from half of queries</td>
+<td>Latency benefit</td>
+</tr>
+<tr>
+<td>Routing check</td>
+<td>0.495 x 8.2 = 4.06 points</td>
+<td>Reproduction of the 4.1-point gain</td>
+</tr>
+<tr>
+<td>Routing activation</td>
+<td>Head traffic above roughly one third</td>
+<td>Suggested point where labeling can pay</td>
+</tr>
+<tr>
+<td>Campaign shift</td>
+<td>40 percent of traffic on three new SKUs at d near zero</td>
+<td>Example that invalidates an old τ</td>
+</tr>
+<tr>
+<td>Campaign constraint</td>
+<td>Latency budget cut by 150 milliseconds</td>
+<td>Reason to route rather than always retrieve</td>
+</tr>
+<tr>
+<td>Taxonomy example</td>
+<td>14 days in the world versus 30 days in context</td>
+<td>True but unfaithful claim</td>
+</tr>
+<tr>
+<td>Metric shift</td>
+<td>Faithfulness 0.70 to 0.93</td>
+<td>Change that can hide staleness and abstention</td>
+</tr>
+<tr>
+<td>Taxonomy audit</td>
+<td>200 questions and about five claims each</td>
+<td>Worked example sample size</td>
+</tr>
+<tr>
+<td>Corpus and model reliability</td>
+<td>q = 0.96 from 4 percent staleness. pθ = 0.30</td>
+<td>Two inputs to factuality decomposition</td>
+</tr>
+<tr>
+<td>Ungrounded claims</td>
+<td>1,000 total, 700 entailed, 80 contradictory, 220 unaddressed</td>
+<td>First configuration</td>
+</tr>
+<tr>
+<td>Ungrounded truth</td>
+<td>28 stale entailed errors, 8 true contradictions, 82 true unsupported</td>
+<td>External-oracle allocation</td>
+</tr>
+<tr>
+<td>Ungrounded scores</td>
+<td>0.70 faithfulness and 76.2 percent factuality</td>
+<td>Faithfulness understates truth by 6.2 points</td>
+</tr>
+<tr>
+<td>Grounded-or-abstain</td>
+<td>50 of 200 questions declined and 750 claims emitted</td>
+<td>Coverage trade-off</td>
+</tr>
+<tr>
+<td>Grounded claim split</td>
+<td>700 entailed, 10 contradictory, 40 unsupported</td>
+<td>Second configuration</td>
+</tr>
+<tr>
+<td>Grounded scores</td>
+<td>0.933 faithfulness and 0.916 factuality, or 687 true claims</td>
+<td>Faithfulness overstates truth by 1.7 points</td>
+</tr>
+<tr>
+<td>Compliance variant</td>
+<td>20-point answer-coverage drop and 30-day refresh</td>
+<td>Perfect support does not repair stale truth</td>
+</tr>
+<tr>
+<td>Claims per question</td>
+<td>3.81 true and 1.19 false versus 3.44 true and 0.32 false</td>
+<td>Output trade-off</td>
+</tr>
+<tr>
+<td>Exchange rate</td>
+<td>175 false removed for 75 true lost, or 2.33 to 1</td>
+<td>Cost of grounded abstention</td>
+</tr>
+<tr>
+<td>Faithfulness audit cost</td>
+<td>Five claims per call, 200 calls, 440,000 tokens, about $0.13</td>
+<td>Online-available metric cost</td>
+</tr>
+<tr>
+<td>Summarization audit</td>
+<td>More than 70 percent contained hallucinations and about 90 percent were false</td>
+<td>Outside comparison</td>
+</tr>
+<tr>
+<td>Unsupported truth comparison</td>
+<td>pθ about 0.10 versus 0.30</td>
+<td>One-in-ten outside rate and three-times-higher support rate</td>
+</tr>
+<tr>
+<td>Freshness sample</td>
+<td>100 entailed claims per corpus per month</td>
+<td>Default corpus-correctness audit</td>
+</tr>
+<tr>
+<td>Freshness trigger</td>
+<td>More than 30 days</td>
+<td>Condition for increasing audit cadence</td>
+</tr>
+<tr>
+<td>Error-rate headline</td>
+<td>38 percent closed-book and 23.5 percent with retrieval</td>
+<td>Five-cause opening result</td>
+</tr>
+<tr>
+<td>Conflict pairs</td>
+<td>15 at k = 5 and 210 at k = 20</td>
+<td>Pair growth as context expands</td>
+</tr>
+<tr>
+<td>Error audit</td>
+<td>1,000 questions and 380 closed-book errors</td>
+<td>Five-cause worked example</td>
+</tr>
+<tr>
+<td>Cause counts</td>
+<td>140 outdated, 60 ambiguous, 120 retention, 40 over-generalization, 20 integration</td>
+<td>Ordered attribution</td>
+</tr>
+<tr>
+<td>Retrieval settings</td>
+<td>top-k = 5 and r = 0.85</td>
+<td>First retrieval configuration</td>
+</tr>
+<tr>
+<td>Multipliers</td>
+<td>m1 = 0.15, m2 = 1.30, m3 = 0.15, m4 = 0.40, m5 = 2.00</td>
+<td>Retrieval effect by cause</td>
+</tr>
+<tr>
+<td>Carried buckets</td>
+<td>21, 78, 18, 16, and 40</td>
+<td>Post-retrieval cause counts</td>
+</tr>
+<tr>
+<td>Carried mass</td>
+<td>173 errors and S = 0.455</td>
+<td>Residual before flips</td>
+</tr>
+<tr>
+<td>Flip mass</td>
+<td>φ = 0.10 and 62 of 620 correct answers flipped</td>
+<td>New errors caused by retrieval</td>
+</tr>
+<tr>
+<td>Retrieval total</td>
+<td>235 errors, 23.5 percent, 14.5-point net gain</td>
+<td>Result after carried and flipped errors</td>
+</tr>
+<tr>
+<td>Enlarged-cause share</td>
+<td>118 of 173, or 68 percent</td>
+<td>Ambiguity plus integration share</td>
+</tr>
+<tr>
+<td>Recall upgrade</td>
+<td>r from 0.85 to 0.95</td>
+<td>Larger pool and reranker change</td>
+</tr>
+<tr>
+<td>Recall-upgrade result</td>
+<td>Cause counts 7 and 6. Total 209 errors or 20.9 percent</td>
+<td>2.6-point gain</td>
+</tr>
+<tr>
+<td>Disambiguation match</td>
+<td>Remove 26 errors and move m2 from 1.30 to 0.87</td>
+<td>Same 2.6-point gain</td>
+</tr>
+<tr>
+<td>Prefill expansion</td>
+<td>2,000 to 8,000 tokens</td>
+<td>Five versus twenty 400-token chunks</td>
+</tr>
+<tr>
+<td>Recall-upgrade cost</td>
+<td>6 million extra tokens, about $1.80, plus 20 reranker passes per query</td>
+<td>Cost and operational burden</td>
+</tr>
+<tr>
+<td>Retrieval break-even</td>
+<td>ε0* = 0.155 and closed-book accuracy about 84.5 percent</td>
+<td>Point below which always-retrieve loses</td>
+</tr>
+<tr>
+<td>Triage sample</td>
+<td>100 failures and about two engineer-days</td>
+<td>Suggested diagnostic investment</td>
+</tr>
+<tr>
+<td>Low-conflict exception</td>
+<td>k at most 2</td>
+<td>Single-authority setting where conflict stays small</td>
+</tr>
+<tr>
+<td>Candidate strategy</td>
+<td>Retrieve 50 and feed 5</td>
+<td>Separate candidate recall from generator conflict</td>
+</tr>
+<tr>
+<td>Radiology judge</td>
+<td>0.91 faithfulness and four seconds of expert review</td>
+<td>Shared-blind-spot example</td>
+</tr>
+<tr>
+<td>Dashboard challenge</td>
+<td>94 percent faithful</td>
+<td>Metric that requires an oracle explanation</td>
+</tr>
+<tr>
+<td>Sampling target</td>
+<td>Plus or minus 0.05 at 95 percent confidence</td>
+<td>Desired emission-rate precision</td>
+</tr>
+<tr>
+<td>Worst-case sample</td>
+<td>p = 0.5, z = 1.96, n = 385</td>
+<td>Samples needed per claim</td>
+</tr>
+<tr>
+<td>Verification growth</td>
+<td>About two orders of magnitude</td>
+<td>Cost rise from testing to estimation</td>
+</tr>
+<tr>
+<td>Moving presidency</td>
+<td>Four correct answers in sixteen years</td>
+<td>Example of fast-changing truth</td>
+</tr>
+<tr>
+<td>Label cadence</td>
+<td>τ = 2 years and δ = 1 percent gives 0.0201 years or 7.3 days</td>
+<td>Derived re-verification interval</td>
+</tr>
+<tr>
+<td>Verifier audit</td>
+<td>1,000 claims, ε = 0.20, 200 false</td>
+<td>Shared-bias example setup</td>
+</tr>
+<tr>
+<td>Same-family blind spot</td>
+<td>120 passes and s = 0.60</td>
+<td>False claims the judge also believes</td>
+</tr>
+<tr>
+<td>Judge performance</td>
+<td>Recall 0.85 and μ0 = 0.15</td>
+<td>Independent-error performance</td>
+</tr>
+<tr>
+<td>Same-family residual</td>
+<td>132 claims or 13.2 percent</td>
+<td>6.8-point verification gain</td>
+</tr>
+<tr>
+<td>Perfect-judge floor</td>
+<td>120 claims or 12.0 percent</td>
+<td>Only 1.2 points of judge-quality headroom</td>
+</tr>
+<tr>
+<td>External-oracle availability</td>
+<td>70 percent on target x 95 percent correct = 0.665</td>
+<td>Usable dated-source probability</td>
+</tr>
+<tr>
+<td>External blind spot</td>
+<td>s about 0.201 and 40 claims</td>
+<td>New correlated-error floor</td>
+</tr>
+<tr>
+<td>External residual</td>
+<td>64 claims or 6.4 percent</td>
+<td>24 independent misses plus 40 blind spots</td>
+</tr>
+<tr>
+<td>Oracle advantage</td>
+<td>6.8 points versus 1.2, a factor of 5.7</td>
+<td>Independence gain against judge-capacity gain</td>
+</tr>
+<tr>
+<td>Small-judge cost</td>
+<td>1,000 x 800 tokens at $0.30 per million = $0.24</td>
+<td>Base verification bill</td>
+</tr>
+<tr>
+<td>Dated-source cost</td>
+<td>Add 400 tokens per claim and $0.12, total $0.36 plus lookups</td>
+<td>Independent-oracle bill</td>
+</tr>
+<tr>
+<td>Frontier-judge cost</td>
+<td>$3.00 per million and $2.40 total</td>
+<td>6.7 times the dated-source bill for one sixth the effect</td>
+</tr>
+<tr>
+<td>Independence baseline</td>
+<td>20 percent judge error predicts 40 residual claims or 4.0 percent</td>
+<td>Incorrect independent-error prediction</td>
+</tr>
+<tr>
+<td>Automatic-judge baseline</td>
+<td>Roughly 80 percent macro-F1</td>
+<td>Source of the 20 percent independence assumption</td>
+</tr>
+<tr>
+<td>Correlation gap</td>
+<td>132 versus 40, or 3.3 times</td>
+<td>Measured impact of bias</td>
+</tr>
+<tr>
+<td>Gold-label rot</td>
+<td>30 percent time-sensitive with τ = 2 years gives 66 stale labels after six months</td>
+<td>6.6 points of measurement error</td>
+</tr>
+<tr>
+<td>Blind-spot replay</td>
+<td>100 to 200 known-false claims</td>
+<td>Default estimate of s</td>
+</tr>
+<tr>
+<td>Information asymmetry</td>
+<td>Roughly one quarter of attribution-judge errors</td>
+<td>Errors caused by judges and annotators seeing different source amounts</td>
+</tr>
+<tr>
+<td>Production sampling</td>
+<td>Five samples per item</td>
+<td>Default emission-rate report</td>
+</tr>
+<tr>
+<td>Regression exception</td>
+<td>T = 0</td>
+<td>Deterministic gate that does not represent a sampled production setting</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html"><small>Previous</small>Chapter 3. A Repeatable Framework for Any RAG Design Question</a><a href="../chapters/05_data_privacy_and_the_legal_surface.html"><small>Next</small>Chapter 5. Data, Privacy, and the Legal Surface</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

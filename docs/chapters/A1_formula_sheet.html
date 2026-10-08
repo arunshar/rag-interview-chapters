@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A1. Formula Sheet | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A1_formula_sheet.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html" aria-current="page">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A1. Formula Sheet</h1><p class="chapter-meta">30 min estimated reading · Unit 51 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This appendix is a compact derivation and interview-use guide for eight formula groups used in Retrieval-Augmented Generation (RAG) that preserves the source equations, numeric examples, conditions, and rules of thumb while translating Best Matching 25 (BM25), Reciprocal Rank Fusion (RRF), Mean Reciprocal Rank (MRR), normalized Discounted Cumulative Gain (nDCG), modularity, Product Quantization (PQ), floating-point operations (FLOPs) with latency, and end-to-end index memory into operational decisions.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Carry units through every derivation. Most design-round arithmetic failures are unit failures.</li>
+<li>Cross-check each result against a published rule or a known system before defending it.</li>
+<li>BM25 separates inverse document frequency, term-frequency saturation, and document-length normalization.</li>
+<li>RRF rewards agreement without requiring comparable scores, while MRR and nDCG measure different ranking goals.</li>
+<li>Modularity compares connectivity with a degree-preserving expectation, while PQ obtains exponential combinations from linearly many centroids.</li>
+<li>FLOP, key-value cache, and Low-Rank Adaptation arithmetic turn model choices into latency and memory budgets.</li>
+<li>Index capacity must include vectors, identifiers, graph links, rebuild headroom, replication, text payload, and metadata.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Treat the appendix as a cockpit checklist for a RAG design interview.</p>
+<p>The panel is useful only if every gauge keeps its unit. A number labeled <code>3.39e13</code> is not yet a latency. It becomes one only after it is labeled FLOPs and divided by achieved FLOPs per second. BM25 is the lexical engine gauge. It shows how rare a term is, how repeated evidence saturates, and how document length changes the denominator.</p>
+<p>RRF is the sensor combiner. It merges rank signals without pretending that a lexical score and a cosine score share a scale. MRR is the first-hit warning light. It cares only about the first relevant result. nDCG is the ranked-load gauge. It keeps graded relevance and gives later useful results nonzero credit.</p>
+<p>Modularity is the route-map gauge. It asks whether a proposed community has more internal connection than degree alone would predict. PQ is the cargo compressor. It splits one large vector into smaller subspaces, stores a modest codebook for each, and represents combinations it never stores explicitly.</p>
+<p>The FLOP and latency panel converts model size, token count, context length, cache shape, and adapter rank into time and memory. The final capacity card counts everything loaded on the aircraft. Vector bytes alone are not the fleet. Identifiers, graph links, replication, rebuild copies, text payload, and metadata all travel too.</p>
+<p>A safe pilot can rebuild every reading when a constraint changes. Memorizing the final number without its units, condition, and sanity check is not enough. After two weeks of preparation, continued reliance on the card is a reason to re-derive each formula rather than re-read it.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol or term</th>
+<th>Meaning in this appendix</th>
+<th>Mechanical role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q</code></td>
+<td>Query</td>
+<td>Supplies terms to BM25 or identifies one evaluation case</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>Document</td>
+<td>Receives a BM25 score</td>
+</tr>
+<tr>
+<td><code>t</code></td>
+<td>Query term</td>
+<td>Contributes one BM25 summand</td>
+</tr>
+<tr>
+<td><code>N</code> in A.1</td>
+<td>Collection document count</td>
+<td>Sets the inverse document frequency scale</td>
+</tr>
+<tr>
+<td><code>n_t</code></td>
+<td>Documents containing term <code>t</code></td>
+<td>Makes common terms less informative</td>
+</tr>
+<tr>
+<td><code>f(t,D)</code></td>
+<td>Frequency of term <code>t</code> in document <code>D</code></td>
+<td>Enters a saturating term-frequency factor</td>
+</tr>
+<tr>
+<td><code>abs(D)</code></td>
+<td>Document length</td>
+<td>Drives BM25 length normalization</td>
+</tr>
+<tr>
+<td><code>avgdl</code></td>
+<td>Mean document length</td>
+<td>Defines the length baseline</td>
+</tr>
+<tr>
+<td><code>k_1</code></td>
+<td>BM25 saturation parameter</td>
+<td>Controls how quickly repeated term counts flatten</td>
+</tr>
+<tr>
+<td><code>b</code> in A.1</td>
+<td>BM25 length parameter</td>
+<td>Interpolates from no length charge to full charge</td>
+</tr>
+<tr>
+<td><code>ell</code></td>
+<td>Document length divided by mean length</td>
+<td>Makes length normalization dimensionless</td>
+</tr>
+<tr>
+<td><code>K</code> in A.1</td>
+<td>Length-adjusted BM25 denominator term</td>
+<td>Places the length charge inside saturation</td>
+</tr>
+<tr>
+<td>IDF</td>
+<td>Inverse document frequency</td>
+<td>Rewards rarer query terms</td>
+</tr>
+<tr>
+<td>TF</td>
+<td>Term frequency</td>
+<td>Counts repeated occurrences before saturation</td>
+</tr>
+<tr>
+<td><code>L</code> in A.2</td>
+<td>Number of ranked lists</td>
+<td>Sets how many votes RRF can combine</td>
+</tr>
+<tr>
+<td><code>r_l(d)</code></td>
+<td>Rank of document <code>d</code> in list <code>l</code></td>
+<td>Determines one list's reciprocal contribution</td>
+</tr>
+<tr>
+<td><code>k</code> in A.2</td>
+<td>RRF rank constant</td>
+<td>Sets the exchange rate between rank and consensus</td>
+</tr>
+<tr>
+<td><code>w(r)</code></td>
+<td>RRF weight at rank <code>r</code></td>
+<td>Makes the fusion curve explicit</td>
+</tr>
+<tr>
+<td><code>r_star</code></td>
+<td>Consensus crossover rank</td>
+<td>Marks when agreement beats one list's top hit</td>
+</tr>
+<tr>
+<td>RR</td>
+<td>Reciprocal Rank</td>
+<td>Scores the first relevant result for one query</td>
+</tr>
+<tr>
+<td><code>rank_q</code></td>
+<td>First relevant rank for query <code>q</code></td>
+<td>Defines RR and becomes failure when absent</td>
+</tr>
+<tr>
+<td><code>Q_set</code></td>
+<td>Evaluation query set</td>
+<td>Supplies the denominator in MRR</td>
+</tr>
+<tr>
+<td>MRR</td>
+<td>Mean Reciprocal Rank</td>
+<td>Averages one first-hit score per query</td>
+</tr>
+<tr>
+<td><code>rel_i</code></td>
+<td>Relevance grade at rank <code>i</code></td>
+<td>Supplies gain to CG and DCG</td>
+</tr>
+<tr>
+<td>CG</td>
+<td>Cumulative Gain</td>
+<td>Adds relevance without position sensitivity</td>
+</tr>
+<tr>
+<td>DCG</td>
+<td>Discounted Cumulative Gain</td>
+<td>Discounts relevance by log rank</td>
+</tr>
+<tr>
+<td>IDCG</td>
+<td>Ideal Discounted Cumulative Gain</td>
+<td>Scores the best ordering of available judgments</td>
+</tr>
+<tr>
+<td>nDCG</td>
+<td>Normalized Discounted Cumulative Gain</td>
+<td>Divides DCG by IDCG for cross-query comparison</td>
+</tr>
+<tr>
+<td><code>k</code> in A.4</td>
+<td>Evaluation cutoff</td>
+<td>Limits the ranked prefix being scored</td>
+</tr>
+<tr>
+<td><code>Q</code> in A.5</td>
+<td>Modularity</td>
+<td>Measures connection beyond a degree-fixed chance model</td>
+</tr>
+<tr>
+<td><code>m</code> in A.5</td>
+<td>Total graph edge count</td>
+<td>Normalizes the modularity sum</td>
+</tr>
+<tr>
+<td><code>A_ij</code></td>
+<td>Binary adjacency indicator</td>
+<td>Marks whether nodes <code>i</code> and <code>j</code> share an edge</td>
+</tr>
+<tr>
+<td><code>k_i</code></td>
+<td>Degree of node <code>i</code></td>
+<td>Sets expected random connectivity</td>
+</tr>
+<tr>
+<td><code>c_i</code></td>
+<td>Community assigned to node <code>i</code></td>
+<td>Selects within-community pairs</td>
+</tr>
+<tr>
+<td><code>delta(c_i,c_j)</code></td>
+<td>Same-community indicator</td>
+<td>Keeps a pair only when both community labels match</td>
+</tr>
+<tr>
+<td>Leiden</td>
+<td>Community algorithm that preserves internal connectivity</td>
+<td>Maximizes modularity without disconnected communities</td>
+</tr>
+<tr>
+<td>Louvain</td>
+<td>Earlier modularity algorithm</td>
+<td>Can return a disconnected community</td>
+</tr>
+<tr>
+<td>GraphRAG and LightRAG</td>
+<td>Community-based graph retrieval and its lighter update-oriented comparison</td>
+<td>They expose the cost of global modularity changes</td>
+</tr>
+<tr>
+<td><code>d</code> in A.6</td>
+<td>Vector dimension</td>
+<td>Sets raw storage and subvector width</td>
+</tr>
+<tr>
+<td><code>m</code> in A.6</td>
+<td>Number of PQ subvectors</td>
+<td>Sets code length and subvector count</td>
+</tr>
+<tr>
+<td><code>k</code> in A.6</td>
+<td>Centroids per subspace</td>
+<td>Sets bits per subvector and codebook size</td>
+</tr>
+<tr>
+<td><code>d/m</code></td>
+<td>Subvector width</td>
+<td>Must be integral for even splitting</td>
+</tr>
+<tr>
+<td><code>k^m</code></td>
+<td>Representable vector combinations</td>
+<td>Grows exponentially in subspaces</td>
+</tr>
+<tr>
+<td><code>k*m</code></td>
+<td>Stored centroids</td>
+<td>Grows linearly in subspaces</td>
+</tr>
+<tr>
+<td><code>N_star</code></td>
+<td>PQ lookup-table break-even candidates</td>
+<td>Marks when precomputation amortizes</td>
+</tr>
+<tr>
+<td><code>b</code> in A.6</td>
+<td>Bit width of a one-codebook vector code</td>
+<td>Makes a single codebook require <code>2^b</code> centroids</td>
+</tr>
+<tr>
+<td>FAISS and Inverted File Product Quantization (IVF-PQ)</td>
+<td>The cited vector-search implementation and inverted-file PQ configuration</td>
+<td>They supply the memory sanity rule and the amortization setting</td>
+</tr>
+<tr>
+<td>fp32</td>
+<td>32-bit floating-point storage</td>
+<td>Uses four bytes per scalar</td>
+</tr>
+<tr>
+<td>bf16</td>
+<td>16-bit brain floating-point storage</td>
+<td>Uses two bytes per scalar</td>
+</tr>
+<tr>
+<td>int8</td>
+<td>8-bit integer storage</td>
+<td>Uses one byte per scalar</td>
+</tr>
+<tr>
+<td>int4</td>
+<td>4-bit integer storage</td>
+<td>Uses one-half byte per scalar</td>
+</tr>
+<tr>
+<td><code>N</code> in A.7</td>
+<td>Model parameter count</td>
+<td>Sets model compute and weight memory</td>
+</tr>
+<tr>
+<td><code>D_tokens</code></td>
+<td>Training token count</td>
+<td>Multiplies training FLOPs</td>
+</tr>
+<tr>
+<td><code>C</code> in A.7</td>
+<td>Approximate total training compute</td>
+<td>Equals about <code>6ND_tokens</code></td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>Prefill context length</td>
+<td>Enters linear model work and quadratic attention work</td>
+</tr>
+<tr>
+<td><code>L_layers</code></td>
+<td>Transformer layer count</td>
+<td>Multiplies attention and cache cost</td>
+</tr>
+<tr>
+<td><code>d_hidden</code></td>
+<td>Hidden dimension</td>
+<td>Scales attention work</td>
+</tr>
+<tr>
+<td><code>b_bytes</code></td>
+<td>Bytes per stored scalar</td>
+<td>Converts parameter or cache counts into memory</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>Key-value cache</td>
+<td>Stores attention keys and values per token and request</td>
+</tr>
+<tr>
+<td><code>n_kv</code></td>
+<td>Key-value head count</td>
+<td>Scales cache bytes per token</td>
+</tr>
+<tr>
+<td><code>d_head</code></td>
+<td>Attention head dimension</td>
+<td>Scales cache bytes per token</td>
+</tr>
+<tr>
+<td>Prefill and decode</td>
+<td>Context processing before generation and token-by-token generation</td>
+<td>Prefill is compute-bound while decode is bandwidth-bound</td>
+</tr>
+<tr>
+<td>LoRA</td>
+<td>Low-Rank Adaptation</td>
+<td>Replaces full matrix updates with rank-<code>r</code> factors</td>
+</tr>
+<tr>
+<td><code>r</code> in A.7</td>
+<td>Adapter rank</td>
+<td>Sets trainable LoRA parameters</td>
+</tr>
+<tr>
+<td><code>d_in</code>, <code>d_out</code></td>
+<td>Adapted matrix dimensions</td>
+<td>Determine one adapter's parameter count</td>
+</tr>
+<tr>
+<td><code>M_weights</code>, <code>M_KV,token</code>, and <code>P_LoRA</code></td>
+<td>Weight memory, cache bytes per token, and adapter parameters</td>
+<td>They separate fixed, concurrency-dependent, and trainable costs</td>
+</tr>
+<tr>
+<td><code>N</code> in A.8</td>
+<td>Indexed vector count</td>
+<td>Multiplies per-vector index bytes</td>
+</tr>
+<tr>
+<td><code>b_vec</code></td>
+<td>Bytes for one vector code</td>
+<td>Includes raw fp32 or PQ code bytes</td>
+</tr>
+<tr>
+<td><code>b_id</code></td>
+<td>Posting identifier bytes</td>
+<td>Costs four to eight bytes per vector</td>
+</tr>
+<tr>
+<td><code>b_link</code></td>
+<td>HNSW link bytes per vector</td>
+<td>Adds a graph cost absent from IVF</td>
+</tr>
+<tr>
+<td>HNSW</td>
+<td>Hierarchical Navigable Small World index</td>
+<td>Stores neighbor identifiers across graph layers</td>
+</tr>
+<tr>
+<td>IVF</td>
+<td>Inverted File index</td>
+<td>Uses centroids and posting lists without HNSW links</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>HNSW neighbor parameter</td>
+<td>Sets layer-zero and upper-layer link storage</td>
+</tr>
+<tr>
+<td><code>M_0</code></td>
+<td>Layer-zero HNSW neighbors</td>
+<td>Uses up to twice <code>M</code> identifiers</td>
+</tr>
+<tr>
+<td><code>n_list</code></td>
+<td>IVF centroid count</td>
+<td>Adds coarse-centroid memory</td>
+</tr>
+<tr>
+<td><code>M_index</code></td>
+<td>Total index footprint</td>
+<td>Counts vector, identifier, link, IVF, and PQ bytes</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>Replication factor</td>
+<td>Multiplies the live index copies</td>
+</tr>
+<tr>
+<td><code>h</code> in A.8</td>
+<td>Rebuild headroom fraction</td>
+<td>Reserves overlap for old and new indexes</td>
+</tr>
+<tr>
+<td><code>M_payload</code></td>
+<td>Text and metadata bytes</td>
+<td>Often dominates after strong vector compression</td>
+</tr>
+<tr>
+<td><code>M_fleet</code></td>
+<td>Replicated index plus payload</td>
+<td>Drives machine capacity</td>
+</tr>
+<tr>
+<td><code>shards</code></td>
+<td>Ceiling division of fleet memory by usable memory per node</td>
+<td>Converts a byte footprint into a node count</td>
+</tr>
+<tr>
+<td>GB, TB, KiB, MB, bytes, bits, and FLOP/s</td>
+<td>Gigabytes, terabytes, kibibytes, megabytes, byte and bit counts, and floating-point operations per second</td>
+<td>Carrying the unit prevents incompatible quantities from being compared</td>
+</tr>
+<tr>
+<td>RAM</td>
+<td>Random-access memory</td>
+<td>Supplies usable capacity per node</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="a1-bm25">A.1 BM25</h3>
+<h4 id="formula-and-symbols">Formula and symbols</h4>
+<p>Section 18.3 derives BM25, which scores one query-document pair by summing over query terms.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>BM25</mo><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>t</mi><mo>∈</mo><mi>q</mi></mrow></munder><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>N</mi><mo>−</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn></mrow><mrow><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mfrac><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>k</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><mi>D</mi><mo stretchy="false" form="prefix">|</mo></mrow><mo>avgdl</mo></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{BM25}}(q,D)= \sum_{t\in q} \ln\left(1+\frac{N-n_t+0.5}{n_t+0.5}\right) \frac{f(t,D)(k_1+1)} {f(t,D)+k_1\left(1-b+b\frac{|D|}{\mathop{\text{avgdl}}}\right)}</annotation></semantics></math> The logarithmic factor is IDF. The second factor is saturating, length-normalized TF.</p>
+<p>The source defaults are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mn>1</mn></msub><mo>=</mo><mn>1.2</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>b</mi><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">k_1=1.2, \qquad b=0.75</annotation></semantics></math> Define the dimensionless length ratio and adjusted denominator term as:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><mi>D</mi><mo stretchy="false" form="prefix">|</mo></mrow><mo>avgdl</mo></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>K</mi><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mi>ℓ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\ell=\frac{|D|}{\mathop{\text{avgdl}}}, \qquad K=k_1(1-b+b\ell)</annotation></semantics></math> At <code>b=0</code>, document length is ignored. At <code>b=1</code>, the length ratio is charged in full.</p>
+<h4 id="plain-language-mechanics">Plain-language mechanics</h4>
+<p>IDF raises rare terms. TF saturation gives the first few occurrences most of the benefit. Length normalization changes the saturation denominator instead of applying a hard score penalty. The two knobs are independent. <code>k_1</code> controls saturation speed. <code>b</code> controls length sensitivity.</p>
+<h4 id="worked-saturation-grid">Worked saturation grid</h4>
+<p>At <code>k_1=1.2</code>, the TF factor becomes:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>TFfactor</mo><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mn>2.2</mn><mi>f</mi></mrow><mrow><mi>f</mi><mo>+</mo><mn>1.2</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{TFfactor}}(f)=\frac{2.2f}{f+1.2}</annotation></semantics></math> | <code>f</code> | 1 | 2 | 5 | 10 | 20 | Limit | |---:|---:|---:|---:|---:|---:|---:| | TF factor | 1.000 | 1.375 | 1.774 | 1.964 | 2.075 | 2.200 |</p>
+<p>The second occurrence adds 0.375. Moving from ten to twenty adds 0.111. Ten times more evidence buys about one-third of the second occurrence's gain.</p>
+<h4 id="worked-length-normalization">Worked length normalization</h4>
+<p>For a document twice the mean length with one term occurrence:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>=</mo><mn>1</mn><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>k</mi><mn>1</mn></msub><mo>=</mo><mn>1.2</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>b</mi><mo>=</mo><mn>0.75</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>ℓ</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">f=1, \qquad k_1=1.2, \qquad b=0.75, \qquad \ell=2</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mn>1.2</mn><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mn>0.75</mn><mo>+</mo><mn>0.75</mn><mo>×</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.2</mn><mo>×</mo><mn>1.75</mn><mo>=</mo><mn>2.1</mn></mrow><annotation encoding="application/x-tex">K=1.2(1-0.75+0.75\times2)=1.2\times1.75=2.1</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>TFfactor</mo><mo>=</mo><mfrac><mn>2.2</mn><mrow><mn>1</mn><mo>+</mo><mn>2.1</mn></mrow></mfrac><mo>=</mo><mn>0.710</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{TFfactor}}=\frac{2.2}{1+2.1}=0.710</annotation></semantics></math> This is a 29 percent discount inside the saturation denominator. It is soft rather than punitive.</p>
+<h4 id="conditions-failures-and-rules">Conditions, failures, and rules</h4>
+<ul>
+<li>Raise <code>b</code> toward 1 for uniform document types such as news or abstracts.</li>
+<li>Lower <code>b</code> toward about 0.3 when long documents are genuinely more informative, as in technical manuals or legal filings.</li>
+<li>Classical IDF can become negative when a term appears in more than half the collection. Many implementations floor it.</li>
+<li>BM25 remains strong for exact matches, rare entities, and long-tail queries, as section 18.5 describes.</li>
+<li>Hybrid retrieval is preferable to assuming a dense-only system dominates this baseline.</li>
+</ul>
+<h3 id="a2-reciprocal-rank-fusion">A.2 Reciprocal Rank Fusion</h3>
+<h4 id="formula-and-symbols-1">Formula and symbols</h4>
+<p>Section 21.6 derives RRF, which assigns one reciprocal contribution for every list that contains document <code>d</code>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>RRF</mo><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>ℓ</mi><mo>=</mo><mn>1</mn></mrow><mi>L</mi></munderover><mfrac><mn>1</mn><mrow><mi>k</mi><mo>+</mo><msub><mi>r</mi><mi>ℓ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{RRF}}(d)=\sum_{\ell=1}^{L}\frac{1}{k+r_\ell(d)}</annotation></semantics></math> A missing document contributes nothing. This is equivalent to sending its rank to infinity. The conventional default is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">k=60</annotation></semantics></math> Within one list, rank <code>r</code> has weight relative to that list's first result:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>w</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>w</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow><mrow><mi>k</mi><mo>+</mo><mi>r</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{w(r)}{w(1)}=\frac{k+1}{k+r}</annotation></semantics></math> That ratio is exactly one-half at:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mi>k</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">r=k+2</annotation></semantics></math> Consensus across <code>L</code> lists beats one list's top result when:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>L</mi><mrow><mi>k</mi><mo>+</mo><mi>r</mi></mrow></mfrac><mo>&gt;</mo><mfrac><mn>1</mn><mrow><mi>k</mi><mo>+</mo><mn>1</mn></mrow></mfrac><mspace width="1.0em"></mspace><mo>⇔</mo><mspace width="1.0em"></mspace><mi>r</mi><mo>&lt;</mo><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">\frac{L}{k+r}&gt;\frac{1}{k+1} \quad\Longleftrightarrow\quad r &lt; L(k+1)-k</annotation></semantics></math></p>
+<h4 id="plain-language-mechanics-1">Plain-language mechanics</h4>
+<p>RRF uses ranks, not raw scores. It can therefore combine BM25 and cosine-similarity lists without claiming that their score scales match. The constant <code>k</code> is the exchange rate between a high individual rank and agreement across lists. Raising it flattens weights and rewards broad consensus. Lowering it sharpens the head and rewards individual confidence.</p>
+<h4 id="worked-crossover-cases">Worked crossover cases</h4>
+<p>With two lists and <code>k=60</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo>*</mo></msup><mo>=</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>61</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mn>60</mn><mo>=</mo><mn>62</mn></mrow><annotation encoding="application/x-tex">r^{*}=2(61)-60=62</annotation></semantics></math> Agreement anywhere in the top 61 of both lists outranks either list's single best guess.</p>
+<p>With two lists and <code>k=0</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo>*</mo></msup><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">r^{*}=2</annotation></semantics></math> Only unanimous first place qualifies, so fusion degenerates into interleaving the two heads.</p>
+<p>With three lists and <code>k=60</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>r</mi><mo>*</mo></msup><mo>=</mo><mn>3</mn><mo stretchy="false" form="prefix">(</mo><mn>61</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mn>60</mn><mo>=</mo><mn>123</mn></mrow><annotation encoding="application/x-tex">r^{*}=3(61)-60=123</annotation></semantics></math></p>
+<h4 id="conditions-failures-and-rules-1">Conditions, failures, and rules</h4>
+<ul>
+<li>Default to <code>k=60</code> and change it only after measurement. It is the original evaluation value, not a derived optimum.</li>
+<li>Use RRF when score scales are incomparable.</li>
+<li>Use weighted score fusion only after both scales are normalized and the normalization is defensible.</li>
+<li>Fuse at depth 100 and truncate to a final 10 when that is the serving target.</li>
+<li>Fusing only two top-10 lists discards evidence that deeper consensus needs.</li>
+<li>An added weak retriever can raise the crossover and promote mediocre but agreed documents above one strong list's correct top result.</li>
+</ul>
+<h3 id="a3-mean-reciprocal-rank">A.3 Mean Reciprocal Rank</h3>
+<h4 id="formula-and-symbols-2">Formula and symbols</h4>
+<p>Section 32.2 derives Reciprocal Rank, which depends only on the first relevant result for query <code>q</code>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>RR</mo><mi>q</mi></msub><mo>=</mo><mfrac><mn>1</mn><msub><mo>rank</mo><mi>q</mi></msub></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{RR}}_q=\frac{1}{\mathop{\text{rank}}_q}</annotation></semantics></math> MRR averages one RR value for every query.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>MRR</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mo stretchy="false" form="prefix">|</mo><mi>𝒬</mi><mo stretchy="false" form="prefix">|</mo></mrow></mfrac><munder><mo>∑</mo><mrow><mi>q</mi><mo>∈</mo><mi>𝒬</mi></mrow></munder><msub><mo>RR</mo><mi>q</mi></msub></mrow><annotation encoding="application/x-tex">\mathop{\text{MRR}}=\frac{1}{|\mathcal{Q}|}\sum_{q\in\mathcal{Q}}\mathop{\text{RR}}_q</annotation></semantics></math> If no relevant result appears, RR is zero.</p>
+<h4 id="plain-language-mechanics-2">Plain-language mechanics</h4>
+<p>MRR asks one question: how far down is the first relevant document? It ignores every relevant result after the first.</p>
+<h4 id="worked-examples">Worked examples</h4>
+<p>A ten-document list with relevant results at ranks one and ten has:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>RR</mo><mo>=</mo><mn>1</mn><mi>/</mi><mn>1</mn><mo>=</mo><mn>1.0</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{RR}}=1/1=1.0</annotation></semantics></math> A list with only one relevant result at rank one receives the same score. The following calculation is not MRR:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>1</mn><mi>/</mi><mn>1</mn><mo>+</mo><mn>1</mn><mi>/</mi><mn>10</mn></mrow><mn>10</mn></mfrac><mo>=</mo><mn>0.11</mn></mrow><annotation encoding="application/x-tex">\frac{1/1+1/10}{10}=0.11</annotation></semantics></math> It sums every relevant hit and divides by list length. A metric that changes when a second relevant document appears cannot be RR for that query.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">First relevant rank</th>
+<th style="text-align: right;">1</th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">10</th>
+<th style="text-align: right;">Absent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">RR</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.100</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The fall from rank one to rank two loses half the score. Results after rank five are close to failure under this metric.</p>
+<h4 id="conditions-failures-and-rules-2">Conditions, failures, and rules</h4>
+<ul>
+<li>Use MRR for known-item search, entity lookup, or a question with one supporting passage.</li>
+<li>Use nDCG when relevance is graded or plural.</li>
+<li>Always report the cutoff. MRR at 10 differs from unbounded MRR when the first hit appears after rank 10.</li>
+<li>MRR is a poor sole target for a RAG retriever feeding top <code>k</code> documents to a generator.</li>
+<li>Recall at <code>k</code> says whether evidence arrived. nDCG at <code>k</code> says how the delivered evidence was ordered.</li>
+<li>A gain from moving already-found answers from rank three to rank two can matter less than a smaller recall gain on queries whose evidence was absent.</li>
+</ul>
+<h3 id="a4-ndcg">A.4 nDCG</h3>
+<h4 id="formula-and-symbols-3">Formula and symbols</h4>
+<p>Section 32.2 derives the ranking metrics, beginning with Cumulative Gain, which ignores order.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>CG</mo><mi>@</mi><mi>k</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><msub><mo>rel</mo><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\mathop{\text{CG}}@k=\sum_{i=1}^{k}\mathop{\text{rel}}_i</annotation></semantics></math> Discounted Cumulative Gain divides each grade by a log-rank term.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>DCG</mo><mi>@</mi><mi>k</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mfrac><msub><mo>rel</mo><mi>i</mi></msub><mrow><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{DCG}}@k= \sum_{i=1}^{k} \frac{\mathop{\text{rel}}_i}{\log_2(i+1)}</annotation></semantics></math></p>
+<p>Normalization divides by the best ordering achievable from the available judgments.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>nDCG</mo><mi>@</mi><mi>k</mi><mo>=</mo><mfrac><mrow><mo>DCG</mo><mi>@</mi><mi>k</mi></mrow><mrow><mo>IDCG</mo><mi>@</mi><mi>k</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\mathop{\text{nDCG}}@k= \frac{\mathop{\text{DCG}}@k}{\mathop{\text{IDCG}}@k}</annotation></semantics></math> Therefore:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mo>nDCG</mo><mi>@</mi><mi>k</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0\leq\mathop{\text{nDCG}}@k\leq1</annotation></semantics></math></p>
+<h4 id="plain-language-mechanics-3">Plain-language mechanics</h4>
+<p>CG has no position sensitivity. DCG restores it. The <code>+1</code> leaves rank one undiscounted because log base two of two equals one. The logarithm is gentler than reciprocal rank. That is useful when a generator reads several retrieved documents. IDCG is built from the judgments available for that query, not from a perfect oracle. A query with three known relevant documents and one with twenty have different ideal gains. A score of one means the best ordering of the labeled documents. It does not prove that the best documents in the corpus were labeled.</p>
+<h4 id="worked-discount-grid">Worked discount grid</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Rank <code>i</code></th>
+<th style="text-align: right;">1</th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><code>log2(i+1)</code></td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.585</td>
+<td style="text-align: right;">2.000</td>
+<td style="text-align: right;">2.585</td>
+<td style="text-align: right;">3.459</td>
+</tr>
+<tr>
+<td style="text-align: right;">DCG weight</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.631</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.387</td>
+<td style="text-align: right;">0.289</td>
+</tr>
+<tr>
+<td style="text-align: right;">RR weight</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.333</td>
+<td style="text-align: right;">0.200</td>
+<td style="text-align: right;">0.100</td>
+</tr>
+</tbody>
+</table></div>
+<p>At rank 10, DCG still assigns 0.289 while RR assigns 0.100. A useful document at rank four or five retains material credit.</p>
+<h4 id="gain-choice-and-judgment-conditions">Gain choice and judgment conditions</h4>
+<p>The displayed formula uses direct relevance grades. An alternative uses exponential gain:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>gain</mo><mi>i</mi></msub><mo>=</mo><msup><mn>2</mn><msub><mo>rel</mo><mi>i</mi></msub></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{gain}}_i=2^{\mathop{\text{rel}}_i}-1</annotation></semantics></math></p>
+<p>This makes the highest ordinal grade dominate more strongly. Both versions appear under the nDCG name, so the gain definition must be stated. Unjudged documents count as non-relevant. Section 32.3 explains why a shallow judgment pool can penalize a retriever for finding a genuinely relevant but unpooled document.</p>
+<h4 id="conditions-failures-and-rules-3">Conditions, failures, and rules</h4>
+<ul>
+<li>Report cutoff and gain scale together.</li>
+<li>Binary nDCG at 10 and a 0-3 graded nDCG at 10 are different metrics.</li>
+<li>Use the exponential form when ordinal top grades should dominate.</li>
+<li>Pair reranker nDCG at <code>k</code> with retrieval recall at a possibly deeper <code>k_prime</code>.</li>
+<li>nDCG describes ordering only after the evidence has entered the judged or retrieved set.</li>
+</ul>
+<h3 id="a5-modularity">A.5 Modularity</h3>
+<h4 id="formula-and-symbols-4">Formula and symbols</h4>
+<p>Section 40.9 derives modularity, the objective that Leiden and Louvain maximize.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></munder><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><mfrac><mrow><msub><mi>k</mi><mi>i</mi></msub><msub><mi>k</mi><mi>j</mi></msub></mrow><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mo stretchy="true" form="postfix">]</mo></mrow><mi>δ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><msub><mi>c</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Q=\frac{1}{2m} \sum_{i,j} \left[A_{ij}-\frac{k_i k_j}{2m}\right] \delta(c_i,c_j)</annotation></semantics></math></p>
+<p>Here <code>m</code> is total edge count. <code>A_ij</code> is one when nodes <code>i</code> and <code>j</code> share an edge. <code>k_i</code> is node degree. The delta is one only when both nodes share a community. The expected degree-preserving edge term is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mrow><msub><mi>k</mi><mi>i</mi></msub><msub><mi>k</mi><mi>j</mi></msub></mrow><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><annotation encoding="application/x-tex">\frac{k_i k_j}{2m}</annotation></semantics></math></p>
+<p>Modularity therefore measures connectivity beyond chance at fixed degree. It does not measure absolute connectivity.</p>
+<h4 id="worked-four-node-partition">Worked four-node partition</h4>
+<p>Nodes one, two, and three form a triangle. Node four has one edge to node three.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>4</mn><mo>,</mo><mspace width="2.0em"></mspace><mn>2</mn><mi>m</mi><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">m=4, \qquad 2m=8</annotation></semantics></math></p>
+<p>For partition A, the triangle and singleton contributions are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>−</mo><mfrac><mn>49</mn><mn>8</mn></mfrac><mo>=</mo><mi>−</mi><mn>0.125</mn></mrow><annotation encoding="application/x-tex">6-\frac{49}{8}=-0.125</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>−</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><mo>=</mo><mi>−</mi><mn>0.125</mn></mrow><annotation encoding="application/x-tex">0-\frac{1}{8}=-0.125</annotation></semantics></math></p>
+<p>Thus:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>A</mi></msub><mo>=</mo><mfrac><mrow><mi>−</mi><mn>0.25</mn></mrow><mn>8</mn></mfrac><mo>=</mo><mi>−</mi><mn>0.03125</mn></mrow><annotation encoding="application/x-tex">Q_A=\frac{-0.25}{8}=-0.03125</annotation></semantics></math></p>
+<p>For partition B, all four nodes are together.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>B</mi></msub><mo>=</mo><mfrac><mrow><mn>8</mn><mo>−</mo><mn>64</mn><mi>/</mi><mn>8</mn></mrow><mn>8</mn></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">Q_B=\frac{8-64/8}{8}=0</annotation></semantics></math></p>
+<p>The modularity gain is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mi>B</mi></msub><mo>−</mo><msub><mi>Q</mi><mi>A</mi></msub><mo>=</mo><mn>0.03125</mn></mrow><annotation encoding="application/x-tex">Q_B-Q_A=0.03125</annotation></semantics></math></p>
+<p>One dangling edge decides the merge in this toy graph.</p>
+<h4 id="conditions-failures-and-rules-4">Conditions, failures, and rules</h4>
+<ul>
+<li>Prefer Leiden because every resulting community remains internally connected.</li>
+<li>Louvain can produce a disconnected community that is then summarized as one theme.</li>
+<li>Modularity is global. One new document can change communities far from its own node. This is why GraphRAG is more expensive to keep fresh than LightRAG.</li>
+<li>Generic high-frequency relations inflate degree without useful structure. Cap or remove them before partitioning.</li>
+<li>A vague <code>related_to</code> relation still yields a partition, but not necessarily an informative one.</li>
+<li>Modularity has a resolution limit. Communities with fewer than roughly the following number of edges tend to be absorbed:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msqrt><mrow><mn>2</mn><mi>m</mi></mrow></msqrt><annotation encoding="application/x-tex">\sqrt{2m}</annotation></semantics></math></p>
+<p>Very small genuine themes may therefore fail to appear as their own community at any hierarchy level.</p>
+<h3 id="a6-product-quantization-sizing">A.6 Product Quantization sizing</h3>
+<h4 id="formula-and-symbols-5">Formula and symbols</h4>
+<p>Section 16.1 derives Product Quantization. Split a <code>d</code>-dimensional vector into <code>m</code> subvectors, each with width:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mi>d</mi><mi>m</mi></mfrac><annotation encoding="application/x-tex">\frac{d}{m}</annotation></semantics></math></p>
+<p>Quantize each subspace against <code>k</code> centroids. Code length is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>code length</mo><mo>=</mo><mi>m</mi><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>k</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bits</mtext></mrow></mrow><annotation encoding="application/x-tex">\mathop{\text{code length}}=m\log_2 k\text{ bits}</annotation></semantics></math></p>
+<p>The number of representable vectors is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>k</mi><mi>m</mi></msup><annotation encoding="application/x-tex">k^m</annotation></semantics></math></p>
+<p>The number of stored centroids is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>×</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">k\times m</annotation></semantics></math></p>
+<p>Each centroid has dimension <code>d/m</code>, so fp32 codebook memory is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>×</mo><mi>m</mi><mo>×</mo><mfrac><mi>d</mi><mi>m</mi></mfrac><mo>×</mo><mn>4</mn><mo>=</mo><mi>k</mi><mo>×</mo><mi>d</mi><mo>×</mo><mn>4</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow></mrow><annotation encoding="application/x-tex">k\times m\times\frac{d}{m}\times4 =k\times d\times4\text{ bytes}</annotation></semantics></math></p>
+<p>The <code>m</code> factor cancels. Codebook memory is independent of how many subspaces split the vector.</p>
+<p>The distance lookup table amortizes after:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mn>2</mn><mi>k</mi><mi>d</mi></mrow><mrow><mn>2</mn><mi>d</mi><mo>−</mo><mi>m</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">N^{*}=\frac{2kd}{2d-m}</annotation></semantics></math></p>
+<p>candidate distance computations.</p>
+<h4 id="why-the-mechanism-compresses">Why the mechanism compresses</h4>
+<p>Representable combinations grow as <code>k</code> to the power <code>m</code>. Stored centroids grow only as <code>k</code> times <code>m</code>. This asymmetry is the compression mechanism.</p>
+<h4 id="worked-768-dimensional-design">Worked 768-dimensional design</h4>
+<p>Start with:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>768</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>m</mi><mo>=</mo><mn>96</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>d</mi><mi>/</mi><mi>m</mi><mo>=</mo><mn>8</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>k</mi><mo>=</mo><mn>256</mn><mo>=</mo><msup><mn>2</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">d=768, \qquad m=96, \qquad d/m=8, \qquad k=256=2^8</annotation></semantics></math></p>
+<p>One fp32 vector uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>768</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>3072</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow></mrow><annotation encoding="application/x-tex">768\times4=3072\text{ bytes}</annotation></semantics></math></p>
+<p>The PQ code uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>96</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>768</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bits</mtext></mrow><mo>=</mo><mn>96</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow></mrow><annotation encoding="application/x-tex">96\times8=768\text{ bits}=96\text{ bytes}</annotation></semantics></math></p>
+<p>Compression is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3072</mn><mi>/</mi><mn>96</mn><mo>=</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">3072/96=32</annotation></semantics></math></p>
+<p>Representable combinations are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>256</mn><mn>96</mn></msup><mo>=</mo><msup><mn>2</mn><mn>768</mn></msup><mo>≈</mo><mn>1.6</mn><mo>×</mo><msup><mn>10</mn><mn>231</mn></msup></mrow><annotation encoding="application/x-tex">256^{96}=2^{768}\approx1.6\times10^{231}</annotation></semantics></math></p>
+<p>Stored centroids are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>256</mn><mo>×</mo><mn>96</mn><mo>=</mo><mn>24576</mn></mrow><annotation encoding="application/x-tex">256\times96=24576</annotation></semantics></math></p>
+<p>The codebook contains 196,608 fp32 values and occupies:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>256</mn><mo>×</mo><mn>768</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>786432</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>768</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> KiB</mtext></mrow></mrow><annotation encoding="application/x-tex">256\times768\times4=786432\text{ bytes}=768\text{ KiB}</annotation></semantics></math> The source opening calls this 768 KB, while the worked byte calculation yields 768 KiB.</p>
+<p>The break-even candidate count is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mn>2</mn><mo>×</mo><mn>256</mn><mo>×</mo><mn>768</mn></mrow><mrow><mn>1536</mn><mo>−</mo><mn>96</mn></mrow></mfrac><mo>=</mo><mfrac><mn>393216</mn><mn>1440</mn></mfrac><mo>≈</mo><mn>273.07</mn></mrow><annotation encoding="application/x-tex">N^{*}=\frac{2\times256\times768}{1536-96} =\frac{393216}{1440}\approx273.07</annotation></semantics></math></p>
+<p>The source rounds this threshold to 273 candidates. A whole-number count strictly above the exact break-even is 274. Either value is below the length of an inverted list that an Inverted File Product Quantization (IVF-PQ) system would normally probe, so the lookup table amortizes in the stated configuration.</p>
+<h4 id="why-one-codebook-loses">Why one codebook loses</h4>
+<p>A single <code>b</code>-bit codebook needs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo><msup><mn>2</mn><mi>b</mi></msup></mrow><annotation encoding="application/x-tex">k=2^b</annotation></semantics></math></p>
+<p>For <code>b=32</code> in 768 dimensions:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>×</mo><mn>3072</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>1.32</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>13.2</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> TB</mtext></mrow></mrow><annotation encoding="application/x-tex">2^{32}\times3072\text{ bytes} =1.32\times10^{13}\text{ bytes} =13.2\text{ TB}</annotation></semantics></math></p>
+<p>The source describes this as a codebook about four hundred times larger than the corpus it compresses. Splitting is what makes the representation feasible.</p>
+<h4 id="conditions-failures-and-rules-5">Conditions, failures, and rules</h4>
+<ul>
+<li>Default to <code>k=256</code>, which gives one byte per subvector.</li>
+<li>Choose <code>m</code> to divide <code>d</code> evenly and meet the byte budget.</li>
+<li>A common starting point is:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mi>d</mi><mi>/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">m=d/8</annotation></semantics></math></p>
+<ul>
+<li>Codebook memory does not depend on <code>m</code>.</li>
+<li>Corpus-scale code storage grows as <code>m</code> bytes per vector plus a posting identifier.</li>
+<li>Train codebooks on a sample matching the corpus distribution.</li>
+<li>The FAISS guidance warns below roughly 39 training points per centroid.</li>
+<li>At <code>k=256</code>, that rule gives about 10,000 training vectors per subspace.</li>
+</ul>
+<h3 id="a7-flops-and-latency">A.7 FLOPs and latency</h3>
+<h4 id="compute-formulas">Compute formulas</h4>
+<p>Sections 6.2 and 37.1 derive and apply this arithmetic. For a model with <code>N</code> parameters, per-token compute is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mo>forward</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>2</mn><mi>N</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mo>backward</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>4</mn><mi>N</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mo>training</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>6</mn><mi>N</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>C</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>≈</mo><mn>6</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi><mi>s</mi></mrow></msub></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mo>generation</mo></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>=</mo><mn>2</mn><mi>N</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned} \mathop{\text{forward}} &amp;= 2N\text{ FLOPs}\\ \mathop{\text{backward}} &amp;= 4N\text{ FLOPs}\\ \mathop{\text{training}} &amp;= 6N\text{ FLOPs}\\ C &amp;\approx 6ND_{tokens}\\ \mathop{\text{generation}} &amp;= 2N\text{ FLOPs} \end{aligned}</annotation></semantics></math></p>
+<p>Generation has no backward pass.</p>
+<p>For prefill over <code>s</code> tokens, <code>L_layers</code> layers, and hidden dimension <code>d_hidden</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>FLOPs</mo><mrow><mi>p</mi><mi>r</mi><mi>e</mi><mi>f</mi><mi>i</mi><mi>l</mi><mi>l</mi></mrow></msub><mo>=</mo><mn>2</mn><mi>N</mi><mi>s</mi><mo>+</mo><mn>2</mn><msub><mi>L</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi>s</mi></mrow></msub><msup><mi>s</mi><mn>2</mn></msup><msub><mi>d</mi><mrow><mi>h</mi><mi>i</mi><mi>d</mi><mi>d</mi><mi>e</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\mathop{\text{FLOPs}}_{prefill}=2Ns+2L_{layers}s^2d_{hidden}</annotation></semantics></math></p>
+<p>The first term is model work linear in context. The second is attention work quadratic in context. Doubling retrieved context is therefore not a linear cost.</p>
+<h4 id="memory-formulas">Memory formulas</h4>
+<p>Weight memory is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>w</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mi>s</mi></mrow></msub><mo>=</mo><mi>N</mi><mo>×</mo><msub><mi>b</mi><mrow><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">M_{weights}=N\times b_{bytes}</annotation></semantics></math></p>
+<p>The source byte values are four for fp32, two for bf16, one for int8, and one-half for int4.</p>
+<p>KV cache per token is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>K</mi><mi>V</mi><mo>,</mo><mi>t</mi><mi>o</mi><mi>k</mi><mi>e</mi><mi>n</mi></mrow></msub><mo>=</mo><mn>2</mn><msub><mi>L</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi>s</mi></mrow></msub><msub><mi>n</mi><mrow><mi>k</mi><mi>v</mi></mrow></msub><msub><mi>d</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub><msub><mi>b</mi><mrow><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">M_{KV,token}=2L_{layers}n_{kv}d_{head}b_{bytes}</annotation></semantics></math></p>
+<p>Multiply this by context length and concurrency.</p>
+<p>LoRA trainable parameters for one adapted matrix are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>L</mi><mi>o</mi><mi>R</mi><mi>A</mi></mrow></msub><mo>=</mo><mi>r</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>d</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P_{LoRA}=r(d_{in}+d_{out})</annotation></semantics></math></p>
+<h4 id="worked-weight-and-cache-examples">Worked weight and cache examples</h4>
+<p>Gemma 2 27B uses the following weight memory:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>27</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>×</mo><mn>4</mn><mo>=</mo><mn>108</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> GB at fp32</mtext></mrow></mrow><annotation encoding="application/x-tex">27\times10^9\times4=108\text{ GB at fp32}</annotation></semantics></math></p>
+<p>An 80 GB card cannot hold those weights before context. The same model uses 54 GB at bf16 and 27 GB at int8.</p>
+<p>For Llama 3.1 8B with 32 layers, eight key-value heads, head dimension 128, and bf16:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>32</mn><mo>×</mo><mn>8</mn><mo>×</mo><mn>128</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>131072</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>128</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> KiB per token</mtext></mrow></mrow><annotation encoding="application/x-tex">2\times32\times8\times128\times2 =131072\text{ bytes} =128\text{ KiB per token}</annotation></semantics></math></p>
+<p>A 2,048-token context uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2048</mn><mo>×</mo><mn>128</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> KiB</mtext></mrow><mo>=</mo><mn>256</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> MiB</mtext></mrow></mrow><annotation encoding="application/x-tex">2048\times128\text{ KiB}=256\text{ MiB}</annotation></semantics></math></p>
+<p>per concurrent request. The source labels this 256 MB even though its KiB-based arithmetic yields 256 MiB.</p>
+<h4 id="worked-latency-examples">Worked latency examples</h4>
+<p>For an 8B model with 32 layers, hidden size 4,096, and context 2,048:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>×</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>×</mo><mn>2048</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>×</mo><mn>32</mn><mo>×</mo><msup><mn>2048</mn><mn>2</mn></msup><mo>×</mo><mn>4096</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>3.39</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mrow><annotation encoding="application/x-tex">(2\times8\times10^9\times2048) +(2\times32\times2048^2\times4096) =3.39\times10^{13}\text{ FLOPs}</annotation></semantics></math></p>
+<p>At an achieved rate of <code>3.4e14</code> FLOPs per second:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>3.39</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>99.6</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> ms</mtext></mrow></mrow><annotation encoding="application/x-tex">\frac{3.39\times10^{13}}{3.4\times10^{14}} =99.6\text{ ms}</annotation></semantics></math></p>
+<p>A 110M cross-encoder over 50 pairs of 256 tokens costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>110</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>×</mo><mn>256</mn><mo>×</mo><mn>50</mn><mo>=</mo><mn>2.82</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> FLOPs</mtext></mrow></mrow><annotation encoding="application/x-tex">2\times110\times10^6\times256\times50 =2.82\times10^{12}\text{ FLOPs}</annotation></semantics></math></p>
+<p>At the same achieved rate:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2.82</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>≈</mo><mn>8.3</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> ms</mtext></mrow></mrow><annotation encoding="application/x-tex">\frac{2.82\times10^{12}}{3.4\times10^{14}} \approx8.3\text{ ms}</annotation></semantics></math></p>
+<h4 id="worked-lora-example">Worked LoRA example</h4>
+<p>Use rank 16 adapters on query and output projections of size 4,096 by 4,096 across 32 layers:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo stretchy="false" form="prefix">(</mo><mn>4096</mn><mo>+</mo><mn>4096</mn><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>2</mn><mo>×</mo><mn>32</mn><mo>=</mo><mn>8.39</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">16(4096+4096)\times2\times32 =8.39\times10^6</annotation></semantics></math></p>
+<p>Those adapters replace 1.07 billion full-matrix trainable parameters. The share and reduction are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.78</mn><mi>%</mi><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mi>d</mi><mrow><mn>2</mn><mi>r</mi></mrow></mfrac><mo>=</mo><mfrac><mn>4096</mn><mn>32</mn></mfrac><mo>=</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">0.78\%, \qquad \frac{d}{2r}=\frac{4096}{32}=128</annotation></semantics></math></p>
+<h4 id="conditions-failures-and-rules-6">Conditions, failures, and rules</h4>
+<ul>
+<li>Prefill is compute-bound. Decode is bandwidth-bound.</li>
+<li>Retrieved context mostly increases time to first token, not decode tokens per second.</li>
+<li>Reranking 50 pairs takes about 8 ms in the example, compared with about 100 ms of prefill, as section 22.2 applies.</li>
+<li>Weights are the fixed deployment cost. KV cache is the concurrency-dependent variable cost.</li>
+<li>Size the fleet on cache at target concurrency, not only on weights.</li>
+<li>Quote achieved FLOPs per second. Using vendor peak can understate latency by roughly two to three times.</li>
+</ul>
+<h3 id="a8-index-memory-end-to-end">A.8 Index memory, end to end</h3>
+<h4 id="per-vector-and-total-formulas">Per-vector and total formulas</h4>
+<p>Sections 16.5 and 15.2 derive total index memory and the HNSW link term. Per-vector data bytes are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mrow><mi>v</mi><mi>e</mi><mi>c</mi></mrow></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mn>4</mn><mi>d</mi></mtd><mtd columnalign="left" style="text-align: left"><mtext mathvariant="normal">for fp32</mtext></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mi>m</mi></mtd><mtd columnalign="left" style="text-align: left"><mrow><mtext mathvariant="normal">for PQ with </mtext><mspace width="0.333em"></mspace></mrow><mi>k</mi><mo>=</mo><mn>256</mn></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">b_{vec}= \begin{cases} 4d &amp; \text{for fp32}\\ m &amp; \text{for PQ with }k=256 \end{cases}</annotation></semantics></math></p>
+<p>Posting identifiers use:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mrow><mi>i</mi><mi>d</mi></mrow></msub><mo>=</mo><mn>4</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> to </mtext><mspace width="0.333em"></mspace></mrow><mn>8</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow></mrow><annotation encoding="application/x-tex">b_{id}=4\text{ to }8\text{ bytes}</annotation></semantics></math></p>
+<p>HNSW graph links use:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><mi>k</mi></mrow></msub><mo>=</mo><mn>4</mn><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>M</mi><mo>+</mo><mfrac><mi>M</mi><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">b_{link}=4\left(2M+\frac{M}{M-1}\right)</annotation></semantics></math></p>
+<p>The link term is zero for IVF.</p>
+<p>With <code>N</code> vectors, <code>n_list</code> IVF centroids, and <code>k</code> PQ centroids:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi></mrow></msub><mo>=</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>b</mi><mrow><mi>v</mi><mi>e</mi><mi>c</mi></mrow></msub><mo>+</mo><msub><mi>b</mi><mrow><mi>i</mi><mi>d</mi></mrow></msub><mo>+</mo><msub><mi>b</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><mi>k</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>n</mi><mrow><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi></mrow></msub><mi>d</mi><mo>×</mo><mn>4</mn><mo>+</mo><mi>k</mi><mi>d</mi><mo>×</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">M_{index}=N(b_{vec}+b_{id}+b_{link}) +n_{list}d\times4 +kd\times4</annotation></semantics></math></p>
+<p>Fleet memory is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mrow><mi>f</mi><mi>l</mi><mi>e</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>h</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>M</mi><mrow><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi></mrow></msub><mo>+</mo><msub><mi>M</mi><mrow><mi>p</mi><mi>a</mi><mi>y</mi><mi>l</mi><mi>o</mi><mi>a</mi><mi>d</mi></mrow></msub></mrow><annotation encoding="application/x-tex">M_{fleet}=R(1+h)M_{index}+M_{payload}</annotation></semantics></math></p>
+<h4 id="hnsw-link-derivation">HNSW link derivation</h4>
+<p>Layer zero stores up to:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mn>0</mn></msub><mo>=</mo><mn>2</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">M_0=2M</annotation></semantics></math></p>
+<p>Upper layers form a geometric series.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><mi>k</mi></mrow></msub><mo>=</mo><mn>4</mn><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>M</mi><mo>+</mo><mi>M</mi><munder><mo>∑</mo><mrow><mi>ℓ</mi><mo>≥</mo><mn>1</mn></mrow></munder><msup><mi>M</mi><mrow><mi>−</mi><mi>ℓ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>4</mn><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>M</mi><mo>+</mo><mfrac><mi>M</mi><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">b_{link} =4\left(2M+M\sum_{\ell\geq1}M^{-\ell}\right) =4\left(2M+\frac{M}{M-1}\right)</annotation></semantics></math></p>
+<p>At <code>M=32</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mrow><mi>l</mi><mi>i</mi><mi>n</mi><mi>k</mi></mrow></msub><mo>=</mo><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mn>64</mn><mo>+</mo><mn>1.03</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>260</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow></mrow><annotation encoding="application/x-tex">b_{link}=4(64+1.03)=260\text{ bytes}</annotation></semantics></math></p>
+<p>The FAISS rule quotes 256 link bytes at <code>M=32</code>. The derivation is within 1.6 percent. Its extra four bytes represent the upper layers dropped by the rule of thumb. The comparison table uses this layer-zero approximation for its HNSW link rows.</p>
+<h4 id="ten-million-vector-comparison">Ten-million-vector comparison</h4>
+<p>Use 10 million chunks and <code>d=768</code>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Bytes per vector</th>
+<th style="text-align: right;"><code>M_index</code></th>
+<th style="text-align: right;">Ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HNSW-Flat, <code>M=16</code></td>
+<td style="text-align: right;">3,072 + 128 = 3,200</td>
+<td style="text-align: right;">32.0 GB</td>
+<td style="text-align: right;">1.0 times</td>
+</tr>
+<tr>
+<td>HNSW over 64-byte PQ</td>
+<td style="text-align: right;">64 + 128 = 192</td>
+<td style="text-align: right;">1.92 GB</td>
+<td style="text-align: right;">16.7 times smaller</td>
+</tr>
+<tr>
+<td>IVF-PQ, 96-byte code + id</td>
+<td style="text-align: right;">96 + 4 = 100</td>
+<td style="text-align: right;">1.00 GB</td>
+<td style="text-align: right;">32 times smaller</td>
+</tr>
+</tbody>
+</table></div>
+<p>In the compressed HNSW row, graph links consume 128 of 192 bytes. Two-thirds of the index is graph. The link term is incompressible, so further vector quantization buys little.</p>
+<h4 id="rebuild-replication-and-payload">Rebuild, replication, and payload</h4>
+<p>An in-place rebuild holds old and new indexes together:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">h=1</annotation></semantics></math></p>
+<p>A separate build box with hot swap can use about:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>≈</mo><mn>0.2</mn></mrow><annotation encoding="application/x-tex">h\approx0.2</annotation></semantics></math></p>
+<p>At 400 tokens per chunk and about four characters per token, payload is 1.6 KB per chunk. Across 10 million chunks:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>1.6</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> KB</mtext></mrow><mo>=</mo><mn>16</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> GB</mtext></mrow></mrow><annotation encoding="application/x-tex">10^7\times1.6\text{ KB}=16\text{ GB}</annotation></semantics></math></p>
+<p>Metadata at 200 bytes per chunk adds about 2 GB. Payload plus metadata is 18 GB.</p>
+<p>For IVF-PQ with <code>R=2</code>, <code>h=1</code>, and a 1 GB index:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>+</mo><mn>18</mn><mo>=</mo><mn>22</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> GB</mtext></mrow></mrow><annotation encoding="application/x-tex">2\times2\times1+18=22\text{ GB}</annotation></semantics></math></p>
+<p>The text payload now dominates.</p>
+<h4 id="conditions-failures-and-rules-7">Conditions, failures, and rules</h4>
+<ul>
+<li>Size memory from corpus size and compute from query rate as separate axes. Section 41.1 shows that collapsing them can produce a ten-node cluster where two would suffice.</li>
+<li>Shard count is a ceiling division:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>shards</mo><mo>=</mo><mrow><mo stretchy="true" form="prefix">⌈</mo><mfrac><msub><mi>M</mi><mrow><mi>f</mi><mi>l</mi><mi>e</mi><mi>e</mi><mi>t</mi></mrow></msub><mo>usable RAM per node</mo></mfrac><mo stretchy="true" form="postfix">⌉</mo></mrow></mrow><annotation encoding="application/x-tex">\mathop{\text{shards}} =\left\lceil\frac{M_{fleet}}{\mathop{\text{usable RAM per node}}}\right\rceil</annotation></semantics></math></p>
+<ul>
+<li>Include payload from the start. Past roughly 30 times vector compression, chunk text can dominate.</li>
+<li>Always quote <code>b_link</code> with vector compression.</li>
+<li>A 32 times vector compression on HNSW is not a 32 times whole-index compression.</li>
+<li>Omitting rebuild headroom, replication, text, or metadata produces an incomplete machine count.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<p>Source visual accounting is 0 figures and 0 tables in the manifest. The source contains display equations and unnumbered numeric grids, not captioned source visuals. This appendix preserves those items as equations and Markdown grids without inventing figure or table numbers.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a ranking lane with BM25, RRF, MRR, and nDCG in source order.</li>
+<li>Under BM25, split IDF from saturating and length-normalized TF.</li>
+<li>Under RRF, draw two ranked lists meeting at the crossover inequality.</li>
+<li>Under MRR and nDCG, contrast first-hit credit with graded log-discounted credit.</li>
+<li>Draw modularity as observed adjacency minus degree-based expected adjacency.</li>
+<li>Draw one vector split into <code>m</code> PQ subspaces and label <code>k^m</code> versus <code>k*m</code>.</li>
+<li>Draw compute, weight, KV cache, and LoRA formulas as a model-serving block.</li>
+<li>Finish with the memory stack: vector, id, links, centroids, replicas, rebuild, payload.</li>
+<li>Add units to every intermediate value and circle each independent sanity check.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with ranking: BM25 scores lexical evidence, RRF combines incompatible ranked lists, MRR tracks only the first relevant hit, and nDCG preserves graded order. Then draw modularity as observed edges minus degree-based expectation. Move to systems arithmetic: PQ gets exponential combinations from linear codebooks, FLOPs convert model and context size into latency, and KV cache multiplies by context and concurrency. Finish with index memory: add vector bytes, identifiers, graph links, centroids, replication, rebuild headroom, text, and metadata. Keep units on every line and cross-check each result against a known rule before defending the design.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-is-a-numerically-correct-answer-still-wrong">1. Why is a numerically correct answer still wrong?</h3>
+<p>A value without units, scope, or achieved hardware rate is not defensible. Track bytes versus bits, decimal GB versus KiB, per-token versus per-request cache, per-vector versus fleet memory, and FLOPs versus FLOPs per second. State which local meaning of <code>N</code>, <code>k</code>, <code>m</code>, <code>b</code>, or <code>Q</code> applies before substituting.</p>
+<h3 id="2-which-ranking-formula-is-being-misused">2. Which ranking formula is being misused?</h3>
+<p>BM25 length normalization belongs inside the saturation denominator, while RRF uses ranks because source scores are incomparable. MRR reads only the first relevant result, whereas nDCG needs a cutoff, gain scale, and judgment-pool caveat. Diagnose the objective before tuning a constant.</p>
+<h3 id="3-which-sanity-ablation-exposes-a-false-metric-or-graph-claim">3. Which sanity ablation exposes a false metric or graph claim?</h3>
+<p>Add a second relevant hit after rank one and RR must stay one, then permute graded results because CG stays fixed while DCG changes. Remove the dangling edge in the four-node graph and the modularity preference must change. Replace typed relations with generic high-frequency edges and expect semantic value to collapse even if a partition remains.</p>
+<h3 id="4-why-did-compression-or-latency-miss-the-estimate">4. Why did compression or latency miss the estimate?</h3>
+<p>For PQ, check whether codebook memory was confused with per-vector codes and whether <code>m</code> divides <code>d</code>. For latency, use achieved rather than peak FLOPs per second and include quadratic attention. For index memory, add identifiers, HNSW links, rebuild overlap, replicas, payload, and metadata because a 32 times vector compression does not imply 32 times fleet compression.</p>
+<h3 id="5-what-claim-limits-must-be-said-aloud">5. What claim limits must be said aloud?</h3>
+<p>The RRF default 60 is an evaluated convention, not an optimum, and IDCG covers judged documents rather than an oracle corpus. Modularity has a resolution limit and global update behavior, while the source's rounded 273-candidate PQ break-even belongs to the stated dimensions. The 99.6 ms prefill and 8.3 ms rerank use one achieved rate, and every worked result changes when its assumptions change.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Key values</th>
+<th>Use and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Formula-sheet reliance</td>
+<td>Two weeks</td>
+<td>If the sheet is still needed, re-derive each formula instead of re-reading it</td>
+</tr>
+<tr>
+<td>BM25 defaults and limits</td>
+<td><code>k_1=1.2</code>, <code>b=0.75</code>, <code>b=0</code>, <code>b=1</code></td>
+<td>Starting values, no length charge, and full length charge</td>
+</tr>
+<tr>
+<td>BM25 TF limit</td>
+<td>1.000, 1.375, 1.774, 1.964, 2.075, 2.200</td>
+<td>Frequencies 1, 2, 5, 10, 20, and infinity</td>
+</tr>
+<tr>
+<td>BM25 length case</td>
+<td><code>K=2.1</code>, TF factor 0.710</td>
+<td>Twice-average document, 29 percent discount</td>
+</tr>
+<tr>
+<td>BM25 lower length setting</td>
+<td><code>b</code> about 0.3, classical IDF negative above half the collection</td>
+<td>Long documents can be informative and common terms may need an IDF floor</td>
+</tr>
+<tr>
+<td>RRF default</td>
+<td><code>k=60</code></td>
+<td>Conventional original evaluation value</td>
+</tr>
+<tr>
+<td>RRF crossovers</td>
+<td>62 for two lists, top 61 wins, 123 for three, and 2 at <code>k=0</code></td>
+<td>Consensus inequalities, not tuned optima</td>
+</tr>
+<tr>
+<td>RRF deep fusion</td>
+<td>Fuse depth 100, truncate to 10</td>
+<td>Keeps consensus evidence before serving cutoff</td>
+</tr>
+<tr>
+<td>RR grid and false formula</td>
+<td>1, 0.5, 0.333, 0.2, 0.1, 0, and non-MRR 0.11</td>
+<td>First hit at 1, 2, 3, 5, 10, absent, plus the rejected two-hit calculation</td>
+</tr>
+<tr>
+<td>nDCG discount grid</td>
+<td>Log values 1.000, 1.585, 2.000, 2.585, 3.459 and weights 1.000, 0.631, 0.500, 0.387, 0.289</td>
+<td>Ranks 1, 2, 3, 5, and 10</td>
+</tr>
+<tr>
+<td>nDCG range and grades</td>
+<td>0 to 1 and example grades 0 to 3</td>
+<td>Relative to available judgments with the gain scale stated</td>
+</tr>
+<tr>
+<td>Modularity toy</td>
+<td><code>m=4</code>, <code>2m=8</code>, contributions -0.125 and -0.125, <code>Q_A=-0.03125</code>, <code>Q_B=0</code></td>
+<td>Merge gain is 0.03125</td>
+</tr>
+<tr>
+<td>Modularity resolution</td>
+<td>Roughly square root of <code>2m</code> edges</td>
+<td>Smaller communities tend to be absorbed</td>
+</tr>
+<tr>
+<td>PQ design</td>
+<td><code>d=768</code>, <code>m=96</code>, <code>k=256</code></td>
+<td>Eight dimensions and one byte per subvector</td>
+</tr>
+<tr>
+<td>PQ compression</td>
+<td>3,072 bytes to 96 bytes, 32 times</td>
+<td>Vector-only compression</td>
+</tr>
+<tr>
+<td>PQ combinations</td>
+<td><code>2^768</code>, about <code>1.6e231</code></td>
+<td>From 24,576 stored centroids</td>
+</tr>
+<tr>
+<td>PQ codebook</td>
+<td>196,608 fp32 values, 786,432 bytes, 768 KiB</td>
+<td>The source opening instead says 768 KB</td>
+</tr>
+<tr>
+<td>PQ break-even</td>
+<td>Exact 273.07, source-rounded 273, whole-count 274</td>
+<td>For the stated 768, 96, 256 design</td>
+</tr>
+<tr>
+<td>PQ single codebook</td>
+<td><code>b=32</code>, <code>2^32</code> centroids, 13.2 TB, claimed 400 times</td>
+<td>The multiplier lacks a corpus size in this appendix</td>
+</tr>
+<tr>
+<td>PQ training rule</td>
+<td>39 points per centroid, about 10,000 per subspace</td>
+<td>FAISS warning region at 256 centroids</td>
+</tr>
+<tr>
+<td>Compute and precision rules</td>
+<td>Forward 2N, backward 4N, training 6N, fp32 4 bytes, bf16 2, int8 1, int4 0.5</td>
+<td>Per-token FLOPs and per-scalar bytes</td>
+</tr>
+<tr>
+<td>Gemma 2 27B weights</td>
+<td>108 GB fp32, 54 GB bf16, 27 GB int8, 80 GB card</td>
+<td>Excludes context cache and fp32 does not fit</td>
+</tr>
+<tr>
+<td>Llama 3.1 8B KV</td>
+<td>128 KiB per token, 256 MiB at 2,048 tokens</td>
+<td>The source labels the binary result 256 MB per concurrent request</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td><code>3.39e13</code> FLOPs, 99.6 ms</td>
+<td>Uses achieved <code>3.4e14</code> FLOPs per second</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td><code>2.82e12</code> FLOPs, about 8.3 ms</td>
+<td>110M model, 50 pairs, 256 tokens</td>
+</tr>
+<tr>
+<td>LoRA</td>
+<td>8.39M versus 1.07B, 0.78 percent, 128 times</td>
+<td>Rank 16 on two projections across 32 layers</td>
+</tr>
+<tr>
+<td>HNSW links</td>
+<td>Exact 260.13, rounded 260, and quoted 256 bytes</td>
+<td><code>M=32</code>, 1.6 percent difference</td>
+</tr>
+<tr>
+<td>HNSW-Flat</td>
+<td>3,200 bytes per vector, 32.0 GB</td>
+<td>10 million vectors, <code>d=768</code>, <code>M=16</code></td>
+</tr>
+<tr>
+<td>HNSW-PQ</td>
+<td>192 bytes per vector, 1.92 GB</td>
+<td>16.7 times smaller, two-thirds links</td>
+</tr>
+<tr>
+<td>IVF-PQ</td>
+<td>100 bytes per vector, 1.00 GB, identifiers 4 to 8 bytes</td>
+<td>The row uses a 96-byte code plus four-byte id</td>
+</tr>
+<tr>
+<td>Rebuild headroom</td>
+<td><code>h=1</code> in place, about 0.2 with hot swap</td>
+<td>Old and new artifact overlap</td>
+</tr>
+<tr>
+<td>Payload</td>
+<td>16 GB text + 2 GB metadata</td>
+<td>10 million chunks at stated sizes</td>
+</tr>
+<tr>
+<td>Fleet example</td>
+<td>22 GB</td>
+<td><code>R=2</code>, <code>h=1</code>, 1 GB index, 18 GB payload</td>
+</tr>
+<tr>
+<td>Payload crossover</td>
+<td>Past roughly 30 times vector compression</td>
+<td>Text can dominate index memory</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/41_end_to_end_design_drills.html"><small>Previous</small>Chapter 41. End-to-End Design Drills</a><a href="../chapters/A2_question_bank.html"><small>Next</small>Appendix A2. Question Bank</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

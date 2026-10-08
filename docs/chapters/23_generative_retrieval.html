@@ -1,0 +1,1883 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 23. Generative Retrieval | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/23_generative_retrieval.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html" aria-current="page">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 23. Generative Retrieval</h1><p class="chapter-meta">57 min estimated reading · Unit 32 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains when a model can retrieve by generating document identifiers, what that relocation costs, why updates remain hard, and how recitation can complement Retrieval-Augmented Generation (RAG).</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Generative retrieval replaces a runtime corpus search with sequence decoding. A model reads a query and emits the identifier of a document.</li>
+<li>Atomic identifiers do not remove the index. They rebuild it as an N by d_model output matrix and force an exhaustive score over all documents.</li>
+<li>Hierarchical identifiers turn a document into a short path through semantic clusters. A prefix trie blocks paths that do not name real documents.</li>
+<li>Query latency grows with identifier length, about ⌈log_V N⌉ decoding steps. The corpus barely affects that path, but each document receives a shrinking share of fixed model capacity.</li>
+<li>Scaling the model with the corpus restores capacity but also makes each decoding step slower. This can erase the latency advantage.</li>
+<li>A learned index has no local write. New documents require rehearsal, retraining, a flat atomic layer, or a mutable approximate nearest neighbor (ANN) delta beside a frozen learned base.</li>
+<li>Recitation asks the model to generate a remembered passage before answering. It helps on some zero-hit queries, but its reliability falls exponentially with the distance from a remembered entry point. Retrieval remains the default for private, recent, changing, or citable material. Recitation is a measured fallback, not a source of provenance.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a library with an extraordinary librarian. In a normal library, the librarian searches a catalog. The catalog is the runtime index. It stores one addressable record for every book.</p>
+<p>Generative retrieval trains the librarian to say a call number such as 629.2 directly after hearing a question. The call number is the document identifier, a short token sequence that names one document. The catalog did not disappear. Part of it moved into the librarian's memory, and part became the system used to organize call numbers.</p>
+<p>Giving every book one unique spoken word is the atomic identifier design. It sounds simple, but the librarian must choose among every book in one step. That choice recreates a full shelf-sized catalog inside the final scoring layer.</p>
+<p>A better design gives books hierarchical call numbers. The first digit chooses a broad wing, the next chooses an aisle, and later digits choose a shelf and book. These are semantically structured identifiers, which means nearby topics share early digits. The librarian now makes several small coarse-to-fine choices.</p>
+<p>A prefix trie acts like a floor plan that lists every legal partial call number. If no book begins with 3 5, the floor plan closes that branch before it wastes a candidate slot. The librarian can carry several possible call numbers at once. That is beam search, a decoding method that keeps a fixed number of live prefixes.</p>
+<p>This arrangement makes lookup time nearly flat as the library grows. The librarian only says one more digit when the number of books crosses the next power of the call-number alphabet.</p>
+<p>The hidden problem is memory capacity. A physical catalog gives every book its own record. The librarian gives all books shares of one fixed memory. As the collection grows, the share available to distinguish each book shrinks. Making the librarian's memory larger can restore the share, but every spoken digit then requires reading a larger memory.</p>
+<p>The next problem arrives with a shipment of new books. A catalog clerk can append local records. The trained librarian has no private memory slot assigned to one new book. Teaching only the new shipment can overwrite old associations because all call numbers compete in the same memory.</p>
+<p>The practical library therefore freezes the librarian's learned catalog. It puts new books into a small mutable side catalog, searches both, and periodically retrains the librarian during compaction.</p>
+<p>The librarian has one more useful talent. Sometimes the catalog search returns nothing, but the librarian remembers the start of a passage. The librarian can recite forward until the answer appears. This is recite-then-answer. It is continuation, not random access. Each extra word creates another chance to drift into the wrong passage. The physical catalog does not suffer that distance penalty.</p>
+<p>The two routes therefore cooperate. The catalog supplies private, recent, and citable books. The librarian's recitation can cover a vocabulary-mismatched zero-hit question. Both routes produce passages for the same final answer writer. The system keeps their provenance labels separate so a remembered imitation never receives a false citation.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves external passages and gives them to a generator</td>
+<td>It keeps changing and citable facts outside model weights</td>
+</tr>
+<tr>
+<td>Generative retrieval</td>
+<td>Retrieval by generating a document identifier</td>
+<td>It moves corpus lookup from a runtime index into model decoding</td>
+</tr>
+<tr>
+<td>Generative Information Retrieval (GenIR)</td>
+<td>The chapter's short name for generative retrieval</td>
+<td>It distinguishes learned identifier generation from conventional search</td>
+</tr>
+<tr>
+<td>Corpus D</td>
+<td>The complete document collection</td>
+<td>Classical retrieval touches it at query time while generative retrieval tries not to</td>
+</tr>
+<tr>
+<td>Query q</td>
+<td>The user's information request</td>
+<td>It conditions identifier decoding and passage selection</td>
+</tr>
+<tr>
+<td>Document d</td>
+<td>One retrievable item in the corpus</td>
+<td>It receives an identifier or an index record</td>
+</tr>
+<tr>
+<td>Document identifier (docid)</td>
+<td>A token string that names one document</td>
+<td>The model retrieves by generating this string</td>
+</tr>
+<tr>
+<td>Sequence-to-sequence model</td>
+<td>A model that maps one token sequence to another</td>
+<td>It maps documents and queries to identifiers</td>
+</tr>
+<tr>
+<td>Autoregressive decoding</td>
+<td>Generating identifier token t_j from p_theta(t_j given t_before_j and q)</td>
+<td>Its product over T identifier tokens defines p_theta(i given q)</td>
+</tr>
+<tr>
+<td>Differentiable Search Index (DSI)</td>
+<td>A learned retriever that stores query-to-docid behavior in parameters</td>
+<td>It demonstrates the model-based retrieval program</td>
+</tr>
+<tr>
+<td>Indexing task</td>
+<td>Training that maps a document's text to its own identifier</td>
+<td>It teaches corpus memorization</td>
+</tr>
+<tr>
+<td>Retrieval task</td>
+<td>Training that maps a query to the relevant identifier</td>
+<td>It teaches the behavior served at query time</td>
+</tr>
+<tr>
+<td>Atomic identifier</td>
+<td>One output vocabulary entry per document</td>
+<td>It allows one-step decoding but creates an N by d_model output layer</td>
+</tr>
+<tr>
+<td>Structured identifier</td>
+<td>A multi-token identifier whose prefixes have meaning</td>
+<td>It replaces a huge vocabulary with a short decode path</td>
+</tr>
+<tr>
+<td>Semantically structured identifier</td>
+<td>A structured identifier built from semantic clusters</td>
+<td>It makes early token decisions easier and more informative</td>
+</tr>
+<tr>
+<td>Naively structured identifier</td>
+<td>A short identifier assigned in arbitrary corpus order</td>
+<td>Its prefixes carry no topic signal and early errors discard large regions</td>
+</tr>
+<tr>
+<td>Hierarchical k-means</td>
+<td>Repeated clustering that creates a tree of document groups</td>
+<td>It supplies coarse-to-fine semantic call numbers</td>
+</tr>
+<tr>
+<td>Branching factor k</td>
+<td>The number of child choices at a tree level</td>
+<td>It trades identifier length against softmax width</td>
+</tr>
+<tr>
+<td>Leaf capacity c</td>
+<td>The maximum documents allowed in one terminal cluster</td>
+<td>It determines how many final digits identify a document within a leaf</td>
+</tr>
+<tr>
+<td>Symbols N, d, P, b, L, V, T, E, ∏, and Σ</td>
+<td>Corpus size, embedding width, parameter count, stored bits per parameter, identifier length, alphabet size, training tokens, training epochs, product, and sum</td>
+<td>They define the chapter's latency, capacity, training, and marginalization equations</td>
+</tr>
+<tr>
+<td>Output embedding matrix</td>
+<td>Learned vectors scored by the decoder's final layer</td>
+<td>Atomic identifiers hide a dense document index here</td>
+</tr>
+<tr>
+<td>Maximum inner product search</td>
+<td>Ranking vectors by query-vector inner product</td>
+<td>Atomic docid scoring performs it exhaustively without an index</td>
+</tr>
+<tr>
+<td>Softmax</td>
+<td>A normalized distribution over next-token choices</td>
+<td>Its shared probability mass creates interference during updates</td>
+</tr>
+<tr>
+<td>Best Match 25 (BM25)</td>
+<td>The lexical retrieval method named in Figure 23.3</td>
+<td>Its inverted index supports local posting-list writes</td>
+</tr>
+<tr>
+<td>Inverted file (IVF)</td>
+<td>A coarse cluster index that probes selected lists</td>
+<td>Structured decoding resembles an autoregressive IVF probe</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN)</td>
+<td>Fast vector search that avoids scanning all records</td>
+<td>It is the conventional runtime alternative and the practical mutable delta</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW)</td>
+<td>A graph-based ANN index</td>
+<td>It offers local insertion and fast lookup at a resident-memory cost</td>
+</tr>
+<tr>
+<td>Inverted File with Product Quantization (IVF-PQ)</td>
+<td>A clustered vector index with compact codes</td>
+<td>It is the quantized index baseline for latency and capacity comparisons</td>
+</tr>
+<tr>
+<td>Product quantization (PQ)</td>
+<td>A compact fixed-length code for a vector</td>
+<td>Its 64-byte record sets one capacity parity point</td>
+</tr>
+<tr>
+<td>Prefix trie</td>
+<td>A tree containing all legal identifier prefixes</td>
+<td>It masks impossible next tokens during decoding</td>
+</tr>
+<tr>
+<td>Constrained decoding</td>
+<td>Decoding that permits only structurally valid continuations</td>
+<td>It makes nonexistent docids impossible</td>
+</tr>
+<tr>
+<td>Generative Entity Retrieval (GENRE)</td>
+<td>The named entity-retrieval system in the source</td>
+<td>It introduced title decoding under a prefix trie</td>
+</tr>
+<tr>
+<td>SEAL</td>
+<td>The named substring-based retrieval system in the source</td>
+<td>It permits corpus substrings as identifiers</td>
+</tr>
+<tr>
+<td>Ferragina-Manzini index (FM-index)</td>
+<td>A compressed substring index used to test legal continuations</td>
+<td>It supports constrained decoding for arbitrary corpus n-grams</td>
+</tr>
+<tr>
+<td>Beam search</td>
+<td>Decoding that keeps several live prefixes</td>
+<td>Beam width sets the maximum candidate-list depth</td>
+</tr>
+<tr>
+<td>Beam width b or beta</td>
+<td>The number of live decoding hypotheses, written beta in the latency argument</td>
+<td>A beam of b can return at most b identifiers</td>
+</tr>
+<tr>
+<td>Search controls e_search, n_list, n_probe, and ef_construction</td>
+<td>HNSW query breadth, IVF list count, IVF lists probed, and HNSW insertion breadth</td>
+<td>They set the worked search and write costs</td>
+</tr>
+<tr>
+<td>Cross-entropy training</td>
+<td>Training that raises probability on target sequences</td>
+<td>It can make invalid identifiers unlikely but cannot forbid them</td>
+</tr>
+<tr>
+<td>Top-k retrieval</td>
+<td>Returning the k highest-ranked candidates</td>
+<td>In generative retrieval its ceiling is set during beam decoding</td>
+</tr>
+<tr>
+<td>Text-to-Text Transfer Transformer base model (T5-base)</td>
+<td>The 220M-parameter backbone used in the worked examples</td>
+<td>Its size anchors memory, bandwidth, and capacity calculations</td>
+</tr>
+<tr>
+<td>Microsoft Machine Reading Comprehension (MS MARCO)</td>
+<td>The 8.8M-passage benchmark corpus in the source</td>
+<td>It exposes the scale failure of atomic identifiers</td>
+</tr>
+<tr>
+<td>Neural Corpus Indexer (NCI), SEAL, and DSI with query generation (DSI-QG)</td>
+<td>Named published generative retrievers in the source</td>
+<td>They use structured or substring identifiers at passage scale</td>
+</tr>
+<tr>
+<td>A100 accelerator</td>
+<td>The processing device used in training and bandwidth examples</td>
+<td>Its sustained rates turn arithmetic and bytes into time</td>
+</tr>
+<tr>
+<td>doc2query-style generation</td>
+<td>Manufacturing likely queries from each document</td>
+<td>It reduces the mismatch between document training and query serving</td>
+</tr>
+<tr>
+<td>Query-time footprint</td>
+<td>Memory and structures touched while serving one query</td>
+<td>Generative retrieval removes direct corpus access from this path</td>
+</tr>
+<tr>
+<td>Bandwidth-bound decoding</td>
+<td>Decoding limited by reading weights rather than arithmetic</td>
+<td>Model size determines per-step latency at batch size one</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One arithmetic operation in a compute budget</td>
+<td>It prices encoding, decoding, training, and insertion</td>
+</tr>
+<tr>
+<td>fp32, fp16, bf16, and int8</td>
+<td>32-bit, 16-bit, brain 16-bit, and 8-bit numeric formats</td>
+<td>They change model and index memory costs</td>
+</tr>
+<tr>
+<td>Per-document capacity kappa_gen</td>
+<td>The model's total stored bits divided among documents</td>
+<td>kappa_gen(N) = bP/N falls as the corpus grows</td>
+</tr>
+<tr>
+<td>Index capacity kappa_idx</td>
+<td>The fixed number of stored bits per indexed document</td>
+<td>kappa_idx stays flat as corpus size grows</td>
+</tr>
+<tr>
+<td>Parity point N star</td>
+<td>Corpus size where model bits per document equal index bits per document</td>
+<td>N star = bP/kappa_idx is a screening calculation, not a release threshold</td>
+</tr>
+<tr>
+<td>Quality ceiling</td>
+<td>The loss of document-specific resolution as fixed model capacity is shared more widely</td>
+<td>It limits corpus-scale quality even when latency stays flat</td>
+</tr>
+<tr>
+<td>Dual encoder</td>
+<td>A retriever that independently embeds queries and documents</td>
+<td>It is the tuned quality baseline that large generative retrievers failed to match</td>
+</tr>
+<tr>
+<td>Cross-encoder reranker</td>
+<td>A model that jointly scores a query and each candidate</td>
+<td>It can recover precision after a wide generative beam</td>
+</tr>
+<tr>
+<td>Write locality</td>
+<td>Updating only a bounded addressable region for one insertion</td>
+<td>Classical indexes have it and learned indexes do not</td>
+</tr>
+<tr>
+<td>Posting list</td>
+<td>The documents associated with one lexical term</td>
+<td>An inverted-index insertion touches only lists for the new document's terms</td>
+</tr>
+<tr>
+<td>Out-degree M</td>
+<td>The graph-neighbor limit in HNSW</td>
+<td>It appears in the O(M log N) insertion cost</td>
+</tr>
+<tr>
+<td>Parameter superposition</td>
+<td>Many document mappings sharing the same parameter vector theta</td>
+<td>A new mapping can disturb old mappings</td>
+</tr>
+<tr>
+<td>Catastrophic forgetting</td>
+<td>Losing old document mappings while learning new ones</td>
+<td>It makes new-only fine-tuning unsafe</td>
+</tr>
+<tr>
+<td>DSI++</td>
+<td>The continual-indexing method named in the source</td>
+<td>It combines flatter updates with rehearsal to reduce forgetting</td>
+</tr>
+<tr>
+<td>DSI-XXL</td>
+<td>The 11B-parameter DSI variant in the source</td>
+<td>It shows that ample nominal capacity does not guarantee retrieval quality</td>
+</tr>
+<tr>
+<td>Sharpness-aware minimization</td>
+<td>Training that favors parameter regions tolerant to perturbations</td>
+<td>It helps preserve old mappings during continual updates</td>
+</tr>
+<tr>
+<td>Generative memory</td>
+<td>Pseudo-query rehearsal for already indexed documents</td>
+<td>It restores old-document coverage during updates</td>
+</tr>
+<tr>
+<td>Hits@10</td>
+<td>Whether a relevant item appears among ten returned items</td>
+<td>It is the metric used for the reported DSI++ improvement</td>
+</tr>
+<tr>
+<td>IncDSI</td>
+<td>The incremental atomic-docid method named in the source</td>
+<td>It inserts one new classifier row while freezing the rest of the model</td>
+</tr>
+<tr>
+<td>Classifier row w_i</td>
+<td>One learned vector assigned to document i</td>
+<td>Adding one row creates local insertion but restores a flat scan</td>
+</tr>
+<tr>
+<td>Log-structured merge (LSM) pattern</td>
+<td>A frozen base plus a mutable delta and periodic compaction</td>
+<td>It is the practical update architecture proposed by the source</td>
+</tr>
+<tr>
+<td>Mutable delta N_delta</td>
+<td>A small conventional index for documents newer than the learned base</td>
+<td>It gives fresh documents local writes and immediate searchability</td>
+</tr>
+<tr>
+<td>Compaction</td>
+<td>Periodically rebuilding the learned base and clearing the delta</td>
+<td>It amortizes expensive global retraining</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>A marker that makes a deleted item unreachable</td>
+<td>It supports fast retrieval-path deletion in the mutable layer</td>
+</tr>
+<tr>
+<td>Staleness window</td>
+<td>Time from ingestion until successful retrieval</td>
+<td>It exposes the operational cost of learned-index refreshes</td>
+</tr>
+<tr>
+<td>Service-level agreement (SLA)</td>
+<td>A promised freshness or availability target</td>
+<td>Retraining time can make the design fail before quality matters</td>
+</tr>
+<tr>
+<td>Service-level objective (SLO)</td>
+<td>The measured operating target for a service</td>
+<td>The source recommends p99 ingest-to-retrieval freshness</td>
+</tr>
+<tr>
+<td>Low-Rank Adaptation (LoRA)</td>
+<td>Updating a small low-rank parameter subspace</td>
+<td>It saves update parameters but does not isolate old docid probabilities</td>
+</tr>
+<tr>
+<td>Parametric store theta</td>
+<td>Information absorbed into model weights theta</td>
+<td>It can continue memorized text but cannot contain post-training facts</td>
+</tr>
+<tr>
+<td>Non-parametric store D</td>
+<td>External indexed documents</td>
+<td>It supports updates, random access, and provenance</td>
+</tr>
+<tr>
+<td>Recite-then-answer</td>
+<td>Generate a remembered passage, then answer from it</td>
+<td>It turns continuation memory into temporary context</td>
+</tr>
+<tr>
+<td>Random access</td>
+<td>Jumping directly to an item without generating earlier content</td>
+<td>An autoregressive model does not natively provide it</td>
+</tr>
+<tr>
+<td>Entry-point probability p_loc</td>
+<td>Chance of generating the correct passage beginning</td>
+<td>It is the first factor in s = p_loc times phi^L times A</td>
+</tr>
+<tr>
+<td>Per-token faithfulness phi</td>
+<td>Chance that each generated token stays on the true passage</td>
+<td>phi^L creates exponential decay with distance L</td>
+</tr>
+<tr>
+<td>Roll-forward distance L</td>
+<td>Tokens between the remembered entry point and the answer</td>
+<td>Longer distances sharply reduce recitation reliability</td>
+</tr>
+<tr>
+<td>Extraction accuracy A</td>
+<td>Chance of reading the answer after a clean passage is in context</td>
+<td>It is the final factor in end-to-end recitation success</td>
+</tr>
+<tr>
+<td>Marginalization over recitations</td>
+<td>Summing P(a given q, r)P(r given q) over recited passages r</td>
+<td>It explains sampling m recitations before answering</td>
+</tr>
+<tr>
+<td>Context set C</td>
+<td>Passages handed to the final generator</td>
+<td>Retrieval and recitation both produce this same object</td>
+</tr>
+<tr>
+<td>First-stage recall R1</td>
+<td>Chance the retriever supplies a useful passage</td>
+<td>It combines with recitation coverage under an independence assumption</td>
+</tr>
+<tr>
+<td>Zero-hit query</td>
+<td>A query for which the external index returns no useful passage</td>
+<td>It is the preferred trigger for recitation</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>Evidence of where a passage came from</td>
+<td>A recited passage cannot support an attributable citation</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>The dense retriever used for the Natural Questions comparison</td>
+<td>Its top-100 accuracy supplies the worked retrieval baseline</td>
+</tr>
+<tr>
+<td>Natural Questions</td>
+<td>The open-domain question-answering benchmark in the worked example</td>
+<td>It anchors the recitation and retrieval measurements</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>Answer accuracy requiring the expected answer string</td>
+<td>It is the end-to-end outcome in the worked example</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Sampling several outputs and combining them</td>
+<td>It helps only when error structure supports the voting rule</td>
+</tr>
+<tr>
+<td>Error scattering</td>
+<td>Wrong samples tend to disagree with one another</td>
+<td>Two matching correct samples can then win</td>
+</tr>
+<tr>
+<td>Error concentration</td>
+<td>Wrong samples repeat the same attractor</td>
+<td>Majority voting can become worse than one sample</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Parallel processing of supplied context tokens before generation</td>
+<td>Retrieval plus prefill can be much faster than serial recitation</td>
+</tr>
+<tr>
+<td>p95 and p99</td>
+<td>The 95th and 99th latency percentiles</td>
+<td>They expose tail latency and freshness behavior</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain (nDCG)</td>
+<td>A ranking-quality metric</td>
+<td>A good score cannot rescue a design that misses its freshness SLA</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="231-generating-document-ids-instead-of-searching">23.1 Generating document IDs instead of searching</h3>
+<h4 id="classical-search-keeps-the-corpus-on-the-query-path">Classical search keeps the corpus on the query path</h4>
+<ul>
+<li>What: Classical retrieval computes d_hat = arg max over d in D of s(q, d).</li>
+<li>Why: Inverted lists, IVF cells, and HNSW graphs avoid evaluating the scoring function against all N documents.</li>
+<li>Without it: Exhaustive scoring touches every document for every query.</li>
+<li>Cost: The corpus must remain resident, sharded, replicated, and consistent because it is a runtime argument. The opening example keeps three replicas of its 27 GB index.</li>
+</ul>
+<h4 id="generative-retrieval-turns-retrieval-into-decoding">Generative retrieval turns retrieval into decoding</h4>
+<ul>
+<li>What: Assign document d an identifier i(d) = (t1, ..., tL) from an alphabet of size k. Train p_theta(i given q) = ∏ from j = 1 to L of p_theta(t_j given t_before_j and q).</li>
+<li>Why: The query can reach a document by touching model weights and an identifier constraint, not the corpus itself.</li>
+<li>Without it: A conventional index remains in the serving path.</li>
+<li>Cost: The corpus footprint moves into identifier design and training. It does not disappear.</li>
+</ul>
+<h4 id="dsi-trains-memorization-and-generalization-together">DSI trains memorization and generalization together</h4>
+<ul>
+<li>What: Tay et al. (2022) train an indexing task from document text to its docid and a retrieval task from query to docid. Metzler et al. (2021) frame the program as replacing the index with parameters.</li>
+<li>Why: The indexing task teaches the corpus. The retrieval task teaches the mapping used in production.</li>
+<li>Without it: Document-only training does not match query-only serving.</li>
+<li>Cost: Training needs examples for both tasks. Generated queries cover documents that lack real query logs.</li>
+</ul>
+<h4 id="atomic-identifiers-rebuild-the-index-inside-the-softmax">Atomic identifiers rebuild the index inside the softmax</h4>
+<ul>
+<li>What: Give each document one vocabulary entry so retrieval finishes in one decode step.</li>
+<li>Why: The design appears simple and removes multi-step decoding.</li>
+<li>Without a structured alternative: The output matrix has N rows of width d_model, and every query scores every row.</li>
+<li>Cost: For 8.8M passages, d_model = 768, and fp32 storage, the table is 8.8 × 10^6 × 768 × 4 bytes = 27.0 GB.</li>
+<li>Cost: The 220M-parameter T5-base backbone is 880 MB in fp32. The identifier table is 31 times larger.</li>
+<li>Claim limit: Atomic retrieval performs exhaustive maximum inner product search with no ANN index to accelerate it.</li>
+</ul>
+<h4 id="semantic-hierarchy-spends-the-identifier-space-differently">Semantic hierarchy spends the identifier space differently</h4>
+<ul>
+<li>What: Embed documents, run hierarchical k-means with k = 10, and split clusters larger than c = 100.</li>
+<li>Why: Each token becomes a coarse-to-fine semantic choice conditioned on the query and prior digits.</li>
+<li>Without semantics: An arbitrary first digit is a memorized fact. A step-one error discards one tenth of the corpus with six decisions remaining.</li>
+<li>Cost: At 8.8M passages, at least 88,000 leaves are needed. Five tree levels select a leaf, and two digits select among at most 100 leaf members.</li>
+<li>Cost: L = 7 tokens. The output table is 10 × 768 × 4 = 30,720 bytes, about 31 KB.</li>
+<li>Comparison: The design changes 27 GB of atomic output embeddings into seven decode steps.</li>
+<li>Evidence limit: Tay et al. found semantic identifiers strongest among their three schemes at their largest corpus scale.</li>
+</ul>
+<h4 id="the-hierarchy-resembles-an-autoregressive-ivf-probe">The hierarchy resembles an autoregressive IVF probe</h4>
+<ul>
+<li>What: Each generated digit narrows the active semantic cluster.</li>
+<li>Why: Later decisions can use the query and every earlier digit.</li>
+<li>Without autoregressive conditioning: A coarse IVF centroid comparison treats probe choices independently.</li>
+<li>Cost: Identifier latency grows linearly in the number of decode steps L.</li>
+</ul>
+<h4 id="constrained-decoding-provides-validity-not-relevance">Constrained decoding provides validity, not relevance</h4>
+<ul>
+<li>What: Store assigned docids in a prefix trie. Mask a token whenever the current prefix has no matching child.</li>
+<li>Why: The decoder can otherwise produce any of k^L strings.</li>
+<li>Without it: With k = 10 and L = 7, 10^7 strings exist but only 8.8M are documents. About 1.2M valid-looking strings name nothing.</li>
+<li>Cost: The decoder consults the trie at each step.</li>
+<li>Comparison: De Cao et al. (2021) introduced GENRE with a trie for entity titles. Bevilacqua et al. (2022) use an FM-index in SEAL so corpus n-grams can be legal identifiers.</li>
+<li>Claim limit: The constraint eliminates hallucinated docids. It does not stop the model from choosing the wrong real docid.</li>
+</ul>
+<h4 id="beam-width-is-retrieval-depth">Beam width is retrieval depth</h4>
+<ul>
+<li>What: A beam of width b carries b live prefixes and returns at most b docids.</li>
+<li>Why: The beam supplies the candidate list for any downstream reranker.</li>
+<li>Without enough width: A beam of 10 cannot serve a reranker that expects 20 candidates.</li>
+<li>Cost: Wider beams add arithmetic, but hypotheses in one step share the same model-weight read.</li>
+<li>Claim limit: Filtering invalid docids after decoding wastes beam slots and can return fewer than b candidates.</li>
+</ul>
+<h4 id="worked-comparison-at-88m-passages">Worked comparison at 8.8M passages</h4>
+<p>Configuration 1 uses dense vectors and HNSW.</p>
+<ul>
+<li>Vectors use 27.0 GB.</li>
+<li>At M = 32, the base layer stores up to 64 neighbor identifiers per node.</li>
+<li>Graph storage is 64 × 4 = 256 bytes per node, or 2.25 GB total.</li>
+<li>Total resident memory is 29.3 GB.</li>
+<li>At e_search = 128, a query touches about 10^3 candidate vectors.</li>
+<li>Each vector is a random 3,072-byte fetch at about 100 ns.</li>
+<li>Memory latency is about 0.1 ms.</li>
+<li>Arithmetic is about 10^3 × 768 × 2 = 1.5 million FLOPs.</li>
+</ul>
+<p>Configuration 2 uses atomic generative identifiers.</p>
+<ul>
+<li>Output embeddings use 27.0 GB, plus 880 MB for the backbone.</li>
+<li>One fp32 step streams 2.70 × 10^10 bytes.</li>
+<li>At 2.0 TB/s, that takes 13.5 ms.</li>
+<li>fp16 halves the time to 6.8 ms.</li>
+<li>The source calls this configuration strictly dominated because it is slower and no smaller than the index.</li>
+</ul>
+<p>Configuration 3 uses hierarchical identifiers.</p>
+<ul>
+<li>The fp16 model uses 440 MB.</li>
+<li>Encoding a 32-token query costs 2 × 1.1 × 10^8 × 32 = 7.0 billion FLOPs, or 0.06 ms.</li>
+<li>Seven decode steps read at most 7 × 440 MB = 3.08 GB.</li>
+<li>At 2.0 TB/s, that read takes at most 1.5 ms.</li>
+<li>A beam of 10 adds 2 × 1.4 × 10^8 × 10 × 7 = 19.6 billion FLOPs, or 0.16 ms.</li>
+<li>Total query time is about 1.6 ms.</li>
+<li>Comparison: Memory falls by 29.3 divided by 0.44 = 67 times. The source calls latency about eight times higher, but its stated endpoints, 1.6 ms and 0.1 ms, imply 16 times.</li>
+<li>Quantization limit: Int8 vectors use 6.8 GB. Adding the 2.25 GB graph gives 9.05 GB, or about 20.6 times the 440 MB model.</li>
+<li>Omitted bill: This serving arithmetic excludes the training run.</li>
+</ul>
+<h4 id="scale-checks-and-operating-choices">Scale checks and operating choices</h4>
+<ul>
+<li>Tay et al. test atomic identifiers only through 320,000 documents. That output table is 320,000 × 768 × 4 = 983 MB, already larger than T5-base.</li>
+<li>NCI, SEAL, and DSI-QG use structured or substring identifiers at passage-ranking scale.</li>
+<li>⌈log_10(8.8 × 10^6)⌉ = ⌈6.94⌉ = 7. Seven tokens are the information floor for a ten-symbol alphabet.</li>
+<li>Use semantic identifiers by default. Atomic identifiers become plausible only below roughly 10^5 documents, where the table stays under 1 GB.</li>
+<li>Choose branching factor from the decode budget. At 8.8M passages, k = 10 needs seven steps and k = 100 needs four.</li>
+<li>Four steps cut latency by 43 percent but widen the softmax by 10 times.</li>
+<li>Prefer smaller k when clusters are unbalanced because sparse wide branches weaken the prefix signal.</li>
+<li>Co-train indexing and retrieval. Manufacture pseudo-queries for corpus coverage unless real logs cover most documents.</li>
+<li>Adopt generative retrieval for footprint, not latency. The worked HNSW path is 0.1 ms versus about 1.6 ms.</li>
+<li>A tenfold corpus increase to 8.8 × 10^7 requires eight digits, about 14 percent more query latency.</li>
+<li>The same growth multiplies training data by ten and can force a tree rebuild that reassigns learned identifiers.</li>
+<li>A frozen corpus favors the architecture. Daily changes favor a conventional index.</li>
+</ul>
+<h3 id="232-constant-time-retrieval-versus-the-quality-ceiling">23.2 Constant-time retrieval versus the quality ceiling</h3>
+<h4 id="query-latency-depends-on-the-model-and-identifier">Query latency depends on the model and identifier</h4>
+<ul>
+<li>What: At batch size one, each decode step streams decoder weights once.</li>
+<li>Why: The arithmetic finishes before the memory read, so decoding is bandwidth-bound.</li>
+<li>Without shared weight reads: Beam search would multiply the dominant memory traffic by beam width.</li>
+<li>Cost: Query time is L times the per-step weight-read time.</li>
+<li>Cost: Unique identifiers require L ≥ log_V N for an alphabet of V symbols.</li>
+<li>Claim limit: Retrieval is logarithmic, not truly constant. Base-ten identifiers need six digits at 320,000 documents, seven at 8.8M, and nine at one billion.</li>
+<li>Claim limit: A thousandfold corpus increase adds three decode steps.</li>
+</ul>
+<h4 id="index-cost-still-grows-with-the-corpus">Index cost still grows with the corpus</h4>
+<ul>
+<li>What: An IVF index with √N lists and n_probe probes performs about (1 + n_probe)√N comparisons.</li>
+<li>Why: It compares against √N centroids and then members of the selected lists.</li>
+<li>Without partitioning: The index would compare against all N vectors.</li>
+<li>Cost: The growth is sublinear but unbounded.</li>
+<li>HNSW limit: Its hop count is logarithmic, but N × d × 4 bytes must remain resident.</li>
+<li>System limit: Crossing a machine boundary adds shard fan-out and the maximum of shard tail latencies.</li>
+</ul>
+<h4 id="fixed-model-capacity-creates-a-parity-point">Fixed model capacity creates a parity point</h4>
+<ul>
+<li>What: An index gives every document a private record. A generative retriever divides bP stored bits among N documents.</li>
+<li>Why: Per-document capacity predicts when the model becomes definitely capacity-starved.</li>
+<li>Without the comparison: Small-corpus wins can be extrapolated beyond the regime that funded them.</li>
+<li>Cost: A 768-dimensional fp32 vector uses 768 × 32 = 24,576 bits.</li>
+<li>Cost: PQ with 64 subquantizers at 8 bits uses 512 bits, or 64 bytes.</li>
+<li>Cost: Model capacity per document is kappa_gen(N) = bP/N.</li>
+<li>Cost: Index capacity kappa_idx is constant.</li>
+<li>Parity: N star = bP/kappa_idx.</li>
+<li>Claim limit: bP/N is generous because the same parameters also store language and the identifier grammar.</li>
+<li>Claim limit: N star marks definite starvation beyond the point. It does not say quality is perfect below it.</li>
+</ul>
+<h4 id="scaling-the-model-restores-the-problem">Scaling the model restores the problem</h4>
+<ul>
+<li>What: Keep bP/N fixed by scaling P in proportion to N.</li>
+<li>Why: This preserves the nominal bits available per document.</li>
+<li>Without model scaling: Each new document dilutes the shared pool and hurts near-duplicate separation.</li>
+<li>Cost: Each decode step reads P, so latency becomes linear in N.</li>
+<li>Comparison: A quantized lookup spends stored bits more cheaply than streaming a larger model through a matrix multiplication.</li>
+<li>Atomic limit: An N by d output layer reaches the same linear memory and retraining problem immediately.</li>
+</ul>
+<h4 id="worked-latency-and-capacity-comparison">Worked latency and capacity comparison</h4>
+<p>The shared constants are P = 220M parameters and b = 16 bits.</p>
+<ul>
+<li>The decoder holds about half the weights.</li>
+<li>One step streams 110 × 10^6 × 2 = 0.22 GB.</li>
+<li>At 1.6 TB/s, one step takes 0.22/1600 = 0.1375 ms.</li>
+<li>The IVF-PQ baseline uses d = 768, m = 64, and n_probe = 32.</li>
+<li>It scans 33√N candidates.</li>
+<li>Each candidate needs 64 table lookups.</li>
+<li>One core sustains 10^9 lookups per second.</li>
+</ul>
+<p>At N = 320,000 documents:</p>
+<ul>
+<li>L = 6.</li>
+<li>Generative latency is 6 × 0.1375 = 0.825 ms.</li>
+<li>IVF-PQ compares 18,668 candidates.</li>
+<li>It performs 1.195 × 10^6 lookups in 1.20 ms.</li>
+<li>Model capacity is 3.52 × 10^9 divided by 3.2 × 10^5 = 11,000 bits per document.</li>
+<li>The PQ index provides 512 bits per document.</li>
+<li>The model has 21 times the nominal per-document budget and is faster in this calculation.</li>
+</ul>
+<p>At N = 8.8M passages:</p>
+<ul>
+<li>L = 7.</li>
+<li>Generative latency is 7 × 0.1375 = 0.96 ms.</li>
+<li>IVF-PQ compares 97,894 candidates.</li>
+<li>It performs 6.27 × 10^6 lookups in 6.27 ms.</li>
+<li>A 27.5 times larger corpus raises generative latency by 17 percent.</li>
+<li>The same growth raises index latency by 424 percent.</li>
+<li>Model capacity falls to 3.52 × 10^9 divided by 8.8 × 10^6 = 400 bits per document.</li>
+<li>Capacity is now below the index's 512 bits.</li>
+<li>The latency argument strengthens while the quality argument flips.</li>
+</ul>
+<p>The memory comparison has an important limit.</p>
+<ul>
+<li>The model remains 440 MB.</li>
+<li>The 64-byte PQ index uses 8.8 × 10^6 × 64 = 563 MB.</li>
+<li>The fp32 vector index uses 27.0 GB, about 60 times the model.</li>
+<li>The memory advantage is large against flat fp32 storage and nearly absent against PQ.</li>
+</ul>
+<h4 id="evidence-checks-and-decision-rules">Evidence checks and decision rules</h4>
+<ul>
+<li>N star is 3.52 × 10^9 divided by 512 = 6.9M documents.</li>
+<li>The 8.8M-passage corpus is 28 percent beyond that point.</li>
+<li>The capacity model predicts a base-sized retriever should lose there.</li>
+<li>Pradeep et al. (2023) found model scale dominant, yet multi-billion-parameter systems still failed to match a tuned dual encoder on the full corpus.</li>
+<li>An 11B DSI-XXL has 1.76 × 10^11 bits and a 344M-document parity point.</li>
+<li>It still lost at 8.8M, so capacity is necessary but not sufficient.</li>
+<li>The remaining gap is identifier assignment under this analysis.</li>
+<li>Compute N star before prototyping.</li>
+<li>Reject by default when N is within a factor of two of N star because the bound is optimistic.</li>
+<li>Consider the design when a static corpus is below one tenth of N star.</li>
+<li>Keep the ANN index unless measured ANN latency owns p99.</li>
+<li>One 256-token generator-prefill chunk can cost more than the 6.27 ms index scan.</li>
+<li>A beam of 50 still uses L decode steps, so candidate depth is nearly free in dominant weight-read terms.</li>
+<li>Add a cross-encoder when its latency does not consume the margin.</li>
+<li>Recompute parity after changing corpus size, model size, or quantization.</li>
+<li>Halving PQ bytes halves kappa_idx and doubles N star.</li>
+<li>At 20M documents, the 220M-parameter model has only 176 bits per document against 512 bits for PQ.</li>
+<li>An 11B fp16 decoder step streams 22 GB and takes 13.75 ms at 1.6 TB/s.</li>
+<li>Seven steps take about 96 ms, about 15 times the 6.27 ms IVF-PQ scan.</li>
+</ul>
+<h3 id="233-incremental-indexing-the-open-wound">23.3 Incremental indexing: the open wound</h3>
+<h4 id="fresh-documents-have-zero-recall">Fresh documents have zero recall</h4>
+<ul>
+<li>What: A trained decoder and its trie know only identifiers from the last training corpus.</li>
+<li>Why: New content needs both a legal docid and a learned query-to-docid mapping.</li>
+<li>Without an update: Recall on new documents is zero, not merely lower.</li>
+<li>Cost: Adding a docid to the trie alone does not create the missing model association.</li>
+</ul>
+<h4 id="classical-indexes-have-write-locality">Classical indexes have write locality</h4>
+<ul>
+<li>What: An inverted-index insertion appends postings for the terms in document d.</li>
+<li>Why: Each update touches a bounded addressable region.</li>
+<li>Without locality: Every insertion becomes a global rewrite.</li>
+<li>Cost: Inverted-index write cost is O(∣d∣), independent of N.</li>
+<li>Cost: HNSW allocates one node and rewires O(M log N) nearby edges.</li>
+<li>Operating property: Both update paths can run alongside queries while untouched bytes remain identical.</li>
+</ul>
+<h4 id="a-learned-index-superposes-every-document">A learned index superposes every document</h4>
+<ul>
+<li>What: Every docid probability is a product of L shared softmax factors controlled by the full parameter vector theta.</li>
+<li>Why: The network stores mappings across all P parameters rather than in private document rows.</li>
+<li>Without preservation data: Raising probability for a new docid removes probability mass from existing choices.</li>
+<li>Cost: The gradient is dense in theta. No isolated submatrix belongs only to the new document.</li>
+<li>Claim: A correct insertion is global in principle because the architecture has no local write.</li>
+</ul>
+<h4 id="full-retraining-sets-the-freshness-floor">Full retraining sets the freshness floor</h4>
+<p>The source prices a DSI-style retriever with N = 10^7 and P = 2.2 × 10^8.</p>
+<ul>
+<li>Each document contributes its first 64 tokens.</li>
+<li>It also contributes 10 pseudo-queries of 16 tokens each.</li>
+<li>Total tokens are 64 + 10 × 16 = 224 per document per epoch.</li>
+<li>Ten epochs produce T = 10^7 × 224 × 10 = 2.24 × 10^10 tokens.</li>
+<li>The 6PT training estimate gives 6 × 2.2 × 10^8 × 2.24 × 10^10 = 2.96 × 10^19 FLOPs.</li>
+<li>Eight A100s each sustain 1.5 × 10^14 FLOP/s.</li>
+<li>Aggregate throughput is 1.2 × 10^15 FLOP/s.</li>
+<li>Training time is 2.46 × 10^4 seconds, or 6.84 hours.</li>
+<li>The job consumes 54.7 A100-hours.</li>
+<li>Claim limit: Queueing, evaluation, and approval make real staleness worse than 6.84 hours.</li>
+</ul>
+<h4 id="new-only-fine-tuning-forgets-old-mappings">New-only fine-tuning forgets old mappings</h4>
+<ul>
+<li>What: Fine-tune the checkpoint only on newly arrived documents.</li>
+<li>Why teams try it: It appears cheaper than global retraining.</li>
+<li>Without rehearsal: The shared softmax objective provides no term that preserves earlier docids.</li>
+<li>Failure: Mehta et al. (2023) report substantial forgetting during continual indexing in DSI++.</li>
+<li>Mitigation: Sharpness-aware minimization seeks flatter regions that tolerate parameter perturbations.</li>
+<li>Mitigation: Generative memory rehearses pseudo-queries for old documents.</li>
+<li>Measurement: The method reports 21.1 percent higher average Hits@10 over competitive baselines on Natural Questions.</li>
+<li>Measurement: It uses six times fewer model updates than retraining across five sequential corpora.</li>
+<li>Claim limit: Rehearsal makes the update incremental in gradient steps, not in data coverage.</li>
+<li>LoRA limit: A low-rank update restricts the update subspace. It does not give old and new docids disjoint probability mass.</li>
+</ul>
+<h4 id="incdsi-restores-locality-by-restoring-a-flat-layer">IncDSI restores locality by restoring a flat layer</h4>
+<ul>
+<li>What: Kishore et al. (2023) observe that with atomic docids, the last layer scores document i using the query encoding and one vector w_i.</li>
+<li>Why: IncDSI can add one row w_(N+1) while freezing the network.</li>
+<li>Constraint: The new row should rank first for its pseudo-queries and should not displace existing documents on their training queries.</li>
+<li>Cost: Insertion takes roughly 20 to 50 ms per document.</li>
+<li>Quality: The source reports quality competitive with full retraining.</li>
+<li>Failure moved elsewhere: The N dense rows require exhaustive scoring.</li>
+<li>Claim limit: Local writes return because the flat vector index returns.</li>
+</ul>
+<h4 id="frozen-base-plus-mutable-delta-is-the-shipping-pattern">Frozen base plus mutable delta is the shipping pattern</h4>
+<ul>
+<li>What: Freeze the learned base. Put new documents in a small mutable ANN index. Query both, merge results, and retrain on a compaction schedule.</li>
+<li>Why: The mutable delta restores local insertion without abandoning the learned base immediately.</li>
+<li>Without compaction: The delta keeps growing and merge behavior becomes a larger part of serving quality.</li>
+<li>Cost: Delta writes follow conventional ANN insertion complexity.</li>
+<li>Deletion: A trie blocklist or tombstone can make an identifier unreachable quickly.</li>
+<li>Claim limit: Blocking retrieval does not remove memorized content from model parameters, and recitation can still surface it.</li>
+</ul>
+<h4 id="worked-update-comparison-at-05-percent-daily-churn">Worked update comparison at 0.5 percent daily churn</h4>
+<p>The corpus has 10^7 documents and receives 50,000 new documents each day.</p>
+<p>Each new vector has d = 768 fp32 dimensions.</p>
+<p>Configuration 1 retrains nightly.</p>
+<ul>
+<li>Compute is 2.96 × 10^19 FLOPs.</li>
+<li>Runtime is 6.84 hours on eight A100s.</li>
+<li>Consumption is 54.7 A100-hours.</li>
+<li>At $2 per A100-hour, one refresh costs $109.</li>
+<li>Annual cost is about $40,000.</li>
+<li>The honest freshness SLA is worse than seven hours.</li>
+</ul>
+<p>Configuration 2 inserts one IncDSI row per document.</p>
+<ul>
+<li>At 50 ms each, 50,000 documents consume 2,500 seconds of Graphics Processing Unit (GPU) time.</li>
+<li>Each document becomes searchable about 50 ms after arrival.</li>
+<li>This improves staleness by roughly 5 × 10^5 relative to 2.46 × 10^4 seconds.</li>
+<li>The atomic matrix uses 10^7 × 768 × 4 = 3.07 × 10^10 bytes, or 30.7 GB.</li>
+<li>Every query performs 2 × 768 × 10^7 = 1.54 × 10^10 FLOPs.</li>
+<li>Reading 30.7 GB at 2.04 TB/s takes 15.1 ms of High Bandwidth Memory (HBM) traffic.</li>
+<li>Trade-off: Local writes purchase a brute-force read.</li>
+</ul>
+<p>Configuration 3 uses an HNSW delta and weekly compaction.</p>
+<ul>
+<li>M = 32 and ef_construction = 200 require about 6,400 distance computations per insertion.</li>
+<li>Each distance costs 2d = 1,536 FLOPs.</li>
+<li>One insertion costs 9.83 × 10^6 FLOPs.</li>
+<li>One vectorized Central Processing Unit (CPU) core sustains 10^10 FLOP/s in the example.</li>
+<li>Insertion takes 0.98 ms per document.</li>
+<li>The whole day's arrivals take 49 seconds on one core.</li>
+<li>Staleness is about one millisecond.</li>
+<li>After seven days, the delta contains 3.5 × 10^5 vectors.</li>
+<li>That is 3.5 percent of the corpus and 1.08 GB.</li>
+<li>Weekly compaction amortizes to 7.8 A100-hours per day.</li>
+<li>Annual cost is about $5,700.</li>
+<li>Daily insertion compute is 5 × 10^4 × 9.83 × 10^6 = 4.92 × 10^11 FLOPs.</li>
+<li>Full retraining uses 6.0 × 10^7 times more arithmetic and gives worse freshness.</li>
+</ul>
+<h4 id="sanity-checks-and-decision-rules">Sanity checks and decision rules</h4>
+<ul>
+<li>Hoffmann et al. (2022) report 5.76 × 10^23 FLOPs for Chinchilla with 7 × 10^10 parameters and 1.4 × 10^12 tokens.</li>
+<li>The 6PT rule predicts 5.88 × 10^23 FLOPs, which is 2.1 percent high.</li>
+<li>A dense retriever inserts new document vectors locally but must re-embed all N documents after an encoder change.</li>
+<li>For a 110M-parameter encoder, 10^7 documents, and 256 tokens each, re-embedding costs 5.63 × 10^17 FLOPs.</li>
+<li>That takes about eight minutes on the same eight A100s.</li>
+<li>It is roughly 53 times cheaper than the generative retriever's full retrain.</li>
+<li>Dense retrieval pays after rare scheduled encoder changes. Generative retrieval pays after continuous corpus changes.</li>
+<li>Reject generative retrieval when 6PT divided by sustained cluster throughput exceeds the freshness SLA.</li>
+<li>A genuinely static corpus can pay the retraining bill once.</li>
+<li>Default to frozen base plus mutable delta.</li>
+<li>At 0.5 percent daily churn, weekly compaction leaves a 3.5 percent delta.</li>
+<li>Above roughly 2 percent daily churn, the delta rivals the base within a fortnight.</li>
+<li>In that regime, use a conventional ANN index with a reranker.</li>
+<li>Never update on new documents alone. Rehearse old-document pseudo-queries and evaluate old mappings.</li>
+<li>Choose atomic docids only after accepting the flat-index query bill.</li>
+<li>Above roughly 10^7 documents, semantic hierarchical identifiers are the stated alternative, with compaction-based updates.</li>
+<li>A decode-time blocklist satisfies fast unreachability but not a requirement that content no longer be stored.</li>
+<li>Track p99 time from ingest to first successful retrieval as a named freshness SLO.</li>
+<li>Keep recent regulated content in the mutable delta so deletion remains a tombstone operation.</li>
+<li>Admit only stable, cleared content into the frozen learned base.</li>
+</ul>
+<h3 id="234-recite-then-answer-and-genir-as-rags-complement">23.4 Recite-then-answer, and GenIR as RAG's complement</h3>
+<h4 id="two-stores-can-produce-the-same-context-object">Two stores can produce the same context object</h4>
+<ul>
+<li>What: The parametric store theta contains training-time memory. The non-parametric store D contains indexed documents.</li>
+<li>Why: The source frames RAG as enabling a 7B model instead of a 70B model by keeping facts in D. DSI-style retrieval folds D into theta and emits docids.</li>
+<li>Third path: Ask theta to generate the remembered passage itself, then answer from that passage.</li>
+<li>Without the distinction: A design debate falsely treats retrieval and recitation as mutually exclusive.</li>
+<li>Claim: Both paths end with passages in context set C for the same generator.</li>
+</ul>
+<h4 id="recitation-converts-continuation-into-temporary-access">Recitation converts continuation into temporary access</h4>
+<ul>
+<li>What: An autoregressive model stores next-token behavior, P(x_t given x_before_t).</li>
+<li>Why: The weights natively support continuation from a left context.</li>
+<li>Without an entry point: The model has no random-access operation for a fact L tokens inside a memorized passage.</li>
+<li>Mechanism: Generate a title, opening line, or first sentence, then roll forward until the answer appears.</li>
+<li>Claim: Recitation manufactures the left context that makes the fact likely next. It does not retrieve the fact directly.</li>
+</ul>
+<h4 id="recitation-success-has-an-exponential-distance-term">Recitation success has an exponential distance term</h4>
+<ul>
+<li>What: Answer probability is P(a given q) = Σ over r of P(a given q, r)P(r given q).</li>
+<li>Approximation: Sample m recitations and answer from each.</li>
+<li>Entry factor: p_loc is the chance of locating the correct passage start.</li>
+<li>Continuation factor: phi is the per-token chance of staying faithful.</li>
+<li>Distance: L is the number of tokens between entry and answer.</li>
+<li>Extraction factor: A is the chance of answering once a clean passage is in context.</li>
+<li>Success: s = p_loc × phi^L × A.</li>
+<li>Without short distance: Even strong per-token faithfulness compounds into drift.</li>
+<li>Cost: At phi = 0.995, phi^60 = 74.0 percent and phi^200 = 36.7 percent.</li>
+<li>Claim limit: Retrieval has no phi^L term because the index provides random access.</li>
+</ul>
+<h4 id="retrieval-and-recitation-cover-different-misses">Retrieval and recitation cover different misses</h4>
+<ul>
+<li>What: Retrieval coverage is R1. Recitation coverage before extraction is p_loc × phi^L.</li>
+<li>Why: Under independence, union coverage is 1 - (1 - R1)(1 - p_loc × phi^L).</li>
+<li>Retrieval-only strengths: It supplies private, post-cutoff, changing, and citable documents.</li>
+<li>Recitation-only strength: It can survive a zero-hit query caused by vocabulary mismatch when the model memorized the relevant passage.</li>
+<li>Evidence: Yu et al. (2023) report that the strongest GenRead configurations combine generated and retrieved documents.</li>
+<li>Without provenance tags: A recited imitation can receive a fabricated citation that looks real.</li>
+<li>Claim limit: A larger model can improve p_loc and phi. It still does not create random access, post-cutoff knowledge, or source provenance.</li>
+<li>Mirror limit: Retrieval is not universally helpful. The source notes that a small model can fail to exploit a large datastore and retrieval can hurt high-popularity facts.</li>
+</ul>
+<h4 id="worked-recitation-and-retrieval-comparison">Worked recitation and retrieval comparison</h4>
+<p>The example uses a 7B generator, a DPR-grade retriever, and Natural Questions.</p>
+<p>Shared constants are phi = 0.995, A = 0.75, and R1 = 85.4 percent top-100 retrieval accuracy.</p>
+<p>Configuration 1 is a head entity with recitation only.</p>
+<ul>
+<li>p_loc = 0.70.</li>
+<li>L = 60.</li>
+<li>phi^L = 0.740.</li>
+<li>Coverage is 0.70 × 0.740 = 51.8 percent.</li>
+<li>End-to-end exact match is 0.518 × 0.75 = 38.9 percent.</li>
+</ul>
+<p>Configuration 2 is a tail entity with recitation only.</p>
+<ul>
+<li>p_loc = 0.15.</li>
+<li>L = 200.</li>
+<li>phi^L = 0.367.</li>
+<li>Coverage is 5.5 percent.</li>
+<li>End-to-end exact match is 4.1 percent.</li>
+<li>Accuracy drops by a factor of nine with the same model and task.</li>
+</ul>
+<p>Configuration 3 fuses retrieved and recited contexts.</p>
+<ul>
+<li>Union coverage is 1 - (1 - 0.854)(1 - 0.518).</li>
+<li>This is 1 - 0.146 × 0.482 = 93.0 percent.</li>
+<li>The gain is 7.6 percentage points over retrieval alone.</li>
+<li>Claim limit: The formula assumes independence between the two coverage events.</li>
+</ul>
+<h4 id="voting-depends-on-the-error-structure">Voting depends on the error structure</h4>
+<ul>
+<li>What: Draw m = 5 recitations with per-sample success s = 0.389.</li>
+<li>Scattered errors: The correct answer wins if it appears at least twice because wrong answers do not repeat.</li>
+<li>Result: 1 - (1 - s)^5 - 5s(1 - s)^4 = 64.4 percent.</li>
+<li>Concentrated errors: A repeated wrong attractor forces the correct answer to win a strict majority.</li>
+<li>Result: The probability of at least three correct samples is 29.9 percent.</li>
+<li>Without measuring correlation: Five expensive samples can underperform one sample at 38.9 percent.</li>
+<li>Claim: Below s = 0.5, correlated errors make self-consistency harmful in this example.</li>
+</ul>
+<h4 id="recitation-is-slower-in-the-worked-serving-model">Recitation is slower in the worked serving model</h4>
+<ul>
+<li>What: A 7B fp16 model reads 14 GB of weights per generated token.</li>
+<li>Cost: At 2.0 TB/s, each token takes 7.0 ms.</li>
+<li>Cost: A 60-token recitation takes 420 ms.</li>
+<li>Retrieval cost: ANN search takes about 10 ms.</li>
+<li>Prefill cost: Five 256-token chunks contain 1,280 tokens.</li>
+<li>Prefill compute: 2 × 7 × 10^9 × 1,280 = 1.79 × 10^13 FLOPs.</li>
+<li>At 3.4 × 10^14 FLOP/s, prefill takes 52.7 ms.</li>
+<li>Total retrieval path: About 63 ms.</li>
+<li>Comparison: Recitation provides lower coverage at 6.7 times the latency in this worked setup.</li>
+</ul>
+<h4 id="sanity-checks-and-operating-choices">Sanity checks and operating choices</h4>
+<ul>
+<li>Karpukhin et al. (2020) report 41.5 exact match for DPR on Natural Questions.</li>
+<li>The recitation model gives 38.9 percent, 2.6 points lower.</li>
+<li>DPR's implied extraction rate is 41.5 divided by 85.4 = 0.486.</li>
+<li>The recitation example assumes 0.75 because one clean on-topic passage reaches the reader.</li>
+<li>Claim limit: The simple decay model supports recitation as competitive with a 2020-grade retrieve-then-read system, not superior.</li>
+<li>Pasting a catalog into the prompt is not generative retrieval.</li>
+<li>Attention considers the whole catalog on every request, so cost is linear in catalog size and gains no index narrowing.</li>
+<li>Default to retrieval and trigger recitation on zero-hit queries.</li>
+<li>Run recitation in parallel only for a measured head-heavy traffic slice whose external index is thin.</li>
+<li>Choose the roll-forward cap from measured phi.</li>
+<li>Solving phi^L ≥ 0.5 at phi = 0.995 gives L ≤ 138 tokens.</li>
+<li>Past that point, more than half the recitations have drifted under the model.</li>
+<li>Measure phi against source passages that the model is known to have seen.</li>
+<li>Tag every context item as retrieved or recited before generation.</li>
+<li>Never attach a citation to a recited passage.</li>
+<li>Test five recitations over 200 queries to see whether wrong answers scatter or repeat.</li>
+<li>Keep m = 1 until scattering is demonstrated.</li>
+<li>Route by an external entity-popularity feature when available, not the reciter's own confidence.</li>
+<li>In the staff example, 12,000 changing documents out of 400,000 is 3 percent per week.</li>
+<li>After 13 weeks, 1 - 0.97^13 = 33 percent of memorized content is stale.</li>
+<li>Keep the index for this changing internal corpus. Add recitation only as a zero-hit fallback.</li>
+<li>A static corpus with no citation requirement and head-heavy queries is the condition that can reverse that decision.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-231">Figure 23.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    q[query q]
+    s0((0))
+    s3((3))
+    s7((7))
+    s31((1))
+    s38((8))
+    s35((5))
+    s314((4))
+    s319((9))
+    d314[doc 3 1 4]
+    d319[doc 3 1 9]
+    invalid[no document carries prefix 3 5]
+    q --&gt;|step 1, lower score| s0
+    q ==&gt;|step 1, beam keeps| s3
+    q --&gt;|step 1, lower score| s7
+    s3 ==&gt;|step 2, beam keeps| s31
+    s3 --&gt;|step 2, lower score| s38
+    s3 -.-&gt;|trie has no child| s35
+    s35 -.-&gt; invalid
+    s31 ==&gt;|step 3, beam keeps| s314
+    s31 --&gt;|step 3, lower score| s319
+    s314 --&gt; d314
+    s319 --&gt; d319</code></pre></details></figure>
+<p>Figure 23.1: Retrieval becomes decoding. Each step emits one identifier token. The heavy path is what the beam keeps, thin branches are valid continuations it scored lower, and the dashed branch is deleted by the prefix trie because no document lives under it. The path length is L = ⌈log_k N⌉ tokens - seven for 8.8M passages at k = 10 - so the query path touches the model's weights and a trie of identifiers, never the corpus.</p>
+<h3 id="figure-232">Figure 23.2</h3>
+<pre class="text"><code>Query latency, milliseconds, log scale
+
+100 |                                      o  IVF-PQ
+    |                              o          (1 + n_probe)sqrt(N)
+ 10 |                      o
+  2 |                              *-------*  generative: L(N) decode steps
+  1 |      *-------*-------*
+    +------------------------------------------------------------&gt;
+          10^5    10^6    10^7    10^8    10^9  corpus size N
+
+Capacity per document, bits, log scale
+
+10^4| o......... dense fp32, d = 768: 24,576 bits ...............
+    |  \
+10^3|   \      N star = bP/kappa_idx
+    |    \     = 6.9M
+ 512|-----o----- IVF-PQ: 512 bits -------------------------------
+10^2|      \
+    |       \                 bP/N
+10^1|        o-----------o-----------o
+    +------------------------------------------------------------&gt;
+          10^5    10^6    10^7    10^8    10^9  corpus size N</code></pre>
+<p>Figure 23.2: The same relocation seen from both sides, for a 220M-parameter model at b = 16 bits. Query latency (top) is flat for generative retrieval because it depends on identifier length, not corpus size, while IVF-PQ grows as √N. Capacity per document (bottom) is flat for an index because every document gets a private record, and falls as 1/N for generative retrieval because every document shares one pool. The curves cross at N ⋆ = 6.9M against a 64-byte quantized index and at 143k against an uncompressed one.</p>
+<h3 id="figure-233">Figure 23.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Index design</th>
+<th>Storage rewritten by inserting one document</th>
+<th>Write cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inverted index, BM25</td>
+<td>A handful of separate posting-list regions</td>
+<td>O(∣d∣) posting lists</td>
+</tr>
+<tr>
+<td>Graph index, HNSW</td>
+<td>One local graph neighborhood</td>
+<td>O(M log N) edges</td>
+</tr>
+<tr>
+<td>Learned index, DSI-style GenIR</td>
+<td>The full shared parameter field</td>
+<td>All P parameters</td>
+</tr>
+<tr>
+<td>Frozen learned base plus mutable delta</td>
+<td>Delta neighborhood only. Base remains frozen</td>
+<td>O(M log N_delta) edges. Base untouched</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 23.3: Incremental indexing is decided by write locality. Inserting one document rewrites a handful of posting lists in an inverted index and O(M log N) edges in an HNSW graph, but a learned index superposes every document across every parameter, so the correct insertion is a global update - which is why production systems freeze the learned base and route new arrivals into a small mutable delta.</p>
+<h3 id="figure-234">Figure 23.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    subgraph A[Panel a: recitation path]
+        q[query q] -. p_loc .-&gt; x1[entry point x1]
+        x1 --&gt;|roll forward L tokens at faithfulness phi| a[answer token a]
+        q -. random access is not supported .-&gt; blocked[no direct jump to offset L]
+    end
+    subgraph B[Panel b: complementary context producers]
+        idx[index and retriever, coverage R1, private, post-cutoff, citable]
+        rec[parameters and reciter, coverage p_loc times phi^L, zero-hit, vocabulary-mismatched]
+        context[context set C]
+        gen[generator]
+        answer[answer y]
+        idx --&gt; context
+        rec --&gt; context
+        context --&gt; gen
+        gen --&gt; answer
+    end
+    a ~~~ idx</code></pre></details></figure>
+<p>Figure 23.4: Retrieval and recitation are two producers of the same object, so they compose rather than compete. (a) An autoregressive model has no random-access primitive. It reaches a fact at offset L only by locating an entry point and rolling forward, which costs a factor φ^L. (b) Each path covers what the other cannot, and under independence their union raises coverage from R1 alone to 1 - (1 - R1)(1 - p_loc φ^L).</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a query box on the left.</li>
+<li>Draw two branches from the query.</li>
+<li>On the upper branch, draw a sequence decoder that emits one hierarchical docid token at a time.</li>
+<li>Put a prefix trie beside the decoder and show it masking one invalid branch.</li>
+<li>Label the decode depth L = ⌈log_V N⌉ and the beam width as the candidate-list cap.</li>
+<li>Under the decoder, write fixed pool bP/N and contrast it with fixed index record kappa_idx.</li>
+<li>Draw a frozen learned base beside a small mutable ANN delta.</li>
+<li>Send both base and delta results into one merge box.</li>
+<li>Draw a second query path into a reciter, then into the same context set.</li>
+<li>Label recitation success p_loc × phi^L × A.</li>
+<li>Send retrieved and recited passages into one generator.</li>
+<li>Mark retrieved passages citable and recited passages uncited.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Generative retrieval replaces index search with decoding. The model maps a query to a document identifier, ideally a short semantic path, while a trie blocks identifiers that do not exist. Query cost is about log corpus size, but quality faces a ceiling because all documents share one fixed parameter pool. Updates are harder because a learned index has no local write, so production needs a frozen base plus a mutable ANN delta. Recitation is complementary. It can generate a remembered passage for zero-hit queries, but faithfulness decays with distance and provides no provenance. Retrieval remains the citable, updateable default.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-where-did-the-index-go-when-the-model-generates-document-ids">1. Where did the index go when the model generates document IDs?</h3>
+<p>It moved rather than vanished. Atomic identifiers place an N by d_model dense index in the output layer, while hierarchical identifiers place corpus structure in a cluster tree, a tiny output alphabet, and the training run.</p>
+<h3 id="2-why-can-generated-ids-be-invalid-and-what-does-a-trie-actually-guarantee">2. Why can generated IDs be invalid, and what does a trie actually guarantee?</h3>
+<p>The decoder ranges over k^L strings even when only N strings name documents. A prefix-trie mask makes every decoded identifier real, but it cannot guarantee that the real document is relevant.</p>
+<h3 id="3-is-generative-retrieval-constant-time-and-where-does-its-quality-ceiling-come-from">3. Is generative retrieval constant time, and where does its quality ceiling come from?</h3>
+<p>Its query cost is L = ⌈log_V N⌉ bandwidth-bound decode steps, so the source calls the curve flat but not truly constant. Quality faces a ceiling because each document receives only bP/N bits from one fixed pool, while an index gives each document a fixed private record.</p>
+<h3 id="4-what-happens-when-new-documents-arrive">4. What happens when new documents arrive?</h3>
+<p>Recall on them is zero until the system creates both a legal identifier and a learned query mapping. New-only fine-tuning forgets old mappings, so the practical answer is a frozen learned base, a mutable ANN delta, dual querying, and scheduled compaction.</p>
+<h3 id="5-when-should-recite-then-answer-complement-retrieval-and-when-should-it-not">5. When should recite-then-answer complement retrieval, and when should it not?</h3>
+<p>Use it as a measured zero-hit fallback when model memory may bridge a vocabulary mismatch. Do not use it as a replacement for private, recent, changing, regulated, or citable sources because phi^L decays with distance and recited text has no provenance.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number</th>
+<th>Meaning or calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chapter span</td>
+<td style="text-align: right;">18 physical PDF pages</td>
+<td>Source pages 563 through 580</td>
+</tr>
+<tr>
+<td>MS MARCO corpus</td>
+<td style="text-align: right;">8.8M passages</td>
+<td>Main passage-scale example</td>
+</tr>
+<tr>
+<td>Atomic output width</td>
+<td style="text-align: right;">768</td>
+<td>d_model in the memory example</td>
+</tr>
+<tr>
+<td>Atomic fp32 table</td>
+<td style="text-align: right;">27.0 GB</td>
+<td>8.8 × 10^6 × 768 × 4 bytes</td>
+</tr>
+<tr>
+<td>T5-base</td>
+<td style="text-align: right;">220M parameters, 880 MB fp32</td>
+<td>Backbone scale and footprint</td>
+</tr>
+<tr>
+<td>Atomic-to-backbone ratio</td>
+<td style="text-align: right;">31 times</td>
+<td>27 GB versus 880 MB</td>
+</tr>
+<tr>
+<td>Hierarchy fan-out and leaf cap</td>
+<td style="text-align: right;">k = 10, c = 100</td>
+<td>Digits per level and documents per terminal cluster</td>
+</tr>
+<tr>
+<td>Required leaves and tree depth</td>
+<td style="text-align: right;">88,000 leaves, 5 levels</td>
+<td>8.8M divided by 100, then base-ten depth</td>
+</tr>
+<tr>
+<td>Within-leaf and full identifier</td>
+<td style="text-align: right;">2 digits, 7 tokens total</td>
+<td>Five tree digits plus two within-leaf digits</td>
+</tr>
+<tr>
+<td>Structured output table</td>
+<td style="text-align: right;">30,720 bytes, about 31 KB</td>
+<td>10 × 768 × 4 bytes</td>
+</tr>
+<tr>
+<td>Seven-digit identifier space</td>
+<td style="text-align: right;">10M possible, about 1.2M unused</td>
+<td>10^7 strings minus 8.8M documents</td>
+</tr>
+<tr>
+<td>HNSW degree and base neighbors</td>
+<td style="text-align: right;">M = 32, up to 64 neighbors</td>
+<td>Graph setting and base-layer count</td>
+</tr>
+<tr>
+<td>HNSW neighbor and graph memory</td>
+<td style="text-align: right;">256 bytes per node, 2.25 GB total</td>
+<td>64 × 4 bytes, then 8.8M nodes</td>
+</tr>
+<tr>
+<td>Dense HNSW resident memory</td>
+<td style="text-align: right;">29.3 GB, three replicas in the opening</td>
+<td>27.0 GB vectors plus 2.25 GB graph</td>
+</tr>
+<tr>
+<td>HNSW search and candidates</td>
+<td style="text-align: right;">e_search = 128, about 10^3 candidates</td>
+<td>Worked query setting</td>
+</tr>
+<tr>
+<td>Vector fetch</td>
+<td style="text-align: right;">3,072 bytes at about 100 ns</td>
+<td>768 fp32 values and assumed random-fetch latency</td>
+</tr>
+<tr>
+<td>HNSW query work</td>
+<td style="text-align: right;">About 0.1 ms, 1.5 million FLOPs</td>
+<td>Memory latency and 10^3 × 768 × 2 arithmetic</td>
+</tr>
+<tr>
+<td>Worked A100 hardware</td>
+<td style="text-align: right;">80 GB, 2.0 TB/s, about 125 TFLOP/s</td>
+<td>Three-way identifier comparison</td>
+</tr>
+<tr>
+<td>Atomic decode</td>
+<td style="text-align: right;">13.5 ms fp32, 6.8 ms fp16</td>
+<td>Full-table stream at 2.0 TB/s</td>
+</tr>
+<tr>
+<td>Hierarchical fp16 model</td>
+<td style="text-align: right;">440 MB</td>
+<td>Full serving weights</td>
+</tr>
+<tr>
+<td>Query encoding</td>
+<td style="text-align: right;">32 tokens, 7.0 billion FLOPs</td>
+<td>2 × 1.1 × 10^8 × 32</td>
+</tr>
+<tr>
+<td>Query encoding and weight reads</td>
+<td style="text-align: right;">0.06 ms, 3.08 GB</td>
+<td>Encoding latency and 7 × 440 MB</td>
+</tr>
+<tr>
+<td>Hierarchical decode and beam</td>
+<td style="text-align: right;">At most 1.5 ms, beam width 10</td>
+<td>Weight-read bound and beam setting</td>
+</tr>
+<tr>
+<td>Beam arithmetic</td>
+<td style="text-align: right;">19.6 billion FLOPs, 0.16 ms</td>
+<td>2 × 1.4 × 10^8 × 10 × 7</td>
+</tr>
+<tr>
+<td>Structured query and memory win</td>
+<td style="text-align: right;">About 1.6 ms, 67 times less memory</td>
+<td>Total latency and 29.3 GB divided by 0.44 GB</td>
+</tr>
+<tr>
+<td>Latency and int8 index</td>
+<td style="text-align: right;">Source says about 8 times slower, 6.8 GB vectors</td>
+<td>Its 1.6 ms and 0.1 ms endpoints imply 16 times</td>
+</tr>
+<tr>
+<td>Quantized gap and atomic test scale</td>
+<td style="text-align: right;">20.6 times with graph, 320,000 documents</td>
+<td>9.05 GB divided by 440 MB and largest cited atomic evaluation</td>
+</tr>
+<tr>
+<td>Atomic table and boundary</td>
+<td style="text-align: right;">983 MB at 320K, roughly 10^5 practical boundary</td>
+<td>Table calculation and under-1-GB rule</td>
+</tr>
+<tr>
+<td>Wider branching</td>
+<td style="text-align: right;">k = 100, 4 steps, 43 percent latency cut</td>
+<td>Alternative to seven base-ten steps</td>
+</tr>
+<tr>
+<td>Wider-softmax and tenfold depth</td>
+<td style="text-align: right;">10 times wider, 8 steps</td>
+<td>100 symbols and 8.8 × 10^7 documents</td>
+</tr>
+<tr>
+<td>Tenfold query increase and 320K length</td>
+<td style="text-align: right;">About 14 percent, 6 digits</td>
+<td>One extra step and ⌈log_10 320,000⌉</td>
+</tr>
+<tr>
+<td>Base-ten lengths</td>
+<td style="text-align: right;">7 digits at 8.8M, 9 at one billion</td>
+<td>Identifier depth by corpus size</td>
+</tr>
+<tr>
+<td>Thousandfold growth and fp32 record</td>
+<td style="text-align: right;">3 extra steps, 24,576 bits</td>
+<td>Base-ten depth and 768 × 32 bits</td>
+</tr>
+<tr>
+<td>PQ setup and record</td>
+<td style="text-align: right;">64 by 8 bits, 512 bits or 64 bytes</td>
+<td>Subquantizers and private record size</td>
+</tr>
+<tr>
+<td>Model bits and PQ parity</td>
+<td style="text-align: right;">3.52 × 10^9 bits, 6.9M documents</td>
+<td>220M × 16 and division by 512</td>
+</tr>
+<tr>
+<td>fp32 parity and decoder share</td>
+<td style="text-align: right;">143K documents, about 110M parameters</td>
+<td>Figure crossing and half of T5-base</td>
+</tr>
+<tr>
+<td>Step stream and bandwidth</td>
+<td style="text-align: right;">0.22 GB at 1.6 TB/s</td>
+<td>110M × 2 bytes and worked bandwidth</td>
+</tr>
+<tr>
+<td>Per-step latency and n_probe</td>
+<td style="text-align: right;">0.1375 ms, 32 lists</td>
+<td>Step time and IVF-PQ probe count</td>
+</tr>
+<tr>
+<td>IVF-PQ rule and throughput</td>
+<td style="text-align: right;">33√N, 10^9 lookups per second per core</td>
+<td>Candidate rule and assumed rate</td>
+</tr>
+<tr>
+<td>320K query comparison</td>
+<td style="text-align: right;">0.825 ms generative, 18,668 IVF-PQ candidates</td>
+<td>Six decode steps and 33√320,000</td>
+</tr>
+<tr>
+<td>320K IVF-PQ work</td>
+<td style="text-align: right;">1.195M lookups, 1.20 ms</td>
+<td>Candidates × 64 at the assumed rate</td>
+</tr>
+<tr>
+<td>320K capacity</td>
+<td style="text-align: right;">11,000 bits, 21 times PQ</td>
+<td>Model bits per document and ratio</td>
+</tr>
+<tr>
+<td>8.8M query comparison</td>
+<td style="text-align: right;">0.96 ms generative, 97,894 IVF-PQ candidates</td>
+<td>Seven steps and 33√8.8M</td>
+</tr>
+<tr>
+<td>8.8M IVF-PQ and corpus growth</td>
+<td style="text-align: right;">6.27 ms, 27.5 times more documents</td>
+<td>Index latency and growth from 320K</td>
+</tr>
+<tr>
+<td>Latency growth</td>
+<td style="text-align: right;">17 percent generative, 424 percent index</td>
+<td>320K to 8.8M comparison</td>
+</tr>
+<tr>
+<td>8.8M capacity and PQ memory</td>
+<td style="text-align: right;">400 bits per document, 563 MB</td>
+<td>Below 512 bits and 8.8M × 64 bytes</td>
+</tr>
+<tr>
+<td>fp32 ratio and parity position</td>
+<td style="text-align: right;">About 60 times, 28 percent beyond parity</td>
+<td>27.0 GB versus 440 MB and 8.8M versus 6.9M</td>
+</tr>
+<tr>
+<td>DSI-XXL scale</td>
+<td style="text-align: right;">11B parameters</td>
+<td>Larger cited model</td>
+</tr>
+<tr>
+<td>DSI-XXL stored bits</td>
+<td style="text-align: right;">1.76 × 10^11</td>
+<td>11B × 16 bits</td>
+</tr>
+<tr>
+<td>DSI-XXL parity</td>
+<td style="text-align: right;">344M documents</td>
+<td>Against 512-bit PQ records</td>
+</tr>
+<tr>
+<td>Prototype caution band</td>
+<td style="text-align: right;">Within factor 2 of parity</td>
+<td>Source default rejection rule</td>
+</tr>
+<tr>
+<td>Preferred static regime</td>
+<td style="text-align: right;">Below one tenth of parity</td>
+<td>Source deviation condition</td>
+</tr>
+<tr>
+<td>Candidate beam</td>
+<td style="text-align: right;">50</td>
+<td>Reranking recommendation example</td>
+</tr>
+<tr>
+<td>20M capacity</td>
+<td style="text-align: right;">176 bits per document</td>
+<td>3.52 × 10^9 divided by 20M</td>
+</tr>
+<tr>
+<td>11B step stream</td>
+<td style="text-align: right;">22 GB</td>
+<td>fp16 decoder read</td>
+</tr>
+<tr>
+<td>11B step latency</td>
+<td style="text-align: right;">13.75 ms</td>
+<td>At 1.6 TB/s</td>
+</tr>
+<tr>
+<td>11B seven-step latency</td>
+<td style="text-align: right;">About 96 ms</td>
+<td>About 15 times the IVF-PQ scan</td>
+</tr>
+<tr>
+<td>Full-retrain corpus</td>
+<td style="text-align: right;">10^7 documents</td>
+<td>Incremental-indexing example</td>
+</tr>
+<tr>
+<td>Direct-index text</td>
+<td style="text-align: right;">64 tokens per document</td>
+<td>Base document example</td>
+</tr>
+<tr>
+<td>Pseudo-queries</td>
+<td style="text-align: right;">10 per document</td>
+<td>Generated rehearsal and coverage</td>
+</tr>
+<tr>
+<td>Pseudo-query length</td>
+<td style="text-align: right;">16 tokens</td>
+<td>Training estimate</td>
+</tr>
+<tr>
+<td>Tokens per document per epoch</td>
+<td style="text-align: right;">224</td>
+<td>64 + 10 × 16</td>
+</tr>
+<tr>
+<td>Training epochs</td>
+<td style="text-align: right;">10</td>
+<td>Identifier memorization estimate</td>
+</tr>
+<tr>
+<td>Training tokens</td>
+<td style="text-align: right;">2.24 × 10^10</td>
+<td>N × 224 × 10</td>
+</tr>
+<tr>
+<td>Training compute</td>
+<td style="text-align: right;">2.96 × 10^19 FLOPs</td>
+<td>6PT estimate</td>
+</tr>
+<tr>
+<td>Training hardware</td>
+<td style="text-align: right;">8 A100s</td>
+<td>Refresh estimate</td>
+</tr>
+<tr>
+<td>Sustained rate per A100</td>
+<td style="text-align: right;">1.5 × 10^14 FLOP/s</td>
+<td>About half bf16 peak in the source</td>
+</tr>
+<tr>
+<td>Aggregate training rate</td>
+<td style="text-align: right;">1.2 × 10^15 FLOP/s</td>
+<td>Eight-device total</td>
+</tr>
+<tr>
+<td>Reindex duration</td>
+<td style="text-align: right;">2.46 × 10^4 seconds, 6.84 hours</td>
+<td>Best pre-queue staleness floor</td>
+</tr>
+<tr>
+<td>Reindex consumption</td>
+<td style="text-align: right;">54.7 A100-hours</td>
+<td>One full refresh</td>
+</tr>
+<tr>
+<td>DSI++ Hits@10 gain</td>
+<td style="text-align: right;">21.1 percent</td>
+<td>Average improvement on Natural Questions</td>
+</tr>
+<tr>
+<td>DSI++ update reduction</td>
+<td style="text-align: right;">6 times fewer</td>
+<td>Versus retraining over five sequential corpora</td>
+</tr>
+<tr>
+<td>IncDSI insertion</td>
+<td style="text-align: right;">Roughly 20 to 50 ms</td>
+<td>One document row</td>
+</tr>
+<tr>
+<td>Daily churn</td>
+<td style="text-align: right;">0.5 percent</td>
+<td>50,000 of 10^7 documents</td>
+</tr>
+<tr>
+<td>Refresh price</td>
+<td style="text-align: right;">$2 per A100-hour</td>
+<td>Worked cost assumption</td>
+</tr>
+<tr>
+<td>Refresh cost</td>
+<td style="text-align: right;">$109</td>
+<td>One full retrain</td>
+</tr>
+<tr>
+<td>Annual nightly cost</td>
+<td style="text-align: right;">About $40,000</td>
+<td>Nightly full retraining</td>
+</tr>
+<tr>
+<td>Daily IncDSI GPU time</td>
+<td style="text-align: right;">2,500 seconds</td>
+<td>50,000 × 50 ms</td>
+</tr>
+<tr>
+<td>IncDSI staleness gain</td>
+<td style="text-align: right;">Roughly 5 × 10^5</td>
+<td>50 ms versus 2.46 × 10^4 seconds</td>
+</tr>
+<tr>
+<td>Atomic matrix at 10M</td>
+<td style="text-align: right;">30.7 GB</td>
+<td>10^7 × 768 × 4 bytes</td>
+</tr>
+<tr>
+<td>Atomic query compute</td>
+<td style="text-align: right;">1.54 × 10^10 FLOPs</td>
+<td>2 × 768 × 10^7</td>
+</tr>
+<tr>
+<td>Atomic HBM read</td>
+<td style="text-align: right;">15.1 ms</td>
+<td>30.7 GB at 2.04 TB/s</td>
+</tr>
+<tr>
+<td>HNSW ef_construction</td>
+<td style="text-align: right;">200</td>
+<td>Delta insertion setting</td>
+</tr>
+<tr>
+<td>Delta distances</td>
+<td style="text-align: right;">6,400</td>
+<td>200 × 32</td>
+</tr>
+<tr>
+<td>FLOPs per distance</td>
+<td style="text-align: right;">1,536</td>
+<td>2 × 768</td>
+</tr>
+<tr>
+<td>FLOPs per delta insert</td>
+<td style="text-align: right;">9.83 × 10^6</td>
+<td>6,400 × 1,536</td>
+</tr>
+<tr>
+<td>CPU-core rate</td>
+<td style="text-align: right;">10^10 FLOP/s</td>
+<td>Worked vectorized rate</td>
+</tr>
+<tr>
+<td>Delta insert latency</td>
+<td style="text-align: right;">0.98 ms</td>
+<td>Per document</td>
+</tr>
+<tr>
+<td>Daily delta insertion</td>
+<td style="text-align: right;">49 seconds</td>
+<td>One CPU core for 50,000 arrivals</td>
+</tr>
+<tr>
+<td>Weekly delta count</td>
+<td style="text-align: right;">350,000 vectors</td>
+<td>Seven days of arrivals</td>
+</tr>
+<tr>
+<td>Weekly delta share</td>
+<td style="text-align: right;">3.5 percent</td>
+<td>Fraction of base corpus</td>
+</tr>
+<tr>
+<td>Weekly delta memory</td>
+<td style="text-align: right;">1.08 GB</td>
+<td>fp32 vectors</td>
+</tr>
+<tr>
+<td>Amortized compaction</td>
+<td style="text-align: right;">7.8 A100-hours per day</td>
+<td>Weekly base retrain</td>
+</tr>
+<tr>
+<td>Annual hybrid cost</td>
+<td style="text-align: right;">About $5,700</td>
+<td>Worked compaction estimate</td>
+</tr>
+<tr>
+<td>Daily delta compute</td>
+<td style="text-align: right;">4.92 × 10^11 FLOPs</td>
+<td>50,000 insertions</td>
+</tr>
+<tr>
+<td>Arithmetic ratio</td>
+<td style="text-align: right;">6.0 × 10^7</td>
+<td>Full retrain versus daily delta inserts</td>
+</tr>
+<tr>
+<td>Chinchilla parameters</td>
+<td style="text-align: right;">7 × 10^10</td>
+<td>Sanity-check training run</td>
+</tr>
+<tr>
+<td>Chinchilla tokens</td>
+<td style="text-align: right;">1.4 × 10^12</td>
+<td>Sanity-check training run</td>
+</tr>
+<tr>
+<td>Reported Chinchilla compute</td>
+<td style="text-align: right;">5.76 × 10^23 FLOPs</td>
+<td>Published figure in the source</td>
+</tr>
+<tr>
+<td>Predicted Chinchilla compute</td>
+<td style="text-align: right;">5.88 × 10^23 FLOPs</td>
+<td>6PT estimate</td>
+</tr>
+<tr>
+<td>Compute-model error</td>
+<td style="text-align: right;">2.1 percent high</td>
+<td>Sanity-check difference</td>
+</tr>
+<tr>
+<td>Dense encoder scale</td>
+<td style="text-align: right;">110M parameters</td>
+<td>Re-embedding comparison</td>
+</tr>
+<tr>
+<td>Dense document length</td>
+<td style="text-align: right;">256 tokens</td>
+<td>Re-embedding comparison</td>
+</tr>
+<tr>
+<td>Dense re-embedding compute</td>
+<td style="text-align: right;">5.63 × 10^17 FLOPs</td>
+<td>10M documents</td>
+</tr>
+<tr>
+<td>Dense re-embedding time</td>
+<td style="text-align: right;">About 8 minutes</td>
+<td>Same eight A100s</td>
+</tr>
+<tr>
+<td>Dense cost advantage</td>
+<td style="text-align: right;">Roughly 53 times</td>
+<td>Versus full GenIR retraining</td>
+</tr>
+<tr>
+<td>High-churn threshold</td>
+<td style="text-align: right;">Roughly 2 percent daily</td>
+<td>Delta rivals base within a fortnight</td>
+</tr>
+<tr>
+<td>Recitation faithfulness</td>
+<td style="text-align: right;">0.995 per token</td>
+<td>Worked phi value</td>
+</tr>
+<tr>
+<td>Faithfulness at 60 tokens</td>
+<td style="text-align: right;">74.0 percent</td>
+<td>0.995^60</td>
+</tr>
+<tr>
+<td>Faithfulness at 200 tokens</td>
+<td style="text-align: right;">36.7 percent</td>
+<td>0.995^200</td>
+</tr>
+<tr>
+<td>Generator scale</td>
+<td style="text-align: right;">7B parameters versus a 70B framing</td>
+<td>Recitation serving example and RAG motivation</td>
+</tr>
+<tr>
+<td>Extraction accuracy</td>
+<td style="text-align: right;">0.75</td>
+<td>Given one clean passage</td>
+</tr>
+<tr>
+<td>DPR top-100 accuracy</td>
+<td style="text-align: right;">85.4 percent</td>
+<td>R1 on Natural Questions</td>
+</tr>
+<tr>
+<td>Head p_loc</td>
+<td style="text-align: right;">0.70</td>
+<td>Entry-point probability</td>
+</tr>
+<tr>
+<td>Head roll-forward</td>
+<td style="text-align: right;">60 tokens</td>
+<td>Answer distance</td>
+</tr>
+<tr>
+<td>Head recitation coverage</td>
+<td style="text-align: right;">51.8 percent</td>
+<td>0.70 × 0.740</td>
+</tr>
+<tr>
+<td>Head exact match</td>
+<td style="text-align: right;">38.9 percent</td>
+<td>Coverage × 0.75</td>
+</tr>
+<tr>
+<td>Tail p_loc</td>
+<td style="text-align: right;">0.15</td>
+<td>Entry-point probability</td>
+</tr>
+<tr>
+<td>Tail roll-forward</td>
+<td style="text-align: right;">200 tokens</td>
+<td>Answer distance</td>
+</tr>
+<tr>
+<td>Tail recitation coverage</td>
+<td style="text-align: right;">5.5 percent</td>
+<td>0.15 × 0.367</td>
+</tr>
+<tr>
+<td>Tail exact match</td>
+<td style="text-align: right;">4.1 percent</td>
+<td>Coverage × 0.75</td>
+</tr>
+<tr>
+<td>Head-to-tail drop</td>
+<td style="text-align: right;">9 times</td>
+<td>Same model and task</td>
+</tr>
+<tr>
+<td>Fused coverage</td>
+<td style="text-align: right;">93.0 percent</td>
+<td>Independent retrieval and recitation union</td>
+</tr>
+<tr>
+<td>Fusion gain</td>
+<td style="text-align: right;">7.6 percentage points</td>
+<td>Above 85.4 percent retrieval</td>
+</tr>
+<tr>
+<td>Voting samples</td>
+<td style="text-align: right;">5</td>
+<td>Self-consistency example</td>
+</tr>
+<tr>
+<td>Per-sample success</td>
+<td style="text-align: right;">0.389</td>
+<td>Head exact-match probability</td>
+</tr>
+<tr>
+<td>Scattered-error vote</td>
+<td style="text-align: right;">64.4 percent</td>
+<td>Correct answer appears at least twice</td>
+</tr>
+<tr>
+<td>Concentrated-error vote</td>
+<td style="text-align: right;">29.9 percent</td>
+<td>Strict majority required</td>
+</tr>
+<tr>
+<td>Single-sample advantage</td>
+<td style="text-align: right;">9 points</td>
+<td>38.9 percent versus 29.9 percent</td>
+</tr>
+<tr>
+<td>7B fp16 weight read</td>
+<td style="text-align: right;">14 GB per token</td>
+<td>Bandwidth-bound decode</td>
+</tr>
+<tr>
+<td>Recitation bandwidth</td>
+<td style="text-align: right;">2.0 TB/s</td>
+<td>Serving assumption</td>
+</tr>
+<tr>
+<td>Decode latency</td>
+<td style="text-align: right;">7.0 ms per token</td>
+<td>14 GB divided by 2.0 TB/s</td>
+</tr>
+<tr>
+<td>60-token recitation</td>
+<td style="text-align: right;">420 ms</td>
+<td>Serial decode time</td>
+</tr>
+<tr>
+<td>ANN search</td>
+<td style="text-align: right;">About 10 ms</td>
+<td>Retrieval component</td>
+</tr>
+<tr>
+<td>Retrieved chunks</td>
+<td style="text-align: right;">5</td>
+<td>Prefill example</td>
+</tr>
+<tr>
+<td>Tokens per chunk</td>
+<td style="text-align: right;">256</td>
+<td>Context length per passage</td>
+</tr>
+<tr>
+<td>Total prefill tokens</td>
+<td style="text-align: right;">1,280</td>
+<td>Five chunks</td>
+</tr>
+<tr>
+<td>Prefill compute</td>
+<td style="text-align: right;">1.79 × 10^13 FLOPs</td>
+<td>2 × 7B × 1,280</td>
+</tr>
+<tr>
+<td>Prefill throughput</td>
+<td style="text-align: right;">3.4 × 10^14 FLOP/s</td>
+<td>Serving assumption</td>
+</tr>
+<tr>
+<td>Prefill latency</td>
+<td style="text-align: right;">52.7 ms</td>
+<td>Worked estimate</td>
+</tr>
+<tr>
+<td>Retrieval path</td>
+<td style="text-align: right;">About 63 ms</td>
+<td>ANN search plus prefill</td>
+</tr>
+<tr>
+<td>Recitation latency ratio</td>
+<td style="text-align: right;">6.7 times</td>
+<td>420 ms versus 63 ms</td>
+</tr>
+<tr>
+<td>DPR exact match</td>
+<td style="text-align: right;">41.5</td>
+<td>Published Natural Questions result</td>
+</tr>
+<tr>
+<td>Recitation gap to DPR</td>
+<td style="text-align: right;">2.6 points</td>
+<td>41.5 minus 38.9</td>
+</tr>
+<tr>
+<td>DPR implied extraction</td>
+<td style="text-align: right;">0.486</td>
+<td>41.5 divided by 85.4</td>
+</tr>
+<tr>
+<td>Half-faithful cap</td>
+<td style="text-align: right;">138 tokens</td>
+<td>Largest L with 0.995^L at least 0.5</td>
+</tr>
+<tr>
+<td>Error-structure test</td>
+<td style="text-align: right;">5 recitations across 200 queries</td>
+<td>Suggested measurement</td>
+</tr>
+<tr>
+<td>Internal corpus</td>
+<td style="text-align: right;">400,000 documents</td>
+<td>Staff interview example</td>
+</tr>
+<tr>
+<td>Weekly changes</td>
+<td style="text-align: right;">12,000 documents, 3 percent</td>
+<td>Internal-corpus churn</td>
+</tr>
+<tr>
+<td>Quarterly staleness</td>
+<td style="text-align: right;">33 percent</td>
+<td>1 - 0.97^13</td>
+</tr>
+<tr>
+<td>Decode blocklist</td>
+<td style="text-align: right;">About 1 ms within a 15-minute SLA</td>
+<td>Fast unreachability does not remove content from weights</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/22_reranking.html"><small>Previous</small>Chapter 22. Reranking</a><a href="../chapters/24_query_reformulation.html"><small>Next</small>Chapter 24. Query Reformulation</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

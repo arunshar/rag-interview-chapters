@@ -1,0 +1,1433 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 1. What a RAG Interview Actually Tests | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/01_what_a_rag_interview_actually_tests.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group" open><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html" aria-current="page">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part I. The RAG Interview Landscape</p><h1>Chapter 1. What a RAG Interview Actually Tests</h1><p class="chapter-meta">65 min estimated reading · Unit 10 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Retrieval-augmented generation (RAG) interviews test whether you can route knowledge to the right store, price that choice, and recognize when retrieval is the wrong tool.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A language model is a fixed-capacity knowledge store. A datastore grows as rows are added. RAG joins those two stores.</li>
+<li>The decisive difference is write cost. A datastore row is addressable and reversible. A fact spread through model weights is entangled and expensive to change.</li>
+<li>Five bottlenecks follow from storing knowledge in weights: factual error, no source verification, high update cost, no bounded opt-out, and model size tied to factual coverage.</li>
+<li>Five RAG benefits move those responsibilities into a datastore: correctness, attribution, opt-out, adaptability, and parameter efficiency. Each move creates a retrieval-side cost.</li>
+<li>RAG is one special case of tool use. Its call is read-only, retryable, and returns passages with source identifiers.</li>
+<li>Retrieval cannot answer queries that require every matching record when it returns only the top few records. Aggregates and actions need different tools.</li>
+<li>Retrieval can harm answers the model already knows. Gate it by measured subject popularity or a product-specific frequency proxy once the crossover is known. In the worked popularity example, selective retrieval reaches 80.2% accuracy, beats always-retrieve by 4.1 points, and cuts retrieval work by 55%.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine an interview room as a working library with two places to keep knowledge. The first place is a stone memory wall. Facts are carved across many stones at once. This is the parametric store, meaning its capacity was fixed before training. Reading it is fast, but changing one fact means recarving a wide surface. The second place is an expandable card room. Each card has an address and can be inserted, corrected, or removed. This is the non-parametric datastore, meaning its knowledge capacity grows as cards arrive. RAG is the librarian who uses both rooms. The librarian reads the question, retrieves a few cards, and asks the memory wall to compose an answer from the question and those cards. That combination is semi-parametric, meaning one fixed store works with one expandable store. The interviewer first inspects the memory wall for five cracks. Rare facts fade because the carving is lossy. A sentence has no return address to its source. A correction requires recarving. A deletion cannot target one original document. More factual coverage also means paying for a larger wall on every visit.</p>
+<p>Moving facts into the card room repairs those cracks, but the bill moves too. A missing card can spoil correctness. A citation can point to the wrong support. A deletable card helps only if the same text was never carved into the wall. Fresh cards require an ingestion schedule. A smaller wall now depends on room space and an extra reading step. The library also has other service desks. The retrieval desk returns source cards and is safe to ask twice. The calculator desk returns a value but no source passage. The action desk opens a ticket or sends a message and must not be called twice by accident. RAG is one desk, not the whole library. Some questions ask for a few relevant cards. Other questions ask for the sum of every invoice. A top-card desk cannot guarantee a complete total, even with perfect ranking. The interviewer wants you to route the first query to retrieval and the second to a complete query tool. Finally, a doorman decides whether the librarian should enter the card room at all. Obscure subjects benefit because the wall remembers them poorly. Famous subjects can be harmed by a distracting card because the wall already knows the answer. The strongest interview answer therefore sounds like a library operating plan. Name the two stores. Price each write. Trace the five cracks and five transfers. Route each query to the right desk. Then place a measured gate at the point where retrieval stops helping.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-augmented generation (RAG)</td>
+<td>A system that retrieves passages from a datastore and conditions a generator on those passages.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Language model</td>
+<td>A model that assigns next-token probabilities from preceding tokens.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>One vocabulary unit processed or generated by the model.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>The input question or request the system must answer.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Passage</td>
+<td>A text span returned by retrieval and supplied to the generator.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>The query and supplied text the generator reads for its next output.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The maximum token sequence available to one model call.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Pre-training</td>
+<td>The original large training run that compresses corpus patterns into weights.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Training corpus</td>
+<td>The text collection used to update model weights.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Parametric model</td>
+<td>A model whose parameter count and capacity are fixed before training.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>One learned number in the model's fixed weight tensor.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Weight tensor</td>
+<td>The full collection of learned parameters. Facts are distributed across it rather than stored at document addresses.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td><code>θ</code></td>
+<td>The chapter's symbol for the generator's parametric weights.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Conditional token distribution</td>
+<td>The model's probabilities for the next token given preceding tokens.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Vocabulary size <code>V</code></td>
+<td>The number of possible token outputs considered by the model.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Lossy compression</td>
+<td>Storage that preserves recurring patterns but cannot retain every source fact intact.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Long tail</td>
+<td>Rare subjects or facts that appeared too few times to be represented reliably in the weights.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Datastore <code>D</code></td>
+<td>The expandable external store that retrieval searches.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Non-parametric store</td>
+<td>A store whose effective knowledge capacity grows with the number of stored items.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Semi-parametric system</td>
+<td>A system that combines fixed model weights with an expandable datastore.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Capacity <code>O(N)</code></td>
+<td>Capacity that grows in proportion to the number <code>N</code> of stored chunks.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Chunk</td>
+<td>A bounded passage stored and retrieved as one unit.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>A numerical vector used to place a chunk or query in a searchable space.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Dense retrieval</td>
+<td>Ranking by proximity between learned embedding vectors.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Exact-match retrieval</td>
+<td>Ranking that rewards literal identifiers or terms, useful for fields such as stock keeping units.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Stock keeping unit (SKU)</td>
+<td>A precise catalog identifier whose exact text matters.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>An encoder that represents the query and chunks separately so their vectors can be compared.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Encoder</td>
+<td>The model that converts text into an embedding vector.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>k-nearest-neighbor search</td>
+<td>A non-parametric method that returns the <code>k</code> closest stored vectors.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Retriever <code>RET</code></td>
+<td>The read step that maps a query and datastore to <code>k</code> passages.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Generator <code>GEN</code></td>
+<td>The model step that maps the query and retrieved passages to an answer.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>The highest-ranked <code>k</code> retrieved items.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Retrieval miss</td>
+<td>A query result that fails to include the answer-bearing passage.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Grounding</td>
+<td>Constraining an answer to information in supplied passages.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Grounded accuracy</td>
+<td>Accuracy measured while requiring correct use of retrieved evidence.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Tenant isolation</td>
+<td>Keeping one customer's stored knowledge separate from another customer's knowledge.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Addressable</td>
+<td>Stored at a location that can be targeted directly.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Revocable</td>
+<td>Removable without changing unrelated stored knowledge.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Entangled</td>
+<td>Spread across many weights so one fact cannot be isolated cleanly.</td>
+<td>It supports the chapter's two-store frame and evidence-retrieval decisions.</td>
+</tr>
+<tr>
+<td>Gradient pass</td>
+<td>A training update that changes model parameters.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Additional training that changes the model's weights for a target task or corpus.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Full fine-tuning</td>
+<td>Updating all model weights.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Continual fine-tuning</td>
+<td>Repeatedly training on newly arriving material.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Catastrophic forgetting</td>
+<td>Loss of earlier capability when narrow new training changes the weights.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Replay mixture</td>
+<td>Old or unrelated training data mixed with new data to protect prior knowledge.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Model editing</td>
+<td>A targeted attempt to change a fact in selected model layers.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Collateral damage</td>
+<td>Unintended changes to unrelated knowledge after a model edit.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Unlearning</td>
+<td>Training that penalizes reproduction of specified sequences in an attempt to remove them.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>32-bit floating point (FP32)</td>
+<td>A four-byte number format used in the source's memory calculations.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>16-bit brain floating point (bf16)</td>
+<td>A two-byte number format used in the source's serving calculations.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Adam</td>
+<td>The optimizer in the full fine-tuning memory example.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Gradient</td>
+<td>The update signal stored for each parameter during training.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Optimizer moments</td>
+<td>Adam's two stored state values per parameter in the source calculation.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Activation</td>
+<td>An intermediate value created while the model processes input.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Training epoch</td>
+<td>One pass over the selected training corpus.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Regression check</td>
+<td>A test that looks for unrelated behavior that worsened after an update.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>The arithmetic work used to price training and inference.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Model-FLOPs utilization</td>
+<td>The share of hardware peak arithmetic sustained by model execution.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Graphics processing unit hour (GPU-hour)</td>
+<td>One accelerator used for one hour.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Accelerator</td>
+<td>The computing card used for model training or inference.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>H100</td>
+<td>The accelerator model used for the source's peak, sustained-throughput, and memory assumptions.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Sustained throughput</td>
+<td>The arithmetic rate actually achieved, rather than the hardware's peak rate.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>A data structure that supports fast retrieval over stored chunks.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Index upsert</td>
+<td>Insert a new index row or replace the row with the same key.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Elapsed time added to a served query.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Vector dimension <code>d</code></td>
+<td>The number of numeric coordinates in one embedding.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Float32 vector</td>
+<td>An embedding whose coordinates each occupy four bytes.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>High-cardinality knowledge</td>
+<td>A collection with many distinct values, such as a large catalog.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Low-frequency knowledge</td>
+<td>Facts that appear rarely in the training corpus.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Parametric prior</td>
+<td>The answer tendency already stored in the model weights before retrieval.</td>
+<td>It exposes the update, memory, compute, or serving cost of weights and indexes.</td>
+</tr>
+<tr>
+<td>Factual correctness</td>
+<td>Whether the answer contains the right fact.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>Connecting an answer claim to a source passage.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>The origin of the evidence supplied to the answer.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Citation coverage</td>
+<td>Whether answer text carries citation markers.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Citation support</td>
+<td>Whether the cited span actually entails the associated claim.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Entailment check</td>
+<td>A test of whether a cited span supports a generated sentence.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Sample-and-rerank</td>
+<td>Generate several candidate answers, then rank them against evidence.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>GopherCite</td>
+<td>The cited system that samples answers and reranks them against quoted support.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Opt-out</td>
+<td>The ability to remove specified data from the served system.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Adaptability</td>
+<td>The ability to serve changed facts without changing model weights.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Freshness objective</td>
+<td>A committed limit on how stale the searchable index may become.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Ingestion pipeline</td>
+<td>The process that converts changed documents into searchable chunks and index entries.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Rebuild cadence</td>
+<td>The schedule for refreshing or reconstructing an index.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Parameter efficiency</td>
+<td>Serving the task with fewer generator parameters because facts live outside the weights.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Perplexity</td>
+<td>The language-model quality measure cited when low-risk-only training weakens the base model.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>High-bandwidth memory (HBM)</td>
+<td>Accelerator memory used for model weights, cache, and activations.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Dynamic random-access memory (DRAM)</td>
+<td>Host memory used for the retrieval index in the example.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Host memory</td>
+<td>Memory on the retrieval machine rather than on the model accelerator.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Key-value cache (KV cache)</td>
+<td>Accelerator memory that stores attention state during generation.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Hierarchical navigable small world (HNSW)</td>
+<td>The graph index used in the parameter-efficiency example.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>HNSW neighbor limit <code>M</code></td>
+<td>The graph parameter whose source example is <code>M = 16</code>.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Inverted file with product quantization (IVF-PQ)</td>
+<td>The compressed vector representation priced at 96 bytes per vector.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Scalar quantization</td>
+<td>Another index-compression option named in the source.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing prompt tokens before answer generation begins.</td>
+<td>It identifies a RAG benefit or the datastore-side cost that accompanies it.</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>A policy that decides whether a query should retrieve at all.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Closed-book answer</td>
+<td>An answer produced from model weights without retrieved context.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Subject popularity <code>s</code></td>
+<td>The source's query-level variable, measured as monthly Wikipedia page views.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Power-law distribution</td>
+<td>A distribution with a small popular head and a large rare tail.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Head, torso, and tail</td>
+<td>Popularity buckets for frequent, medium-frequency, and rare subjects.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Popularity bucket</td>
+<td>A group of queries with a similar subject-frequency range.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Closed-book accuracy <code>p(s)</code></td>
+<td>Accuracy without retrieval at subject popularity <code>s</code>.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Retrieval accuracy <code>r(s)</code></td>
+<td>Accuracy with retrieval at subject popularity <code>s</code>.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Rescue rate <code>g</code></td>
+<td>The chance that retrieval fixes an answer that was wrong without retrieval.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Harm rate <code>h</code></td>
+<td>The chance that retrieval spoils an answer that was correct without retrieval.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Retrieval value <code>Δ(s)</code></td>
+<td>The accuracy change <code>r(s) - p(s)</code> caused by retrieval.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Accuracy threshold <code>p⋆</code></td>
+<td>The closed-book accuracy level <code>g / (g + h)</code> where retrieval's net value changes sign.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Popularity crossover <code>s⋆</code></td>
+<td>The popularity where <code>p(s⋆) = p⋆</code>. Retrieval helps below it and hurts above it.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Retrieval-induced harm</td>
+<td>A correct closed-book answer becoming wrong after retrieved context is added.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Rank-1 precision</td>
+<td>How often the first retrieved item is answer-bearing.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Recall at 1</td>
+<td>Whether an answer-bearing passage appears in the first retrieved position.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Recall at 20</td>
+<td>Whether an answer-bearing passage appears among the first twenty retrieved items.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor (ANN) search</td>
+<td>Fast vector search used to retrieve likely neighbors.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A second ranking stage applied after initial retrieval.</td>
+<td>It defines the measured gate between retrieval rescue and retrieval-induced harm.</td>
+</tr>
+<tr>
+<td>Tool-augmented model</td>
+<td>A generator that can choose and call one or more external tools.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Tool selection</td>
+<td>Choosing which available tool to call.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Toolformer</td>
+<td>The cited system that learns when to call an application programming interface using self-supervised training.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>ReAct</td>
+<td>The cited approach that interleaves explicit reasoning with actions.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>A classifier or policy that sends a query to an answer path.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Learned policy</td>
+<td>A trained decision rule for selecting an action or tool.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Reinforcement learning</td>
+<td>Learning a decision policy from action outcomes, cited for answer-versus-search routing.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Argument synthesis</td>
+<td>Producing a tool's query string or structured input.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Query synthesis</td>
+<td>Constructing the executable database or tool query.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Structured Query Language (SQL)</td>
+<td>The database query language used for complete aggregates in the example.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>JavaScript Object Notation (JSON)</td>
+<td>A structured payload format that must parse and preserve correct fields.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Application programming interface (API)</td>
+<td>A callable software boundary used for reads or actions.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Customer relationship management (CRM)</td>
+<td>A business-record system named as a destination for a mutating tool call.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Side effect</td>
+<td>A call that changes external state.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Retryable</td>
+<td>Safe to call again without causing a second external change.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Idempotent by key</td>
+<td>A write design where repeating the same keyed request does not create a duplicate effect.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Return type</td>
+<td>The kind of result a tool provides, such as source passages or a computed value.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Source identifier</td>
+<td>A document reference carried with a retrieved passage.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Read-only tool</td>
+<td>A tool that observes data without changing it.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Mutating tool</td>
+<td>A tool that changes state, such as creating a ticket.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Complete query</td>
+<td>A query that examines every matching record needed for the answer.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Complete aggregate</td>
+<td>A sum, count, or average computed over every matching record.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Metadata filter</td>
+<td>A structured constraint that selects records by stored fields rather than relevance ranking.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Evidence coverage</td>
+<td>The share of all required records supplied to the generator.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Global query</td>
+<td>A question whose answer depends on a corpus-wide set rather than a few passages.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Sensemaking query</td>
+<td>The source's related term for a query requiring global corpus evidence.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Declining to answer when the available path cannot support a correct result.</td>
+<td>It separates evidence retrieval from general tools, complete queries, and state-changing actions.</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>A sparse text-ranking method used to show that RAG is defined by its contract, not vector plumbing.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>The published dense retriever used for two arithmetic sanity checks.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>PopQA</td>
+<td>The entity-question benchmark used for the popularity and retrieval-harm result.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>Natural Questions</td>
+<td>The benchmark used for the reported top-20 retrieval accuracy sanity check.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>RoBERTa</td>
+<td>The larger parametric model in the cited word-sense comparison.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>Model judge</td>
+<td>A model used to score answer quality when its scores are calibrated against human judgments.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>Held-out calibration set</td>
+<td>Human-scored examples kept separate to check whether an automated judge agrees.</td>
+<td>It anchors a named source example, benchmark, method, or evaluation check.</td>
+</tr>
+<tr>
+<td>Personally identifiable information (PII)</td>
+<td>Data linked to a person and named as a reason to prefer an addressable store.</td>
+<td>It supports the rule that deletable or constrained data must remain addressable.</td>
+</tr>
+<tr>
+<td>Low-risk training split</td>
+<td>Training weights on permissively usable text while placing sensitive or attribution-required text in the datastore.</td>
+<td>It supports the rule that deletable or constrained data must remain addressable.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="11-parametric-non-parametric-semi-parametric-the-frame-behind-every-question">1.1 Parametric, non-parametric, semi-parametric: the frame behind every question</h3>
+<h4 id="what-the-frame-is">What the frame is</h4>
+<p>A parametric language model fixes its parameter count <code>|θ|</code> before training. That count does not grow with the amount of training data. The model represents the next-token distribution below over a vocabulary of size <code>V</code>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo>∣</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>x</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">P_{\theta}(x_n \mid x_1, \ldots, x_{n-1})</annotation></semantics></math></p>
+<p>After training, the source corpus is no longer an addressable part of the model. Everything retained from that corpus is compressed into the weights.</p>
+<p>A non-parametric datastore grows with its contents. Store <code>N</code> chunks and its knowledge capacity is <code>O(N)</code>. Add chunk <code>N + 1</code> and capacity grows without retraining or disturbing an existing row. Dense retrieval is k-nearest-neighbor search in embedding space. It is non-parametric in capacity even though its encoder can contain tens or hundreds of millions of trained weights.</p>
+<p>RAG composes the two stores.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo>=</mo><mo>RET</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">c_1, \ldots, c_k = \mathop{\text{RET}}(x, D)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msub><mo>GEN</mo><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y = \mathop{\text{GEN}}_{\theta}(x, c_1, \ldots, c_k)</annotation></semantics></math></p>
+<p>The query is <code>x</code>. The datastore is <code>D</code>. The retrieved chunks are <code>c_1</code> through <code>c_k</code>. The answer is <code>y</code>.</p>
+<h4 id="why-the-split-exists">Why the split exists</h4>
+<p>The split earns its keep through write-cost asymmetry, not through an unconditional accuracy claim. Writing one fact to <code>D</code> embeds one chunk and inserts one row. That write takes milliseconds in the prose example, leaves other rows unchanged, and is reversible by deletion. Writing one fact to <code>θ</code> requires a gradient pass over the parameters. For a 27-billion-parameter model held in FP32, the weights alone occupy <code>27 × 4 = 108 GB</code> before optimizer state.</p>
+<p>The update is smeared across the weight tensor and cannot be reversed by subtraction. Knowledge in the weights is effectively write-once and entangled. Knowledge in the datastore is addressable and revocable. Freshness, attribution, opt-out, and tenant isolation follow from that difference. The durable default is behavior in the weights and knowledge in the datastore.</p>
+<p>Format, instruction following, refusal, and reasoning are learned dispositions. Facts, prices, policies, and tenant data are rows that may need a Tuesday correction.</p>
+<h4 id="what-breaks-without-the-frame">What breaks without the frame</h4>
+<p>Putting changing facts into the weights makes corrections depend on another training run. Putting behavior into retrieval does not guarantee that the model will emit a required format such as JSON. The maximalist datastore design also fails. A tiny generator must still resolve references across <code>k</code> passages, reconcile contradictions, and notice missing information. A larger datastore increases that reading burden through near-duplicates and conflicting passages.</p>
+<p>Knowledge load and comprehension load are different. The mirror design that folds retrieval back into the weights also fails the write-cost test. It restores retraining as the update primitive.</p>
+<h4 id="compression-arithmetic">Compression arithmetic</h4>
+<p>The source uses Llama 3 to quantify the lossiness. It reports more than 15 trillion pre-training tokens and an 8-billion-parameter model. That is about <code>1,875 tokens per parameter</code>. English text is approximated at 4 bytes per token. A bf16 parameter occupies 2 bytes.</p>
+<p>Each parameter therefore carries the residue of <code>1,875 × 4 = 7,500</code> source bytes in 2 stored bytes. The resulting compression ratio is near <code>3,750:1</code>. A fact appearing only three times in 15 trillion tokens is unlikely to earn a reliable representation. The model can then produce a plausible substitute rather than abstain.</p>
+<h4 id="worked-example-40000-internal-documents">Worked example: 40,000 internal documents</h4>
+<p>The corpus has 40,000 documents at 2,000 tokens each. That is <code>80,000,000</code> tokens. About 6% changes each quarter. The generator has 8 billion parameters. The parametric route uses the training-cost identity below.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">training FLOPs</mtext><mo>≈</mo><mn>6</mn><msub><mi>N</mi><mtext mathvariant="normal">params</mtext></msub><msub><mi>N</mi><mtext mathvariant="normal">tokens</mtext></msub></mrow><annotation encoding="application/x-tex">\text{training FLOPs} \approx 6 N_{\text{params}} N_{\text{tokens}}</annotation></semantics></math></p>
+<p>The factor 6 is 2 parts for the forward pass and 4 parts for the backward pass per parameter per token. One epoch costs <code>3.84 × 10^18 FLOPs</code>. The source budgets 10 epochs because one epoch will not memorize long-tail facts. Ten epochs cost <code>3.84 × 10^19 FLOPs</code>. The hardware assumption is 34% model-FLOPs utilization on an H100 with a dense bf16 peak near 1,000 trillion FLOPs per second.</p>
+<p>The sustained throughput carried by the source is <code>3.4 × 10^14 FLOPs per second</code>. Training therefore takes <code>1.13 × 10^5 seconds</code>, or about <code>31.4 GPU-hours</code>. That cost repeats each quarter. The whole corpus is replayed because training only on the changed 6% invites catastrophic forgetting. The datastore route chunks at 300 tokens.</p>
+<p>It produces about <code>2.67 × 10^5</code> chunks. Embedding uses a forward pass only at about 2 operations per encoder parameter per token. With a 110-million-parameter encoder, the initial embedding pass costs <code>1.76 × 10^16 FLOPs</code>. The source states 44 seconds of arithmetic at the same sustained rate. Direct division by the displayed <code>3.4 × 10^14 FLOP/s</code> gives about 51.8 seconds, so 44 seconds is a quoted source value that the displayed inputs do not reproduce. At 768 float32 dimensions, the raw vectors occupy <code>8.2 × 10^8 bytes</code>, or about 820 MB.</p>
+<p>The quarterly 6% refresh touches <code>4.8 × 10^6</code> tokens and takes about 3 seconds of arithmetic. The compute ratio is about <code>2,180×</code> in favor of the datastore before serving any query. The independent ratio check is <code>(6 / 2) × (8 × 10^9 / 1.1 × 10^8) × 10</code>. Its three factors are backward-pass overhead near 3, a parameter-count ratio near 72.7, and 10 epochs. It also yields about <code>2,180</code>.</p>
+<h4 id="practical-decisions-from-the-frame">Practical decisions from the frame</h4>
+<ul>
+<li>Route facts to <code>D</code> and behavior to <code>θ</code> by default.</li>
+<li>Keep a required disclaimer or fixed schema in behavior when it must appear even if no query asks for it.</li>
+<li>Choose the store by change frequency and correction deadline. If a correction must land within days, weights are the wrong store.</li>
+<li>Use weights for information that is genuinely static over the model's service life.</li>
+<li>Size the generator by comprehension load. Measure grounding and conflict resolution at fixed <code>k</code> before shrinking it.</li>
+<li>Keep licensed text, PII, and data with deletion obligations in the datastore.</li>
+<li>Put data into weights only when it is provably unencumbered and its distribution is what training should teach.</li>
+<li>Name the routing frame aloud before proposing architecture. If the interviewer has fixed the split, reason within that constraint.</li>
+<li>For an invented SKU, move the changing catalog to <code>D</code>, keep fine-tuning for response format, and use exact-match signals for the identifier field.</li>
+<li>A store growing from 2 million to 200 million chunks does not by itself justify shrinking a 70-billion-parameter generator to 8 billion. Test the increased reading load.</li>
+<li>If a licensed corpus must leave within 30 days, separate the claimed four-point language-competence loss from retrievable knowledge and keep the encumbered material deletable.</li>
+</ul>
+<h3 id="12-the-five-bottlenecks-that-created-rag">1.2 The five bottlenecks that created RAG</h3>
+<h4 id="one-storage-choice-five-consequences">One storage choice, five consequences</h4>
+<p>The source's interview brief has 40,000 policy documents. A legal team audits every answer. A compliance officer can require one customer's data to be deleted within 30 days. The team has a 27-billion-parameter open-weight model and eight accelerators. Saying only that fine-tuning hallucinates is incomplete.</p>
+<p>Even a correct parametric answer cannot identify its source document, guarantee deletion, or avoid retraining cost.</p>
+<h4 id="bottleneck-1-factual-error">Bottleneck 1: factual error</h4>
+<p>Weight storage is frequency-weighted and lossy. Accuracy rises with the number of pre-training documents that mention a question's subject. Rare enterprise facts occupy the weak tail. Adding corpus volume is not proportional to adding distinct facts because web data is heavily correlated. Scaling parameters also fails as a practical tail strategy.</p>
+<p>The cited trend extrapolates human-level long-tail accuracy to about <code>10^18 parameters</code>. At 2 bytes per bf16 parameter, the weights would occupy <code>2 × 10^18 bytes</code>. Holding them would require <code>2.5 × 10^7</code> accelerators with 80 GB each. That is 25 million cards for inference weights alone. The <code>10^18</code> estimate is an extrapolation from a fitted curve, not a measurement.</p>
+<p>The source notes that no trained model is within nine orders of magnitude of it. Later in the same chapter, it characterizes the estimate as six orders beyond deployed systems. The point is an order-of-magnitude impossibility argument.</p>
+<h4 id="bottleneck-2-no-verification">Bottleneck 2: no verification</h4>
+<p>A fact is a diffuse perturbation across weights, not a value stored at a document address. A sampled token carries no return address to the document that influenced training. Asking the model to cite does not reconstruct provenance and can produce a confabulated citation. The weight tensor is also undated. The correct answer to a leadership question can move from one person to another while the stored tendency stays stale.</p>
+<p>The source illustrates that drift with a leadership answer moving from Jack Dorsey to Linda Yaccarino and then to another successor.</p>
+<h4 id="bottleneck-3-update-cost">Bottleneck 3: update cost</h4>
+<p>Full fine-tuning with Adam in FP32 costs <code>4N</code> bytes for weights, <code>4N</code> for gradients, and <code>8N</code> for optimizer moments. The total is <code>16N bytes</code> before one activation. At <code>N = 27 billion</code>, that is 432 GB. The forward-pass weights alone are 108 GB. Training on only the changed document induces catastrophic forgetting.</p>
+<p>Replay data is required to protect prior capability.</p>
+<h4 id="bottleneck-4-no-bounded-opt-out">Bottleneck 4: no bounded opt-out</h4>
+<p>There is no operation that deletes one source document from a tensor. The cited memorization results establish three regularities. Larger models memorize more. Repeated examples are more extractable. Extractability rises as an attacker supplies more context tokens.</p>
+<p>Unlearning reverses the training sign to punish specified sequences. It requires enumerating every target sequence in advance. The core problem is that the sensitive content in a large corpus is abundant and not fully known.</p>
+<h4 id="bottleneck-5-model-size">Bottleneck 5: model size</h4>
+<p>Training compute couples knowledge capacity to language competence. In this formula, <code>N</code> is parameter count and <code>D</code> is training-token count rather than the datastore.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≈</mo><mn>6</mn><mi>N</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">C \approx 6ND</annotation></semantics></math></p>
+<p>Every fact placed in weights is paid for through a larger model at every forward pass. That includes queries that need no external facts. Scaling can narrow factual error. It leaves verification and deletion unchanged and makes updates and serving more expensive. Model editing is not a complete escape.</p>
+<p>Changing neurons associated with one fact can perturb unrelated knowledge and leave contradictory beliefs.</p>
+<h4 id="worked-example-one-policy-changes-on-tuesday">Worked example: one policy changes on Tuesday</h4>
+<p>The setup uses 40,000 documents, a 27-billion-parameter model, and eight 80 GB accelerators. Each accelerator sustains <code>3.4 × 10^14 FLOPs per second</code>. For continual fine-tuning, <code>16N</code> is 432 GB. That is 5.4 cards before activations, so six of the eight cards are consumed before the run begins. The replay budget is <code>1 × 10^9 tokens</code>.</p>
+<p>Compute is <code>1.62 × 10^20 FLOPs</code>. Aggregate throughput is <code>2.72 × 10^15 FLOPs per second</code>. Elapsed time is <code>5.96 × 10^4 seconds</code>, or 16.5 hours. The run consumes 132 GPU-hours. At $2.50 per GPU-hour, it costs roughly $330 before the full regression suite.</p>
+<p>For model editing, the source assumes about 50 atomic statements per document. The corpus then contains <code>2 × 10^6</code> facts. At 3% annual churn, it receives 60,000 edits per year, or 164 per day. Each edit needs a regression check because it can perturb neighboring knowledge. The arrival rate, not the cost of one edit, is the bottleneck.</p>
+<p>For retrieval, the changed document becomes twenty 400-token chunks. A 110-million-parameter bi-encoder processes them in <code>1.76 × 10^12 FLOPs</code>. That is about 5.2 milliseconds at the assumed sustained rate, plus an index upsert. The elapsed-time ratio against continual fine-tuning is about <code>1.1 × 10^7</code>. That is seven orders of magnitude for the same update.</p>
+<p>The later deletion is a row removal. The compute identity is checked against GPT-3. For 175 billion parameters and 300 billion tokens, it predicts <code>3.15 × 10^23 FLOPs</code>. The reported training compute is <code>3.14 × 10^23 FLOPs</code>. The 16.5-hour estimate therefore depends mainly on the replay budget assumption.</p>
+<h4 id="practical-decisions-from-the-five-bottlenecks">Practical decisions from the five bottlenecks</h4>
+<ul>
+<li>Run all five bottlenecks against every proposal to put company documents into weights.</li>
+<li>Use fine-tuning for stable, always-needed, non-attributable behavior such as house style, output format, and domain jargon.</li>
+<li>Price memory with <code>16N</code> and training compute with <code>6ND</code> before rejecting the parametric route.</li>
+<li>Below roughly 1 billion parameters, a full fine-tune can take hours on one card. The argument then shifts toward attribution and opt-out.</li>
+<li>Keep customer data, licensed corpora, and retention-controlled data out of weights by default.</li>
+<li>Deleting a datastore row does not remove text memorized during base-model pre-training.</li>
+<li>A stronger model can help high-popularity closed-book accuracy. It does not solve bottlenecks 2 through 5.</li>
+<li>Size update systems by arrival rate. For facts that change annually or less, a scheduled retrain may be simpler.</li>
+<li>A million-token context can paste in a changed policy and keep its source text visible. It also turns index work into per-query prefill and does not solve every opt-out concern.</li>
+<li>Cheap fine-tuning addresses factual fit but leaves attribution, deletion, and coupled serving size intact.</li>
+<li>The long-context argument flips only if prefilling that million-token context costs less than the ranked retrieval stage it replaces.</li>
+</ul>
+<h3 id="13-the-five-benefits-and-what-each-one-costs-you">1.3 The five benefits, and what each one costs you</h3>
+<h4 id="one-responsibility-moves-five-times">One responsibility moves five times</h4>
+<p>The generation step can be written as a conditional answer over the query and retrieved chunks.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo>,</mo><mo>RET</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p_{\theta}(y \mid x, \mathop{\text{RET}}(x, D))</annotation></semantics></math></p>
+<p>The weights are learned and then frozen for service. The datastore is queried at inference time. Each claimed RAG benefit transfers one responsibility from the weights to that datastore. The responsibility does not disappear. It acquires a new operational failure surface.</p>
+<h4 id="benefit-1-factual-correctness">Benefit 1: factual correctness</h4>
+<p>The fact no longer has to survive pre-training compression. Rare entities that appeared only a few times can be supplied directly from a document. The cost is placing retrieval on the critical path. A wrong passage can override a parametric answer that would have been correct. The cited PopQA comparison measures this reversal on roughly 10% of questions.</p>
+<p>Retrieval miss and retrieval-induced harm are therefore part of the correctness budget.</p>
+<h4 id="benefit-2-attribution">Benefit 2: attribution</h4>
+<p>Retrieved chunks carry document identifiers, so generated claims can point back to supplied sources. The source names inline citation markers and GopherCite's verified quotes as examples. Purely parametric generation offers no equivalent path from a token to one training document. The cost is that a citation marker is a provenance claim, not proof of support. A generator can cite a passage it did not use or a passage that does not entail the sentence.</p>
+<p>GopherCite samples multiple candidate answers and reranks them against quoted spans. Honest verified attribution therefore multiplies generation cost by the sample count.</p>
+<h4 id="benefit-3-data-opt-out">Benefit 3: data opt-out</h4>
+<p>If a document exists only in <code>D</code>, removal is a row deletion. If it has entered <code>θ</code>, removal becomes the sequence-enumeration problem of unlearning. The cited low-risk split trains weights only on permissively usable text. Copyrighted, private, and attribution-required material stays in a test-time datastore that can be amended or dropped. The cost appears in the cited perplexity tables.</p>
+<p>A model trained only on public-domain text is a weaker language model. Retrieval must repay that quality gap on every query, including queries that need no facts.</p>
+<h4 id="benefit-4-adaptability">Benefit 4: adaptability</h4>
+<p>A current office-holder can change without a gradient step. The price is an index with a freshness objective, ingestion pipeline, and rebuild cadence. The stale parametric prior remains underneath the new passage and can contradict it.</p>
+<h4 id="benefit-5-parameter-efficiency">Benefit 5: parameter efficiency</h4>
+<p>A generator that does not need to memorize the world can be smaller. The cited Min et al. result shows a retrieval-augmented model matching a much larger parametric RoBERTa on the two senses of <code>cheap</code>. The retrieved neighbors preserve the distinction between inexpensive and poor-quality construction that the weights had collapsed. The price is index memory and a second latency stage. Continual fine-tuning does not reproduce all five benefits.</p>
+<p>It has no source attribution because gradients erase provenance. It has no bounded delete because targets must be enumerated. It pays catastrophic forgetting on updates and may require synthetic replay from the original model.</p>
+<h4 id="worked-example-27-billion-parameters-versus-7-billion-plus-an-index">Worked example: 27 billion parameters versus 7 billion plus an index</h4>
+<p>The documentation corpus contains <code>10^7</code> chunks at 768 dimensions. Serving weights use bf16 at 2 bytes per parameter. A 27-billion-parameter model occupies 54 GB of accelerator memory. In FP32 it would occupy 108 GB. On an 80 GB H100, the bf16 model leaves about 26 GB for KV cache and activations.</p>
+<p>It leaves no room for a second tenant. A 7-billion-parameter generator occupies 14 GB. The change frees 40 GB of HBM. The raw float32 vectors occupy <code>10^7 × 768 × 4 = 30.7 GB</code>. The HNSW graph uses <code>M = 16</code>.</p>
+<p>Its base layer stores up to <code>2M = 32</code> four-byte neighbor identifiers per node. Those lists add 1.28 GB. The total index size is 32.0 GB. The trade is not 40 GB saved against 32 GB spent in the same medium. The saved bytes are accelerator HBM.</p>
+<p>The spent bytes are host DRAM on a machine with no graphics processor. The source describes host memory as roughly an order of magnitude cheaper per byte. IVF-PQ at 96 bytes per vector stores the same <code>10^7</code> vectors in 0.96 GB. That is 32 times smaller than the raw vector store. The extra stage adds prompt work.</p>
+<p>At <code>k = 5</code> chunks and 400 tokens per chunk, retrieval adds 2,000 prompt tokens. A forward pass is approximated as <code>2PT FLOPs</code> for <code>P</code> parameters and <code>T</code> tokens. For the 7-billion-parameter generator, prefill costs <code>2.8 × 10^13 FLOPs</code>. At <code>3.4 × 10^14 FLOPs per second</code>, that is 82 milliseconds. The vector arithmetic is checked against a shipped DPR index.</p>
+<p>Twenty-one million Wikipedia passages at 768 float32 dimensions require 64.5 GB. The DPR release reports roughly 65 GB.</p>
+<h4 id="practical-decisions-from-the-benefit-ledger">Practical decisions from the benefit ledger</h4>
+<ul>
+<li>Compute <code>N × d × 4</code> before choosing index compression.</li>
+<li>Move to IVF-PQ or scalar quantization when flat vectors exceed roughly 60% of node memory. At <code>10^7 × 768</code>, that threshold is near a 64 GB host.</li>
+<li>Use chunk-level citations by default because they add one response field and no extra generation.</li>
+<li>Use verified-quote decoding when an unsupported sentence creates liability in regulated medical, legal, or financial output.</li>
+<li>Budget sample-and-rerank as a generation multiplier, not as a free citation feature.</li>
+<li>Keep the generator's broad parametric knowledge unless licensing is the binding constraint.</li>
+<li>Use low-risk-only training when a contract or jurisdiction requires proof that specified text never entered training.</li>
+<li>Gate retrieval instead of calling it on every query. This avoids harmful flips and saves the 82-millisecond prefill in the example.</li>
+<li>Retrieve unconditionally when the corpus is private and the model has no parametric coverage, because the gate has no correct skip path.</li>
+<li>State ingestion lag, rebuild cadence, and mid-rebuild reader behavior.</li>
+<li>An append-only immutable corpus, such as statutes or published papers, can use a simpler nightly incremental build.</li>
+</ul>
+<h3 id="14-rag-is-one-instance-of-tool-use-not-the-general-case">1.4 RAG is one instance of tool use, not the general case</h3>
+<h4 id="the-formal-boundary">The formal boundary</h4>
+<p>A RAG system first retrieves passages and then generates from them.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo>=</mo><mo>RET</mo><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">c_1, \ldots, c_k = \mathop{\text{RET}}(x, D)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msub><mo>GEN</mo><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y = \mathop{\text{GEN}}_{\theta}(x, c_1, \ldots, c_k)</annotation></semantics></math></p>
+<p>A tool-augmented generator generalizes that sequence by choosing a tool and arguments before producing an answer.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>o</mi><mi>i</mi></msub><mo>=</mo><msub><mo>TOOL</mo><msub><mi>t</mi><mi>i</mi></msub></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>a</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">o_i = \mathop{\text{TOOL}}_{t_i}(a_i)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>i</mi></msub><mo>∈</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">t_i \in T</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msub><mo>GEN</mo><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>o</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>o</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y = \mathop{\text{GEN}}_{\theta}(x, o_1, \ldots, o_m)</annotation></semantics></math></p>
+<p>RAG is the special case where <code>|T| = 1</code>. The sole tool is <code>RET</code>. Its argument is the query or a reformulation of the query. Its return type is passages in the model's token space, each with a document identifier. The boundary is the contract, not the index technology.</p>
+<p>BM25 over web pages can satisfy the RAG contract. A search endpoint that returns only a synthesized answer string does not preserve it.</p>
+<h4 id="what-general-tool-use-adds">What general tool use adds</h4>
+<p>Tool selection turns a fixed retrieval pipeline into a policy. When <code>|T| &gt; 1</code>, a classifier, router, or learned policy must choose <code>t_i</code>. The source names Toolformer as a self-supervised tool-selection approach. It names ReAct as an approach that interleaves reasoning and actions in the trace. It also notes that retrieval research can cast answer-versus-search as a reinforcement-learning policy.</p>
+<p>Argument synthesis produces a query or payload before the call runs. A weak retrieval query usually degrades into poor ranking. A malformed SQL or JSON argument can fail to parse. A syntactically valid argument with the wrong date range can return a plausible but wrong number. Effects remove cheap retry.</p>
+<p>Calling read-only retrieval twice adds latency but no second state change. Calling a ticket-creation tool twice can create a duplicate action.</p>
+<h4 id="why-retrieval-has-a-distinct-contract">Why retrieval has a distinct contract</h4>
+<p>The generator already knows how to read text in context, so passages require no new model capability. An answer span can be traced to a retrieved chunk and then to a source document. A human can audit the answer against those passages without trusting the model's hidden computation. A calculator that returns 42 has a different contract. Its warrant is the calculator's correctness, not a cited document.</p>
+<p>RAG returns evidence that can be cited. Other tools often return values that must be trusted. The evidence-returning, state-mutating quadrant is nearly empty. A retrieval call that logs a query or decrements a quota remains citable but is no longer free to retry. That distinction matters when a low-confidence loop re-queries.</p>
+<h4 id="why-indexing-everything-fails">Why indexing everything fails</h4>
+<p>A relevance index returns the best few passages. An aggregate, count, average, or exhaustive list can depend on every matching record. If the answer depends on <code>M</code> records and retrieval returns <code>k</code>, the retriever supplies at most <code>min(k, M)</code> records. Evidence coverage is <code>min(k, M) / M</code>, which becomes <code>k / M</code> when <code>M &gt; k</code>. A flawless ranker still fails because it optimizes relevance rather than completeness. The source names these corpus-wide demands global or sensemaking queries.</p>
+<h4 id="worked-example-route-1000-production-queries">Worked example: route 1,000 production queries</h4>
+<p>The traffic mix has 620 lookups, 180 aggregates, 120 actions, and 80 closed-book queries. A RAG-only design uses <code>k = 20</code>. It can serve the 620 lookups and 80 closed-book queries. Its ceiling is <code>700 / 1,000 = 70%</code>. The 120 actions score zero because retrieval has no write path.</p>
+<p>The aggregate example has 3,200 Europe, Middle East, and Africa invoices, one per chunk. Evidence coverage is <code>20 / 3,200 = 0.625%</code>. A sum over 0.625% of the addends is wrong unless the omitted 3,180 invoices cancel to zero. A routed design keeps the 620 lookups on retrieval. It sends the 180 aggregates to a text-to-SQL tool that scans all 3,200 rows.</p>
+<p>That moves the failure surface from incomplete recall to query synthesis, which can be unit-tested against the database. It sends the 120 actions to a write API behind confirmation. Raising <code>k</code> to cover every invoice would add <code>3,200 × 50 = 160,000</code> tokens. That does not fit a 128,000-token context window. At an assumed $3 per million input tokens, the prefill would cost $0.48 per query.</p>
+<p>The SQL aggregate returns one row of about 20 tokens. The retrieval route uses 8,000 times as many input tokens for the same answer. Production analytics systems scan an index or columnar store for a complete sum rather than ranking rows by relevance.</p>
+<h4 id="practical-routing-decisions">Practical routing decisions</h4>
+<ul>
+<li>If an answer depends on a few passages, retrieve.</li>
+<li>If it depends on every matching record, use a query or compute tool.</li>
+<li>If it changes the world, use an action tool behind confirmation.</li>
+<li>When <code>M &lt;= k</code>, retrieval can still be complete. Listing three support tiers at <code>k = 20</code> does not require SQL.</li>
+<li>Keep read-only tools inside retry loops and mutating tools outside them.</li>
+<li>A mutating call can enter the loop only when it is idempotent by key.</li>
+<li>Return passages plus source identifiers, not a pre-digested answer string.</li>
+<li>If latency requires server-side summarization, return both the summary and source identifiers.</li>
+<li>Add a router when more than one answer shape materially appears in traffic.</li>
+<li>Below roughly 10% non-lookup volume, one retrieval path plus abstention can beat the cost of a router.</li>
+<li>Above that range, the 70% ceiling in the worked traffic mix becomes material.</li>
+<li>An encoder-scale classifier is sufficient for triage in the source's recommendation.</li>
+<li>Before adding RAG to an agent, ask whether an existing search tool already returns passages with source locations.</li>
+<li>If no SQL surface exists, use a metadata-filtered count only when the schema makes it complete. Otherwise abstain.</li>
+<li>A unified agent loop can keep citations only if its retrieval tool still returns passages with source identifiers. Measure citation coverage before and after the migration because the learned policy can skip retrieval.</li>
+</ul>
+<h3 id="15-when-not-to-retrieve-the-popularity-curve-and-retrieval-induced-harm">1.5 When not to retrieve: the popularity curve and retrieval-induced harm</h3>
+<h4 id="the-measured-failure">The measured failure</h4>
+<p>Retrieval is not a strict improvement. The cited PopQA study reports that retrieval flips a correct closed-book answer to a wrong answer on roughly 10% of questions. The unassisted model wins outright on the high-popularity slice. Always retrieving can therefore improve the aggregate while regressing the most common queries. The failure is not necessarily fixed by a better reranker.</p>
+<p>It follows from the relationship between what the model already knows and what retrieval can spoil.</p>
+<h4 id="the-popularity-model">The popularity model</h4>
+<p>Let <code>s</code> be subject popularity measured by monthly Wikipedia page views. Pre-training text follows a power-law distribution over entities. Popular subjects receive more supporting documents. Their facts are therefore more likely to survive in the weights. Let <code>p(s)</code> be closed-book accuracy.</p>
+<p>Let <code>r(s)</code> be retrieval-augmented accuracy. Both rise with popularity because popular entities are also easier to index. Closed-book accuracy rises faster after retrieval has found one good page because additional popularity adds less retrieval value. Let <code>g</code> be the chance that retrieval supplies the answer when the closed-book answer was wrong. Let <code>h</code> be the chance that retrieved context overrides a correct closed-book answer.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>g</mi><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">r(s) = p(s) + (1 - p(s))g - p(s)h</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>g</mi><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mi>h</mi></mrow><annotation encoding="application/x-tex">\Delta(s) = r(s) - p(s) = (1 - p(s))g - p(s)h</annotation></semantics></math></p>
+<p>Retrieval helps when the rescue term exceeds the harm term.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>&lt;</mo><mfrac><mi>g</mi><mi>h</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{p(s)}{1 - p(s)} &lt; \frac{g}{h}</annotation></semantics></math></p>
+<p>The equivalent accuracy threshold is below.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>&lt;</mo><msup><mi>p</mi><mo>⋆</mo></msup><mo>=</mo><mfrac><mi>g</mi><mrow><mi>g</mi><mo>+</mo><mi>h</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">p(s) &lt; p^{\star} = \frac{g}{g + h}</annotation></semantics></math></p>
+<p>Because <code>p(s)</code> rises monotonically and <code>p⋆</code> does not depend on <code>s</code>, the curves cross once. The crossover is <code>s⋆</code>, where <code>p(s⋆) = p⋆</code>. Retrieval helps below <code>s⋆</code> and harms above it. The threshold <code>p⋆</code> is a property of the retriever and reader through <code>g / h</code>, not a property of one question. A small harm rate can dominate in the popular head.</p>
+<p>There, <code>1 - p</code> is near zero and suppresses rescue while <code>p</code> is near one and preserves harm.</p>
+<h4 id="what-creates-the-harm-rate">What creates the harm rate</h4>
+<p>On the slice where retrieval flips a correct answer, recall at 1 is significantly lower than overall recall. The first-ranked document is often topically related but does not contain the answer. A grounding prompt tells the reader to trust that supplied passage. The strongest distractor in the corpus can then override correct parametric knowledge. The harm rate is approximately rank-1 imprecision filtered through how strongly the prompt orders context use.</p>
+<p>Always-retrieve wins on average when <code>E[(1 - p)g] - E[ph] &gt; 0</code>. It still pays the loss on the popular head, which can carry most traffic and executive scrutiny. Never-retrieve fails on the rare tail. The source again cites the <code>10^18</code> parameter extrapolation as the infeasible scale-only alternative. Popularity is not difficulty.</p>
+<p>For any <code>h &gt; 0</code>, <code>p⋆ &lt; 1</code>. Better retrieval can shrink the harm region, but it disappears only if the reader never prefers an incorrect retrieved passage over correct parametric knowledge. A stronger generator can move the crossover back toward less-popular queries.</p>
+<p>A popular subject can still require fresh, ambiguous, or multi-step evidence. An obscure question can become easy once its one good page is present. The gate must estimate where the answer already lives, not whether the wording looks easy.</p>
+<h4 id="worked-example-100000-daily-queries">Worked example: 100,000 daily queries</h4>
+<p>The head has at least <code>10^5</code> monthly page views and carries 55% of queries. The torso spans <code>10^3</code> to <code>10^5</code> views and carries 30%. The tail is below <code>10^3</code> views and carries 15%. Closed-book accuracies are 0.90 for head, 0.55 for torso, and 0.20 for tail. The assumed rescue rate is <code>g = 0.55</code>.</p>
+<p>Traffic-weighted closed-book accuracy is 0.690. The 10% observed flip rate is treated as <code>h × 0.690</code>. That yields <code>h = 0.145</code>. The threshold is <code>p⋆ = 0.79</code>. The head lies above the threshold.</p>
+<p>The torso and tail lie below it. After retrieval, bucket accuracies are 0.825 for head, 0.718 for torso, and 0.611 for tail. Closed-book-only accuracy is 69.0%. Always-retrieve accuracy is 76.1%. That is a 7.1-point aggregate gain and a 7.5-point loss on the head bucket.</p>
+<p>The head bucket is 55% of traffic. Selective retrieval keeps the head closed-book and retrieves for torso and tail. Its accuracy is 80.2%. That is 4.1 points above always-retrieve. The recovered amount is exactly <code>0.55 × 0.075 = 0.041</code>.</p>
+<p>Each retrieved query adds five chunks of 400 tokens, or 2,000 prompt tokens. Always-retrieve prefills 200 million extra tokens per day. Selective retrieval runs for 45,000 queries and prefills 90 million extra tokens per day. That is a 55% cut in prompt tokens, ANN searches, and reranker calls. The accuracy gain and cost cut point in the same direction because the removed work was harmful.</p>
+<p>The source sanity-checks <code>g = 0.55</code> against DPR top-20 retrieval accuracy near 78% on Natural Questions. A reader does not exploit every answer-bearing passage it receives. The assumed 55% rescue rate therefore remains inside the reported retrieval envelope.</p>
+<h4 id="practical-gating-decisions">Practical gating decisions</h4>
+<ul>
+<li>Slice evaluation into at least three popularity buckets before reporting an aggregate.</li>
+<li>For queries without linkable entities, use query frequency or head-phrase frequency in product logs as the proxy.</li>
+<li>Start with always-retrieve until the crossover is measured, then gate above it.</li>
+<li>If cost is the binding constraint, tune the gate to a spend target and report the accepted accuracy loss.</li>
+<li>Estimate <code>h</code> from rank-1 precision and prompt trust, not intuition.</li>
+<li>A prompt that says to answer only from supplied context raises <code>h</code>, lowers <code>p⋆</code>, and moves <code>s⋆</code> left.</li>
+<li>Re-measure the crossover after a generator or retriever change.</li>
+<li>A stronger generator raises <code>p(s)</code>, moves <code>s⋆</code> left, and expands the harm region.</li>
+<li>A stronger retriever raises <code>g</code>, lowers <code>h</code>, raises <code>p⋆</code>, and shrinks the harm region.</li>
+<li>For a minor version change, the source recommends re-measuring on a 2,000-query sample.</li>
+<li>Alert on head-bucket accuracy separately because an aggregate cannot expose a majority-traffic regression.</li>
+<li>Keep the gate and re-measure quarterly. Retire it only when the harm region falls below an agreed traffic share.</li>
+<li>Without relevance labels, run both branches offline on a few thousand sampled queries. Score against resolved tickets, human feedback, or a model judge calibrated on held-out human judgments, then locate the bucket where closed-book stops losing.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest records five figures and zero source tables. All five figures appear below. Figure 1.4 is a numbered figure rendered as a Markdown matrix, not a source table.</p>
+<h3 id="figure-11">Figure 1.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Q[query x]
+    D[D: non-parametric datastore. Capacity grows with stored rows. Write one embedded chunk and row. Reversible in seconds.]
+    W[[θ: parametric weights. Capacity fixed before training. Write with a gradient pass over every parameter. Entangled and measured in GPU-hours.]]
+    R[RET returns c_1 through c_k]
+    G[GEN reads x and c_1 through c_k]
+    Y[answer y]
+    Q --&gt;|retrieve| D
+    Q --&gt;|condition| W
+    D --&gt; R
+    R --&gt; G
+    W --&gt; G
+    G --&gt; Y
+    style D stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 1.1: RAG is semi-parametric because it holds knowledge in two stores whose write costs differ by orders of magnitude: a row in D can be inserted, corrected, or deleted in seconds, while the same edit to θ costs a gradient pass and cannot be undone.</p>
+<h3 id="figure-12">Figure 1.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    W[Knowledge lives in N weights. Diffuse. No address. Undated. Inseparable. Priced with fluency.]
+    B1[1. Factual error. Frequency-weighted and lossy. Failed fix: scale toward 10^18 parameters.]
+    B2[2. No verification. Tokens have no source return address. Failed fix: generated citations can be false.]
+    B3[3. Update cost. One changed fact moves weights at 16N bytes. Failed fix: continual training causes forgetting.]
+    B4[4. No opt-out. A tensor has no document delete. Failed fix: unlearning needs enumerated targets.]
+    B5[5. Model size. C ≈ 6ND. Facts and fluency are priced together. Failed fix: the coupling is architectural.]
+    W --&gt; B1
+    W --&gt; B2
+    W --&gt; B3
+    W --&gt; B4
+    W --&gt; B5</code></pre></details></figure>
+<p>Figure 1.2: The five bottlenecks are five consequences of a single storage decision, which is why scaling the model relieves at most one of them and worsens two.</p>
+<h3 id="figure-13">Figure 1.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    W[weights θ]
+    D[datastore D]
+    B1[Correctness: facts come from documents. Cost: every retrieval miss.]
+    B2[Attribution: answers carry pointers. Cost: a pointer is a claim, not proof.]
+    B3[Opt-out: documents can be deleted. Cost: weights must exclude them.]
+    B4[Adaptability: new facts need no retraining. Cost: index freshness becomes an objective.]
+    B5[Parameter efficiency: the generator can be smaller. Cost: index bytes and another latency stage.]
+    W --&gt; B1 --&gt; D
+    W --&gt; B2 --&gt; D
+    W --&gt; B3 --&gt; D
+    W --&gt; B4 --&gt; D
+    W --&gt; B5 --&gt; D
+    style D stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 1.3: Each RAG benefit is one responsibility moved from the weights to the datastore, and each move hands you a new failure surface on the receiving side.</p>
+<h3 id="figure-14">Figure 1.4</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Tool effect and retry contract</th>
+<th>Returns evidence: passages with source identifiers</th>
+<th>Returns a value: computed result with no source passage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Side-effect free and retryable</td>
+<td><strong>RAG.</strong> Retrieval over datastore <code>D</code>, enterprise search, or web search. Citable and retryable.</td>
+<td>Calculator, Python sandbox, SQL over a warehouse, or read-only API. Trusted and not citable.</td>
+</tr>
+<tr>
+<td>Mutates state and is not retryable</td>
+<td>Nearly empty. A few calls both change the world and return evidence.</td>
+<td>Create ticket, send email, place order, or write to CRM. Neither citable nor retryable.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 1.4: RAG occupies the one quadrant of the tool space where the call is safe to retry and its result is citable. Every other tool class surrenders one property or both, which is why attribution and recall-style evaluation transfer to retrieval and to nothing else.</p>
+<h3 id="figure-15">Figure 1.5</h3>
+<pre class="text"><code>accuracy
+1.0 |                                      p(s) closed-book
+    |                                 ____/
+    |                         _______/#### retrieval-induced harm
+    |          r(s) retrieval .......x........
+0.5 |       ................../       | p &gt; p⋆
+    |                    ____/        |
+    |        retrieval _/             |
+    |        wins here                 | s⋆
+0.0 +------------------------------------------------ popularity s
+      10^1     10^2     10^3     10^4     10^5     10^6
+
+production traffic by popularity bucket
+tail 15%          | torso 30%                  | head 55%</code></pre>
+<p>Figure 1.5: Closed-book accuracy climbs steeply with subject popularity while retrieval-augmented accuracy climbs slowly, so the curves cross once. To the right of s⋆ retrieval is a net loss per query, and in a realistic query mix that region carries the majority of the traffic.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a left box labeled <code>D: addressable datastore</code> and a right box labeled <code>θ: entangled weights</code>.</li>
+<li>Put <code>query x</code> above both boxes.</li>
+<li>Draw the retrieval arrow from <code>x</code> to <code>D</code> and label its output <code>c_1 ... c_k</code>.</li>
+<li>Draw the conditioning arrow from <code>x</code> to the weights.</li>
+<li>Join retrieved chunks and weights at a generator box, then draw <code>answer y</code> below it.</li>
+<li>Write the five weight bottlenecks beside the weights: error, no source, update, no delete, coupled size.</li>
+<li>Write the five datastore transfers beside <code>D</code>: correctness, attribution, opt-out, adaptability, efficiency.</li>
+<li>Add a gate above retrieval and label it <code>retrieve only when expected rescue exceeds expected harm</code>.</li>
+<li>Close with the routing rule: few passages use retrieval, complete sets use query tools, and state changes use confirmed action tools.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>The design has two knowledge stores. The weights hold behavior and compressed prior knowledge, while the datastore holds addressable facts. A query can go straight to the generator or retrieve passages first. This split fixes five weight bottlenecks: long-tail error, missing provenance, expensive updates, no bounded deletion, and facts priced with fluency. Each fix creates a datastore cost, including misses, stale indexes, index memory, and extra prefill. I gate retrieval because a distracting passage can override a correct answer. I also route aggregates to complete query tools and state changes to confirmed action tools.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-not-fine-tune-on-every-company-document">1. Why not fine-tune on every company document?</h3>
+<p>Fine-tuning can improve fixed-corpus factual fit, but it does not create source addresses or bounded deletion. Price the proposal with <code>16N</code> memory and <code>6ND</code> training work, then keep changing, attributable, or deletable facts in the datastore.</p>
+<h3 id="2-can-a-larger-datastore-justify-a-much-smaller-generator">2. Can a larger datastore justify a much smaller generator?</h3>
+<p>Not automatically. A larger store increases near-duplicates, contradictions, and reading load, so compare grounded accuracy and conflict resolution at fixed <code>k</code> before shrinking the generator.</p>
+<h3 id="3-why-can-recall-at-20-be-high-while-totals-are-wrong">3. Why can recall at 20 be high while totals are wrong?</h3>
+<p>Recall asks whether relevant passages appear, but an aggregate needs all <code>M</code> matching records. At <code>M = 3,200</code> and <code>k = 20</code>, coverage is capped at 0.625%, so use SQL or another complete compute tool.</p>
+<h3 id="4-when-should-retrieval-not-be-used">4. When should retrieval not be used?</h3>
+<p>Do not use retrieval for complete aggregates, mutating actions, or popular-subject questions above the measured crossover where harm exceeds rescue. Also skip it when the model already answers reliably and the added passage is more likely to distract than help.</p>
+<h3 id="5-does-a-citation-prove-that-an-answer-is-supported">5. Does a citation prove that an answer is supported?</h3>
+<p>No. Citation coverage only proves that a marker exists, so measure sentence-to-span support with an entailment check and budget verified sample-and-rerank by its generation multiplier.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Every committed number or threshold from the source unit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening design brief</td>
+<td>40,000 internal policy documents. One version begins three minutes into a round. Other prompts begin about twenty minutes into a round.</td>
+</tr>
+<tr>
+<td>Chapter ledger</td>
+<td>Five weight bottlenecks and five responsibility transfers define the central comparison.</td>
+</tr>
+<tr>
+<td>Dense-retriever qualifier</td>
+<td>A non-parametric datastore can still use an encoder with tens or hundreds of millions of trained weights.</td>
+</tr>
+<tr>
+<td>Compression corpus</td>
+<td>More than 15 trillion tokens and 8 billion parameters.</td>
+</tr>
+<tr>
+<td>Compression density</td>
+<td>About 1,875 tokens per parameter, 4 bytes per token, 2 bytes per bf16 parameter, 7,500 source bytes represented by 2 stored bytes, and about 3,750:1 compression.</td>
+</tr>
+<tr>
+<td>Rare-fact illustration</td>
+<td>A fact appearing three times in 15 trillion tokens is used as the long-tail example.</td>
+</tr>
+<tr>
+<td>Weight write</td>
+<td>A 27-billion-parameter model in FP32 occupies 108 GB before optimizer state.</td>
+</tr>
+<tr>
+<td>Corpus-routing example</td>
+<td>40,000 documents, 2,000 tokens each, 80 million tokens total, 6% quarterly change, and an 8-billion-parameter generator.</td>
+</tr>
+<tr>
+<td>Training identity</td>
+<td><code>6 × parameters × tokens</code>, split as 2 forward-pass parts and 4 backward-pass parts.</td>
+</tr>
+<tr>
+<td>Parametric corpus cost</td>
+<td><code>3.84 × 10^18 FLOPs</code> per epoch, 10 epochs, and <code>3.84 × 10^19 FLOPs</code> total.</td>
+</tr>
+<tr>
+<td>H100 assumption</td>
+<td>Roughly 1,000 trillion bf16 FLOPs per second peak, 34% utilization, and <code>3.4 × 10^14 FLOPs per second</code> sustained.</td>
+</tr>
+<tr>
+<td>Parametric elapsed time</td>
+<td><code>1.13 × 10^5 seconds</code>, about 31.4 GPU-hours, repeated each quarter over the full corpus.</td>
+</tr>
+<tr>
+<td>Datastore corpus cost</td>
+<td>300-token chunks, about <code>2.67 × 10^5</code> chunks, a 110-million-parameter encoder, <code>1.76 × 10^16 FLOPs</code>, and a quoted 44 seconds. Direct division by the displayed <code>3.4 × 10^14 FLOP/s</code> gives about 51.8 seconds.</td>
+</tr>
+<tr>
+<td>First index memory</td>
+<td>768 dimensions at 4 bytes each, <code>8.2 × 10^8 bytes</code>, or about 820 MB.</td>
+</tr>
+<tr>
+<td>Quarterly index refresh</td>
+<td>6% or 4.8 million tokens, taking about 3 seconds of arithmetic.</td>
+</tr>
+<tr>
+<td>Corpus route ratio</td>
+<td>About 2,180 times in favor of the datastore. The independent factors are 3, 72.7, and 10.</td>
+</tr>
+<tr>
+<td>Generator-sizing challenge</td>
+<td>The store grows from 2 million to 200 million chunks while the proposed generator shrinks from 70 billion to 8 billion parameters.</td>
+</tr>
+<tr>
+<td>Licensed-corpus challenge</td>
+<td>Withdrawal is required within 30 days and the disputed benchmark loss is four points.</td>
+</tr>
+<tr>
+<td>Compliance brief</td>
+<td>Deletion within 30 days, a 27-billion-parameter model, and eight accelerators.</td>
+</tr>
+<tr>
+<td>Correlated-corpus limit</td>
+<td>Five times the web tokens is stated to be nowhere near five times the distinct facts.</td>
+</tr>
+<tr>
+<td>Scale-only extrapolation</td>
+<td>About <code>10^18</code> parameters, <code>2 × 10^18 bytes</code>, and 25 million 80 GB accelerators. It is an extrapolation, not a measurement.</td>
+</tr>
+<tr>
+<td>Extrapolation distance</td>
+<td>The source describes no trained model within nine orders of magnitude and later describes the target as six orders beyond deployed systems.</td>
+</tr>
+<tr>
+<td>Adam memory</td>
+<td><code>4N</code> weights, <code>4N</code> gradients, <code>8N</code> moments, and <code>16N</code> total bytes before activations. At 27 billion parameters, this is 432 GB versus 108 GB for forward-pass weights.</td>
+</tr>
+<tr>
+<td>Exact Adam bytes</td>
+<td>The 27-billion-parameter state is <code>4.32 × 10^11 bytes</code>. A model ten times larger remains unauditable and undeletable while costing more to update.</td>
+</tr>
+<tr>
+<td>Memorization findings</td>
+<td>Three regularities are named: larger models, more repetition, and more attacker-supplied context each raise memorization or extractability.</td>
+</tr>
+<tr>
+<td>Continual update hardware</td>
+<td>Eight 80 GB accelerators, each at <code>3.4 × 10^14 FLOPs per second</code>. The 432 GB state is 5.4 cards, rounded to six before activations.</td>
+</tr>
+<tr>
+<td>Replay update cost</td>
+<td>1 billion replay tokens, <code>1.62 × 10^20 FLOPs</code>, <code>2.72 × 10^15 FLOPs per second</code> aggregate, <code>5.96 × 10^4 seconds</code>, 16.5 hours, and 132 GPU-hours.</td>
+</tr>
+<tr>
+<td>Replay update price</td>
+<td>About $330 at $2.50 per GPU-hour before regression evaluation.</td>
+</tr>
+<tr>
+<td>Model-edit arrival rate</td>
+<td>50 atomic statements per document, 2 million facts, 3% annual churn, 60,000 edits per year, and 164 per day.</td>
+</tr>
+<tr>
+<td>Retrieval update</td>
+<td>Twenty 400-token chunks, a 110-million-parameter bi-encoder, <code>1.76 × 10^12 FLOPs</code>, and about 5.2 milliseconds plus an upsert.</td>
+</tr>
+<tr>
+<td>Update route ratio</td>
+<td>About <code>1.1 × 10^7</code>, or seven orders of magnitude, in elapsed time.</td>
+</tr>
+<tr>
+<td>Compute sanity check</td>
+<td>GPT-3 at 175 billion parameters and 300 billion tokens gives <code>3.15 × 10^23 FLOPs</code> by the rule versus <code>3.14 × 10^23 FLOPs</code> reported.</td>
+</tr>
+<tr>
+<td>Small-model exception</td>
+<td>Below roughly 1 billion parameters, a full fine-tune can be hours on one card.</td>
+</tr>
+<tr>
+<td>Live pricing speed</td>
+<td>The source says the <code>16N</code> and <code>6ND</code> estimates can be stated in about twenty seconds.</td>
+</tr>
+<tr>
+<td>Long-context challenge</td>
+<td>The interview counterexample uses a 1-million-token context.</td>
+</tr>
+<tr>
+<td>Retrieval harm baseline</td>
+<td>Roughly 10% of questions flip from correct to wrong after retrieval.</td>
+</tr>
+<tr>
+<td>Fine-tuning benefit limit</td>
+<td>Continual fine-tuning promises all five responsibility transfers but delivers at most two.</td>
+</tr>
+<tr>
+<td>Citation diagnosis</td>
+<td>One interview prompt has 100% citation coverage but unsupported sentences.</td>
+</tr>
+<tr>
+<td>Deletion and eval conflict</td>
+<td>One prompt requires deletion within 24 hours while fine-tuning offers a three-point evaluation lift.</td>
+</tr>
+<tr>
+<td>Parameter-efficiency corpus</td>
+<td>10 million chunks at 768 dimensions and 2 bytes per bf16 parameter.</td>
+</tr>
+<tr>
+<td>Large generator memory</td>
+<td>27 billion parameters occupy 54 GB in bf16 or 108 GB in FP32. On an 80 GB H100, about 26 GB remains.</td>
+</tr>
+<tr>
+<td>Smaller generator memory</td>
+<td>7 billion parameters occupy 14 GB and free 40 GB of HBM.</td>
+</tr>
+<tr>
+<td>HNSW index</td>
+<td>30.7 GB of raw vectors, <code>M = 16</code>, up to <code>2M = 32</code> four-byte identifiers per node, 1.28 GB of graph lists, and 32.0 GB total.</td>
+</tr>
+<tr>
+<td>Exact HNSW vector bytes</td>
+<td>The raw vectors occupy <code>3.07 × 10^10 bytes</code>.</td>
+</tr>
+<tr>
+<td>Memory-medium price</td>
+<td>The source describes host DRAM as roughly one order of magnitude cheaper per byte than accelerator HBM.</td>
+</tr>
+<tr>
+<td>Compressed index</td>
+<td>IVF-PQ uses 96 bytes per vector, 0.96 GB total, and 32 times less space than raw vectors.</td>
+</tr>
+<tr>
+<td>Retrieval prefill</td>
+<td>Five chunks at 400 tokens each add 2,000 tokens. The 7-billion-parameter prefill costs <code>2.8 × 10^13 FLOPs</code> and about 82 milliseconds.</td>
+</tr>
+<tr>
+<td>Forward and backward shares</td>
+<td>A forward pass is one third of <code>6PT</code> training work. The backward pass supplies the other two thirds.</td>
+</tr>
+<tr>
+<td>Published index check</td>
+<td>21 million passages at 768 float32 dimensions require 64.5 GB versus roughly 65 GB reported.</td>
+</tr>
+<tr>
+<td>Exact published-index bytes</td>
+<td>The DPR flat vectors occupy <code>6.45 × 10^10 bytes</code>.</td>
+</tr>
+<tr>
+<td>Compression trigger</td>
+<td>Compress when flat vectors exceed roughly 60% of node memory. The 10-million by 768 case lands near a 64 GB host.</td>
+</tr>
+<tr>
+<td>Chunk-citation overhead</td>
+<td>Chunk-level citation adds one response field and no extra generation in the source recommendation.</td>
+</tr>
+<tr>
+<td>Tool-set special case</td>
+<td>RAG has one tool in its tool set, the retriever.</td>
+</tr>
+<tr>
+<td>General-tool freedoms</td>
+<td>General tool use adds three degrees of freedom: tool selection, argument synthesis, and effects.</td>
+</tr>
+<tr>
+<td>Evidence-return consequences</td>
+<td>Passage returns yield three consequences: no new consumption capability, source tracing, and human auditability.</td>
+</tr>
+<tr>
+<td>Tool quadrant</td>
+<td>RAG occupies one of four retryability-by-return-type quadrants. The evidence-returning mutating quadrant is nearly empty, not entirely empty.</td>
+</tr>
+<tr>
+<td>Calculator illustration</td>
+<td>A calculator returns 42 without a source passage.</td>
+</tr>
+<tr>
+<td>Tool traffic mix</td>
+<td>One production week contains 1,000 queries: 620 lookups, 180 aggregates, 120 actions, and 80 closed-book questions.</td>
+</tr>
+<tr>
+<td>RAG-only ceiling</td>
+<td>At <code>k = 20</code>, 700 of 1,000 queries, or 70%, can be served in the example. Actions score zero.</td>
+</tr>
+<tr>
+<td>Aggregate coverage</td>
+<td>3,200 invoices at <code>k = 20</code> gives 0.625% coverage and omits 3,180 invoices.</td>
+</tr>
+<tr>
+<td>Long-context aggregate</td>
+<td>3,200 records at 50 tokens each require 160,000 tokens, beyond a 128,000-token window.</td>
+</tr>
+<tr>
+<td>Aggregate token price</td>
+<td>At $3 per million input tokens, 160,000 tokens cost $0.48. A 20-token SQL result is 8,000 times smaller in input length.</td>
+</tr>
+<tr>
+<td>Small complete set</td>
+<td>Three support tiers are complete at <code>k = 20</code>.</td>
+</tr>
+<tr>
+<td>Router threshold</td>
+<td>Below roughly 10% non-lookup traffic, one retrieval path plus abstention can beat a router.</td>
+</tr>
+<tr>
+<td>Retrieval metric trap</td>
+<td>The interview example gives recall at 20 of 0.94 while totals remain incomplete.</td>
+</tr>
+<tr>
+<td>Product-regression lag</td>
+<td>The always-retrieve regression example surfaces six weeks after launch.</td>
+</tr>
+<tr>
+<td>Popularity traffic</td>
+<td>100,000 queries per day. Head is at least <code>10^5</code> views and 55% of traffic. Torso is <code>10^3</code> to <code>10^5</code> and 30%. Tail is below <code>10^3</code> and 15%.</td>
+</tr>
+<tr>
+<td>Closed-book bucket accuracy</td>
+<td>Head 0.90, torso 0.55, tail 0.20, and weighted total 0.690.</td>
+</tr>
+<tr>
+<td>Rescue and harm</td>
+<td><code>g = 0.55</code>, observed flip rate 0.10, derived <code>h = 0.145</code>, and <code>p⋆ = 0.79</code>.</td>
+</tr>
+<tr>
+<td>Crossover count and limit</td>
+<td>The curves cross once. For any <code>h &gt; 0</code>, <code>p⋆ &lt; 1</code>, so the harm region cannot vanish unless harmful overrides reach zero.</td>
+</tr>
+<tr>
+<td>Figure 1.5 axes</td>
+<td>Accuracy marks are 0, 0.5, and 1.0. Popularity runs from <code>10^1</code> through <code>10^6</code> monthly page views on a log scale.</td>
+</tr>
+<tr>
+<td>Rescue-harm weighting</td>
+<td>In the popular head, a harm rate of a few percent can outweigh a rescue rate of about 50% because rescue is multiplied by <code>1 - p</code> and harm by <code>p</code>.</td>
+</tr>
+<tr>
+<td>Retrieved bucket accuracy</td>
+<td>Head 0.825, torso 0.718, and tail 0.611.</td>
+</tr>
+<tr>
+<td>Retrieved bucket arithmetic</td>
+<td>Head is <code>0.900 + 0.055 - 0.130 = 0.825</code>. Torso is <code>0.550 + 0.248 - 0.080 = 0.718</code>. Tail is <code>0.200 + 0.440 - 0.029 = 0.611</code>.</td>
+</tr>
+<tr>
+<td>Policy comparison</td>
+<td>Closed-book 69.0%, always-retrieve 76.1%, and selective retrieval 80.2%.</td>
+</tr>
+<tr>
+<td>Policy arithmetic</td>
+<td>Closed-book is <code>0.55 × 0.90 + 0.30 × 0.55 + 0.15 × 0.20 = 0.690</code>. Always-retrieve is <code>0.55 × 0.825 + 0.30 × 0.718 + 0.15 × 0.611 = 0.761</code>. Closed-book uses zero retrieval calls and zero retrieved tokens.</td>
+</tr>
+<tr>
+<td>Hidden regression</td>
+<td>Always-retrieve gains 7.1 points overall and loses 7.5 points on the 55% head bucket.</td>
+</tr>
+<tr>
+<td>Gate gain</td>
+<td>Selective retrieval gains 4.1 points over always-retrieve. The recovered share is <code>0.55 × 0.075 = 0.041</code>.</td>
+</tr>
+<tr>
+<td>Daily gate cost</td>
+<td>Five 400-token chunks add 2,000 tokens. Always-retrieve adds 200 million tokens daily. Selective retrieval handles 45,000 queries and adds 90 million, a 55% cut.</td>
+</tr>
+<tr>
+<td>Retrieval sanity check</td>
+<td>DPR top-20 retrieval accuracy is near 78% on Natural Questions, supporting a 55% rescue assumption.</td>
+</tr>
+<tr>
+<td>Evaluation commitments</td>
+<td>Use three popularity buckets, recheck minor model changes on 2,000 queries, and re-measure the gate each quarter.</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/00_09_about_the_author.html"><small>Previous</small>00.09. About the Author</a><a href="../chapters/02_the_competing_answers_to_the_same_problem.html"><small>Next</small>Chapter 2. The Competing Answers to the Same Problem</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,1820 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 20. Dense Retrieval | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/20_dense_retrieval.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html" aria-current="page">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 20. Dense Retrieval</h1><p class="chapter-meta">60 min estimated reading · Unit 29 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares a Retrieval-Augmented Generation (RAG) candidate to explain dense retrieval, train it, price it, combine it with lexical search, and extend it across languages.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A cross-encoder reads each query and passage together. A bi-encoder encodes passages offline, so it can search 21,015,324 passages in 32 ms instead of cross-encoding them for 36 minutes per query.</li>
+<li>Dense Passage Retrieval (DPR) replaces missing query-passage attention with a contrastive loss. At batch size 128, in-batch sampling gives each question 255 negatives for 128 times fewer passage encodings than independent sampling.</li>
+<li>Best Matching 25 (BM25) wins on rare exact strings. Dense retrieval wins on paraphrases. Their competence moves in opposite directions as document frequency changes, so a hybrid protects both regimes.</li>
+<li>Approximate Nearest Neighbor Negative Contrastive Estimation (ANCE) mines the model's own near misses. A negative one nat below the positive carries 1,097 times the gradient weight of one eight nats below it.</li>
+<li>Unsupervised retrieval can create a positive pair from two independent crops of one document. Momentum Contrast (MoCo) then keeps 65,536 first-in, first-out (FIFO) queued negatives in 201 MB instead of paying 3.40 TB for in-batch activations.</li>
+<li>Cross-lingual retrieval needs more than a multilingual encoder. Language centroids can outrank meaning, so subtract per-language means and draw negatives from the positive's language.</li>
+<li>The production pattern is broad candidate generation with dense and sparse signals, followed by cross-encoder reranking at a shallow depth. The architecture decision is where to hand off, not which model to discard.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a parcel-sorting hub that must route millions of parcels whenever a customer asks for one. The cross-encoder is a careful clerk who opens the request and one parcel together, compares every word, and gives that pair a score. The clerk is expressive because each request can inspect each parcel directly. The clerk is also unusable at corpus depth because the inspection repeats for every parcel after every request arrives. The bi-encoder is a pre-sorting crew that stamps every parcel with a 768-number destination card before any customer arrives. At request time, a second crew stamps the request, and a dot product, a simple vector match, finds nearby cards. That speed comes from precomputation, which means doing passage work offline once. It also creates a limit because one fixed card must answer every future request about that parcel. The hub keeps an exact-string lane called BM25, a lexical ranker that scores words the request and parcel share. This lane catches a rare error code because one exact match carries enormous weight. The dense lane catches a paraphrase because nearby meanings can meet even when their words do not. Neither lane replaces the other because the rarest labels are strongest for BM25 and least represented in dense training. Training the dense crew is like showing it the right parcel beside wrong parcels. A contrastive loss, a rule that rewards the positive and pushes down negatives, learns almost nothing from obviously unrelated parcels. A hard negative is a wrong parcel that currently looks nearly right. ANCE, a sampler that searches the model's current approximate nearest neighbor list, keeps feeding those useful near misses back to training. The list must be rebuilt because yesterday's near miss becomes easy after the model learns it. If the hub has no labeled requests, it can cut two windows from the same parcel description and call them a positive pair. Information Noise-Contrastive Estimation (InfoNCE), the loss that distinguishes that pair from queued alternatives, then trains without human labels. MoCo is the slow-moving stamp machine that keeps old parcel cards comparable while a large FIFO queue supplies many cheap negatives. The queue expands what the loss can certify, but stale cards limit its useful size before memory does. Now the hub opens in several languages. A multilingual card can spend too much of its length on a language stamp instead of the parcel's meaning. That language centroid, the average direction for one language, gives same-language parcels a free score even when they are wrong. The hub subtracts each language's average stamp and samples wrong parcels from the same language, so the model must learn meaning rather than language identity. The complete hub therefore pre-sorts with dense vectors, preserves the exact-string BM25 lane, mines current near misses during training, uses a queue when labels are absent, removes language bias, and asks the careful clerk to rerank only the short final union.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves evidence before generating an answer</td>
+<td>Retrieval quality limits what evidence the generator can use</td>
+</tr>
+<tr>
+<td>dense retrieval</td>
+<td>Retrieval with learned continuous vectors</td>
+<td>It can match meaning across different wording</td>
+</tr>
+<tr>
+<td>sparse retrieval</td>
+<td>Retrieval with term-based sparse features</td>
+<td>It preserves exact lexical evidence</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>The chapter's lexical term-matching ranker</td>
+<td>It is strong on rare strings and exact overlap</td>
+</tr>
+<tr>
+<td>cross-encoder</td>
+<td>One encoder that reads a query and passage jointly</td>
+<td>It provides rich token-level conditioning at high online cost</td>
+</tr>
+<tr>
+<td>bi-encoder</td>
+<td>Separate query and passage encoders whose outputs meet in a score</td>
+<td>It allows passage vectors to be built offline</td>
+</tr>
+<tr>
+<td>Bidirectional Encoder Representations from Transformers (BERT)</td>
+<td>The encoder family used in the chapter's cost examples</td>
+<td>Its parameter and token counts set the compute arithmetic</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>A supervised two-tower dense retriever</td>
+<td>It supplies the main loss, batch geometry, and benchmark results</td>
+</tr>
+<tr>
+<td>query tower E_Q</td>
+<td>The encoder that maps a query to one vector</td>
+<td>It runs once per request</td>
+</tr>
+<tr>
+<td>passage tower E_P</td>
+<td>The encoder that maps each passage to one vector</td>
+<td>It runs offline and binds the index to its weights</td>
+</tr>
+<tr>
+<td>dot product</td>
+<td>The sum of matching vector coordinates</td>
+<td>It joins independently computed query and passage vectors cheaply</td>
+</tr>
+<tr>
+<td>conditioning</td>
+<td>Letting a representation depend on the current query</td>
+<td>A bi-encoder gives this up at passage-encoding time</td>
+</tr>
+<tr>
+<td>embedding dimension d</td>
+<td>The number of stored values in each vector</td>
+<td>It controls index memory and bandwidth cost</td>
+</tr>
+<tr>
+<td>corpus size N</td>
+<td>The number of passages searched</td>
+<td>It multiplies full-scan and re-encoding cost</td>
+</tr>
+<tr>
+<td>parameter count P</td>
+<td>The number of encoder parameters</td>
+<td>The book uses it to estimate forward-pass FLOPs</td>
+</tr>
+<tr>
+<td>floating-point operations (FLOPs)</td>
+<td>A count of arithmetic work</td>
+<td>It makes architecture costs comparable</td>
+</tr>
+<tr>
+<td>floating-point operations per second (FLOP/s)</td>
+<td>Sustained arithmetic throughput</td>
+<td>It converts work into a lower-bound time</td>
+</tr>
+<tr>
+<td>fp32</td>
+<td>Four-byte floating-point storage</td>
+<td>It makes the 21M-vector index 64.6 GB</td>
+</tr>
+<tr>
+<td>fp16</td>
+<td>Two-byte floating-point storage</td>
+<td>It halves flat-index memory and bandwidth time in the example</td>
+</tr>
+<tr>
+<td>high-bandwidth memory (HBM)</td>
+<td>Accelerator memory with very high transfer bandwidth</td>
+<td>Flat dense search is limited by reading vectors from it</td>
+</tr>
+<tr>
+<td>memory-bound</td>
+<td>Limited by bytes moved rather than arithmetic</td>
+<td>More FLOP/s does not improve the cited flat scan</td>
+</tr>
+<tr>
+<td>approximate nearest neighbor (ANN) search</td>
+<td>A fast search that visits only part of the vector index</td>
+<td>It lowers dense candidate retrieval into low milliseconds with recall cost</td>
+</tr>
+<tr>
+<td>hierarchical navigable small world (HNSW)</td>
+<td>The graph ANN method used in the worked designs</td>
+<td>It replaces a linear scan with a graph walk</td>
+</tr>
+<tr>
+<td>reranker</td>
+<td>A second-stage model that rescores a small candidate set</td>
+<td>It restores cross-encoder conditioning where it can affect the top results</td>
+</tr>
+<tr>
+<td>candidate depth k</td>
+<td>The number of passages sent to a later stage</td>
+<td>It determines reranking cost and first-stage recall requirements</td>
+</tr>
+<tr>
+<td>top-k</td>
+<td>The first k results under a score</td>
+<td>It defines mining pools and candidate handoff depth</td>
+</tr>
+<tr>
+<td>recall@k</td>
+<td>The fraction of questions whose answer survives in the first k results</td>
+<td>It is the first-stage metric because lost answers cannot be recovered</td>
+</tr>
+<tr>
+<td>normalized discounted cumulative gain at 10 (nDCG@10)</td>
+<td>A top-ranked-list quality metric at depth 10</td>
+<td>It is appropriate for the precision-focused second stage</td>
+</tr>
+<tr>
+<td>softmax</td>
+<td>A normalization that turns scores into competing weights</td>
+<td>DPR uses it to favor the positive over all negatives</td>
+</tr>
+<tr>
+<td>negative log-likelihood</td>
+<td>The loss from taking the negative log of positive probability</td>
+<td>It is DPR's contrastive training objective</td>
+</tr>
+<tr>
+<td>positive passage</td>
+<td>A passage judged relevant to a query</td>
+<td>It is the target the loss must rank above negatives</td>
+</tr>
+<tr>
+<td>negative passage</td>
+<td>A passage treated as irrelevant to a query</td>
+<td>Its difficulty determines useful gradient signal</td>
+</tr>
+<tr>
+<td>in-batch negative</td>
+<td>Another example's passage reused as a negative</td>
+<td>It gives many negatives without extra encodings</td>
+</tr>
+<tr>
+<td>hard negative</td>
+<td>A wrong passage with a score near the positive</td>
+<td>It contributes far more gradient than an easy negative</td>
+</tr>
+<tr>
+<td>static BM25 negative</td>
+<td>A lexical near miss mined once before training</td>
+<td>It starts useful but becomes stale as the model changes</td>
+</tr>
+<tr>
+<td>self-mined negative</td>
+<td>A near miss retrieved by the current dense model</td>
+<td>It tracks the model's current confusion</td>
+</tr>
+<tr>
+<td>false negative</td>
+<td>A relevant passage that lacks a positive label</td>
+<td>Pushing it down teaches the retriever the wrong behavior</td>
+</tr>
+<tr>
+<td>cross-encoder filtering</td>
+<td>Using a joint model to reject likely unlabeled positives from mined negatives</td>
+<td>RocketQA uses it to protect sparse relevance labels</td>
+</tr>
+<tr>
+<td>Sentence-BERT</td>
+<td>A symmetric sentence-similarity training recipe</td>
+<td>Its objective transfers poorly to asymmetric retrieval in the cited comparison</td>
+</tr>
+<tr>
+<td>Stanford Natural Language Inference (SNLI)</td>
+<td>The entailment dataset named in the Sentence-BERT recipe</td>
+<td>It supplies symmetric sentence training rather than retrieval asymmetry</td>
+</tr>
+<tr>
+<td>Semantic Textual Similarity (STS)</td>
+<td>A cosine-similarity regression task</td>
+<td>It optimizes sentence likeness rather than question-to-passage relevance</td>
+</tr>
+<tr>
+<td>document frequency n(t)</td>
+<td>The number of corpus documents containing term t</td>
+<td>It predicts whether BM25 or dense retrieval has the advantage</td>
+</tr>
+<tr>
+<td>inverse document frequency (IDF)</td>
+<td>A larger weight for rarer terms</td>
+<td>It makes BM25 strongest on rare exact strings</td>
+</tr>
+<tr>
+<td>lexical overlap</td>
+<td>Exact query terms shared with a passage</td>
+<td>BM25 gives no semantic partial credit without it</td>
+</tr>
+<tr>
+<td>paraphrase</td>
+<td>The same meaning expressed with different words</td>
+<td>It is the dense retriever's core advantage</td>
+</tr>
+<tr>
+<td>hybrid retrieval</td>
+<td>Combining dense and sparse candidate lists</td>
+<td>It covers near-disjoint failure sets</td>
+</tr>
+<tr>
+<td>WordPiece</td>
+<td>The subword tokenization used in the rare-code example</td>
+<td>It can represent an identifier as generic fragments rather than one exact code</td>
+</tr>
+<tr>
+<td>Benchmarking Information Retrieval (BEIR)</td>
+<td>The 18-dataset transfer benchmark cited in the chapter</td>
+<td>It shows BM25 remains a strong zero-shot baseline out of domain</td>
+</tr>
+<tr>
+<td>margin Δ</td>
+<td>Positive score minus a negative score</td>
+<td>Its exponential controls negative gradient weight</td>
+</tr>
+<tr>
+<td>gradient norm</td>
+<td>The size of a sample's parameter update contribution</td>
+<td>Sampling in proportion to it minimizes the stated second moment</td>
+</tr>
+<tr>
+<td>stochastic gradient descent (SGD)</td>
+<td>Training by noisy gradient estimates from sampled data</td>
+<td>ANCE aims to reduce its sampling variance</td>
+</tr>
+<tr>
+<td>importance correction</td>
+<td>Dividing a sampled gradient by its sampling probability</td>
+<td>It keeps the one-sample estimator unbiased</td>
+</tr>
+<tr>
+<td>descent lemma</td>
+<td>The smooth-objective bound used for one SGD step</td>
+<td>It isolates the second moment that sampling can reduce</td>
+</tr>
+<tr>
+<td>second moment</td>
+<td>Expected squared size of the sampled gradient estimator</td>
+<td>The optimal negative distribution minimizes it</td>
+</tr>
+<tr>
+<td>Cauchy-Schwarz inequality</td>
+<td>The inequality used to solve the sampling allocation</td>
+<td>Equality gives probability proportional to gradient norm</td>
+</tr>
+<tr>
+<td>Approximate Nearest Neighbor Negative Contrastive Estimation (ANCE)</td>
+<td>Periodic self-mining from an ANN index built by a recent checkpoint</td>
+<td>It keeps negatives hard as parameters move</td>
+</tr>
+<tr>
+<td>negative stagnation</td>
+<td>Exponential loss of usefulness in a fixed mined set</td>
+<td>It motivates periodic index refreshes</td>
+</tr>
+<tr>
+<td>checkpoint θ_t</td>
+<td>A saved parameter state at training step t</td>
+<td>The mining index is a snapshot of its embedding space</td>
+</tr>
+<tr>
+<td>RocketQA</td>
+<td>The cited system that filters mined negatives with a cross-encoder</td>
+<td>It addresses unlabeled positives in sparse judgments</td>
+</tr>
+<tr>
+<td>asynchronous refresh</td>
+<td>Rebuilding the mining index on separate workers</td>
+<td>It avoids blocking the trainer for minutes or hours</td>
+</tr>
+<tr>
+<td>Microsoft Machine Reading Comprehension (MS MARCO)</td>
+<td>The passage corpus and training set used in several examples</td>
+<td>Its size anchors mining, information, and memory calculations</td>
+</tr>
+<tr>
+<td>unsupervised dense retrieval</td>
+<td>Dense training without labeled query-passage pairs</td>
+<td>It is the option for a new corpus with no search logs</td>
+</tr>
+<tr>
+<td>Contriever</td>
+<td>The cited retriever trained from document crops</td>
+<td>It manufactures positive pairs without labels</td>
+</tr>
+<tr>
+<td>independent cropping</td>
+<td>Sampling two random spans from one document</td>
+<td>It creates a positive pair and may preserve useful token overlap</td>
+</tr>
+<tr>
+<td>random deletion and masking</td>
+<td>Removing words from the cropped views</td>
+<td>It keeps the model from stopping at pure lexical matching</td>
+</tr>
+<tr>
+<td>Inverse Cloze Task (ICT)</td>
+<td>Removing a sentence and pairing it with the remainder</td>
+<td>Its guaranteed zero overlap discards the cited lexical floor</td>
+</tr>
+<tr>
+<td>Information Noise-Contrastive Estimation (InfoNCE)</td>
+<td>A contrastive loss over one positive and K negatives</td>
+<td>Its information lower bound grows only with the negative count</td>
+</tr>
+<tr>
+<td>mutual information</td>
+<td>The amount of query-document dependence the objective can certify</td>
+<td>The bound exposes the gap between batch size and corpus identification</td>
+</tr>
+<tr>
+<td>Momentum Contrast (MoCo)</td>
+<td>A queue plus a slowly updated key encoder</td>
+<td>It provides many negatives without storing their activations</td>
+</tr>
+<tr>
+<td>first-in, first-out (FIFO) queue</td>
+<td>A buffer that removes the oldest key when adding a new one</td>
+<td>It reuses negative vectors across steps</td>
+</tr>
+<tr>
+<td>query encoder E_θ</td>
+<td>The branch trained by SGD with activations retained</td>
+<td>It produces the current query representation</td>
+</tr>
+<tr>
+<td>key encoder E_θk</td>
+<td>The branch updated only by momentum</td>
+<td>It makes queued keys change slowly enough to remain comparable</td>
+</tr>
+<tr>
+<td>exponential moving average (EMA)</td>
+<td>The update θ_k = mθ_k + (1-m)θ</td>
+<td>It sets the key encoder's effective averaging window</td>
+</tr>
+<tr>
+<td>momentum m</td>
+<td>The weight placed on the previous key encoder</td>
+<td>It controls queue staleness and maximum useful queue size</td>
+</tr>
+<tr>
+<td>queue span K/B</td>
+<td>The age in steps of the oldest queued key</td>
+<td>It must stay below the momentum window</td>
+</tr>
+<tr>
+<td>no_grad</td>
+<td>Forward computation without gradient storage</td>
+<td>It makes queued keys far cheaper than in-batch negatives</td>
+</tr>
+<tr>
+<td>activation</td>
+<td>An intermediate value retained for backpropagation</td>
+<td>Large batches cost terabytes because activations scale with samples</td>
+</tr>
+<tr>
+<td>temperature τ</td>
+<td>The divisor that sharpens contrastive logits</td>
+<td>A sufficiently small value keeps the finite-score loss floor feasible</td>
+</tr>
+<tr>
+<td>loss floor</td>
+<td>The smallest possible loss under bounded cosine scores</td>
+<td>If it is high, training cannot satisfy the objective</td>
+</tr>
+<tr>
+<td>GradCache</td>
+<td>The cited constant-memory replay method for exact large-batch contrastive gradients</td>
+<td>It fixes memory but not the large batch's encoder compute</td>
+</tr>
+<tr>
+<td>multilingual encoder</td>
+<td>One encoder that embeds several languages into a shared space</td>
+<td>It removes the online translation requirement</td>
+</tr>
+<tr>
+<td>cross-lingual retrieval</td>
+<td>Retrieving a document written in a different language from the query</td>
+<td>Exact lexical overlap can be empty</td>
+</tr>
+<tr>
+<td>language centroid μ_l</td>
+<td>The average embedding direction for language l</td>
+<td>It can add a constant same-language ranking advantage</td>
+</tr>
+<tr>
+<td>semantic residual r(t)</td>
+<td>The part of an embedding intended to carry meaning</td>
+<td>Centering leaves this component up to monotone scaling</td>
+</tr>
+<tr>
+<td>centroid strength α</td>
+<td>The share of embedding norm spent on language identity</td>
+<td>Above the derived threshold, language can dominate semantics</td>
+</tr>
+<tr>
+<td>centroid cosine c</td>
+<td>The cosine between two language means</td>
+<td>It controls the cross-language bias term</td>
+</tr>
+<tr>
+<td>mean-centering</td>
+<td>Subtracting each language's mean embedding before indexing</td>
+<td>It removes the additive language direction in the model</td>
+</tr>
+<tr>
+<td>same-language negative sampling</td>
+<td>Drawing negatives from the positive passage's language</td>
+<td>It prevents language identity from becoming a free discriminator</td>
+</tr>
+<tr>
+<td>curse of multilinguality</td>
+<td>Capacity competition when a fixed model covers more languages</td>
+<td>Adding languages can eventually hurt all languages</td>
+</tr>
+<tr>
+<td>Cross-lingual Language Model RoBERTa (XLM-R)</td>
+<td>The cited model trained on 100 languages</td>
+<td>It illustrates the fixed-capacity multilingual trade-off</td>
+</tr>
+<tr>
+<td>multilingual BERT (mBERT)</td>
+<td>The cited multilingual BERT encoder</td>
+<td>Centroid subtraction improved its cross-lingual sentence retrieval</td>
+</tr>
+<tr>
+<td>Language-Agnostic Retrieval Question Answering (LAReQA)</td>
+<td>A benchmark built to expose language bias</td>
+<td>It separates translation ability from retrieval geometry</td>
+</tr>
+<tr>
+<td>multilingual MS MARCO (mMARCO)</td>
+<td>Translated MS MARCO training data</td>
+<td>It shows translated supervision can work but inherits English query structure</td>
+</tr>
+<tr>
+<td>multilingual DPR (mDPR)</td>
+<td>DPR extended across languages</td>
+<td>English-only training underperforms BM25 on most cited Mr. TyDi languages</td>
+</tr>
+<tr>
+<td>Mr. TyDi</td>
+<td>A multilingual retrieval benchmark with native-speaker queries</td>
+<td>It is a more honest cross-lingual test than translated queries</td>
+</tr>
+<tr>
+<td>Multilingual Information Retrieval Across a Continuum of Languages (MIRACL)</td>
+<td>The cited benchmark spanning 18 languages</td>
+<td>Its queries are written by native speakers</td>
+</tr>
+<tr>
+<td>machine translation (MT)</td>
+<td>Converting text from one language into another</td>
+<td>Query translation adds autoregressive decoding to the critical path</td>
+</tr>
+<tr>
+<td>reciprocal rank fusion (RRF)</td>
+<td>Combining result lists by rank positions</td>
+<td>Per-language indexes need this extra stage in the example</td>
+</tr>
+<tr>
+<td>fertility</td>
+<td>Tokenizer tokens per word</td>
+<td>High fertility creates more chunks with less context</td>
+</tr>
+<tr>
+<td>95th-percentile latency (p95)</td>
+<td>The response time below which 95 percent of requests finish</td>
+<td>The translation designs miss the stated service budget</td>
+</tr>
+<tr>
+<td>remote procedure call (RPC)</td>
+<td>A network call to an encoder service</td>
+<td>It dominates the cited multilingual query-encoding time</td>
+</tr>
+<tr>
+<td>blue-green index cutover</td>
+<td>Holding old and new indexes during model replacement</td>
+<td>It doubles index storage during a safe transition</td>
+</tr>
+<tr>
+<td><code>q</code>, <code>p</code>, and <code>s(q,p)</code></td>
+<td>Query, passage, and their relevance score</td>
+<td>They name the two retrieval inputs and the value used to rank them</td>
+</tr>
+<tr>
+<td><code>L_q</code> and <code>L_p</code></td>
+<td>Query and passage token lengths</td>
+<td>They set the online encoding work in the corpus-depth calculation</td>
+</tr>
+<tr>
+<td><code>b</code> in <code>N x d x b</code></td>
+<td>Bytes stored per embedding coordinate</td>
+<td>It converts a vector count into index memory</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>Number of query-positive examples in one batch</td>
+<td>It sets the in-batch negative pool and queue turnover rate</td>
+</tr>
+<tr>
+<td><code>M</code> and <code>K</code></td>
+<td>Negative count in the margin derivation and queue size in MoCo</td>
+<td>They size the contrastive denominator in their respective sections</td>
+</tr>
+<tr>
+<td><code>s+</code>, <code>s_j-</code>, <code>Delta_j</code>, and <code>Z</code></td>
+<td>Positive score, negative score, margin, and softmax normalizer</td>
+<td>They expose the exponential weight assigned to each negative</td>
+</tr>
+<tr>
+<td><code>g</code>, <code>g_j</code>, and <code>g_hat</code></td>
+<td>Exact gradient, one negative's contribution, and sampled estimator</td>
+<td>They define the variance-optimal sampling argument</td>
+</tr>
+<tr>
+<td><code>p_j</code> and <code>p_j*</code></td>
+<td>Sampling probability and its optimum</td>
+<td>The optimum is proportional to gradient norm</td>
+</tr>
+<tr>
+<td><code>eta</code> and smoothness constant <code>L</code></td>
+<td>Step size and objective smoothness</td>
+<td>They appear in the one-step descent bound</td>
+</tr>
+<tr>
+<td><code>I(q;p)</code> and <code>L_InfoNCE</code></td>
+<td>Mutual information and the InfoNCE loss</td>
+<td>Their bound limits what a finite negative pool can certify</td>
+</tr>
+<tr>
+<td><code>s</code>, <code>h</code>, and <code>a</code> in activation accounting</td>
+<td>Sequence length, hidden width, and attention-head count</td>
+<td>They determine retained training activations per layer</td>
+</tr>
+<tr>
+<td><code>K/B</code> and <code>1/(1-m)</code></td>
+<td>Queue age and momentum averaging window</td>
+<td>Their comparison bounds useful queue size before memory does</td>
+</tr>
+<tr>
+<td><code>f_theta</code>, <code>E_Q</code>, and <code>E_P</code></td>
+<td>Joint scorer, query tower, and passage tower</td>
+<td>They distinguish online pair conditioning from offline passage encoding</td>
+</tr>
+<tr>
+<td><code>theta</code>, <code>theta_t</code>, and <code>theta_k</code></td>
+<td>Current, checkpointed, and momentum-key parameters</td>
+<td>They make mining drift and queue staleness explicit</td>
+</tr>
+<tr>
+<td>BM25 <code>k_1</code> and <code>b_BM25</code></td>
+<td>Term-frequency saturation and length-normalization controls</td>
+<td>Tuning them cannot create cross-language lexical overlap</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="201-bi-encoders-dpr-and-the-efficiency-expressiveness-trade">20.1 Bi-encoders, DPR, and the efficiency-expressiveness trade</h3>
+<h4 id="joint-scoring-versus-independent-scoring">Joint scoring versus independent scoring</h4>
+<p><strong>What:</strong> A cross-encoder scores the concatenated query and passage. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>f</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">[</mo><mi>q</mi><mo>;</mo><mi>p</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s(q,p) = f_θ([q;p])</annotation></semantics></math> <strong>What:</strong> A bi-encoder scores two independently computed vectors. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>E</mi><mi>Q</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s(q,p) = E_Q(q)^T E_P(p)</annotation></semantics></math> <strong>Why:</strong> E_P(p) does not depend on the query, so the passage tower can run once, offline.</p>
+<p><strong>Failure without it:</strong> Full-corpus joint scoring waits for the query and repeats one encoder pass N times.</p>
+<p><strong>Trade-off:</strong> The bi-encoder gives up conditioning, not parameter capacity.</p>
+<p>One 768-dimensional passage vector must support every future question about that passage. The cross-encoder instead computes all 32 × 128 = 4,096 query-token by passage-token attention interactions with the query present.</p>
+<h4 id="corpus-depth-arithmetic">Corpus-depth arithmetic</h4>
+<p>The chapter uses the two-P FLOPs-per-token rule with BERT-base at P = 110M, L_q = 32, and L_p = 128. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>L</mi><mi>q</mi></msub><mo>+</mo><msub><mi>L</mi><mi>p</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2</mn><mo>×</mo><mn>1.10</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo>×</mo><mn>160</mn><mo>=</mo><mn>3.52</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">2P(L_q + L_p) = 2 × 1.10 × 10^8 × 160 = 3.52 × 10^{10} FLOPs</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>P</mi><msub><mi>L</mi><mi>q</mi></msub><mo>=</mo><mn>7.04</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">2PL_q = 7.04 × 10^9 FLOPs</annotation></semantics></math> For N = 21,015,324 passages, the full cross-encoder and bi-encoder arithmetic are: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.52</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo>×</mo><mn>2.10</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo>=</mo><mn>7.40</mn><mo>×</mo><msup><mn>10</mn><mn>17</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">3.52 × 10^{10} × 2.10 × 10^7 = 7.40 × 10^{17} FLOPs</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7.04</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>+</mo><mn>2</mn><mo>×</mo><mn>768</mn><mo>×</mo><mn>2.10</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo>=</mo><mn>3.93</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">7.04 × 10^9 + 2 × 768 × 2.10 × 10^7 = 3.93 × 10^{10} FLOPs</annotation></semantics></math> <strong>Why:</strong> The factor is 1.9 × 10^7, which is seven orders of magnitude.</p>
+<p><strong>Cost:</strong> At 3.4 × 10^14 FLOP/s, full cross-encoding takes 2,175 s, or 36 minutes, for one query.</p>
+<p><strong>Claim limit:</strong> This time uses the book's sustained-throughput assumption.</p>
+<h4 id="dpr-loss-and-in-batch-negatives">DPR loss and in-batch negatives</h4>
+<p><strong>What:</strong> DPR trains one question q_i, one gold passage p_i+, and negatives p_i,j- with a softmax over dot products. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>E</mi><mi>Q</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mi>i</mi></msub><mi>+</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>E</mi><mi>Q</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mi>i</mi></msub><mi>+</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi mathvariant="normal">Σ</mi><mi>j</mi></msub><mi>e</mi><mi>x</mi><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>E</mi><mi>Q</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>q</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mi>i</mi></msub><mo>,</mo><mi>j</mi><mi>−</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">L(q_i) = -log( exp(E_Q(q_i)^T E_P(p_i+)) / [exp(E_Q(q_i)^T E_P(p_i+)) + Σ_j exp(E_Q(q_i)^T E_P(p_i,j-))] )</annotation></semantics></math> <strong>Why:</strong> The loss pushes query-passage interaction into training because inference deleted direct token interaction.</p>
+<p><strong>Sampling method:</strong> In a batch of B question-positive pairs, every other passage is reused as a negative.</p>
+<p>DPR uses B = 128 and one BM25 hard negative per question. The passage pool is 2B = 256, so each question sees 2B - 1 = 255 negatives. Independent sampling would require 128 × 255 = 32,640 passage encodings per step instead of 256. The savings factor is exactly B = 128.</p>
+<p><strong>Failure without useful negatives:</strong> The training objective becomes easy while live-corpus recall stays poor.</p>
+<h4 id="retrieval-is-not-symmetric-sentence-similarity">Retrieval is not symmetric sentence similarity</h4>
+<p><strong>What:</strong> Sentence-BERT trains on SNLI cross-entropy and mean-squared error over STS cosine similarity.</p>
+<p><strong>Why it loses here:</strong> A 10-word question and a 100-word passage need not look alike to be relevant.</p>
+<p><strong>Comparison:</strong> DPR trains separate E_Q and E_P towers on this asymmetry.</p>
+<p>It reaches 78.4% top-20 accuracy on Natural Questions against BM25 at 59.1%. The gap is 19.3 percentage points on the same corpus.</p>
+<p><strong>Claim limit:</strong> This comparison applies to the cited Natural Questions setup and does not establish universal dominance.</p>
+<h4 id="worked-deployment-configurations">Worked deployment configurations</h4>
+<p>The setting is N = 21,015,324 Wikipedia passages of 100 words, d = 768, fp32, BERT-base towers, a 32-token question, and a 50 ms budget.</p>
+<p><strong>Configuration 1:</strong> A full cross-encoder pays 7.40 × 10^17 FLOPs and 2,175 s.</p>
+<p>It misses the budget by 4.4 × 10^4. Batching cannot change this asymptote.</p>
+<p><strong>Configuration 2:</strong> A flat bi-encoder index occupies: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2.10</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>768</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>6.46</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>64.6</mn><mi>G</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">2.10 × 10^7 × 768 × 4 = 6.46 × 10^{10} bytes = 64.6 GB</annotation></semantics></math> The dot products cost 3.23 × 10^10 FLOPs, or 95 μs of arithmetic. Streaming 64.6 GB at 2.0 TB/s takes 32 ms. The scan is memory-bound by a factor of 340. Halving d halves latency in this case, while doubling FLOP/s does nothing.</p>
+<p><strong>Configuration 3:</strong> HNSW visits a few thousand vectors, then a cross-encoder reranks k = 100.</p>
+<p>The reranker pays 3.52 × 10^12 FLOPs, or 10.4 ms. The total is roughly 15 ms. Moving the same cross-encoder from corpus depth to depth 100 cuts its cost by 2.1 × 10^5.</p>
+<p><strong>Published sanity check:</strong> DPR reports 995 questions per second over its 21M-vector Facebook AI Similarity Search (FAISS) index.</p>
+<p>BM25 on Lucene reports 23.7 questions per second. The DPR result is 1.01 ms per question end to end. The derived query encoding floor is 20.7 μs, or about 2% of that budget. The agreement supports the limited conclusion that the index, not query-encoder arithmetic, is the bill in this setup.</p>
+<h4 id="practical-boundaries">Practical boundaries</h4>
+<p>Use bi-encoder retrieval before cross-encoder reranking. A 50 ms budget at 3.52 × 10^10 FLOPs per pair buys about 480 pairs. A corpus below roughly 500 documents can therefore be cross-encoded outright under these constants. Fine-tune separate towers on in-domain query-positive pairs. With fewer than roughly 1,000 labeled pairs, the chapter prefers an unsupervised retriever over a badly fine-tuned one. Treat batch size as a negative-sampling budget. Moving B from 8 to 128 moves each query from 15 to 255 negatives. Use a shared tower for symmetric tasks such as deduplication, near-duplicate detection, or paraphrase search. Price the index as N × d × b. The cited 64.6 GB fp32 index becomes 32.3 GB in fp16. Evaluate the first stage with recall@k and the second with nDCG@10. A first-stage answer ranked 87th at depth 100 has survived. A missing answer cannot be repaired by a reranker.</p>
+<h4 id="re-indexing-when-the-model-changes">Re-indexing when the model changes</h4>
+<p>Precomputed passage vectors are bound to the exact E_P weights that made them. For 500M chunks at 256 tokens, re-encoding costs: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>1.10</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo>×</mo><mn>256</mn><mo>×</mo><mn>5</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo>=</mo><mn>2.82</mn><mo>×</mo><msup><mn>10</mn><mn>19</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">2 × 1.10 × 10^8 × 256 × 5 × 10^8 = 2.82 × 10^{19} FLOPs</annotation></semantics></math> That is 8.3 × 10^4 s, or 23 hours, on one accelerator and under two hours on twelve under the chapter's throughput model. The 768-dimensional fp32 index is 1.54 TB. A blue-green cutover needs 3.1 TB plus a dual-write ingest window.</p>
+<p><strong>Decision boundary:</strong> If shadow evaluation moves recall@100 by less than the evaluation noise band, the rebuild buys no demonstrated benefit.</p>
+<h3 id="202-where-dense-wins-and-where-bm25-wins">20.2 Where dense wins and where BM25 wins</h3>
+<h4 id="opposite-dependence-on-document-frequency">Opposite dependence on document frequency</h4>
+<p><strong>What:</strong> BM25 scores only query terms present in the document.</p>
+<p>Its inverse document frequency is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">IDF(t) = log((N - n(t) + 0.5)/(n(t) + 0.5)) + 1</annotation></semantics></math> <strong>Why:</strong> A rarer exact term receives a larger weight.</p>
+<p><strong>Failure without overlap:</strong> A missing term contributes exactly zero, even when a synonym carries the right meaning.</p>
+<p>On the 21,015,324-passage corpus, n(t) = 3 gives: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>2.1015</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo>−</mo><mn>3</mn><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>3.5</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>6.00</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mn>16.61</mn><mi>n</mi><mi>a</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">log((2.1015 × 10^7 - 3 + 0.5)/3.5) + 1 = log(6.00 × 10^6) + 1 = 16.61 nats</annotation></semantics></math> At n(t) = 10^5, the weight is log(209.2) + 1 = 6.34 nats. The rare term receives 2.6 times the weight.</p>
+<h4 id="dense-supervised-exposure">Dense supervised exposure</h4>
+<p><strong>What:</strong> Dense competence on a surface form depends on seeing useful supervised examples.</p>
+<p>With 5.888 × 10^4 Natural Questions training pairs, the expected exposure for n(t) = 3 is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5.888</mn><mo>×</mo><msup><mn>10</mn><mn>4</mn></msup><mo>×</mo><mn>3</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>2.1015</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>8.4</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">5.888 × 10^4 × 3/(2.1015 × 10^7) = 8.4 × 10^{-3}</annotation></semantics></math> That is about one chance in 119 of seeing the term under supervision. At n(t) = 10^5, the same arithmetic gives 280 training pairs.</p>
+<p><strong>Why:</strong> Dense training is strongest on frequent semantic patterns.</p>
+<p><strong>Failure:</strong> New stock-keeping units, ticket identifiers, version strings, and names remain in the open-ended Zipfian tail after the training cutoff.</p>
+<p><strong>Comparison:</strong> BM25 weight falls while dense exposure rises as n(t) increases.</p>
+<p>The exact curves cross near n(t) ≈ 3.9 × 10^3 for the cited corpus and training set.</p>
+<h4 id="paraphrase-and-rare-string-regimes">Paraphrase and rare-string regimes</h4>
+<p>Dense retrieval can connect a question about the body of water between Ireland and Great Britain to a passage naming the Irish Sea and North Channel. BM25 can fail if the answer passage does not repeat the query terms. BM25 can retrieve a rare named entity or error code from one occurrence because its IDF dominates the sum. A dense model can collapse many rare codes into one topical neighborhood.</p>
+<p><strong>Failure of the bigger-model alternative:</strong> Raising d adds capacity but does not add missing occurrences.</p>
+<p>Thakur et al. report BM25 as a strong zero-shot baseline that most dense retrievers failed to beat across 18 BEIR datasets out of domain.</p>
+<p><strong>Claim limit:</strong> The chapter uses this as a transfer result, not a claim that BM25 wins every dataset.</p>
+<h4 id="enterprise-support-worked-example">Enterprise support worked example</h4>
+<p>The example uses N = 2,000,000 documents, d = 768, and both dense and BM25 indexes. For a query about a single sign-on (SSO) certificate, the relevant title uses Security Assertion Markup Language (SAML) assertion and signing-key language. With no shared content term, BM25 assigns zero to that document. The dense retriever ranks it first in the constructed example. For the Secure Sockets Layer (SSL) query <code>ERR_SSL_5417 remediation</code>, the code appears in n(t) = 4 documents. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mo>−</mo><mn>4</mn><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>4.5</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>4.444</mn><mo>×</mo><msup><mn>10</mn><mn>5</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>1</mn><mo>=</mo><mn>14.00</mn><mi>n</mi><mi>a</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">log((2 × 10^6 - 4 + 0.5)/4.5) + 1 = log(4.444 × 10^5) + 1 = 14.00 nats</annotation></semantics></math> <code>remediation</code> at n(t) = 2 × 10^5 receives log(9.00) + 1 = 3.20 nats. The code supplies 14.00/(14.00 + 3.20) = 81% of the query weight. BM25 retrieves all four matches within top 20, so recall@20 is 100% by construction. If 1,800 codes occupy one dense neighborhood, random selection gives recall@20 ≈ 20/1,800 = 1.1%.</p>
+<p><strong>Claim limit:</strong> The 1.1% against 100% split is constructed to expose the mechanism.</p>
+<h4 id="hybrid-union-and-benchmark-reversal">Hybrid union and benchmark reversal</h4>
+<p>Take the top 20 from dense retrieval and the top 20 from BM25. The union has at most 40 candidates. Cross-encoder reranking costs 40 × 3.52 × 10^10 = 1.41 × 10^12 FLOPs, or 4.1 ms at 3.4 × 10^14 FLOP/s. Karpukhin et al. report top-20 results of 78.4% for DPR and 59.1% for BM25 on Natural Questions. On the Stanford Question Answering Dataset (SQuAD), DPR scores 63.2% and BM25 scores 68.8%. The reversal is 5.6 percentage points. The authors attribute it to SQuAD annotators writing questions while viewing passages, which increases lexical overlap.</p>
+<p><strong>Decision boundary:</strong> Collection process can make a benchmark recommend the wrong retriever for a different query process.</p>
+<h4 id="practical-boundaries-1">Practical boundaries</h4>
+<p>Keep BM25 when dense retrieval launches unless production logs show essentially no identifiers, names, quoted strings, or codes. Segment evaluation by the rarest content term's document frequency. If corpus statistics are missing, separate queries with and without non-dictionary tokens. Try hybrid retrieval before doubling d from 768 to 1,536. Set sparse depth near 20 for exact hits and dense depth around 50 to 100 for semantic drift. With a fixed reranker budget, the chapter cuts dense depth first because existing sparse hits are already near-certain. Track zero-hit sparse queries and dense results with empty lexical overlap separately. For a verbatim-containment guarantee, route quoted strings and non-dictionary tokens through sparse retrieval with a hard containment filter. Dense scoring alone cannot guarantee term containment.</p>
+<h3 id="203-hard-negatives-gradient-norm-and-ance">20.3 Hard negatives, gradient norm, and ANCE</h3>
+<h4 id="margin-form-of-the-contrastive-loss">Margin form of the contrastive loss</h4>
+<p>Let s+ be the positive score, s_j- a negative score, and Δ_j = s+ - s_j-. The DPR loss becomes: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>M</mi></msubsup><msup><mi>e</mi><mrow><mi>−</mi><msub><mi mathvariant="normal">Δ</mi><mi>j</mi></msub></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">L = log(1 + Σ_{j=1}^{M} e^{-Δ_j})</annotation></semantics></math> With Z = 1 + Σ_j e^-Δ_j: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∂</mi><mi>L</mi><mi>/</mi><mi>∂</mi><msub><mi>s</mi><mi>j</mi></msub><mi>−</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><msub><mi mathvariant="normal">Δ</mi><mi>j</mi></msub></mrow></msup><mi>/</mi><mi>Z</mi></mrow><annotation encoding="application/x-tex">∂L/∂s_j- = e^{-Δ_j}/Z</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∇</mi><mi>θ</mi></msub><msub><mi>L</mi><mi>j</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>−</mi><msub><mi mathvariant="normal">Δ</mi><mi>j</mi></msub></mrow></msup><mi>/</mi><mi>Z</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>∇</mi><mi>θ</mi></msub><msub><mi>s</mi><mi>j</mi></msub><mo>−</mo></mrow><annotation encoding="application/x-tex">∇_θ L_j = (e^{-Δ_j}/Z) ∇_θ s_j-</annotation></semantics></math> <strong>What:</strong> A negative's gradient norm is proportional to e^-Δ_j.</p>
+<p><strong>Why:</strong> Hardness changes learning signal exponentially, not linearly.</p>
+<p>A negative at Δ = 8 has weight e^-8 = 3.35 × 10^-4. A negative at Δ = 1 has weight e^-1 = 3.68 × 10^-1. The ratio is e^7 = 1,097.</p>
+<p><strong>Failure without hard negatives:</strong> A near-zero loss can report an easy task rather than a good retriever.</p>
+<h4 id="variance-optimal-sampling">Variance-optimal sampling</h4>
+<p>Let g be the exact gradient across M negatives. Sample negative j with probability p_j and use g_hat = ∇_θ L_j/p_j. The estimator remains unbiased for any p. For an L-smooth objective and step size η, the descent lemma gives: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo>≤</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>η</mi><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>g</mi><mo stretchy="false" form="prefix">|</mo><msup><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msup><mo>+</mo><msup><mi>η</mi><mn>2</mn></msup><mi>L</mi><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>g</mi><mrow><mi>h</mi><mi>a</mi><mi>t</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo><msup><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">E[f(θ_{t+1})] ≤ f(θ_t) - η||g||^2 + η^2 L E[||g_{hat}||^2]/2</annotation></semantics></math> The sampler controls: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>g</mi><mrow><mi>h</mi><mi>a</mi><mi>t</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo><msup><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msub><mi mathvariant="normal">Σ</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">|</mo><msup><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msup><mi>/</mi><msub><mi>p</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">E[||g_{hat}||^2] = Σ_j ||g_j||^2/p_j</annotation></semantics></math> Cauchy-Schwarz gives equality at: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>p</mi><mi>j</mi><mo>*</mo></msubsup><mo>=</mo><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>/</mi><msub><mi mathvariant="normal">Σ</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>g</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo></mrow><annotation encoding="application/x-tex">p_j^{*} = ||g_j|| / Σ_i ||g_i||</annotation></semantics></math> Since norm(g_j) is proportional to e^-Δ_j, the optimal sampler is the model's own ranked retrieval list.</p>
+<p><strong>Claim limit:</strong> The result is derived for the stated importance-corrected estimator and smooth-objective bound.</p>
+<h4 id="dynamic-mining-with-ance">Dynamic mining with ANCE</h4>
+<p><strong>What:</strong> ANCE builds an ANN index from a recent checkpoint and retrieves top candidates as negatives.</p>
+<p><strong>Why:</strong> The hardest useful negative depends on current parameters θ_t.</p>
+<p><strong>Failure of static mining:</strong> A fixed negative moves from Δ = 1 toward Δ = 4 as the model learns it.</p>
+<p>That drift loses e^3 = 20.1 times its gradient weight at unchanged training cost. The chapter calls this negative stagnation. A BM25 near miss at Δ = 4 has weight 1.83 × 10^-2. It is e^4 = 54.6 times stronger than a random Δ = 8 negative. It is still e^3 = 20.1 times weaker than a top-ANN Δ = 1 negative. Matching one top-ANN negative with random examples would require e^7 = 1,097 of them. DPR's B = 128 would rise to B = 140,416 before the unnormalized weights are comparable. Bootstrap the first epoch with BM25 negatives, then switch to self-mining once the retriever beats BM25 on a held-out slice.</p>
+<h4 id="false-negatives-and-rocketqa">False negatives and RocketQA</h4>
+<p>Top retrieval results can contain unlabeled positives because one-positive judgments are sparse. Treating them as negatives pushes correct answers away. RocketQA filters mined candidates through a cross-encoder and keeps only candidates scored confidently irrelevant. Use this filter when positives are one-per-question rather than exhaustive.</p>
+<h4 id="ms-marco-worked-example">MS MARCO worked example</h4>
+<p>The example uses N = 8,841,823 passages, P = 110M, d = 768, B = 128, 255 in-batch negatives, and one mined slot.</p>
+<p><strong>Configuration 1:</strong> With 255 negatives at Δ = 8, total unnormalized weight is 255 × 3.35 × 10^-4 = 0.0855.</p>
+<p>Z = 1.0855. The loss is log(1.0855) = 0.0821 nats. Negatives carry 0.0855/1.0855 = 7.88% of the step.</p>
+<p><strong>Configuration 2:</strong> Add one static BM25 negative at weight 0.0183.</p>
+<p>Z = 1.1039, loss is 0.0988 nats, and negative mass is 9.41%. This is a 1.19 times improvement in gradient mass over Configuration 1.</p>
+<p><strong>Configuration 3:</strong> Add one top-ANN negative at weight 0.3679.</p>
+<p>Z = 1.4534, loss is 0.374 nats, and negative mass is 31.2%. That is 3.96 times Configuration 1. The single hard negative carries 25.3% of the whole step. Each in-batch negative carries 0.023%. The optimal distribution assigns the hard negative 0.3679/0.4534 = 81.1% of sampling budget. Uniform sampling assigns 1/256 = 0.39%. The informative example is undersampled by 208 times.</p>
+<h4 id="refresh-cost-and-cadence">Refresh cost and cadence</h4>
+<p>Re-encoding one 128-token passage costs 2PL_p = 2.816 × 10^10 FLOPs. The full MS MARCO corpus costs 2.49 × 10^17 FLOPs. At 3.4 × 10^14 FLOP/s, the floor is 732 s. One training step costs: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mi>P</mi><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>128</mn><mo>×</mo><mn>32</mn><mo>+</mo><mn>256</mn><mo>×</mo><mn>128</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2.43</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mi>F</mi><mi>L</mi><mi>O</mi><mi>P</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">6P × (128 × 32 + 256 × 128) = 2.43 × 10^{13} FLOPs</annotation></semantics></math> That step takes 0.0716 s under the same throughput model. One refresh therefore equals 10,233 training steps. Refreshing every 10,000 steps roughly doubles training compute and changes query-time cost by zero. For DPR's 21,015,324-passage index, the same lower bound is 5.92 × 10^17 FLOPs, or 29 minutes. Karpukhin et al. report about 8.8 hours on 8 graphics processing units (GPUs), which is 18 times the stated FLOP floor on 2020-era hardware.</p>
+<p><strong>Claim limit:</strong> The derived time is a lower bound, while the reported run includes real hardware and system overhead.</p>
+<p>Run refresh asynchronously on separate workers. Log the mined margin and refresh after mean Δ grows by about 3 nats. If cadence must be fixed, keep refresh compute under half of training compute. For this corpus, that means no tighter than every 20,000 steps.</p>
+<h4 id="large-corpus-boundary">Large-corpus boundary</h4>
+<p>For 500M chunks, a refresh costs 1.41 × 10^19 FLOPs, or about 11.5 hours. A batch of 32,768 random Δ = 8 negatives carries 32,768/1,097 = 29.9 top-ANN equivalents of unnormalized weight. It still pays activation memory and spreads signal over near-identical easy directions. Mining from a 10% corpus sample costs 1.41 × 10^18 FLOPs, or 1.15 hours. The chapter says the k-th hardest sample passage approximates the 10k-th hardest overall at this corpus size. This is a proposed compromise, not a reported experiment.</p>
+<h3 id="204-unsupervised-dense-retrieval-contriever-and-moco">20.4 Unsupervised dense retrieval: Contriever and MoCo</h3>
+<h4 id="what-labels-supplied">What labels supplied</h4>
+<p>DPR's label identifies the positive passage. Its negatives were sampled rather than labeled. Contriever creates the missing positive by independently cropping two spans from one document. The crops may overlap. Shared tokens create a BM25-like lexical floor, while random deletion and masking stop learning from ending there.</p>
+<p><strong>Failure of direct transfer:</strong> On BEIR, transferred dense retrievers lose to BM25 on most out-of-domain collections in the cited result.</p>
+<p>MS MARCO has 502,939 training queries for 8,841,823 passages. That is about one labeled query per 17.6 passages. Matching that density for a new 8M-document corpus is a large labeling project.</p>
+<h4 id="infonce-information-ceiling">InfoNCE information ceiling</h4>
+<p>With K negatives, the bound is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>;</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mo>≥</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>L</mi><mrow><mi>I</mi><mi>n</mi><mi>f</mi><mi>o</mi><mi>N</mi><mi>C</mi><mi>E</mi></mrow></msub></mrow><annotation encoding="application/x-tex">I(q;p) ≥ log(K + 1) - L_{InfoNCE}</annotation></semantics></math> <strong>What:</strong> The objective can certify at most log(K + 1) nats.</p>
+<p><strong>Why:</strong> Without labels, random negatives cannot be mined against known query-positive pairs, so count is the remaining lever.</p>
+<p>DPR's B = 128 gives log2(128) = 7.00 bits. Identifying one passage among 8,841,823 needs log2(8,841,823) = 23.08 bits. The affordable batch is about 16 bits short.</p>
+<h4 id="activation-cost-versus-a-queue">Activation cost versus a queue</h4>
+<p>For sequence length s, hidden size h, attention heads a, and half precision, the cited per-layer activation accounting is s × h × (34 + 5as/h) bytes. For a 128-token BERT-base passage with h = 768, a = 12, and 12 layers: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>128</mn><mo>×</mo><mn>768</mn><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>34</mn><mo>+</mo><mn>5</mn><mo>×</mo><mn>12</mn><mo>×</mo><mn>128</mn><mi>/</mi><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>12</mn><mo>=</mo><mn>51</mn><mo>,</mo><mn>904</mn><mo>,</mo><mn>512</mn><mi>b</mi><mi>y</mi><mi>t</mi><mi>e</mi><mi>s</mi><mo>=</mo><mn>51.9</mn><mi>M</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">128 × 768 × (34 + 5 × 12 × 128/768) × 12 = 51,904,512 bytes = 51.9 MB</annotation></semantics></math> Holding 65,536 such passage activations costs 3.40 TB. A queued d = 768 fp32 key costs 768 × 4 = 3,072 bytes. The same 65,536 keys cost 201 MB. The queue is 16,900 times cheaper for the same negative count.</p>
+<p><strong>Trade-off:</strong> It discards backpropagation through queued negatives.</p>
+<p>The chapter argues this is cheap because random negatives already have nearly zero weight.</p>
+<h4 id="mocos-two-timescale-condition">MoCo's two-timescale condition</h4>
+<p>MoCo enqueues new keys and removes the oldest keys first. The key encoder follows the query encoder by EMA: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>k</mi></msub><mo>←</mo><mi>m</mi><msub><mi>θ</mi><mi>k</mi></msub><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">θ_k ← mθ_k + (1-m)θ</annotation></semantics></math> The effective momentum window is 1/(1-m) steps. The oldest key is K/B steps old. The design condition is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mi>/</mi><mi>B</mi><mo>≲</mo><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">K/B ≲ 1/(1-m)</annotation></semantics></math> <strong>Why:</strong> The key encoder must change more slowly than the queue turns over.</p>
+<p><strong>Failure:</strong> He et al. report failure to converge at m = 0, where the momentum window is one step.</p>
+<h4 id="temperature-as-a-feasibility-condition">Temperature as a feasibility condition</h4>
+<p>With unit-norm embeddings, cosine scores lie between -1 and 1. The largest possible margin is 2. The finite-score loss floor is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>K</mi><msup><mi>e</mi><mrow><mi>−</mi><mn>2</mn><mi>/</mi><mi>τ</mi></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">log(1 + K e^{-2/τ})</annotation></semantics></math> At τ = 1 and K = 65,536, the floor is 9.09 nats. At MoCo's τ = 0.07, the floor is 2.6 × 10^-8 nats. Keeping it below 0.01 nats requires: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>≤</mo><mn>2</mn><mi>/</mi><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>100</mn><mi>K</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">τ ≤ 2/log(100K)</annotation></semantics></math> For K = 65,536, τ must be at most 0.127. The chapter moves toward τ = 0.01 only for sharper reranker-distillation targets and warns of gradient-scale instability.</p>
+<p><strong>Failure without this check:</strong> The loss curve can reflect bounded score geometry rather than model quality.</p>
+<h4 id="three-negative-pool-configurations">Three negative-pool configurations</h4>
+<p>The setting uses P = 110M, d = 768, 12 layers, h = 768, a = 12, 128-token crops, and 32-token queries.</p>
+<p><strong>Configuration 1:</strong> B = 128 gives 127 negatives and a 7.00-bit ceiling.</p>
+<p>The activations are 128 × 51.9 MB plus 128 × 10.8 MB = 8.0 GB. The source says this is why DPR's B = 128 fit across 8 V100 GPUs.</p>
+<p><strong>Configuration 2:</strong> B = 65,536 raises the ceiling to 16.0 bits.</p>
+<p>It needs 3.40 TB for passage activations, equal to 106 devices with 32 GB each, before other tensors. Encoder FLOPs rise 512 times per step.</p>
+<p><strong>Configuration 3:</strong> K = 65,536, B = 128, and m = 0.999 give the same 16.0-bit ceiling in 201 MB.</p>
+<p>The queue spans 512 steps. The momentum window is 1,000 steps. The headroom is 1.95 times. The forward-only momentum branch is 2/(6 + 2) = 25% of the step. Training costs 1.33 times a queue-free run. The query branch costs 1.08 × 10^13 FLOPs and the key branch costs 3.60 × 10^12 FLOPs. The large batch buys the same 16.0 bits at 512 times cost. The queue is 512/1.33 = 384 times cheaper per bit under this comparison.</p>
+<h4 id="staleness-binds-before-memory">Staleness binds before memory</h4>
+<p>He et al. use K = 65,536, B = 256, and m = 0.999. The queue span is 256 steps against a 1,000-step momentum window. The headroom is 3.9 times. At m = 0, the one-step window violates the condition 256-fold. Queueing all 8,841,823 passages costs 27.2 GB but spans 69,077 steps. It would require m at least 0.99999. The resulting key encoder would be a near-frozen average of an untrained network. At B = 128 and m = 0.999, K is capped at 128,000 by the condition. Raising m to 0.9999 permits a queue 10 times larger but makes the key encoder lag 10 times further.</p>
+<h4 id="practical-and-experimental-boundaries">Practical and experimental boundaries</h4>
+<p>Use independent cropping rather than ICT unless the corpus has a natural title-body or question-body pair. ICT removes one sentence and pairs it with the remainder, which guarantees zero token overlap and discards the cited lexical floor. Use unsupervised pre-training as an initializer when any labels exist. Izacard et al. report that fine-tuning Contriever beats fine-tuning raw BERT on MS MARCO and BEIR transfer. They also report unsupervised Contriever beating BM25 on recall@100 on 11 of 15 BEIR datasets. BM25 remains the stronger precision-oriented ranker on average in that comparison.</p>
+<p><strong>Claim limit:</strong> Recall@100 is the chosen metric because this retriever feeds a reranker.</p>
+<p>For direct retrieval, top-of-list precision matters instead. The key encoder is discarded after training, so the serving index and latency match a supervised bi-encoder. GradCache can compute exact large-batch contrastive gradients in constant memory by caching representation-level gradients and replaying the encoder. It takes roughly double the forward passes and does not remove the large batch's compute cost.</p>
+<h3 id="205-cross-lingual-and-low-resource-retrieval">20.5 Cross-lingual and low-resource retrieval</h3>
+<h4 id="why-lexical-retrieval-returns-zero">Why lexical retrieval returns zero</h4>
+<p>BM25 sums scores only over shared query-document terms. For an Arabic query and an English passage, the overlap can be empty. Every passage then receives exactly zero, and a tie-break determines the ranking.</p>
+<p><strong>Failure:</strong> Tuning BM25 parameters cannot create missing overlap.</p>
+<p>Keep lexical retrieval within a language or for tokens that survive languages unchanged, such as product codes and Latin-script proper nouns.</p>
+<h4 id="language-centroid-model">Language centroid model</h4>
+<p>For a unit-norm text embedding in language l: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>α</mi><msub><mi>μ</mi><mi>l</mi></msub><mo>+</mo><mi>s</mi><mi>q</mi><mi>r</mi><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">e(t) = α μ_l + sqrt(1-α^2) r(t)</annotation></semantics></math> Here μ_l is a unit language direction, r(t) is a unit semantic residual, and α is the norm share spent on language identity. The residual is assumed orthogonal to every centroid and averages to zero within a language. For query language a and document language b: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>α</mi><mn>2</mn></msup><msubsup><mi>μ</mi><mi>a</mi><mi>T</mi></msubsup><msub><mi>μ</mi><mi>b</mi></msub><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">e(q)^T e(d) = α^2 μ_a^T μ_b + (1-α^2)s</annotation></semantics></math> Here s = r(q)^T r(d), and c = μ_a^T μ_b for different languages. A cross-language positive at s+ must beat a same-language distractor at s-. That requires: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>+</mo><mi>−</mi><mi>s</mi><mi>−</mi><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(1-α^2)(s+ - s-) &gt; α^2(1-c)</annotation></semantics></math> Equivalently: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>α</mi><mn>2</mn></msup><mo>&lt;</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>+</mo><mi>−</mi><mi>s</mi><mi>−</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo>+</mo><mi>−</mi><mi>s</mi><mi>−</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">α^2 &lt; (s+ - s-)/[(s+ - s-) + (1-c)]</annotation></semantics></math> At s+ = 0.9, s- = 0.1, and c = 0.5, α^2 must be below 0.8/1.3 = 0.615. Thus α must be below 0.78. At α = 0.9, the best cited cross-language score is 0.81 × 0.5 + 0.19 × 0.9 = 0.576. The worst cited same-language score is 0.81 + 0.19 × 0.1 = 0.829. At c = 0, the threshold tightens to α below 0.67.</p>
+<p><strong>Failure:</strong> Language identity can outrank any trainable semantic gap in this model.</p>
+<h4 id="mean-centering-and-sampling-fixes">Mean-centering and sampling fixes</h4>
+<p>The mean embedding for language l is αμ_l under the stated residual assumptions. Its norm measures α. The cosine between two language means measures c. Embed 1,000 documents per language to estimate both. Subtracting the per-language mean removes αμ_l and leaves (1-α^2)s, a monotone rescaling of semantics. Libovicky et al. report substantially better cross-lingual sentence retrieval after centroid subtraction on mBERT. Roy et al. built LAReQA to measure same-language preference in encoders that still score well on translation ranking. Uniform negatives from an 80% English corpus let a Swahili query use language match as a free discriminator. Draw negatives from the positive passage's language so gradient must reach semantic residuals.</p>
+<h4 id="capacity-and-tokenization">Capacity and tokenization</h4>
+<p>Conneau et al. trained XLM-R on 2.5 TB of CommonCrawl across 100 languages. They call the fixed-capacity competition the curse of multilinguality. Adding languages first helps low-resource languages through sharing, then hurts all languages when they compete for fixed parameters. The stated escape is more capacity and a larger vocabulary. At equal parameter count, the chapter says an encoder trained on the product's eight languages beats a 100-language encoder on those eight. Vocabulary allocation also changes fertility, which is tokenizer tokens per word. At fertility 1.3, a 512-token chunk holds 394 English words. At fertility 3.0, it holds 171 Swahili words. The Swahili leg creates 394/171 = 2.3 times as many chunks with 2.3 times less context per chunk. Set boundaries in words when possible, then cap by the encoder's token window.</p>
+<h4 id="translation-placement-and-latency">Translation placement and latency</h4>
+<p>The worked system has 20M documents, 250 tokens per document, 8 languages, 25-token queries, a 300 ms p95 budget, translation at $1.00 per million output tokens, and decoding at 20 ms per token.</p>
+<p><strong>Configuration 1:</strong> Translate the corpus to English offline.</p>
+<p>The volume is 20 × 10^6 × 250 = 5.0 × 10^9 tokens, or 5,000 million. The one-time price is $5,000. At 5% monthly churn, 1M changed documents produce 250M tokens and cost $250 per month. The online 25-token query translation still costs 25 × 20 = 500 ms. Search adds about 10 ms, for 510 ms total.</p>
+<p><strong>Configuration 2:</strong> Keep eight native indexes of 2.5M vectors each and translate the query to seven other languages in parallel.</p>
+<p>The critical translation remains 500 ms. Eight ANN probes plus RRF bring the total to 515 ms.</p>
+<p><strong>Configuration 3:</strong> Use one multilingual bi-encoder and one index.</p>
+<p>Query encoding costs 2 × 110M × 25 = 5.5 × 10^9 FLOPs. At an effective 50 trillion floating-point operations per second (TFLOP/s), arithmetic takes 0.11 ms. The figure assigns 10 ms to encoding service overhead and about 10 ms to HNSW search. Total latency is 20 ms, which is 25 times faster than the translating designs, with zero translation charge. The 20M by 768 fp32 index is 61.44 GB if chunk counts match the English estimate.</p>
+<p><strong>Claim limit:</strong> Fertility can increase non-English chunk counts, so 61.44 GB is conditional.</p>
+<h4 id="cross-lingual-evaluation-boundaries">Cross-lingual evaluation boundaries</h4>
+<p>Zhang et al. report that English-only mDPR underperforms BM25 on most of Mr. TyDi's eleven languages. Only the BM25-dense hybrid beats both in the cited result. mMARCO translates English queries, so it preserves English question structure. Mr. TyDi has eleven languages with native-speaker queries. MIRACL has eighteen languages with native-speaker queries. Use those native-query benchmarks for the harder and more honest test described by the chapter. Before changing the model, test 50 hand-written Swahili queries with known English answers on recall@100. For a zero-label language, prefer unsupervised cropping before translated labels. When translation is reliable in a high-resource language, translated MS MARCO-style supervision can support hard-negative training.</p>
+<h4 id="shared-index-design-boundary">Shared-index design boundary</h4>
+<p>Default to one multilingual index with per-language mean-centering. Partition by language when language itself is an access-control boundary. If original-language citation is required, keep original documents and their identifiers regardless of retrieval architecture. One proposed synthesis translates the corpus offline and indexes both original and English versions in the multilingual space. It keeps online queries translation-free and doubles the index from 61.4 GB to 122.9 GB. It also stays below the staff scenario's tightened 150 ms p95 budget. This is a design proposal from the chapter, not a reported benchmark.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-201">Figure 20.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  subgraph A[&quot;(a) cross-encoder - all work is online&quot;]
+    AQ[&quot;query q&quot;] --&gt; AJ[&quot;one encoder over query and passage&quot;]
+    AP[&quot;passage p_i&quot;] --&gt; AJ
+    AR[&quot;repeat N times at 3.52 x 10^10 FLOPs each&quot;] --&gt; AJ
+    AJ --&gt; AS[&quot;score s(q,p_i)&quot;]
+    AS --&gt; AT[&quot;N = 21M gives 2,175 s&quot;]
+  end
+  subgraph B[&quot;(b) bi-encoder - the passage tower runs offline&quot;]
+    BC[&quot;corpus&quot;] -.-&gt; BP[&quot;passage tower E_P&quot;]
+    BP -.-&gt; BI[&quot;index of N x d floats&quot;]
+    BQ[&quot;query q&quot;] --&gt; BE[&quot;query tower E_Q&quot;]
+    BE --&gt; BD[&quot;dot product E_Q(q)^T E_P(p_i)&quot;]
+    BI -.-&gt; BD
+    BD --&gt; BR[&quot;cross-encoder rerank at k = 100&quot;]
+    BR --&gt; BT[&quot;100 x 3.52 x 10^10 gives 10.4 ms&quot;]
+  end</code></pre></details></figure>
+<blockquote>
+<p>Figure 20.1: The same encoder is unaffordable at corpus depth and cheap at candidate depth: scoring 21M passages with a cross-encoder costs 36 minutes per query, while a bi-encoder answers in 32 ms because its passage tower ran offline - and the cross-encoder then returns as a reranker over 100 candidates for 10.4 ms. Dashed paths are precomputed. Solid paths run per query.</p>
+</blockquote>
+<h3 id="figure-202">Figure 20.2</h3>
+<pre class="text"><code>BM25 IDF(t), nats                              log10 training pairs seen
+high  16.61 at n(t)=3       X\              /X       280 at n(t)=10^5  high
+                              \            /
+                               \          /
+                                \   X    /         crossover near 3.9 x 10^3
+                                 \      /
+low                               \____/                               low
+       1     10     10^2     10^3     10^4     10^5     10^6     10^7
+       &lt;--------- BM25 territory | dense territory -------------------&gt;
+            solid line falls     | dashed line rises          n(t)</code></pre>
+<blockquote>
+<p>Figure 20.2: Both curves are exact for a 21,015,324-passage corpus and a 5.888 × 10^4-pair training set, and they run in opposite directions against the same variable: BM25's per-term weight falls as document frequency rises, while the dense encoder's supervised exposure to that term rises. They cross near n(t) ≈ 3.9 × 10^3, which is why neither method dominates and why the two error sets barely overlap.</p>
+</blockquote>
+<h3 id="figure-203">Figure 20.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Negative type</th>
+<th style="text-align: right;">Margin Δ</th>
+<th style="text-align: right;">Per-negative weight e^-Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>top-ANN negative</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.68 × 10^-1</td>
+</tr>
+<tr>
+<td>static BM25 negative</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1.83 × 10^-2</td>
+</tr>
+<tr>
+<td>random in-batch negative</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">3.35 × 10^-4</td>
+</tr>
+</tbody>
+</table></div>
+<p>The top-ANN weight is e^7 = 1,097 times the random in-batch weight.</p>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  T[&quot;Trainer advances from t to t + m&quot;] --&gt;|&quot;checkpoint theta_t&quot;| I[&quot;Inferencer re-encodes N passages&quot;]
+  I --&gt;|&quot;2.49 x 10^17 FLOPs or 10,233 steps&quot;| A[&quot;ANN index snapshot of theta_t&quot;]
+  A --&gt;|&quot;top-k list stale by at most m steps&quot;| N[&quot;top-k negatives per question&quot;]
+  N --&gt; T</code></pre></details></figure>
+<p>If this loop is cut, mined margins drift from Δ = 1 to Δ = 4 and lose 20.1 times their gradient weight at unchanged training cost.</p>
+<blockquote>
+<p>Figure 20.3: A negative one nat from the positive carries 1,097 times the gradient weight of one eight nats away, so the sampler that minimizes SGD variance is the model's own retrieval list - and because that list moves as the parameters move, the index must be rebuilt periodically at a cost of roughly 10,233 training steps per refresh.</p>
+</blockquote>
+<h3 id="figure-204">Figure 20.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  D[&quot;unlabeled document: Wikipedia, CCNet, or your corpus&quot;]
+  D --&gt; X1[&quot;independent crop x1&quot;]
+  D --&gt; X2[&quot;independent crop x2&quot;]
+  X1 --&gt; Q[&quot;query encoder E_theta with SGD and activations&quot;]
+  X2 --&gt; K[&quot;key encoder E_theta_k with no gradient&quot;]
+  O[&quot;shared tokens give a BM25-like lexical floor&quot;] -.-&gt; X1
+  O -.-&gt; X2
+  Q --&gt; L[&quot;InfoNCE over K + 1 = 65,537 logits&quot;]
+  K --&gt; E[&quot;enqueue newest key at step t&quot;]
+  E --&gt; F[&quot;FIFO queue with K = 65,536&quot;]
+  F --&gt; R[&quot;dequeue oldest key from step t - 512&quot;]
+  F --&gt; L
+  Q -.-&gt;|&quot;EMA update with m = 0.999&quot;| K
+  W[&quot;queue span 512 steps stays below momentum window 1,000&quot;] -.-&gt; F</code></pre></details></figure>
+<blockquote>
+<p>Figure 20.4: Two random crops of one document make a positive pair without any label, and a momentum-encoded FIFO queue raises the negative count from 128 to 65,536 - from 7.00 to 16.0 bits of certifiable query-document information - at 201 MB instead of the 3.40 TB of activations the same negatives would cost in-batch.</p>
+</blockquote>
+<h3 id="figure-205">Figure 20.5</h3>
+<pre class="text"><code>                         unit sphere
+             d+ in English        d- and q in Swahili
+                 o                      o  o
+                  \                    /  /
+                   \ mu_en      mu_sw /  /
+                    \              /  /
+                     \____ c=0.5 _/  /
+alpha = 0.9
+same-language distractor = 0.81 + 0.19(0.1) = 0.829
+cross-language answer    = 0.81(0.5) + 0.19(0.9) = 0.576
+subtracting alpha times the language centroid deletes the first term</code></pre>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  Q1[&quot;1.0: Swahili query, 25 tokens&quot;] --&gt; M1[&quot;MT decode at 25 x 20 ms&quot;] --&gt; I1[&quot;English index, 20M vectors&quot;] --&gt; L1[&quot;510 ms&quot;]
+  Q2[&quot;1.5: Swahili query&quot;] --&gt; M2[&quot;MT to 7 languages in parallel&quot;] --&gt; I2[&quot;8 indexes and RRF fusion&quot;] --&gt; L2[&quot;515 ms&quot;]
+  Q3[&quot;2.0: Swahili query&quot;] --&gt; M3[&quot;multilingual encoder, 10 ms&quot;] --&gt; I3[&quot;one index, 61.4 GB&quot;] --&gt; L3[&quot;20 ms&quot;]</code></pre></details></figure>
+<blockquote>
+<p>Figure 20.5: The language centroid adds a constant α^2 to every same-language score, so at α = 0.9 the worst Swahili distractor (0.829) outranks the best English answer (0.576). Removing the centroid and removing the query-time translation hop are the two independent fixes, worth a correct ranking and a 25 × latency reduction respectively.</p>
+</blockquote>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a query box and a passage box entering one joint cross-encoder.</li>
+<li>Label that path N online passes and write 36 minutes for 21M passages.</li>
+<li>Draw separate query and passage towers.</li>
+<li>Put the passage tower behind a dotted offline boundary and connect it to a vector index.</li>
+<li>Connect the query tower to ANN search and write 32 ms for the cited flat scan.</li>
+<li>Split candidate generation into a dense lane for paraphrases and a BM25 lane for rare exact strings.</li>
+<li>Merge both lanes into a cross-encoder reranker at depth 100 and write 10.4 ms.</li>
+<li>Beside training, draw a positive with one near-miss and write gradient weight proportional to e^-Δ.</li>
+<li>Add the ANCE loop from checkpoint to refreshed index to mined negatives to trainer.</li>
+<li>Add two document crops, a momentum key encoder, and a FIFO queue for zero-label training.</li>
+<li>Draw two language centroids, cross out their mean vectors, and label same-language negatives.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Dense retrieval turns each query and passage into vectors, so passages can be encoded before a query arrives. That makes corpus search practical, but it removes direct query-passage attention and misses rare exact strings that BM25 catches. Training quality therefore depends on informative negatives. ANCE mines the model's current near misses, while Contriever and MoCo learn without labels by cropping documents and keeping many queued negatives. For multilingual search, language identity can dominate meaning, so center each language and sample same-language negatives. In production, retrieve broadly with dense and sparse signals, then let a cross-encoder rerank the short union.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-if-cross-encoders-are-more-accurate-why-use-a-bi-encoder">1. If cross-encoders are more accurate, why use a bi-encoder?</h3>
+<p>A cross-encoder over 21M passages costs 7.40 × 10^17 FLOPs, or 36 minutes under the chapter's throughput assumption. The bi-encoder precomputes passages, searches in 32 ms in the flat example, and still uses the cross-encoder at depth 100 for 10.4 ms.</p>
+<h3 id="2-dense-retrieval-beats-bm25-on-natural-questions-when-must-bm25-stay">2. Dense retrieval beats BM25 on Natural Questions. When must BM25 stay?</h3>
+<p>Keep BM25 for rare exact strings, identifiers, codes, quoted text, and any verbatim-containment requirement. Dense exposure falls in the rare tail while BM25's IDF rises, so an aggregate dense win can hide a near-disjoint production failure set.</p>
+<h3 id="3-a-contrastive-loss-is-already-008-but-recall-is-flat-what-failed">3. A contrastive loss is already 0.08, but recall is flat. What failed?</h3>
+<p>The negatives are too easy. With 255 negatives at Δ = 8, the loss is 0.0821 nats, while one Δ = 1 near miss carries 1,097 times each negative's weight, so mine current top-ANN candidates and refresh the index as margins drift.</p>
+<h3 id="4-how-do-you-train-dense-retrieval-with-no-labeled-queries">4. How do you train dense retrieval with no labeled queries?</h3>
+<p>Create positives from two independent crops of one document and optimize InfoNCE. Use a MoCo queue to raise the negative count cheaply, but size K so K/B stays below the momentum window 1/(1-m), and set temperature from the finite-score loss floor.</p>
+<h3 id="5-why-can-a-multilingual-encoder-still-rank-the-wrong-language-matched-passage-first">5. Why can a multilingual encoder still rank the wrong language-matched passage first?</h3>
+<p>Its embedding can spend norm on a language centroid, which gives same-language documents a free α^2 score. Measure per-language means, subtract them before indexing, sample negatives from the positive's language, and remove online translation because the cited 25-token hop costs 500 ms.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number</th>
+<th>Meaning or boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source corpus</td>
+<td style="text-align: right;">21,015,324 passages</td>
+<td>DPR English Wikipedia index used in sections 20.1 and 20.2</td>
+</tr>
+<tr>
+<td>BERT-base</td>
+<td style="text-align: right;">P = 110M</td>
+<td>Parameter count used in compute examples</td>
+</tr>
+<tr>
+<td>token lengths</td>
+<td style="text-align: right;">L_q = 32 and L_p = 128</td>
+<td>Query and passage lengths in the main compute example</td>
+</tr>
+<tr>
+<td>embedding</td>
+<td style="text-align: right;">d = 768</td>
+<td>Vector size used throughout the chapter's examples</td>
+</tr>
+<tr>
+<td>cross-encoder pair</td>
+<td style="text-align: right;">3.52 × 10^10 FLOPs</td>
+<td>One 160-token joint pass under the two-P rule</td>
+</tr>
+<tr>
+<td>query encoding</td>
+<td style="text-align: right;">7.04 × 10^9 FLOPs</td>
+<td>One 32-token query pass</td>
+</tr>
+<tr>
+<td>full cross-encoding</td>
+<td style="text-align: right;">7.40 × 10^17 FLOPs</td>
+<td>Corpus-depth joint scoring over about 21M passages</td>
+</tr>
+<tr>
+<td>flat bi-encoder arithmetic</td>
+<td style="text-align: right;">3.93 × 10^10 FLOPs</td>
+<td>Query encoding plus all dot products</td>
+</tr>
+<tr>
+<td>architecture factor</td>
+<td style="text-align: right;">1.9 × 10^7</td>
+<td>Cross-encoder to bi-encoder arithmetic ratio</td>
+</tr>
+<tr>
+<td>assumed throughput</td>
+<td style="text-align: right;">3.4 × 10^14 FLOP/s</td>
+<td>Book-wide sustained accelerator value used for times</td>
+</tr>
+<tr>
+<td>full cross-encoder time</td>
+<td style="text-align: right;">2,175 s or 36 minutes</td>
+<td>One query over 21M passages</td>
+</tr>
+<tr>
+<td>token interactions</td>
+<td style="text-align: right;">32 × 128 = 4,096</td>
+<td>Joint attention interactions available to the cross-encoder</td>
+</tr>
+<tr>
+<td>DPR batch</td>
+<td style="text-align: right;">B = 128</td>
+<td>Questions per training batch</td>
+</tr>
+<tr>
+<td>passage pool</td>
+<td style="text-align: right;">2B = 256</td>
+<td>Positives plus one BM25 hard negative per question</td>
+</tr>
+<tr>
+<td>per-query negatives</td>
+<td style="text-align: right;">2B - 1 = 255</td>
+<td>In-batch negatives seen by each question</td>
+</tr>
+<tr>
+<td>independent encodings</td>
+<td style="text-align: right;">32,640 versus 256</td>
+<td>Passage work without and with in-batch reuse</td>
+</tr>
+<tr>
+<td>in-batch savings</td>
+<td style="text-align: right;">128 times</td>
+<td>Exactly the batch size B</td>
+</tr>
+<tr>
+<td>Natural Questions</td>
+<td style="text-align: right;">78.4% versus 59.1%</td>
+<td>DPR versus BM25 top-20 accuracy</td>
+</tr>
+<tr>
+<td>Natural Questions gap</td>
+<td style="text-align: right;">19.3 points</td>
+<td>DPR advantage in that setup</td>
+</tr>
+<tr>
+<td>retrieval budget</td>
+<td style="text-align: right;">50 ms</td>
+<td>Worked system target</td>
+</tr>
+<tr>
+<td>cross-encoder overrun</td>
+<td style="text-align: right;">4.4 × 10^4</td>
+<td>Full cross-encoding relative to 50 ms</td>
+</tr>
+<tr>
+<td>flat fp32 index</td>
+<td style="text-align: right;">64.6 GB</td>
+<td>21M by 768 by 4 bytes</td>
+</tr>
+<tr>
+<td>flat fp16 index</td>
+<td style="text-align: right;">32.3 GB</td>
+<td>Half the fp32 storage</td>
+</tr>
+<tr>
+<td>dot products</td>
+<td style="text-align: right;">3.23 × 10^10 FLOPs or 95 μs</td>
+<td>Arithmetic portion of flat search</td>
+</tr>
+<tr>
+<td>HBM bandwidth</td>
+<td style="text-align: right;">2.0 TB/s</td>
+<td>Value used for the flat scan</td>
+</tr>
+<tr>
+<td>flat scan</td>
+<td style="text-align: right;">32 ms</td>
+<td>Time to stream 64.6 GB at 2.0 TB/s</td>
+</tr>
+<tr>
+<td>memory-bound factor</td>
+<td style="text-align: right;">340</td>
+<td>Bandwidth time relative to arithmetic time</td>
+</tr>
+<tr>
+<td>rerank depth</td>
+<td style="text-align: right;">k = 100</td>
+<td>Candidate count in the two-stage example</td>
+</tr>
+<tr>
+<td>rerank work</td>
+<td style="text-align: right;">3.52 × 10^12 FLOPs</td>
+<td>Cross-encoding 100 candidates</td>
+</tr>
+<tr>
+<td>rerank time</td>
+<td style="text-align: right;">10.4 ms</td>
+<td>Candidate-depth cross-encoder time</td>
+</tr>
+<tr>
+<td>two-stage total</td>
+<td style="text-align: right;">roughly 15 ms</td>
+<td>ANN retrieval plus reranking</td>
+</tr>
+<tr>
+<td>depth reduction</td>
+<td style="text-align: right;">2.1 × 10^5</td>
+<td>Corpus-depth to depth-100 cross-encoder cost reduction</td>
+</tr>
+<tr>
+<td>DPR throughput</td>
+<td style="text-align: right;">995 questions/s</td>
+<td>Reported FAISS-index throughput</td>
+</tr>
+<tr>
+<td>BM25 throughput</td>
+<td style="text-align: right;">23.7 questions/s</td>
+<td>Reported Lucene throughput</td>
+</tr>
+<tr>
+<td>DPR latency inversion</td>
+<td style="text-align: right;">1.01 ms/question</td>
+<td>Inverse of 995 questions/s</td>
+</tr>
+<tr>
+<td>derived query floor</td>
+<td style="text-align: right;">20.7 μs or about 2%</td>
+<td>Query-encoder share of that budget</td>
+</tr>
+<tr>
+<td>all-cross threshold</td>
+<td style="text-align: right;">about 480 pairs</td>
+<td>Pairs available under 50 ms at the stated pair cost</td>
+</tr>
+<tr>
+<td>corpus boundary</td>
+<td style="text-align: right;">roughly 500 documents</td>
+<td>Cited threshold for skipping a vector index</td>
+</tr>
+<tr>
+<td>label boundary</td>
+<td style="text-align: right;">roughly 1,000 pairs</td>
+<td>Below this, the chapter favors an unsupervised initializer</td>
+</tr>
+<tr>
+<td>small batch</td>
+<td style="text-align: right;">B = 8 gives 15 negatives</td>
+<td>Contrast with B = 128 and 255 negatives</td>
+</tr>
+<tr>
+<td>dense candidate depth</td>
+<td style="text-align: right;">50 to 100</td>
+<td>Cited practical range</td>
+</tr>
+<tr>
+<td>sparse candidate depth</td>
+<td style="text-align: right;">up to about 20</td>
+<td>Cited exact-hit depth</td>
+</tr>
+<tr>
+<td>larger dense vector</td>
+<td style="text-align: right;">d = 1,536</td>
+<td>Doubling from 768 doubles the index bill without adding tail occurrences</td>
+</tr>
+<tr>
+<td>monthly re-index corpus</td>
+<td style="text-align: right;">500M chunks at 256 tokens</td>
+<td>Staff-level change-management example</td>
+</tr>
+<tr>
+<td>monthly re-index compute</td>
+<td style="text-align: right;">2.82 × 10^19 FLOPs</td>
+<td>Full passage re-encoding</td>
+</tr>
+<tr>
+<td>monthly re-index time</td>
+<td style="text-align: right;">8.3 × 10^4 s or 23 hours</td>
+<td>One-accelerator estimate</td>
+</tr>
+<tr>
+<td>parallel re-index time</td>
+<td style="text-align: right;">under 2 hours</td>
+<td>Estimate on twelve accelerators</td>
+</tr>
+<tr>
+<td>500M live index</td>
+<td style="text-align: right;">1.54 TB</td>
+<td>fp32 storage at d = 768</td>
+</tr>
+<tr>
+<td>blue-green footprint</td>
+<td style="text-align: right;">3.1 TB</td>
+<td>Old and new index during cutover</td>
+</tr>
+<tr>
+<td>rare BM25 term</td>
+<td style="text-align: right;">n(t) = 3 and 16.61 nats</td>
+<td>Rare-term IDF example</td>
+</tr>
+<tr>
+<td>frequent BM25 term</td>
+<td style="text-align: right;">n(t) = 10^5 and 6.34 nats</td>
+<td>Frequent-term IDF example</td>
+</tr>
+<tr>
+<td>IDF ratio</td>
+<td style="text-align: right;">2.6 times</td>
+<td>Rare to frequent term weight</td>
+</tr>
+<tr>
+<td>supervised set</td>
+<td style="text-align: right;">5.888 × 10^4 pairs</td>
+<td>Filtered Natural Questions training set</td>
+</tr>
+<tr>
+<td>rare expected exposure</td>
+<td style="text-align: right;">8.4 × 10^-3 or 1 in 119</td>
+<td>Expected sightings when n(t) = 3</td>
+</tr>
+<tr>
+<td>frequent exposure</td>
+<td style="text-align: right;">280 pairs</td>
+<td>Expected sightings when n(t) = 10^5</td>
+</tr>
+<tr>
+<td>crossover</td>
+<td style="text-align: right;">n(t) ≈ 3.9 × 10^3</td>
+<td>Exact cited dense-BM25 boundary for those constants</td>
+</tr>
+<tr>
+<td>BEIR</td>
+<td style="text-align: right;">18 datasets</td>
+<td>Transfer benchmark count in the cited result</td>
+</tr>
+<tr>
+<td>support corpus</td>
+<td style="text-align: right;">N = 2,000,000</td>
+<td>Rare-code worked example</td>
+</tr>
+<tr>
+<td>code frequency</td>
+<td style="text-align: right;">n(t) = 4</td>
+<td>Documents containing ERR_SSL_5417</td>
+</tr>
+<tr>
+<td>code IDF</td>
+<td style="text-align: right;">14.00 nats</td>
+<td>BM25 weight for the code</td>
+</tr>
+<tr>
+<td>remediation frequency</td>
+<td style="text-align: right;">n(t) = 2 × 10^5</td>
+<td>Comparison term frequency</td>
+</tr>
+<tr>
+<td>remediation IDF</td>
+<td style="text-align: right;">3.20 nats</td>
+<td>Comparison term weight</td>
+</tr>
+<tr>
+<td>code weight share</td>
+<td style="text-align: right;">81%</td>
+<td>Share of the two-term query's total weight</td>
+</tr>
+<tr>
+<td>sparse code recall</td>
+<td style="text-align: right;">100% at top 20</td>
+<td>Constructed result with four matching documents</td>
+</tr>
+<tr>
+<td>dense code pool</td>
+<td style="text-align: right;">1,800 codes</td>
+<td>Constructed topical neighborhood</td>
+</tr>
+<tr>
+<td>dense code recall</td>
+<td style="text-align: right;">about 1.1% at top 20</td>
+<td>20 divided by 1,800 constructed estimate</td>
+</tr>
+<tr>
+<td>hybrid union</td>
+<td style="text-align: right;">at most 40 candidates</td>
+<td>Top 20 from each retriever</td>
+</tr>
+<tr>
+<td>hybrid rerank</td>
+<td style="text-align: right;">1.41 × 10^12 FLOPs or 4.1 ms</td>
+<td>Cross-encoder insurance cost</td>
+</tr>
+<tr>
+<td>SQuAD</td>
+<td style="text-align: right;">63.2% versus 68.8%</td>
+<td>DPR versus BM25 top-20 result</td>
+</tr>
+<tr>
+<td>SQuAD reversal</td>
+<td style="text-align: right;">5.6 points</td>
+<td>BM25 advantage in that setup</td>
+</tr>
+<tr>
+<td>hard loss opening</td>
+<td style="text-align: right;">0.08 nats</td>
+<td>Symptom of easy negatives</td>
+</tr>
+<tr>
+<td>top-ANN margin</td>
+<td style="text-align: right;">Δ = 1 and 3.68 × 10^-1</td>
+<td>Hard-negative weight</td>
+</tr>
+<tr>
+<td>static BM25 margin</td>
+<td style="text-align: right;">Δ = 4 and 1.83 × 10^-2</td>
+<td>Static-negative weight</td>
+</tr>
+<tr>
+<td>random margin</td>
+<td style="text-align: right;">Δ = 8 and 3.35 × 10^-4</td>
+<td>Easy in-batch weight</td>
+</tr>
+<tr>
+<td>hard-to-random ratio</td>
+<td style="text-align: right;">e^7 = 1,097</td>
+<td>Per-negative gradient-weight ratio</td>
+</tr>
+<tr>
+<td>BM25-to-random ratio</td>
+<td style="text-align: right;">e^4 = 54.6</td>
+<td>Static hard-negative advantage</td>
+</tr>
+<tr>
+<td>top-ANN-to-BM25 ratio</td>
+<td style="text-align: right;">e^3 = 20.1</td>
+<td>Dynamic hard-negative advantage</td>
+</tr>
+<tr>
+<td>random-equivalent batch</td>
+<td style="text-align: right;">B = 140,416</td>
+<td>Batch needed to match one top-ANN weight from B = 128</td>
+</tr>
+<tr>
+<td>in-batch-only Z</td>
+<td style="text-align: right;">1.0855</td>
+<td>Normalizer with 255 random negatives</td>
+</tr>
+<tr>
+<td>in-batch-only loss</td>
+<td style="text-align: right;">0.0821 nats</td>
+<td>Exact worked loss</td>
+</tr>
+<tr>
+<td>in-batch negative mass</td>
+<td style="text-align: right;">7.88%</td>
+<td>Share of the step</td>
+</tr>
+<tr>
+<td>BM25-added Z</td>
+<td style="text-align: right;">1.1039</td>
+<td>Normalizer with one static negative</td>
+</tr>
+<tr>
+<td>BM25-added loss</td>
+<td style="text-align: right;">0.0988 nats</td>
+<td>Exact worked loss</td>
+</tr>
+<tr>
+<td>BM25-added mass</td>
+<td style="text-align: right;">9.41%</td>
+<td>Negative share of the step</td>
+</tr>
+<tr>
+<td>BM25 improvement</td>
+<td style="text-align: right;">1.19 times</td>
+<td>Gradient-mass increase over in-batch only</td>
+</tr>
+<tr>
+<td>ANN-added Z</td>
+<td style="text-align: right;">1.4534</td>
+<td>Normalizer with one top-ANN negative</td>
+</tr>
+<tr>
+<td>ANN-added loss</td>
+<td style="text-align: right;">0.374 nats</td>
+<td>Exact worked loss</td>
+</tr>
+<tr>
+<td>ANN-added mass</td>
+<td style="text-align: right;">31.2%</td>
+<td>Negative share of the step</td>
+</tr>
+<tr>
+<td>ANN improvement</td>
+<td style="text-align: right;">3.96 times</td>
+<td>Gradient-mass increase over in-batch only</td>
+</tr>
+<tr>
+<td>one hard negative</td>
+<td style="text-align: right;">25.3%</td>
+<td>Share of the entire step</td>
+</tr>
+<tr>
+<td>one easy negative</td>
+<td style="text-align: right;">0.023%</td>
+<td>Share per in-batch negative</td>
+</tr>
+<tr>
+<td>optimal hard budget</td>
+<td style="text-align: right;">81.1%</td>
+<td>Importance-sampling allocation</td>
+</tr>
+<tr>
+<td>uniform hard budget</td>
+<td style="text-align: right;">0.39%</td>
+<td>One of 256 slots</td>
+</tr>
+<tr>
+<td>undersampling</td>
+<td style="text-align: right;">208 times</td>
+<td>Optimal allocation divided by uniform allocation</td>
+</tr>
+<tr>
+<td>MS MARCO corpus</td>
+<td style="text-align: right;">8,841,823 passages</td>
+<td>Hard-negative and unsupervised examples</td>
+</tr>
+<tr>
+<td>refresh compute</td>
+<td style="text-align: right;">2.49 × 10^17 FLOPs</td>
+<td>Re-encoding MS MARCO at 128 tokens</td>
+</tr>
+<tr>
+<td>refresh floor</td>
+<td style="text-align: right;">732 s</td>
+<td>Time under stated throughput</td>
+</tr>
+<tr>
+<td>training step</td>
+<td style="text-align: right;">2.43 × 10^13 FLOPs or 0.0716 s</td>
+<td>DPR batch geometry</td>
+</tr>
+<tr>
+<td>refresh equivalent</td>
+<td style="text-align: right;">10,233 steps</td>
+<td>Refresh to training-step cost ratio</td>
+</tr>
+<tr>
+<td>aggressive cadence</td>
+<td style="text-align: right;">every 10,000 steps</td>
+<td>Roughly doubles training compute</td>
+</tr>
+<tr>
+<td>fixed cadence floor</td>
+<td style="text-align: right;">every 20,000 steps</td>
+<td>Keeps refresh under half of training compute</td>
+</tr>
+<tr>
+<td>Wikipedia refresh</td>
+<td style="text-align: right;">5.92 × 10^17 FLOPs or 29 minutes</td>
+<td>Derived lower bound</td>
+</tr>
+<tr>
+<td>reported embedding run</td>
+<td style="text-align: right;">8.8 hours on 8 GPUs</td>
+<td>DPR report cited for sanity</td>
+</tr>
+<tr>
+<td>floor gap</td>
+<td style="text-align: right;">18 times</td>
+<td>Reported run relative to FLOP floor</td>
+</tr>
+<tr>
+<td>large refresh</td>
+<td style="text-align: right;">1.41 × 10^19 FLOPs or 11.5 hours</td>
+<td>500M-chunk example</td>
+</tr>
+<tr>
+<td>giant random batch</td>
+<td style="text-align: right;">32,768</td>
+<td>Alternative negative count</td>
+</tr>
+<tr>
+<td>giant batch equivalence</td>
+<td style="text-align: right;">29.9 top-ANN negatives</td>
+<td>Unnormalized-weight comparison</td>
+</tr>
+<tr>
+<td>sampled refresh</td>
+<td style="text-align: right;">10%, 1.41 × 10^18 FLOPs, 1.15 hours</td>
+<td>Proposed large-corpus compromise</td>
+</tr>
+<tr>
+<td>MS MARCO labels</td>
+<td style="text-align: right;">502,939 queries</td>
+<td>Supervised query count</td>
+</tr>
+<tr>
+<td>label density</td>
+<td style="text-align: right;">1 per 17.6 passages</td>
+<td>Query-to-passage ratio</td>
+</tr>
+<tr>
+<td>InfoNCE batch ceiling</td>
+<td style="text-align: right;">7.00 bits at B = 128</td>
+<td>Certifiable information with 127 negatives</td>
+</tr>
+<tr>
+<td>corpus identification</td>
+<td style="text-align: right;">23.08 bits</td>
+<td>Bits needed to identify one of 8,841,823 passages</td>
+</tr>
+<tr>
+<td>information gap</td>
+<td style="text-align: right;">about 16 bits</td>
+<td>Corpus need minus batch ceiling</td>
+</tr>
+<tr>
+<td>one activation</td>
+<td style="text-align: right;">51.9 MB</td>
+<td>One 128-token BERT-base passage</td>
+</tr>
+<tr>
+<td>large-batch activations</td>
+<td style="text-align: right;">3.40 TB</td>
+<td>65,536 passage activations</td>
+</tr>
+<tr>
+<td>queued key</td>
+<td style="text-align: right;">3,072 bytes</td>
+<td>One d = 768 fp32 vector</td>
+</tr>
+<tr>
+<td>queue storage</td>
+<td style="text-align: right;">201 MB</td>
+<td>65,536 queued keys</td>
+</tr>
+<tr>
+<td>queue memory saving</td>
+<td style="text-align: right;">16,900 times</td>
+<td>Activation to key-storage ratio</td>
+</tr>
+<tr>
+<td>MoCo queue</td>
+<td style="text-align: right;">K = 65,536</td>
+<td>Negative count in the main example</td>
+</tr>
+<tr>
+<td>MoCo logits</td>
+<td style="text-align: right;">K + 1 = 65,537</td>
+<td>One positive plus the queued negatives</td>
+</tr>
+<tr>
+<td>MoCo batch</td>
+<td style="text-align: right;">B = 128</td>
+<td>Main queue example</td>
+</tr>
+<tr>
+<td>MoCo momentum</td>
+<td style="text-align: right;">m = 0.999</td>
+<td>Main queue example</td>
+</tr>
+<tr>
+<td>queue span</td>
+<td style="text-align: right;">512 steps</td>
+<td>K divided by B</td>
+</tr>
+<tr>
+<td>momentum window</td>
+<td style="text-align: right;">1,000 steps</td>
+<td>1 divided by 1 minus m</td>
+</tr>
+<tr>
+<td>span headroom</td>
+<td style="text-align: right;">1.95 times</td>
+<td>Window divided by span</td>
+</tr>
+<tr>
+<td>loss floor at τ = 1</td>
+<td style="text-align: right;">9.09 nats</td>
+<td>Infeasible large-queue objective</td>
+</tr>
+<tr>
+<td>MoCo temperature</td>
+<td style="text-align: right;">τ = 0.07</td>
+<td>Gives a 2.6 × 10^-8 nat floor</td>
+</tr>
+<tr>
+<td>temperature ceiling</td>
+<td style="text-align: right;">τ = 0.127</td>
+<td>Keeps floor below 0.01 nats for K = 65,536</td>
+</tr>
+<tr>
+<td>sharp temperature</td>
+<td style="text-align: right;">τ = 0.01</td>
+<td>Distillation option with expected gradient-scale instability</td>
+</tr>
+<tr>
+<td>large batch</td>
+<td style="text-align: right;">B = 65,536</td>
+<td>Raises ceiling to 16.0 bits</td>
+</tr>
+<tr>
+<td>large-batch devices</td>
+<td style="text-align: right;">106 at 32 GB</td>
+<td>Activation-only estimate</td>
+</tr>
+<tr>
+<td>large-batch compute</td>
+<td style="text-align: right;">512 times</td>
+<td>Per-step encoder increase</td>
+</tr>
+<tr>
+<td>momentum branch</td>
+<td style="text-align: right;">25% of a step</td>
+<td>Forward-only compute share</td>
+</tr>
+<tr>
+<td>queue training</td>
+<td style="text-align: right;">1.33 times</td>
+<td>Cost relative to queue-free training</td>
+</tr>
+<tr>
+<td>queue cost efficiency</td>
+<td style="text-align: right;">384 times cheaper per bit</td>
+<td>512 divided by 1.33 comparison</td>
+</tr>
+<tr>
+<td>shipped MoCo batch</td>
+<td style="text-align: right;">B = 256</td>
+<td>He et al. sanity check</td>
+</tr>
+<tr>
+<td>shipped queue span</td>
+<td style="text-align: right;">256 steps</td>
+<td>K divided by B</td>
+</tr>
+<tr>
+<td>shipped headroom</td>
+<td style="text-align: right;">3.9 times</td>
+<td>Momentum window divided by span</td>
+</tr>
+<tr>
+<td>m = 0 violation</td>
+<td style="text-align: right;">256-fold</td>
+<td>One-step window against 256-step span</td>
+</tr>
+<tr>
+<td>whole-corpus queue</td>
+<td style="text-align: right;">27.2 GB and 69,077 steps</td>
+<td>Memory and staleness for all MS MARCO passages</td>
+</tr>
+<tr>
+<td>required whole-corpus m</td>
+<td style="text-align: right;">at least 0.99999</td>
+<td>Momentum needed for that span</td>
+</tr>
+<tr>
+<td>queue cap</td>
+<td style="text-align: right;">K = 128,000</td>
+<td>Limit at B = 128 and m = 0.999</td>
+</tr>
+<tr>
+<td>Contriever result</td>
+<td style="text-align: right;">11 of 15 BEIR datasets</td>
+<td>Recall@100 wins over BM25</td>
+</tr>
+<tr>
+<td>language skew</td>
+<td style="text-align: right;">80% English</td>
+<td>Shortcut-training example</td>
+</tr>
+<tr>
+<td>semantic scores</td>
+<td style="text-align: right;">s+ = 0.9 and s- = 0.1</td>
+<td>Cross-language positive and same-language distractor</td>
+</tr>
+<tr>
+<td>centroid cosine</td>
+<td style="text-align: right;">c = 0.5</td>
+<td>Main geometric example</td>
+</tr>
+<tr>
+<td>centroid threshold</td>
+<td style="text-align: right;">α below 0.78</td>
+<td>Required for the 0.8 semantic gap at c = 0.5</td>
+</tr>
+<tr>
+<td>stronger separation</td>
+<td style="text-align: right;">α below 0.67 at c = 0</td>
+<td>Tighter language-norm budget</td>
+</tr>
+<tr>
+<td>biased centroid</td>
+<td style="text-align: right;">α = 0.9</td>
+<td>Failure example</td>
+</tr>
+<tr>
+<td>wrong distractor</td>
+<td style="text-align: right;">0.829</td>
+<td>Same-language score at α = 0.9</td>
+</tr>
+<tr>
+<td>right answer</td>
+<td style="text-align: right;">0.576</td>
+<td>Cross-language score at α = 0.9</td>
+</tr>
+<tr>
+<td>centroid measurement</td>
+<td style="text-align: right;">1,000 documents per language</td>
+<td>Suggested estimation sample</td>
+</tr>
+<tr>
+<td>XLM-R training</td>
+<td style="text-align: right;">2.5 TB and 100 languages</td>
+<td>Multilingual-capacity example</td>
+</tr>
+<tr>
+<td>multilingual corpus</td>
+<td style="text-align: right;">20M documents, 250 tokens, 8 languages</td>
+<td>Translation worked example</td>
+</tr>
+<tr>
+<td>per-language index</td>
+<td style="text-align: right;">2.5M vectors</td>
+<td>One eighth of the 20M-document corpus</td>
+</tr>
+<tr>
+<td>query length</td>
+<td style="text-align: right;">25 tokens</td>
+<td>Translation and encoding example</td>
+</tr>
+<tr>
+<td>p95 budget</td>
+<td style="text-align: right;">300 ms</td>
+<td>Worked service limit</td>
+</tr>
+<tr>
+<td>tightened p95</td>
+<td style="text-align: right;">150 ms</td>
+<td>Staff-level adjudication scenario</td>
+</tr>
+<tr>
+<td>translation price</td>
+<td style="text-align: right;">$1.00 per million output tokens</td>
+<td>Cost assumption</td>
+</tr>
+<tr>
+<td>decoding rate</td>
+<td style="text-align: right;">20 ms per token</td>
+<td>Latency assumption</td>
+</tr>
+<tr>
+<td>offline translation</td>
+<td style="text-align: right;">5.0 × 10^9 tokens and $5,000</td>
+<td>One-time corpus conversion</td>
+</tr>
+<tr>
+<td>monthly churn</td>
+<td style="text-align: right;">5%, 1M documents, 250M tokens, $250</td>
+<td>Translation maintenance</td>
+</tr>
+<tr>
+<td>query translation</td>
+<td style="text-align: right;">500 ms</td>
+<td>Online 25-token decode</td>
+</tr>
+<tr>
+<td>translated search</td>
+<td style="text-align: right;">510 ms</td>
+<td>One English-index design</td>
+</tr>
+<tr>
+<td>per-language design</td>
+<td style="text-align: right;">515 ms</td>
+<td>Eight probes plus fusion</td>
+</tr>
+<tr>
+<td>multilingual query compute</td>
+<td style="text-align: right;">5.5 × 10^9 FLOPs</td>
+<td>25-token forward pass</td>
+</tr>
+<tr>
+<td>effective throughput</td>
+<td style="text-align: right;">50 TFLOP/s</td>
+<td>Multilingual encoding assumption</td>
+</tr>
+<tr>
+<td>arithmetic time</td>
+<td style="text-align: right;">0.11 ms</td>
+<td>Query-encoder compute floor</td>
+</tr>
+<tr>
+<td>multilingual service</td>
+<td style="text-align: right;">10 ms encode plus 10 ms search</td>
+<td>Figure's online breakdown</td>
+</tr>
+<tr>
+<td>multilingual total</td>
+<td style="text-align: right;">20 ms</td>
+<td>Shared-index latency</td>
+</tr>
+<tr>
+<td>latency improvement</td>
+<td style="text-align: right;">25 times</td>
+<td>Translation designs to shared index</td>
+</tr>
+<tr>
+<td>one multilingual index</td>
+<td style="text-align: right;">61.44 GB</td>
+<td>20M by 768 fp32 vectors</td>
+</tr>
+<tr>
+<td>English fertility</td>
+<td style="text-align: right;">1.3 tokens per word</td>
+<td>Tokenizer example</td>
+</tr>
+<tr>
+<td>Swahili fertility</td>
+<td style="text-align: right;">3.0 tokens per word</td>
+<td>Tokenizer example</td>
+</tr>
+<tr>
+<td>English chunk</td>
+<td style="text-align: right;">394 words in 512 tokens</td>
+<td>Context per chunk</td>
+</tr>
+<tr>
+<td>Swahili chunk</td>
+<td style="text-align: right;">171 words in 512 tokens</td>
+<td>Context per chunk</td>
+</tr>
+<tr>
+<td>fertility penalty</td>
+<td style="text-align: right;">2.3 times</td>
+<td>More chunks and less context</td>
+</tr>
+<tr>
+<td>Mr. TyDi</td>
+<td style="text-align: right;">11 languages</td>
+<td>Native-query benchmark count</td>
+</tr>
+<tr>
+<td>MIRACL</td>
+<td style="text-align: right;">18 languages</td>
+<td>Native-query benchmark count</td>
+</tr>
+<tr>
+<td>cross-lingual smoke set</td>
+<td style="text-align: right;">50 queries</td>
+<td>Hand-written Swahili queries with known English answers</td>
+</tr>
+<tr>
+<td>dual original-translation index</td>
+<td style="text-align: right;">122.9 GB</td>
+<td>Proposed citation-preserving synthesis</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/19_learning_to_rank.html"><small>Previous</small>Chapter 19. Learning to Rank</a><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html"><small>Next</small>Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

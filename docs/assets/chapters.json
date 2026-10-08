@@ -1,0 +1,458 @@
+[
+  {
+    "title": "00.01. Title Page",
+    "file": "00_01_title_page.md",
+    "outcome": "You can identify the edition, its scope and provenance, and the basic RAG terminology.",
+    "minutes": 8,
+    "url": "chapters/00_01_title_page.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.02. Contents",
+    "file": "00_02_contents.md",
+    "outcome": "You can locate each topic in the original book through its complete section and printed-page map.",
+    "minutes": 26,
+    "url": "chapters/00_02_contents.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.03. Preface",
+    "file": "00_03_preface.md",
+    "outcome": "You can explain why RAG design requires reasoning about production decisions and their consequences.",
+    "minutes": 27,
+    "url": "chapters/00_03_preface.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.04. How to Use This Book",
+    "file": "00_04_how_to_use_this_book.md",
+    "outcome": "You can choose a reading route, follow its prerequisites, and use the recurring study sections.",
+    "minutes": 27,
+    "url": "chapters/00_04_how_to_use_this_book.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.05. For Interview Candidates",
+    "file": "00_05_for_interview_candidates.md",
+    "outcome": "You can prepare for design, derivation, and debugging questions with deliberate interview practice.",
+    "minutes": 35,
+    "url": "chapters/00_05_for_interview_candidates.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.06. For Practicing Engineers",
+    "file": "00_06_for_practicing_engineers.md",
+    "outcome": "You can connect the material to engineering decisions, failure modes, and operational costs.",
+    "minutes": 27,
+    "url": "chapters/00_06_for_practicing_engineers.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.07. Notation and Symbols",
+    "file": "00_07_notation_and_symbols.md",
+    "outcome": "You can interpret the symbols, abbreviations, and measurement conventions used across the book.",
+    "minutes": 18,
+    "url": "chapters/00_07_notation_and_symbols.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.08. Acknowledgments",
+    "file": "00_08_acknowledgments.md",
+    "outcome": "You can identify the contributions and sources that shaped the book and its treatment of negative results.",
+    "minutes": 15,
+    "url": "chapters/00_08_acknowledgments.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "00.09. About the Author",
+    "file": "00_09_about_the_author.md",
+    "outcome": "You can identify Hao Hoang as the source author and locate the stated contact and correction channels.",
+    "minutes": 13,
+    "url": "chapters/00_09_about_the_author.html",
+    "group": "Front matter"
+  },
+  {
+    "title": "Chapter 1. What a RAG Interview Actually Tests",
+    "file": "01_what_a_rag_interview_actually_tests.md",
+    "outcome": "You can choose where knowledge belongs, price that choice, and recognize when retrieval is the wrong tool.",
+    "minutes": 65,
+    "url": "chapters/01_what_a_rag_interview_actually_tests.html",
+    "group": "Part I. The RAG Interview Landscape"
+  },
+  {
+    "title": "Chapter 2. The Competing Answers to the Same Problem",
+    "file": "02_the_competing_answers_to_the_same_problem.md",
+    "outcome": "You can compare RAG with continual learning, model editing, long context, and generative retrieval under stated constraints.",
+    "minutes": 70,
+    "url": "chapters/02_the_competing_answers_to_the_same_problem.html",
+    "group": "Part I. The RAG Interview Landscape"
+  },
+  {
+    "title": "Chapter 3. A Repeatable Framework for Any RAG Design Question",
+    "file": "03_a_repeatable_framework_for_any_rag_design_question.md",
+    "outcome": "You can turn a design prompt into requirements, sizing estimates, component decisions, and measurable trade-offs.",
+    "minutes": 64,
+    "url": "chapters/03_a_repeatable_framework_for_any_rag_design_question.html",
+    "group": "Part I. The RAG Interview Landscape"
+  },
+  {
+    "title": "Chapter 4. What the LLM Brings and What It Breaks",
+    "file": "04_what_the_llm_brings_and_what_it_breaks.md",
+    "outcome": "You can distinguish generator capabilities from factual failures and assign each failure to the component responsible for fixing it.",
+    "minutes": 61,
+    "url": "chapters/04_what_the_llm_brings_and_what_it_breaks.html",
+    "group": "Part II. The Generator Side"
+  },
+  {
+    "title": "Chapter 5. Data, Privacy, and the Legal Surface",
+    "file": "05_data_privacy_and_the_legal_surface.md",
+    "outcome": "You can explain how RAG changes data risks, evidence, and reversibility without claiming that architecture settles legal questions.",
+    "minutes": 60,
+    "url": "chapters/05_data_privacy_and_the_legal_surface.html",
+    "group": "Part II. The Generator Side"
+  },
+  {
+    "title": "Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters",
+    "file": "06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.md",
+    "outcome": "You can compare retrieval and model capacity through training, serving, memory, and compute budgets.",
+    "minutes": 47,
+    "url": "chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html",
+    "group": "Part II. The Generator Side"
+  },
+  {
+    "title": "Chapter 7. In-Context Learning - The Mechanism RAG Rides On",
+    "file": "07_in_context_learning_the_mechanism_rag_rides_on.md",
+    "outcome": "You can explain how in-context learning supports RAG and when supervised fine-tuning better serves the task.",
+    "minutes": 53,
+    "url": "chapters/07_in_context_learning_the_mechanism_rag_rides_on.html",
+    "group": "Part II. The Generator Side"
+  },
+  {
+    "title": "Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution",
+    "file": "08_reading_the_machine_circuits_induction_heads_and_attribution.md",
+    "outcome": "You can use circuits, induction heads, and attribution to reason about failures while respecting the limits of interpretability evidence.",
+    "minutes": 47,
+    "url": "chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html",
+    "group": "Part II. The Generator Side"
+  },
+  {
+    "title": "Chapter 9. Prompting for Retrieval-Augmented Systems",
+    "file": "09_prompting_for_retrieval_augmented_systems.md",
+    "outcome": "You can choose prompting and reasoning scaffolds while accounting for the costs and failures of extra calls or passages.",
+    "minutes": 43,
+    "url": "chapters/09_prompting_for_retrieval_augmented_systems.html",
+    "group": "Part III. Prompting and Context Construction"
+  },
+  {
+    "title": "Chapter 10. Prompt Sensitivity",
+    "file": "10_prompt_sensitivity.md",
+    "outcome": "You can measure changes caused by equivalent prompt wording before selecting a template.",
+    "minutes": 53,
+    "url": "chapters/10_prompt_sensitivity.html",
+    "group": "Part III. Prompting and Context Construction"
+  },
+  {
+    "title": "Chapter 11. Abstention and Calibration",
+    "file": "11_abstention_and_calibration.md",
+    "outcome": "You can design abstention rules and assess confidence calibration for short and long answers.",
+    "minutes": 50,
+    "url": "chapters/11_abstention_and_calibration.html",
+    "group": "Part III. Prompting and Context Construction"
+  },
+  {
+    "title": "Chapter 12. Text Representation",
+    "file": "12_text_representation.md",
+    "outcome": "You can compare text representations through exact matching, semantic reach, training cost, and operational stability.",
+    "minutes": 55,
+    "url": "chapters/12_text_representation.html",
+    "group": "Part IV. Representing What You Retrieve"
+  },
+  {
+    "title": "Chapter 13. Chunking and Granularity",
+    "file": "13_chunking_and_granularity.md",
+    "outcome": "You can choose retrieval granularity, preserve context, and test whether a chunking method improves retrieval.",
+    "minutes": 60,
+    "url": "chapters/13_chunking_and_granularity.html",
+    "group": "Part IV. Representing What You Retrieve"
+  },
+  {
+    "title": "Chapter 14. Beyond Plain Text - Tables, Layout, Documents",
+    "file": "14_beyond_plain_text_tables_layout_documents.md",
+    "outcome": "You can preserve table and document structure and explain the assumptions and costs of layout-aware representations.",
+    "minutes": 57,
+    "url": "chapters/14_beyond_plain_text_tables_layout_documents.html",
+    "group": "Part IV. Representing What You Retrieve"
+  },
+  {
+    "title": "Chapter 15. Approximate Nearest Neighbor Search",
+    "file": "15_approximate_nearest_neighbor_search.md",
+    "outcome": "You can choose an approximate nearest neighbor index using recall, latency, memory, build time, and update constraints.",
+    "minutes": 66,
+    "url": "chapters/15_approximate_nearest_neighbor_search.html",
+    "group": "Part V. Indexing and Vector Search"
+  },
+  {
+    "title": "Chapter 16. Compression and Index Economics",
+    "file": "16_compression_and_index_economics.md",
+    "outcome": "You can calculate index memory and compare compression methods without confusing vector storage with the full system footprint.",
+    "minutes": 37,
+    "url": "chapters/16_compression_and_index_economics.html",
+    "group": "Part V. Indexing and Vector Search"
+  },
+  {
+    "title": "Chapter 17. Operating a Vector Store",
+    "file": "17_operating_a_vector_store.md",
+    "outcome": "You can plan vector-store deletion, growth, sharding, metadata filters, and query constraints.",
+    "minutes": 66,
+    "url": "chapters/17_operating_a_vector_store.html",
+    "group": "Part V. Indexing and Vector Search"
+  },
+  {
+    "title": "Chapter 18. Classical IR You Are Expected to Know",
+    "file": "18_classical_ir_you_are_expected_to_know.md",
+    "outcome": "You can derive lexical ranking behavior and explain why sparse retrieval remains valuable for rare and exact-match queries.",
+    "minutes": 55,
+    "url": "chapters/18_classical_ir_you_are_expected_to_know.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 19. Learning to Rank",
+    "file": "19_learning_to_rank.md",
+    "outcome": "You can connect ranking objectives to metrics and compare pointwise, pairwise, listwise, and neural ranking designs.",
+    "minutes": 58,
+    "url": "chapters/19_learning_to_rank.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 20. Dense Retrieval",
+    "file": "20_dense_retrieval.md",
+    "outcome": "You can train and serve dense retrieval, choose negatives, and combine semantic search with lexical search.",
+    "minutes": 60,
+    "url": "chapters/20_dense_retrieval.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 21. Learned Sparse and Multi-Vector Retrieval",
+    "file": "21_learned_sparse_and_multi_vector_retrieval.md",
+    "outcome": "You can compare learned sparse and multi-vector retrieval and price hybrid fusion, compression, and pruning.",
+    "minutes": 62,
+    "url": "chapters/21_learned_sparse_and_multi_vector_retrieval.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 22. Reranking",
+    "file": "22_reranking.md",
+    "outcome": "You can choose a reranker, size its candidate set, and separate retrieval failures from model failures.",
+    "minutes": 50,
+    "url": "chapters/22_reranking.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 23. Generative Retrieval",
+    "file": "23_generative_retrieval.md",
+    "outcome": "You can explain retrieval through generated document identifiers and its limits for quality and index updates.",
+    "minutes": 57,
+    "url": "chapters/23_generative_retrieval.html",
+    "group": "Part VI. Retrieval and Ranking"
+  },
+  {
+    "title": "Chapter 24. Query Reformulation",
+    "file": "24_query_reformulation.md",
+    "outcome": "You can diagnose query failures and choose expansion, rewriting, conversational repair, or hypothetical-answer retrieval.",
+    "minutes": 59,
+    "url": "chapters/24_query_reformulation.html",
+    "group": "Part VII. Query Understanding and Control Flow"
+  },
+  {
+    "title": "Chapter 25. Routing and Adaptive Retrieval",
+    "file": "25_routing_and_adaptive_retrieval.md",
+    "outcome": "You can decide when and where to retrieve and test how learned routing behaves on unfamiliar queries.",
+    "minutes": 67,
+    "url": "chapters/25_routing_and_adaptive_retrieval.html",
+    "group": "Part VII. Query Understanding and Control Flow"
+  },
+  {
+    "title": "Chapter 26. Iterative, Recursive, and Agentic Retrieval",
+    "file": "26_iterative_recursive_and_agentic_retrieval.md",
+    "outcome": "You can compare repeated retrieval loops and set stopping rules that account for accuracy, latency, and context growth.",
+    "minutes": 51,
+    "url": "chapters/26_iterative_recursive_and_agentic_retrieval.html",
+    "group": "Part VII. Query Understanding and Control Flow"
+  },
+  {
+    "title": "Chapter 27. Fine-tuning the Generator",
+    "file": "27_fine_tuning_the_generator.md",
+    "outcome": "You can decide when to fine-tune the generator and match training objectives to the retrieval defects it must handle.",
+    "minutes": 51,
+    "url": "chapters/27_fine_tuning_the_generator.html",
+    "group": "Part VIII. Training the RAG System"
+  },
+  {
+    "title": "Chapter 28. Training the Retriever",
+    "file": "28_training_the_retriever.md",
+    "outcome": "You can connect generator utility to retriever training and account for index refresh costs.",
+    "minutes": 46,
+    "url": "chapters/28_training_the_retriever.html",
+    "group": "Part VIII. Training the RAG System"
+  },
+  {
+    "title": "Chapter 29. Bootstrapping Training Data",
+    "file": "29_bootstrapping_training_data.md",
+    "outcome": "You can build retrieval supervision from generated data while checking relevance, distribution shift, and the teacher ceiling.",
+    "minutes": 48,
+    "url": "chapters/29_bootstrapping_training_data.html",
+    "group": "Part VIII. Training the RAG System"
+  },
+  {
+    "title": "Chapter 30. Lost in the Middle",
+    "file": "30_lost_in_the_middle.md",
+    "outcome": "You can diagnose position-dependent context failures and compare changes to ordering, truncation, training, and architecture.",
+    "minutes": 50,
+    "url": "chapters/30_lost_in_the_middle.html",
+    "group": "Part IX. Generation and Context Assembly"
+  },
+  {
+    "title": "Chapter 31. Attribution and Citation",
+    "file": "31_attribution_and_citation.md",
+    "outcome": "You can distinguish attribution from citation appearance and evaluate whether evidence supports each claim.",
+    "minutes": 47,
+    "url": "chapters/31_attribution_and_citation.html",
+    "group": "Part IX. Generation and Context Assembly"
+  },
+  {
+    "title": "Chapter 32. Evaluating Retrieval",
+    "file": "32_evaluating_retrieval.md",
+    "outcome": "You can derive retrieval metrics and assess evaluation based on relevance labels, human judgments, or LLM judges.",
+    "minutes": 39,
+    "url": "chapters/32_evaluating_retrieval.html",
+    "group": "Part X. Evaluation"
+  },
+  {
+    "title": "Chapter 33. Evaluating Generation",
+    "file": "33_evaluating_generation.md",
+    "outcome": "You can assess generation through faithfulness, factuality, claim coverage, and response-length effects.",
+    "minutes": 45,
+    "url": "chapters/33_evaluating_generation.html",
+    "group": "Part X. Evaluation"
+  },
+  {
+    "title": "Chapter 34. Evaluating the System",
+    "file": "34_evaluating_the_system.md",
+    "outcome": "You can locate failures by stage and design ablations, sanity checks, and system-level evaluation.",
+    "minutes": 49,
+    "url": "chapters/34_evaluating_the_system.html",
+    "group": "Part X. Evaluation"
+  },
+  {
+    "title": "Chapter 35. Source Credibility",
+    "file": "35_source_credibility.md",
+    "outcome": "You can evaluate source credibility while considering freshness, conflicting evidence, pluralism, and fair exposure.",
+    "minutes": 50,
+    "url": "chapters/35_source_credibility.html",
+    "group": "Part XI. Trust, Credibility, and Adversarial Robustness"
+  },
+  {
+    "title": "Chapter 36. Provenance and Adversarial Robustness",
+    "file": "36_provenance_and_adversarial_robustness.md",
+    "outcome": "You can separate attribution from authenticity and address provenance, prompt injection, poisoning, and access boundaries.",
+    "minutes": 56,
+    "url": "chapters/36_provenance_and_adversarial_robustness.html",
+    "group": "Part XI. Trust, Credibility, and Adversarial Robustness"
+  },
+  {
+    "title": "Chapter 37. Latency, Cost, and Systems",
+    "file": "37_latency_cost_and_systems.md",
+    "outcome": "You can build stage-level latency and cost budgets and evaluate caching, pipelining, and retrieval cascades.",
+    "minutes": 43,
+    "url": "chapters/37_latency_cost_and_systems.html",
+    "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
+  },
+  {
+    "title": "Chapter 38. Distributed and Federated RAG",
+    "file": "38_distributed_and_federated_rag.md",
+    "outcome": "You can design retrieval across independently governed sources while accounting for tenancy, residency, and shared infrastructure.",
+    "minutes": 43,
+    "url": "chapters/38_distributed_and_federated_rag.html",
+    "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
+  },
+  {
+    "title": "Chapter 39. Multimodal RAG",
+    "file": "39_multimodal_rag.md",
+    "outcome": "You can compare multimodal encoding, retrieval, fusion, attribution, and evaluation across text, images, audio, and video.",
+    "minutes": 53,
+    "url": "chapters/39_multimodal_rag.html",
+    "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
+  },
+  {
+    "title": "Chapter 40. Graph RAG",
+    "file": "40_graph_rag.md",
+    "outcome": "You can decide when a graph earns its cost and compare graph construction, retrieval, generation, and failure modes.",
+    "minutes": 43,
+    "url": "chapters/40_graph_rag.html",
+    "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
+  },
+  {
+    "title": "Chapter 41. End-to-End Design Drills",
+    "file": "41_end_to_end_design_drills.md",
+    "outcome": "You can answer seven design prompts with explicit constraints, measurable architectures, and defensible trade-offs.",
+    "minutes": 44,
+    "url": "chapters/41_end_to_end_design_drills.html",
+    "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
+  },
+  {
+    "title": "Appendix A1. Formula Sheet",
+    "file": "A1_formula_sheet.md",
+    "outcome": "You can rehearse formulas for lexical scoring, rank fusion, ranking metrics, modularity, quantization, compute, and memory.",
+    "minutes": 30,
+    "url": "chapters/A1_formula_sheet.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A2. Question Bank",
+    "file": "A2_question_bank.md",
+    "outcome": "You can test mechanism knowledge, derivation, and judgment with Core, Senior, and Staff questions and separate answer spines.",
+    "minutes": 75,
+    "url": "chapters/A2_question_bank.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A3. Design Checklists",
+    "file": "A3_design_checklists.md",
+    "outcome": "You can review a design using retrieval, capacity, evaluation, credibility, and latency checklists.",
+    "minutes": 43,
+    "url": "chapters/A3_design_checklists.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A4. The RAG Card and Index Datasheet",
+    "file": "A4_the_rag_card_and_index_datasheet.md",
+    "outcome": "You can document system behavior and index properties using the RAG Card and Index Datasheet templates.",
+    "minutes": 32,
+    "url": "chapters/A4_the_rag_card_and_index_datasheet.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A5. Annotated Reading List",
+    "file": "A5_annotated_reading_list.md",
+    "outcome": "You can find chapter-linked readings and identify the result each reading supports.",
+    "minutes": 58,
+    "url": "chapters/A5_annotated_reading_list.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A6. Notation Quick Reference",
+    "file": "A6_notation_quick_reference.md",
+    "outcome": "You can look up symbols and calculation conventions while working through derivations.",
+    "minutes": 14,
+    "url": "chapters/A6_notation_quick_reference.html",
+    "group": "Appendices"
+  },
+  {
+    "title": "Appendix A7. Glossary",
+    "file": "A7_glossary.md",
+    "outcome": "You can reconcile overlapping RAG terms and recognize when different names refer to the same idea.",
+    "minutes": 31,
+    "url": "chapters/A7_glossary.html",
+    "group": "Appendices"
+  }
+]

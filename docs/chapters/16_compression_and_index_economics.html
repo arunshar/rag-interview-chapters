@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 16. Compression and Index Economics | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/16_compression_and_index_economics.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group" open><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html" aria-current="page">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part V. Indexing and Vector Search</p><h1>Chapter 16. Compression and Index Economics</h1><p class="chapter-meta">37 min estimated reading · Unit 25 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: Build a defensible retrieval index budget from code length, scoring error, scan shape, and fleet multipliers without confusing a smaller stored vector with a smaller system.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Quantization preserves the embedding dimension and changes its stored description. Dimensionality reduction changes the vector itself.</li>
+<li>Product quantization (PQ) stores <code>m log2(k)</code> bits per vector, addresses <code>k^m</code> composite codes, and stores only <code>k x d</code> centroid floats.</li>
+<li>Residual encoding spends the coarse inverted-file (IVF) cell assignment on accuracy. It also changes one asymmetric distance computation (ADC) table build into one build per probed cell unless a precomputed table is used.</li>
+<li>Eight-bit scalar quantization (SQ8) cuts float32 storage by <code>4x</code> in the stated example while adding cosine noise of about <code>4.53 x 10^-4</code>. Binary quantization reaches <code>32x</code> but changes the score to a Hamming-based angle estimate with noise near <code>0.027</code>.</li>
+<li>Product-quantized scans become fast when their codes are arranged for hardware. Blocks of 32 and 4-bit tables turn strided gathers into aligned loads and uniform lane work.</li>
+<li>Compression changes only part of the bill. Identifiers, graph links, exact refine vectors, rebuild headroom, replicas, and payload storage can dominate the compressed code array.</li>
+<li>The capacity answer is the fleet formula, not <code>N x d x 4</code>. Enumerate every term before multiplying.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of the index as a warehouse that must ship an answer under a strict space and time budget.</p>
+<p>The original warehouse stores every item as a full 768-number crate. Each crate takes 3,072 bytes in float32. Ten million crates consume 30.7 GB before the warehouse adds aisles, identifiers, replicas, or the text that customers actually requested.</p>
+<p>Product quantization stops storing whole crates. It divides each crate into <code>m</code> compartments and gives each compartment a catalog number. With <code>m = 96</code> and <code>k = 256</code>, each compartment needs one byte. A 3,072-byte crate becomes a 96-byte catalog slip while still describing all 768 dimensions.</p>
+<p>The catalog has enormous reach because every eye, nose, and mouth choice can combine with every other choice. The warehouse can address <code>k^m</code> composite items while storing only <code>k x m</code> sub-centroids. Since each sub-centroid has width <code>d/m</code>, the stored catalog is only <code>k x d</code> floats. The price is a rigid grid. The catalog cannot place every boundary freely.</p>
+<p>The IVF level acts like a regional depot. It first routes an item to the closest coarse centroid. Residual encoding then catalogs only what remains after that regional address is removed. This pools smaller, lower-variance residuals near the origin. The free accuracy is paid for during a query because each depot needs its own query residual and lookup table.</p>
+<p>Scalar quantization changes the precision of every catalog coordinate. SQ8 is like rounding shelf measurements to a fine ruler. Under the chapter's calibration, the rounding noise sits far below the score gaps that decide the ranking. Binary quantization is different. It replaces the ruler with a yes-or-no side of a hyperplane. That makes the first pass fast, but the warehouse must reopen the best full crates before it promises the final order.</p>
+<p>The shelving pattern then decides whether workers stay busy. A per-vector layout scatters one subquantizer's codes <code>m</code> bytes apart. A block-interleaved layout places the same subquantizer from 32 vectors together. One aligned load can feed all lanes, and every lane performs identical work.</p>
+<p>The final invoice includes more than catalog slips. It includes identifiers, graph links, coarse centroids, codebooks, the second index present during a rebuild, replicas, exact refine vectors, chunk text, and filter metadata. Compression shrinks the first line of the invoice. Index economics is the discipline of carrying every later line to the fleet total.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Symbol or term</th>
+<th>Meaning</th>
+<th>Role in the chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>Retrieval supplies external context to a generator</td>
+<td>The book context for the index design problem</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>Stored database vector</td>
+<td>The object being encoded</td>
+</tr>
+<tr>
+<td><code>y</code> or <code>q</code></td>
+<td>Query vector</td>
+<td>Kept in full precision under ADC</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Embedding dimension</td>
+<td><code>768</code> in the main examples</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Number of indexed vectors or chunks</td>
+<td><code>10^7</code>, <code>10^8</code>, or <code>10^9</code> in worked examples</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>Fewer bits describing the same-dimensional vector</td>
+<td>Reduces storage without changing <code>d</code></td>
+</tr>
+<tr>
+<td>Dimensionality reduction</td>
+<td>Fewer vector coordinates</td>
+<td>Changes the representation</td>
+</tr>
+<tr>
+<td>Codebook</td>
+<td>A finite set of centroids</td>
+<td>Maps a vector or subvector to a stored index</td>
+</tr>
+<tr>
+<td><code>C</code> and <code>q(x)</code></td>
+<td>Flat codebook and quantized reconstruction</td>
+<td>The nearest of <code>k</code> full-dimensional centroids</td>
+</tr>
+<tr>
+<td>Distortion</td>
+<td>Mean squared reconstruction error</td>
+<td>The quantizer objective</td>
+</tr>
+<tr>
+<td>Lloyd's algorithm</td>
+<td>The k-means fitting procedure</td>
+<td>A local codebook-training heuristic</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>Bits per scalar or flat code</td>
+<td>Implies <code>2^b</code> levels or centroids</td>
+</tr>
+<tr>
+<td>Product quantization (PQ)</td>
+<td>Independent quantization of vector blocks</td>
+<td>Replaces one flat codebook with <code>m</code> small codebooks</td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>Number of subquantizers</td>
+<td>Also equals bytes per vector when <code>k = 256</code></td>
+</tr>
+<tr>
+<td><code>u_j</code> and <code>C_j</code></td>
+<td>Subvector and its codebook</td>
+<td>Each subvector has dimension <code>d/m</code></td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Centroids per subquantizer</td>
+<td>Usually <code>256</code> or <code>16</code> here</td>
+</tr>
+<tr>
+<td><code>c(x)</code></td>
+<td>Tuple of sub-indices</td>
+<td>The stored PQ code</td>
+</tr>
+<tr>
+<td><code>k^m</code></td>
+<td>Number of composite PQ codes</td>
+<td>Exponential address space</td>
+</tr>
+<tr>
+<td><code>k m</code></td>
+<td>Number of stored sub-centroids</td>
+<td>Linear stored count</td>
+</tr>
+<tr>
+<td><code>k d</code></td>
+<td>Total stored centroid floats</td>
+<td>Independent of <code>m</code></td>
+</tr>
+<tr>
+<td>Bits per dimension</td>
+<td><code>m log2(k) / d</code></td>
+<td>Compression rate</td>
+</tr>
+<tr>
+<td>Principal component analysis (PCA)</td>
+<td>Dimensionality-reduction comparison</td>
+<td>Changes the vector instead of its storage code</td>
+</tr>
+<tr>
+<td>Optimized product quantization (OPQ)</td>
+<td>Orthogonal rotation before PQ</td>
+<td>Balances subspace variance without dropping dimensions</td>
+</tr>
+<tr>
+<td><code>R</code> as a matrix</td>
+<td>OPQ rotation</td>
+<td>Applied to <code>x</code> before quantization</td>
+</tr>
+<tr>
+<td>Asymmetric distance computation (ADC)</td>
+<td>Quantized database vector and exact query</td>
+<td>Adds one quantizer-error term</td>
+</tr>
+<tr>
+<td>Symmetric distance computation (SDC)</td>
+<td>Quantized database vector and query</td>
+<td>Adds two quantizer-error terms</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td>Query-to-sub-centroid table</td>
+<td>Has <code>m x k</code> entries</td>
+</tr>
+<tr>
+<td>Inverted file (IVF)</td>
+<td>Coarse partition into inverted lists</td>
+<td>Routes a query to selected cells</td>
+</tr>
+<tr>
+<td>Inverted file with ADC (IVFADC)</td>
+<td>IVF plus residual PQ and ADC</td>
+<td>Same structure the source calls <code>IndexIVFPQ</code> in its named library</td>
+</tr>
+<tr>
+<td><code>q_c(x)</code> and <code>c_i</code></td>
+<td>Coarse quantizer and centroid</td>
+<td>Define the assigned cell</td>
+</tr>
+<tr>
+<td><code>K_c</code> or <code>nlist</code></td>
+<td>Number of coarse cells</td>
+<td>Controls list length and residual information</td>
+</tr>
+<tr>
+<td><code>r(x)</code></td>
+<td>Residual <code>x - q_c(x)</code></td>
+<td>Value encoded by residual PQ</td>
+</tr>
+<tr>
+<td><code>rho sigma^2</code></td>
+<td>Within-cell variance</td>
+<td>Residual source variance</td>
+</tr>
+<tr>
+<td><code>d*</code></td>
+<td>Intrinsic dimension</td>
+<td>Cancels from the residual bit-gain result</td>
+</tr>
+<tr>
+<td><code>R</code> as a rate and <code>D</code></td>
+<td>Code bits and high-rate distortion</td>
+<td>Used in the residual estimate</td>
+</tr>
+<tr>
+<td><code>xi</code> and <code>e</code></td>
+<td>Mean squared quantizer error and error vector</td>
+<td>Explain ADC and SDC bias</td>
+</tr>
+<tr>
+<td><code>w</code> or <code>nprobe</code></td>
+<td>Probed IVF cells</td>
+<td>Multiplies table builds and scans</td>
+</tr>
+<tr>
+<td><code>K_c*</code></td>
+<td>Table-build and scan crossover</td>
+<td><code>N m / (k d)</code></td>
+</tr>
+<tr>
+<td>Precomputed table</td>
+<td>Stored cell-dependent ADC terms</td>
+<td>Trades memory for fewer query-time builds</td>
+</tr>
+<tr>
+<td>Scalar quantization (SQ)</td>
+<td>Per-dimension integer encoding</td>
+<td>Reconstructs component values</td>
+</tr>
+<tr>
+<td>SQ8 and SQ4</td>
+<td>Eight-bit and four-bit scalar codes</td>
+<td>Use 768 B and 384 B at <code>d = 768</code></td>
+</tr>
+<tr>
+<td><code>alpha_j, beta_j</code></td>
+<td>Calibration range</td>
+<td>Sets scalar quantizer bins</td>
+</tr>
+<tr>
+<td><code>Delta_j</code> and <code>sigma_e</code></td>
+<td>Quantizer step and error deviation</td>
+<td>Determine score noise</td>
+</tr>
+<tr>
+<td>Binary quantization</td>
+<td>One sign bit per dimension</td>
+<td>Uses Hamming distance</td>
+</tr>
+<tr>
+<td><code>theta</code>, <code>H</code>, and <code>theta_hat</code></td>
+<td>Angle, Hamming count, and angle estimate</td>
+<td>Connect sign disagreement to cosine</td>
+</tr>
+<tr>
+<td>Exclusive-or (XOR) and population count (POPCNT)</td>
+<td>Bit difference and bit count</td>
+<td>Implement binary distance</td>
+</tr>
+<tr>
+<td>SimHash</td>
+<td>Sign code tied to the random-hyperplane lemma</td>
+<td>Source connection from angles to binary codes</td>
+</tr>
+<tr>
+<td>Iterative Quantization (ITQ)</td>
+<td>Learned rotation before sign bits</td>
+<td>Source alternative to a sampled random rotation</td>
+</tr>
+<tr>
+<td>Matryoshka Representation Learning</td>
+<td>Leading coordinates are trained to be self-sufficient</td>
+<td>Source example combining truncation and binarization</td>
+</tr>
+<tr>
+<td>FAISS</td>
+<td>Similarity-search library name not expanded on the permitted source pages</td>
+<td>Provides IVF, PQ, fast-scan, and table options</td>
+</tr>
+<tr>
+<td>Single instruction, multiple data (SIMD)</td>
+<td>Parallel lanes with one instruction</td>
+<td>Rewards uniform PQ scans</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU) warp</td>
+<td>32 lockstep threads</td>
+<td>Matches a 32-vector block</td>
+</tr>
+<tr>
+<td><code>vpshufb</code></td>
+<td>In-register byte shuffle</td>
+<td>Addresses a 16-entry table</td>
+</tr>
+<tr>
+<td>WarpSelect</td>
+<td>Register-resident top-k selection</td>
+<td>Avoids global-memory sorting</td>
+</tr>
+<tr>
+<td>CAGRA</td>
+<td>GPU graph method named by the source</td>
+<td>Uses fixed out-degree for warp-shaped work</td>
+</tr>
+<tr>
+<td>Hierarchical navigable small world (HNSW)</td>
+<td>Multi-layer graph index</td>
+<td>Adds links and ragged traversal</td>
+</tr>
+<tr>
+<td><code>M</code>, <code>M_0</code>, <code>ell</code>, <code>m_L</code>, <code>U</code></td>
+<td>HNSW degree and level variables</td>
+<td>Derive expected link bytes</td>
+</tr>
+<tr>
+<td><code>b_vec</code>, <code>b_id</code>, <code>b_link</code></td>
+<td>Vector, identifier, and graph bytes</td>
+<td>Per-vector budget terms</td>
+</tr>
+<tr>
+<td><code>M_index</code></td>
+<td>One index copy</td>
+<td>Per-vector plus fixed terms</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Rebuild headroom</td>
+<td><code>1</code> in place or about <code>0.2</code> with a separate builder</td>
+</tr>
+<tr>
+<td><code>R</code> as replicas</td>
+<td>Serving-copy count</td>
+<td>Multiplies index capacity</td>
+</tr>
+<tr>
+<td><code>M_payload</code> and <code>M_fleet</code></td>
+<td>Payload and fleet memory</td>
+<td>Final uncompressed term and total</td>
+</tr>
+<tr>
+<td>Refine set</td>
+<td>Full-precision vectors for exact rescoring</td>
+<td>Can dominate the compressed index</td>
+</tr>
+<tr>
+<td>Central processing unit (CPU)</td>
+<td>General-purpose processor</td>
+<td>Source default for graph indexes</td>
+</tr>
+<tr>
+<td>Solid-state drive (SSD)</td>
+<td>Storage for exact vectors</td>
+<td>Trades RAM for access latency</td>
+</tr>
+<tr>
+<td>Non-volatile memory express (NVMe)</td>
+<td>SSD access path in the binary example</td>
+<td>Uses a stipulated random-read latency</td>
+</tr>
+<tr>
+<td>Resident set size (RSS)</td>
+<td>Measured process memory</td>
+<td>Used to validate the formula</td>
+</tr>
+<tr>
+<td>p99 and out of memory (OOM)</td>
+<td>Tail latency and capacity failure</td>
+<td>Operational decision and failure measures</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="161-product-quantization-and-the-km--k-m-argument">16.1 Product quantization and the <code>k^m / (k m)</code> argument</h3>
+<h4 id="what">What</h4>
+<p>A flat quantizer maps a vector to one of <code>k</code> centroids and stores the centroid index:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>q</mi><mo>:</mo><msup><mi>ℝ</mi><mi>d</mi></msup><mo>→</mo><mi>C</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>C</mi><mo>=</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">}</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">q: \mathbb{R}^{d} \rightarrow C,\qquad C = \{c_1,\ldots,c_k\}.</annotation></semantics></math></p>
+<p>The index costs <code>log2(k)</code> bits. The fitting objective is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>x</mi><mo>−</mo><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">\lVert x - q(x) \rVert_2^2.</annotation></semantics></math></p>
+<p>Lloyd's k-means algorithm is a local heuristic. The source cites exact Euclidean sum-of-squares clustering as NP-hard even for <code>k = 2</code> in general dimension.</p>
+<p>A flat <code>b</code>-bit code needs <code>2^b</code> centroids. At <code>b = 32</code> and <code>d = 768</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>32</mn></msup><mo>×</mo><mn>3</mn><mo>,</mo><mn>072</mn><mo>=</mo><mn>4</mn><mo>,</mo><mn>294</mn><mo>,</mo><mn>967</mn><mo>,</mo><mn>296</mn><mo>×</mo><mn>3</mn><mo>,</mo><mn>072</mn><mo>=</mo><mn>1.32</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">B</mtext><mo>=</mo><mn>13.2</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">TB</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">2^{32} \times 3{,}072 = 4{,}294{,}967{,}296 \times 3{,}072 = 1.32 \times 10^{13}\ \text{B} = 13.2\ \text{TB}.</annotation></semantics></math></p>
+<p>The source calls this about 400 times larger than the corpus it compresses. Its stated FAISS warning is 39 training points per centroid:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>39</mn><mo>×</mo><msup><mn>2</mn><mn>32</mn></msup><mo>=</mo><mn>1.7</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">training vectors</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">39 \times 2^{32} = 1.7 \times 10^{11}\ \text{training vectors}.</annotation></semantics></math></p>
+<p>PQ splits <code>x</code> into <code>m</code> contiguous subvectors of width <code>d/m</code> and fits <code>k</code> sub-centroids per block. The code is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>i</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>i</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">length</mtext><mo>=</mo><mi>m</mi><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">bits</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">c(x) = (i_1,\ldots,i_m),\qquad \text{length} = m\log_2(k)\ \text{bits}.</annotation></semantics></math></p>
+<p>Its representable code count, stored sub-centroid count, and stored coordinates are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mi>m</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><mi>k</mi><mi>m</mi><mo>,</mo><mspace width="2.0em"></mspace><mi>k</mi><mi>m</mi><mfrac><mi>d</mi><mi>m</mi></mfrac><mo>=</mo><mi>k</mi><mi>d</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">k^m,\qquad km,\qquad km\frac{d}{m} = kd.</annotation></semantics></math></p>
+<p>At <code>d = 768</code>, <code>m = 96</code>, and <code>k = 256</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mi>d</mi><mi>m</mi></mfrac><mo>=</mo><mn>8</mn><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">code</mtext><mo>=</mo><mn>96</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">B</mtext><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mn>3</mn><mo>,</mo><mn>072</mn></mrow><mn>96</mn></mfrac><mo>=</mo><mn>32</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{d}{m}=8,\qquad \text{code}=96\ \text{B},\qquad \frac{3{,}072}{96}=32.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>256</mn><mn>96</mn></msup><mo>=</mo><msup><mn>2</mn><mn>768</mn></msup><mo>≈</mo><mn>1.6</mn><mo>×</mo><msup><mn>10</mn><mn>231</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">256^{96}=2^{768}\approx1.6\times10^{231}.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>256</mn><mo>×</mo><mn>96</mn><mo>=</mo><mn>24</mn><mo>,</mo><mn>576</mn><mo>,</mo><mspace width="2.0em"></mspace><mn>256</mn><mo>×</mo><mn>768</mn><mo>=</mo><mn>196</mn><mo>,</mo><mn>608</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">floats</mtext><mo>=</mo><mn>768</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">KiB</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">256\times96=24{,}576,\qquad 256\times768=196{,}608\ \text{floats}=768\ \text{KiB}.</annotation></semantics></math></p>
+<h4 id="why">Why</h4>
+<p>The <code>m</code> factor cancels from codebook memory. Code reach grows exponentially with <code>m</code> while the stored codebook remains <code>k d</code> floats. The vector remains 768-dimensional.</p>
+<p>When variance is uneven across coordinates, OPQ learns an orthogonal rotation <code>R</code> and quantizes <code>Rx</code>. This balances variance without discarding a dimension. The source lets training cost or already-whitened vectors reverse the default to rotate.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>For the same 32-bit code, PQ can use <code>m = 4</code> and <code>k = 256</code>. It stores 768 KiB and needs 9,984 training vectors per subspace under the 39-per-centroid rule. The flat alternative needs 13.2 TB and <code>1.7 x 10^11</code> training vectors.</p>
+<p>The matched-codebook penalty is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mrow><mi>m</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mn>256</mn><mn>3</mn></msup><mo>=</mo><mn>1.7</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">k^{m-1}=256^3=1.7\times10^7.</annotation></semantics></math></p>
+<p>PQ gives up free placement of cell boundaries. Its product cells form a grid. The source limits recall claims to the corpus's measured variance and cross-subspace correlation. It recommends a recall curve below 0.5 bits per dimension.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>ADC builds:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo>,</mo><mi>ℓ</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><msub><mi>y</mi><mi>j</mi></msub><mo>−</mo><msubsup><mi>c</mi><mi>ℓ</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">T[j,\ell]=\lVert y_j-c_\ell^{(j)}\rVert_2^2.</annotation></semantics></math></p>
+<p>The <code>m x k</code> table costs <code>m k (d/m)=k d</code> multiply-adds. Each candidate then costs <code>m</code> lookups and about <code>m</code> additions.</p>
+<p>At <code>d = 768</code>, <code>m = 96</code>, and <code>k = 256</code>, the build costs 196,608 multiply-adds. Against an exact dot product counted as <code>2d = 1,536</code> operations, the source gives:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mn>2</mn><mi>k</mi><mi>d</mi></mrow><mrow><mn>2</mn><mi>d</mi><mo>−</mo><mi>m</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>393</mn><mo>,</mo><mn>216</mn></mrow><mrow><mn>1</mn><mo>,</mo><mn>536</mn><mo>−</mo><mn>96</mn></mrow></mfrac><mo>=</mo><mn>273</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">candidates</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">N^{*}=\frac{2kd}{2d-m}=\frac{393{,}216}{1{,}536-96}=273\ \text{candidates}.</annotation></semantics></math></p>
+<p>SDC quantizes the query and adds query error for no database-memory saving.</p>
+<h4 id="worked-numbers-and-decisions">Worked numbers and decisions</h4>
+<ul>
+<li>HNSW with 10 million float32 vectors uses 30.7 GB for vectors plus 2.56 GB of <code>M = 32</code> neighbor identifiers, or about 33.3 GB.</li>
+<li>PQ96 uses 960 MB plus a 768 KiB codebook. Its rate is one bit per dimension.</li>
+<li>A <code>96 x 256</code> table has 24,576 entries and costs 196,608 multiply-adds, or about 0.2 million floating-point operations (MFLOP).</li>
+<li>Scanning 10,000 codes reads 960 KB. The source says this fits in last-level cache.</li>
+<li>PQ32 uses 32-byte codes, 320 MB, <code>96x</code> compression, <code>2^256</code> codes, and 0.33 bits per dimension.</li>
+<li>At 96 equal bytes, PCA stores 24 float32 components and zeros 744 directions. PQ96 encodes all 768 coordinates.</li>
+<li>Which one wins depends on the embedding spectrum.</li>
+<li>An <code>IVF4096,PQ96</code> entry adds an 8-byte identifier. The 104-byte entry array is 1.04 GB, 8.3% above 960 MB.</li>
+<li>At <code>d = 128</code>, <code>m = 8</code>, and <code>k = 256</code>, the source's classic case has a 64-bit code and 128 KiB codebook. A flat <code>2^64</code> codebook at 512 bytes per centroid would occupy 9.4 zettabytes.</li>
+<li>Default <code>k = 256</code> makes <code>m</code> equal bytes per vector. Default <code>m = d/8</code> gives one bit per dimension.</li>
+<li>The listed divisors at <code>d = 768</code> are <code>96, 64, 48, 32, 24, 16</code>.</li>
+<li>Use <code>k = 16</code> when latency matters because 16 table entries fit in SIMD registers.</li>
+<li>OPQ adds one <code>d x d</code> matrix multiply per query.</li>
+<li>Retrain on material corpus or encoder shift with at least <code>39k = 9,984</code> vectors per subquantizer.</li>
+<li>Rescore several hundred candidates against exact vectors when those vectors are retrievable.</li>
+<li>The source treats 30.7 GB of exact vectors on NVMe at 10 million items as retrievable rather than prohibitive.</li>
+</ul>
+<h3 id="162-residual-quantization-and-ivfadc">16.2 Residual quantization and IVFADC</h3>
+<h4 id="what-1">What</h4>
+<p>IVF assigns each vector to the nearest of <code>K_c</code> centroids. Residual encoding stores:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>x</mi><mo>−</mo><msub><mi>q</mi><mi>c</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">r(x)=x-q_c(x).</annotation></semantics></math></p>
+<p>At a k-means fixed point:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub><mo>=</mo><mi>𝔼</mi><mo stretchy="false" form="prefix">[</mo><mi>x</mi><mo>∣</mo><msub><mi>q</mi><mi>c</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">]</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">c_i=\mathbb{E}[x\mid q_c(x)=c_i].</annotation></semantics></math></p>
+<p>The cross term vanishes:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>x</mi><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mi>𝔼</mi><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><msub><mi>q</mi><mi>c</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mover><mi>x</mi><mo accent="true">‾</mo></mover><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mo>+</mo><mi>𝔼</mi><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>x</mi><mo>−</mo><msub><mi>q</mi><mi>c</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}\lVert x-\bar{x}\rVert_2^2 =\mathbb{E}\lVert q_c(x)-\bar{x}\rVert_2^2 +\mathbb{E}\lVert x-q_c(x)\rVert_2^2.</annotation></semantics></math></p>
+<p>The last term is <code>rho sigma^2</code>. Under the stated high-rate model:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>≈</mo><msubsup><mi>K</mi><mi>c</mi><mrow><mi>−</mi><mn>2</mn><mi>/</mi><msup><mi>d</mi><mo>*</mo></msup></mrow></msubsup><mo>,</mo><mspace width="2.0em"></mspace><mi>D</mi><mo>≈</mo><msup><mi>σ</mi><mn>2</mn></msup><msup><mn>2</mn><mrow><mi>−</mi><mn>2</mn><mi>R</mi><mi>/</mi><msup><mi>d</mi><mo>*</mo></msup></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">\rho\approx K_c^{-2/d^{*}},\qquad D\approx\sigma^2 2^{-2R/d^{*}}.</annotation></semantics></math></p>
+<p>Matching residual-PQ without residuals costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>R</mi><mo>=</mo><mi>−</mi><mfrac><msup><mi>d</mi><mo>*</mo></msup><mn>2</mn></mfrac><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>ρ</mi><mo>=</mo><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><msub><mi>K</mi><mi>c</mi></msub><mspace width="0.222em"></mspace><mtext mathvariant="normal">bits</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\Delta R=-\frac{d^{*}}{2}\log_2\rho=\log_2K_c\ \text{bits}.</annotation></semantics></math></p>
+<p>With <code>xi</code> as mean squared quantizer error and <code>e=q(x)-x</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>y</mi><mo>−</mo><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mi>ξ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}\lVert y-q(x)\rVert_2^2=d(x,y)^2+\xi.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><msubsup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>q</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><mi>d</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>y</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>ξ</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}\lVert q(y)-q(x)\rVert_2^2=d(x,y)^2+2\xi.</annotation></semantics></math></p>
+<h4 id="why-1">Why</h4>
+<p>The coarse level already describes between-cell variation. PQ spends the same code bits on lower-variance residuals. The list assignment contributes <code>log2(K_c)</code> implicit bits with no added code bytes.</p>
+<p>The source treats that bit gain as a high-rate floor. Measured gains can exceed it because mean subtraction removes correlation that independent PQ blocks cannot represent.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>Raw-vector PQ spans the whole corpus even though a list occupies one Voronoi cell. It spends codes on regions that list cannot issue.</p>
+<p>Residual encoding can lose when <code>rho</code> is near 1. The source calls <code>rho &gt; 0.8</code> a sign that residuals may be overhead. OPQ and residuals overlap, so the second technique can add less after the first.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>Residual scoring uses <code>y-c_i</code>, which changes by probed cell. Table build and scan cost:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">build</mtext><mo>=</mo><mi>w</mi><mi>k</mi><mi>d</mi><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">scan</mtext><mo>=</mo><mi>w</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>N</mi><msub><mi>K</mi><mi>c</mi></msub></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>m</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\text{build}=wkd,\qquad \text{scan}=w\left(\frac{N}{K_c}\right)m.</annotation></semantics></math></p>
+<p>The crossover is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>K</mi><mi>c</mi><mo>*</mo></msubsup><mo>=</mo><mfrac><mrow><mi>N</mi><mi>m</mi></mrow><mrow><mi>k</mi><mi>d</mi></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">K_c^{*}=\frac{Nm}{kd}.</annotation></semantics></math></p>
+<p>Use <code>N = 10^7</code>, <code>d = 768</code>, <code>K_c = 4,096</code>, <code>m = 64</code>, <code>k = 256</code>, and <code>w = 32</code>:</p>
+<ul>
+<li>Code width is 64 bytes and entry width is 72 bytes with an 8-byte identifier.</li>
+<li>Entries cost 720 MB, centroids 12.6 MB, and codebooks 786 kB.</li>
+<li>Total memory is 733 MB versus 30.7 GB, or <code>41.9x</code> compression.</li>
+<li>Raw PQ builds one table for 196,608 multiply-adds.</li>
+<li>It scans <code>32 x 2,441 = 78,125</code> codes at 64 additions each, or <code>5.0 x 10^6</code> additions.</li>
+<li>One raw table build is 3.9% of the scan.</li>
+<li>IVFADC builds <code>32 x 196,608 = 6.29 x 10^6</code> multiply-adds, or <code>1.26x</code> the scan.</li>
+<li>Residual encoding adds 12 implicit bits to a 512-bit code, a 2.3% high-rate floor.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>K</mi><mi>c</mi><mo>*</mo></msubsup><mo>=</mo><mfrac><mrow><msup><mn>10</mn><mn>7</mn></msup><mo>×</mo><mn>64</mn></mrow><mrow><mn>256</mn><mo>×</mo><mn>768</mn></mrow></mfrac><mo>=</mo><mn>3</mn><mo>,</mo><mn>255</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">K_c^{*}=\frac{10^7\times64}{256\times768}=3{,}255.</annotation></semantics></math></p>
+<p>The source gives a FAISS sizing range of:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><msqrt><mi>N</mi></msqrt><mspace width="0.222em"></mspace><mtext mathvariant="normal">to</mtext><mspace width="0.222em"></mspace><mn>16</mn><msqrt><mi>N</mi></msqrt><mo>=</mo><mn>12</mn><mo>,</mo><mn>649</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">to</mtext><mspace width="0.222em"></mspace><mn>50</mn><mo>,</mo><mn>596</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">4\sqrt{N}\ \text{to}\ 16\sqrt{N}=12{,}649\ \text{to}\ 50{,}596.</annotation></semantics></math></p>
+<p>That range lies four to sixteen times beyond the crossover.</p>
+<p>A precomputed table costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mi>c</mi></msub><mi>m</mi><mi>k</mi><mo>×</mo><mn>4</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">bytes</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">K_cmk\times4\ \text{bytes}.</annotation></semantics></math></p>
+<p>Its reusable distance expansion is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">‖</mo><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>−</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mover><mi>r</mi><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn></msup><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">‖</mo><mi>y</mi><mo>−</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn></msup><mo>+</mo><msup><mrow><mo stretchy="true" form="prefix">‖</mo><mover><mi>r</mi><mo accent="true">̂</mo></mover><mo stretchy="true" form="postfix">‖</mo></mrow><mn>2</mn></msup><mo>+</mo><mn>2</mn><mo stretchy="false" form="prefix">⟨</mo><msub><mi>c</mi><mi>i</mi></msub><mo>,</mo><mover><mi>r</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">⟩</mo><mo>−</mo><mn>2</mn><mo stretchy="false" form="prefix">⟨</mo><mi>y</mi><mo>,</mo><mover><mi>r</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">⟩</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\lVert(y-c_i)-\hat r\rVert^2=\lVert y-c_i\rVert^2+\lVert\hat r\rVert^2+2\langle c_i,\hat r\rangle-2\langle y,\hat r\rangle.</annotation></semantics></math></p>
+<p>It is 268 MB at <code>K_c = 4,096</code>, or 37% of the 733 MB index. It is 4.3 GB at <code>K_c = 65,536</code>.</p>
+<h4 id="worked-numbers-and-decisions-1">Worked numbers and decisions</h4>
+<ul>
+<li>Default to residual encoding, but measure <code>rho</code> and table-build share.</li>
+<li>Disable it when <code>rho</code> is high or the build exceeds about half the scan and precomputation is unaffordable.</li>
+<li>Default to ADC. Use SDC only when a query is already a stored code, such as deduplication, all-pairs search, or clustering.</li>
+<li>Default to exact reranking of a few hundred ADC hits. If exact vectors are unavailable, spend more bits on <code>m</code>.</li>
+<li>At <code>K_c = 65,536</code> and <code>w = 32</code>, the scan falls to <code>3.1 x 10^5</code> additions while table work stays <code>6.29 x 10^6</code>, about <code>20x</code> the scan.</li>
+<li>The corpus fraction falls from <code>0.78%</code> to <code>0.049%</code>.</li>
+<li>Restoring that fraction requires <code>w = 512</code>, returning the scan to <code>5.0 x 10^6</code> and raising table work to <code>1.0 x 10^8</code>.</li>
+<li>At that list count, disable residuals or budget the 4.3 GB table.</li>
+</ul>
+<h3 id="163-scalar-and-binary-quantization">16.3 Scalar and binary quantization</h3>
+<h4 id="what-2">What</h4>
+<p>Float32 costs <code>4d</code> bytes, or 3,072 bytes at <code>d = 768</code>. Scalar quantization stores:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>j</mi></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">⌊</mo><mfrac><mrow><msub><mi>x</mi><mi>j</mi></msub><mo>−</mo><msub><mi>α</mi><mi>j</mi></msub></mrow><mrow><msub><mi>β</mi><mi>j</mi></msub><mo>−</mo><msub><mi>α</mi><mi>j</mi></msub></mrow></mfrac><mo stretchy="false" form="prefix">(</mo><msup><mn>2</mn><mi>b</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">⌋</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">c_j=\left\lfloor\frac{x_j-\alpha_j}{\beta_j-\alpha_j}(2^b-1)+\frac12\right\rfloor.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>x</mi><mo accent="true">̂</mo></mover><mi>j</mi></msub><mo>=</mo><msub><mi>α</mi><mi>j</mi></msub><mo>+</mo><mfrac><msub><mi>c</mi><mi>j</mi></msub><mrow><msup><mn>2</mn><mi>b</mi></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mo stretchy="false" form="prefix">(</mo><msub><mi>β</mi><mi>j</mi></msub><mo>−</mo><msub><mi>α</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi mathvariant="normal">Δ</mi><mi>j</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>β</mi><mi>j</mi></msub><mo>−</mo><msub><mi>α</mi><mi>j</mi></msub></mrow><mrow><msup><mn>2</mn><mi>b</mi></msup><mo>−</mo><mn>1</mn></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\hat{x}_j=\alpha_j+\frac{c_j}{2^b-1}(\beta_j-\alpha_j),\qquad \Delta_j=\frac{\beta_j-\alpha_j}{2^b-1}.</annotation></semantics></math></p>
+<p>The error lies in <code>[-Delta_j/2, Delta_j/2]</code>. Under the uniform-bin model:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false" form="prefix">[</mo><msubsup><mi>e</mi><mi>j</mi><mn>2</mn></msubsup><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mfrac><msubsup><mi mathvariant="normal">Δ</mi><mi>j</mi><mn>2</mn></msubsup><mn>12</mn></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}[e_j^2]=\frac{\Delta_j^2}{12}.</annotation></semantics></math></p>
+<p>For unit-normalized <code>d = 768</code> vectors, the source uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><msqrt><mn>768</mn></msqrt></mfrac><mo>=</mo><mn>0.036</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac1{\sqrt{768}}=0.036.</annotation></semantics></math></p>
+<p>With <code>[alpha,beta]=[-0.2,0.2]</code> and <code>b = 8</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mfrac><mn>0.4</mn><mn>255</mn></mfrac><mo>=</mo><mn>1.569</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>σ</mi><mi>e</mi></msub><mo>=</mo><mfrac><mi mathvariant="normal">Δ</mi><msqrt><mn>12</mn></msqrt></mfrac><mo>=</mo><mn>4.53</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">\Delta=\frac{0.4}{255}=1.569\times10^{-3},\qquad \sigma_e=\frac{\Delta}{\sqrt{12}}=4.53\times10^{-4}.</annotation></semantics></math></p>
+<p>With an exact unit query:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">⟨</mo><mi>q</mi><mo>,</mo><mover><mi>x</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">⟩</mo><mo>=</mo><mo stretchy="false" form="prefix">⟨</mo><mi>q</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">⟩</mo><mo>+</mo><mo stretchy="false" form="prefix">⟨</mo><mi>q</mi><mo>,</mo><mi>e</mi><mo stretchy="false" form="postfix">⟩</mo><mo>,</mo><mspace width="2.0em"></mspace><mo>Var</mo><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">⟨</mo><mi>q</mi><mo>,</mo><mi>e</mi><mo stretchy="false" form="postfix">⟩</mo><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mi>σ</mi><mi>e</mi><mn>2</mn></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">\langle q,\hat{x}\rangle=\langle q,x\rangle+\langle q,e\rangle,\qquad \mathop{\text{Var}}(\langle q,e\rangle)=\sigma_e^2.</annotation></semantics></math></p>
+<p>Binary quantization stores signs. For angle <code>theta</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mfrac><mi>θ</mi><mi>π</mi></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>H</mi><mo>∼</mo><mo>Binomial</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>d</mi><mo>,</mo><mfrac><mi>θ</mi><mi>π</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mover><mi>θ</mi><mo accent="true">̂</mo></mover><mo>=</mo><mfrac><mrow><mi>π</mi><mi>H</mi></mrow><mi>d</mi></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">p=\frac{\theta}{\pi},\qquad H\sim\mathop{\text{Binomial}}\left(d,\frac{\theta}{\pi}\right),\qquad \hat{\theta}=\frac{\pi H}{d}.</annotation></semantics></math></p>
+<p>The source connects this random-hyperplane result to SimHash through Goemans and Williamson (1995) and Charikar (2002).</p>
+<h4 id="why-2">Why</h4>
+<p>SQ8 removes float32 precision that the stated ranking gaps cannot consume. Binary uses 768 bits to estimate one angle rather than reconstructing 768 one-bit components. It gives cheap XOR plus POPCNT candidate generation without a trained codebook.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Float16 keeps 11 significand bits. The source gives a relative rounding bound:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>−</mi><mn>11</mn></mrow></msup><mo>=</mo><mn>4.9</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">2^{-11}=4.9\times10^{-4}.</annotation></semantics></math></p>
+<p>It estimates component error near <code>10^-5</code>, about 45 times below SQ8 at twice the bytes. Both sit roughly two orders below the source's ranking gaps.</p>
+<p>Naive one-bit scalar quantization gives <code>Delta = 0.4</code> and <code>sigma_e = 0.115</code>. Binary changes the score meaning and still needs rescoring. Its random-hyperplane guarantee also needs a random or appropriate rotation when embeddings are anisotropic.</p>
+<h4 id="cost-and-complexity-2">Cost and complexity</h4>
+<p>At cosine <code>0.80</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi><mo>=</mo><mrow><mi>arccos</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.8</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.6435</mn><mo>,</mo><mspace width="2.0em"></mspace><mi>p</mi><mo>=</mo><mn>0.2048</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\theta=\arccos(0.8)=0.6435,\qquad p=0.2048.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝔼</mi><mo stretchy="false" form="prefix">[</mo><mi>H</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mn>768</mn><mo>×</mo><mn>0.2048</mn><mo>=</mo><mn>157.3</mn><mo>,</mo><mspace width="2.0em"></mspace><mo>sd</mo><mo stretchy="false" form="prefix">(</mo><mi>H</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msqrt><mrow><mn>768</mn><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow></msqrt><mo>=</mo><mn>11.18</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathbb{E}[H]=768\times0.2048=157.3,\qquad \mathop{\text{sd}}(H)=\sqrt{768p(1-p)}=11.18.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>sd</mo><mo stretchy="false" form="prefix">(</mo><mover><mi>θ</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mi>π</mi><mo>×</mo><mn>11.18</mn></mrow><mn>768</mn></mfrac><mo>=</mo><mn>0.0457</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">rad</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathop{\text{sd}}(\hat{\theta})=\frac{\pi\times11.18}{768}=0.0457\ \text{rad}.</annotation></semantics></math></p>
+<p>Since <code>sin(theta) = 0.6</code>, cosine noise is about <code>0.027</code>. Binary gives <code>8x</code> more compression than SQ8 and about <code>60x</code> its score noise. It is about <code>4x</code> less noisy than naive one-bit scalar reconstruction.</p>
+<p>Assume 10 million vectors and 50 GB/s scan bandwidth:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Memory</th>
+<th style="text-align: right;">Scan</th>
+<th>Score behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float32</td>
+<td style="text-align: right;">30.72 GB</td>
+<td style="text-align: right;">614 ms</td>
+<td>Exact</td>
+</tr>
+<tr>
+<td>SQ8</td>
+<td style="text-align: right;">7.68 GB</td>
+<td style="text-align: right;">154 ms</td>
+<td><code>sigma = 4.53 x 10^-4</code></td>
+</tr>
+<tr>
+<td>Binary</td>
+<td style="text-align: right;">0.96 GB</td>
+<td style="text-align: right;">19.2 ms</td>
+<td><code>sigma about 0.027</code> before rescore</td>
+</tr>
+</tbody>
+</table></div>
+<p>SQ8 calibration costs <code>2 x 768 x 4 = 6,144</code> bytes. For a 0.05 score gap:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt><mo>×</mo><mn>4.53</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>=</mo><mn>6.4</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>,</mo></mrow><annotation encoding="application/x-tex">\sqrt2\times4.53\times10^{-4}=6.4\times10^{-4},</annotation></semantics></math></p>
+<p>so closing it requires a 78-standard-deviation excursion under the model.</p>
+<p>For binary:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt><mo>×</mo><mn>0.027</mn><mo>=</mo><mn>0.0388</mn><mo>,</mo><mspace width="2.0em"></mspace><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>0.05</mn><mi>/</mi><mn>0.0388</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>1.29</mn><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mn>10</mn><mi>%</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">\sqrt2\times0.027=0.0388,\qquad \Phi(-0.05/0.0388)=\Phi(-1.29)\approx10\%.</annotation></semantics></math></p>
+<p>Rescoring 200 candidates fetches:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mo>×</mo><mn>3</mn><mo>,</mo><mn>072</mn><mo>=</mo><mn>614</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">kB</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">200\times3{,}072=614\ \text{kB}.</annotation></semantics></math></p>
+<p>At 100 microseconds per random read and queue depth 32:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>200</mn><mn>32</mn></mfrac><mo>×</mo><mn>100</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">microseconds</mtext><mo>≈</mo><mn>0.6</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{200}{32}\times100\ \text{microseconds}\approx0.6\ \text{ms}.</annotation></semantics></math></p>
+<p>That is 3.3% of the 19.2 ms scan.</p>
+<h4 id="worked-numbers-and-decisions-2">Worked numbers and decisions</h4>
+<ul>
+<li>PQ96 and 768-bit binary codes both use 96 bytes and have <code>2^768</code> possible codes.</li>
+<li>PQ learns data-adaptive locations. Binary fixes sign-hypercube corners.</li>
+<li>Default to SQ8 with per-dimension <code>0.1 / 99.9</code> percentile clipping.</li>
+<li>Apply a random rotation before sign bits. The source names ITQ by Gong and Lazebnik (2011) as a learned rotation.</li>
+<li>The source names <code>QT_8bit</code> and <code>QT_8bit_uniform</code>. One outlier that doubles a range quadruples squared error.</li>
+<li>Oversample binary hits by <code>3x</code> to <code>5x</code> and rescore exact vectors.</li>
+<li>Skip rescoring only under a sub-5 ms budget after measuring recall loss.</li>
+<li>Use PQ when recall at fixed bytes binds. Use binary when throughput or rebuild cost binds.</li>
+<li>Truncating Matryoshka embeddings to 256 dimensions and binarizing uses 32 bytes, or <code>96x</code> less than 768-dimensional float32.</li>
+<li>Ablate truncation and binarization separately because they fail differently.</li>
+</ul>
+<h3 id="164-faiss-parallelism-and-why-block-structure-matters">16.4 FAISS, parallelism, and why block structure matters</h3>
+<h4 id="what-3">What</h4>
+<p>PQ ADC computes:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>d</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msubsup><mrow><mo stretchy="true" form="prefix">∥</mo><msup><mi>q</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msup><mo>−</mo><msubsup><mi>c</mi><mrow><msub><mo>code</mo><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo stretchy="true" form="postfix">∥</mo></mrow><mn>2</mn><mn>2</mn></msubsup><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mi>T</mi><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo>,</mo><msub><mo>code</mo><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\hat{d}(q,x)^2 =\sum_{j=1}^{m}\left\lVert q^{(j)}-c_{\mathop{\text{code}}_j(x)}^{(j)}\right\rVert_2^2 =\sum_{j=1}^{m}T[j,\mathop{\text{code}}_j(x)].</annotation></semantics></math></p>
+<p>Building <code>T</code> costs <code>k d</code> multiply-accumulates. Scanning one code costs <code>m</code> lookups and <code>m - 1</code> additions.</p>
+<p>The source counts one lookup-and-add as one operation here. At <code>d = 768</code>, <code>k = 256</code>, and <code>m = 16</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>196</mn><mo>,</mo><mn>608</mn></mrow><mn>16</mn></mfrac><mo>=</mo><mn>12</mn><mo>,</mo><mn>288</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">scanned vectors</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{196{,}608}{16}=12{,}288\ \text{scanned vectors}.</annotation></semantics></math></p>
+<p>A conventional row stores all <code>m</code> codes of one vector together. SIMD needs one subquantizer across 32 vectors, but those codes are <code>m</code> bytes apart.</p>
+<p>Fast scan transposes each block of 32 vectors. One aligned load retrieves all 32 codes for one subquantizer. The <code>vpshufb</code> shuffle addresses 16 table entries, which constrains <code>k = 16</code> and produces 4-bit codes.</p>
+<p>At the same 128-bit budget:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Layout</th>
+<th>Parameters</th>
+<th style="text-align: right;">Table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PQ8 per vector</td>
+<td><code>m = 16, k = 256</code></td>
+<td style="text-align: right;"><code>16 x 256 x 4 = 16 KB</code></td>
+</tr>
+<tr>
+<td>PQ4 fast scan</td>
+<td><code>m = 32, k = 16</code></td>
+<td style="text-align: right;"><code>32 x 16 = 512 B</code></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="why-3">Why</h4>
+<p>Every PQ code requires identical, branch-free work. There is no pointer hop, early exit, or ragged logical stride. A 32-code block matches a GPU warp. Lanes share the query table while each lane scores one vector.</p>
+<p>Register-resident top-k selection avoids writing all distances to global memory and rereading them for a sort.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>The opening case reduces 307 GB of float32 to 1.6 GB of PQ codes, or <code>192x</code>, but the scan improves only about <code>2x</code>. A 16 KB table competes with the code stream for a 32 KB level-one cache.</p>
+<p>A single 24,414-candidate query is only about 391 KB of code work, so an unbatched GPU can remain underutilized.</p>
+<p>HNSW hops are dependent and neighbor lists are ragged. Lanes diverge and read uncoalesced addresses. The source states that FAISS has GPU flat, IVF-Flat, and IVF-PQ indexes but no GPU HNSW. It cites CAGRA's fixed out-degree as the concession that makes graph work warp-shaped.</p>
+<h4 id="cost-and-complexity-3">Cost and complexity</h4>
+<p>The source reports the 4-bit block scan at <code>4x</code> to <code>6x</code> the conventional implementation. It reports WarpSelect at <code>8.5x</code> the prior GPU nearest-neighbor implementation and a billion-vector k-nearest-neighbor graph built in under 12 hours on four Maxwell Titan X GPUs.</p>
+<p>Use <code>N = 10^8</code>, <code>d = 768</code>, <code>nlist = 262,144</code>, and <code>nprobe = 64</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msup><mn>10</mn><mn>8</mn></msup><mrow><mn>262</mn><mo>,</mo><mn>144</mn></mrow></mfrac><mo>=</mo><mn>381</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">vectors per cell</mtext><mo>,</mo><mspace width="2.0em"></mspace><mn>64</mn><mo>×</mo><mn>381</mn><mo>=</mo><mn>24</mn><mo>,</mo><mn>414</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">candidates</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{10^8}{262{,}144}=381\ \text{vectors per cell}, \qquad 64\times381=24{,}414\ \text{candidates}.</annotation></semantics></math></p>
+<p>PQ8 with <code>m = 16</code> and <code>k = 256</code>:</p>
+<ul>
+<li>Stores 1.6 GB versus 307.2 GB float32, or <code>192x</code> less.</li>
+<li>Reads <code>24,414 x 16 = 390.6 KB</code> per query.</li>
+<li>Costs about 48 micro-operations per vector: 16 code extractions, 16 table loads, and 15 additions.</li>
+<li>Totals about 1.17 million scalar operations.</li>
+<li>Adds a table build worth 12,288 candidates, about 50% of this scan.</li>
+</ul>
+<p>PQ4 with <code>m = 32</code> and <code>k = 16</code>:</p>
+<ul>
+<li>Keeps the same 128 bits and 1.6 GB.</li>
+<li>Converts 24,414 candidates to 763 blocks.</li>
+<li>Uses about seven vector instructions per subquantizer: one load, two nibble unpacks, two shuffles, and two saturating adds.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>763</mn><mo>×</mo><mn>32</mn><mo>×</mo><mn>7</mn><mo>=</mo><mn>171</mn><mo>,</mo><mn>000</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">operations</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">763\times32\times7=171{,}000\ \text{operations}.</annotation></semantics></math></p>
+<p>That is <code>6.8x</code> fewer than the scalar count. Table build falls to:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>×</mo><mn>768</mn><mo>=</mo><mn>12</mn><mo>,</mo><mn>288</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">multiply-accumulates</mtext><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mn>12</mn><mo>,</mo><mn>288</mn></mrow><mn>32</mn></mfrac><mo>=</mo><mn>384</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">candidate equivalents</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">16\times768=12{,}288\ \text{multiply-accumulates}, \qquad \frac{12{,}288}{32}=384\ \text{candidate equivalents}.</annotation></semantics></math></p>
+<p>That is 1.6% of the scan rather than 50%.</p>
+<p>The scan emits:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>24</mn><mo>,</mo><mn>414</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>97.7</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">kB</mtext></mrow><annotation encoding="application/x-tex">24{,}414\times4=97.7\ \text{kB}</annotation></semantics></math></p>
+<p>of distances. Writing and rereading them moves 195 KB, a 50% tax against 391 KB of code traffic.</p>
+<p>The derived <code>6.8x</code> exceeds the reported <code>4x</code> to <code>6x</code> by about 30%. The source attributes the gap to unchanged code traffic, top-k maintenance, and scalar pipelining.</p>
+<p>For residual IVFADC at these PQ8 settings, a precomputed table costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>262</mn><mo>,</mo><mn>144</mn><mo>×</mo><mn>16</mn><mo>×</mo><mn>256</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>4.29</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">GB</mtext><mo>,</mo></mrow><annotation encoding="application/x-tex">262{,}144\times16\times256\times4=4.29\ \text{GB},</annotation></semantics></math></p>
+<p>more than <code>2.5x</code> the 1.6 GB code array.</p>
+<h4 id="worked-numbers-and-decisions-3">Worked numbers and decisions</h4>
+<ul>
+<li>Default to <code>IndexIVFPQFastScan</code> rather than classic <code>IndexIVFPQ</code> at the same bit budget.</li>
+<li>Keep <code>k = 256</code> only when 4-bit codebooks lose recall that a larger <code>m</code> cannot restore.</li>
+<li>Size <code>nprobe</code> against both recall and table-build break-even.</li>
+<li>The <code>k = 256, m = 16</code> break-even is 12,288 candidates. The <code>k = 16, m = 32</code> break-even is 384.</li>
+<li>Keep graph indexes on CPU and quantized indexes on GPU by default.</li>
+<li>Batch queries before adding hardware.</li>
+<li>For an interactive single-query path, a tuned CPU fast scan can beat an underfilled accelerator.</li>
+<li>Leave the IVFADC precomputed table off above roughly <code>2^16</code> centroids unless per-cell rebuilds dominate and memory is budgeted.</li>
+</ul>
+<h3 id="165-index-memory-arithmetic-end-to-end">16.5 Index memory arithmetic, end to end</h3>
+<h4 id="what-4">What</h4>
+<p>At <code>d = 768</code>:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Stored form</th>
+<th style="text-align: right;"><code>b_vec</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float32</td>
+<td style="text-align: right;">3,072 B</td>
+</tr>
+<tr>
+<td>float16</td>
+<td style="text-align: right;">1,536 B</td>
+</tr>
+<tr>
+<td>SQ8</td>
+<td style="text-align: right;">768 B</td>
+</tr>
+<tr>
+<td>PQ with <code>m</code> eight-bit subquantizers</td>
+<td style="text-align: right;"><code>m</code> B</td>
+</tr>
+</tbody>
+</table></div>
+<p>IVF entries add <code>b_id = 8</code> bytes. The base HNSW calculation uses implicit positional identifiers, but the source warns that stable external keys can require a map.</p>
+<p>HNSW levels follow:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">⌊</mo><mi>−</mi><mi>ln</mi><mo stretchy="false" form="prefix">(</mo><mi>U</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>m</mi><mi>L</mi></msub><mo stretchy="true" form="postfix">⌋</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>m</mi><mi>L</mi></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mi>M</mi></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\ell=\left\lfloor-\ln(U)m_L\right\rfloor,\qquad m_L=\frac1{\ln M}.</annotation></semantics></math></p>
+<p>The probability of reaching level <code>ell</code> is <code>M^(-ell)</code>. Layer zero stores up to <code>M_0 = 2M</code> links, and each higher occupied layer stores up to <code>M</code>.</p>
+<p>With 4-byte identifiers:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mtext mathvariant="normal">link</mtext></msub><mo>=</mo><mn>4</mn><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>M</mi><mo>+</mo><mi>M</mi><munder><mo>∑</mo><mrow><mi>ℓ</mi><mo>≥</mo><mn>1</mn></mrow></munder><msup><mi>M</mi><mrow><mi>−</mi><mi>ℓ</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>4</mn><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>M</mi><mo>+</mo><mfrac><mi>M</mi><mrow><mi>M</mi><mo>−</mo><mn>1</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">b_{\text{link}} =4\left(2M+M\sum_{\ell\ge1}M^{-\ell}\right) =4\left(2M+\frac{M}{M-1}\right).</annotation></semantics></math></p>
+<p>At <code>M = 32</code>:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>b</mi><mtext mathvariant="normal">link</mtext></msub><mo>=</mo><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mn>64</mn><mo>+</mo><mn>1.03</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>260</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">B</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">b_{\text{link}}=4(64+1.03)=260\ \text{B}.</annotation></semantics></math></p>
+<p>The source's FAISS rule gives 256 link bytes from <code>M x 2 x 4</code>. The 260-byte derivation is within 1.6%, with upper layers explaining the gap.</p>
+<p>Fixed terms are <code>nlist d x 4</code> bytes of coarse centroids and <code>k d x 4</code> bytes of PQ codebook.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mtext mathvariant="normal">index</mtext></msub><mo>=</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>b</mi><mtext mathvariant="normal">vec</mtext></msub><mo>+</mo><msub><mi>b</mi><mtext mathvariant="normal">id</mtext></msub><mo>+</mo><msub><mi>b</mi><mtext mathvariant="normal">link</mtext></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mi>n</mi><mi>l</mi><mi>i</mi><mi>s</mi><mi>t</mi><mo>×</mo><mi>d</mi><mo>×</mo><mn>4</mn><mo>+</mo><mi>k</mi><mo>×</mo><mi>d</mi><mo>×</mo><mn>4</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">M_{\text{index}} =N(b_{\text{vec}}+b_{\text{id}}+b_{\text{link}}) +nlist\times d\times4 +k\times d\times4.</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>M</mi><mtext mathvariant="normal">fleet</mtext></msub><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>h</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>M</mi><mtext mathvariant="normal">index</mtext></msub><mo>+</mo><msub><mi>M</mi><mtext mathvariant="normal">payload</mtext></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">M_{\text{fleet}}=R(1+h)M_{\text{index}}+M_{\text{payload}}.</annotation></semantics></math></p>
+<h4 id="why-4">Why</h4>
+<p>Every term is per-vector, fixed, or a multiplier. An in-place rebuild holds old and new copies, so <code>h = 1</code>. A separate builder and hot swap can use about <code>h = 0.2</code> for fragmentation and slack.</p>
+<p>At 400 tokens and roughly 4 characters per token, the source budgets 1.6 KB of UTF-8 per chunk. Ten million chunks need 16 GB. Filterable metadata at 200 bytes per chunk adds 2 GB.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>The naive <code>N x d x 4</code> estimate omits identifiers, links, rebuilds, replicas, payload, maps, allocator overhead, and tombstones. Graph links are about 8% of HNSW memory, but six copies at <code>h = 1, R = 3</code> multiply the miss. The source turns an 8% miss on a 30 GB index into about 15 GB of absent rebuild capacity.</p>
+<p>A refine set changes the honest ratio. A 1.09 GB IVF-PQ index plus 15.36 GB of float16 vectors is 16.45 GB. Compression versus 33.32 GB falls from <code>30.5x</code> to <code>2.0x</code>.</p>
+<p>The formula is a floor. Validate it with a 1% build and measured RSS. A 64 GiB machine is 68.7 GB. A 30 GiB index is 32.2 GB. Mixing units causes about a 7% error.</p>
+<h4 id="cost-and-complexity-4">Cost and complexity</h4>
+<p>Use <code>N = 10^7</code>, <code>d = 768</code>, <code>nlist = 16,384</code>, <code>k = 256</code>, and decimal GB:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Per-vector bytes</th>
+<th style="text-align: right;">Fixed terms</th>
+<th style="text-align: right;">One index</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HNSW-Flat float32, <code>M = 32</code></td>
+<td style="text-align: right;"><code>3,072 + 0 + 260 = 3,332</code></td>
+<td style="text-align: right;">None stated</td>
+<td style="text-align: right;">33.32 GB</td>
+</tr>
+<tr>
+<td>IVF-Flat</td>
+<td style="text-align: right;"><code>3,072 + 8 = 3,080</code></td>
+<td style="text-align: right;">50.3 MB centroids</td>
+<td style="text-align: right;">30.85 GB</td>
+</tr>
+<tr>
+<td>IVF-PQ96</td>
+<td style="text-align: right;"><code>96 + 8 = 104</code></td>
+<td style="text-align: right;">50.3 MB centroids and 786 KB codebook</td>
+<td style="text-align: right;">1.09 GB</td>
+</tr>
+<tr>
+<td>IVF-PQ96 plus float16 refine</td>
+<td style="text-align: right;">104 plus 1,536 refine bytes</td>
+<td style="text-align: right;">Same fixed terms</td>
+<td style="text-align: right;">16.45 GB</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>HNSW links alone cost about 2.6 GB.</li>
+<li>IVF-Flat saves 7% against HNSW-Flat. The source frames this as a rebuild and GPU-mapping choice, not a major memory choice.</li>
+<li>IVF-PQ96 is <code>30.5x</code> smaller before refinement.</li>
+<li>At <code>h = 1</code> and <code>R = 3</code>, HNSW needs about 200 GB and IVF-PQ96 about 6.5 GB.</li>
+<li>Both sit above an 18 GB shared payload.</li>
+<li>Compression removes about 193 GB from the multiplied term and zero from payload.</li>
+</ul>
+<p>At <code>N = 10^9</code>, 104 bytes per vector is 104 GB. The source compares this with a reported 64 GB DiskANN workstation. Fewer than 64 resident bytes per vector leads to a 32-byte PQ code in RAM while full vectors and graph stay on SSD.</p>
+<p>At <code>N = 10^5</code> and <code>nlist = 4,096</code>, centroids cost 12.6 MB while 104-byte entries cost 10.4 MB. The fixed partition is larger than the code array.</p>
+<p>Halving <code>m</code> from 96 to 48 saves 0.48 GB, small beside a 15.36 GB resident refine set.</p>
+<p>For 200 million chunks:</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Design</th>
+<th style="text-align: right;">Bytes per vector</th>
+<th style="text-align: right;">Total</th>
+<th style="text-align: right;">Reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HNSW-Flat float32</td>
+<td style="text-align: right;">3,332</td>
+<td style="text-align: right;">666 GB</td>
+<td style="text-align: right;">Baseline</td>
+</tr>
+<tr>
+<td>HNSW plus SQ8</td>
+<td style="text-align: right;"><code>768 + 260 = 1,028</code></td>
+<td style="text-align: right;">206 GB</td>
+<td style="text-align: right;"><code>3.2x</code></td>
+</tr>
+<tr>
+<td>IVF plus SQ8</td>
+<td style="text-align: right;"><code>768 + 8 = 776</code></td>
+<td style="text-align: right;">155 GB</td>
+<td style="text-align: right;"><code>4.3x</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>At 10% monthly growth:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>1.1</mn><mn>12</mn></msup><mo>=</mo><mn>3.14</mn><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mn>4.3</mn></mrow><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mn>1.1</mn></mrow></mfrac><mo>≈</mo><mn>15</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">months</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">1.1^{12}=3.14,\qquad \frac{\ln4.3}{\ln1.1}\approx15\ \text{months}.</annotation></semantics></math></p>
+<h4 id="worked-numbers-and-decisions-4">Worked numbers and decisions</h4>
+<ul>
+<li>Quote bytes per vector and multiply by <code>N</code> last.</li>
+<li>Provision <code>2x</code> steady-state index memory on each serving node for in-place rebuilds.</li>
+<li>Keep payload outside the replicated index tier unless the fetch breaks p99.</li>
+<li>Size the refine store before choosing <code>m</code>.</li>
+<li>Report <code>M_fleet</code> rather than one index copy.</li>
+<li>A 32.2 GB per-copy saving becomes 193 GB at <code>R = 3</code> and <code>h = 1</code>.</li>
+<li>At compounding growth, quantization is a bridge to sharding rather than a permanent answer.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-161">Figure 16.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    X[&quot;x in R768, float32, 3,072 bytes&quot;] --&gt; S[&quot;Split into m = 96 blocks, d/m = 8&quot;]
+    S --&gt; U1[&quot;u1&quot;]
+    S --&gt; U2[&quot;u2&quot;]
+    S --&gt; U96[&quot;u96&quot;]
+    U1 --&gt; C1[&quot;C1: 256 x 8&quot;] --&gt; I1[&quot;37&quot;]
+    U2 --&gt; C2[&quot;C2: 256 x 8&quot;] --&gt; I2[&quot;210&quot;]
+    U96 --&gt; C96[&quot;C96: 256 x 8&quot;] --&gt; I96[&quot;128&quot;]
+    I1 --&gt; CODE[&quot;96 one-byte indices, 32x smaller&quot;]
+    I2 --&gt; CODE
+    I96 --&gt; CODE
+    CODE --&gt; GRID[&quot;Product grid: k^m cells from k x m sub-centroids&quot;]
+    CODE --&gt; FREE[&quot;Free codebook: 16 cells need 16 full centroids&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>View at <code>m = 2, k = 4</code></th>
+<th style="text-align: right;">Cells</th>
+<th style="text-align: right;">Stored pieces</th>
+<th>Boundary freedom</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product codebook</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8 sub-centroids</td>
+<td>Shared grid boundaries</td>
+</tr>
+<tr>
+<td>Free codebook</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16 full centroids</td>
+<td>Freely placed cells</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 16.1: Splitting the vector makes the effective codebook a Cartesian product, so k^m cells are addressed by k × m stored sub-centroids - exponential reach at linear cost - and the price is that every cell boundary is shared across the whole grid instead of being placed freely.</p>
+</blockquote>
+<h3 id="figure-162">Figure 16.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    X[&quot;x = c_i + r&quot;] --&gt; SUB[&quot;Subtract coarse centroid&quot;]
+    SUB --&gt; POOL[&quot;Residuals from all K_c cells pool at origin&quot;]
+    POOL --&gt; PQ[&quot;One PQ codebook, variance rho sigma^2&quot;]
+    Q[&quot;Query y stays full precision&quot;] --&gt; COARSE[&quot;Nearest K_c centroids&quot;]
+    COARSE --&gt; PROBE[&quot;Probe w inverted lists&quot;]
+    PROBE --&gt; CELL[&quot;For each cell, form y - c_i&quot;]
+    CELL --&gt; TABLE[&quot;Build m x k table: w k d multiply-adds&quot;]
+    TABLE --&gt; SCAN[&quot;Scan: w times N/K_c times m additions&quot;]
+    SCAN --&gt; TOP[&quot;Top-k candidates&quot;]</code></pre></details></figure>
+<blockquote>
+<p>Figure 16.2: Residual encoding converts the coarse quantizer from a router into a first stage of the code, and the conversion is paid for at query time. In (a) each vector is written x = ci + r, and the residuals from every cell collapse onto one low-variance cloud that a single PQ codebook can cover. In (b) the query stays in full precision - the asymmetry in ADC - but because the stored code is of a residual, the lookup table depends on which centroid was subtracted and must be rebuilt for each of the w probed cells.</p>
+</blockquote>
+<h3 id="figure-163">Figure 16.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th style="text-align: right;">Bits per dimension</th>
+<th style="text-align: right;">Footprint</th>
+<th style="text-align: right;">Cosine noise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQ8</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">768 B</td>
+<td style="text-align: right;"><code>4.5 x 10^-4</code></td>
+</tr>
+<tr>
+<td>SQ4</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">384 B</td>
+<td style="text-align: right;"><code>7.7 x 10^-3</code></td>
+</tr>
+<tr>
+<td>Naive scalar</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">96 B</td>
+<td style="text-align: right;">0.115</td>
+</tr>
+<tr>
+<td>Binary Hamming</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">96 B</td>
+<td style="text-align: right;">0.027</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    B[&quot;10^7 binary codes x 96 B = 0.96 GB&quot;] --&gt; H[&quot;12 x (XOR + POPCNT) word operations per vector, 19.2 ms&quot;]
+    H --&gt; C[&quot;Top 200 candidates&quot;]
+    C --&gt; F[&quot;Fetch 614 kB from NVMe, about 0.6 ms&quot;]
+    F --&gt; R[&quot;Exact float32 rescore&quot;]
+    R --&gt; T[&quot;Top 10 returned&quot;]
+    R --&gt; P[&quot;3.3 percent of budget repairs sigma = 0.027&quot;]</code></pre></details></figure>
+<blockquote>
+<p>Figure 16.3: Noise on the cosine score grows faster than compression saves bytes (a), and the binary point sits below the scalar curve only because Hamming distance estimates an angle instead of reconstructing components - which is why binary quantization is a candidate generator feeding a rescoring stage (b), never a final scorer.</p>
+</blockquote>
+<h3 id="figure-164">Figure 16.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    PV[&quot;Per-vector: one j repeats every m bytes&quot;] --&gt; STRIDE[&quot;Four strided reads for one lane group&quot;]
+    BI[&quot;32-vector block, subquantizer-major&quot;] --&gt; LOAD[&quot;One aligned load&quot;]
+    LOAD --&gt; SHUF[&quot;One vpshufb table lookup&quot;]
+    PQ[&quot;PQ block scan&quot;] --&gt; BUSY[&quot;96 of 96 lane-slots busy&quot;]
+    G[&quot;Graph traversal&quot;] --&gt; R[&quot;Hops differ by lane&quot;]
+    R --&gt; IDLE[&quot;60 of 96 busy, warp waits&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Memory order</th>
+<th>First group</th>
+<th>Second group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Per vector</td>
+<td><code>v0:j0,j1,j2,j3</code></td>
+<td><code>v1:j0,j1,j2,j3</code></td>
+</tr>
+<tr>
+<td>Block interleaved</td>
+<td><code>j0:v0,v1,v2,v3</code></td>
+<td><code>j1:v0,v1,v2,v3</code></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 16.4: The same product-quantized codes, transposed into blocks of 32, turn a strided gather into one aligned load feeding a single in-register table lookup (a). And because every code costs identical work, no lane of a 32-wide unit ever idles - a promise graph traversal cannot make (b, drawn illustratively).</p>
+</blockquote>
+<h3 id="figure-165">Figure 16.5</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Budget row</th>
+<th style="text-align: right;">HNSW-Flat, float32, <code>M = 32</code></th>
+<th style="text-align: right;">IVF-PQ, <code>m = 96</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stored vector, <code>d = 768</code></td>
+<td style="text-align: right;">3,072 B</td>
+<td style="text-align: right;">96 B</td>
+</tr>
+<tr>
+<td>Add identifier</td>
+<td style="text-align: right;">Implicit, 0</td>
+<td style="text-align: right;"><code>+8 = 104 B</code></td>
+</tr>
+<tr>
+<td>Add graph links</td>
+<td style="text-align: right;"><code>+260 = 3,332 B</code></td>
+<td style="text-align: right;">None</td>
+</tr>
+<tr>
+<td>Multiply by <code>N = 10^7</code></td>
+<td style="text-align: right;">33.32 GB</td>
+<td style="text-align: right;">1.04 GB</td>
+</tr>
+<tr>
+<td>Add centroids and codebook</td>
+<td style="text-align: right;">33.32 GB</td>
+<td style="text-align: right;">1.09 GB</td>
+</tr>
+<tr>
+<td>Multiply by <code>1 + h</code>, <code>h = 1</code></td>
+<td style="text-align: right;">66.6 GB</td>
+<td style="text-align: right;">2.18 GB</td>
+</tr>
+<tr>
+<td>Multiply by <code>R = 3</code></td>
+<td style="text-align: right;">200 GB</td>
+<td style="text-align: right;">6.5 GB</td>
+</tr>
+<tr>
+<td>Shared payload</td>
+<td style="text-align: right;">16 GB text plus 2 GB metadata</td>
+<td style="text-align: right;">16 GB text plus 2 GB metadata</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Figure 16.5: Compression acts on the first row only. Every row below it is either an additive per-vector term or a multiplier that scales whatever survived, which is why a 30.5× smaller index still needs a capacity plan and why the payload store - shared across replicas, untouched by quantization - outweighs the entire compressed index.</p>
+</blockquote>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Write <code>N = 10^7</code>, <code>d = 768</code>, and 3,072 bytes per float32 vector.</li>
+<li>Split one vector into <code>m = 96</code> blocks of eight dimensions.</li>
+<li>Put a <code>k = 256</code> codebook under each block. Write 96 bytes per code.</li>
+<li>Write <code>k^m</code> above the code space and <code>k d = 196,608</code> floats below the codebook.</li>
+<li>Draw an IVF centroid, subtract it, and pool residuals at the origin.</li>
+<li>Keep the query exact and draw one table build per probed cell.</li>
+<li>Branch to SQ8 at 768 bytes and binary at 96 bytes. Send binary through exact rescoring.</li>
+<li>Transpose 32 codes by subquantizer and label one aligned load.</li>
+<li>Finish with identifiers, links, fixed terms, rebuild headroom, replicas, refine vectors, and payload.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the deployment constraint: ten million vectors at 3,072 bytes each already consume 30.7 GB. Product quantization splits 768 dimensions into 96 eight-dimensional blocks and stores one byte per block, so the code falls to 96 bytes. The codebook stays only 768 KiB because its size is k times d. IVFADC subtracts each coarse centroid, keeps the query exact, and pays one table build per probed cell. Scalar eight-bit quantization is the safe four-times baseline. Binary codes need exact rescoring. Finally, add identifiers, graph links, rebuild headroom, replicas, and payload before naming fleet memory.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-not-reduce-to-24-dimensions">1. Why not reduce to 24 dimensions?</h3>
+<p>That changes the representation because 96-byte PCA keeps 24 float32 directions and zeros 744. PQ96 describes all 768 coordinates. Under a fixed encoder and fixed <code>d</code>, quantize first, measure recall, and exact-rescore the shortlist.</p>
+<h3 id="2-what-does-adc-mean-and-why-can-residuals-hurt-p99">2. What does ADC mean, and why can residuals hurt p99?</h3>
+<p>Asymmetric distance computation (ADC) keeps the query exact, so bias is <code>d(x,y)^2 + xi</code> rather than <code>d(x,y)^2 + 2xi</code>. Residual PQ spends <code>log2(K_c)</code> implicit cell bits on accuracy, but <code>y - c_i</code> changes by cell. Table work rises from <code>k d</code> to <code>w k d</code>.</p>
+<h3 id="3-choose-product-residual-scalar-or-binary-quantization">3. Choose product, residual, scalar, or binary quantization.</h3>
+<p>Start with SQ8 for a low-risk <code>4x</code> storage cut, then use PQ when recall must survive at a much smaller fixed byte budget. Add residual encoding only when the coarse partition lowers variance enough to justify per-cell table work or precomputation. Use binary for throughput or rebuild simplicity, then exact-rescore because its cosine noise is about <code>0.027</code>.</p>
+<h3 id="4-why-did-192x-compression-give-only-2x-latency">4. Why did <code>192x</code> compression give only <code>2x</code> latency?</h3>
+<p>Classic PQ still performs strided lookups through a 16 KB table. Fast scan transposes 32 codes and uses a 512-byte 4-bit table. The source derives <code>6.8x</code> fewer operations but reports <code>4x</code> to <code>6x</code> because code traffic and top-k maintenance remain.</p>
+<h3 id="5-did-a-305x-smaller-index-solve-fleet-memory">5. Did a <code>30.5x</code> smaller index solve fleet memory?</h3>
+<p>No, because a float16 refine set changes 1.09 GB to 16.45 GB and the honest ratio to <code>2.0x</code>. Rebuild headroom, three replicas, and 18 GB of text and metadata multiply costs outside compression. Compute <code>M_fleet</code> and validate it with measured resident set size (RSS).</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Numbers to retain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PQ</td>
+<td>3,072 B to 96 B, <code>32x</code>, <code>2^768</code> codes, 768 KiB codebook, 273-candidate ADC crossover</td>
+</tr>
+<tr>
+<td>Flat comparison</td>
+<td>13.2 TB codebook, <code>1.7 x 10^11</code> training vectors, <code>1.7 x 10^7</code> memory penalty</td>
+</tr>
+<tr>
+<td>Residual</td>
+<td>733 MB, <code>41.9x</code>, 12 implicit bits, <code>6.29 x 10^6</code> build, 3,255 crossover</td>
+</tr>
+<tr>
+<td>Residual table</td>
+<td>268 MB at 4,096 cells and 4.3 GB at 65,536 cells</td>
+</tr>
+<tr>
+<td>Scalar</td>
+<td>SQ8 768 B, <code>4.53 x 10^-4</code> noise, 154 ms scan, 6,144 B calibration</td>
+</tr>
+<tr>
+<td>Binary</td>
+<td>96 B, 0.027 noise, 19.2 ms scan, about 10% stipulated flip rate</td>
+</tr>
+<tr>
+<td>Binary rescore</td>
+<td>200 vectors, 614 kB, about 0.6 ms, 3.3% of scan</td>
+</tr>
+<tr>
+<td>Fast scan</td>
+<td>16 KB to 512 B table, 32-code blocks, <code>6.8x</code> derived, <code>4x</code> to <code>6x</code> measured</td>
+</tr>
+<tr>
+<td>HNSW</td>
+<td>260 B links at <code>M = 32</code>, 33.32 GB at 10 million vectors</td>
+</tr>
+<tr>
+<td>IVF</td>
+<td>30.85 GB flat, 1.09 GB PQ96, 16.45 GB with float16 refine</td>
+</tr>
+<tr>
+<td>Fleet</td>
+<td>200 GB HNSW versus 6.5 GB IVF-PQ96, plus 18 GB shared payload</td>
+</tr>
+<tr>
+<td>Growth</td>
+<td><code>1.1^12 = 3.14</code> and a <code>4.3x</code> cut buys about 15 months</td>
+</tr>
+<tr>
+<td>PQ rate defaults</td>
+<td>One bit per dimension at <code>m = 96</code> and 0.33 at <code>m = 32</code></td>
+</tr>
+<tr>
+<td>PQ divisors at <code>d = 768</code></td>
+<td>96, 64, 48, 32, 24, 16</td>
+</tr>
+<tr>
+<td>PQ training floor</td>
+<td><code>39k = 9,984</code> vectors per subquantizer at <code>k = 256</code></td>
+</tr>
+<tr>
+<td>PQ query table</td>
+<td>24,576 entries, 196,608 multiply-adds, about 0.2 MFLOP</td>
+</tr>
+<tr>
+<td>PQ 10,000-code scan</td>
+<td>960 KB</td>
+</tr>
+<tr>
+<td>PQ32</td>
+<td>320 MB, <code>96x</code> compression, <code>2^256</code> codes</td>
+</tr>
+<tr>
+<td>Classic <code>d = 128</code> case</td>
+<td>64-bit codes and 128 KiB codebook</td>
+</tr>
+<tr>
+<td>Classic flat comparison</td>
+<td>9.4 zettabytes</td>
+</tr>
+<tr>
+<td>IVF4096,PQ64 entries</td>
+<td>72 B each and 720 MB total</td>
+</tr>
+<tr>
+<td>IVF4096,PQ64 fixed terms</td>
+<td>12.6 MB centroids and 786 kB codebooks</td>
+</tr>
+<tr>
+<td>Raw PQ table share</td>
+<td>3.9% of a <code>5.0 x 10^6</code>-addition scan</td>
+</tr>
+<tr>
+<td>Residual build-to-scan ratio</td>
+<td><code>1.26x</code></td>
+</tr>
+<tr>
+<td>Residual high-rate increase</td>
+<td>12 bits over 512 bits, or 2.3%</td>
+</tr>
+<tr>
+<td>FAISS list range at <code>N = 10^7</code></td>
+<td>12,649 to 50,596</td>
+</tr>
+<tr>
+<td>Residual warning threshold</td>
+<td><code>rho &gt; 0.8</code></td>
+</tr>
+<tr>
+<td>Large-list fixed probe</td>
+<td><code>3.1 x 10^5</code> scan additions and <code>20x</code> table ratio</td>
+</tr>
+<tr>
+<td>Large-list restored probe</td>
+<td><code>w = 512</code> and <code>1.0 x 10^8</code> table work</td>
+</tr>
+<tr>
+<td>Isotropic component scale</td>
+<td><code>1 / sqrt(768) = 0.036</code></td>
+</tr>
+<tr>
+<td>SQ8 calibrated step</td>
+<td><code>1.569 x 10^-3</code></td>
+</tr>
+<tr>
+<td>SQ8 pairwise difference noise</td>
+<td><code>6.4 x 10^-4</code> and a 78-standard-deviation gap</td>
+</tr>
+<tr>
+<td>float16 relative bound</td>
+<td><code>2^-11 = 4.9 x 10^-4</code></td>
+</tr>
+<tr>
+<td>Naive one-bit scalar</td>
+<td>0.115 score noise</td>
+</tr>
+<tr>
+<td>Binary Hamming mean</td>
+<td>157.3 bits at cosine 0.80</td>
+</tr>
+<tr>
+<td>Binary Hamming deviation</td>
+<td>11.18 bits</td>
+</tr>
+<tr>
+<td>Binary angle deviation</td>
+<td>0.0457 rad</td>
+</tr>
+<tr>
+<td>Binary pairwise deviation</td>
+<td>0.0388</td>
+</tr>
+<tr>
+<td>Binary compression comparison</td>
+<td><code>8x</code> smaller and <code>60x</code> noisier than SQ8</td>
+</tr>
+<tr>
+<td>Fast-scan candidate set</td>
+<td>24,414 codes from 64 cells of 381</td>
+</tr>
+<tr>
+<td>Fast-scan code traffic</td>
+<td>390.6 KB</td>
+</tr>
+<tr>
+<td>PQ8 operation count</td>
+<td>1.17 million</td>
+</tr>
+<tr>
+<td>PQ4 operation count</td>
+<td>171,000</td>
+</tr>
+<tr>
+<td>PQ4 table-build equivalent</td>
+<td>384 candidates, or 1.6% of scan</td>
+</tr>
+<tr>
+<td>Selection traffic</td>
+<td>97.7 KB output and 195 KB write plus reread</td>
+</tr>
+<tr>
+<td>GPU report</td>
+<td><code>8.5x</code> speedup and under 12 hours for a billion-vector graph</td>
+</tr>
+<tr>
+<td>Large fast-scan precompute</td>
+<td>4.29 GB, more than <code>2.5x</code> the 1.6 GB codes</td>
+</tr>
+<tr>
+<td>Index fixed terms</td>
+<td>50.3 MB centroids and 786 KB PQ codebook</td>
+</tr>
+<tr>
+<td>Unit warning</td>
+<td>64 GiB is 68.7 GB and 30 GiB is 32.2 GB</td>
+</tr>
+<tr>
+<td>Refine knob comparison</td>
+<td>Halving <code>m</code> saves 0.48 GB beside a 15.36 GB refine set</td>
+</tr>
+<tr>
+<td>Billion-point resident constraint</td>
+<td>Under 64 B per vector and a 32 B PQ code in RAM</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/15_approximate_nearest_neighbor_search.html"><small>Previous</small>Chapter 15. Approximate Nearest Neighbor Search</a><a href="../chapters/17_operating_a_vector_store.html"><small>Next</small>Chapter 17. Operating a Vector Store</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>00.03. Preface | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/00_03_preface.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group" open><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html" aria-current="page">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Front matter</p><h1>00.03. Preface</h1><p class="chapter-meta">27 min estimated reading · Unit 3 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This preface explains how the book turns Retrieval-Augmented Generation (RAG) from a component list into a production reasoning discipline for artificial intelligence systems.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>The source calls RAG the most widely deployed pattern in applied artificial intelligence and the least rigorously understood. A design answer must explain when to retrieve, not only how.</li>
+<li>Retrieval can damage a correct answer, so more context is not automatically safer.</li>
+<li>Production failures require stage-by-stage diagnosis across retrieval, generation, and the full system.</li>
+<li>The book joins ideas that usually live in separate retrieval, language-model, vector-database, and framework sources.</li>
+<li>Each section teaches one idea through first principles, a number, an example, a production decision, and interview questions.</li>
+<li>The book covers the path from model memory through retrieval, context assembly, evaluation, trust, cost, and scaling.</li>
+<li>The central skill is re-deriving an answer when constraints change instead of memorizing one benchmark number. The book favors attributed or derived evidence, especially when that evidence contradicts common RAG advice.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a hospital where a physician answers questions from memory and a records clerk fetches patient charts. The physician is the language model. The records clerk is the retriever. Together they form the RAG team.</p>
+<p>A weak description says that the clerk labels every chart, finds the most similar labels, and hands the physician the top k charts, meaning the k highest-ranked results. That description names the staff and the steps. It does not answer the most important question. Should the clerk fetch a chart at all?</p>
+<p>Sometimes the physician already knows the right answer. A distracting chart can then reverse a correct decision. Mallen et al. (2023) measured retrieval changing roughly 10% of otherwise-correct answers into wrong answers. More charts can also give the physician more misleading material and increase hallucination, which means unsupported content in the answer.</p>
+<p>The hospital must diagnose failures across the full care path. A quality drop can begin with the question, the chart search, the ranking, the packet given to the physician, or the final answer. Knowing that the team uses retrieval does not reveal which stage caused an end-to-end accuracy regression, which means a decline in the final measured answer quality.</p>
+<p>The knowledge needed to run this hospital sits in separate departments. Information retrieval studies search and ranking. Language-model research studies the physician but often treats the archive as a black box. Vector-database documentation explains archive controls. Framework tutorials assemble a small demonstration. None of those departments alone follows the patient from the first question through evidence, answer, evaluation, trust, and cost.</p>
+<p>This book acts like a complete residency program. Its 12 rotations contain 41 chapters and 247 teaching stations. Every station uses the same routine. It starts from first principles, works through a measured or derived number, solves a concrete numeric case, makes a production decision, and tests the answer at three levels of seniority.</p>
+<p>The residency assumes that the trainee can already code and knows basic machine learning. It does not teach deep-learning foundations, transformers, or backpropagation. It is not a complete retrieval survey. It also avoids training the reader on one vendor, framework, embedding application programming interface (API), or company interview process because those details can change every quarter.</p>
+<p>The rotations follow the whole patient journey. They begin with what the physician already memorized and when that memory fails. They cover representation, indexing, ranking, question routing, repeated retrieval, training, context assembly, citation, evaluation, credibility, security, cost, and scale. The final rotation uses end-to-end design drills, including the hard case where the system became worse without an obvious cause.</p>
+<p>The archive provides the clearest lesson. A Hierarchical Navigable Small World (HNSW) index keeps vectors, which are numeric chart labels, and a graph, which is a shortcut map through the archive. Shrinking the labels with quantization reduces vector memory. The shortcut map does not shrink. Once the labels are small enough, the map becomes most of what remains.</p>
+<p>A trainee who memorizes that one archive needs 32 gigabytes knows one case. A trainee who understands the memory formula can recompute the answer when vector dimension or compression changes. The book trains that second habit.</p>
+<p>The residency also has a strict evidence rule. It attributes numbers to named sources or derives them in view. It omits numbers that it cannot attribute or derive. It starts rounds with cases that challenge familiar advice, such as retrieval losing to a closed-book answer on popular facts or citations failing to prove that an answer is grounded in its evidence.</p>
+<p>The hospital metaphor ends with one operating principle. A fluent description of the staff is not enough. A strong engineer decides when each staff member should act, measures what happened, finds the failing stage, and recomputes the plan when the constraints change.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that fetches external material and gives it to a language model before the model answers</td>
+<td>The book studies when this pattern helps, when it hurts, and how to design it</td>
+</tr>
+<tr>
+<td>Machine learning</td>
+<td>Systems that learn patterns from data</td>
+<td>The book assumes the reader already knows its basics</td>
+</tr>
+<tr>
+<td>Deep learning</td>
+<td>The model family named as assumed background</td>
+<td>The book does not teach it from the beginning</td>
+</tr>
+<tr>
+<td>Transformer</td>
+<td>A language-model architecture named as assumed background</td>
+<td>The book does not explain it</td>
+</tr>
+<tr>
+<td>Backpropagation</td>
+<td>A model-training method named as assumed background</td>
+<td>The book does not teach it</td>
+</tr>
+<tr>
+<td>Language model</td>
+<td>The component that produces the final text answer</td>
+<td>Retrieval only helps if the model uses the added material well</td>
+</tr>
+<tr>
+<td>Model memory</td>
+<td>Knowledge reflected in the model before external retrieval</td>
+<td>It affects the decision to retrieve or answer closed-book</td>
+</tr>
+<tr>
+<td>Retriever</td>
+<td>The component that searches for material related to a query</td>
+<td>Its choices determine what evidence reaches the model</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>A numeric representation of text</td>
+<td>It lets a system compare queries and documents by location in a numeric space</td>
+</tr>
+<tr>
+<td>Nearest neighbor</td>
+<td>A stored vector judged most similar to a query vector</td>
+<td>Nearest-neighbor search is the common retrieval step named in weak RAG descriptions</td>
+</tr>
+<tr>
+<td>Top k</td>
+<td>The k highest-ranked retrieved results</td>
+<td>Choosing k controls how much retrieved material enters the prompt</td>
+</tr>
+<tr>
+<td>Prompt</td>
+<td>The instructions and context given to the language model</td>
+<td>Retrieved documents influence the answer through the prompt</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>The material available to the model while it creates an answer</td>
+<td>Added context can help, distract, or increase unsupported output</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>Content in an answer that lacks support</td>
+<td>Retrieval does not guarantee that hallucination will fall</td>
+</tr>
+<tr>
+<td>Closed-book answer</td>
+<td>An answer produced from the model's stored knowledge without retrieval</td>
+<td>It can outperform retrieval for some high-popularity facts</td>
+</tr>
+<tr>
+<td>Corpus</td>
+<td>The collection of documents available for search</td>
+<td>Changes to the corpus can degrade an index over time</td>
+</tr>
+<tr>
+<td>Corpus churn</td>
+<td>Documents being added, removed, or changed</td>
+<td>Churn can weaken graph-based search behavior</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW) index</td>
+<td>A graph-based structure for approximate nearest-neighbor search</td>
+<td>Its graph can become the main memory cost after vector compression</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor index</td>
+<td>A search structure that seeks likely close vectors instead of an exact full comparison</td>
+<td>The book covers how these indexes work and what they cost in memory</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td>The stored network of search shortcuts in HNSW</td>
+<td>Its memory does not shrink when only vectors are compressed</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>A way to store vectors with fewer bytes</td>
+<td>It reduces vector memory and can expose the graph as the remaining cost</td>
+</tr>
+<tr>
+<td>Product quantization</td>
+<td>A compression method that stores a vector as a short code</td>
+<td>The preface uses a 64-byte code to show how the memory balance changes</td>
+</tr>
+<tr>
+<td>32-bit floating point (fp32)</td>
+<td>A vector format that uses four bytes for each dimension</td>
+<td>It supplies the 4d term in the HNSW memory formula</td>
+</tr>
+<tr>
+<td>Vector dimension</td>
+<td>The number of numeric coordinates in an embedding</td>
+<td>Increasing dimension raises vector memory directly</td>
+</tr>
+<tr>
+<td>End-to-end accuracy</td>
+<td>Final answer accuracy across the complete pipeline</td>
+<td>A drop at the system output does not identify which stage failed</td>
+</tr>
+<tr>
+<td>Regression</td>
+<td>A measured decline in system performance</td>
+<td>Engineers must locate the stage that owns it</td>
+</tr>
+<tr>
+<td>Five-stage pipeline</td>
+<td>The production path whose stages jointly produce an answer</td>
+<td>Engineers must assign a regression to the correct stage</td>
+</tr>
+<tr>
+<td>Five-decision skeleton</td>
+<td>The structure used for design answers throughout the book</td>
+<td>It forces a candidate to state decisions rather than list components</td>
+</tr>
+<tr>
+<td>Information retrieval</td>
+<td>The field that studies search, ranking, and retrieval evaluation</td>
+<td>Its depth does not by itself explain how a generator uses retrieved text</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>The component that writes the answer</td>
+<td>Generator behavior must be studied together with retrieval behavior</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>The data structure used to find documents quickly</td>
+<td>Treating it as a black box hides memory and quality trade-offs</td>
+</tr>
+<tr>
+<td>Black box</td>
+<td>A component whose internal choices are hidden from the surrounding explanation</td>
+<td>It prevents end-to-end reasoning about the index or generator</td>
+</tr>
+<tr>
+<td>Vector database</td>
+<td>A system that stores and searches vector representations</td>
+<td>Product documentation explains controls but not the whole RAG decision surface</td>
+</tr>
+<tr>
+<td>Orchestration framework</td>
+<td>Software that connects pipeline components</td>
+<td>A short framework demo does not explain production-scale failure</td>
+</tr>
+<tr>
+<td>Embedding application programming interface (API)</td>
+<td>A software interface that produces embeddings</td>
+<td>The book avoids tying its arithmetic to one changing product interface</td>
+</tr>
+<tr>
+<td>Trade-off surface</td>
+<td>The set of gains and losses created by a design choice</td>
+<td>Knowing controls is not enough without knowing what each control sacrifices</td>
+</tr>
+<tr>
+<td>Continual learning</td>
+<td>Updating a model as new data arrives</td>
+<td>The book compares it with retrieval as a way to add or refresh knowledge</td>
+</tr>
+<tr>
+<td>Model editing</td>
+<td>Changing selected knowledge inside a model</td>
+<td>It is another competitor to retrieval</td>
+</tr>
+<tr>
+<td>Long context</td>
+<td>Giving the model a large amount of material directly</td>
+<td>It can replace retrieval in some designs and creates its own costs</td>
+</tr>
+<tr>
+<td>Generative retrieval</td>
+<td>Using generation as part of identifying what to retrieve</td>
+<td>It appears both as a retrieval alternative and as a later ranking approach</td>
+</tr>
+<tr>
+<td>In-context learning</td>
+<td>A model adapting its response from examples or information in its current prompt</td>
+<td>Retrieval depends on this mechanism to influence generation</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>A learned internal value in a model</td>
+<td>The book compares the economics of model parameters with an external datastore</td>
+</tr>
+<tr>
+<td>Datastore</td>
+<td>The external collection that a retrieval system searches</td>
+<td>It offers a different place to hold information than model parameters</td>
+</tr>
+<tr>
+<td>Training data</td>
+<td>The examples used to fit a model or retrieval system</td>
+<td>The book covers its privacy, legal, and manufacturing questions</td>
+</tr>
+<tr>
+<td>Confabulation</td>
+<td>Producing plausible content that is not supported</td>
+<td>The generator chapters contrast it with what the model memorized</td>
+</tr>
+<tr>
+<td>Prompting</td>
+<td>Choosing instructions and context for a model</td>
+<td>It shapes how the generator responds to retrieved material</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>The degree to which an answer changes when its input changes</td>
+<td>It is part of the generator behavior covered by the book</td>
+</tr>
+<tr>
+<td>Representation</td>
+<td>The form used to encode text for search</td>
+<td>Poor representation weakens every later retrieval stage</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>Splitting documents into searchable pieces</td>
+<td>Chunk boundaries affect what a retriever can return</td>
+</tr>
+<tr>
+<td>Semantic chunking</td>
+<td>Splitting text based on meaning</td>
+<td>The preface says its measured advantage largely disappears on real data</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>Ordering candidate documents by expected usefulness</td>
+<td>The model often sees only the highest-ranked candidates</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>A term-based ranking method</td>
+<td>It begins the ranking progression described in the book</td>
+</tr>
+<tr>
+<td>Learning to rank</td>
+<td>Training a model to order search results</td>
+<td>It moves ranking from fixed formulas toward learned decisions</td>
+</tr>
+<tr>
+<td>Dense bi-encoder</td>
+<td>A retrieval model that separately encodes queries and documents as dense vectors</td>
+<td>It is one step in the ranking progression described in the preface</td>
+</tr>
+<tr>
+<td>Learned sparse retrieval</td>
+<td>A learned retrieval method that uses sparse representations</td>
+<td>It is one step in the ranking progression described in the preface</td>
+</tr>
+<tr>
+<td>Multi-vector retrieval</td>
+<td>Representing an item with more than one vector</td>
+<td>It is one step in the ranking progression described in the preface</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Reordering an initial candidate set</td>
+<td>It is one step in the ranking progression described in the preface</td>
+</tr>
+<tr>
+<td>Query understanding</td>
+<td>Interpreting what a question asks before retrieval</td>
+<td>It shapes reformulation, routing, and control flow</td>
+</tr>
+<tr>
+<td>Query reformulation</td>
+<td>Rewriting a question to make search work better</td>
+<td>A weak query can cause failure before document ranking begins</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td>Choosing which retrieval path or resource should handle a query</td>
+<td>Routing controls whether and where retrieval happens</td>
+</tr>
+<tr>
+<td>Control flow</td>
+<td>The order, branches, and repeated steps in a pipeline</td>
+<td>It controls how many times the system retrieves</td>
+</tr>
+<tr>
+<td>Iterative retrieval</td>
+<td>Searching more than once while building an answer</td>
+<td>Some questions need evidence gathered in several steps</td>
+</tr>
+<tr>
+<td>Self-reflective loop</td>
+<td>A control loop in which the system judges its own need for more work</td>
+<td>It decides whether another retrieval step is needed</td>
+</tr>
+<tr>
+<td>Agentic loop</td>
+<td>A control loop in which a model selects and repeats actions</td>
+<td>It can decide how many times to retrieve</td>
+</tr>
+<tr>
+<td>Learned controller</td>
+<td>Trained logic that chooses a pipeline action</td>
+<td>The preface says this logic is fragile after query distribution shifts</td>
+</tr>
+<tr>
+<td>Query distribution shift</td>
+<td>A change in the kinds of questions a system receives</td>
+<td>The preface says learned controllers become fragile under this shift</td>
+</tr>
+<tr>
+<td>Context assembly</td>
+<td>Selecting and arranging retrieved material for the model</td>
+<td>Successful search can still fail if the final context is poorly built</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The text positions available to the model for the current answer</td>
+<td>The book covers positional bias inside this window</td>
+</tr>
+<tr>
+<td>Positional bias</td>
+<td>The model treating information differently because of where it appears in the context</td>
+<td>Evidence placement can change how well retrieved content is used</td>
+</tr>
+<tr>
+<td>Attribution</td>
+<td>Connecting an answer claim to its supporting source</td>
+<td>It helps users see where answer content came from</td>
+</tr>
+<tr>
+<td>Citation</td>
+<td>A reference to a source attached to an answer</td>
+<td>A citation alone does not prove that the answer is grounded</td>
+</tr>
+<tr>
+<td>Post-hoc citation</td>
+<td>A citation attached after an answer has been produced</td>
+<td>The preface says it has little relation to whether the answer is grounded</td>
+</tr>
+<tr>
+<td>Grounding</td>
+<td>Making answer claims depend on supplied evidence</td>
+<td>It is a stronger requirement than merely displaying citations</td>
+</tr>
+<tr>
+<td>Retrieval evaluation</td>
+<td>Measuring whether search returned useful material</td>
+<td>It tests one layer of the system</td>
+</tr>
+<tr>
+<td>Generation evaluation</td>
+<td>Measuring the quality of the produced answer</td>
+<td>Good retrieval does not guarantee good generation</td>
+</tr>
+<tr>
+<td>System evaluation</td>
+<td>Measuring the combined behavior that users experience</td>
+<td>The whole system is not simply the sum of separate retrieval and generation scores</td>
+</tr>
+<tr>
+<td>Source credibility</td>
+<td>The trustworthiness of retrieved material</td>
+<td>Unreliable evidence can produce unreliable answers</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>A record of where data or a claim came from</td>
+<td>It supports traceability and trust</td>
+</tr>
+<tr>
+<td>Prompt injection</td>
+<td>Malicious instructions placed in content that reaches the model</td>
+<td>Retrieved text can attack the system through its prompt</td>
+</tr>
+<tr>
+<td>Datastore poisoning</td>
+<td>Corrupting the collection that retrieval searches</td>
+<td>Poisoned material can steer later answers</td>
+</tr>
+<tr>
+<td>Memory bandwidth</td>
+<td>The rate at which stored data can be moved for computation</td>
+<td>The book treats it as a durable systems constraint</td>
+</tr>
+<tr>
+<td>High-dimensional geometry</td>
+<td>The behavior of vectors with many coordinates</td>
+<td>It shapes the limits and choices of vector retrieval</td>
+</tr>
+<tr>
+<td>Token economics</td>
+<td>The cost consequences of processing pieces of text</td>
+<td>Context and generation choices affect operating cost</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Choosing not to answer when confidence or evidence is inadequate</td>
+<td>A system needs a safe option when retrieval or generation is unreliable</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="1-the-real-first-decision">1. The real first decision</h3>
+<ul>
+<li>What it is: Decide whether to retrieve before choosing how to retrieve.</li>
+<li>Why it exists: The model may already hold a correct answer. Retrieved material can help or disrupt it.</li>
+<li>What breaks without it: A team always retrieves and assumes that extra context must improve quality.</li>
+<li>Evidence stated in the source: Mallen et al. (2023) measured retrieval changing roughly 10% of otherwise-correct answers into wrong answers.</li>
+</ul>
+<p>The common recipe embeds documents, searches for nearest neighbors, and places the top k results in the prompt. That recipe names components. It does not state a decision rule.</p>
+<p>The source says almost every team that ships a language-model product also ships retrieval. It also says production interviewers stopped accepting the component-only recipe some time ago.</p>
+<p>Production interviews probe this gap. They ask when not to retrieve. They also ask why more documents can increase hallucination.</p>
+<h3 id="2-diagnose-the-full-pipeline">2. Diagnose the full pipeline</h3>
+<ul>
+<li>What it is: Trace a regression through the stages that turn a question into an answer.</li>
+<li>Why it exists: End-to-end accuracy only reveals the final effect.</li>
+<li>What breaks without it: The team sees a quality drop but cannot identify the owning stage.</li>
+<li>Scale stated in the source: The example uses a five-stage pipeline and a four-point overnight accuracy drop.</li>
+</ul>
+<p>The preface names HNSW graph degradation under corpus churn as another production question. It also asks why the graph becomes the incompressible term after vector quantization. These questions test whether a candidate can reason about a live system rather than repeat a demo recipe.</p>
+<p>The source does not call these exotic questions. It frames them as ordinary Tuesday on-call work when answer quality falls four points overnight.</p>
+<h3 id="3-join-the-separated-literatures">3. Join the separated literatures</h3>
+<ul>
+<li>What it is: Treat model memory, retrieval, generation, context, evaluation, trust, and cost as one path.</li>
+<li>Why it exists: Each existing source family explains only part of that path.</li>
+<li>What breaks without it: Engineers optimize one component while treating neighboring components as black boxes.</li>
+<li>Scale stated in the source: Information retrieval contributes 50 years of depth. A framework demo may fit in 20 lines but fail to explain behavior at 10 million documents.</li>
+</ul>
+<p>Information-retrieval literature has 50 years of depth on ranking and evaluation but almost nothing to say about generators. Language-model literature goes deep on generators but often hides the index. Vector-database documentation explains product controls. Framework tutorials create working demonstrations. None alone assembles the entire production argument.</p>
+<h3 id="4-use-a-fixed-learning-skeleton">4. Use a fixed learning skeleton</h3>
+<ul>
+<li>What it is: Teach each idea through first principles, evidence, a numeric example, a production decision, and interview framing.</li>
+<li>Why it exists: The repeated structure makes the material useful for both study and fast reference.</li>
+<li>What breaks without it: A reader may memorize vocabulary without gaining the flexibility to reason under changed constraints.</li>
+<li>Scale stated in the source: The skeleton repeats across 247 sections and frames questions at three seniority levels.</li>
+</ul>
+<p>The intended reader already knows how to code and understands basic machine learning. The book can be read from start to finish or opened at one relevant page.</p>
+<h3 id="5-keep-the-boundary-explicit">5. Keep the boundary explicit</h3>
+<ul>
+<li>What it is: Define what the book does not try to teach.</li>
+<li>Why it exists: A precise boundary protects depth on production RAG reasoning.</li>
+<li>What breaks without it: The guide becomes a deep-learning primer, a broad literature survey, a vendor manual, or a company-specific interview guide.</li>
+<li>Change rate stated in the source: Product and framework details can change every quarter. The underlying arithmetic does not.</li>
+</ul>
+<p>The book does not explain transformers or teach backpropagation. It does not cover the entire retrieval literature. It does not target one vector database, orchestration framework, embedding API, or employer.</p>
+<p>Its generic reasoning rests on constraints that remain relevant across products. The preface names memory bandwidth, high-dimensional geometry, and token economics.</p>
+<h3 id="6-cover-the-complete-rag-path">6. Cover the complete RAG path</h3>
+<ul>
+<li>What it is: Organize the subject into 12 parts and 41 chapters.</li>
+<li>Why it exists: A design answer must connect model behavior, retrieval behavior, control, evaluation, trust, and scale.</li>
+<li>What breaks without it: A candidate can discuss a local component but cannot reason about the system around it.</li>
+<li>Scale stated in the source: Part XII closes with seven end-to-end design drills.</li>
+</ul>
+<p>Part I maps the interview and compares retrieval with continual learning, model editing, long context, and generative retrieval. It introduces the five-decision skeleton for later design answers.</p>
+<p>Parts II and III cover the generator. Topics include memorized knowledge, confabulation, training-data privacy and law, parameter versus datastore economics, in-context learning, prompting, sensitivity, and abstention.</p>
+<p>Parts IV through VI build the retrieval stack. They cover representation, chunking, approximate nearest-neighbor indexes, index memory, and ranking. The ranking path runs from BM25 through learning to rank, dense bi-encoders, learned sparse retrieval, multi-vector retrieval, reranking, and generative retrieval.</p>
+<p>Part VII covers query understanding and control flow. It includes reformulation, routing, iterative retrieval, self-reflective loops, and agentic loops that choose how many times to retrieve.</p>
+<p>Part VIII trains both retrieval and generation and creates training data. Parts IX and X cover positional bias, attribution, citation, retrieval evaluation, generation evaluation, and full-system evaluation.</p>
+<p>Part XI covers source credibility, provenance, prompt injection, and datastore poisoning. Part XII covers scale and seven design drills. One drill asks how to diagnose a system that became worse without an obvious cause. The source calls that drill the one most likely to appear in a real loop.</p>
+<h3 id="7-derive-the-memory-answer">7. Derive the memory answer</h3>
+<ul>
+<li>What it is: Compute HNSW memory from vector storage and graph storage.</li>
+<li>Why it exists: Interviewers change constraints after the first answer.</li>
+<li>What breaks without it: A memorized capacity number cannot adapt to a new dimension or compression choice.</li>
+<li>Cost stated in the source: An HNSW index with fp32 vectors costs 4d + 8M bytes per vector, where d is vector dimension and M controls stored graph links.</li>
+</ul>
+<p>For d = 768 and M = 16, the vector term is 3,072 bytes and the graph term is 128 bytes. The total is 3,200 bytes per vector. Ten million vectors need 3.2 x 10^10 bytes, or 32 gigabytes.</p>
+<p>At d = 1,536 with the same graph setting, the index costs 6,272 bytes per vector and 62.7 gigabytes. The vector size nearly doubles. The graph term stays fixed.</p>
+<p>With a 64-byte product-quantized code, the total falls to 192 bytes per vector and 1.92 gigabytes for ten million vectors. The 128-byte graph is then two thirds of each record. Compressing vectors further buys little because the graph now dominates.</p>
+<p>The lesson comes from three constraint changes, three re-derivations, and one formula. The target skill is flexible reasoning rather than recall of the 32-gigabyte case.</p>
+<h3 id="8-enforce-an-evidence-rule">8. Enforce an evidence rule</h3>
+<ul>
+<li>What it is: Attribute each number to a named source or derive it in the prose.</li>
+<li>Why it exists: Evidence makes a surprising claim checkable.</li>
+<li>What breaks without it: Folklore and fluent explanation can pass as measured fact.</li>
+<li>Source policy stated in the source: Numbers without attribution or derivation are omitted.</li>
+</ul>
+<p>Claims are attributed by author and year where they appear. The annotated reading list in Appendix E collects the sources.</p>
+<h3 id="9-lead-with-contradictions">9. Lead with contradictions</h3>
+<ul>
+<li>What it is: Put measured challenges to common RAG advice near the front.</li>
+<li>Why it exists: Counterexamples reveal whether a candidate understands conditions and trade-offs.</li>
+<li>What breaks without it: The candidate repeats a popular technique without asking whether it pays on the real data.</li>
+<li>Evidence posture stated in the source: The supporting number appears beside a claim that rejects common advice.</li>
+</ul>
+<p>The preface gives four examples. Retrieval can be worse than a closed-book answer on high-popularity facts. The measured advantage of semantic chunking largely disappears on real data. Post-hoc citations have little relation to whether an answer is actually grounded. Learned controllers become fragile when the query distribution shifts.</p>
+<p>The source says these contradictions separate a real answer from a fluent one. It closes with the dateline Los Angeles, California, August 2026.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>The source pages contain no figures or tables. The following source-derived map summarizes the prose coverage and does not replace an original visual.</p>
+<pre class="text"><code>[What the model memorized]
+             |
+             v
+[Representation and chunking]
+             |
+             v
+[Indexing and ranking]
+             |
+             v
+[Query routing and control flow]
+             |
+             v
+[Context assembly and generation]
+             |
+             v
+[Attribution and three-layer evaluation]
+             |
+             v
+[Credibility, security, cost, and scale]
+             |
+             v
+[End-to-end design drills]</code></pre>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a box labeled <code>Question</code> on the far left.</li>
+<li>Draw a decision diamond labeled <code>Retrieve?</code> to its right.</li>
+<li>Draw a bypass arrow labeled <code>No</code> from the diamond to a box labeled <code>Model answer</code> .</li>
+<li>Draw a downward arrow labeled <code>Yes</code> to a box labeled <code>Represent and search</code> .</li>
+<li>Add boxes labeled <code>Index</code> , <code>Rank</code> , and <code>Assemble context</code> in a row after search.</li>
+<li>Connect <code>Assemble context</code> to the same <code>Model answer</code> box.</li>
+<li>Draw three boxes below the pipeline labeled <code>Retrieval evaluation</code> , <code>Generation evaluation</code> , and <code>System evaluation</code> .</li>
+<li>Add a side box labeled <code>Trust, security, cost, scale</code> with arrows into the full pipeline.</li>
+<li>Write <code>Derive when constraints change</code> across the top.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Retrieval-Augmented Generation is not just embed, search, and put the top results in a prompt. The first decision is whether retrieval should happen at all, because added documents can overturn a correct answer or increase unsupported content. Then I trace the full path from representation and indexing through ranking, context assembly, and generation. I evaluate retrieval, generation, and the combined system separately. I also check credibility, security, cost, and scale. The key interview skill is to derive the answer from current constraints, such as vector dimension and compression, instead of repeating one memorized capacity number.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-is-embed-search-add-top-k-an-incomplete-rag-design-answer">1. Why is <code>embed, search, add top k</code> an incomplete RAG design answer?</h3>
+<p>It names components but omits the decision that controls whether the system should retrieve. A strong answer starts with when retrieval helps, when it can hurt, and how the system will make or evaluate that choice.</p>
+<h3 id="2-when-would-you-not-retrieve">2. When would you not retrieve?</h3>
+<p>Do not assume retrieval helps when the model already knows a high-popularity fact. The preface cites Mallen et al. (2023), who measured retrieval changing roughly 10% of otherwise-correct answers into wrong answers.</p>
+<h3 id="3-why-can-adding-documents-increase-hallucination">3. Why can adding documents increase hallucination?</h3>
+<p>Retrieved text becomes context, not guaranteed truth. Distracting or misleading material can steer the generator away from a supported answer, so the system must evaluate evidence selection and answer grounding.</p>
+<h3 id="4-why-can-the-hnsw-graph-dominate-after-quantization">4. Why can the HNSW graph dominate after quantization?</h3>
+<p>Quantization shrinks the vector term while the graph term stays fixed. In the preface's example, a 64-byte vector code plus a 128-byte graph costs 192 bytes per vector, so the graph occupies two thirds of the remaining memory.</p>
+<h3 id="5-a-rag-system-lost-four-accuracy-points-overnight-where-do-you-look-first">5. A RAG system lost four accuracy points overnight. Where do you look first?</h3>
+<p>Do not guess from the end-to-end score. Check the five-stage pipeline and separate retrieval, generation, and system evaluation so the evidence can identify the stage that owns the regression.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Context</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023</td>
+<td>Mallen et al. attribution</td>
+<td>The year attached to the retrieval-harm result</td>
+</tr>
+<tr>
+<td>Roughly 10%</td>
+<td>Otherwise-correct answers</td>
+<td>Retrieval changed this share into wrong answers in the cited measurement</td>
+</tr>
+<tr>
+<td>Five stages</td>
+<td>Production pipeline</td>
+<td>The example asks which stage owns an end-to-end regression</td>
+</tr>
+<tr>
+<td>Four points</td>
+<td>Overnight answer-quality drop</td>
+<td>The production example uses this regression size</td>
+</tr>
+<tr>
+<td>50 years</td>
+<td>Information-retrieval literature</td>
+<td>The preface describes this depth in ranking and evaluation</td>
+</tr>
+<tr>
+<td>20 lines</td>
+<td>Framework tutorial</td>
+<td>A small demonstration can fit in this amount of code without explaining production behavior</td>
+</tr>
+<tr>
+<td>10 million documents</td>
+<td>Framework scale test</td>
+<td>The preface uses this size to expose what a small tutorial does not explain</td>
+</tr>
+<tr>
+<td>One idea</td>
+<td>Per section</td>
+<td>Each section develops the reasoning behind one idea</td>
+</tr>
+<tr>
+<td>Three seniority levels</td>
+<td>Interview framing</td>
+<td>Each section frames its idea for three levels of interview question</td>
+</tr>
+<tr>
+<td>247 sections</td>
+<td>Book structure</td>
+<td>The same teaching skeleton repeats across all sections</td>
+</tr>
+<tr>
+<td>One page</td>
+<td>Reference use</td>
+<td>The book can be opened at one relevant page instead of read only in sequence</td>
+</tr>
+<tr>
+<td>Every quarter</td>
+<td>Product change rate</td>
+<td>Vendor, framework, and embedding API details can change at this cadence</td>
+</tr>
+<tr>
+<td>12 parts</td>
+<td>Book structure</td>
+<td>The parts span the full RAG path</td>
+</tr>
+<tr>
+<td>41 chapters</td>
+<td>Book structure</td>
+<td>The chapters organize the material inside the 12 parts</td>
+</tr>
+<tr>
+<td>Five decisions</td>
+<td>Design-answer skeleton</td>
+<td>Part I introduces this structure for later system designs</td>
+</tr>
+<tr>
+<td>Three evaluation layers</td>
+<td>Retrieval, generation, and system</td>
+<td>The combined system requires its own evaluation layer</td>
+</tr>
+<tr>
+<td>Seven drills</td>
+<td>End-to-end design practice</td>
+<td>Part XII closes with this many design drills</td>
+</tr>
+<tr>
+<td>4d + 8M bytes</td>
+<td>HNSW storage per vector</td>
+<td>The vector term is 4d and the graph term is 8M</td>
+</tr>
+<tr>
+<td>d = 768</td>
+<td>First HNSW case</td>
+<td>The vector term is 3,072 bytes</td>
+</tr>
+<tr>
+<td>M = 16</td>
+<td>First HNSW case</td>
+<td>The graph term is 128 bytes</td>
+</tr>
+<tr>
+<td>3,200 bytes per vector</td>
+<td>First HNSW total</td>
+<td>This is 3,072 vector bytes plus 128 graph bytes</td>
+</tr>
+<tr>
+<td>10 million vectors</td>
+<td>First HNSW capacity case</td>
+<td>The collection size used for all total-memory comparisons</td>
+</tr>
+<tr>
+<td>3.2 x 10^10 bytes</td>
+<td>First HNSW total</td>
+<td>The raw total for ten million vectors</td>
+</tr>
+<tr>
+<td>32 gigabytes</td>
+<td>First HNSW total</td>
+<td>The stated capacity result for d = 768 and M = 16</td>
+</tr>
+<tr>
+<td>d = 1,536</td>
+<td>Second HNSW case</td>
+<td>The larger embedding dimension nearly doubles vector memory</td>
+</tr>
+<tr>
+<td>6,272 bytes per vector</td>
+<td>Second HNSW total</td>
+<td>The total with the larger dimension and the same graph setting</td>
+</tr>
+<tr>
+<td>62.7 gigabytes</td>
+<td>Second HNSW total</td>
+<td>The stated capacity for ten million larger vectors</td>
+</tr>
+<tr>
+<td>64 bytes</td>
+<td>Product-quantized vector code</td>
+<td>Compression reduces each vector to this size</td>
+</tr>
+<tr>
+<td>192 bytes per vector</td>
+<td>Compressed HNSW total</td>
+<td>The 64-byte vector code plus the 128-byte graph</td>
+</tr>
+<tr>
+<td>1.92 gigabytes</td>
+<td>Compressed HNSW total</td>
+<td>The stated capacity for ten million compressed vectors</td>
+</tr>
+<tr>
+<td>Two thirds</td>
+<td>Graph share after compression</td>
+<td>The 128-byte graph is this share of the 192-byte total</td>
+</tr>
+<tr>
+<td>Three constraint changes</td>
+<td>Derivation exercise</td>
+<td>The example changes constraints three times</td>
+</tr>
+<tr>
+<td>Three re-derivations</td>
+<td>Derivation exercise</td>
+<td>Each changed case is recomputed</td>
+</tr>
+<tr>
+<td>One formula</td>
+<td>Derivation exercise</td>
+<td>All three cases follow the same storage formula</td>
+</tr>
+<tr>
+<td>August 2026</td>
+<td>Preface dateline</td>
+<td>The month and year printed at the end of the source unit</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/00_02_contents.html"><small>Previous</small>00.02. Contents</a><a href="../chapters/00_04_how_to_use_this_book.html"><small>Next</small>00.04. How to Use This Book</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

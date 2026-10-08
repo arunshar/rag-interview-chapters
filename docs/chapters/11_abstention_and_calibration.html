@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 11. Abstention and Calibration | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/11_abstention_and_calibration.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group" open><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html" aria-current="page">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part III. Prompting and Context Construction</p><h1>Chapter 11. Abstention and Calibration</h1><p class="chapter-meta">50 min estimated reading · Unit 20 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains when a Retrieval-Augmented Generation (RAG) system should refuse, how to build a useful confidence signal, and how to keep that signal honest for short and long answers.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Abstention is a product decision. The model estimates correctness, while the product sets a threshold from the costs of a wrong answer and a refusal.</li>
+<li>A checkable citation can lower the harm of a wrong answer. A citation that users cannot inspect earns no such reduction.</li>
+<li>Every cheap abstention signal has a blind spot. Similarity sees topic, token probability sees fluency, and a self-check often repeats the generator's mistake.</li>
+<li>Repeated self-reflection can raise stated confidence without raising accuracy. It conditions the model on its own earlier answer instead of on new evidence.</li>
+<li>Calibration and failure prediction are different. A score can match average accuracy perfectly while being useless for sorting correct answers above wrong ones.</li>
+<li>A black-box model yields better confidence through independent samples than through a requested percentage. The extra resolution costs additional generation calls.</li>
+<li>Long answers need a confidence target that names what it summarizes. Expected claim support and the chance that every claim is supported can lead to opposite decisions.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a newsroom that answers readers' policy questions.</p>
+<p>The retriever is the newsroom librarian. The librarian finds relevant files, but a relevant file may still omit the answer.</p>
+<p>The generator is the writer. The writer turns those files into a clean reply, but fluent prose can still contain a wrong claim.</p>
+<p>The support judge is the fact-checker. The fact-checker compares the draft with the files, yet the checker can also make mistakes.</p>
+<p>The managing editor owns the decision to publish or refuse. The editor asks what a wrong story costs and what leaving a reader unanswered costs. Those costs set the publication threshold.</p>
+<p>A checkable citation acts like a highlighted source packet beside the story. It lets the reader catch a residual mistake, but only when the packet opens to the relevant span.</p>
+<p>The editor should not ask the writer to reread the same story eight times and treat eight approvals as independent. The writer sees the same files and the same draft. Each rereading can harden the original choice without adding evidence.</p>
+<p>The editor also needs two scorecards. Calibration asks whether stories labeled 80% reliable are right about 80% of the time. Failure prediction asks whether good stories receive higher scores than bad stories. The publication gate spends the second property.</p>
+<p>If the newsroom rents a black-box writer, it may not see internal token scores. It can send the same assignment to several fresh desks and measure agreement. That costs more calls, but it creates a score with more usable levels.</p>
+<p>Finally, a six-paragraph story is not one indivisible fact. The editor must decide whether confidence means the expected fraction of supported claims or the chance that every claim is supported. The cost of one bad sentence decides which meaning the newsroom needs.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves evidence and gives it to a generator</td>
+<td>Retrieval supplies external evidence, but it does not guarantee a supported answer</td>
+</tr>
+<tr>
+<td>abstention</td>
+<td>Choosing not to answer</td>
+<td>It can prevent costly unsupported claims</td>
+</tr>
+<tr>
+<td>refusal</td>
+<td>The user-facing result of abstention</td>
+<td>Its rate and message affect utility and diagnosis</td>
+</tr>
+<tr>
+<td>confidence p</td>
+<td>An estimate between 0 and 1 that an answer is correct</td>
+<td>The gate compares p with a product-owned threshold</td>
+</tr>
+<tr>
+<td>threshold tau</td>
+<td>The minimum confidence required to answer</td>
+<td>Costs, not model instinct, determine it</td>
+</tr>
+<tr>
+<td>wrong-answer cost cw</td>
+<td>Harm from a wrong answer in units of one correct answer</td>
+<td>Higher cw raises the threshold</td>
+</tr>
+<tr>
+<td>abstention cost ca</td>
+<td>Harm from leaving a query unanswered</td>
+<td>Higher ca lowers the threshold</td>
+</tr>
+<tr>
+<td>expected value</td>
+<td>Average utility under uncertain outcomes</td>
+<td>It turns answering versus refusing into a decision rule</td>
+</tr>
+<tr>
+<td>cost matrix</td>
+<td>The values assigned to correct, wrong, and refused outcomes</td>
+<td>Different routes need different thresholds</td>
+</tr>
+<tr>
+<td>global cutoff</td>
+<td>One threshold used for every query type</td>
+<td>It ignores differences in consequence</td>
+</tr>
+<tr>
+<td>per-route threshold</td>
+<td>A threshold attached to one intent or risk class</td>
+<td>It keeps low-stakes and high-stakes queries separate</td>
+</tr>
+<tr>
+<td>checkable citation</td>
+<td>A source reference that opens to a readable supporting span</td>
+<td>It can reduce the effective cost of a wrong answer</td>
+</tr>
+<tr>
+<td>verification rate q</td>
+<td>Fraction of users who open a citation and catch an unsupported claim</td>
+<td>It controls how much value a citation adds</td>
+</tr>
+<tr>
+<td>verification cost cv</td>
+<td>Cost paid when a user checks a citation</td>
+<td>It enters the effective wrong-answer cost</td>
+</tr>
+<tr>
+<td>support gate</td>
+<td>A classifier that decides whether evidence supports a claim</td>
+<td>Its own errors cap enforceable precision</td>
+</tr>
+<tr>
+<td>macro-F1</td>
+<td>The average F1 score across classes</td>
+<td>The cited 80% value summarizes support-judge quality</td>
+</tr>
+<tr>
+<td>precision</td>
+<td>Fraction of answered queries that are correct</td>
+<td>A selective system tries to raise it</td>
+</tr>
+<tr>
+<td>recall</td>
+<td>Fraction of valid items that a method retains</td>
+<td>Refusing correct answers lowers it</td>
+</tr>
+<tr>
+<td>coverage</td>
+<td>Fraction of queries the system answers</td>
+<td>Risk-coverage analysis trades coverage against selective quality</td>
+</tr>
+<tr>
+<td>attribution judgment</td>
+<td>Deciding whether a reference supports a claim</td>
+<td>It measures the relation a grounded product promises</td>
+</tr>
+<tr>
+<td>retrieve-or-not decision</td>
+<td>Choosing whether to call retrieval before evidence exists</td>
+<td>It is different from post-generation abstention</td>
+</tr>
+<tr>
+<td>reflection token</td>
+<td>A generated control signal that can trigger retrieval</td>
+<td>It does not itself decide whether to refuse the final answer</td>
+</tr>
+<tr>
+<td>retrieval similarity</td>
+<td>A score for how close a query and chunk are in representation space</td>
+<td>It measures topic overlap, not answer containment</td>
+</tr>
+<tr>
+<td>top-1 cosine score</td>
+<td>Similarity of the highest-ranked chunk</td>
+<td>Its absolute level can drift across query types</td>
+</tr>
+<tr>
+<td>dense passage retrieval</td>
+<td>Retrieval through learned dense vector scores</td>
+<td>Its training objective fixes score gaps, not global score levels</td>
+</tr>
+<tr>
+<td>softmax objective</td>
+<td>A normalized loss that rewards a positive document over alternatives</td>
+<td>Adding a query-specific constant leaves it unchanged</td>
+</tr>
+<tr>
+<td>normal distribution and standard normal CDF Phi</td>
+<td>A stated bell-shaped score model and the fraction of its mass below a cutoff</td>
+<td>They convert the proxy cutoffs into refusal and pass rates</td>
+</tr>
+<tr>
+<td>temperature T</td>
+<td>A scale inside a softmax or sampling distribution</td>
+<td>It changes sharpness but does not add evidence</td>
+</tr>
+<tr>
+<td>knowledge graph</td>
+<td>Entities and relations stored as nodes and edges</td>
+<td>Node absence can mean missing knowledge or a linking failure</td>
+</tr>
+<tr>
+<td>entity linking</td>
+<td>Mapping a text mention to a graph node</td>
+<td>Multiple mentions compound linking errors</td>
+</tr>
+<tr>
+<td>token log-probability</td>
+<td>The log score assigned to generated tokens</td>
+<td>It often reflects fluency and formatting more than factual support</td>
+</tr>
+<tr>
+<td>nat</td>
+<td>A log-probability unit based on the natural logarithm</td>
+<td>The token example compares shifts in nats per token</td>
+</tr>
+<tr>
+<td>syntactic glue</td>
+<td>Words and punctuation that express structure rather than the claim</td>
+<td>Glue tokens can dominate a mean token score</td>
+</tr>
+<tr>
+<td>self-check</td>
+<td>Asking a model to grade its own answer</td>
+<td>Shared weights and context correlate checker and generator errors</td>
+</tr>
+<tr>
+<td>true-positive rate</td>
+<td>Pass rate on genuinely correct answers</td>
+<td>It forms the numerator of a positive-check likelihood ratio</td>
+</tr>
+<tr>
+<td>false-positive rate</td>
+<td>Pass rate on wrong answers</td>
+<td>Correlation can raise it and destroy the checker's value</td>
+</tr>
+<tr>
+<td>likelihood ratio</td>
+<td>How much a verdict changes prior odds</td>
+<td>Independent and correlated checks can have very different ratios</td>
+</tr>
+<tr>
+<td>risk weighting</td>
+<td>Adjusting a decision for domain stakes</td>
+<td>It belongs in the threshold, not in knowledge confidence</td>
+</tr>
+<tr>
+<td>coverage gate</td>
+<td>A gate that says the corpus does not cover a query</td>
+<td>It should feed an index-gap workflow</td>
+</tr>
+<tr>
+<td>entailment gate</td>
+<td>A gate that checks whether evidence supports the generated claim</td>
+<td>It diagnoses a different failure from missing coverage</td>
+</tr>
+<tr>
+<td>cross-encoder</td>
+<td>A scorer that reads a candidate and its context together</td>
+<td>It adds a support or reranking pass with a separate latency bill</td>
+</tr>
+<tr>
+<td>closed-world statement</td>
+<td>A claim only about what a fixed corpus contains</td>
+<td>It must not be confused with absence in the world</td>
+</tr>
+<tr>
+<td>model collapse</td>
+<td>Loss of low-probability behaviors after training on model samples</td>
+<td>It is the long-timescale analogy for self-reflection drift</td>
+</tr>
+<tr>
+<td>finite-sample error</td>
+<td>Loss caused when a rare event never appears in a sample</td>
+<td>Once absent, the next generation cannot learn it back</td>
+</tr>
+<tr>
+<td>sampling resolution 1/N</td>
+<td>The rarity level a sample of size N can represent</td>
+<td>Events much rarer than 1/N are likely to disappear</td>
+</tr>
+<tr>
+<td>absorbing absence</td>
+<td>A missing behavior that cannot return from self-generated data</td>
+<td>Repeated resampling erases the tail</td>
+</tr>
+<tr>
+<td>self-reflection</td>
+<td>Sequentially asking a model to critique or revise its own answer</td>
+<td>It conditions later rounds on earlier model output</td>
+</tr>
+<tr>
+<td>commitment bonus beta</td>
+<td>Added logit support for repeating a prior claim</td>
+<td>It can turn a slight preference into near-certainty</td>
+</tr>
+<tr>
+<td>logit</td>
+<td>An unnormalized score before probability conversion</td>
+<td>A commitment bonus adds directly to it</td>
+</tr>
+<tr>
+<td>log-odds</td>
+<td>Logarithm of one outcome's odds against another</td>
+<td>It shows how repeated commitment sharpens a choice</td>
+</tr>
+<tr>
+<td>sigmoid</td>
+<td>A map from log-odds to a probability</td>
+<td>It converts 6.6007 log-odds to 0.9986</td>
+</tr>
+<tr>
+<td>self-consistency</td>
+<td>Independent samples followed by a vote</td>
+<td>Partial independence can improve accuracy</td>
+</tr>
+<tr>
+<td>plurality vote</td>
+<td>Choosing the answer with the most samples</td>
+<td>It can beat sequential revision at equal token spend</td>
+</tr>
+<tr>
+<td>Expected Calibration Error (ECE)</td>
+<td>Bucketed mismatch between stated confidence and observed accuracy</td>
+<td>It measures reliability, not ranking quality</td>
+</tr>
+<tr>
+<td>Area Under the Receiver Operating Characteristic curve (AUROC)</td>
+<td>Probability that a correct answer outscores a wrong one, with half credit for ties</td>
+<td>It measures failure prediction and ordering</td>
+</tr>
+<tr>
+<td>calibration</td>
+<td>Agreement between a score and empirical correctness frequency</td>
+<td>Users can interpret a calibrated probability</td>
+</tr>
+<tr>
+<td>failure prediction</td>
+<td>Separating correct from wrong answers by score</td>
+<td>An abstention gate needs this property</td>
+</tr>
+<tr>
+<td>recalibration</td>
+<td>Monotone post-processing of existing scores</td>
+<td>It can repair reliability but cannot create ordering</td>
+</tr>
+<tr>
+<td>temperature scaling</td>
+<td>One-parameter monotone recalibration of logits</td>
+<td>It leaves strict score ordering unchanged</td>
+</tr>
+<tr>
+<td>Platt scaling</td>
+<td>A lower-variance parametric calibration map</td>
+<td>It can be preferable with limited labeled data</td>
+</tr>
+<tr>
+<td>isotonic regression</td>
+<td>A flexible non-decreasing calibration map</td>
+<td>It may merge buckets and turn ranking wins into ties</td>
+</tr>
+<tr>
+<td>Brier score</td>
+<td>Mean squared error of probability forecasts</td>
+<td>It decomposes into reliability, resolution, and uncertainty</td>
+</tr>
+<tr>
+<td>Brier skill score</td>
+<td>Resolution divided by task uncertainty after reliability is zero</td>
+<td>It measures improvement over the constant base-rate forecast</td>
+</tr>
+<tr>
+<td>reliability REL</td>
+<td>Penalty for confidence not matching bucket accuracy</td>
+<td>Recalibration can drive it toward zero</td>
+</tr>
+<tr>
+<td>resolution RES</td>
+<td>Variation in accuracy across score buckets</td>
+<td>A gate spends this separation, and post-processing cannot create it</td>
+</tr>
+<tr>
+<td>uncertainty UNC</td>
+<td>Base-rate variance fixed by the task</td>
+<td>The confidence method cannot change it</td>
+</tr>
+<tr>
+<td>base accuracy a</td>
+<td>Overall probability an answer is correct</td>
+<td>A constant score equal to a is calibrated but uninformative</td>
+</tr>
+<tr>
+<td>climatology baseline</td>
+<td>Always predicting the base rate</td>
+<td>It exposes perfect reliability with zero useful separation</td>
+</tr>
+<tr>
+<td>risk-coverage curve</td>
+<td>Selective quality plotted against fraction answered</td>
+<td>It shows every threshold operating point</td>
+</tr>
+<tr>
+<td>black-box model</td>
+<td>A model application programming interface (API) that hides weights and token probabilities</td>
+<td>Confidence must be elicited from outputs and repeated calls</td>
+</tr>
+<tr>
+<td>p99 latency</td>
+<td>A response-time boundary that 99% of requests meet</td>
+<td>Parallel confidence sampling can fit the median while missing the tail budget</td>
+</tr>
+<tr>
+<td>sequence probability</td>
+<td>Probability of one exact answer string</td>
+<td>It splits mass across equivalent phrasings</td>
+</tr>
+<tr>
+<td>perplexity</td>
+<td>A length-normalized sequence score</td>
+<td>It still scores strings rather than meanings</td>
+</tr>
+<tr>
+<td>semantic entropy</td>
+<td>Entropy after grouping answers by meaning</td>
+<td>It repairs surface-form splitting with samples and entailment</td>
+</tr>
+<tr>
+<td>bidirectional entailment</td>
+<td>Checking whether two answers support each other both ways</td>
+<td>It groups sampled phrasings into semantic clusters</td>
+</tr>
+<tr>
+<td>verbalized confidence</td>
+<td>A percentage requested in model text</td>
+<td>It tends to occupy a few round values</td>
+</tr>
+<tr>
+<td>agreement score</td>
+<td>Fraction k/m of samples that agree with the served answer</td>
+<td>It estimates the model's answer distribution</td>
+</tr>
+<tr>
+<td>binomial model</td>
+<td>A model for k agreements in m draws</td>
+<td>It gives the variance and standard error of agreement</td>
+</tr>
+<tr>
+<td>standard error SE</td>
+<td>Sampling uncertainty of an estimated agreement fraction</td>
+<td>It limits which adjacent score levels are distinguishable</td>
+</tr>
+<tr>
+<td>self-probing</td>
+<td>A fresh session that scores an answer produced elsewhere</td>
+<td>It avoids the original session's commitment bonus</td>
+</tr>
+<tr>
+<td>multi-step elicitation</td>
+<td>Confidence per reasoning step followed by aggregation</td>
+<td>It anchors scores to sub-claims</td>
+</tr>
+<tr>
+<td>top-k elicitation</td>
+<td>Asking for several candidate answers and confidence for each</td>
+<td>It forces probability mass onto alternatives</td>
+</tr>
+<tr>
+<td>pairwise ranking</td>
+<td>Comparing sampled answers in pairs</td>
+<td>The cited study found it best for calibration</td>
+</tr>
+<tr>
+<td>average confidence</td>
+<td>Averaging confidence across samples</td>
+<td>The cited study found it best for failure prediction</td>
+</tr>
+<tr>
+<td>P(True)</td>
+<td>A prompted probability that a proposed answer is true</td>
+<td>It is another black-box confidence probe</td>
+</tr>
+<tr>
+<td>long-form calibration</td>
+<td>Confidence for an answer with several atomic claims</td>
+<td>One scalar can hide different notions of correctness</td>
+</tr>
+<tr>
+<td>atomic claim</td>
+<td>One independently verifiable statement</td>
+<td>Long answers decompose into these units</td>
+</tr>
+<tr>
+<td>support fraction S</td>
+<td>Supported claims divided by total claims</td>
+<td>It lies on a continuum from 0 to 1</td>
+</tr>
+<tr>
+<td>FActScore</td>
+<td>Atomic-fact support fraction against a reliable source</td>
+<td>It operationalizes long-form factual support</td>
+</tr>
+<tr>
+<td>proportional utility</td>
+<td>Value that scales with the supported fraction</td>
+<td>It consumes the mean of S</td>
+</tr>
+<tr>
+<td>all-or-nothing utility</td>
+<td>Value that requires every claim to be supported</td>
+<td>It consumes the probability that S equals 1</td>
+</tr>
+<tr>
+<td>cumulative distribution function (CDF)</td>
+<td>Probability that S is at or below each level</td>
+<td>It retains more information than one scalar</td>
+</tr>
+<tr>
+<td>Continuous Ranked Probability Score (CRPS)</td>
+<td>A proper score for a predicted distribution over S</td>
+<td>It reduces to the Brier score for binary outcomes</td>
+</tr>
+<tr>
+<td>indicator function</td>
+<td>A term that equals 1 when its condition holds and 0 otherwise</td>
+<td>It writes the realized support threshold inside CRPS</td>
+</tr>
+<tr>
+<td>strictly proper score</td>
+<td>A score optimized by reporting the true predictive distribution</td>
+<td>It discourages strategic probability reports</td>
+</tr>
+<tr>
+<td>continuous self-evaluation</td>
+<td>Repeated fresh-session scoring of one answer</td>
+<td>It estimates a distribution over support</td>
+</tr>
+<tr>
+<td>claim-overlap similarity</td>
+<td>Agreement measured over claims rather than exact strings</td>
+<td>Long briefs rarely match word for word</td>
+</tr>
+<tr>
+<td>VeriScore</td>
+<td>A factuality measure that handles verifiability, context, and recall</td>
+<td>It prevents short hedged answers from winning on precision alone</td>
+</tr>
+<tr>
+<td>target claim count K</td>
+<td>Desired number of claims for recall accounting</td>
+<td>It exposes omitted content</td>
+</tr>
+<tr>
+<td>F1 at K</td>
+<td>Harmonic mean of fact precision and recall against K</td>
+<td>It penalizes saying too little</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="111-should-a-rag-system-ever-refuse">11.1 Should a RAG system ever refuse?</h3>
+<h4 id="the-decision-belongs-to-the-cost-matrix">The decision belongs to the cost matrix</h4>
+<ul>
+<li><strong>What:</strong> Let p be answer correctness, cw the cost of a wrong answer, and ca the cost of abstaining. Normalize a correct answer to value 1.</li>
+<li><strong>Why:</strong> The same p can be acceptable for a photocopier question and unacceptable for a drug interaction question because the consequences differ.</li>
+<li><strong>Failure without it:</strong> One global cutoff becomes permissive on high-stakes traffic and conservative on low-stakes traffic.</li>
+<li><strong>Cost or complexity:</strong> The product owner must state cw and ca per route. The model supplies only p.</li>
+</ul>
+<p>Answering has expected value p - (1 - p)cw. Abstaining has value -ca. Answer when:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>c</mi><mi>w</mi></msub><mo>&gt;</mo><mi>−</mi><msub><mi>c</mi><mi>a</mi></msub><mo>⇔</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msub><mi>c</mi><mi>w</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><msub><mi>c</mi><mi>w</mi></msub><mo>−</mo><msub><mi>c</mi><mi>a</mi></msub><mo>⇔</mo><mi>p</mi><mo>&gt;</mo><mi>τ</mi><mo>=</mo><mfrac><mrow><msub><mi>c</mi><mi>w</mi></msub><mo>−</mo><msub><mi>c</mi><mi>a</mi></msub></mrow><mrow><mn>1</mn><mo>+</mo><msub><mi>c</mi><mi>w</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">p - (1-p)c_w &gt; -c_a \Longleftrightarrow p(1+c_w) &gt; c_w-c_a \Longleftrightarrow p &gt; \tau = \frac{c_w-c_a}{1+c_w}</annotation></semantics></math></p>
+<p>At cw = 2 and ca = 0.5, tau = 1.5/3 = 0.500. At cw = 200 with the same ca, tau = 199.5/201 = 0.993.</p>
+<p>If ca &gt; cw, then tau &lt; 0. The cost-optimal policy never refuses because abstention costs more than a wrong answer.</p>
+<p>Abstention happens after retrieval and generation. A retrieve-or-not reflection token acts before evidence exists. A system can retrieve often and still refuse often.</p>
+<h4 id="citations-change-cost-not-confidence">Citations change cost, not confidence</h4>
+<ul>
+<li><strong>What:</strong> Let q be the fraction of users who open a citation and catch an unsupported claim. Let cv be the verification cost. The effective wrong-answer cost is:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><msup><mi>c</mi><mo>′</mo></msup><mi>w</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>c</mi><mi>w</mi></msub><mo>+</mo><mi>q</mi><msub><mi>c</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">c&#39;_w = (1-q)c_w + qc_v</annotation></semantics></math></p>
+<ul>
+<li><strong>Why:</strong> A readable cited span lets the user detect residual support failures.</li>
+<li><strong>Failure without it:</strong> Citation presence alone does not carry correctness information. The cited FActScore result found citations on over 30% of supported sentences and over 30% of unsupported sentences.</li>
+<li><strong>Cost or complexity:</strong> The product must measure citation open rate and span-level correctness. An access-controlled or unreadable source does not reduce cw.</li>
+</ul>
+<p>At cw = 20, q = 0.6, and cv = 0.2, the effective cost is 8.12. The threshold moves from 19.5/21 = 0.929 to 7.62/9.12 = 0.836.</p>
+<h4 id="the-support-gate-creates-a-ceiling">The support gate creates a ceiling</h4>
+<ul>
+<li><strong>What:</strong> The gate that labels an answer supported or unsupported is itself a classifier.</li>
+<li><strong>Why:</strong> Its errors limit the precision that any cutoff can enforce.</li>
+<li><strong>Failure without it:</strong> A team may promise 99% selective correctness even though the gate cannot deliver it at any threshold.</li>
+<li><strong>Cost or complexity:</strong> The cited AttributionBench result is roughly 80% macro-F1. The book assumes symmetric class error as an optimistic simplification.</li>
+</ul>
+<p>For base accuracy a = 0.81, the optimistic enforceable precision is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0.8</mn><mi>a</mi></mrow><mrow><mn>0.8</mn><mi>a</mi><mo>+</mo><mn>0.2</mn><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0.8</mn><mo>×</mo><mn>0.81</mn></mrow><mrow><mn>0.8</mn><mo>×</mo><mn>0.81</mn><mo>+</mo><mn>0.2</mn><mo>×</mo><mn>0.19</mn></mrow></mfrac><mo>=</mo><mfrac><mn>0.648</mn><mn>0.686</mn></mfrac><mo>=</mo><mn>0.945</mn></mrow><annotation encoding="application/x-tex">\frac{0.8a}{0.8a + 0.2(1-a)} = \frac{0.8 \times 0.81}{0.8 \times 0.81 + 0.2 \times 0.19} = \frac{0.648}{0.686} = 0.945</annotation></semantics></math></p>
+<p>No threshold reaches 0.993 through that gate. Solving tau(cw) = 0.945 gives cw approximately 26 for bare answers and approximately 65 with citations. Above those stated bounds, change the interface or escalate to a human instead of pretending a cutoff can meet the stakes.</p>
+<p>A standing disclaimer on 100% of answers is a constant rather than a correctness signal. It leaves cw unchanged, while a threshold-triggered refusal emits one correctness-correlated bit.</p>
+<h4 id="worked-traffic-economics">Worked traffic economics</h4>
+<ul>
+<li><strong>What:</strong> The example has 5,000 daily queries in four measured support bands.</li>
+</ul>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Queries</th>
+<th style="text-align: right;">Grounded accuracy</th>
+<th style="text-align: right;">Correct</th>
+<th style="text-align: right;">Wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2,300</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">2,208</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,400</td>
+<td style="text-align: right;">0.88</td>
+<td style="text-align: right;">1,232</td>
+<td style="text-align: right;">168</td>
+</tr>
+<tr>
+<td style="text-align: right;">850</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">527</td>
+<td style="text-align: right;">323</td>
+</tr>
+<tr>
+<td style="text-align: right;">450</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">360</td>
+</tr>
+<tr>
+<td style="text-align: right;">5,000</td>
+<td style="text-align: right;">0.811 overall</td>
+<td style="text-align: right;">4,057</td>
+<td style="text-align: right;">943</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Why:</strong> It shows that thresholding and citations are separate economic levers.</li>
+<li><strong>Failure without it:</strong> Never refusing produces 4,057 - 943 x 20 = -14,803 units per day.</li>
+<li><strong>Cost or complexity:</strong> At cw = 20 and ca = 0.5, bare thresholding answers 2,300 and refuses 2,700, a 54% refusal rate. Value is 2,208 - 92 x 20 - 2,700 x 0.5 = -982.</li>
+</ul>
+<p>With cited cost 8.12 and tau = 0.836, the system answers 3,700, gets 3,440 correct and 260 wrong, and refuses 1,300, a 26% refusal rate. Value is 3,440 - 260 x 8.12 - 1,300 x 0.5 = +679.</p>
+<p>Citations without a threshold still lose. Their value is 4,057 - 943 x 8.12 = -3,600.</p>
+<p>The band mix gives 81.1% overall accuracy. The book compares this with stated reliability-weighted RAG results of 81.2% for standard RAG and 91.3% for the weighted variant.</p>
+<p>Under the optimistic 80% support gate, 3,246 correct answers pass and 189 wrong answers slip through. Precision is 3,246/3,435 = 94.5%, and 811 correct answers are refused unnecessarily.</p>
+<p>The opening audit found the answer verbatim in the top retrieved chunk for 31 of 50 sampled refusals. That identifies a gate failure rather than evidence that the cost policy itself was wrong.</p>
+<h3 id="112-five-abstention-mechanisms-and-how-each-fails">11.2 Five abstention mechanisms and how each fails</h3>
+<h4 id="mechanism-1-retrieval-similarity">Mechanism 1: retrieval similarity</h4>
+<ul>
+<li><strong>What:</strong> Refuse when the top-1 chunk score falls below s*.</li>
+<li><strong>Why:</strong> It is cheap and already available from retrieval.</li>
+<li><strong>Failure without a better signal:</strong> Dense Passage Retrieval (DPR) training fixes score gaps within a query but not absolute score levels. It also scores topic overlap, not answer containment.</li>
+<li><strong>Cost or complexity:</strong> It is nearly free as a pre-filter. It is not a calibrated answer-confidence score.</li>
+</ul>
+<p>The training loss is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mi>−</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><msup><mi>d</mi><mo>+</mo></msup><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><msub><mi>d</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">L = -\log \frac{\exp(s(q,d^+)/T)}{\sum_j \exp(s(q,d_j)/T)}</annotation></semantics></math></p>
+<p>Adding the same constant c to all scores for one query multiplies numerator and denominator by exp(c/T). The loss does not change, so a global score level is unconstrained.</p>
+<p>A 2024 parental-leave question can retrieve a 2019 policy page at high similarity. The chunk is topical but can carry the wrong number.</p>
+<h4 id="mechanism-2-knowledge-graph-node-absence">Mechanism 2: knowledge-graph node absence</h4>
+<ul>
+<li><strong>What:</strong> Refuse when no graph node matches the query entity.</li>
+<li><strong>Why:</strong> A missing entity appears to provide a clean ignorance signal.</li>
+<li><strong>Failure without diagnosis:</strong> The event conflates true absence, a different surface form, and a missing relation in the schema.</li>
+<li><strong>Cost or complexity:</strong> Entity-linking errors compound across mentions. At 0.90 accuracy per mention, three entities all link with probability 0.90^3 = 0.729. Therefore 27.1% of otherwise answerable three-entity queries can refuse for the wrong reason.</li>
+</ul>
+<h4 id="mechanism-3-token-log-probability">Mechanism 3: token log-probability</h4>
+<ul>
+<li><strong>What:</strong> Refuse when mean generated-token log-probability is too low.</li>
+<li><strong>Why:</strong> It is available from some model APIs and seems to measure certainty.</li>
+<li><strong>Failure without semantic isolation:</strong> A 40-token answer has 12 claim tokens and 28 glue tokens. One formatting surprise can move the mean almost as much as collapse across every claim token.</li>
+<li><strong>Cost or complexity:</strong> It is cheap when token probabilities are exposed. It is unavailable from many closed APIs and is sensitive to format.</li>
+</ul>
+<p>The two mean changes are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>12</mn><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.9</mn><mi>/</mi><mn>0.6</mn><mo stretchy="false" form="postfix">)</mo></mrow><mn>40</mn></mfrac><mo>=</mo><mn>0.1216</mn><mspace width="2.0em"></mspace><mtext mathvariant="normal">versus</mtext><mspace width="2.0em"></mspace><mfrac><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.97</mn><mi>/</mi><mn>0.02</mn><mo stretchy="false" form="postfix">)</mo></mrow><mn>40</mn></mfrac><mo>=</mo><mn>0.0970</mn></mrow><annotation encoding="application/x-tex">\frac{12\ln(0.9/0.6)}{40} = 0.1216 \qquad \text{versus} \qquad \frac{\ln(0.97/0.02)}{40} = 0.0970</annotation></semantics></math></p>
+<p>The glue-token change is roughly four-fifths of the full content collapse. The cited FormatSpread result reports swings up to 76 accuracy points on LLaMA-2-13B from formatting.</p>
+<h4 id="mechanism-4-self-check">Mechanism 4: self-check</h4>
+<ul>
+<li><strong>What:</strong> Ask the generator whether its own answer is supported.</li>
+<li><strong>Why:</strong> It requires no new model or labeled classifier.</li>
+<li><strong>Failure without independence:</strong> The checker reads the same misleading passage with the same weights, so its errors correlate with the generator's errors.</li>
+<li><strong>Cost or complexity:</strong> One check costs a second forward pass. The worked example treats that as roughly doubling per-query decode cost.</li>
+</ul>
+<p>With true-positive rate 0.9 and false-positive rate 0.2, a pass verdict has likelihood ratio 0.9/0.2 = 4.5. If the checker repeats the generator's mistake on three-quarters of wrong cases, false-positive rate becomes 0.75 and the ratio becomes 0.9/0.75 = 1.2.</p>
+<h4 id="mechanism-5-risk-weighting">Mechanism 5: risk weighting</h4>
+<ul>
+<li><strong>What:</strong> Adjust the decision by domain stakes.</li>
+<li><strong>Why:</strong> Identical confidence should lead to different actions for different consequences.</li>
+<li><strong>Failure when placed inside p:</strong> Preference tuning can freeze a surface-topic prior. A refusal then mixes missing evidence with high consequence.</li>
+<li><strong>Cost or complexity:</strong> Risk belongs in editable per-route tau. It is not a knowledge signal and should not require generator retraining.</li>
+</ul>
+<h4 id="two-diagnosable-gates-beat-one-blended-scalar">Two diagnosable gates beat one blended scalar</h4>
+<ul>
+<li><strong>What:</strong> Use a coverage gate at retrieval and an entailment gate on the generated claim and evidence.</li>
+<li><strong>Why:</strong> They have different blind spots and produce different repairs.</li>
+<li><strong>Failure without separation:</strong> A single blend hides whether the index lacked the document, the linker failed, or a prompt format shifted.</li>
+<li><strong>Cost or complexity:</strong> The entailment judge adds another cross-encoder pass. The coverage gate is cheap and should feed the index-gap queue.</li>
+</ul>
+<p>A coverage refusal means this corpus does not cover the query. It does not mean the fact is absent from the world.</p>
+<p>Use token log-probability only for short extractive answers where a few tokens carry the semantics. Use at most one same-model self-check, and require a useful second checker to change weights or evidence and prove its value on known generator errors.</p>
+<h4 id="worked-proxy-comparison">Worked proxy comparison</h4>
+<ul>
+<li><strong>What:</strong> The example has 1,000 queries. Of these, 820 have a supporting passage and 180 do not. The generator is correct on 90% of the answerable set, yielding 738 correct and 262 wrong answers, or 73.8% precision.</li>
+<li><strong>Why:</strong> It compares cheap proxies against the 94.5% optimistic support-judge ceiling.</li>
+<li><strong>Failure without the comparison:</strong> Refusal rate alone can be optimized by refusing everything.</li>
+<li><strong>Cost or complexity:</strong> The example states overlapping score distributions as constants. Answerable scores follow N(0.81, 0.05), and unanswerable scores follow N(0.73, 0.07).</li>
+</ul>
+<p>At s* = 0.75, the answerable refusal fraction is Phi(-1.20) = 0.1151, or 94 good queries. The unanswerable pass fraction is 1 - Phi(0.286) = 0.3875, or 70 wrong queries. The system catches 110 unanswerable queries, answers 796, gets 653 correct, and reaches 82.0% precision after 204 refusals.</p>
+<p>For a log-probability cutoff at the 10th percentile, the cutoff is mu - 1.2816 sigma with sigma = 0.06 nats per token. A format shift of 0.0970 nats is 1.617 sigma. Refusal becomes Phi(0.336) = 63.1% even though the model, corpus, and queries are unchanged.</p>
+<p>For a self-check, prior odds are 738/262 = 2.817. An independent ratio of 4.5 yields posterior odds 12.68 and 92.7% precision. The correlated ratio of 1.2 yields odds 3.38 and 77.2% precision. It refuses 0.1 x 738 + 0.25 x 262 = 139 queries to buy 3.4 points, while cosine refuses 204 to buy 8.2 points.</p>
+<p>The cosine proxy captures (82.0 - 73.8)/(94.5 - 73.8) = 40% of the available headroom.</p>
+<h3 id="113-self-reflection-compounds-the-model-collapse-connection">11.3 Self-reflection compounds: the model-collapse connection</h3>
+<h4 id="finite-sample-collapse">Finite-sample collapse</h4>
+<ul>
+<li><strong>What:</strong> Train a model, sample N outputs from it, train the next generation on those samples, and repeat.</li>
+<li><strong>Why:</strong> The process exposes what self-generated data cannot preserve.</li>
+<li><strong>Failure without outside data:</strong> A behavior with probability q appears zero times with probability (1 - q)^N, approximately exp(-qN). Once absent, the next model cannot learn it back.</li>
+<li><strong>Cost or complexity:</strong> Survival requires qN much greater than 1. The sampling resolution is 1/N.</li>
+</ul>
+<p>For q = 10^-4 and N = 5,000:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">extinct in one generation</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>q</mi><mi>N</mi></mrow></msup><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>0.5</mn></mrow></msup><mo>=</mo><mn>0.6065</mn></mrow><annotation encoding="application/x-tex">P(\text{extinct in one generation}) = e^{-qN} = e^{-0.5} = 0.6065</annotation></semantics></math></p>
+<p>Survival through three generations is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mn>0.6065</mn><msup><mo stretchy="false" form="postfix">)</mo><mn>3</mn></msup><mo>=</mo><msup><mn>0.3935</mn><mn>3</mn></msup><mo>=</mo><mn>0.0609</mn></mrow><annotation encoding="application/x-tex">(1-0.6065)^3 = 0.3935^3 = 0.0609</annotation></semantics></math></p>
+<p>Only about 6% of a one-in-10,000 behavior survives. The source claim is about rarity, not correctness. Long-tail answers matter because deployed systems must serve the full information-need distribution.</p>
+<h4 id="self-reflection-as-context-window-resampling">Self-reflection as context-window resampling</h4>
+<ul>
+<li><strong>What:</strong> Round t + 1 samples from the question plus prior answers, not from the question alone.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>⋅</mi><mo>∣</mo><mi>q</mi><mo>,</mo><msub><mi>a</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mtext mathvariant="normal">rather than</mtext><mspace width="1.0em"></mspace><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>⋅</mi><mo>∣</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p(\cdot \mid q,a_1,\ldots,a_t) \quad \text{rather than} \quad p(\cdot \mid q)</annotation></semantics></math></p>
+<ul>
+<li><strong>Why:</strong> The prior answer in context creates a commitment bonus beta for repeating the claim.</li>
+<li><strong>Failure without new evidence:</strong> Confidence sharpens even when accuracy does not move.</li>
+<li><strong>Cost or complexity:</strong> Each sequential revision adds decode latency. Beta can be measured by comparing the same answer's log-probability with and without the prior turn in context.</li>
+</ul>
+<p>Take beta = 0.8 nats, pwrong = 0.55, and pright = 0.45. Initial log-odds are ln(0.55/0.45) = 0.2007. After eight rounds:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mfrac><msubsup><mi>p</mi><mrow><mi>w</mi><mi>r</mi><mi>o</mi><mi>n</mi><mi>g</mi></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><msubsup><mi>p</mi><mrow><mi>r</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup></mfrac><mo>=</mo><mn>0.2007</mn><mo>+</mo><mn>8</mn><mo>×</mo><mn>0.8</mn><mo>=</mo><mn>6.6007</mn></mrow><annotation encoding="application/x-tex">\log \frac{p^{(8)}_{wrong}}{p^{(8)}_{right}} = 0.2007 + 8 \times 0.8 = 6.6007</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>p</mi><mrow><mi>w</mi><mi>r</mi><mi>o</mi><mi>n</mi><mi>g</mi></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><mi>σ</mi><mo stretchy="false" form="prefix">(</mo><mn>6.6007</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.9986</mn></mrow><annotation encoding="application/x-tex">p^{(8)}_{wrong} = \sigma(6.6007) = 0.9986</annotation></semantics></math></p>
+<p>The equivalent temperature is T = 0.2007/6.6007 = 0.030. Eight self-affirmations sharpen this one decision like a temperature drop from 1.0 to 0.03, with no new evidence.</p>
+<h4 id="stated-odds-and-real-odds-diverge">Stated odds and real odds diverge</h4>
+<ul>
+<li><strong>What:</strong> A naive aggregator treats every self-check pass as independent.</li>
+<li><strong>Why:</strong> Independent evidence would justify multiplying odds by 4.5 per pass.</li>
+<li><strong>Failure without dependence correction:</strong> Eight passes report a multiplier of 4.5^8 = 168,151. The real update is 1.2 once. Later rounds approach a likelihood ratio of 1 as the checker agrees with correct and incorrect answers alike.</li>
+<li><strong>Cost or complexity:</strong> More rounds buy serial cost and misleading confidence. They do not buy independent votes.</li>
+</ul>
+<h4 id="parallel-samples-versus-sequential-revisions">Parallel samples versus sequential revisions</h4>
+<ul>
+<li><strong>What:</strong> Self-consistency samples blind reasoning chains in parallel and votes. Reflection conditions every new draw on previous draws.</li>
+<li><strong>Why:</strong> Partial independence lets errors cancel. Sequential commitment increases correlation.</li>
+<li><strong>Failure without an external signal:</strong> The cited intrinsic self-correction result reports that rounds without external feedback degrade reasoning accuracy, with greater degradation as rounds increase.</li>
+<li><strong>Cost or complexity:</strong> At equal token spend, parallel sampling needs batch capacity. A useful revision loop instead consumes a fresh retrieval, executed test, compiler error, or different model family.</li>
+</ul>
+<h4 id="worked-reflection-economics">Worked reflection economics</h4>
+<ul>
+<li><p><strong>What:</strong> Start from 1,000 queries, 73.8% accuracy, and prior odds 2.817. Each generation or check emits 250 output tokens at 40 tokens per second. Output price is stated as $3.00 per million tokens.</p></li>
+<li><p><strong>Why:</strong> It shows that reported confidence can become wrong by orders of magnitude while accuracy stays fixed.</p></li>
+<li><p><strong>Failure without independence accounting:</strong> A self-reflection dashboard can celebrate 99.9998% confidence at only 77.2% measured precision.</p></li>
+<li><p><strong>Cost or complexity:</strong> One self-check yields 664.2 correct passes and 196.5 wrong passes, or 860.7 answered at 77.2% precision. Two passes total 500 tokens, 12.5 seconds of serial decode, and $1.50 per day.</p></li>
+</ul>
+<p>Eight reflection rounds leave true odds at 3.380. A naive calculation reports 2.817 x 4.5^8 = 473,682 odds and 99.9998% confidence. Reported odds exceed real odds by 473,682/3.380 = 1.4 x 10^5.</p>
+<p>Nine total passes cost 2,250 tokens, 56.3 seconds, and $6.75 per day. The incremental annual cost above one self-check is $1,916, and latency regresses 4.5x for zero accuracy gain.</p>
+<p>For eight parallel samples, assume each sample is correct with probability 0.738 and wrong answers spread across four distinct values. Under that idealized independence assumption:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>∼</mo><mo>Bin</mo><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>,</mo><mn>0.738</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C \sim \mathop{\text{Bin}}(8,0.738)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>C</mi><mo>≤</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>2.22</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mo>+</mo><mn>5.00</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>4</mn></mrow></msup><mo>+</mo><mn>4.93</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup><mo>=</mo><mn>5.46</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">P(C \le 2) = 2.22 \times 10^{-5} + 5.00 \times 10^{-4} + 4.93 \times 10^{-3} = 5.46 \times 10^{-3}</annotation></semantics></math></p>
+<p>The idealized plurality accuracy is at least 99.45%, a gain of 25.7 points, at 2,250 tokens and 6.3 seconds when batched. The book immediately limits this claim. Samples from one model on one prompt are correlated. The cited forty-sample result on Grade School Math 8K (GSM8K) for PaLM-540B is +17.9 points, so real gain is a fraction of the ideal calculation.</p>
+<p>When a checker judges evidence rather than a draft, clear prior answers and verdicts from its context. Log confidence by round and alert when it rises while labeled accuracy stays flat.</p>
+<p>Do not fine-tune a successor on unverified outputs from its predecessor. The stated safeguards are external verification, rare-intent oversampling, and a fresh human-labeled tail set.</p>
+<h3 id="114-calibration-versus-failure-prediction">11.4 Calibration versus failure prediction</h3>
+<h4 id="two-independent-score-properties">Two independent score properties</h4>
+<ul>
+<li><p><strong>What:</strong> Calibration asks whether stated confidence matches empirical accuracy. Failure prediction asks whether correct answers outrank wrong ones.</p></li>
+<li><p><strong>Why:</strong> User-facing probabilities need calibration, while an abstention gate needs ordering.</p></li>
+<li><p><strong>Failure without separation:</strong> A temperature sweep can cut Expected Calibration Error (ECE) from 0.21 to 0.01 while leaving the refused set and selective precision unchanged.</p></li>
+<li><p><strong>Cost or complexity:</strong> Compute both ECE and Area Under the Receiver Operating Characteristic curve (AUROC), or publish the full risk-coverage curve.</p></li>
+</ul>
+<p>For score buckets B1 through BM:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>ECE</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mn>1</mn></mrow><mi>M</mi></munderover><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="prefix">|</mo></mrow><mi>n</mi></mfrac><mrow><mo stretchy="true" form="prefix">|</mo><mo>acc</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mo>conf</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">\mathop{\text{ECE}} = \sum_{m=1}^{M}\frac{|B_m|}{n} \left|\mathop{\text{acc}}(B_m)-\mathop{\text{conf}}(B_m)\right|</annotation></semantics></math></p>
+<p>For one correct and one wrong draw:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>AUROC</mo><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mrow><mi>c</mi><mi>o</mi><mi>r</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>t</mi></mrow></msub><mo>&gt;</mo><msub><mi>s</mi><mrow><mi>w</mi><mi>r</mi><mi>o</mi><mi>n</mi><mi>g</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>P</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mrow><mi>c</mi><mi>o</mi><mi>r</mi><mi>r</mi><mi>e</mi><mi>c</mi><mi>t</mi></mrow></msub><mo>=</mo><msub><mi>s</mi><mrow><mi>w</mi><mi>r</mi><mi>o</mi><mi>n</mi><mi>g</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\mathop{\text{AUROC}} = P(s_{correct}&gt;s_{wrong}) + \frac{1}{2}P(s_{correct}=s_{wrong})</annotation></semantics></math></p>
+<p>Emit the constant score s = a, where a is base accuracy. Then ECE = 0 exactly for any bucket count M, while AUROC = 0.5 exactly. The score is perfectly calibrated and useless for abstention.</p>
+<h4 id="why-recalibration-cannot-create-separation">Why recalibration cannot create separation</h4>
+<ul>
+<li><p><strong>What:</strong> Temperature scaling, Platt scaling, and strictly increasing calibration maps relabel scores without changing their order.</p></li>
+<li><p><strong>Why:</strong> They can repair numerical probability meaning after a good signal exists.</p></li>
+<li><p><strong>Failure without this invariant:</strong> A team may select a confidence method on ECE and ship the method that is worse at routing failures.</p></li>
+<li><p><strong>Cost or complexity:</strong> AUROC and the risk-coverage curve stay unchanged under strictly increasing maps. Isotonic regression is only non-decreasing. When it merges buckets, it turns wins into ties and can lower AUROC, never raise it.</p></li>
+</ul>
+<p>The cited black-box elicitation study found different winners. Pairwise-ranking aggregation gave the best calibration. Average confidence over samples gave the best failure prediction. It also reported systematic overconfidence under vanilla verbalized prompting and better failure prediction with more samples.</p>
+<h4 id="brier-decomposition">Brier decomposition</h4>
+<ul>
+<li><p><strong>What:</strong> Murphy's Brier score (BS) decomposition separates probability error into reliability, resolution, and task uncertainty.</p></li>
+<li><p><strong>Why:</strong> It names which budget post-processing can fix.</p></li>
+<li><p><strong>Failure without it:</strong> Reliability improvements can be mistaken for a better gating signal.</p></li>
+<li><p><strong>Cost or complexity:</strong> Fit calibration on held-out labeled data. Resolution must come from a better raw signal.</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>BS</mo><mo>=</mo><munder><munder><mrow><munder><mo>∑</mo><mi>m</mi></munder><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="prefix">|</mo></mrow><mi>n</mi></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mo>conf</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mo>acc</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><mo accent="true">⏟</mo></munder><mrow><mi>R</mi><mi>E</mi><mi>L</mi></mrow></munder><mo>−</mo><munder><munder><mrow><munder><mo>∑</mo><mi>m</mi></munder><mfrac><mrow><mo stretchy="false" form="prefix">|</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="prefix">|</mo></mrow><mi>n</mi></mfrac><msup><mrow><mo stretchy="true" form="prefix">(</mo><mo>acc</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>B</mi><mi>m</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><mo accent="true">⏟</mo></munder><mrow><mi>R</mi><mi>E</mi><mi>S</mi></mrow></munder><mo>+</mo><munder><munder><mrow><mi>a</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mo stretchy="false" form="postfix">)</mo></mrow><mo accent="true">⏟</mo></munder><mrow><mi>U</mi><mi>N</mi><mi>C</mi></mrow></munder></mrow><annotation encoding="application/x-tex">\mathop{\text{BS}} = \underbrace{\sum_m \frac{|B_m|}{n} \left(\mathop{\text{conf}}(B_m)-\mathop{\text{acc}}(B_m)\right)^2}_{REL} - \underbrace{\sum_m \frac{|B_m|}{n} \left(\mathop{\text{acc}}(B_m)-a\right)^2}_{RES} + \underbrace{a(1-a)}_{UNC}</annotation></semantics></math></p>
+<p>Recalibration can drive REL to zero. The task fixes UNC. A monotone map cannot create RES because bucket membership stays the same.</p>
+<h4 id="worked-calibration-comparison">Worked calibration comparison</h4>
+<ul>
+<li><p><strong>What:</strong> Use the same 1,000 queries with base accuracy a = 0.738 and UNC = 0.738 x 0.262 = 0.1934.</p></li>
+<li><p><strong>Why:</strong> The example holds answers fixed and changes only the confidence signal.</p></li>
+<li><p><strong>Failure without the comparison:</strong> ECE alone chooses the wrong gate.</p></li>
+<li><p><strong>Cost or complexity:</strong> The verbalized signal uses three levels. The agreement signal requires eight samples.</p></li>
+</ul>
+<p>Verbalized confidence has 300 queries at 0.90 with 210 correct, 400 at 0.95 with 300 correct, and 300 at 1.00 with 228 correct. Bucket accuracies are 0.700, 0.750, and 0.760.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>ECE</mo><mo>=</mo><mn>0.3</mn><mo stretchy="false" form="prefix">(</mo><mn>0.200</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>0.4</mn><mo stretchy="false" form="prefix">(</mo><mn>0.200</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>0.3</mn><mo stretchy="false" form="prefix">(</mo><mn>0.240</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.212</mn></mrow><annotation encoding="application/x-tex">\mathop{\text{ECE}} = 0.3(0.200)+0.4(0.200)+0.3(0.240) = 0.212</annotation></semantics></math></p>
+<p>Among 738 x 262 = 193,356 correct-wrong pairs, it has 70,320 wins and 65,316 ties. AUROC is (70,320 + 32,658)/193,356 = 0.533.</p>
+<p>Eight-sample agreement creates buckets of sizes 350, 200, 180, 150, and 120 for scores 8/8, 7/8, 6/8, 5/8, and at most 4/8. Correct counts are 329, 168, 126, 75, and 40. Accuracy spreads from 0.940 to 0.333. ECE is 0.061, and AUROC is 153,888/193,356 = 0.796.</p>
+<p>Isotonic recalibration maps 0.90 to 0.700, 0.95 to 0.750, and 1.00 to 0.760. No buckets merge. ECE becomes 0.000 and AUROC remains 0.533.</p>
+<p>At cw = 20 and ca = 0.5, tau = 0.929. The recalibrated verbalized signal answers no queries because its best bucket is 0.760. The eight-sample signal answers 350 queries because its top bucket is 329/350 = 94.0%.</p>
+<p>With REL = 0, Brier skill against the base-rate baseline is RES/UNC. The verbalized configuration gives 0.000636/0.1934 = 0.33%. The agreement configuration gives 0.0448/0.1934 = 23.2%.</p>
+<h4 id="deployment-rules-and-claim-limits">Deployment rules and claim limits</h4>
+<ul>
+<li><p><strong>What:</strong> Select the raw signal on AUROC or risk-coverage. Fit calibration afterward.</p></li>
+<li><p><strong>Why:</strong> The product chooses an operating point from a cost ratio in probability units.</p></li>
+<li><p><strong>Failure without maintenance:</strong> A map fit to one model version and query mix goes stale.</p></li>
+<li><p><strong>Cost or complexity:</strong> Refit after model-version changes and query-mix shifts. The book suggests isotonic regression with enough labels, but warns that under roughly 1,000 labeled examples it may fit noise. Platt or temperature scaling is then lower variance.</p></li>
+</ul>
+<p>Global ECE at M = 1 reduces to the absolute gap between mean confidence and accuracy. Opposite segment errors can cancel. Report ECE by query type, source, and language.</p>
+<p>Coverage at a fixed tau is a label-free drift signal. The book suggests triggering a refit when coverage moves more than a few points without a release.</p>
+<h3 id="115-eliciting-confidence-from-a-black-box">11.5 Eliciting confidence from a black box</h3>
+<h4 id="sequence-probability-scores-strings-not-meanings">Sequence probability scores strings, not meanings</h4>
+<ul>
+<li><p><strong>What:</strong> A white-box model can expose p(a given q and C) or a length-normalized perplexity score.</p></li>
+<li><p><strong>Why:</strong> It looks like a direct confidence signal.</p></li>
+<li><p><strong>Failure without semantic grouping:</strong> Fluency is not truth, and probability mass splits across equivalent phrasings.</p></li>
+<li><p><strong>Cost or complexity:</strong> Many closed models expose no token probabilities. Semantic entropy already needs repeated samples and bidirectional entailment clustering.</p></li>
+</ul>
+<p>If five correct phrasings each have probability 0.12 and one wrong canonical phrasing has 0.20, the top string is wrong. The correct meaning still holds total probability 5 x 0.12 = 0.60.</p>
+<h4 id="verbalized-confidence-has-little-resolution">Verbalized confidence has little resolution</h4>
+<ul>
+<li><p><strong>What:</strong> Ask the model to state a percentage in its reply.</p></li>
+<li><p><strong>Why:</strong> It costs only a few output tokens and works through a closed API.</p></li>
+<li><p><strong>Failure without sampling:</strong> The percentage is another generated token. In the example, all 1,000 scores are 0.90, 0.95, or 1.00. The risk-coverage curve therefore has only 30%, 70%, and 100% coverage points, and the best bucket accuracy is 0.760.</p></li>
+<li><p><strong>Cost or complexity:</strong> Recalibration can move the three values but cannot invent more levels.</p></li>
+</ul>
+<p>The cited study reports that vanilla verbalized confidence is systematically overconfident. Other cited work limits the criticism. Verbalized probabilities from Reinforcement Learning from Human Feedback (RLHF) models can be better calibrated than conditional token probabilities, and a model can be fine-tuned to verbalize calibrated probabilities. Those results address reliability, not resolution.</p>
+<h4 id="agreement-from-m-independent-samples">Agreement from m independent samples</h4>
+<ul>
+<li><p><strong>What:</strong> Draw m answers in fresh sessions. Let c-hat = k/m be the fraction agreeing with the served answer.</p></li>
+<li><p><strong>Why:</strong> It measures the model's answer distribution instead of asking the model to describe that distribution.</p></li>
+<li><p><strong>Failure without uncertainty accounting:</strong> The middle score levels can be closer than their sampling noise.</p></li>
+<li><p><strong>Cost or complexity:</strong> The score has m + 1 levels and costs m generation calls.</p></li>
+</ul>
+<p>For k distributed binomially:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Var</mo><mo stretchy="false" form="prefix">(</mo><mover><mi>c</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><mi>m</mi></mfrac><mspace width="2.0em"></mspace><mo>SE</mo><mo stretchy="false" form="prefix">(</mo><mover><mi>c</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msqrt><mfrac><mrow><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><mi>m</mi></mfrac></msqrt></mrow><annotation encoding="application/x-tex">\mathop{\text{Var}}(\hat c)=\frac{c(1-c)}{m} \qquad \mathop{\text{SE}}(\hat c)=\sqrt{\frac{c(1-c)}{m}}</annotation></semantics></math></p>
+<p>Adjacent levels are 1/m apart. Requiring one level gap to exceed one standard error gives:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow><mi>m</mi></mfrac><mo>&lt;</mo><mfrac><mn>1</mn><msup><mi>m</mi><mn>2</mn></msup></mfrac><mo>⇔</mo><mi>m</mi><mo>&lt;</mo><mfrac><mn>1</mn><mrow><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{c(1-c)}{m} &lt; \frac{1}{m^2} \Longleftrightarrow m &lt; \frac{1}{c(1-c)}</annotation></semantics></math></p>
+<p>At m = 8, this requires c(1 - c) &lt; 0.125. The boundaries are c = (1 plus or minus sqrt(0.5))/2, approximately 0.854 and 0.146. Single-level differences are resolvable only above 0.854 or below 0.146.</p>
+<p>More samples shrink spacing as 1/m while noise shrinks as 1/sqrt(m). For every m at least 4, nominal granularity outruns statistical granularity. More samples still reduce standard error for fixed coarse buckets. A high-end gate is the intended use.</p>
+<h4 id="conditioning-strategy">Conditioning strategy</h4>
+<ul>
+<li><p><strong>What:</strong> Vanilla scoring stays in the original session. Self-probing uses a fresh session. Multi-step scoring attaches confidence to sub-claims. Top-k elicitation forces alternatives. Sampling aggregates consistency, average confidence, or pairwise rankings.</p></li>
+<li><p><strong>Why:</strong> A fresh scorer sets the commitment bonus to zero by construction.</p></li>
+<li><p><strong>Failure without fresh context:</strong> The same-session checker inherits beta = 0.8 and the correlated likelihood ratio of 1.2 rather than 4.5.</p></li>
+<li><p><strong>Cost or complexity:</strong> The cited comparison finds all non-vanilla strategies reduce overconfidence. More samples improve failure prediction. Pairwise ranking wins calibration, while average confidence wins failure prediction. P(True) is a fixed-question version of the same fresh-session probe.</p></li>
+</ul>
+<h4 id="worked-elicitation-economics">Worked elicitation economics</h4>
+<ul>
+<li><p><strong>What:</strong> The system serves 1,000 queries per day. Each call has five chunks of 450 tokens plus 150 question and instruction tokens, or 2,400 input tokens, and 150 output tokens. Prices are $3 per million input tokens and $15 per million output tokens.</p></li>
+<li><p><strong>Why:</strong> It prices confidence as an explicit multiple of generation.</p></li>
+<li><p><strong>Failure without pricing:</strong> A team can add sampling without knowing what decision value it must recover.</p></li>
+<li><p><strong>Cost or complexity:</strong> One generation call costs:</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2400</mn><mo>×</mo><mn>3</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>+</mo><mn>150</mn><mo>×</mo><mn>15</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>=</mo><mn>0.0072</mn><mo>+</mo><mn>0.00225</mn><mo>=</mo><mi>$</mi><mn>0.00945</mn></mrow><annotation encoding="application/x-tex">2400 \times 3 \times 10^{-6} + 150 \times 15 \times 10^{-6} = 0.0072 + 0.00225 = \$0.00945</annotation></semantics></math></p>
+<p>Vanilla verbalized confidence adds about 10 output tokens, or $0.00015. Total cost is $0.00960 per query and $9.60 per day. It yields three levels.</p>
+<p>Self-probing adds a fresh call with 2,550 input tokens and 10 output tokens:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2550</mn><mo>×</mo><mn>3</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>+</mo><mn>10</mn><mo>×</mo><mn>15</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>=</mo><mi>$</mi><mn>0.00780</mn></mrow><annotation encoding="application/x-tex">2550 \times 3 \times 10^{-6} + 10 \times 15 \times 10^{-6} = \$0.00780</annotation></semantics></math></p>
+<p>Total cost is $0.01725 per query and $17.25 per day, or 1.8x baseline. It adds one sequential round trip and still yields three levels.</p>
+<p>Eight-sample agreement costs 8 x $0.00945 = $0.0756 per query and $75.60 per day. Parallel calls make latency one round trip plus the tail. The score has nine levels and is resolvable above 0.854.</p>
+<p>The eight-sample method costs $66.00 more per day than verbalized confidence. It admits 350 queries at 94.0% precision where verbalized confidence admits none at tau = 0.929.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>350</mn><mrow><mo stretchy="true" form="prefix">[</mo><mn>0.94</mn><mo>−</mo><mn>0.06</mn><mo>×</mo><mn>20</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>350</mn><mo>×</mo><mn>0.24</mn><mo>=</mo><mn>84</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">units per day</mtext></mrow><annotation encoding="application/x-tex">350\left[0.94-0.06\times20-(-0.5)\right] =350\times0.24 =84\ \text{units per day}</annotation></semantics></math></p>
+<p>Break-even is $66.00/84 = $0.79 per unit. At a stated loaded rate of $60 per hour, that equals 47 seconds of reader time.</p>
+<p>At m = 8, tau = 0.929 lies between 7/8 = 0.875 and 8/8 = 1.000. The gate therefore admits the top 35.0% bucket within the resolvable band.</p>
+<p>At temperature 0, all m draws are identical and c-hat = 1 for every query. That constant-score failure has AUROC = 0.5. The book recommends nonzero sampling temperature and suggests raising it if more than one-third of queries have c-hat = 1.</p>
+<p>If latency forces m from 8 to 4, the score has five levels. Every level except the exact midpoint satisfies the stated resolvability condition, and standard error rises by sqrt(2). The decision check is precision at fixed 35% coverage. The source proposes rejecting m = 4 if it costs more than one precision point.</p>
+<p>At clinical cw = 200, the source says the gate value per admitted answer can justify a 32-sample budget. This is a cost-dependent claim, not a universal sample-count rule.</p>
+<h3 id="116-long-form-calibration-80-of-what">11.6 Long-form calibration: 80% of what?</h3>
+<h4 id="a-scalar-must-name-its-functional">A scalar must name its functional</h4>
+<ul>
+<li><p><strong>What:</strong> Decompose a long answer into n atomic claims. If k are supported, S = k/n is the support fraction.</p></li>
+<li><p><strong>Why:</strong> S lies in [0, 1], so binary correctness calibration no longer defines what 0.80 means.</p></li>
+<li><p><strong>Failure without a named functional:</strong> A score meant as E[S] can be compared with a threshold derived for Pr(S = 1). The number looks valid and the decision silently uses the wrong event.</p></li>
+<li><p><strong>Cost or complexity:</strong> FActScore extracts atomic facts, verifies them against a reliable source, and reports the supported fraction. Claim extraction and verification add model work.</p></li>
+</ul>
+<p>Two candidate summaries are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">or</mtext><mspace width="2.0em"></mspace><mi>c</mi><mo>=</mo><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>S</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">c = P(S=1) \qquad \text{or} \qquad c = E[S]</annotation></semantics></math></p>
+<p>The first means every claim is supported with the stated probability. The second means that fraction of claims is supported on average.</p>
+<h4 id="the-cost-model-selects-the-functional">The cost model selects the functional</h4>
+<ul>
+<li><p><strong>What:</strong> Under proportional harm, a partial answer earns S - cw(1 - S). Under all-or-nothing harm, it earns 1 only when S = 1 and -cw otherwise.</p></li>
+<li><p><strong>Why:</strong> Each utility reads exactly one summary of the distribution.</p></li>
+<li><p><strong>Failure without the right summary:</strong> A compliance memo can look safe under average claim support while one bad claim still creates the full incident cost.</p></li>
+<li><p><strong>Cost or complexity:</strong> Product owners must classify each output route as proportional, all-or-nothing, or another explicitly modeled utility.</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>U</mi><mrow><mi>p</mi><mi>r</mi><mi>o</mi><mi>p</mi></mrow></msub><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>S</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msub><mi>c</mi><mi>w</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>c</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">E[U_{prop}] = E[S](1+c_w)-c_w</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>U</mi><mrow><mi>a</mi><mi>l</mi><mi>l</mi></mrow></msub><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msub><mi>c</mi><mi>w</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>−</mo><msub><mi>c</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">E[U_{all}] = P(S=1)(1+c_w)-c_w</annotation></semantics></math></p>
+<p>Both produce the same numeric threshold:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mfrac><mrow><msub><mi>c</mi><mi>w</mi></msub><mo>−</mo><msub><mi>c</mi><mi>a</mi></msub></mrow><mrow><mn>1</mn><mo>+</mo><msub><mi>c</mi><mi>w</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mn>19.5</mn><mn>21</mn></mfrac><mo>=</mo><mn>0.929</mn></mrow><annotation encoding="application/x-tex">\tau = \frac{c_w-c_a}{1+c_w} =\frac{19.5}{21} =0.929</annotation></semantics></math></p>
+<p>The identical algebra is the trap. The statistic under the threshold differs.</p>
+<h4 id="length-amplifies-the-difference">Length amplifies the difference</h4>
+<ul>
+<li><p><strong>What:</strong> Under the stated independence model, each of n claims is supported with probability p.</p></li>
+<li><p><strong>Why:</strong> It exposes how answer length affects full-support probability.</p></li>
+<li><p><strong>Failure without length adjustment:</strong> E[S] remains p for every n, while Pr(S = 1) decays as p^n.</p></li>
+<li><p><strong>Cost or complexity:</strong> An all-or-nothing gate requires p at least tau^(1/n). At tau = 0.929, n = 12 requires p at least 0.9939. At n = 30 it requires 0.9975.</p></li>
+</ul>
+<p>Claims that share retrieved context are positively correlated. The book therefore calls p^n a floor rather than an estimate. The geometric calculation is a mechanism illustration, not a measured production forecast.</p>
+<h4 id="predict-the-full-distribution">Predict the full distribution</h4>
+<ul>
+<li><p><strong>What:</strong> Emit a predicted cumulative distribution F-hat over S and score it with the Continuous Ranked Probability Score (CRPS).</p></li>
+<li><p><strong>Why:</strong> One distribution serves consumers that need the mean, a tail probability, or the mass at full support.</p></li>
+<li><p><strong>Failure with one scalar:</strong> Choosing Pr(S = 1) discards the mean. Choosing E[S] discards the full-support atom.</p></li>
+<li><p><strong>Cost or complexity:</strong> The cited black-box routes score the same answer in m fresh sessions or sample m alternative briefs and measure claim-level corroboration.</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>CRPS</mo><mo stretchy="false" form="prefix">(</mo><mover><mi>F</mi><mo accent="true">̂</mo></mover><mo>,</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup><msup><mrow><mo stretchy="true" form="prefix">(</mo><mover><mi>F</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mn>𝟏</mn><mo stretchy="false" form="prefix">[</mo><mi>s</mi><mo>≤</mo><mi>t</mi><mo stretchy="false" form="postfix">]</mo><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">\mathop{\text{CRPS}}(\hat F,s) =\int_0^1\left(\hat F(t)-\mathbf{1}[s\le t]\right)^2dt</annotation></semantics></math></p>
+<p>For a Bernoulli(c) forecast, CRPS reduces exactly to the Brier score. It is strictly proper and carries a reliability, resolution, and uncertainty decomposition. Resolution still cannot be created by post-processing.</p>
+<p>Exact string matching fails for long briefs because samples rarely match word for word. Use similarity over atomic claims or named entities.</p>
+<h4 id="claim-extraction-and-recall">Claim extraction and recall</h4>
+<ul>
+<li><p><strong>What:</strong> VeriScore excludes unverifiable claims, resolves references beyond one sentence, and adds recall against a target claim count K.</p></li>
+<li><p><strong>Why:</strong> Atomic-fact precision alone rewards a short, hedged answer.</p></li>
+<li><p><strong>Failure without recall:</strong> A two-claim brief can score S = 1.000 while omitting ten expected claims.</p></li>
+<li><p><strong>Cost or complexity:</strong> Context-aware claim extraction and a target K are required. The source example uses K = 12.</p></li>
+</ul>
+<h4 id="worked-long-form-economics">Worked long-form economics</h4>
+<ul>
+<li><p><strong>What:</strong> The agreement gate admits 350 briefs per day. Each has n = 12 verifiable claims, or 4,200 claims total. Per-claim support is p = 0.95, leaving 210 unsupported claims per day.</p></li>
+<li><p><strong>Why:</strong> It shows the same 0.95 score can produce positive proportional value and strongly negative all-or-nothing value.</p></li>
+<li><p><strong>Failure without functional alignment:</strong> Mean support clears tau while nearly half the briefs contain at least one unsupported claim.</p></li>
+<li><p><strong>Cost or complexity:</strong> Gate on E[S] = 0.950 under proportional costs. Net value relative to abstention is:</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>350</mn><mrow><mo stretchy="true" form="prefix">[</mo><mn>0.95</mn><mo>×</mo><mn>21</mn><mo>−</mo><mn>20</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>350</mn><mo>×</mo><mn>0.45</mn><mo>=</mo><mn>157.5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">units per day</mtext></mrow><annotation encoding="application/x-tex">350\left[0.95\times21-20-(-0.5)\right] =350\times0.45 =157.5\ \text{units per day}</annotation></semantics></math></p>
+<p>Under all-or-nothing costs, the gate should read 0.95^12 = 0.540. About 189 briefs are fully supported and 161 carry at least one unsupported claim. The correct policy under the stated costs is to refuse all 350. Shipping them yields:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>350</mn><mrow><mo stretchy="true" form="prefix">[</mo><mn>0.540</mn><mo>×</mo><mn>21</mn><mo>−</mo><mn>20</mn><mo>+</mo><mn>0.5</mn><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>350</mn><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>8.16</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>−</mi><mn>2856</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">units per day</mtext></mrow><annotation encoding="application/x-tex">350\left[0.540\times21-20+0.5\right] =350\times(-8.16) =-2856\ \text{units per day}</annotation></semantics></math></p>
+<p>To clear tau on full support, per-claim p must reach 0.929^(1/12) = 0.9939. That means 4,200 x 0.0061 = 26 unsupported claims per day instead of 210, an 8x reduction in claim-level error.</p>
+<p>A supported two-claim hedge has precision 1.000 but recall 2/12 = 0.167. Its score is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mn>1</mn><mi>@</mi><mi>K</mi><mo>=</mo><mfrac><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1.000</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>0.167</mn><mo stretchy="false" form="postfix">)</mo></mrow><mn>1.167</mn></mfrac><mo>=</mo><mn>0.286</mn></mrow><annotation encoding="application/x-tex">F1@K = \frac{2(1.000)(0.167)}{1.167} = 0.286</annotation></semantics></math></p>
+<p>As a check, 0.94^12 = 0.476 and 0.94^40 = 0.084. The source interprets the latter as a mostly correct 40-claim biography receiving binary failure about 92% of the time.</p>
+<p>The recommended outputs are E[S] and Pr(S at least s0) for an explicit s0. A single consumer may use one field, but its name should identify the functional, such as expected_support or p_fully_supported.</p>
+<p>At p = 0.95 and n = 12, a mean-support gate refuses nothing while 46%, or 161 briefs per day, carry at least one unsupported claim.</p>
+<p>If all-or-nothing requirements make a 12-claim brief unreachable, length is a design variable. Cutting to four claims lowers the required per-claim support from 0.9939 to 0.9818. Per-claim gating can emit supported claims and drop unsupported ones, but F1 at K must keep the recall loss visible.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-111">Figure 11.1</h3>
+<pre class="text"><code>threshold tau
+1.00 |################################ unreachable region
+0.945| - - - - - - support-gate ceiling - - - - - -
+0.75 |             bare answer curve       ........
+0.50 |       ......                  cited curve
+0.25 | ......               ........
+0.00 +----+----+----+----+----+----+----+---- cost cw
+       1    2    5   10   20   50  100  200
+ceiling intersections: cw about 26 bare, cw about 65 cited</code></pre>
+<p><strong>Figure 11.1:</strong> Raising the cost of a wrong answer raises the confidence threshold at which answering beats abstaining. Attaching a verifiable citation lowers that cost and with it the threshold. Above the dashed line no gate built on an 80%-macro-F1 support judge can enforce the required threshold at all, which bounds the stakes a refusing system can honestly serve at cw ≈ 26 bare and cw ≈ 65 with citations.</p>
+<h3 id="figure-112">Figure 11.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Q[&quot;user query&quot;] --&gt; R[&quot;retrieve top-k chunks&quot;] --&gt; G[&quot;generate&quot;] --&gt; A[&quot;answer&quot;] --&gt; D[&quot;answer or abstain&quot;]
+    R -.-&gt; M1[&quot;1. top-1 cosine at least s*. Blind to a topical match carrying no answer&quot;] -.-&gt; D
+    R -.-&gt; M2[&quot;2. graph node retrieved. Blind to linking failure being treated as absent entity&quot;] -.-&gt; D
+    G -.-&gt; M3[&quot;3. mean token log-probability. Blind to 28 of 40 tokens being glue&quot;] -.-&gt; D
+    A -.-&gt; M4[&quot;4. self-check says supported. Blind to its own shared failure mode&quot;] -.-&gt; D
+    M5[&quot;5. risk weight. Sets tau, not p. Not a knowledge signal&quot;] --&gt; D</code></pre></details></figure>
+<p><strong>Figure 11.2:</strong> Each abstention mechanism taps the pipeline at a different point, and its blind spot is fixed by what that point cannot see. Mechanism 5 taps nothing, because risk sets the threshold rather than estimating knowledge.</p>
+<h3 id="figure-113">Figure 11.3</h3>
+<pre class="text"><code>(a) corpus resampled from the model&#39;s own output
+generation 0        generation 1        generation 3
+    #                   #                   #
+   ###                 ###                  #
+  #####      -&gt;       #####      -&gt;        #
+ #######             #######             #####
+anything rarer than 1/N goes extinct and cannot return. Modes absorb its mass
+
+(b) answer reread from the model&#39;s own context
+odds 10^6 |                              stated: x4.5 each round
+     10^4 |                    o--o--o--o
+     10^2 |          o--o--o--o
+     10^0 | o================================ actual: x1.2 once
+             0  1  2  3  4  5  6  7  8 reflection rounds k</code></pre>
+<p><strong>Figure 11.3:</strong> The same operator at two timescales: resampling a corpus from your own model deletes everything below the sampling resolution, and re-reading your own answer from your own context multiplies stated confidence by a factor the evidence never earned.</p>
+<h3 id="figure-114">Figure 11.4</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Panel</th>
+<th>Signal</th>
+<th>Reliability view</th>
+<th>Separation view</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) and (b)</td>
+<td>verbalized</td>
+<td>ECE 0.212, then points slide to the diagonal</td>
+<td>AUROC 0.533, with correct and wrong mass heavily overlapping</td>
+</tr>
+<tr>
+<td>(a) and (b)</td>
+<td>8-sample agreement</td>
+<td>ECE 0.061</td>
+<td>AUROC 0.796, with visibly better separation</td>
+</tr>
+</tbody>
+</table></div>
+<p>The reliability panel moves scores sideways under isotonic recalibration. The separation panel keeps each answer's order and overlap unchanged. Grey denotes correct answers. White denotes wrong answers. Each distribution is normalized to its own total.</p>
+<p><strong>Figure 11.4:</strong> Panel (a) is fixable by sliding points sideways onto the diagonal. Panel (b) is not, because a sideways slide cannot change how much the grey and white mass overlap. Recalibration operates only on (a), which is why it moves ECE and leaves AUROC exactly where it was.</p>
+<h3 id="table-111">Table 11.1</h3>
+<p><strong>Table 11.1:</strong> The same 1,000 queries scored two ways. Recalibration zeroes reliability and leaves resolution and ordering untouched - and resolution is what the gate spends.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">verbalized</th>
+<th style="text-align: right;">+ isotonic</th>
+<th style="text-align: right;">8-sample agreement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ECE</td>
+<td style="text-align: right;">0.212</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.061</td>
+</tr>
+<tr>
+<td>AUROC</td>
+<td style="text-align: right;">0.533</td>
+<td style="text-align: right;">0.533</td>
+<td style="text-align: right;">0.796</td>
+</tr>
+<tr>
+<td>reliability REL</td>
+<td style="text-align: right;">0.0453</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">0.0045</td>
+</tr>
+<tr>
+<td>resolution RES</td>
+<td style="text-align: right;">0.0006</td>
+<td style="text-align: right;">0.0006</td>
+<td style="text-align: right;">0.0448</td>
+</tr>
+<tr>
+<td>Brier score</td>
+<td style="text-align: right;">0.2380</td>
+<td style="text-align: right;">0.1927</td>
+<td style="text-align: right;">0.1531</td>
+</tr>
+<tr>
+<td>coverage at tau = 0.929</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">35.0%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="figure-115">Figure 11.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    V[&quot;vanilla in one session: q and C produce answer plus 0.95&quot;] --&gt; VT[&quot;one draw with support 0.90, 0.95, or 1.00&quot;]
+    S1[&quot;session 1 produces answer a&quot;] -.-&gt;|&quot;a only&quot;| S2[&quot;fresh session 2 receives only a and scores it. No shared history, so beta never applies&quot;]
+    M[&quot;m = 8 independent sessions&quot;] --&gt; AG[&quot;agreement c-hat = k divided by m&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Score support</th>
+<th>Expressible levels</th>
+<th>Resolvability at m = 8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verbalized</td>
+<td>0.90, 0.95, 1.00</td>
+<td>All three crowd above 0.9 around tau = 0.929</td>
+</tr>
+<tr>
+<td>8-sample agreement</td>
+<td>0, 0.125, 0.250, 0.375, 0.500, 0.625, 0.750, 0.875, 1.000</td>
+<td>0, 0.125, 0.875, and 1.000 lie outside the one-standard-error shaded band</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 11.5:</strong> Verbalized confidence piles onto three round values, all crowded above 0.9, so it cannot express a cutoff at 0.929. Eight-sample agreement lays down nine levels, and the four outside the shaded band are the ones separated by more than one standard error - which is exactly where the gate operates.</p>
+<h3 id="figure-116">Figure 11.6</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Predictive distribution over S</th>
+<th style="text-align: right;">E[S]</th>
+<th style="text-align: right;">Pr(S = 1)</th>
+<th style="text-align: right;">E[U] at cw = 20, proportional</th>
+<th style="text-align: right;">E[U] at cw = 20, all-or-none</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) right or not right</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">-3.2</td>
+<td style="text-align: right;">-3.2</td>
+</tr>
+<tr>
+<td>(b) every brief 80% supported</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">-3.2</td>
+<td style="text-align: right;">-20.0</td>
+</tr>
+<tr>
+<td>(c) mostly good, rarely perfect</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">-3.2</td>
+<td style="text-align: right;">-17.9</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 11.6:</strong> Three predictive distributions over the support fraction S, all summarized by the same scalar 0.80. The mean is identical by construction. The mass at S = 1 runs from 0.80 down to zero, and at cw = 20 that is a 16.8-unit spread in expected value the scalar cannot express.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="numbered-drawing-order">Numbered drawing order</h3>
+<ol type="1">
+<li>Draw a left-to-right pipeline: query, retrieve, generate, support judge, answer or abstain.</li>
+<li>Above the final gate, write p from the model and tau from costs.</li>
+<li>Write tau = (cw - ca)/(1 + cw) below the gate.</li>
+<li>Add a cited-span branch and label it lower effective cw.</li>
+<li>Draw separate coverage and entailment gates with separate refusal messages.</li>
+<li>Draw two score axes. Label one calibration and the other failure prediction.</li>
+<li>Add m fresh black-box samples feeding an agreement score.</li>
+<li>Finish with a long answer split into n claims and label E[S] versus Pr(S = 1).</li>
+</ol>
+<h3 id="90-100-word-script">90-100 word script</h3>
+<p>Start with a query flowing through retrieval, generation, and a support gate. The model supplies a correctness estimate, but the product sets the refusal threshold from the costs of a wrong answer and an abstention. Add a cited-span branch because a checkable citation can lower harm. Then split confidence quality into calibration and failure prediction. Calibration aligns scores with observed frequencies. Failure prediction orders correct answers above wrong ones, which is what the gate needs. For a black-box model, use fresh independent samples. For long answers, label confidence as expected claim support or the probability that every claim is supported.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-is-a-well-calibrated-score-enough-for-abstention">1. Is a well-calibrated score enough for abstention?</h3>
+<p>No. A constant score equal to base accuracy has ECE = 0 and AUROC = 0.5, so no threshold separates correct from wrong answers. Select the signal on failure prediction or its risk-coverage curve, then calibrate it.</p>
+<h3 id="2-why-can-temperature-scaling-improve-ece-without-improving-selective-precision">2. Why can temperature scaling improve ECE without improving selective precision?</h3>
+<p>Temperature scaling is strictly increasing, so it preserves score order. At fixed coverage, the answered set is identical. It changes the numeric cutoff that reaches that set, not the set itself.</p>
+<h3 id="3-when-should-you-not-use-repeated-self-reflection">3. When should you not use repeated self-reflection?</h3>
+<p>Do not loop when every round uses the same weights, context, and prior draft. The rounds repeat correlated evidence and can amplify commitment. Use a loop only when each round consumes an external signal such as a fresh retrieval, test result, compiler error, or different model family.</p>
+<h3 id="4-what-does-80-confidence-mean-for-a-six-sentence-answer">4. What does 80% confidence mean for a six-sentence answer?</h3>
+<p>It is undefined until the score names a functional of support fraction S. It may mean E[S] = 0.80 or Pr(S = 1) = 0.80, and the cost of one unsupported claim determines which quantity the gate needs.</p>
+<h3 id="5-when-would-you-not-pay-for-eight-black-box-samples">5. When would you not pay for eight black-box samples?</h3>
+<p>Do not use m = 8 when generation cost or the p99 tail cannot support the fan-out. Try m = 4 and compare precision at the same 35% coverage. If it loses more than one precision point in the source's decision rule, renegotiate latency or use a different support signal.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Exact numbers and limits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cost thresholds</td>
+<td>cw = 2 and ca = 0.5 give tau = 0.500. cw = 20 gives 0.929. cw = 200 gives 0.993</td>
+</tr>
+<tr>
+<td>Citation effect</td>
+<td>q = 0.6 and cv = 0.2 reduce cw = 20 to 8.12 and tau to 0.836. Citations occur on over 30% of supported and unsupported sentences in the cited result</td>
+</tr>
+<tr>
+<td>Gate ceiling</td>
+<td>Roughly 80% macro-F1, optimistic symmetric error, a = 0.81, enforceable precision 0.945, cw bounds about 26 bare and 65 cited</td>
+</tr>
+<tr>
+<td>Daily 5,000-query example</td>
+<td>Bands 2,300 at 0.96, 1,400 at 0.88, 850 at 0.62, 450 at 0.20. Totals 4,057 correct, 943 wrong, 81.1%. The opening audit found 31 of 50 sampled refusals had the answer verbatim in the top chunk</td>
+</tr>
+<tr>
+<td>Daily value</td>
+<td>Never refuse -14,803. Bare threshold -982 at 54% refusal. Cited threshold +679 at 26% refusal. Citations alone -3,600</td>
+</tr>
+<tr>
+<td>Attribution gate cross-check</td>
+<td>3,246 correct and 189 wrong pass, 3,435 answered, 94.5% precision, 811 correct refused</td>
+</tr>
+<tr>
+<td>Retrieval and graph proxies</td>
+<td>Linking 0.90^3 = 0.729, so 27.1% fail. Token shifts 0.1216 versus 0.0970 nats. Formatting result up to 76 points</td>
+</tr>
+<tr>
+<td>Proxy traffic</td>
+<td>820 answerable and 180 unanswerable. 738 correct and 262 wrong. Cosine gate answers 796 at 82.0% after 204 refusals. Self-check answers at 77.2% after 139 refusals</td>
+</tr>
+<tr>
+<td>Checker ratios</td>
+<td>Independent pass ratio 4.5. Correlated ratio 1.2. Prior odds 2.817. Posterior odds 12.68 independent and 3.38 correlated</td>
+</tr>
+<tr>
+<td>Collapse</td>
+<td>q = 10^-4, N = 5,000, extinction 0.6065 in one generation, survival 0.0609 through three, resolution 1/N</td>
+</tr>
+<tr>
+<td>Commitment</td>
+<td>beta = 0.8, initial wrong probability 0.55, log-odds 0.2007, eight-round log-odds 6.6007, wrong probability 0.9986, equivalent T = 0.030</td>
+</tr>
+<tr>
+<td>Reflection cost</td>
+<td>4.5^8 = 168,151. Reported odds 473,682 versus true 3.380. Nine passes cost 2,250 tokens, 56.3 seconds, and $6.75 daily. The incremental annual cost above one self-check is $1,916, with 4.5x latency</td>
+</tr>
+<tr>
+<td>Parallel vote limit</td>
+<td>Idealized eight-sample accuracy at least 99.45%, +25.7 points, 6.3 seconds batched. Published forty-sample comparison +17.9 points</td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>Base a = 0.738 and UNC = 0.1934. Verbalized ECE 0.212 and AUROC 0.533. Agreement ECE 0.061 and AUROC 0.796. Isotonic ECE 0.000 and AUROC 0.533</td>
+</tr>
+<tr>
+<td>Brier decomposition table</td>
+<td>REL 0.0453, 0.0000, 0.0045. RES 0.0006, 0.0006, 0.0448. Brier 0.2380, 0.1927, 0.1531. Coverage 0%, 0%, 35.0%</td>
+</tr>
+<tr>
+<td>Agreement resolution</td>
+<td>m = 8 gives nine levels. Adjacent levels resolve only above 0.854 or below 0.146. tau = 0.929 lies between 0.875 and 1.000</td>
+</tr>
+<tr>
+<td>Elicitation cost</td>
+<td>One call $0.00945. Verbalized $9.60 daily. Self-probing $17.25 daily and 1.8x baseline. Eight samples $75.60 daily. Increment $66.00 daily</td>
+</tr>
+<tr>
+<td>Decision value</td>
+<td>Eight samples admit 350 queries at 94.0%, worth 84 units daily. Break-even $0.79 per unit or 47 seconds at $60 per hour</td>
+</tr>
+<tr>
+<td>Long-form threshold</td>
+<td>tau = 0.929. n = 12 needs p = 0.9939. n = 30 needs 0.9975. n = 4 needs 0.9818</td>
+</tr>
+<tr>
+<td>Long-form traffic</td>
+<td>350 briefs, 12 claims each, 4,200 claims, p = 0.95, 210 unsupported. Mean utility +157.5. Full-support probability 0.540, 189 perfect and 161 imperfect briefs, all-or-nothing utility -2,856</td>
+</tr>
+<tr>
+<td>Long-form claim limits</td>
+<td>Reducing error to 0.0061 leaves 26 unsupported claims, an 8x cut. Two supported claims at K = 12 give recall 0.167 and F1 at K = 0.286. Also 0.94^12 = 0.476 and 0.94^40 = 0.084</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/10_prompt_sensitivity.html"><small>Previous</small>Chapter 10. Prompt Sensitivity</a><a href="../chapters/12_text_representation.html"><small>Next</small>Chapter 12. Text Representation</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

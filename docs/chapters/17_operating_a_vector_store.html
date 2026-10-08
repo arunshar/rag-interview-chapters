@@ -1,0 +1,2035 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 17. Operating a Vector Store | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/17_operating_a_vector_store.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group" open><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html" aria-current="page">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part V. Indexing and Vector Search</p><h1>Chapter 17. Operating a Vector Store</h1><p class="chapter-meta">66 min estimated reading · Unit 26 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to operate the retrieval layer of a Retrieval-Augmented Generation (RAG) system under deletion, growth, metadata, filtering, and natural-language constraints.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Hierarchical Navigable Small World (HNSW) insertion is cheap enough to serve online. Faithful deletion is expensive and can silently disconnect the graph, so production systems usually tombstone deleted identifiers and rebuild later.</li>
+<li>Pick the rebuild cadence from the earliest of three limits: the cost optimum, the latency service-level objective (SLO), and the legal erasure deadline. Measure tombstones inside each query's candidate set because clustered deletion can hide behind a healthy global average.</li>
+<li>Sharding divides per-node memory, replication multiplies throughput and availability, and key-based partitioning routes a query to less data. These are different scaling axes.</li>
+<li>A vector database choice is mostly about durability, filtering, network topology, write behavior, tenancy, and operations. Approximate nearest-neighbor (ANN) search is often the smallest latency term.</li>
+<li>Metadata provenance sets the failure mode. A hard predicate on a field with coverage c and accuracy a caps recall at c × a, even if the embedding model and reranker are perfect.</li>
+<li>Selectivity decides how to filter. Use an exact pre-filtered scan for tiny sets, a filter-aware ANN index in the middle, and post-filtering only for broad predicates.</li>
+<li>A large language model (LLM) can split natural language into semantic text and a metadata predicate. Validate that predicate against real catalog values, fail open for ordinary unresolved constraints, and append tenant and access-control list (ACL) rules after model extraction.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a vast public library whose books are arranged by a walking map rather than by shelf number.</p>
+<p>The walking map is the vector index. Nearby books discuss similar ideas, and the librarian follows links from one shelf to the next to reach a useful answer. Adding a new book is manageable. The librarian walks the existing map, finds nearby shelves, and draws new links. Removing a book is harder because that book may be the bridge between two wings.</p>
+<p>The library therefore puts a red sticker on a withdrawn book. That sticker is a tombstone, which means the book cannot be handed to a reader even though it still occupies its shelf and still guides the librarian's route. Red stickers are cheap in storage, but they waste steps. The library periodically builds a clean map beside the old one and swaps it in when cost, delay, or an erasure deadline says it must.</p>
+<p>When the collection outgrows one building, the director has three choices. Sharding divides different books among buildings, so every broad question must visit all buildings. Replication makes identical libraries, so more readers can be served but each copy needs all the shelves. Partitioning sends a reader to one building by a key such as tenant or region, which saves work only when the question carries that key.</p>
+<p>Choosing the library building is not a race for the fastest hallway. The director must ask whether records survive a crash, whether catalog rules run before retrieval, whether the building is in the right region, and who answers the alarm at night. The hallway walk can be less than one millisecond while a remote building or a reranking desk consumes tens or hundreds of milliseconds.</p>
+<p>The catalog also has three kinds of labels. The registrar supplies authoritative labels such as owner and permission. The document processor recovers structural labels such as heading and page. A model invents generated labels such as document type or summary. A wrong ranking label merely moves a book down the list. A wrong hard catalog rule removes the book from the search universe.</p>
+<p>Filtering is the gate at the reading room. For a tiny admitted set, the librarian can inspect every permitted book exactly. For a broad set, the librarian can search globally and discard a few mismatches afterward. Between those cases, the walking map must include extra routes that remain usable after the gate masks forbidden shelves. A preference such as recent should usually influence ranking, while a permission rule must remain a hard gate.</p>
+<p>Finally, a reader may ask for last quarter's board deck without filling out a catalog form. An intake clerk can split that sentence into topic words and a date-and-type predicate. The clerk must use the real field schema, the real value list, and today's date. If an ordinary value does not exist, the library drops that generated constraint and searches broadly. The clerk never writes the reader's permission rule. The library appends that rule afterward so no sentence can widen access.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vector</td>
+<td>A numeric representation of a chunk</td>
+<td>The index searches these numbers rather than raw prose</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>The process or model that maps content into a vector</td>
+<td>Similar content should land near similar content</td>
+</tr>
+<tr>
+<td>Vector store</td>
+<td>A system that keeps vectors, metadata, and a search index</td>
+<td>It surrounds ANN search with persistence, filtering, updates, and operations</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor (ANN) search</td>
+<td>A fast search that may miss the exact nearest item</td>
+<td>It trades some recall for lower latency and less work</td>
+</tr>
+<tr>
+<td>Exact scan</td>
+<td>A distance calculation against every admitted vector</td>
+<td>It gives exact results and wins when a filter leaves very few vectors</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>The share of answerable queries whose gold chunk appears in the top k</td>
+<td>It measures whether retrieval found the needed evidence</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>The useful share among returned or admitted items</td>
+<td>A bad proxy can admit stale or irrelevant material</td>
+</tr>
+<tr>
+<td>Ground truth</td>
+<td>An exact or labeled answer set used for evaluation</td>
+<td>It reveals misses that approximate search and filters can hide</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Number of resident or indexed vectors</td>
+<td>It sets memory, build work, shard size, and filter cardinality</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Embedding dimension</td>
+<td>It sets vector bytes and exact-scan work</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW)</td>
+<td>A layered proximity graph used for ANN search</td>
+<td>Its graph structure explains insertion, deletion, filtering, and sharding behavior</td>
+</tr>
+<tr>
+<td>Inverted file product quantization (IVF-PQ)</td>
+<td>A partitioned and compressed vector index</td>
+<td>Its deletion and drift behavior differs from HNSW</td>
+</tr>
+<tr>
+<td>Product quantization (PQ) codebook</td>
+<td>Learned prototypes used to compress vector blocks</td>
+<td>Distribution drift can make old codebooks stale</td>
+</tr>
+<tr>
+<td>Coarse quantizer</td>
+<td>The IVF model that assigns vectors to coarse cells</td>
+<td>Cell imbalance and drift raise the probes needed for recall</td>
+</tr>
+<tr>
+<td>nprobe</td>
+<td>The number of IVF cells searched per query</td>
+<td>Drift can force this value upward</td>
+</tr>
+<tr>
+<td>M</td>
+<td>HNSW's configured neighbor count on upper layers</td>
+<td>It controls graph memory and connectivity</td>
+</tr>
+<tr>
+<td>M0</td>
+<td>HNSW's base-layer out-degree, set to 2M here</td>
+<td>It drives the dominant distance-evaluation term</td>
+</tr>
+<tr>
+<td>efConstruction</td>
+<td>The candidate beam used while building or inserting into HNSW</td>
+<td>Larger values cost more build work and can improve graph quality</td>
+</tr>
+<tr>
+<td>efSearch</td>
+<td>The candidate beam used during HNSW queries</td>
+<td>Larger values improve recall but cost latency</td>
+</tr>
+<tr>
+<td>ef0</td>
+<td>Clean-index effective beam</td>
+<td>Aging widens the physical beam to preserve this live width</td>
+</tr>
+<tr>
+<td>Select-neighbors heuristic</td>
+<td>The HNSW rule that chooses diverse graph links</td>
+<td>It preserves bridges, which makes local deletion repair risky</td>
+</tr>
+<tr>
+<td>Out-edge</td>
+<td>A link recorded on the node where the link starts</td>
+<td>HNSW stores these directly</td>
+</tr>
+<tr>
+<td>In-neighbor</td>
+<td>A node whose out-edge points into another node</td>
+<td>Deletion needs this reverse set, but the base record does not store it</td>
+</tr>
+<tr>
+<td>Reverse-edge index</td>
+<td>An added map from a node to all nodes pointing at it</td>
+<td>It enables structural deletion but nearly doubles the graph-link term here</td>
+</tr>
+<tr>
+<td>Bridge edge</td>
+<td>A link that connects otherwise distant graph regions</td>
+<td>Deleting its endpoint can make a whole region unreachable</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>A deletion marker that suppresses an identifier without removing its graph node</td>
+<td>It preserves navigation and moves the cost from structure to query latency</td>
+</tr>
+<tr>
+<td>Deleted-identifier bitmap</td>
+<td>One bit per identifier marking logical deletion</td>
+<td>It makes result suppression cheap in bytes</td>
+</tr>
+<tr>
+<td>Beam</td>
+<td>The active candidate set explored during graph search</td>
+<td>Tombstones consume beam slots even though they cannot be returned</td>
+</tr>
+<tr>
+<td>Effective beam</td>
+<td>The live candidates remaining after tombstones occupy slots</td>
+<td>Holding it constant requires widening efSearch as the index ages</td>
+</tr>
+<tr>
+<td>Churn rate c</td>
+<td>The fraction of the live corpus replaced per day</td>
+<td>It controls index growth and rebuild frequency</td>
+</tr>
+<tr>
+<td>Tombstone fraction ϕ</td>
+<td>The resident index share that is logically deleted</td>
+<td>It determines expected beam inflation</td>
+</tr>
+<tr>
+<td>Query rate λ</td>
+<td>Queries served per day</td>
+<td>Higher traffic makes stale-index query work more expensive</td>
+</tr>
+<tr>
+<td>Clean query cost Q0</td>
+<td>The base layer's clean-index distance evaluations</td>
+<td>It anchors the rebuild-cost formula</td>
+</tr>
+<tr>
+<td>Rebuild cost B</td>
+<td>The work required to build a clean index</td>
+<td>It trades against accumulated query overhead</td>
+</tr>
+<tr>
+<td>Cost-optimal period T*</td>
+<td>The rebuild interval that minimizes build plus query work</td>
+<td>It is only one of three cadence limits</td>
+</tr>
+<tr>
+<td>T</td>
+<td>Days since rebuild or the selected rebuild period</td>
+<td>It drives tombstone accumulation and beam inflation</td>
+</tr>
+<tr>
+<td>g(T)</td>
+<td>Daily rebuild plus stale-query cost</td>
+<td>Its minimum gives the economic rebuild period</td>
+</tr>
+<tr>
+<td>g'(T)</td>
+<td>Derivative of the daily cost with respect to rebuild period</td>
+<td>Setting it to zero yields the economic optimum T*</td>
+</tr>
+<tr>
+<td>T_SLO and T_legal</td>
+<td>Latency and erasure ceilings on rebuild period</td>
+<td>The earliest ceiling can override the economic optimum</td>
+</tr>
+<tr>
+<td>Service-level objective (SLO)</td>
+<td>A latency or reliability target the service promises</td>
+<td>Beam growth can force a rebuild before the cost optimum</td>
+</tr>
+<tr>
+<td>Erasure deadline</td>
+<td>The latest time by which deleted bytes must disappear</td>
+<td>Tombstoning alone does not satisfy physical deletion</td>
+</tr>
+<tr>
+<td>Blue-green rebuild</td>
+<td>Building a second clean index and swapping a pointer</td>
+<td>It avoids degrading the live index at the cost of temporary double memory</td>
+</tr>
+<tr>
+<td>Slot recycling</td>
+<td>Reusing a tombstoned graph slot for a new vector</td>
+<td>It controls growth but can inherit links chosen for a different point</td>
+</tr>
+<tr>
+<td>Streaming merge</td>
+<td>Folding updates into new immutable index segments over time</td>
+<td>It avoids a single monolithic rebuild but adds update machinery</td>
+</tr>
+<tr>
+<td>Shard</td>
+<td>One disjoint slice of the corpus</td>
+<td>It reduces memory per node but requires scatter-gather for broad queries</td>
+</tr>
+<tr>
+<td>S (overloaded)</td>
+<td>Shard count in scaling formulas or post-filter survivor count in probability formulas</td>
+<td>The surrounding section determines whether it counts machines or results</td>
+</tr>
+<tr>
+<td>R (overloaded)</td>
+<td>Replication factor in scaling or recall in metadata formulas</td>
+<td>It must not be confused across the two sections</td>
+</tr>
+<tr>
+<td>P (overloaded)</td>
+<td>Partition count, metadata predicate, or model-parameter count</td>
+<td>The same letter names three different source quantities</td>
+</tr>
+<tr>
+<td>f (overloaded)</td>
+<td>Keyed-query fraction or extracted Boolean predicate</td>
+<td>It prices routing in one section and selects a corpus subset in another</td>
+</tr>
+<tr>
+<td>Partition key</td>
+<td>The attribute used to route a query</td>
+<td>Partitioning only wins when the query reliably carries it</td>
+</tr>
+<tr>
+<td>Scatter-gather</td>
+<td>Broadcasting to shards and merging their local top-k results</td>
+<td>It keeps recall but amplifies tail latency</td>
+</tr>
+<tr>
+<td>Fan-out</td>
+<td>The number of machines a single query touches</td>
+<td>A query waits for the slowest branch</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>The k highest-scoring results requested</td>
+<td>Shards each return local candidates that must be merged globally</td>
+</tr>
+<tr>
+<td>Tail latency</td>
+<td>Delay in the slowest portion of the request distribution</td>
+<td>Fan-out turns rare slow machines into common slow queries</td>
+</tr>
+<tr>
+<td>p95 and p99</td>
+<td>The 95th and 99th percentile latencies</td>
+<td>They expose delay that a mean hides</td>
+</tr>
+<tr>
+<td>Hash sharding</td>
+<td>Assigning identifiers to shards with a hash</td>
+<td>It balances load but destroys useful attribute locality</td>
+</tr>
+<tr>
+<td>Attribute partitioning</td>
+<td>Placing items together by tenant, region, type, or date</td>
+<td>It routes keyed queries without broadcast</td>
+</tr>
+<tr>
+<td>Skew</td>
+<td>Uneven data or query load across partitions</td>
+<td>A large tenant can make pure attribute partitioning fail</td>
+</tr>
+<tr>
+<td>Hybrid partitioning</td>
+<td>Routing small tenants directly while sub-sharding large tenants</td>
+<td>It preserves routing gains while containing whales</td>
+</tr>
+<tr>
+<td>Tenant</td>
+<td>One customer or isolation domain in a shared system</td>
+<td>Tenant size and permissions shape routing and filtering</td>
+</tr>
+<tr>
+<td>Pareto frontier</td>
+<td>Choices where improving one axis worsens another</td>
+<td>No vector-store class wins every operational dimension</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Refractive index of silica in the network example</td>
+<td>It converts light speed into a physical round-trip floor</td>
+</tr>
+<tr>
+<td>c as light speed</td>
+<td>Vacuum light speed in the network example</td>
+<td>It is distinct from churn rate c and metadata coverage c</td>
+</tr>
+<tr>
+<td>t_RTT</td>
+<td>Round-trip propagation time</td>
+<td>It shows why cross-region placement can break the budget by itself</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td>The ability to preserve data across crashes</td>
+<td>It often adds write logging and synchronization cost</td>
+</tr>
+<tr>
+<td>Write-ahead log</td>
+<td>A durable record written before applying an update</td>
+<td>It supports recovery but fights minimum in-memory latency</td>
+</tr>
+<tr>
+<td>fsync</td>
+<td>An operating-system call that forces buffered writes to durable storage</td>
+<td>It improves durability and adds write latency</td>
+</tr>
+<tr>
+<td>Single instruction, multiple data (SIMD)</td>
+<td>Hardware execution of one operation across many values</td>
+<td>Different implementations gain constant-factor speed from layout and vectorization</td>
+</tr>
+<tr>
+<td>Structured Query Language (SQL) extension</td>
+<td>Vector search added to a relational database</td>
+<td>It gains joins and familiar operations but shares resources with transactions</td>
+</tr>
+<tr>
+<td>Online transaction processing (OLTP)</td>
+<td>The application's regular transactional database workload</td>
+<td>A large vector index can compete with its buffer pool</td>
+</tr>
+<tr>
+<td>B-tree</td>
+<td>An ordered database index for scalar fields</td>
+<td>A query planner can combine it with vector search for metadata predicates</td>
+</tr>
+<tr>
+<td>Virtual private cloud (VPC)</td>
+<td>An isolated cloud network boundary</td>
+<td>Same-VPC placement can make the store hop small</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>A throughput-oriented accelerator</td>
+<td>Large batches help throughput but can fight per-query tail latency</td>
+</tr>
+<tr>
+<td>Field-programmable gate array (FPGA)</td>
+<td>Reconfigurable search acceleration hardware</td>
+<td>It is one database-selection axis named by the source</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A model that rescores retrieved candidates</td>
+<td>It often costs far more latency than ANN search</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A reranker that jointly reads a query and passage</td>
+<td>It improves ranking at substantial compute cost</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One arithmetic operation used to price model compute</td>
+<td>It makes reranker and prefill costs comparable</td>
+</tr>
+<tr>
+<td>32-bit floating point (fp32)</td>
+<td>Four-byte storage for each vector coordinate</td>
+<td>It sets vector memory and scan bandwidth</td>
+</tr>
+<tr>
+<td>Brain floating point 16 (bf16)</td>
+<td>A two-byte model-weight format</td>
+<td>It sets the extractor's weight-read floor</td>
+</tr>
+<tr>
+<td>Byte units</td>
+<td>Kilobyte (KB), megabyte (MB), gigabyte (GB), and terabyte (TB)</td>
+<td>They price index memory, scan traffic, and rebuild traffic</td>
+</tr>
+<tr>
+<td>Time units</td>
+<td>Millisecond (ms) and microsecond (µs)</td>
+<td>They make network, model, and search latency directly comparable</td>
+</tr>
+<tr>
+<td>Random-access memory (RAM)</td>
+<td>Main memory used for the resident index</td>
+<td>Index size divided by usable RAM sets minimum shard count</td>
+</tr>
+<tr>
+<td>High Bandwidth Memory (HBM)</td>
+<td>Accelerator memory with very high transfer bandwidth</td>
+<td>Autoregressive decoding repeatedly reads model weights from it</td>
+</tr>
+<tr>
+<td>Matryoshka representation learning</td>
+<td>An embedding design that retains usefulness after dimension truncation</td>
+<td>It can reduce vector memory without training a separate full pipeline</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>Fields stored beside a vector</td>
+<td>Predicates can remove candidates before similarity scoring</td>
+</tr>
+<tr>
+<td>Descriptive metadata</td>
+<td>Fields emitted by the system of record</td>
+<td>These fields are authoritative for what they actually measure</td>
+</tr>
+<tr>
+<td>Structural metadata</td>
+<td>Fields recovered by a parser or layout model</td>
+<td>Coverage varies by document format</td>
+</tr>
+<tr>
+<td>Generated metadata</td>
+<td>Fields synthesized by a model at index time</td>
+<td>Errors can reduce recall and pollute the wrong bucket</td>
+</tr>
+<tr>
+<td>System of record</td>
+<td>The authoritative source for a field</td>
+<td>Hard security and ownership predicates need this provenance</td>
+</tr>
+<tr>
+<td>Multipurpose Internet Mail Extensions (MIME) type</td>
+<td>A standard content-type label</td>
+<td>It is an example of descriptive metadata</td>
+</tr>
+<tr>
+<td>Access-control list (ACL)</td>
+<td>The authoritative list of who may access an item</td>
+<td>It must never be generated by the query model</td>
+</tr>
+<tr>
+<td>Coverage c</td>
+<td>The fraction of chunks with a populated field</td>
+<td>Missing values create a hard recall ceiling</td>
+</tr>
+<tr>
+<td>Accuracy a</td>
+<td>The correct share among populated values</td>
+<td>Wrong values create misses and contamination</td>
+</tr>
+<tr>
+<td>Hard predicate</td>
+<td>A Boolean rule that excludes nonmatching chunks</td>
+<td>Anything excluded cannot be recovered downstream</td>
+</tr>
+<tr>
+<td>Soft signal</td>
+<td>A feature added to text or ranking rather than used as a gate</td>
+<td>An error changes rank instead of deleting the answer</td>
+</tr>
+<tr>
+<td>Null-tolerant predicate</td>
+<td>A rule that also admits chunks with missing metadata</td>
+<td>It restores recall at the price of a larger search set</td>
+</tr>
+<tr>
+<td>Cardinality</td>
+<td>The count of distinct values or matching rows for a field</td>
+<td>It guides planners, value catalogs, and selectivity estimates</td>
+</tr>
+<tr>
+<td>Prompt hash</td>
+<td>A compact identifier for an exact generation prompt</td>
+<td>It supports targeted metadata backfills after prompt changes</td>
+</tr>
+<tr>
+<td>Optical character recognition (OCR)</td>
+<td>Text recovery from scanned page images</td>
+<td>OCR without layout can lose headings and structural fields</td>
+</tr>
+<tr>
+<td>Selectivity s</td>
+<td>The fraction of the corpus a predicate admits</td>
+<td>It decides exact scan, filter-aware ANN, or post-filtering</td>
+</tr>
+<tr>
+<td>Pre-filtering</td>
+<td>Resolving the predicate before vector scoring</td>
+<td>It can enforce access and make tiny candidate sets cheap</td>
+</tr>
+<tr>
+<td>Inverted index</td>
+<td>A map from metadata values or terms to matching identifiers</td>
+<td>It resolves a predicate before vector scoring</td>
+</tr>
+<tr>
+<td>Post-filtering</td>
+<td>Searching globally and discarding mismatches afterward</td>
+<td>It is easy to implement but returns too few items for selective predicates</td>
+</tr>
+<tr>
+<td>Binomial distribution</td>
+<td>The count model for K independent candidates that each survive with probability s</td>
+<td>It prices post-filter over-fetch</td>
+</tr>
+<tr>
+<td>E[S], Var[S], and Pr(S &gt;= k)</td>
+<td>Expected survivors, survivor variance, and the chance of returning at least k survivors</td>
+<td>They turn a short-result requirement into an over-fetch bound</td>
+</tr>
+<tr>
+<td>Normal approximation</td>
+<td>A bell-curve estimate of the binomial tail</td>
+<td>It produces the 99% over-fetch threshold</td>
+</tr>
+<tr>
+<td>Over-fetch K</td>
+<td>The global candidate count requested before post-filtering</td>
+<td>It must grow roughly as 20.6 divided by selectivity for top-10 at 99% confidence</td>
+</tr>
+<tr>
+<td>Filter-aware ANN</td>
+<td>An ANN structure or traversal that preserves paths under filters</td>
+<td>It handles the middle selectivity band</td>
+</tr>
+<tr>
+<td>Induced subgraph</td>
+<td>The graph left after masking all nonmatching nodes</td>
+<td>It can be disconnected even when the original graph was navigable</td>
+</tr>
+<tr>
+<td>Multi-hop expansion</td>
+<td>Looking beyond masked one-hop neighbors during traversal</td>
+<td>It restores filtered connectivity at query-time cost</td>
+</tr>
+<tr>
+<td>Label-aware edge</td>
+<td>A graph link added to preserve paths within a filter category</td>
+<td>It moves filtered-connectivity work into index construction</td>
+</tr>
+<tr>
+<td>Over-filtering</td>
+<td>Applying a valid hard rule that is wrong for the user's intent</td>
+<td>Metrics over the already-filtered set cannot detect it</td>
+</tr>
+<tr>
+<td>u</td>
+<td>Square root of the expected post-filter survivors sK</td>
+<td>It reduces the 99% over-fetch inequality to a quadratic</td>
+</tr>
+<tr>
+<td>Self-querying</td>
+<td>Model-based conversion of one utterance into semantic text and a predicate</td>
+<td>It lets natural language express filters without a form</td>
+</tr>
+<tr>
+<td>q and q_s</td>
+<td>Query or query embedding, and its residual semantic text</td>
+<td>Self-querying removes predicate language before embedding q_s</td>
+</tr>
+<tr>
+<td>q_k</td>
+<td>A query that carries a partition key</td>
+<td>It can route to one partition instead of broadcasting</td>
+</tr>
+<tr>
+<td>C and C_f</td>
+<td>Full corpus and the subset admitted by predicate f</td>
+<td>Retrieval searches C_f after extraction and validation</td>
+</tr>
+<tr>
+<td>Semantic channel</td>
+<td>The residual words sent to the embedding model</td>
+<td>It carries topical meaning</td>
+</tr>
+<tr>
+<td>Predicate channel</td>
+<td>The Boolean constraints extracted from the utterance</td>
+<td>It carries order, membership, and conjunction</td>
+</tr>
+<tr>
+<td>Field schema</td>
+<td>The allowed metadata names and types</td>
+<td>It constrains what the extractor may emit</td>
+</tr>
+<tr>
+<td>Value catalog</td>
+<td>The actual distinct values present in the index</td>
+<td>It detects predicates that parse but match nothing</td>
+</tr>
+<tr>
+<td>Finite-state grammar</td>
+<td>A fixed set of valid token transitions for structured output</td>
+<td>It prevents malformed predicate strings</td>
+</tr>
+<tr>
+<td>Text-to-SQL semantic parsing</td>
+<td>Converting natural language into a structured database query</td>
+<td>It frames self-querying as a smaller known-hard extraction task</td>
+</tr>
+<tr>
+<td>Constrained decoding</td>
+<td>Limiting generation to strings accepted by a grammar</td>
+<td>It guarantees syntax, not correct meaning or existing values</td>
+</tr>
+<tr>
+<td>Referential validity</td>
+<td>Whether a predicate names values that actually exist</td>
+<td>Syntax alone does not provide it</td>
+</tr>
+<tr>
+<td>Detectable extraction error ed</td>
+<td>A wrong field or value rejected by validation</td>
+<td>Fail-open handling can recover to unfiltered recall</td>
+</tr>
+<tr>
+<td>Undetectable extraction error eu</td>
+<td>A valid-looking predicate that expresses the wrong constraint</td>
+<td>Only labeled evaluation reveals it</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Probability that the extracted predicate is correct</td>
+<td>Blind self-querying breaks even only above a threshold on p</td>
+</tr>
+<tr>
+<td>R_f and R_0</td>
+<td>Recall with a correct filter and with no filter</td>
+<td>They set the extraction break-even and fallback value</td>
+</tr>
+<tr>
+<td>E[R]</td>
+<td>Expected recall across extraction outcomes</td>
+<td>It exposes how validation changes detectable errors from zero recall to R_0</td>
+</tr>
+<tr>
+<td>f_session and f_extracted</td>
+<td>System authorization and model-extracted predicates</td>
+<td>Their conjunction lets the model narrow access but never widen it</td>
+</tr>
+<tr>
+<td>Fail open</td>
+<td>Drop an unresolved ordinary predicate and search without it</td>
+<td>The downside becomes the unfiltered baseline rather than zero</td>
+</tr>
+<tr>
+<td>Fail closed</td>
+<td>Return nothing and raise when authorization cannot be enforced</td>
+<td>Permission failure must not widen access</td>
+</tr>
+<tr>
+<td>Session filter</td>
+<td>A system-supplied tenant and ACL predicate</td>
+<td>Conjoining it after extraction prevents model-written access expansion</td>
+</tr>
+<tr>
+<td>Reference date</td>
+<td>The literal current date supplied to the extractor</td>
+<td>Relative phrases such as last quarter need a real clock</td>
+</tr>
+<tr>
+<td>Query planner</td>
+<td>Logic that chooses an execution path from data statistics and predicates</td>
+<td>It switches among exact scan, filtered ANN, and post-filtering</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="171-static-index-dynamic-corpus-tombstones-and-re-indexing">17.1 Static index, dynamic corpus: tombstones and re-indexing</h3>
+<h4 id="static-assumptions-and-online-insertion">Static assumptions and online insertion</h4>
+<ul>
+<li>What it is: skip-list occupancy, HNSW height log_M N, inverted-file cells, and PQ codebooks assume a fixed set of N vectors. A production corpus instead receives publications, revisions, retractions, deletion requests, and tenant offboarding.</li>
+<li>Why it exists: HNSW insertion reuses the build procedure. It searches with efConstruction, applies select-neighbors, and wires in the new node.</li>
+<li>Failure without it: treating the corpus as static leaves no explicit answer for what happens after a delete request. In the source's 10:00 example, a nightly-only rebuild leaves 14 hours with no query-time guarantee.</li>
+<li>Cost: with N = 10^7, d = 768 in fp32, M = 16, M0 = 32, and efConstruction = 200, one insert costs 200 × 32 = 6,400 distance evaluations. At 2% daily churn, 2 × 10^5 inserts cost 1.28 × 10^9 evaluations per day. A full build costs 6.4 × 10^10, so insertion consumes 2% of one rebuild per day.</li>
+</ul>
+<h4 id="why-faithful-graph-deletion-loses">Why faithful graph deletion loses</h4>
+<ul>
+<li>What it is: structural deletion removes a node and repairs every node that pointed to it.</li>
+<li>Why it exists: a physically removed node should neither answer queries nor remain on disk.</li>
+<li>Failure without reverse edges: HNSW records out-edges. It does not directly list all in-neighbors of the deleted node.</li>
+<li>Cost of reverse edges: storing 32 reverse neighbor identifiers at four bytes each adds 128 bytes per vector. Ten million vectors add 1.28 GB. The graph term rises from 132 to 260 bytes per vector.</li>
+<li>Cost of repair: roughly 32 in-neighbors each require an insertion-like 6,400-evaluation search. That is 2.05 × 10^5 evaluations per deletion.</li>
+<li>Daily cost: 2 × 10^5 deletions per day cost 4.1 × 10^10 evaluations. That is 64% of a full rebuild every day.</li>
+<li>Correctness failure: select-neighbors deliberately preserves diverse bridge edges. Removing a bridge and choosing local replacements can sever a region. Greedy search then returns the best reachable node with no exception or counter.</li>
+</ul>
+<h4 id="tombstones-and-beam-inflation">Tombstones and beam inflation</h4>
+<ul>
+<li>What it is: a deleted-identifier bitmap marks a node as unavailable while leaving its vector and edges in place. Result assembly drops marked identifiers.</li>
+<li>Why it exists: the graph remains navigable and the answer set reflects the deletion on the next query.</li>
+<li>Failure without beam compensation: dead nodes still route traffic and occupy candidate slots. Holding efSearch fixed converts aging into silent recall loss.</li>
+<li>Storage cost: 10^7 bits equal 1.25 MB. That is 0.0039% of a 32 GB index.</li>
+<li>Query cost: let ϕ be the tombstoned share. A beam of width ef contains ef(1 - ϕ) live candidates in expectation.</li>
+<li>Required beam: preserving a clean effective beam ef0 = 64 requires ef = ef0 / (1 - ϕ).</li>
+<li>Steady-state relation: after T days at churn c, resident vectors equal N(1 + cT), ϕ = cT / (1 + cT), and 1 / (1 - ϕ) = 1 + cT.</li>
+<li>Layer-0 work: Q0 = ef0 × M0 = 64 × 32 = 2,048 evaluations. Aging raises it to 2,048(1 + cT).</li>
+</ul>
+<h4 id="rebuild-economics-and-hard-ceilings">Rebuild economics and hard ceilings</h4>
+<ul>
+<li>What it is: a periodic rebuild creates a clean index and resets beam inflation.</li>
+<li>Why it exists: rebuild work is fixed while stale-index query overhead grows linearly.</li>
+<li>Cycle model: mean excess work per query over a cycle is 2,048cT / 2. At λ queries per day, total cycle work is B + 1,024λcT².</li>
+<li>Daily model: g(T) = B / T + 1,024λcT.</li>
+<li>Cost optimum: T* = √(B / (1,024λc)) = √(2B / (Q0λc)).</li>
+<li>Claim limit: T* is not the shipped cadence by itself. Use T = min(T*, T_SLO, T_legal).</li>
+<li>Traffic effect: a hundredfold increase in λ shortens T* by tenfold because of the square root.</li>
+<li>Low-traffic example: at 10 queries per second (QPS), λ = 8.64 × 10^5 per day and T* = √3,618 = 60 days. Then cT = 1.2, ϕ = 55%, and the beam more than doubles.</li>
+<li>High-traffic example: at 1,000 QPS, λ = 8.64 × 10^7 and T* = √36.2 = 6.0 days.</li>
+<li>Latency ceiling: allowing at most 20% layer-0 inflation gives cT ≤ 0.2, T ≤ 10 days, and ϕ ≤ 16.7%.</li>
+<li>Legal ceiling: the source identifies General Data Protection Regulation (GDPR) Article 17 erasure and the Article 12(3) one-month response window. A tombstone hides a result but leaves vector, text, and backups resident.</li>
+<li>Binding outcomes: the 10-QPS service rebuilds every 10 days on the SLO. The 1,000-QPS service rebuilds every 6 days on cost. The legal limit is 30 days in the example.</li>
+</ul>
+<h4 id="operational-checks-and-exceptions">Operational checks and exceptions</h4>
+<ul>
+<li>Rebuild feasibility: 6.4 × 10^10 evaluations reading 3,072 bytes each move 1.97 × 10^14 bytes, or 197 TB. At 50 GB/s, the build takes 3,932 seconds, or 1.1 hours. That is a 0.76% duty cycle over six days.</li>
+<li>Hourly limit: an hourly news-corpus cadence does not fit if build time exceeds the period. Shard the index or lower efConstruction.</li>
+<li>Correlated deletion: a global ϕ of 5% can hide a local ϕ of 90% after a coherent tenant or product deletion. Measure tombstone share inside each returned candidate set.</li>
+<li>Event trigger: bursty churn favors rebuilding when measured ϕ crosses the ceiling instead of following a fixed calendar.</li>
+<li>HNSW default: tombstone and rebuild. Slot recycling or a FreshDiskANN-style streaming merge from Singh et al. (2021) is an exception when growth, not latency, binds. A recycled node inherits edges selected for another point.</li>
+<li>IVF-PQ exception: deletion from a posting list costs O(list length) and does not break a graph invariant. Watch coarse-cell balance and retrain when the largest cell exceeds a few times the mean.</li>
+<li>Blue-green default: build beside the 32 GB live index, spend 64 GB temporarily, and swap atomically. If two copies do not fit, shard first and rebuild one shard at a time.</li>
+<li>Search dial: raise efSearch to ef0(1 + cT) as the index ages. Rebuild when that beam violates the p95 budget.</li>
+<li>Tight-deadline case: at 500 million vectors, the 50× corpus makes a one-hour whole-index rebuild take about 50 hours. A 24-hour erasure rule then requires on-demand payload and vector-byte deletion, with an orphaned tombstoned graph node until structural rebuild. This split is safe only when payload lookup fails closed on a missing record.</li>
+<li>Sanity check: the derived 16.7% ceiling is close to Lucene TieredMergePolicy's 20% deletesPctAllowed default. hnswlib exposes markDelete and replacement of deleted slots. FAISS IndexHNSW does not implement remove_ids.</li>
+</ul>
+<h3 id="172-sharding-replication-partitioning">17.2 Sharding, replication, partitioning</h3>
+<h4 id="three-distinct-scaling-axes">Three distinct scaling axes</h4>
+<ul>
+<li><p>What sharding is: split N vectors across S machines. Each node stores N / S, and broad queries scatter to every shard.</p></li>
+<li><p>Why sharding exists: it solves per-node memory capacity and can parallelize rebuilds.</p></li>
+<li><p>Failure when misused: system QPS stays flat because every user query consumes one slot on each shard. The query also waits for the slowest shard.</p></li>
+<li><p>Traversal cost: HNSW depth grows logarithmically. Eight shards over 10^8 vectors change the depth ratio to log2(10^8 / 8) / log2(10^8) = 0.89, only an 11% cut.</p></li>
+<li><p>Tail cost: if one machine is slow on 1% of calls, an S-way query is slow with probability 1 - 0.99^S. At S = 100 this is 63.4%, matching Dean and Barroso (2013).</p></li>
+<li><p>What replication is: create R complete copies of a shard and route each query to one copy.</p></li>
+<li><p>Why replication exists: it raises throughput and availability.</p></li>
+<li><p>Failure when misused: it cannot make an oversized index fit because each replica still holds the full shard.</p></li>
+<li><p>Cost: throughput scales by R, and total memory also scales by R. It does not make one query intrinsically faster.</p></li>
+<li><p>What partitioning is: split the corpus by a query attribute such as tenant, region, document type, or date.</p></li>
+<li><p>Why partitioning exists: a query carrying the key can skip P - 1 partitions and remove scatter-gather.</p></li>
+<li><p>Failure when misused: a missing or wrong key routes to the wrong data or forces broadcast. Recall is at risk if the gold chunk lives elsewhere.</p></li>
+<li><p>Cost: the routing and balancing machinery only pays when enough queries carry the key.</p></li>
+</ul>
+<h4 id="hashing-attributes-and-hybrids">Hashing, attributes, and hybrids</h4>
+<ul>
+<li>Hash sharding is skew-free without knowing the query distribution. It balances N / S vectors and load.</li>
+<li>Hash sharding loses attribute locality. If 90% of queries carry tenant_id, a three-shard deployment still pays 3× fan-out.</li>
+<li>Attribute partitioning optimizes the mean partitions touched. Hashing optimizes load variance.</li>
+<li>A whale tenant can defeat pure attribute partitioning. The source's staff case uses one tenant with 40% of the corpus and 60% of queries.</li>
+<li>The hybrid routes small tenants by tenant_id and hash-shards the whale into sub-shards with dedicated replicas.</li>
+<li>The hybrid costs two paths and a rebalancing job when a small tenant becomes a whale.</li>
+</ul>
+<h4 id="worked-capacity-example">Worked capacity example</h4>
+<ul>
+<li>Corpus: 100 million chunks, d = 768 in fp32, HNSW M = 16, and 128 GB usable RAM per node.</li>
+<li>Raw vectors: 100 × 10^6 × 768 × 4 = 307.2 GB.</li>
+<li>Layer-0 links: 32 identifiers at four bytes each equal 128 bytes per vector and 12.8 GB total.</li>
+<li>Resident total: about 320.0 GB. The minimum shard count is ceiling(320 / 128) = 3.</li>
+<li>Per shard: 33.3 million vectors and 106.7 GB.</li>
+<li>Measured service point: 8 ms mean search at 16 concurrent threads gives 2,000 shard-queries per second per machine.</li>
+<li>Shard only: S = 3 and R = 1 use three machines. Capacity is 6,000 shard-queries per second, but fan-out 3 leaves 2,000 user QPS. Query p99 requires each shard near p99.67.</li>
+<li>Shard and replicate: S = 3 and R = 3 use nine machines. They serve 6,000 QPS and hold 960 GB. Fan-out and tail amplification remain 3.</li>
+<li>Tenant partition: P = 3 and R = 1 use three machines. Keyed fan-out 1 serves 6,000 QPS at 320 GB and restores single-machine tail behavior.</li>
+<li>Mixed query formula: expected partitions touched = f + (1 - f)P, where f is the keyed-query share.</li>
+<li>At f = 0.9 and P = 3, expected fan-out is 1.2 and throughput is 5,000 QPS.</li>
+<li>At f = 0.5, expected fan-out is 2.0 and throughput falls to 3,000 QPS.</li>
+</ul>
+<h4 id="operating-rules">Operating rules</h4>
+<ul>
+<li>Set S to ceiling(index bytes / usable node RAM). Extra shards add tail exposure for only logarithmic traversal savings.</li>
+<li>Over-shard only when parallel build time must fit a rebuild window.</li>
+<li>If p99 rises after moving from one shard to eight, each branch now needs about its p99.87 to keep the whole query under p99. Consolidate to the minimum shard count, send a backup request to a replica when a branch is slow, or route on a key.</li>
+<li>Set R from availability first. Use R = 2 for one-node-loss tolerance and R = 3 when a rebuild removes one replica from rotation.</li>
+<li>Build one index segment and ship it to replicas. Independent replica writes force tombstone reconciliation.</li>
+<li>Measure f before partitioning. Below roughly f = 0.5, routing gains are small unless the key is also an isolation boundary.</li>
+<li>Push metadata filters to each shard before merging. If a filter is extremely selective, consider making it a partition key.</li>
+<li>Sharding does not inherently cost recall. Only the shard holding the gold chunk can return it, and its smaller graph may slightly improve local ANN recall at the same efSearch.</li>
+</ul>
+<h3 id="173-choosing-a-vector-database-no-winner-on-all-axes">17.3 Choosing a vector database: no winner on all axes</h3>
+<h4 id="separate-index-choice-from-database-choice">Separate index choice from database choice</h4>
+<ul>
+<li>What index choice is: select HNSW, IVF-PQ, or flat scan for a recall, latency, and memory point.</li>
+<li>What database choice is: select durability, filtering, update and delete behavior, tenancy, topology, and operational ownership around the index.</li>
+<li>Why the distinction matters: public benchmarks mostly expose the first choice while production failures often come from the second.</li>
+<li>Claim limit: at matched M and efSearch, recall is primarily an algorithm-and-parameter property. Implementations differ through SIMD width, memory layout, and runtime by constant factors that can reach 2-3×, not orders of magnitude.</li>
+</ul>
+<h4 id="attribute-the-entire-latency-budget">Attribute the entire latency budget</h4>
+<ul>
+<li>Budget: 200 ms p99 before the first prefill token.</li>
+<li>Embedding call: 20 ms.</li>
+<li>ANN search: 0.42 ms over 10 million vectors.</li>
+<li>Reranker: top 20 with a Bidirectional Encoder Representations from Transformers (BERT)-base-sized cross-encoder.</li>
+<li>Reranker work: 2 × 1.1 × 10^8 parameters × 512 tokens × 20 passages = 2.25 × 10^12 FLOPs.</li>
+<li>Reranker time: at 20 trillion floating-point operations per second (TFLOP/s), that is 113 ms.</li>
+<li>Network floor: light in silica at refractive index about 1.47 travels near 2.04 × 10^8 m/s.</li>
+<li>Northern Virginia to Ireland: t_RTT = 2 × 5.5 × 10^6 / (2.04 × 10^8) = 54 ms. Fiber paths near 1.4× the great-circle route make about 75 ms practical.</li>
+<li>Same region: 20 + 1 + 0.42 + 113 = 134 ms. ANN is 0.31%.</li>
+<li>Cross region: total is 208 ms and misses the budget.</li>
+<li>Comparison: a database with twice-as-fast ANN saves 0.21 ms. Wrong-region placement adds 75 ms, or 38% of the budget.</li>
+</ul>
+<h4 id="the-pareto-frontier">The Pareto frontier</h4>
+<ul>
+<li>Durability adds a write-ahead log and fsync, which oppose minimum in-memory write latency.</li>
+<li>Horizontal scale adds sharding, which opposes exact global top-k and cross-shard transactions.</li>
+<li>GPU indexes favor batches, which oppose low-concurrency p99.</li>
+<li>A managed service reduces operational burden but adds a network boundary and can hide build parameters.</li>
+<li>The architectural classes are libraries, embedded stores, SQL extensions, search engines, distributed stores, and fully managed services.</li>
+<li>No class has structural strength on every axis.</li>
+<li>ANN-Benchmarks is a losing universal selector because its static, unfiltered, one-tenant, pre-batched workload hides the operational axes.</li>
+<li>The opposite reflex also loses. Putting every workload into an existing relational database fails once the resident vector index consumes the headroom needed by OLTP.</li>
+</ul>
+<h4 id="worked-product-example">Worked product example</h4>
+<ul>
+<li>Workload: 20 million chunks at d = 768, 5,000 tenants, 50 QPS, 200 ms retrieval p99, and 2% daily churn.</li>
+<li>In-process library: zero network hop gives 133 ms. HNSW at M = 16 costs 3,204 bytes per vector, or 64.1 GB before payload.</li>
+<li>Tenant size: 20 million / 5,000 = 4,000 chunks, or 0.02% of the corpus.</li>
+<li>Global top-100 post-filter: expected tenant results equal 0.02. The chance of at least one result is 2.0%, so 98% of queries return empty.</li>
+<li>Different-region managed service: filtering and durability work, but the path is 208 ms against 200 ms. Index tuning cannot remove fiber distance.</li>
+<li>Same-VPC SQL extension: one 0.5 ms trip, a B-tree tenant predicate, and payload in the same row produce the source's stated 133 ms. The listed terms sum to 133.92 ms, or about 134 ms, so that rounded source total is 1 ms low. The cost is a 64.1 GB index competing with OLTP.</li>
+<li>Matryoshka truncation example: reducing d to 384 gives 1,668 bytes per vector and 33.4 GB for the 20 million vectors.</li>
+<li>Write path: 400,000 daily inserts at 6,400 evaluations cost 2.56 × 10^9 evaluations.</li>
+<li>Query path: 50 × 86,400 × 2,048 = 8.85 × 10^9 evaluations per day.</li>
+<li>Maintenance tax: insertion work is 29% of query compute and is absent from static leaderboards.</li>
+</ul>
+<h4 id="selection-rules">Selection rules</h4>
+<ul>
+<li>Keep the system the team already operates until the resident index exceeds memory headroom or the workload needs a missing index type.</li>
+<li>At d = 768 fp32, the source places the rough single-64-GB-box boundary near 20 million vectors.</li>
+<li>Co-locate the store with the application before index tuning. Data-residency law can instead require per-region replicas.</li>
+<li>Check veto axes first: maximum dimension, distance function, and filtered-search semantics.</li>
+<li>Benchmark the real corpus with real filters, concurrency, and background churn. Use a 10,000-query sample against a flat index for exact ground truth.</li>
+<li>Prefer a managed system when the team cannot operate a stateful service. Prefer an application programming interface (API) that also has a self-hosted path when portability matters.</li>
+<li>Treat product choice as a class-and-constraints decision before naming a vendor.</li>
+</ul>
+<h3 id="174-metadata-descriptive-structural-generated">17.4 Metadata: descriptive, structural, generated</h3>
+<h4 id="provenance-determines-failure">Provenance determines failure</h4>
+<ul>
+<li><p>Opening precision example: a 2025 migration re-stamped 40% of the corpus. Filtering ingested_at &gt; 2025-01-01 made a 2019 template look eleven months old because the field measured ingestion rather than authorship.</p></li>
+<li><p>What descriptive metadata is: owner, path, MIME type, ACL, and ingest timestamp from a system of record.</p></li>
+<li><p>Why it exists: these fields are complete and accurate for what they literally measure.</p></li>
+<li><p>Failure: semantic substitution causes precision loss. ingested_at can be correct while serving as a poor proxy for document date after migration.</p></li>
+<li><p>Cost: marginal generation cost is zero.</p></li>
+<li><p>What structural metadata is: heading, page, parent, table identifier, and reading order from a parser or layout model.</p></li>
+<li><p>Why it exists: it captures location inside a document.</p></li>
+<li><p>Failure: values are accurate where present but absent for formats the parser cannot recover. Scanned documents can become a dark slice.</p></li>
+<li><p>Cost: one parse pass, plus coverage measurement.</p></li>
+<li><p>What generated metadata is: type, entities, summary, sentiment, or context prefix from a model at index time.</p></li>
+<li><p>Why it exists: it can represent attributes with no authoritative field.</p></li>
+<li><p>Failure: a wrong value removes the chunk from its correct bucket and pollutes another.</p></li>
+<li><p>Cost: one model call per chunk, repeated after model, prompt, or chunking changes.</p></li>
+</ul>
+<h4 id="recall-ceiling">Recall ceiling</h4>
+<ul>
+<li>Let c be field coverage and a be accuracy among populated values.</li>
+<li>A hard equality predicate lets the gold chunk survive only when the field is present and correct.</li>
+<li>The ceiling is R ≤ c × a.</li>
+<li>Two independent hard predicates give R ≤ c1a1c2a2.</li>
+<li>A reranker can reorder candidates but cannot restore a filtered-out chunk.</li>
+<li>A better embedding model can improve recall below the ceiling, not above it.</li>
+<li>A generated classifier at 92% accuracy imposes an 8% ceiling tax on every hard-filtered query.</li>
+<li>Consume generated fields softly by prepending them to embedded text or using a score boost. Reserve hard predicates for authoritative fields or measured structural fields.</li>
+<li>Tenancy and ACL are stricter because their error direction is disclosure, not a missed answer.</li>
+</ul>
+<h4 id="worked-metadata-example">Worked metadata example</h4>
+<ul>
+<li>Corpus: 180,000 documents and 2 million chunks at 400 tokens, totaling 800 million tokens.</li>
+<li>Format mix: 55% native DOCX or Hypertext Markup Language (HTML) with headings, and 45% scanned Portable Document Format (PDF) files processed by OCR without layout.</li>
+<li>Heading vocabulary: about 20 values, treated as uniform.</li>
+<li>Generated doc_type audit: 300 chunks at 92% accuracy. Standard error is √(0.92 × 0.08 / 300) = 0.0157, or about ±3.1 points at 95% confidence.</li>
+<li>Strict section filter: 0.55 / 20 = 2.75% of the corpus, or 55,000 chunks. Recall ceiling is 0.55.</li>
+<li>Null-tolerant section filter: 0.45 + 0.0275 = 47.75%, or 955,000 chunks. Recall ceiling returns to 1.00 at a 17× larger search space.</li>
+<li>Layout repair: if coverage reaches 0.95, strict filtering searches 4.75%, or 95,000 chunks, with a 0.95 ceiling.</li>
+<li>Adding hard doc_type at 0.92 accuracy to the original 0.55 coverage yields 0.506 recall. The missing share is 49.4%.</li>
+<li>Tagging pass: 2 million chunks × 500 input tokens equals 1,000 million input tokens. Thirty output tokens each add 60 million output tokens.</li>
+<li>Stipulated cost: at $1 per million input and $5 per million output, tagging costs $1,300.</li>
+<li>Embedding comparison: 800 million tokens at $0.02 per million cost $16. Tagging is 81× the embedding bill.</li>
+<li>Contextual-retrieval comparison: Anthropic's 2024 writeup reports $1.02 per million document tokens, or $816 here. The uncached $1,300 estimate is 1.6× higher because prompt caching explains the gap.</li>
+<li>Soft-path payoff: contextual embeddings plus contextual Best Matching 25 (BM25) reduced top-20 retrieval failure by 49% in the cited writeup.</li>
+</ul>
+<h4 id="operating-rules-1">Operating rules</h4>
+<ul>
+<li>Store document date and ingest date separately. Use document date for recency.</li>
+<li>Measure c and a for every field before shipping a hard filter.</li>
+<li>A 300-item accuracy audit gives roughly ±3 points here. Raise the sample to 1,000 when the field gates compliance.</li>
+<li>Buy structural coverage with a parser before buying it with an LLM.</li>
+<li>Source tenant and ACL fields only from the permission system. At 2 million chunks, an 8% error mislabels 160,000 chunks.</li>
+<li>Version generated metadata with the model identifier and prompt hash so a backfill can target stale rows.</li>
+</ul>
+<h3 id="175-pre-filtering-post-filtering-and-the-over-filtering-risk">17.5 Pre-filtering, post-filtering, and the over-filtering risk</h3>
+<h4 id="selectivity-and-placement">Selectivity and placement</h4>
+<ul>
+<li>What selectivity is: s = |{x : P(x)}| / N, the admitted-vector share.</li>
+<li>Why it exists: the same predicate can leave hundreds, thousands, or millions of candidates.</li>
+<li>Correctness first: tenant, user, and classification boundaries must be enforced before a nonmatching identifier can leave the store.</li>
+<li>Preference separately: recency and popularity usually belong in reranking unless they are true validity constraints.</li>
+</ul>
+<h4 id="post-filtering-arithmetic">Post-filtering arithmetic</h4>
+<ul>
+<li>What it is: search all N vectors for K candidates, then discard those failing the predicate.</li>
+<li>Why it exists: it requires no filter-aware index support.</li>
+<li>Failure: the survivor count S follows Binomial(K, s) under the charitable independence assumption. Small tenants receive short or empty lists.</li>
+<li>Mean and variance: E[S] = sK and Var[S] = Ks(1 - s), approximately sK for small s.</li>
+<li>Reliability requirement: Pr(S ≥ k) ≥ 0.99 uses the normal approximation sK - 2.33√(sK) ≥ k.</li>
+<li>For k = 10, let u = √(sK). Then u = (2.33 + √(2.33² + 40)) / 2 = 4.54 and sK = 20.6.</li>
+<li>Required over-fetch: K ≥ 20.6 / s, roughly twice naive k / s.</li>
+<li>Practical boundary: efSearch must be at least K. A ceiling ef = 512 gives s ≥ 20.6 / 512 = 0.040.</li>
+<li>Concrete rejection: at s = 10^-3, reliable post-filtering needs ef = 20,600, so raising the beam is not a practical fallback.</li>
+<li>Claim limit: below 4% selectivity, post-filtering does not degrade smoothly. It fails most often for the smallest groups.</li>
+</ul>
+<h4 id="exact-pre-filtering-arithmetic">Exact pre-filtering arithmetic</h4>
+<ul>
+<li>What it is: resolve the predicate with an inverted index or bitmap, then scan all sN admitted vectors exactly.</li>
+<li>Why it exists: exact recall is 100% inside the correctly chosen set.</li>
+<li>Cost: a scan reads sN vectors at 4d bytes each.</li>
+<li>Budget: a 5 ms slice at 20 GB/s moves 10^8 bytes.</li>
+<li>At d = 768 fp32, each vector is 3,072 bytes. One query can scan 32,552 vectors.</li>
+<li>At ten concurrent queries sharing memory bandwidth, the limit is 3,255 vectors.</li>
+<li>With N = 10^7, that limit is s = 3.3 × 10^-4.</li>
+<li>Failure above it: memory bandwidth alone exceeds the latency slice.</li>
+</ul>
+<h4 id="the-filter-aware-middle">The filter-aware middle</h4>
+<ul>
+<li>The middle band is 3.3 × 10^-4 &lt; s &lt; 0.040 for the stated workload.</li>
+<li>Naive masking is wrong. Skipping nonmatching HNSW nodes creates the induced subgraph on admitted nodes.</li>
+<li>That induced subgraph can be disconnected. Greedy descent stalls in one reachable component and reports a confident wrong result.</li>
+<li>Filtered-DiskANN from Gollapudi et al. (2023) adds label-aware edges during construction so each label-induced subgraph remains navigable.</li>
+<li>ACORN from Patel et al. (2024) keeps the base graph predicate-agnostic and expands into two-hop neighborhoods when one-hop nodes are masked.</li>
+<li>Qdrant's filterable HNSW adds links inside payload categories during build.</li>
+<li>Trade-off: label-aware edges require known predicate categories at build time. Multi-hop expansion keeps flexibility and charges query-time work.</li>
+</ul>
+<h4 id="over-filtering-and-worked-example">Over-filtering and worked example</h4>
+<ul>
+<li>Over-filtering applies the predicate correctly but chooses the wrong universe. A year &gt;= 2024 rule can remove a still-valid 2021 policy.</li>
+<li>Recall against exact search over the filtered set remains 100%, so that metric cannot detect the mistake.</li>
+<li>Measure recall both against the filtered set and the unfiltered corpus. Segment empty and short results by tenant size and predicate.</li>
+<li>Example corpus: N = 10^7, d = 768, and 5,000 tenants give 2,000 chunks per average tenant.</li>
+<li>Add the source's year &gt;= 2022 clause, which passes 60%. The set has 1,200 chunks and s = 1.2 × 10^-4.</li>
+<li>Post-filter K = 100: expected survivors are 0.012. The chance of at least one is 1.2%, so about 99 in 100 queries return empty.</li>
+<li>Top-10 at 99%: K = 171,400, or 1.7% of the corpus. This is 335× the ef = 512 ceiling.</li>
+<li>Exact scan: 1,200 × 768 = 921,600 multiply-accumulates and 3.69 MB read. At 10 billion floating-point operations per second (GFLOP/s) and 20 GB/s, each side costs 0.18 ms, so total stays below 0.4 ms without overlap.</li>
+<li>HNSW comparison: ef = 128 and M0 = 32 evaluate up to 4,096 base-layer distances. The filtered exact scan is cheaper and exact.</li>
+<li>Middle example: s = 0.01 leaves 100,000 vectors. Scanning 307 MB costs 15.4 ms, while post-filtering needs K = 2,060, about four times the beam ceiling.</li>
+<li>Planner sanity check: Qdrant's 10,000 KB full_scan_threshold equals 10,240,000 bytes, or 3,333 vectors at 3,072 bytes. This is within 2.4% of the 3,255-vector derivation.</li>
+<li>Compression comparison: the 307 MB scan is 786× the 390.6 KB of PQ codes scanned by the cited 100-million-vector IVF-PQ query, despite this corpus being 10× smaller.</li>
+<li>Large-tenant case: 400,000 vectors require 1.23 GB per exact query and 61 ms at 20 GB/s. Partitioning by tenant can enforce access while restoring ANN inside that tenant's graph.</li>
+<li>Partitioning cost: the source prices that move as 5,000 small indexes, each with its own build and tail behavior.</li>
+<li>Coarse-to-fine option: FunnelRAG uses BM25 over about 4,000-token clusters, dense retrieval at document scale, and ranking at about 100-token passages. It reports about 40% faster retrieval at maintained accuracy.</li>
+</ul>
+<h3 id="176-self-querying-llm-extracted-filter-constraints">17.6 Self-querying: LLM-extracted filter constraints</h3>
+<h4 id="split-semantic-text-from-predicates">Split semantic text from predicates</h4>
+<ul>
+<li>What it is: rewrite raw query q into semantic residual q_s and Boolean predicate f.</li>
+<li>Why it exists: embeddings express nearness. They do not directly express greater-than, membership, or conjunction.</li>
+<li>Search set: C_f = {x ∈ C : f(x) = 1}.</li>
+<li>Failure without it: last quarter and March 2024 remain weak text cues. Cosine similarity has no chronological direction.</li>
+<li>Failure with text-only metadata: writing dates into chunk text adds topical association, not an ordered constraint.</li>
+</ul>
+<h4 id="extractor-inputs-and-validation">Extractor inputs and validation</h4>
+<ul>
+<li>The extractor is a small instruction-tuned model.</li>
+<li>Run it as a dedicated extractor with its own prompt and labeled evaluation set rather than asking the answer generator to emit filters.</li>
+<li>Input one is the field schema with names and types.</li>
+<li>Input two is the actual value catalog for low-cardinality fields.</li>
+<li>Input three is the user query.</li>
+<li>Input four for relative time is a literal reference date supplied by the system.</li>
+<li>Constrained decoding with a finite-state grammar makes malformed output impossible.</li>
+<li>Claim limit: constrained decoding guarantees syntax, not referential validity or correct intent.</li>
+<li>A predicate such as doc_type = board_presentation can parse and type-check while the catalog stores board_deck.</li>
+<li>LangChain's self-query retriever is the referenced implementation pattern. The source notes that it supplies schema by default and leaves value catalogs to the system builder.</li>
+<li>The source compares the task to miniature text-to-SQL semantic parsing and cites Spider by Yu et al. (2018).</li>
+<li>It cites Willard and Louf (2023) for grammar-guided generation.</li>
+</ul>
+<h4 id="recall-arithmetic-and-fallback">Recall arithmetic and fallback</h4>
+<ul>
+<li>Partition outcomes into p for correct extraction, ed for wrong and detectable, and eu for wrong but undetectable.</li>
+<li>The probabilities satisfy p + ed + eu = 1.</li>
+<li>Let Rf be recall@k with a correct filter and R0 be unfiltered recall@k.</li>
+<li>Blind execution gives E[R] = pRf because every wrong executed predicate contributes zero.</li>
+<li>Break-even is p &gt; R0 / Rf.</li>
+<li>With Rf = 0.95 and R0 = 0.62, the extractor needs more than 65.3% correctness merely to beat no filtering.</li>
+<li>Catalog validation and fail-open fallback give E[R] = pRf + edR0.</li>
+<li>The validator does not improve extraction intelligence. It converts detectable catastrophic misses into the unfiltered baseline.</li>
+<li>Undetectable eu cases use real values with the wrong meaning. Only labeled evaluation catches them.</li>
+</ul>
+<h4 id="authorization-composition">Authorization composition</h4>
+<ul>
+<li>Compose the final filter as f_final = f_session AND f_extracted.</li>
+<li>The session filter carries tenant and ACL constraints.</li>
+<li>Append it after model extraction and never serialize it into the extractor prompt.</li>
+<li>The extractor may narrow within the authorized set. It may never widen that set.</li>
+<li>Ordinary unresolvable predicates fail open, are dropped, and are logged.</li>
+<li>An unenforceable tenant or ACL clause fails closed, returns nothing, and raises.</li>
+<li>In an agentic loop, retrieved text may reach the extractor. Keeping authorization outside the model prevents that text from rewriting access.</li>
+</ul>
+<h4 id="worked-self-querying-example">Worked self-querying example</h4>
+<ul>
+<li>Corpus: 2 million chunks, d = 768, five years, and fields doc_type, department, year, and quarter.</li>
+<li>Value counts: 12 document types and 8 departments. Board decks are 0.4% of the corpus.</li>
+<li>Correct filter: 0.004 × 2 × 10^6 = 8,000 board-deck chunks. Five years contain 20 quarters, leaving 400 chunks.</li>
+<li>Selectivity: 400 / (2 × 10^6) = 2 × 10^-4.</li>
+<li>Exact scan: 400 × 768 × 4 = 1,228,800 bytes, or 1.23 MB.</li>
+<li>At 50 GB/s, the scan takes 24.6 microseconds (µs).</li>
+<li>Labeled set: 200 queries with p = 0.86, ed = 0.10, and eu = 0.04.</li>
+<li>Blind execution: 0.86 × 0.95 = 0.817 expected recall.</li>
+<li>Validated fallback: 0.817 + 0.10 × 0.62 = 0.879, a gain of 6.2 recall points.</li>
+<li>Remaining 0.071 gap: 0.038 comes from eu and 0.033 comes from detectable errors recovered only to R0.</li>
+<li>Extractor model: 1 billion parameters in bf16 occupy 2 GB.</li>
+<li>Decode floor: at 3.35 TB/s HBM bandwidth, each token takes at least 2 / 3,350 = 0.60 ms. Forty output tokens take 24 ms.</li>
+<li>Prefill: 2 × 10^9 × 350 = 7 × 10^11 FLOPs. At 3.4 × 10^14 FLOP/s, it takes 2.1 ms.</li>
+<li>Total floor: about 26 ms before vector search. The source calls this roughly 70× the 0.33 ms HNSW query and later rounds it to 100×. The stated constants give about 79×, so both source ratios are coarse.</li>
+<li>Claim limit: this 26 ms is a hardware floor with no queueing or network delay.</li>
+<li>Search inversion: the 24.6 µs exact filtered scan is about 13× faster than the 0.33 ms graph walk.</li>
+<li>Value-catalog limit: include actual values by default. Above roughly 50 values per field, embed the vocabulary and snap an extracted string to a nearest value.</li>
+<li>Cache predicates by normalized query plus reference date. Near a period boundary, key relative-time queries by the resolved quarter.</li>
+<li>Alert on zero-result predicates and per-field cardinality because the failure produces a successful call with an empty candidate list.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-171">Figure 17.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    q((q)) --&gt; a1((a1))
+    a1 --&gt; a2((a2))
+    a1 --&gt; a4((a4))
+    a1 -. local repair .-&gt; a3((local node))
+    a2 --&gt; a4
+    a3 -. local repair .-&gt; a4
+    a4 -. lost edge .-&gt; v((deleted bridge v))
+    v -. lost edge .-&gt; r1((right cluster))
+    r1 --&gt; r2((right node))
+    r1 --&gt; r3((right node))
+    r2 --&gt; gold((true nearest))
+    r3 --&gt; gold
+    a4 --- halt[&quot;greedy halts at a4, no neighbor is closer to q&quot;]</code></pre></details></figure>
+<pre class="text"><code>(b) evaluations per query
+
+2,458  latency ceiling, phi = 16.7%     /|          /|          /|
+                                          |         / |         / |
+                                          |        /  |        /  |
+                                          |       /   |       /   |
+2,048  _________________________________/____|_____/____|_____/____|____
+       0                                   T         2T         3T
+
+       beam cost = ef0(1 + cT)
+       rebuild at each vertical drop
+       T = 10 days when c = 2% per day</code></pre>
+<p>Figure 17.1: Deleting structurally and deleting logically fail in different currencies. In (a) the select-neighbors heuristic kept v because it bridged two clusters. Removing v and repairing its in-neighbors from local candidates leaves the right-hand cluster unreachable, so greedy descent halts at a4 and returns a wrong answer with no error raised. In (b) the tombstone keeps the graph intact and converts the cost into a beam that must widen as ef₀(1+cT). The rebuild resets it, and the cadence T is whichever comes first of the cost optimum √(2B/(Q₀ λc)), the latency ceiling, and the erasure deadline.</p>
+<h3 id="figure-172">Figure 17.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    subgraph Shard[&quot;Shard - split N across machines&quot;]
+        sq((q)) --&gt; s1[&quot;shard 1 - N/3 vectors&quot;]
+        sq --&gt; s2[&quot;shard 2 - N/3 vectors&quot;]
+        sq --&gt; s3[&quot;shard 3 - N/3 vectors&quot;]
+        sb[&quot;fan-out 3: memory ÷3 per node, QPS unchanged, tail amplified&quot;]
+    end
+    subgraph Replicate[&quot;Replicate - R full copies of N&quot;]
+        rq((q)) --&gt; r1[&quot;replica 1 - N vectors&quot;]
+        r2[&quot;replica 2 - N vectors&quot;]
+        r3[&quot;replica 3 - N vectors&quot;]
+        rb[&quot;fan-out 1: memory ×3 in total, QPS ×3, tail unchanged&quot;]
+    end
+    subgraph Partition[&quot;Partition - route on a query key&quot;]
+        pq((qk)) --&gt; p1[&quot;key ∈ A - N/3 vectors&quot;]
+        p2[&quot;key ∈ B - skipped&quot;]
+        p3[&quot;key ∈ C - skipped&quot;]
+        pb[&quot;fan-out 1: memory ÷3 per node, QPS ×3, key required&quot;]
+    end</code></pre></details></figure>
+<p>Figure 17.2: The three scaling axes are not interchangeable: sharding divides memory but broadcasts every query, replication multiplies throughput but also multiplies the memory bill, and only key-based partitioning divides memory and multiplies throughput at once - at the cost of requiring the query to carry the key.</p>
+<h3 id="figure-173">Figure 17.3</h3>
+<p>Panel (a):</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Placement</th>
+<th style="text-align: right;">Embed</th>
+<th style="text-align: right;">Network</th>
+<th style="text-align: right;">ANN search</th>
+<th style="text-align: right;">Rerank</th>
+<th style="text-align: right;">Total</th>
+<th style="text-align: right;">p99 budget</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Same region</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">1 ms</td>
+<td style="text-align: right;">0.42 ms</td>
+<td style="text-align: right;">113 ms</td>
+<td style="text-align: right;">134 ms</td>
+<td style="text-align: right;">200 ms</td>
+</tr>
+<tr>
+<td>Cross-region</td>
+<td style="text-align: right;">20 ms</td>
+<td style="text-align: right;">75 ms</td>
+<td style="text-align: right;">0.42 ms</td>
+<td style="text-align: right;">113 ms</td>
+<td style="text-align: right;">208 ms</td>
+<td style="text-align: right;">200 ms</td>
+</tr>
+</tbody>
+</table></div>
+<p>Panel (b):</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Architectural class</th>
+<th>recall/QPS</th>
+<th>filtered search</th>
+<th>txns &amp; joins</th>
+<th>horizontal scale</th>
+<th>low ops burden</th>
+<th>cost &amp; portability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Library</td>
+<td>Structural strength</td>
+<td>Absent or bolted on</td>
+<td>Absent or bolted on</td>
+<td>Absent or bolted on</td>
+<td>Absent or bolted on</td>
+<td>Structural strength</td>
+</tr>
+<tr>
+<td>Embedded</td>
+<td>Structural strength</td>
+<td>Workable</td>
+<td>Workable</td>
+<td>Absent or bolted on</td>
+<td>Workable</td>
+<td>Structural strength</td>
+</tr>
+<tr>
+<td>SQL extension</td>
+<td>Workable</td>
+<td>Structural strength</td>
+<td>Structural strength</td>
+<td>Workable</td>
+<td>Structural strength</td>
+<td>Structural strength</td>
+</tr>
+<tr>
+<td>Search engine</td>
+<td>Workable</td>
+<td>Structural strength</td>
+<td>Absent or bolted on</td>
+<td>Structural strength</td>
+<td>Workable</td>
+<td>Structural strength</td>
+</tr>
+<tr>
+<td>Distributed store</td>
+<td>Structural strength</td>
+<td>Structural strength</td>
+<td>Absent or bolted on</td>
+<td>Structural strength</td>
+<td>Workable</td>
+<td>Structural strength</td>
+</tr>
+<tr>
+<td>Fully managed</td>
+<td>Structural strength</td>
+<td>Structural strength</td>
+<td>Absent or bolted on</td>
+<td>Structural strength</td>
+<td>Structural strength</td>
+<td>Absent or bolted on</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 17.3: The index is the smallest term you can optimize and the only one benchmarks measure. Panel (a): at 10^7 vectors the ANN search is 0.42 ms of a 134 ms same-region retrieval path, while putting the store in the wrong region adds 75 ms and breaks the budget on its own. Panel (b): every architectural class - a library such as FAISS or hnswlib, an embedded store such as Chroma or LanceDB, an SQL extension such as pgvector, a Lucene-family search engine, a purpose-built distributed store such as Milvus or Qdrant, and a fully managed service - gives up at least one column, so the choice is a position on a Pareto frontier rather than a ranking.</p>
+<h3 id="table-171">Table 17.1</h3>
+<p>Table 17.1: The three metadata types differ in origin, marginal cost, and - decisively - in the direction they fail, which is what determines whether a field may be used as a hard predicate.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Descriptive</th>
+<th>Structural</th>
+<th>Generated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Origin</td>
+<td>system of record</td>
+<td>parser / layout model</td>
+<td>model run at index time</td>
+</tr>
+<tr>
+<td>Fields</td>
+<td>owner, path, acl, ingested_at</td>
+<td>section_heading, page, parent_id</td>
+<td>doc_type, entities, summary, context prefix</td>
+</tr>
+<tr>
+<td>Marginal cost</td>
+<td>zero</td>
+<td>one parse pass</td>
+<td>one model call per chunk, repeated on re-index</td>
+</tr>
+<tr>
+<td>Coverage c</td>
+<td>1.00</td>
+<td>format-dependent</td>
+<td>1.00 by construction</td>
+</tr>
+<tr>
+<td>Accuracy a</td>
+<td>1.00 for what it measures</td>
+<td>≈ 1.00 where present</td>
+<td>measured, below 1.00</td>
+</tr>
+<tr>
+<td>Fails toward</td>
+<td>precision (wrong proxy)</td>
+<td>recall (absent slice)</td>
+<td>both</td>
+</tr>
+<tr>
+<td>Safe as</td>
+<td>hard predicate</td>
+<td>hard predicate once coverage is measured</td>
+<td>soft signal</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="figure-174">Figure 17.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    sor[&quot;system of record&quot;] --&gt; parser[&quot;parser and layout&quot;]
+    parser --&gt; chunker[&quot;chunker&quot;]
+    chunker --&gt; tagger[&quot;model tagger&quot;]
+    tagger --&gt; store[&quot;vectors and columns&quot;]
+    sor --&gt; desc[&quot;descriptive: owner, acl, ingested_at, c = 1.00, a = 1.00 - fails toward precision&quot;]
+    parser -.-&gt; struct[&quot;structural: section_heading, page, c set by the parser - fails toward recall&quot;]
+    tagger -.-&gt; gen[&quot;generated: doc_type, entities, prefix, c = 1.00, a &lt; 1.00 - fails both ways&quot;]
+    store --&gt; hard[&quot;hard predicate, R ≤ c a permanently&quot;]
+    store --&gt; soft[&quot;soft signal, error costs rank, not recall&quot;]
+    hard --&gt; r1[&quot;no metadata predicate: R ≤ 1.00&quot;]
+    r1 --&gt; r2[&quot;+ hard doc_type at a = 0.92: R ≤ 0.92&quot;]
+    r2 --&gt; r3[&quot;+ hard section_heading at c = 0.55: R ≤ 0.51&quot;]</code></pre></details></figure>
+<p>Figure 17.4: The three metadata types enter at three different points in the pipeline, and only the first is owned by a system of record - which is why routing a generated field into a hard predicate multiplies a permanent recall ceiling into every query that uses it.</p>
+<h3 id="figure-175">Figure 17.5</h3>
+<p>Panel (a):</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Selectivity s</th>
+<th style="text-align: right;">Matching count sN when N = 10^7</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Up to 3.3 × 10^-4</td>
+<td style="text-align: right;">Up to about 3.3 × 10^3</td>
+<td>Pre-filter, exact scan</td>
+</tr>
+<tr>
+<td style="text-align: right;">3.3 × 10^-4 to 0.040</td>
+<td style="text-align: right;">About 3.3 × 10^3 to 4 × 10^5</td>
+<td>Filtered ANN, graph must cooperate</td>
+</tr>
+<tr>
+<td style="text-align: right;">At least 0.040</td>
+<td style="text-align: right;">At least 4 × 10^5</td>
+<td>Post-filter, over-fetch 20.6 / s</td>
+</tr>
+</tbody>
+</table></div>
+<p>Panel (b):</p>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    entry((entry)) --&gt; pass1((passes P))
+    pass1 --&gt; stall((greedy stalls here))
+    stall -. masked .-&gt; mask1((masked))
+    mask1 -. masked .-&gt; mask2((masked))
+    mask2 -. masked .-&gt; gold((gold chunk))
+    pass1 == two-hop expansion ==&gt; gold</code></pre></details></figure>
+<p>Figure 17.5: Selectivity, not preference, decides where the predicate is evaluated (a). And masking a graph index in place is not a smaller graph but an induced subgraph, which can cut the search off from documents the predicate explicitly admits (b).</p>
+<h3 id="figure-176">Figure 17.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    q[&quot;user query: pricing decisions in last quarter&#39;s board deck&quot;]
+    q --&gt; sem[&quot;semantic channel: pricing decisions&quot;]
+    q --&gt; ext[&quot;extractor LLM, small and schema-constrained&quot;]
+    inputs[&quot;field schema, value catalog, reference date&quot;] --&gt; ext
+    ext --&gt; cand[&quot;candidate predicate: type=deck, y=2025, q=3&quot;]
+    cand --&gt; val[&quot;validator: fields, types, and actual values&quot;]
+    val --&gt;|valid| fext[&quot;f_extracted&quot;]
+    val --&gt;|value absent| absent[&quot;value absent from catalog&quot;]
+    absent --&gt;|fail open| drop[&quot;drop predicate&quot;]
+    absent -. fail closed bug .-&gt; zero[&quot;execute anyway: 0 documents, no error raised&quot;]
+    fext --&gt; auth[&quot;AND f_session: tenant and ACL, system-supplied and never generated&quot;]
+    drop --&gt; auth
+    sem --&gt; search[&quot;filtered ANN search&quot;]
+    auth --&gt; search
+    search --&gt; topk[&quot;top-k chunks&quot;]</code></pre></details></figure>
+<p>Figure 17.6: Self-querying splits one sentence into a semantic channel and a predicate channel, and the branch at the validator decides which failure mode you own: dropping an unresolvable predicate costs you the unfiltered baseline, while executing it returns zero documents and raises no error. The session filter is conjoined after extraction, so no text reaching the model can widen it.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a small HNSW graph with two clusters and label one connecting node bridge.</li>
+<li>Cross out the bridge. Show that local repair leaves the right cluster unreachable.</li>
+<li>Replace the cross-out with a tombstone bit and draw a beam that widens from ef0 to ef0(1 + cT).</li>
+<li>Add a sawtooth reset and label T = min(T*, T_SLO, T_legal).</li>
+<li>Draw three scaling rows: shard with broadcast arrows, replicate with one routed arrow, and partition with a query key.</li>
+<li>Write memory under sharding, QPS and availability under replication, and less work under partitioning.</li>
+<li>Draw the end-to-end latency bar with embed 20, network 1 or 75, ANN 0.42, and rerank 113 ms.</li>
+<li>Draw metadata entering from system of record, parser, and model tagger.</li>
+<li>Write the hard-filter ceiling R ≤ c × a beside the metadata path.</li>
+<li>Draw the selectivity line with 3.3 × 10^-4 and 0.040 as boundaries.</li>
+<li>Label exact scan, filter-aware ANN, and post-filter across those three bands.</li>
+<li>Split one query into semantic text and an extracted predicate.</li>
+<li>Put schema, value catalog, and reference date beside the extractor.</li>
+<li>Add a validator branch that drops an ordinary unresolved predicate.</li>
+<li>Append tenant and ACL as a system-supplied conjunction after extraction.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the lifecycle. Inserts can enter an HNSW graph online, but deletes become tombstones because local edge repair is costly and can disconnect search. Rebuild when cost, latency, or erasure policy first requires it. Scale by separating sharding for memory, replication for throughput and availability, and key partitioning for routed work. Choose the store around durability, topology, filtering, writes, and operations. Treat metadata provenance as a recall contract. Use exact pre-filtering at tiny selectivity, filter-aware ANN in the middle, and post-filtering only at high selectivity. Finally, validate model-extracted predicates against real values and append authorization outside the model.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-not-delete-an-hnsw-node-and-repair-its-neighbors-in-place">1. Why not delete an HNSW node and repair its neighbors in place?</h3>
+<p>The graph stores out-edges, so faithful deletion first needs a reverse-edge index. At the chapter's constants, repair costs 2.05 × 10^5 evaluations per deletion and 64% of a rebuild per day at 2% churn. Local repair can also remove a bridge and silently disconnect a region, so tombstone plus scheduled rebuild is the default.</p>
+<h3 id="2-do-sharding-replication-and-partitioning-all-scale-queries-the-same-way">2. Do sharding, replication, and partitioning all scale queries the same way?</h3>
+<p>No. Sharding divides memory but broadcasts broad queries, replication multiplies QPS and total memory, and key partitioning reduces work only when the query carries the key. Sharding addresses capacity, replication addresses throughput and availability, and partitioning bets on the query distribution.</p>
+<h3 id="3-which-vector-database-is-fastest">3. Which vector database is fastest?</h3>
+<p>That question hides the real decision. At 10 million vectors, the source's ANN term is 0.42 ms inside a 134 ms same-region path, while wrong-region placement adds 75 ms and the reranker costs 113 ms. Compare durability, filtered-search semantics, topology, write rate, dimensions, distance functions, and operating burden before comparing matched-index constant factors.</p>
+<h3 id="4-when-should-filtering-happen-before-during-or-after-ann-search">4. When should filtering happen before, during, or after ANN search?</h3>
+<p>For the stated N and d, exact pre-filtered scan wins below s ≈ 3.3 × 10^-4, a filter-aware index serves the middle, and post-filtering needs s ≥ 0.040 under ef = 512. Access boundaries are always enforced before nonmatching identifiers leave the store, regardless of selectivity. Do not mask ordinary HNSW traversal because the induced graph can disconnect.</p>
+<h3 id="5-should-a-self-querying-extractor-fail-open-or-fail-closed">5. Should a self-querying extractor fail open or fail closed?</h3>
+<p>An unresolved ordinary predicate such as date or document type should fail open by dropping the predicate, logging it, and recovering R0. Authorization must fail closed because dropping tenant or ACL constraints would widen access. The extractor may narrow the system-supplied authorized set, but the session constraint is appended after extraction and never generated.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Number or formula</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HNSW corpus</td>
+<td>N = 10^7, d = 768 fp32</td>
+<td>Base deletion and filtering example</td>
+</tr>
+<tr>
+<td>HNSW graph</td>
+<td>M = 16, M0 = 32</td>
+<td>Neighbor constants</td>
+</tr>
+<tr>
+<td>HNSW beams</td>
+<td>efConstruction = 200, efSearch clean = 64</td>
+<td>Build and clean query settings</td>
+</tr>
+<tr>
+<td>Resident index</td>
+<td>32 GB</td>
+<td>Base ten-million-vector example</td>
+</tr>
+<tr>
+<td>One insert</td>
+<td>6,400 evaluations</td>
+<td>200 × 32</td>
+</tr>
+<tr>
+<td>Delete timing example</td>
+<td>10:00 delete, 14 hours until nightly rebuild</td>
+<td>Why tombstones need an immediate query guarantee</td>
+</tr>
+<tr>
+<td>Daily churn</td>
+<td>c = 2%, 2 × 10^5 updates</td>
+<td>Worked lifecycle rate</td>
+</tr>
+<tr>
+<td>Daily insert work</td>
+<td>1.28 × 10^9 evaluations</td>
+<td>2% of one rebuild</td>
+</tr>
+<tr>
+<td>Full build</td>
+<td>6.4 × 10^10 evaluations</td>
+<td>Rebuild cost B</td>
+</tr>
+<tr>
+<td>Reverse edges</td>
+<td>128 bytes per vector, 1.28 GB total</td>
+<td>Added in-neighbor map</td>
+</tr>
+<tr>
+<td>Graph bytes</td>
+<td>132 to 260 bytes per vector</td>
+<td>Link term with reverse edges</td>
+</tr>
+<tr>
+<td>One faithful delete</td>
+<td>2.05 × 10^5 evaluations</td>
+<td>About 32 insertion-like repairs</td>
+</tr>
+<tr>
+<td>Daily delete repair</td>
+<td>4.1 × 10^10 evaluations</td>
+<td>64% of a rebuild</td>
+</tr>
+<tr>
+<td>Tombstone bitmap</td>
+<td>10^7 bits = 1.25 MB = 0.0039%</td>
+<td>Storage is not the main tombstone cost</td>
+</tr>
+<tr>
+<td>Tombstone relation</td>
+<td>ϕ = cT / (1 + cT)</td>
+<td>Dead resident share after T days</td>
+</tr>
+<tr>
+<td>Beam inflation</td>
+<td>ef = ef0 / (1 - ϕ) = ef0(1 + cT)</td>
+<td>Keeps live beam constant</td>
+</tr>
+<tr>
+<td>Clean layer-0 work</td>
+<td>Q0 = 64 × 32 = 2,048</td>
+<td>Baseline query evaluations</td>
+</tr>
+<tr>
+<td>Latency ceiling</td>
+<td>2,458 evaluations, ϕ = 16.7%</td>
+<td>20% inflation point</td>
+</tr>
+<tr>
+<td>Daily rebuild objective</td>
+<td>g(T) = B / T + 1,024λcT</td>
+<td>Build plus stale-query cost</td>
+</tr>
+<tr>
+<td>Cost optimum</td>
+<td>T* = √(2B / (Q0λc))</td>
+<td>Economic rebuild period</td>
+</tr>
+<tr>
+<td>Low traffic</td>
+<td>10 QPS, λ = 8.64 × 10^5, T* = 60 days</td>
+<td>Cost optimum is not binding</td>
+</tr>
+<tr>
+<td>Low-traffic square root</td>
+<td>√3,618 = 60 days</td>
+<td>Explicit optimum arithmetic</td>
+</tr>
+<tr>
+<td>Low-traffic rot</td>
+<td>cT = 1.2, ϕ = 55%</td>
+<td>State at the 60-day optimum</td>
+</tr>
+<tr>
+<td>High traffic</td>
+<td>1,000 QPS, λ = 8.64 × 10^7, T* = 6.0 days</td>
+<td>Cost becomes binding</td>
+</tr>
+<tr>
+<td>High-traffic square root</td>
+<td>√36.2 = 6.0 days</td>
+<td>Hundredfold traffic effect</td>
+</tr>
+<tr>
+<td>SLO limit</td>
+<td>cT ≤ 0.2, T ≤ 10 days, ϕ ≤ 16.7%</td>
+<td>20% beam-growth cap</td>
+</tr>
+<tr>
+<td>Legal example</td>
+<td>T_legal = 30 days</td>
+<td>One-month erasure response window</td>
+</tr>
+<tr>
+<td>Rebuild I/O</td>
+<td>197 TB at 50 GB/s</td>
+<td>Reads implied by the build</td>
+</tr>
+<tr>
+<td>Rebuild time</td>
+<td>3,932 s = 1.1 hours</td>
+<td>0.76% of a six-day cycle</td>
+</tr>
+<tr>
+<td>Local deletion skew</td>
+<td>Global ϕ 5%, local ϕ 90%</td>
+<td>Why per-query measurement matters</td>
+</tr>
+<tr>
+<td>Lucene comparison</td>
+<td>deletesPctAllowed default 20%</td>
+<td>Same order as 16.7% ceiling</td>
+</tr>
+<tr>
+<td>Tight legal case</td>
+<td>500 million vectors, 50 hours, 24-hour deadline</td>
+<td>Whole-index rebuild cannot meet the window</td>
+</tr>
+<tr>
+<td>Blue-green memory</td>
+<td>32 GB live, 64 GB during rebuild</td>
+<td>Zero-query-impact swap cost</td>
+</tr>
+<tr>
+<td>HNSW traversal sharding</td>
+<td>(26.6 - 3.0) / 26.6 = 0.89 at N = 10^8, S = 8</td>
+<td>Only 11% depth reduction</td>
+</tr>
+<tr>
+<td>Tail fan-out</td>
+<td>1 - 0.99^S</td>
+<td>Slow-query probability</td>
+</tr>
+<tr>
+<td>Hundred-way tail</td>
+<td>63.4%</td>
+<td>1% slow branches across 100 machines</td>
+</tr>
+<tr>
+<td>Three-way p99</td>
+<td>0.99^(1/3) = 0.9967</td>
+<td>Per-shard p99.67 for whole-query p99</td>
+</tr>
+<tr>
+<td>Eight-way p99</td>
+<td>0.99^(1/8) = 0.9987</td>
+<td>Per-shard p99.87 for whole-query p99</td>
+</tr>
+<tr>
+<td>Sharding corpus</td>
+<td>100 million, d = 768 fp32</td>
+<td>Capacity example</td>
+</tr>
+<tr>
+<td>Raw vector memory</td>
+<td>307.2 GB</td>
+<td>100 million × 768 × 4</td>
+</tr>
+<tr>
+<td>Link memory</td>
+<td>12.8 GB</td>
+<td>128 bytes per vector</td>
+</tr>
+<tr>
+<td>Resident total</td>
+<td>About 320.0 GB</td>
+<td>Vectors plus layer-0 links</td>
+</tr>
+<tr>
+<td>Node tier</td>
+<td>128 GB usable</td>
+<td>Gives minimum S = 3</td>
+</tr>
+<tr>
+<td>Per shard</td>
+<td>33.3 million vectors, 106.7 GB</td>
+<td>Three-shard placement</td>
+</tr>
+<tr>
+<td>Per-machine service</td>
+<td>8 ms, 16 threads, 2,000 shard-QPS</td>
+<td>Measured capacity point</td>
+</tr>
+<tr>
+<td>Opening tail drift</td>
+<td>p99 from 30 ms to 80 ms</td>
+<td>Symptom that motivates scaling analysis</td>
+</tr>
+<tr>
+<td>Shard only</td>
+<td>3 machines, 2,000 user QPS</td>
+<td>6,000 shard-QPS divided by fan-out 3</td>
+</tr>
+<tr>
+<td>Shard and replicate</td>
+<td>9 machines, 6,000 QPS, 960 GB</td>
+<td>S = 3 and R = 3</td>
+</tr>
+<tr>
+<td>Tenant partition</td>
+<td>3 machines, 6,000 QPS, 320 GB</td>
+<td>P = 3 and fan-out 1</td>
+</tr>
+<tr>
+<td>Keyed share 0.9</td>
+<td>Expected fan-out 1.2, 5,000 QPS</td>
+<td>Partitioning mostly pays</td>
+</tr>
+<tr>
+<td>Hash locality loss</td>
+<td>90% keyed queries still pay 3× fan-out</td>
+<td>Hashing discards the routing signal</td>
+</tr>
+<tr>
+<td>Keyed share 0.5</td>
+<td>Expected fan-out 2.0, 3,000 QPS</td>
+<td>Half the routing benefit is gone</td>
+</tr>
+<tr>
+<td>Default replicas</td>
+<td>R = 2, or R = 3 during rebuild</td>
+<td>Availability-first rule</td>
+</tr>
+<tr>
+<td>Retrieval budget</td>
+<td>200 ms p99</td>
+<td>Database latency example</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>20 ms</td>
+<td>End-to-end component</td>
+</tr>
+<tr>
+<td>ANN</td>
+<td>0.42 ms at 10^7 vectors</td>
+<td>0.31% of 134 ms</td>
+</tr>
+<tr>
+<td>Rerank workload</td>
+<td>1.1 × 10^8 parameters, 512 tokens, top 20</td>
+<td>Cross-encoder constants</td>
+</tr>
+<tr>
+<td>Rerank compute</td>
+<td>2.25 × 10^12 FLOPs at 20 TFLOP/s</td>
+<td>113 ms</td>
+</tr>
+<tr>
+<td>Fiber physics</td>
+<td>n ≈ 1.47, speed 2.04 × 10^8 m/s</td>
+<td>Network floor inputs</td>
+</tr>
+<tr>
+<td>Virginia to Ireland</td>
+<td>5,500 km, 54 ms floor, 75 ms practical</td>
+<td>Cross-region penalty</td>
+</tr>
+<tr>
+<td>Measured region band</td>
+<td>70 to 80 ms, about 1.4× the 54 ms floor</td>
+<td>Sanity range reported by the source</td>
+</tr>
+<tr>
+<td>Same-region path</td>
+<td>134 ms</td>
+<td>Within budget</td>
+</tr>
+<tr>
+<td>Cross-region path</td>
+<td>208 ms</td>
+<td>Misses budget</td>
+</tr>
+<tr>
+<td>Twice-faster ANN</td>
+<td>0.21 ms, 0.11% of budget</td>
+<td>Small database-index win</td>
+</tr>
+<tr>
+<td>Latency diagnosis probe</td>
+<td>240 ms actual, 150 ms target, 2 ms search</td>
+<td>The other 238 ms contains a 90 ms miss. Removing search recovers only 2.2% of that miss</td>
+</tr>
+<tr>
+<td>Business product workload</td>
+<td>20 million chunks, 5,000 tenants, 50 QPS</td>
+<td>Store-selection example</td>
+</tr>
+<tr>
+<td>HNSW bytes</td>
+<td>3,204 bytes per vector, 64.1 GB</td>
+<td>d = 768 and M = 16</td>
+</tr>
+<tr>
+<td>Tenant share</td>
+<td>4,000 chunks, 0.02%</td>
+<td>Average tenant</td>
+</tr>
+<tr>
+<td>Global top-100</td>
+<td>0.02 expected, 2.0% chance of any result</td>
+<td>98% empty after post-filter</td>
+</tr>
+<tr>
+<td>Same-VPC hop</td>
+<td>0.5 ms</td>
+<td>SQL-extension example</td>
+</tr>
+<tr>
+<td>Truncated vectors</td>
+<td>d = 384, 1,668 bytes each, 33.4 GB</td>
+<td>Matryoshka example</td>
+</tr>
+<tr>
+<td>Daily store writes</td>
+<td>400,000 inserts, 2.56 × 10^9 evaluations</td>
+<td>2% churn</td>
+</tr>
+<tr>
+<td>Daily store queries</td>
+<td>8.85 × 10^9 evaluations</td>
+<td>50 QPS</td>
+</tr>
+<tr>
+<td>Maintenance tax</td>
+<td>29%</td>
+<td>Write work relative to query work</td>
+</tr>
+<tr>
+<td>Ground-truth sample</td>
+<td>10,000 queries</td>
+<td>Suggested product benchmark</td>
+</tr>
+<tr>
+<td>Metadata corpus</td>
+<td>180,000 documents, 2 million chunks, 800 million tokens</td>
+<td>Worked example</td>
+</tr>
+<tr>
+<td>Migration proxy failure</td>
+<td>40% re-stamped in 2025, 2019 template seen as eleven months old</td>
+<td>ingested_at is not document date</td>
+</tr>
+<tr>
+<td>Format coverage</td>
+<td>55% native, 45% scanned</td>
+<td>Structural-field split</td>
+</tr>
+<tr>
+<td>Heading values</td>
+<td>About 20</td>
+<td>Selectivity assumption</td>
+</tr>
+<tr>
+<td>Generated audit</td>
+<td>300 samples, 92% correct</td>
+<td>a = 0.92</td>
+</tr>
+<tr>
+<td>Audit uncertainty</td>
+<td>Standard error 0.0157, ±3.1 points at 95%</td>
+<td>Accuracy claim limit</td>
+</tr>
+<tr>
+<td>Strict heading filter</td>
+<td>2.75%, 55,000 chunks, ceiling 0.55</td>
+<td>Missing-heading failure</td>
+</tr>
+<tr>
+<td>Null-tolerant filter</td>
+<td>47.75%, 955,000 chunks, 17×</td>
+<td>Ceiling restored to 1.00</td>
+</tr>
+<tr>
+<td>Repaired coverage</td>
+<td>c = 0.95, 4.75%, 95,000 chunks</td>
+<td>Layout-pass outcome</td>
+</tr>
+<tr>
+<td>Two hard fields</td>
+<td>0.55 × 0.92 = 0.506</td>
+<td>49.4% of answers excluded</td>
+</tr>
+<tr>
+<td>Tag input</td>
+<td>1,000 million tokens</td>
+<td>500 tokens × 2 million</td>
+</tr>
+<tr>
+<td>Tag output</td>
+<td>60 million tokens</td>
+<td>30 tokens × 2 million</td>
+</tr>
+<tr>
+<td>Tag price</td>
+<td>$1,000 + $300 = $1,300</td>
+<td>Stipulated $1 input and $5 output per million</td>
+</tr>
+<tr>
+<td>Embedding price</td>
+<td>$16</td>
+<td>Stipulated $0.02 per million</td>
+</tr>
+<tr>
+<td>Tag multiple</td>
+<td>81×</td>
+<td>Generated metadata versus embedding</td>
+</tr>
+<tr>
+<td>Context cost</td>
+<td>$1.02 per million, $816 total</td>
+<td>Source comparison</td>
+</tr>
+<tr>
+<td>Soft retrieval gain</td>
+<td>49% lower top-20 failure</td>
+<td>Contextual embedding plus BM25</td>
+</tr>
+<tr>
+<td>Security mislabels</td>
+<td>160,000 at 8% of 2 million</td>
+<td>Why ACL cannot be generated</td>
+</tr>
+<tr>
+<td>Post-filter reliability</td>
+<td>K ≥ 20.6 / s</td>
+<td>Top-10 with 99% confidence</td>
+</tr>
+<tr>
+<td>Post-filter boundary</td>
+<td>s ≥ 0.040 at ef = 512</td>
+<td>Broad-filter regime</td>
+</tr>
+<tr>
+<td>Rejected beam</td>
+<td>s = 10^-3 requires ef = 20,600</td>
+<td>Raising ef cannot rescue the middle band</td>
+</tr>
+<tr>
+<td>Exact-scan budget</td>
+<td>5 ms of 50 ms at 20 GB/s</td>
+<td>Moves 10^8 bytes</td>
+</tr>
+<tr>
+<td>Exact-scan capacity</td>
+<td>32,552 vectors alone, 3,255 at concurrency 10</td>
+<td>Bandwidth threshold</td>
+</tr>
+<tr>
+<td>Pre-filter boundary</td>
+<td>s = 3.3 × 10^-4 at N = 10^7</td>
+<td>Tiny-set regime</td>
+</tr>
+<tr>
+<td>Average tenant filter</td>
+<td>1,200 chunks, s = 1.2 × 10^-4</td>
+<td>Tenant plus 60% year filter</td>
+</tr>
+<tr>
+<td>Post-filter K = 100</td>
+<td>0.012 expected, 1.2% chance of any</td>
+<td>About 99 in 100 empty</td>
+</tr>
+<tr>
+<td>Reliable tenant K</td>
+<td>171,400, 1.7% of corpus</td>
+<td>335× ef ceiling</td>
+</tr>
+<tr>
+<td>Tenant exact scan</td>
+<td>921,600 operations, 3.69 MB, under 0.4 ms</td>
+<td>Cheaper and exact</td>
+</tr>
+<tr>
+<td>HNSW comparison</td>
+<td>ef = 128, M0 = 32, 4,096 distances</td>
+<td>Unfiltered base-layer work</td>
+</tr>
+<tr>
+<td>Middle-band example</td>
+<td>s = 0.01, 100,000 vectors, 307 MB, 15.4 ms</td>
+<td>Exact scan too slow</td>
+</tr>
+<tr>
+<td>Middle post-filter</td>
+<td>K = 2,060</td>
+<td>About four times ef ceiling</td>
+</tr>
+<tr>
+<td>Planner default</td>
+<td>10,000 KB = 3,333 vectors</td>
+<td>Within 2.4% of derivation</td>
+</tr>
+<tr>
+<td>PQ comparison</td>
+<td>390.6 KB, 786× less than 307 MB</td>
+<td>Compression check</td>
+</tr>
+<tr>
+<td>Large tenant</td>
+<td>400,000 vectors, 1.23 GB, 61 ms</td>
+<td>Exact scan breaks p99</td>
+</tr>
+<tr>
+<td>Tenant partition cost</td>
+<td>5,000 small indexes</td>
+<td>Isolation restores ANN but adds build and tail surfaces</td>
+</tr>
+<tr>
+<td>FunnelRAG</td>
+<td>About 4,000-token clusters, 100-token passages, 40% speed-up</td>
+<td>Coarse-to-fine option</td>
+</tr>
+<tr>
+<td>Self-query corpus</td>
+<td>2 million chunks, five years, four fields</td>
+<td>Extraction example</td>
+</tr>
+<tr>
+<td>Value counts</td>
+<td>12 doc types, 8 departments</td>
+<td>Low-cardinality catalog</td>
+</tr>
+<tr>
+<td>Board-deck share</td>
+<td>0.4%, 8,000 chunks</td>
+<td>First filter</td>
+</tr>
+<tr>
+<td>Quarter subset</td>
+<td>400 chunks, s = 2 × 10^-4</td>
+<td>Five years equals 20 quarters</td>
+</tr>
+<tr>
+<td>Quarter scan</td>
+<td>1.23 MB at 50 GB/s = 24.6 µs</td>
+<td>Exact search after extraction</td>
+</tr>
+<tr>
+<td>Blind break-even</td>
+<td>p &gt; R0 / Rf = 65.3%</td>
+<td>R0 = 0.62 and Rf = 0.95</td>
+</tr>
+<tr>
+<td>Labeled outcomes</td>
+<td>200 queries, p = 0.86, ed = 0.10, eu = 0.04</td>
+<td>Extractor evaluation</td>
+</tr>
+<tr>
+<td>Blind expected recall</td>
+<td>0.817</td>
+<td>0.86 × 0.95</td>
+</tr>
+<tr>
+<td>Validated expected recall</td>
+<td>0.879</td>
+<td>Adds 0.10 × 0.62</td>
+</tr>
+<tr>
+<td>Validator gain</td>
+<td>6.2 recall points</td>
+<td>One catalog lookup</td>
+</tr>
+<tr>
+<td>Remaining gap</td>
+<td>0.071 = 0.038 + 0.033</td>
+<td>Undetectable plus baseline-recovery gaps</td>
+</tr>
+<tr>
+<td>Extractor weights</td>
+<td>1 billion bf16 parameters, 2 GB</td>
+<td>Decode memory floor</td>
+</tr>
+<tr>
+<td>HBM rate</td>
+<td>3.35 TB/s, 0.60 ms per token</td>
+<td>Weight-read floor</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>40 tokens, 24 ms</td>
+<td>Predicate generation</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>350 tokens, 7 × 10^11 FLOPs, 2.1 ms</td>
+<td>At 3.4 × 10^14 FLOP/s</td>
+</tr>
+<tr>
+<td>Extractor total</td>
+<td>About 26 ms</td>
+<td>Source states roughly 70× and later 100× a 0.33 ms query. The stated values give about 79×</td>
+</tr>
+<tr>
+<td>Scan comparison</td>
+<td>24.6 µs versus 0.33 ms</td>
+<td>Exact scan is about 13× faster</td>
+</tr>
+<tr>
+<td>Value-catalog prompt limit</td>
+<td>Roughly 50 values per field</td>
+<td>Switch to vocabulary matching above it</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/16_compression_and_index_economics.html"><small>Previous</small>Chapter 16. Compression and Index Economics</a><a href="../chapters/18_classical_ir_you_are_expected_to_know.html"><small>Next</small>Chapter 18. Classical IR You Are Expected to Know</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

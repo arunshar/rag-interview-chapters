@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Appendix A3. Design Checklists | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/A3_design_checklists.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group" open><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html" aria-current="page">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Appendices</p><h1>Appendix A3. Design Checklists</h1><p class="chapter-meta">43 min estimated reading · Unit 53 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Use these five operational checklists to turn a Retrieval-Augmented Generation (RAG) design review into named decisions, measured quantities, and explicit exit criteria.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Run these checklists. Do not merely read them. Each line needs a number or a named decision.</li>
+<li>Internalize the retrieval checklist for interviews. It covers five decisions in ten minutes, with two minutes per phase.</li>
+<li>Run the indexing checklist before provisioning and before migrations. Derive memory, recall, latency, churn, and rebuild requirements.</li>
+<li>Run the evaluation checklist before trusting a dashboard. It must locate failures across retrieval, generation, and the full system.</li>
+<li>Run the credibility checklist before outsiders can write to the datastore. Trace sources, test attribution, limit attackers, and enforce access during retrieval.</li>
+<li>Run the latency checklist with a stopwatch on a real query. Measure five stages, optimize the dominant constraint, and derive cost per query.</li>
+<li>Treat every exit criterion as a gate. If the criteria fail, the design is not finished.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture an aircraft crew preparing for departure. The crew does not admire five laminated cards and call the plane ready. They run every line. A box receives a measured value or a named choice. A box filled with "fast," "large," or "safe" remains open.</p>
+<p>The retrieval card is the route card. It asks how large the trip is, when to leave the gate, which airports to use, how to navigate, and how to brief the passengers. In system terms, it fixes problem size, the retrieval decision, the data sources, the search method, and the evidence shown to the generator.</p>
+<p>The indexing and capacity card is the weight-and-balance card. It counts every chunk, vector, index link, payload byte, replica, and rebuild copy. It also tests whether the search controls can reach the required recall, which means finding the required fraction of exact neighbors, at the required latency.</p>
+<p>The evaluation card calibrates the cockpit instruments. It checks the test set before flight, separates retrieval readings from generation readings, and traces a bad result to its owning stage. A single end-to-end score is like one warning light for the whole aircraft. It cannot tell the crew where the fault lives.</p>
+<p>The credibility and robustness card secures the cabin and cargo hold. It records where each document came from, what happens when sources conflict, whether citations support the answer, who can load content, and what one poisoned document can damage. It also enforces each passenger's access rights during retrieval, before private material reaches the model.</p>
+<p>The latency and cost card starts the stopwatch and checks fuel use. It measures embedding, approximate search, reranking, prompt processing, and answer decoding under real load. The crew reduces the dominant delay first and records what quality each cheaper choice gives up.</p>
+<p>Departure requires five exit stamps. If any card lacks its stamp, the aircraft stays at the gate. The honest review says which requirement remains open. It does not hide the gap behind a confident adjective.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves external material and gives it to a generator</td>
+<td>The five checklists cover its retrieval, storage, evaluation, trust, latency, and cost decisions</td>
+</tr>
+<tr>
+<td>Operational checklist</td>
+<td>A list that must produce measurements or named choices</td>
+<td>Reading a line without answering it does not finish the design</td>
+</tr>
+<tr>
+<td>Exit criteria</td>
+<td>Conditions that must hold before a checklist passes</td>
+<td>A failed exit criterion means the design is not finished</td>
+</tr>
+<tr>
+<td>Retrieval design skeleton</td>
+<td>Five decisions about size, retrieval timing, sources and transformations, search, and evidence presentation</td>
+<td>It gives an interview answer a complete structure</td>
+</tr>
+<tr>
+<td>Corpus size in chunks</td>
+<td>The number of retrievable units in the collection</td>
+<td>It drives memory independently of traffic</td>
+</tr>
+<tr>
+<td>Chunk size</td>
+<td>The amount of content in each retrievable unit</td>
+<td>It helps determine corpus count, memory, and prompt tokens</td>
+</tr>
+<tr>
+<td>Queries per second (QPS)</td>
+<td>The median and peak request rates</td>
+<td>They drive compute independently of corpus size</td>
+</tr>
+<tr>
+<td>Latency budget</td>
+<td>The allowed response time</td>
+<td>It turns "fast" into a measurable requirement</td>
+</tr>
+<tr>
+<td>Time-to-first-token</td>
+<td>Delay before the answer begins</td>
+<td>A product may care about this more than total latency</td>
+</tr>
+<tr>
+<td>Total latency</td>
+<td>Delay until the answer finishes</td>
+<td>It captures the whole user wait</td>
+</tr>
+<tr>
+<td>Freshness requirement</td>
+<td>The maximum acceptable age of an answer</td>
+<td>Minutes, hours, and days require different architectures</td>
+</tr>
+<tr>
+<td>Accuracy bar</td>
+<td>A named metric with a cutoff</td>
+<td>An adjective cannot determine whether the design passes</td>
+</tr>
+<tr>
+<td>Retrieval gate g(x)</td>
+<td>The explicit rule that decides whether a query retrieves</td>
+<td>Always retrieving is a measured choice, not a neutral default</td>
+</tr>
+<tr>
+<td>Query classifier</td>
+<td>A gate that predicts whether a query needs retrieval</td>
+<td>It is one named gating family</td>
+</tr>
+<tr>
+<td>Generator confidence</td>
+<td>A generator signal used to decide whether to retrieve</td>
+<td>It is another named gating family</td>
+</tr>
+<tr>
+<td>Self-reflective token</td>
+<td>A model-produced signal that requests retrieval</td>
+<td>It is another named gating family</td>
+</tr>
+<tr>
+<td>Closed-book path</td>
+<td>The path that answers without retrieved evidence</td>
+<td>The design must say what this path returns and whether it may abstain</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Refusing to answer</td>
+<td>It can protect quality, but it changes coverage</td>
+</tr>
+<tr>
+<td>Controller drift</td>
+<td>Degradation in a learned retrieval gate</td>
+<td>Query distribution shift can make the gate fail</td>
+</tr>
+<tr>
+<td>Query distribution shift</td>
+<td>A change in the kinds of queries the system receives</td>
+<td>Every learned gate degrades under this change</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>A source collection that retrieval can search</td>
+<td>Multiple stores require selection and disagreement rules</td>
+</tr>
+<tr>
+<td>Source-selection rule</td>
+<td>The rule that chooses which stores to search</td>
+<td>It prevents an undefined multi-source path</td>
+</tr>
+<tr>
+<td>Query transformation Φ</td>
+<td>The operation applied to a query before search</td>
+<td>The design must name the operation and when it fires</td>
+</tr>
+<tr>
+<td>Identity transformation</td>
+<td>Searching with the query unchanged</td>
+<td>It is one allowed query transformation</td>
+</tr>
+<tr>
+<td>Query compression</td>
+<td>Shortening a query before search</td>
+<td>It is one allowed query transformation</td>
+</tr>
+<tr>
+<td>Query expansion</td>
+<td>Adding search terms to a query</td>
+<td>It is one allowed query transformation</td>
+</tr>
+<tr>
+<td>Query rewriting</td>
+<td>Rephrasing a query for retrieval</td>
+<td>Conversational rewrites must resolve referents beyond the current turn</td>
+</tr>
+<tr>
+<td>Query decomposition</td>
+<td>Splitting a query into smaller search questions</td>
+<td>It is one allowed query transformation</td>
+</tr>
+<tr>
+<td>Conversational referent</td>
+<td>A word whose meaning depends on earlier turns</td>
+<td>A rewrite that misses it can search for the wrong subject</td>
+</tr>
+<tr>
+<td>Chunking scheme</td>
+<td>The rule that divides content into retrievable units</td>
+<td>It needs evidence from the actual corpus</td>
+</tr>
+<tr>
+<td>Semantic chunking</td>
+<td>Chunking based on meaning boundaries</td>
+<td>Its value must be measured on the target corpus, not borrowed from a benchmark</td>
+</tr>
+<tr>
+<td>Scoring function</td>
+<td>The formula that ranks retrieved items</td>
+<td>It defines what the search engine considers a good match</td>
+</tr>
+<tr>
+<td>Lexical channel</td>
+<td>Search based on words or exact terms</td>
+<td>Dense-only search needs justification for long-tail and exact-match queries</td>
+</tr>
+<tr>
+<td>Dense-only retrieval</td>
+<td>Retrieval that uses only vector similarity</td>
+<td>It may miss query types served by a lexical channel</td>
+</tr>
+<tr>
+<td>Long-tail query</td>
+<td>A rare query pattern</td>
+<td>It is a specific stress case for dense-only retrieval</td>
+</tr>
+<tr>
+<td>Exact-match query</td>
+<td>A query that depends on matching a precise term</td>
+<td>It is another stress case for dense-only retrieval</td>
+</tr>
+<tr>
+<td>Hybrid retrieval</td>
+<td>Retrieval that combines dense and lexical channels</td>
+<td>It requires a named fusion method and constant</td>
+</tr>
+<tr>
+<td>Fusion method</td>
+<td>The rule that combines rankings from retrieval channels</td>
+<td>An unnamed fusion rule leaves ranking behavior undefined</td>
+</tr>
+<tr>
+<td>Fusion constant</td>
+<td>The fixed parameter used by the fusion rule</td>
+<td>It makes the hybrid design reproducible</td>
+</tr>
+<tr>
+<td>Retrieval depth k′</td>
+<td>The number of candidates retrieved before later processing</td>
+<td>It differs from rerank depth and generator context count</td>
+</tr>
+<tr>
+<td>Rerank depth</td>
+<td>The number of retrieved candidates sent to the reranker</td>
+<td>It controls reranking work and candidate coverage</td>
+</tr>
+<tr>
+<td>Generator k</td>
+<td>The number of chunks sent to the generator</td>
+<td>It determines evidence count and prefill tokens</td>
+</tr>
+<tr>
+<td>Index family</td>
+<td>The data structure used for nearest-neighbor search</td>
+<td>It trades recall, latency, memory, and rebuild cost</td>
+</tr>
+<tr>
+<td>Recall target</td>
+<td>The required fraction of exact neighbors found</td>
+<td>It must be paired with a named latency</td>
+</tr>
+<tr>
+<td>Metadata filter</td>
+<td>A rule that limits search by document fields</td>
+<td>It needs a strategy and an over-filtering fallback</td>
+</tr>
+<tr>
+<td>Over-filtering fallback</td>
+<td>The action taken when filters remove too many candidates</td>
+<td>It prevents filters from silently starving retrieval</td>
+</tr>
+<tr>
+<td>Prefill token count</td>
+<td>Tokens processed before generation begins</td>
+<td>Chunk size multiplied by generator k makes this cost visible</td>
+</tr>
+<tr>
+<td>Evidence ordering</td>
+<td>The placement of retrieved evidence in the prompt</td>
+<td>The design must address evidence that lands in the middle of context</td>
+</tr>
+<tr>
+<td>Serialization format</td>
+<td>The structure used to place retrieved text in the prompt</td>
+<td>It fixes where evidence sits relative to instructions</td>
+</tr>
+<tr>
+<td>Attribution mechanism</td>
+<td>The process that connects answer claims to evidence</td>
+<td>Generating citations with the answer differs from attaching them later</td>
+</tr>
+<tr>
+<td>Vector precision</td>
+<td>The bytes used to store each vector value</td>
+<td>It is part of vector storage sizing</td>
+</tr>
+<tr>
+<td>N</td>
+<td>The number of chunks in the index</td>
+<td>It is a required input to capacity sizing</td>
+</tr>
+<tr>
+<td>d</td>
+<td>The number of dimensions in each stored vector</td>
+<td>It is stated with N and vector precision before computing vector bytes</td>
+</tr>
+<tr>
+<td>Vector bytes b_vec</td>
+<td>The storage used by one vector</td>
+<td>The indexing checklist requires this number before other sizing</td>
+</tr>
+<tr>
+<td>Graph-index overhead b_link</td>
+<td>Per-vector storage for graph links</td>
+<td>It must be counted separately from vector bytes</td>
+</tr>
+<tr>
+<td>Inverted file (IVF)</td>
+<td>An index family that uses postings and searched partitions</td>
+<td>Its posting identifiers and search controls affect storage and recall</td>
+</tr>
+<tr>
+<td>Posting identifier</td>
+<td>A stored reference inside an IVF posting list</td>
+<td>It adds index overhead beyond vector bytes</td>
+</tr>
+<tr>
+<td>Compression code size</td>
+<td>Bytes left after vector compression</td>
+<td>The resulting recall cost must be measured, not assumed</td>
+</tr>
+<tr>
+<td>Rebuild headroom h</td>
+<td>Extra capacity reserved for rebuilding</td>
+<td>An in-place rebuild holds two indexes at once</td>
+</tr>
+<tr>
+<td>Replication factor R</td>
+<td>The number of stored copies</td>
+<td>It multiplies fleet capacity needs</td>
+</tr>
+<tr>
+<td>Payload store</td>
+<td>Chunk text plus filterable metadata</td>
+<td>It can dominate after roughly 30x vector compression</td>
+</tr>
+<tr>
+<td>Shard count</td>
+<td>The number of index partitions</td>
+<td>It is the ceiling of total footprint divided by usable memory per node</td>
+</tr>
+<tr>
+<td>Random access memory (RAM)</td>
+<td>Usable memory on an index node</td>
+<td>It limits how much index footprint one node can hold</td>
+</tr>
+<tr>
+<td>Recall@k′</td>
+<td>Recall measured at the retrieval depth actually used</td>
+<td>It evaluates candidate retrieval against exact search</td>
+</tr>
+<tr>
+<td>Exact search</td>
+<td>A search that establishes the neighbor ground truth</td>
+<td>It is the comparison target for recall</td>
+</tr>
+<tr>
+<td>Held-out sample</td>
+<td>Data reserved for evaluation</td>
+<td>Recall must be measured on data outside the tuning path</td>
+</tr>
+<tr>
+<td>Relevance judgment</td>
+<td>A label about result usefulness</td>
+<td>It measures a different question from exact-neighbor recall</td>
+</tr>
+<tr>
+<td>ef</td>
+<td>A per-query graph-index search control</td>
+<td>It is reversible and should be tried before rebuilding</td>
+</tr>
+<tr>
+<td>n_probe</td>
+<td>The number of IVF partitions searched per query</td>
+<td>It is a reversible search-time control</td>
+</tr>
+<tr>
+<td>Build-time knob</td>
+<td>An index setting that requires a rebuild to change</td>
+<td>Its cost includes the full rebuild duration</td>
+</tr>
+<tr>
+<td>Production concurrency</td>
+<td>The real number of simultaneous requests</td>
+<td>Latency measured without it can misrepresent deployed behavior</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>A deletion marker that leaves index structure behind</td>
+<td>Deletion does not repair the index</td>
+</tr>
+<tr>
+<td>Tombstone fraction</td>
+<td>The share of entries marked deleted</td>
+<td>Its measured recall effect sets the rebuild trigger</td>
+</tr>
+<tr>
+<td>Rebuild cadence</td>
+<td>How often the index is rebuilt</td>
+<td>Operations must know its duration and placement</td>
+</tr>
+<tr>
+<td>Hot-swap</td>
+<td>Replacing an old index with a separately rebuilt one</td>
+<td>It is an alternative to rebuilding in place</td>
+</tr>
+<tr>
+<td>Embedding model version</td>
+<td>The exact model tied to stored vectors</td>
+<td>A model change invalidates every vector and has no partial migration</td>
+</tr>
+<tr>
+<td>Judgment set</td>
+<td>The queries, judges, relevance scale, and agreement used for evaluation</td>
+<td>It defines the denominator and labeling process</td>
+</tr>
+<tr>
+<td>Inter-annotator agreement</td>
+<td>Agreement among human judges</td>
+<td>It shows whether relevance labels are stable</td>
+</tr>
+<tr>
+<td>Training-data contamination</td>
+<td>Evaluation examples appearing in generator training data</td>
+<td>It can make the test set uninformative</td>
+</tr>
+<tr>
+<td>Retrieval benchmark wearing RAG clothing</td>
+<td>A test the generator can answer without retrieval</td>
+<td>It measures nothing about retrieval</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain at k (nDCG@k)</td>
+<td>A ranked relevance score at the depth sent to the generator</td>
+<td>It answers a different question from Recall@k′</td>
+</tr>
+<tr>
+<td>Ceiling check</td>
+<td>End-to-end accuracy with a perfect retriever</td>
+<td>It bounds all downstream improvement</td>
+</tr>
+<tr>
+<td>Large language model (LLM) judge</td>
+<td>A model that assigns evaluation labels</td>
+<td>Its agreement with humans must be known on a sample</td>
+</tr>
+<tr>
+<td>Macro average</td>
+<td>An average that gives each class equal weight</td>
+<td>It prevents large classes from hiding weak judge agreement</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether an answer follows the supplied evidence</td>
+<td>It can be high even when the evidence itself is wrong</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether an answer is true</td>
+<td>It must be reported separately from faithfulness</td>
+</tr>
+<tr>
+<td>Claim-level decomposition</td>
+<td>Scoring individual claims instead of a whole answer</td>
+<td>It exposes which claims lack support</td>
+</tr>
+<tr>
+<td>Unverifiable-claim fraction</td>
+<td>The share of claims that cannot be checked</td>
+<td>It keeps unsupported content visible</td>
+</tr>
+<tr>
+<td>Accuracy conditioned on answering</td>
+<td>Accuracy only among non-abstained answers</td>
+<td>It must be paired with abstention rate to show coverage</td>
+</tr>
+<tr>
+<td>Length dependence</td>
+<td>Error rates changing with answer length</td>
+<td>It can invalidate comparisons across systems</td>
+</tr>
+<tr>
+<td>Stage attribution</td>
+<td>Assigning each failure to its owning design stage</td>
+<td>It localizes quality drops</td>
+</tr>
+<tr>
+<td>Macro, micro, and mezzo views</td>
+<td>Three evaluation views at different aggregation levels</td>
+<td>All three are needed because one end-to-end score cannot localize failure</td>
+</tr>
+<tr>
+<td>Remove-the-evidence ablation</td>
+<td>Rerunning evaluation without retrieved evidence</td>
+<td>It checks whether the system actually uses retrieval</td>
+</tr>
+<tr>
+<td>Closed-book baseline</td>
+<td>Performance without retrieved evidence</td>
+<td>It must appear beside the RAG result</td>
+</tr>
+<tr>
+<td>Gold-context ceiling</td>
+<td>Performance with ideal evidence</td>
+<td>It shows the best downstream result under perfect context</td>
+</tr>
+<tr>
+<td>Shuffled-context control</td>
+<td>Performance with context order or association disrupted</td>
+<td>It is a sanity case for evidence use</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Stability across repeated runs</td>
+<td>It is a system property beyond average quality</td>
+</tr>
+<tr>
+<td>Corrupted-document robustness</td>
+<td>Behavior when one document is damaged or wrong</td>
+<td>It tests whether one bad source can destabilize the system</td>
+</tr>
+<tr>
+<td>Denominator</td>
+<td>The population behind a reported number</td>
+<td>Every headline number needs one</td>
+</tr>
+<tr>
+<td>Source reliability signal</td>
+<td>Evidence-based trust information for each source</td>
+<td>It should come from agreement, provenance, or recency, not a one-time hand label</td>
+</tr>
+<tr>
+<td>Cross-source agreement</td>
+<td>Support shared across sources</td>
+<td>It can contribute to a reliability signal</td>
+</tr>
+<tr>
+<td>Editorial provenance</td>
+<td>The editorial origin and handling of a source</td>
+<td>It can contribute to a reliability signal</td>
+</tr>
+<tr>
+<td>Update recency</td>
+<td>How recently a source changed</td>
+<td>It can contribute to a reliability signal</td>
+</tr>
+<tr>
+<td>k - 1 other documents</td>
+<td>The remaining retrieved documents when one document conflicts with a set of k</td>
+<td>The design must name a mechanism for resolving that contradiction</td>
+</tr>
+<tr>
+<td>Temporal validity</td>
+<td>Whether a fact remains valid at retrieval time</td>
+<td>An old but once-correct document can produce a cited factual error</td>
+</tr>
+<tr>
+<td>Credibility laundering</td>
+<td>A weak claim gaining apparent authority through quotation by a stronger source</td>
+<td>Source reputation alone does not prevent it</td>
+</tr>
+<tr>
+<td>Post-hoc citation</td>
+<td>A citation attached after answer generation</td>
+<td>The source says not to call that system grounded</td>
+</tr>
+<tr>
+<td>Attributable claim</td>
+<td>A claim supported by the cited evidence</td>
+<td>It is one class in the attribution taxonomy</td>
+</tr>
+<tr>
+<td>Extrapolatory claim</td>
+<td>A claim that goes beyond the cited evidence</td>
+<td>It is one class in the attribution taxonomy</td>
+</tr>
+<tr>
+<td>Contradictory claim</td>
+<td>A claim opposed by the cited evidence</td>
+<td>It is one class in the attribution taxonomy</td>
+</tr>
+<tr>
+<td>Prompt injection</td>
+<td>Retrieved content trying to act as an instruction</td>
+<td>Every datastore writer is a potential source</td>
+</tr>
+<tr>
+<td>Structural separation</td>
+<td>Keeping retrieved data distinct from prompt instructions</td>
+<td>It helps the model treat content as data rather than commands</td>
+</tr>
+<tr>
+<td>Blast radius</td>
+<td>The worst measured effect of one poisoned chunk</td>
+<td>It turns a security intention into a bounded test</td>
+</tr>
+<tr>
+<td>Authenticated ingestion</td>
+<td>Verifying who supplied content</td>
+<td>It supports provenance policy at write time</td>
+</tr>
+<tr>
+<td>Content credentials</td>
+<td>Provenance information for media</td>
+<td>Missing credentials are common and need a policy</td>
+</tr>
+<tr>
+<td>Red-team test</td>
+<td>An adversarial test of the retrieval path</td>
+<td>Testing only the model misses retrieval-specific attacks</td>
+</tr>
+<tr>
+<td>Entitlement</td>
+<td>A user's right to access content</td>
+<td>It must be enforced during retrieval</td>
+</tr>
+<tr>
+<td>Tenant boundary</td>
+<td>The separation between customers or user groups</td>
+<td>A filter can fail open under bugs, while a separate index fails closed</td>
+</tr>
+<tr>
+<td>End-to-end removal</td>
+<td>Deleting a document from retrieval, caches, summaries, and graphs</td>
+<td>Removal is incomplete if derived copies remain</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN) search</td>
+<td>The approximate vector-search stage</td>
+<td>It is one of the five measured latency stages</td>
+</tr>
+<tr>
+<td>Rerank</td>
+<td>Reorder retrieved candidates with a later scoring stage</td>
+<td>It is one of the five measured latency stages</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Process the prompt before answer generation</td>
+<td>In most text RAG systems it dominates together with decode</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>Generate answer tokens</td>
+<td>In most text RAG systems it dominates together with prefill</td>
+</tr>
+<tr>
+<td>p95 and p99</td>
+<td>Latencies below which 95 or 99 percent of requests fall</td>
+<td>The chosen production percentile matters more than a single-threaded median</td>
+</tr>
+<tr>
+<td>Dominant stage</td>
+<td>The stage with the largest share of latency</td>
+<td>Optimization should start there</td>
+</tr>
+<tr>
+<td>Key-value (KV) cache</td>
+<td>Reusable generator state for repeated retrieved chunks</td>
+<td>Reuse can reduce repeated work</td>
+</tr>
+<tr>
+<td>Coarse-to-fine cascade</td>
+<td>A sequence that sends few candidates to the expensive stage</td>
+<td>It reduces expensive-stage work</td>
+</tr>
+<tr>
+<td>Central processing unit and graphics processing unit (CPU and GPU) pipeline</td>
+<td>Overlapping work across processors</td>
+<td>Embedding and search can run in an overlapped pipeline</td>
+</tr>
+<tr>
+<td>Cost per query C_q</td>
+<td>Total query-serving cost across all five stages</td>
+<td>It must include embedding and vector-store cost, not only generation tokens</td>
+</tr>
+<tr>
+<td>Amortized indexing cost</td>
+<td>Build cost spread across the refresh cadence</td>
+<td>A graph build is a recurring capital expense</td>
+</tr>
+<tr>
+<td>Priced gate</td>
+<td>Retrieval cost attributed to the decision to retrieve</td>
+<td>Not retrieving is the cheapest available optimization for part of the traffic</td>
+</tr>
+<tr>
+<td>Agentic or iterative loop</td>
+<td>A design that retrieves over multiple rounds</td>
+<td>It needs expected-round and tail-cost estimates</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<p>These checklists are written to be run, not read. Each line must produce a concrete number or a named decision. A line that produces only an adjective remains unanswered.</p>
+<p>The retrieval checklist is the interview checklist to internalize. Reproducing its five-decision skeleton and sizing questions verbally in under two minutes is a reasonable preparation target. The other four checklists are job-side design-review instruments.</p>
+<p>Each checklist ends with exit criteria. If a design cannot meet them, report that the design is not finished.</p>
+<h3 id="c1-the-retrieval-design-checklist">C.1 The Retrieval Design Checklist</h3>
+<p>Run this checklist in ten minutes. It contains five decisions. Give one number or named choice for every line. A vague answer is a finding, not a pass.</p>
+<h4 id="phase-0-size-the-problem-2-minutes">Phase 0: Size the problem, 2 minutes</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State corpus size in chunks and the chunk size that produced it. These two numbers drive memory. Source pointer: section 16.5.</li>
+<li>State median and peak QPS. Query rate drives compute and is separate from corpus size.</li>
+<li>Split the latency budget into time-to-first-token and total latency. Name which one the product cares about.</li>
+<li>State how stale an answer may be. Minutes, hours, and days require three different architectures. Source pointer: section 17.1.</li>
+<li>State the accuracy bar as a metric with a cutoff, not as an adjective.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This phase turns scale, load, responsiveness, freshness, and quality into testable requirements.</p>
+<p><strong>Failure without it</strong></p>
+<p>The design cannot size memory or compute. It also cannot prove that latency, freshness, or accuracy passes.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source gives this phase two minutes. It separates two sizing axes, corpus size and query rate, and two latency measures, time-to-first-token and total.</p>
+<h4 id="phase-1-when-to-retrieve-2-minutes">Phase 1: When to retrieve, 2 minutes</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State gate g(x) explicitly, even if it always retrieves. Always-retrieve has a measured cost and is not a neutral default. Source pointer: section 1.5.</li>
+<li>Name the gating family. Choose a query classifier, generator confidence, or self-reflective token. Source pointer: section 25.1.</li>
+<li>State what the closed-book path does. Include whether the system may abstain. Source pointer: section 11.1.</li>
+<li>Name how controller drift will be detected. Every learned gate degrades under query distribution shift. Source pointer: section 25.7.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The gate controls which queries pay retrieval cost and which queries rely on the closed-book path.</p>
+<p><strong>Failure without it</strong></p>
+<p>Retrieval becomes an unmeasured default. A shifted query mix can silently degrade a learned controller.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source gives this phase two minutes. A learned gate also needs an ongoing drift-detection plan.</p>
+<h4 id="phase-2-where-and-what-2-minutes">Phase 2: Where and what, 2 minutes</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Enumerate the stores. If there is more than one, state the source-selection rule and what happens when two stores disagree. Source pointer: section 25.3.</li>
+<li>State query transformation Φ. Choose identity, compression, expansion, rewriting, or decomposition. State which queries trigger it. Source pointer: chapter 24.</li>
+<li>For conversational traffic, confirm that rewriting resolves referents outside the current turn. Source pointer: section 24.5.</li>
+<li>State the chunking scheme and its evidence. Semantic chunking needs a measurement on the target corpus, not a benchmark number. Source pointer: section 13.6.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This phase fixes the searched sources, transformed query, conversation behavior, and retrievable unit.</p>
+<p><strong>Failure without it</strong></p>
+<p>Multi-store disagreement has no policy. Rewrites can lose the subject, and chunking becomes an unsupported label.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source gives this phase two minutes. It requires corpus-specific chunking evidence and query-specific transformation rules.</p>
+<h4 id="phase-3-how-to-retrieve-2-minutes">Phase 3: How to retrieve, 2 minutes</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Name the scoring function and whether a lexical channel exists. If retrieval is dense-only, justify it against long-tail and exact-match queries. Source pointer: section 18.5.</li>
+<li>If retrieval is hybrid, state the fusion method and its constant. Source pointer: section 21.6.</li>
+<li>State retrieval depth k′ and rerank depth separately from generator k. Source pointer: section 22.2.</li>
+<li>State the index family and its recall target at a named latency. Source pointer: section 15.6.</li>
+<li>If metadata filters exist, state the filter strategy and the over-filtering fallback. Source pointer: section 17.5.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This phase makes ranking channels, depth, index behavior, and filtering reproducible.</p>
+<p><strong>Failure without it</strong></p>
+<p>The design can hide exact-match weaknesses, conflate three depths, or over-filter until no useful evidence remains.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source gives this phase two minutes. Hybrid fusion adds a method and constant. Recall must be tied to a measured latency.</p>
+<h4 id="phase-4-how-to-present-it-2-minutes">Phase 4: How to present it, 2 minutes</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State generator k and the prefill token count it implies. Multiply chunk size by k out loud.</li>
+<li>State evidence ordering. If evidence lands in the middle of context, state the response. Source pointer: section 30.5.</li>
+<li>State the serialization format and where retrieved text sits relative to the instruction.</li>
+<li>State the attribution mechanism. Say whether attribution is generated with the answer or attached afterward. Source pointer: section 31.3.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This phase connects retrieved candidates to prompt cost, evidence position, instruction boundaries, and citations.</p>
+<p><strong>Failure without it</strong></p>
+<p>Context cost stays hidden. Evidence can land in a weak position, instructions can blur with data, and citation timing remains ambiguous.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source gives this phase two minutes. Prefill tokens equal chunk size multiplied by generator k.</p>
+<h4 id="c1-exit-criteria">C.1 exit criteria</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Every one of the five decisions has an answer, and at least two carry a number.</li>
+<li>Name one thing the design gives up without being prompted.</li>
+<li>State how to find which stage broke when quality drops. Source pointer: chapter 34.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These gates test completeness, trade-off awareness, and debuggability.</p>
+<p><strong>Failure without it</strong></p>
+<p>The retrieval design remains vague, one-sided, or impossible to diagnose.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The exit gate requires five answered decisions, at least two numeric decisions, one volunteered sacrifice, and one diagnostic plan.</p>
+<h3 id="c2-the-indexing-and-capacity-checklist">C.2 The Indexing and Capacity Checklist</h3>
+<p>Run this checklist before provisioning and before every migration. Every line should produce a number. The source points to section A.8 for the arithmetic.</p>
+<h4 id="sizing">Sizing</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State N chunks, d dimensions, and stored-vector precision. Compute b_vec before anything else.</li>
+<li>State the index family and its per-vector overhead. Use b_link for a graph index or posting identifiers for IVF. Keep this overhead separate from vector bytes. Source pointer: section 15.2.</li>
+<li>State the compression decision, resulting code size, and measured recall cost. Do not assume the recall cost. Source pointer: section 16.1.</li>
+<li>State rebuild headroom h and replication factor R. An in-place rebuild holds two indexes at once.</li>
+<li>State payload-store bytes for chunk text and filterable metadata. Past roughly 30x vector compression, payload storage dominates. Source pointer: section 17.4.</li>
+<li>Compute shard count as a ceiling division of total footprint by usable RAM per node. Source pointer: section 17.2.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>Sizing must include vectors, index overhead, compressed codes, rebuild copies, replicas, payloads, and usable node memory.</p>
+<p><strong>Failure without it</strong></p>
+<p>Fleet memory can be understated. Rebuilds can exceed capacity, and aggressive vector compression can hide a dominant payload store.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>An in-place rebuild needs capacity for two indexes. Replication multiplies storage. Payloads may dominate past roughly 30x vector compression.</p>
+<h4 id="recall-and-latency">Recall and latency</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State the recall target at a named k. Measure it against exact search on a held-out sample, not against relevance judgments.</li>
+<li>State the search-time knob and current value. Use ef for a graph index or n_probe for IVF. These controls are per-query and reversible.</li>
+<li>State the build-time knobs. State that changing them requires a full rebuild and give its duration.</li>
+<li>Measure latency at target recall under realistic concurrency, not as a single query.</li>
+<li>For a recall shortfall, change search-time controls first, build-time controls second, and index family last. Source pointer: section 15.6.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This order tries reversible controls before expensive rebuilds or an index-family change.</p>
+<p><strong>Failure without it</strong></p>
+<p>Recall can be measured against the wrong target. Latency can look good only because the test ignored concurrency.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Search-time controls are per-query and reversible. Build-time changes require a full rebuild. Changing index family is the last step.</p>
+<h4 id="churn-and-operations">Churn and operations</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State insert, update, and delete rates. A deletion creates a tombstone. It does not repair the index. Source pointer: section 17.1.</li>
+<li>Measure the tombstone fraction where recall starts falling. Derive the rebuild trigger from that measurement.</li>
+<li>State rebuild cadence and duration. Say whether rebuilding happens in place or on a separate box with a hot-swap.</li>
+<li>State what a query returns during a rebuild. Say whether that path has ever been tested.</li>
+<li>Pin the embedding model version to the index. A model change invalidates every vector, and no partial migration exists.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The index is an operated system. Churn, deletion markers, rebuild behavior, and model versions change its live state.</p>
+<p><strong>Failure without it</strong></p>
+<p>Recall can decay without a trigger. Queries can hit an untested rebuild path, and a model change can invalidate the whole index unexpectedly.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Rebuild cadence comes from a measured tombstone threshold. Model migration replaces every vector rather than a partial subset.</p>
+<h4 id="c2-exit-criteria">C.2 exit criteria</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Derive total fleet memory rather than copying a vendor sizing-calculator result.</li>
+<li>State what fraction of the index is graph structure and therefore incompressible.</li>
+<li>Give the rebuild path a runbook and a measured duration.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These gates prove that capacity, incompressible overhead, and operations are understood.</p>
+<p><strong>Failure without it</strong></p>
+<p>Provisioning depends on an opaque estimate, and the rebuild path remains unmeasured.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Passing requires one derived fleet-memory number, one graph-overhead fraction, and one timed rebuild runbook.</p>
+<h3 id="c3-the-evaluation-checklist">C.3 The Evaluation Checklist</h3>
+<p>An evaluation that cannot localize a failure is a dashboard, not an instrument. This checklist builds an instrument. The source develops the method in chapter 34.</p>
+<h4 id="before-measuring-anything">Before measuring anything</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Write down correct answers for three real queries by hand before choosing a metric.</li>
+<li>State the judgment set. Include query count, judges, relevance scale, and inter-annotator agreement. Source pointer: section 32.4.</li>
+<li>Confirm that the evaluation set is absent from generator training data. State how this was confirmed. Source pointer: section 34.6.</li>
+<li>Confirm that the set is not a retrieval benchmark wearing RAG clothing. A task the generator answers closed-book measures nothing about retrieval.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This phase fixes the intended behavior, evaluation population, label process, and contamination checks before metric selection.</p>
+<p><strong>Failure without it</strong></p>
+<p>A metric can reward the wrong behavior. Contamination or closed-book solvability can make retrieval look useful when it was not tested.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source requires three hand-worked real queries and a documented judgment set. It gives no fixed dataset size.</p>
+<h4 id="retrieval-layer">Retrieval layer</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Report Recall@k′ at the actual retrieval depth and nDCG@k at the depth given to the generator. Report both because they answer different questions. Source pointer: section 32.2.</li>
+<li>Run the ceiling check. Measure end-to-end accuracy with a perfect retriever. This number bounds every downstream improvement.</li>
+<li>If an LLM judges relevance, report its agreement with human labels on a sample. Macro-average agreement across classes. Source pointer: section 32.3.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The layer needs a candidate-recall measure, a ranked-relevance measure, a downstream ceiling, and a calibrated judge.</p>
+<p><strong>Failure without it</strong></p>
+<p>One retrieval metric can hide the other question. An unvalidated model judge can make the dashboard unreliable.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source requires exact-search comparison on held-out data, a perfect-retriever run, and a human-agreement sample when an LLM judges relevance.</p>
+<h4 id="generation-layer">Generation layer</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Report faithfulness and factuality separately. An answer can be perfectly faithful to a wrong document. Source pointer: section 33.1.</li>
+<li>Decompose answers into claims rather than scoring whole answers. Report the unverifiable-claim fraction. Source pointer: section 33.3.</li>
+<li>Report abstention rate and accuracy conditioned on answering. A system that refuses more may look better on precision and perform worse in production.</li>
+<li>Check length dependence. Error rates that vary with answer length invalidate cross-system comparisons. Source pointer: section 33.5.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These measures separate evidence use, truth, unsupported claims, coverage, and answer-length effects.</p>
+<p><strong>Failure without it</strong></p>
+<p>A wrong source can look faithful, refusals can inflate precision, and different answer lengths can invalidate comparisons.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Claim-level scoring adds decomposition work. Conditional accuracy must be paired with abstention rate, and length must be checked across systems.</p>
+<h4 id="system-layer">System layer</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Attribute a sample of failures to the owning one of the five retrieval decisions. Source pointer: section 34.1.</li>
+<li>Show macro, micro, and mezzo views. One end-to-end number cannot localize failure. Source pointer: section 34.2.</li>
+<li>Run the remove-the-evidence ablation to confirm that the system uses retrieval. Source pointer: section 34.4.</li>
+<li>Run the closed-book baseline, gold-context ceiling, and shuffled-context control.</li>
+<li>Measure system properties beyond quality. Include latency at a percentile, self-consistency across repeated runs, and robustness to a corrupted document. Source pointer: section 34.5.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>System-level tests connect headline quality to stages, evidence use, baselines, ceilings, controls, latency, stability, and robustness.</p>
+<p><strong>Failure without it</strong></p>
+<p>A quality drop stays unlocalized. The system may ignore retrieval, and one average can hide unstable or fragile behavior.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The checklist adds three sanity cases, one ablation, repeated runs, percentile latency, and a corrupted-document test.</p>
+<h4 id="c3-exit-criteria">C.3 exit criteria</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Given a two-point drop, name the responsible stage within one working day.</li>
+<li>Give every headline number a stated denominator.</li>
+<li>Put the closed-book baseline on the same chart as the RAG number.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These gates test localization speed, measurement transparency, and retrieval value.</p>
+<p><strong>Failure without it</strong></p>
+<p>The dashboard cannot assign a quality drop, explain its population, or show improvement over no retrieval.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The stated diagnostic service level is one working day for a two-point drop.</p>
+<h3 id="c4-the-credibility-and-robustness-checklist">C.4 The Credibility and Robustness Checklist</h3>
+<p>Retrieval places text the team did not write into a context the model treats as authoritative. This checklist covers unreliable sources, hostile sources, and sources that disagree. The source develops it across chapters 35 and 36.</p>
+<h4 id="source-quality">Source quality</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>For any answer, name the store that supplied each retrieved chunk. If this is impossible, later controls are not enforceable.</li>
+<li>Give each source a reliability signal. Derive it from cross-source agreement, editorial provenance, or update recency rather than assigning it by hand once. Source pointer: section 35.3.</li>
+<li>State what happens when one retrieved document contradicts the other k - 1. Name the mechanism, not the intention. Source pointer: section 35.2.</li>
+<li>Represent temporal validity. A document that was correct in 2021 but is retrieved today can create a factual error with a citation. Source pointer: section 35.7.</li>
+<li>Check for credibility laundering. A low-quality claim may gain authority by being quoted in a high-quality source.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>Source identity, evidence-based reliability, conflict handling, time validity, and laundering checks control what the model treats as authoritative.</p>
+<p><strong>Failure without it</strong></p>
+<p>Controls cannot be enforced by source. One contradiction, stale fact, or laundered claim can become a confident cited answer.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The checklist requires a reliability signal per source and a concrete contradiction mechanism. It gives no fixed numeric threshold.</p>
+<h4 id="attribution">Attribution</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State whether citations are produced with the answer or attached afterward. If they are attached afterward, do not describe the system as grounded. Source pointer: section 31.3.</li>
+<li>Measure attribution quality on a sample against the attributable, extrapolatory, and contradictory taxonomy. Source pointer: section 31.4.</li>
+<li>If an automatic judge scores attribution, measure its agreement with humans. Source pointer: section 31.5.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>Citation timing, claim categories, and judge agreement determine what the system can honestly claim about grounding.</p>
+<p><strong>Failure without it</strong></p>
+<p>Product language can overstate post-hoc citations. An automatic score can look precise without known human agreement.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source requires a human-scored sample for attribution and a human-agreement check for any automatic judge. It gives no fixed sample size.</p>
+<h4 id="adversarial-surface">Adversarial surface</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Name everyone who can write to the datastore. Every writer is a potential prompt injector. Source pointer: section 36.4.</li>
+<li>Structurally separate retrieved text from prompt instructions. State in the system prompt that retrieved content is data, not instruction.</li>
+<li>Measure the blast radius of one poisoned chunk rather than assuming it. Source pointer: section 36.5.</li>
+<li>Authenticate ingestion. Content credentials cover media provenance. Missing credentials are common and need a policy. Source pointer: section 36.3.</li>
+<li>Red-team the retrieval path specifically rather than testing only the model. Source pointer: section 36.6.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These checks cover write authority, instruction boundaries, single-document impact, provenance, and retrieval-specific attacks.</p>
+<p><strong>Failure without it</strong></p>
+<p>Untrusted content can act like an instruction. One poisoned chunk can have an unknown impact, and model-only tests can miss the retrieval path.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source requires a measured one-chunk blast radius, authenticated ingestion policy, and a retrieval-specific red-team exercise.</p>
+<h4 id="privacy-and-exposure">Privacy and exposure</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Identify content that the requesting user is not entitled to see. Enforce entitlement during retrieval rather than generation. Source pointer: section 36.8.</li>
+<li>State whether the tenant boundary is a filter or a separate index. Filters fail open under bugs. Separate indexes fail closed. Source pointer: section 38.4.</li>
+<li>Support end-to-end document removal. Include caches, derived summaries, and any graph.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The retrieval layer must stop unauthorized evidence before it reaches the generator and must remove every derived copy.</p>
+<p><strong>Failure without it</strong></p>
+<p>Private content can enter context. A filter bug can expose another tenant, and deletion can leave cached or derived material behind.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Separate indexes fail closed but require a separate boundary. Removal spans the datastore, caches, summaries, and graphs.</p>
+<h4 id="c4-exit-criteria">C.4 exit criteria</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>State the worst effect one attacker-controlled document can cause.</li>
+<li>Support document removal as an operation with a measured completion time.</li>
+<li>Keep product grounding claims within what evaluation demonstrates.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These gates bound single-document harm, make deletion operational, and constrain product language.</p>
+<p><strong>Failure without it</strong></p>
+<p>The design cannot state its blast radius, complete removal, or defend its grounding claim.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Passing requires one bounded attacker-document outcome and one measured end-to-end removal time.</p>
+<h3 id="c5-the-latency-and-cost-checklist">C.5 The Latency and Cost Checklist</h3>
+<p>Run this checklist with a stopwatch on a real query rather than on a diagram. The source points to section 37.1 and section A.7 for stage arithmetic.</p>
+<h4 id="build-the-budget">Build the budget</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Write and measure five stages. They are query embedding, ANN search, reranking, prefill, and decode. Measure rather than estimate because most latency intuitions in this field are wrong by an order of magnitude.</li>
+<li>Report the percentile that matters, usually p95 or p99, under production concurrency. A single-threaded median describes nothing.</li>
+<li>Identify the dominant stage before proposing an optimization. In most text RAG systems, prefill plus decode dominates rather than search.</li>
+<li>State time-to-first-token separately from total latency. Know which measure judges the product.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The budget exposes each stage, the production tail, the dominant constraint, and the product-facing latency measure.</p>
+<p><strong>Failure without it</strong></p>
+<p>An estimate can miss by an order of magnitude. A median can hide the production tail, and an optimization can target the wrong stage.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>The source requires five timed stages at production concurrency. It calls for p95 or p99 when that percentile matters.</p>
+<h4 id="reduce-it-in-the-right-order">Reduce it in the right order</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Cut context before cutting stages. Prefill is quadratic in context length. Fewer documents can improve quality as well as latency. Source pointer: section 30.6.</li>
+<li>Reuse the KV cache for retrieved chunks that repeat across queries. Source pointer: section 37.2.</li>
+<li>Use a coarse-to-fine cascade so the expensive stage sees few candidates. Source pointer: section 37.6.</li>
+<li>Overlap work that can overlap. Embedding and search can form a CPU and GPU pipeline. Source pointer: section 37.5.</li>
+<li>Only then consider a smaller generator or cheaper index. Both trade quality.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>This order reduces avoidable work before replacing quality-bearing components.</p>
+<p><strong>Failure without it</strong></p>
+<p>The design can sacrifice quality while leaving context, repeated work, candidate count, and overlap opportunities untouched.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Context cutting changes prefill work. Cache reuse needs repeated chunks. Cascades and pipelines add serving coordination. Smaller generators and cheaper indexes trade quality.</p>
+<h4 id="cost-per-query">Cost per query</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Compute C_q across all five stages. Include the embedding call and vector store, not only generation tokens. Source pointer: section 37.8.</li>
+<li>Separate indexing cost from query cost. Amortize indexing over refresh cadence. A graph build is a recurring capital expense. Source pointer: section 40.1.</li>
+<li>Price the retrieval gate. Not retrieving is the cheapest available optimization and improves accuracy on part of the traffic. Source pointer: section 1.5.</li>
+<li>For an agentic or iterative loop, state expected retrieval rounds and tail cost rather than only the mean. Source pointer: section 26.8.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>The calculation exposes full serving cost, recurring build cost, gate value, and multi-round tail cost.</p>
+<p><strong>Failure without it</strong></p>
+<p>Generation tokens can hide embedding, vector-store, indexing, and repeated-retrieval costs.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>One derived C_q must cover five query stages. Indexing is amortized over refresh cadence, and iterative retrieval is priced at the tail as well as the expectation.</p>
+<h4 id="c5-exit-criteria">C.5 exit criteria</h4>
+<p><strong>What</strong></p>
+<ol type="1">
+<li>Name the dominant stage and its budget share as a percentage.</li>
+<li>Derive one cost-per-query number with the stages broken out.</li>
+<li>For every proposed optimization, name the constraint it addresses and what it trades away.</li>
+</ol>
+<p><strong>Why</strong></p>
+<p>These gates tie optimization to measured dominance, complete cost, and explicit trade-offs.</p>
+<p><strong>Failure without it</strong></p>
+<p>The design can optimize a minor stage, omit costs, or hide a quality sacrifice.</p>
+<p><strong>Cost and complexity</strong></p>
+<p>Passing requires one percentage, one staged cost-per-query total, and one constraint-and-trade-off statement per optimization.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>The source appendix contains zero figures and zero tables. No captioned source visual is recreated or invented here.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one large box labeled "Design review."</li>
+<li>Draw five cards inside it from left to right.</li>
+<li>Label the cards "Retrieval," "Indexing," "Evaluation," "Credibility," and "Latency and cost."</li>
+<li>Under Retrieval, write "size, gate, sources, search, presentation."</li>
+<li>Under Indexing, write "memory, recall, churn, rebuild."</li>
+<li>Under Evaluation, write "test set, retrieval, generation, system."</li>
+<li>Under Credibility, write "sources, attribution, attacks, privacy."</li>
+<li>Under Latency and cost, write "five stages, optimize, price."</li>
+<li>Draw an arrow from every card to one bottom box labeled "Exit criteria."</li>
+<li>Inside the bottom box, write "number or named choice."</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Appendix C turns a RAG design into five runnable cards. First, the retrieval card fixes scale, the retrieval gate, sources, search, and evidence presentation. The indexing card derives memory, recall, churn, and rebuild needs. The evaluation card proves the test set is valid and localizes failures across retrieval, generation, and the full system. The credibility card traces sources, tests attribution, bounds poisoned content, and enforces access. The latency card measures five stages on real traffic, then prices each query. Every card ends with exit criteria. If a line lacks a number or named choice, the design is not finished.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="probe-1-why-is-always-retrieve-not-a-complete-retrieval-design">Probe 1: Why is "always retrieve" not a complete retrieval design?</h3>
+<p>Always-retrieve is an explicit gate with measured cost, not a neutral default. A complete answer also names the closed-book path, abstention behavior, controller-drift detection, sources, transformations, search depths, index target, filters, prompt placement, and attribution timing.</p>
+<h3 id="probe-2-why-can-vector-compression-fail-to-solve-capacity-planning">Probe 2: Why can vector compression fail to solve capacity planning?</h3>
+<p>The checklist sizes vector bytes, index overhead, rebuild headroom, replication, payloads, and shards separately. Past roughly 30x vector compression, chunk text and filterable metadata can dominate, while graph structure remains incompressible.</p>
+<h3 id="probe-3-why-is-one-end-to-end-quality-number-insufficient">Probe 3: Why is one end-to-end quality number insufficient?</h3>
+<p>It cannot localize retrieval, generation, or system failure. The evaluation checklist pairs retrieval metrics, claim-level generation measures, abstention, stage attribution, macro, micro, and mezzo views, ablations, sanity controls, latency, consistency, and corrupted-document robustness.</p>
+<h3 id="probe-4-when-is-a-cited-answer-still-not-safely-grounded">Probe 4: When is a cited answer still not safely grounded?</h3>
+<p>It can use a stale, contradictory, laundered, or attacker-controlled source. Citations attached after generation do not justify a grounding claim, so the design also needs claim-category evaluation, judge agreement, source identity, access enforcement, and end-to-end removal.</p>
+<h3 id="probe-5-why-not-optimize-search-latency-first">Probe 5: Why not optimize search latency first?</h3>
+<p>Measure all five stages at the relevant production percentile before choosing a target. In most text RAG systems, prefill plus decode dominates, so the stated order cuts context, reuses cache, cascades candidates, and overlaps work before choosing a smaller generator or cheaper index that trades quality.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number, threshold, or trade-off</th>
+<th>Source commitment</th>
+<th>Design meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5 checklists</td>
+<td>Retrieval, indexing and capacity, evaluation, credibility and robustness, latency and cost</td>
+<td>The appendix covers five review surfaces</td>
+</tr>
+<tr>
+<td>1 interview checklist</td>
+<td>Internalize the retrieval checklist</td>
+<td>The other four primarily serve on-the-job design reviews</td>
+</tr>
+<tr>
+<td>Under 2 minutes</td>
+<td>Reasonable target for verbally reproducing the retrieval skeleton and sizing questions</td>
+<td>Interview recall should be concise</td>
+</tr>
+<tr>
+<td>10 minutes</td>
+<td>Total retrieval design checklist time</td>
+<td>The checklist is a timed design round</td>
+</tr>
+<tr>
+<td>5 decisions</td>
+<td>Size, retrieval timing, sources and transformations, search, presentation</td>
+<td>Every decision needs an answer</td>
+</tr>
+<tr>
+<td>2 minutes per phase</td>
+<td>Time for each of the five retrieval phases</td>
+<td>Five equal phases fill the ten-minute checklist</td>
+</tr>
+<tr>
+<td>At least 2 numeric decisions</td>
+<td>Minimum numeric content in the C.1 exit criteria</td>
+<td>Naming choices alone is insufficient</td>
+</tr>
+<tr>
+<td>Corpus size versus query rate</td>
+<td>Memory and compute are different sizing axes</td>
+<td>Both must be stated</td>
+</tr>
+<tr>
+<td>Minutes, hours, days</td>
+<td>Three freshness scales</td>
+<td>The source says they imply three different architectures</td>
+</tr>
+<tr>
+<td>2 latency measures</td>
+<td>Time-to-first-token and total latency</td>
+<td>The product must name which measure matters</td>
+</tr>
+<tr>
+<td>Always retrieve versus a selective gate</td>
+<td>Always retrieving has measured cost and is not a neutral default</td>
+<td>State g(x) explicitly</td>
+</tr>
+<tr>
+<td>Closed-book answer versus abstention</td>
+<td>The no-retrieval path must name its behavior</td>
+<td>Coverage is a design decision</td>
+</tr>
+<tr>
+<td>Multiple stores versus one store</td>
+<td>Multiple stores need a selection rule and disagreement behavior</td>
+<td>Source routing cannot remain implicit</td>
+</tr>
+<tr>
+<td>Semantic label versus corpus measurement</td>
+<td>Semantic chunking needs evidence on the target corpus</td>
+<td>A benchmark number does not answer the checklist line</td>
+</tr>
+<tr>
+<td>Dense-only versus a lexical channel</td>
+<td>Dense-only retrieval needs justification for long-tail and exact-match queries</td>
+<td>Channel choice has query-specific risk</td>
+</tr>
+<tr>
+<td>Hybrid retrieval</td>
+<td>The design must state the fusion method and its constant</td>
+<td>Combining channels adds a reproducibility requirement</td>
+</tr>
+<tr>
+<td>k′, rerank depth, k</td>
+<td>Retrieval candidates, reranked candidates, and generator chunks</td>
+<td>The three depths must be stated separately</td>
+</tr>
+<tr>
+<td>Recall target at named latency</td>
+<td>Index recall and latency must be committed together</td>
+<td>Neither metric stands alone</td>
+</tr>
+<tr>
+<td>Metadata filters versus fallback</td>
+<td>Filters need an over-filtering fallback</td>
+<td>Filtering can remove too much evidence</td>
+</tr>
+<tr>
+<td>Chunk size x k</td>
+<td>Implied prefill token count</td>
+<td>State this multiplication aloud</td>
+</tr>
+<tr>
+<td>Generated attribution versus attached attribution</td>
+<td>State whether citations are produced with the answer or added later</td>
+<td>Timing changes what the system can claim</td>
+</tr>
+<tr>
+<td>2 indexes</td>
+<td>Storage held during an in-place rebuild</td>
+<td>Rebuild headroom must cover both</td>
+</tr>
+<tr>
+<td>Compression versus measured recall</td>
+<td>State resulting code size and measured recall cost</td>
+<td>Do not assume the quality loss</td>
+</tr>
+<tr>
+<td>Roughly 30x</td>
+<td>Vector-compression point beyond which payload storage dominates</td>
+<td>Compression does not remove text and metadata cost</td>
+</tr>
+<tr>
+<td>Ceiling division</td>
+<td>Total footprint divided by usable RAM per node, rounded up</td>
+<td>This gives shard count</td>
+</tr>
+<tr>
+<td>Exact-neighbor recall versus relevance judgments</td>
+<td>The source says these measure different things</td>
+<td>Use exact search for the recall target</td>
+</tr>
+<tr>
+<td>Search-time, then build-time, then index family</td>
+<td>Required order for fixing a recall shortfall</td>
+<td>Try reversible controls before a rebuild or family change</td>
+</tr>
+<tr>
+<td>In-place rebuild versus separate hot-swap</td>
+<td>State where rebuilding happens</td>
+<td>Query behavior during rebuild must also be tested</td>
+</tr>
+<tr>
+<td>Full embedding migration</td>
+<td>A model change invalidates every vector</td>
+<td>The source allows no partial migration</td>
+</tr>
+<tr>
+<td>3 real queries</td>
+<td>Hand-written correct-answer examples before metric selection</td>
+<td>Evaluation starts from concrete intended behavior</td>
+</tr>
+<tr>
+<td>Recall@k′ and nDCG@k</td>
+<td>Two retrieval-layer measures that must both be reported</td>
+<td>They answer different questions</td>
+</tr>
+<tr>
+<td>3 attribution classes</td>
+<td>Attributable, extrapolatory, contradictory</td>
+<td>Attribution quality is measured at claim level</td>
+</tr>
+<tr>
+<td>Faithfulness versus factuality</td>
+<td>Report them separately</td>
+<td>A faithful answer can follow a wrong document</td>
+</tr>
+<tr>
+<td>Abstention versus production coverage</td>
+<td>Report abstention rate and accuracy conditioned on answering</td>
+<td>More refusal can improve precision while worsening production behavior</td>
+</tr>
+<tr>
+<td>Answer length versus error rate</td>
+<td>Length-dependent errors invalidate cross-system comparison</td>
+<td>Check length dependence</td>
+</tr>
+<tr>
+<td>3 evaluation views</td>
+<td>Macro, micro, mezzo</td>
+<td>One end-to-end number cannot localize failure</td>
+</tr>
+<tr>
+<td>3 sanity cases</td>
+<td>Closed-book baseline, gold-context ceiling, shuffled-context control</td>
+<td>They test retrieval value and context use</td>
+</tr>
+<tr>
+<td>2-point drop</td>
+<td>Quality regression in the C.3 exit criterion</td>
+<td>The system must localize its owning stage</td>
+</tr>
+<tr>
+<td>1 working day</td>
+<td>Maximum localization time for that two-point drop</td>
+<td>This is the evaluation diagnostic target</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>Example year for a once-correct but now stale document</td>
+<td>A citation does not repair temporal invalidity</td>
+</tr>
+<tr>
+<td>k - 1</td>
+<td>Other documents contradicted by one retrieved document</td>
+<td>The design must name a conflict mechanism</td>
+</tr>
+<tr>
+<td>1 poisoned chunk</td>
+<td>Unit used for the blast-radius check</td>
+<td>Security impact must be measured at single-document scale</td>
+</tr>
+<tr>
+<td>1 attacker-controlled document</td>
+<td>Unit used in the C.4 exit criterion</td>
+<td>The design must state its worst possible effect</td>
+</tr>
+<tr>
+<td>Retrieval filter versus separate tenant index</td>
+<td>Filters fail open under bugs, while separate indexes fail closed</td>
+<td>State the tenant-boundary mechanism</td>
+</tr>
+<tr>
+<td>5 latency stages</td>
+<td>Query embedding, ANN search, rerank, prefill, decode</td>
+<td>Measure every stage on a real query</td>
+</tr>
+<tr>
+<td>p95 or p99</td>
+<td>Usually relevant latency percentiles</td>
+<td>Report the product-relevant tail at production concurrency</td>
+</tr>
+<tr>
+<td>1 order of magnitude</td>
+<td>The source says most latency intuitions in this field are wrong by this amount</td>
+<td>Measure instead of estimating</td>
+</tr>
+<tr>
+<td>Quadratic prefill</td>
+<td>Prefill cost as context length grows</td>
+<td>Cut context before cutting stages</td>
+</tr>
+<tr>
+<td>Context reduction before component replacement</td>
+<td>First cut context, reuse cache, cascade candidates, and overlap work</td>
+<td>Delay quality-bearing substitutions</td>
+</tr>
+<tr>
+<td>Smaller generator or cheaper index</td>
+<td>Both reduce cost and trade quality</td>
+<td>Consider them only after earlier reductions</td>
+</tr>
+<tr>
+<td>Query cost versus indexing cost</td>
+<td>Separate the two and amortize indexing over refresh cadence</td>
+<td>A graph build is a recurring capital expense</td>
+</tr>
+<tr>
+<td>Expected rounds versus tail rounds</td>
+<td>Price both for agentic or iterative retrieval</td>
+<td>Mean cost alone misses the tail</td>
+</tr>
+<tr>
+<td>1 cost per query C_q</td>
+<td>Derived total across all five stages</td>
+<td>Break the total into its stage costs</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/A2_question_bank.html"><small>Previous</small>Appendix A2. Question Bank</a><a href="../chapters/A4_the_rag_card_and_index_datasheet.html"><small>Next</small>Appendix A4. The RAG Card and Index Datasheet</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

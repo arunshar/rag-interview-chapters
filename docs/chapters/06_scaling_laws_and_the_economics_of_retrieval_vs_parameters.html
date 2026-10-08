@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group" open><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html" aria-current="page">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part II. The Generator Side</p><h1>Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</h1><p class="chapter-meta">47 min estimated reading · Unit 15 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how to allocate training, serving, memory, and retrieval budgets for a Retrieval-Augmented Generation (RAG) system.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Training compute is approximately 6ND floating-point operations (FLOPs), while generation costs 2N FLOPs per token.</li>
+<li>Kaplan allocation drives the token-to-parameter ratio down with budget, while Chinchilla keeps it near 20 at its scale.</li>
+<li>Chinchilla minimizes training compute, not lifetime cost. Serving overtakes training at Dinf = 3Dtr.</li>
+<li>Memory has three bills: weights, optimizer state, and the key-value (KV) cache. Retrieval controls the variable cache bill through context length.</li>
+<li>At fixed non-embedding parameter count, architecture shape changes loss only a few percent. Shape still changes cache size and decode latency.</li>
+<li>Test-time search wins at modest query volume only when a verifier can select better candidates.</li>
+<li>Retrieval can replace parameters that store facts. It cannot replace the competence needed to read and use retrieved evidence. Datastore growth forces retrieval depth upward. A reranker keeps the generator context flat as the corpus grows.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of the system as a library with a skilled clerk. Model parameters pay for the clerk's reading and reasoning skill, while the datastore pays for shelves that can be updated cheaply. A larger clerk may remember more books, but every answer then costs more to serve. A smaller clerk can consult the shelves, but only if the clerk can read the right passage and the catalog can surface it. The economic choice is therefore not simply big model versus small model. It is how much permanent skill to buy, how much factual content to store externally, and how much search and verification to purchase per query. As the library grows, a reranker prevents the clerk from receiving an ever larger pile of passages.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning in this chapter</th>
+<th>Decision it controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N</td>
+<td>Non-embedding parameter count unless the text says total parameters</td>
+<td>Training compute, generation compute, quality scaling</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Number of processed training tokens</td>
+<td>Training allocation and repeated-data cost</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Training compute in FLOPs</td>
+<td>Budget constraint</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Test cross-entropy in nats per token</td>
+<td>Scaling-law outcome</td>
+</tr>
+<tr>
+<td>alpha_N</td>
+<td>Parameter scaling exponent, about 0.076 under Kaplan</td>
+<td>Loss reduction from more parameters</td>
+</tr>
+<tr>
+<td>alpha_D</td>
+<td>Data scaling exponent, about 0.095 under Kaplan</td>
+<td>Loss reduction from more tokens</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Batch size in Kaplan's allocation result</td>
+<td>Part of the token-count scaling</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Training steps in Kaplan's allocation result</td>
+<td>Part of the token-count scaling</td>
+</tr>
+<tr>
+<td>Dtr</td>
+<td>Training-token volume in the lifetime bill</td>
+<td>One-time training cost</td>
+</tr>
+<tr>
+<td>Dinf</td>
+<td>Generated-token volume in the lifetime bill</td>
+<td>Repeated serving cost</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Bytes used to store one number</td>
+<td>Weight and cache memory</td>
+</tr>
+<tr>
+<td>Llayers</td>
+<td>Transformer layer count</td>
+<td>Attention work and KV cache</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Model width</td>
+<td>Attention work, body size, and cache</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Context length in tokens</td>
+<td>Attention work and per-request cache</td>
+</tr>
+<tr>
+<td>nkv</td>
+<td>Number of key and value heads</td>
+<td>KV-cache width</td>
+</tr>
+<tr>
+<td>dhead</td>
+<td>Head dimension</td>
+<td>KV-cache width</td>
+</tr>
+<tr>
+<td>Nbody</td>
+<td>Transformer-body parameter count</td>
+<td>Compute-relevant model size</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Vocabulary size</td>
+<td>Embedding-table memory and tokenization</td>
+</tr>
+<tr>
+<td>nlayer</td>
+<td>Model depth</td>
+<td>Body size, cache, and sequential decode</td>
+</tr>
+<tr>
+<td>Tin</td>
+<td>Input tokens for one query</td>
+<td>Prefill cost</td>
+</tr>
+<tr>
+<td>Tout</td>
+<td>Output tokens for one query</td>
+<td>Decode cost</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>Lifetime query count</td>
+<td>Amortization of pre-training</td>
+</tr>
+<tr>
+<td>m</td>
+<td>Per-query compute multiplier of a test-time method</td>
+<td>Breakeven against larger pre-training</td>
+</tr>
+<tr>
+<td>Qstar</td>
+<td>Query count where two lifetime-cost choices cross</td>
+<td>Pre-training versus test-time compute</td>
+</tr>
+<tr>
+<td>theta</td>
+<td>Model parameters</td>
+<td>Parametric storage path</td>
+</tr>
+<tr>
+<td>rho</td>
+<td>Fraction of the corpus that outranks the gold chunk</td>
+<td>Retrieval-depth growth rate</td>
+</tr>
+<tr>
+<td>rbar</td>
+<td>Mean rank of the gold chunk</td>
+<td>Empirical input to rho</td>
+</tr>
+<tr>
+<td>corpus size</td>
+<td>Number of datastore chunks</td>
+<td>Retrieval depth and index memory</td>
+</tr>
+<tr>
+<td>k</td>
+<td>Chunks passed toward the generator</td>
+<td>Recall, context, and answer-bearing fraction</td>
+</tr>
+<tr>
+<td>kret</td>
+<td>Deep retrieval count before reranking</td>
+<td>Corpus-growth cost</td>
+</tr>
+<tr>
+<td>kmax</td>
+<td>Maximum chunks that fit the context window</td>
+<td>Retrieval ceiling</td>
+</tr>
+<tr>
+<td>f</td>
+<td>Token-count reduction from a better tokenizer</td>
+<td>Prefill, cache, and context savings</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One numerical operation in the chapter's compute estimates</td>
+<td>Prices training, serving, embedding, and reranking</td>
+</tr>
+<tr>
+<td>Cosine learning-rate schedule</td>
+<td>A schedule that decays the training rate over a run's actual length</td>
+<td>Explains the methodological correction behind Chinchilla</td>
+</tr>
+<tr>
+<td>Numeric precision</td>
+<td>32-bit floating point (fp32), bfloat16 (bf16), 8-bit floating point (fp8), 8-bit integer (int8), or 4-bit integer (int4) storage</td>
+<td>Determines weight memory and card boundaries</td>
+</tr>
+<tr>
+<td>Concurrency</td>
+<td>Requests served at the same time</td>
+<td>Multiplies the per-request KV-cache bill</td>
+</tr>
+<tr>
+<td>Gold chunk</td>
+<td>The labeled passage containing the evidence needed for an answer</td>
+<td>Supports reading tests, rank measurement, and reranking decisions</td>
+</tr>
+<tr>
+<td>Kaplan allocation</td>
+<td>N grows as C^0.73 and D grows as C^0.27</td>
+<td>Favors parameters increasingly at larger budgets</td>
+</tr>
+<tr>
+<td>Chinchilla allocation</td>
+<td>N and D each grow as C^0.50</td>
+<td>Holds the token-to-parameter ratio constant</td>
+</tr>
+<tr>
+<td>Post-Chinchilla allocation</td>
+<td>Smaller models trained on far more tokens</td>
+<td>Trades a small loss penalty for lower serving cost</td>
+</tr>
+<tr>
+<td>Iso-FLOP curve</td>
+<td>Loss across model and token allocations at fixed compute</td>
+<td>Finds an allocation minimum</td>
+</tr>
+<tr>
+<td>Compute-optimal</td>
+<td>Minimum training compute for a target loss</td>
+<td>Correct only for a training-only objective</td>
+</tr>
+<tr>
+<td>Over-trained</td>
+<td>More tokens per parameter than Chinchilla</td>
+<td>Reduces parameter count and serving cost</td>
+</tr>
+<tr>
+<td>Weight memory</td>
+<td>Nb bytes</td>
+<td>Fixed serving cost</td>
+</tr>
+<tr>
+<td>Training state</td>
+<td>Weights, gradients, master weights, and Adam moments</td>
+<td>Full fine-tuning feasibility</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>Keys and values retained for every token and request</td>
+<td>Serving concurrency</td>
+</tr>
+<tr>
+<td>Attention correction</td>
+<td>Parameter-free attention work omitted by 6ND</td>
+<td>Long-context compute accuracy</td>
+</tr>
+<tr>
+<td>Low-rank adaptation (LoRA)</td>
+<td>Small trainable matrices added to frozen weights</td>
+<td>Fine-tuning state reduction</td>
+</tr>
+<tr>
+<td>Activation checkpointing</td>
+<td>Recompute forward activations during backward</td>
+<td>Memory reduction for 33% more parameter work</td>
+</tr>
+<tr>
+<td>Mixture-of-experts (MoE)</td>
+<td>Store many parameters but activate only some per token</td>
+<td>Splits memory sizing from compute sizing</td>
+</tr>
+<tr>
+<td>Shape independence</td>
+<td>Loss changes only a few percent across a wide shape range at fixed N</td>
+<td>Moves shape choice to serving constraints</td>
+</tr>
+<tr>
+<td>Embedding table</td>
+<td>Vocabulary lookup rows</td>
+<td>Memory without multiply-add compute</td>
+</tr>
+<tr>
+<td>Convergence</td>
+<td>Validation loss plateau for one model-data pair</td>
+<td>Not a compute-budget allocation rule</td>
+</tr>
+<tr>
+<td>Repeated-data ceiling</td>
+<td>About four epochs remain near fresh-data value</td>
+<td>Caps productive reuse</td>
+</tr>
+<tr>
+<td>Proposer</td>
+<td>Produces candidate answers</td>
+<td>Uses test-time compute to explore</td>
+</tr>
+<tr>
+<td>Verifier</td>
+<td>Scores passages or answer chains. Pass-at-16 checks whether any of 16 proposals is correct.</td>
+<td>Converts exploration into accuracy</td>
+</tr>
+<tr>
+<td>Best-of-N</td>
+<td>Generate m complete answers and select the top score</td>
+<td>Default search at larger budgets</td>
+</tr>
+<tr>
+<td>Beam search</td>
+<td>Prune partial solutions using verifier scores</td>
+<td>Stronger at small budgets on easier tasks</td>
+</tr>
+<tr>
+<td>Lookahead search</td>
+<td>Add Monte Carlo rollouts to beam search</td>
+<td>Loses at matched budget in the cited result</td>
+</tr>
+<tr>
+<td>Process reward model (PRM)</td>
+<td>Scores reasoning steps</td>
+<td>Stronger signal than final-answer-only scoring</td>
+</tr>
+<tr>
+<td>Outcome reward model</td>
+<td>Scores only the final answer</td>
+<td>Weaker verifier signal in the cited comparison</td>
+</tr>
+<tr>
+<td>Competence parameters</td>
+<td>Support syntax, instructions, attention, and copying</td>
+<td>Cannot be outsourced to retrieval</td>
+</tr>
+<tr>
+<td>Content parameters</td>
+<td>Support closed-book factual production</td>
+<td>Can be partly substituted by a datastore</td>
+</tr>
+<tr>
+<td>Write path</td>
+<td>Cost to add or update one fact</td>
+<td>Main economic advantage of retrieval</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>Cheap discriminator over retrieved candidates</td>
+<td>Holds generator context flat</td>
+</tr>
+<tr>
+<td>Product quantization</td>
+<td>Compresses stored vectors</td>
+<td>Makes large index memory practical</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="61-kaplan-chinchilla-and-post-chinchilla-token-to-parameter-ratios">6.1 Kaplan, Chinchilla, and post-Chinchilla token-to-parameter ratios</h3>
+<h4 id="what-the-scaling-laws-say">What the scaling laws say</h4>
+<p>The basic compute relation is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≈</mo><mn>6</mn><mi>N</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">C \approx 6ND</annotation></semantics></math></p>
+<p>Kaplan et al. fit separate power laws for parameters and data. The straight-line log-log fits span seven orders of magnitude:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>N</mi><mi>c</mi></msub><mi>N</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>α</mi><mi>N</mi></msub></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>α</mi><mi>N</mi></msub><mo>≈</mo><mn>0.076</mn></mrow><annotation encoding="application/x-tex">L(N) = \left(\frac{N_c}{N}\right)^{\alpha_N}, \qquad \alpha_N \approx 0.076</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>D</mi><mi>c</mi></msub><mi>D</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>α</mi><mi>D</mi></msub></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>α</mi><mi>D</mi></msub><mo>≈</mo><mn>0.095</mn></mrow><annotation encoding="application/x-tex">L(D) = \left(\frac{D_c}{D}\right)^{\alpha_D}, \qquad \alpha_D \approx 0.095</annotation></semantics></math></p>
+<p>Their allocation rule is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><mo>∝</mo><msup><mi>C</mi><mn>0.73</mn></msup></mrow><annotation encoding="application/x-tex">N_{opt} \propto C^{0.73}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><mo>∝</mo><msup><mi>C</mi><mn>0.27</mn></msup></mrow><annotation encoding="application/x-tex">D_{opt} \propto C^{0.27}</annotation></semantics></math></p>
+<p>Kaplan also reports batch size proportional to C^0.24 and steps proportional to C^0.03. Those exponents combine to give D proportional to C^0.27.</p>
+<p>The token-to-parameter ratio therefore obeys:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>D</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><msub><mi>N</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub></mfrac><mo>∝</mo><msup><mi>C</mi><mrow><mi>−</mi><mn>0.46</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\frac{D_{opt}}{N_{opt}} \propto C^{-0.46}</annotation></semantics></math></p>
+<p>The ratio falls as the compute budget grows. GPT-3 uses 175 B parameters and 300 B tokens, or 1.7 tokens per parameter. Gopher uses 280 B parameters and 300 B tokens, or 1.1 tokens per parameter.</p>
+<h4 id="why-chinchilla-changed-the-answer">Why Chinchilla changed the answer</h4>
+<p>Hoffmann et al. matched the cosine learning-rate schedule to each run's actual length. Kaplan had used one schedule across runs of different lengths. That choice undervalued longer training because some runs were evaluated before the schedule finished decaying. Hoffmann et al. also counted embedding parameters.</p>
+<p>Three estimation routes agreed on exponents near one half:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><mo>∝</mo><msup><mi>C</mi><mn>0.50</mn></msup></mrow><annotation encoding="application/x-tex">N_{opt} \propto C^{0.50}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><mo>∝</mo><msup><mi>C</mi><mn>0.50</mn></msup></mrow><annotation encoding="application/x-tex">D_{opt} \propto C^{0.50}</annotation></semantics></math></p>
+<p>Thus:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>D</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><msub><mi>N</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub></mfrac><mo>∝</mo><msup><mi>C</mi><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">\frac{D_{opt}}{N_{opt}} \propto C^0</annotation></semantics></math></p>
+<p>The ratio is constant. At Chinchilla's scale, its level is about 20 tokens per parameter. The statement that model size and tokens scale one-to-one refers to exponents. It does not mean one token per parameter. Reading it that way creates a 20 times error.</p>
+<p>Chinchilla uses 70 B parameters and 1.4 T tokens. Its ratio is 20. Gopher uses 280 B parameters and 300 B tokens. Its ratio is 1.1.</p>
+<p>The matched-budget check is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>G</mi><mi>o</mi><mi>p</mi><mi>h</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>2.8</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>3.0</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5.0</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup></mrow><annotation encoding="application/x-tex">C_{Gopher} = 6(2.8 \times 10^{11})(3.0 \times 10^{11}) = 5.0 \times 10^{23}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>C</mi><mi>h</mi><mi>i</mi><mi>n</mi><mi>c</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>l</mi><mi>a</mi></mrow></msub><mo>=</mo><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>7.0</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>5.9</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup></mrow><annotation encoding="application/x-tex">C_{Chinchilla} = 6(7.0 \times 10^{10})(1.4 \times 10^{12}) = 5.9 \times 10^{23}</annotation></semantics></math></p>
+<p>The budgets differ by 17%, while the parameter counts differ by four times. Chinchilla reports 67.6% average on the Massive Multitask Language Understanding (MMLU) benchmark. Gopher reports 60.0%.</p>
+<p>Using 3.4 × 10^14 FLOP/s sustained and USD 2.50 per accelerator-hour, 5.0 × 10^23 FLOPs becomes 1.5 × 10^9 seconds. That is 4.1 × 10^5 accelerator-hours and about USD 1.0 million. The displayed scores differ by 7.6 percentage points. The source prose calls the gain seven and a half points.</p>
+<h4 id="why-the-training-only-optimum-fails-after-deployment">Why the training-only optimum fails after deployment</h4>
+<p>Chinchilla minimizes training compute for a loss target. Generation cost depends on N but not on the training-token count.</p>
+<p>The lifetime bill is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi><mi>a</mi><mi>l</mi></mrow></msub><mo>=</mo><mn>6</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>t</mi><mi>r</mi></mrow></msub><mo>+</mo><mn>2</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{total} = 6ND_{tr} + 2ND_{inf}</annotation></semantics></math></p>
+<p>Training and serving are equal when:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>t</mi><mi>r</mi></mrow></msub><mo>=</mo><mn>2</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">6ND_{tr} = 2ND_{inf}</annotation></semantics></math></p>
+<p>Therefore:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mrow><mi>i</mi><mi>n</mi><mi>f</mi></mrow></msub><mo>=</mo><mn>3</mn><msub><mi>D</mi><mrow><mi>t</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">D_{inf} = 3D_{tr}</annotation></semantics></math></p>
+<p>N cancels. Serving overtakes training after the model generates three times its training-token count. For Chinchilla, that point is 4.2 T generated tokens.</p>
+<p>Once expected inference volume enters the objective, the optimum moves toward a smaller model trained on more tokens. The shift grows with serving demand. Llama 1 at 7 B saw 1.0 T tokens, or 143 per parameter. Llama 2 at 7 B saw 2.0 T tokens, or 286 per parameter. Llama 3 at 8 B saw over 15 T tokens, or 1,875 per parameter. The last ratio is 94 times Chinchilla's ratio.</p>
+<h4 id="worked-budget-comparison">Worked budget comparison</h4>
+<p>Use C = 7.2 × 10^23 FLOPs.</p>
+<p>For Chinchilla, impose D = 20N:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>120</mn><msup><mi>N</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C = 120N^2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msqrt><mfrac><mrow><mn>7.2</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup></mrow><mn>120</mn></mfrac></msqrt><mo>=</mo><mn>7.7</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">N = \sqrt{\frac{7.2 \times 10^{23}}{120}} = 7.7 \times 10^{10}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi><mo>=</mo><mn>20</mn><mi>N</mi><mo>=</mo><mn>1.55</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow><annotation encoding="application/x-tex">D = 20N = 1.55 \times 10^{12}</annotation></semantics></math></p>
+<p>This is 77 B parameters on 1.55 T tokens. At bfloat16 (bf16), weights use 155 GB. The model cannot fit on one 80 GB accelerator.</p>
+<p>For the post-Chinchilla ratio, impose D = 1,875N:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>11</mn><mo>,</mo><mn>250</mn><msup><mi>N</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">C = 11{,}250N^2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msqrt><mfrac><mrow><mn>7.2</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup></mrow><mrow><mn>1.125</mn><mo>×</mo><msup><mn>10</mn><mn>4</mn></msup></mrow></mfrac></msqrt><mo>=</mo><mn>8.0</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">N = \sqrt{\frac{7.2 \times 10^{23}}{1.125 \times 10^4}} = 8.0 \times 10^9</annotation></semantics></math></p>
+<p>This is 8 B parameters on 15 T tokens. The bf16 weights use 16 GB.</p>
+<p>Generation costs 1.55 × 10^11 FLOPs per token for the 77 B model. It costs 1.6 × 10^10 for the 8 B model. The serving ratio is 9.7.</p>
+<p>At 10^13 generated tokens, serving costs 1.55 × 10^24 FLOPs for the 77 B model. It costs 1.6 × 10^23 FLOPs for the 8 B model. Lifetime totals are 2.27 × 10^24 and 8.8 × 10^23 FLOPs. The training-optimal model costs 2.6 times as much to own.</p>
+<p>The 77 B model still has lower loss at equal training compute. The trade is lower serving cost against some quality. The source says to verify that loss trade on the actual evaluation because iso-FLOP minima are flat nearby.</p>
+<p>The 6ND estimate also matches Llama 3 405B. Using 405 B parameters and 15.6 T tokens gives 3.79 × 10^25 FLOPs. The reported value is 3.8 × 10^25. The agreement is 0.3%.</p>
+<h4 id="practical-decision">Practical decision</h4>
+<p>Ask for expected lifetime inference volume before naming N. Treat 20 tokens per parameter as a floor for a served system, not a universal target. Use the largest token-to-parameter ratio that keeps the model resident on one accelerator at serving precision. Run a small iso-FLOP sweep when the data distribution, tokenizer, or architecture differs materially. Buy factual coverage with a datastore. Buy compositional and procedural capability with parameters.</p>
+<h3 id="62-flops-attention-and-memory-arithmetic">6.2 FLOPs, attention, and memory arithmetic</h3>
+<h4 id="what-6nd-contains">What 6ND contains</h4>
+<p>A linear layer with n parameters uses n multiplications and n additions per token. With <code>y = W^T x</code>, backward computes <code>dL/dx = W(dL/dy)</code> and <code>dL/dW = x(dL/dy)^T</code>. The forward pass is 2n FLOPs. Summed across the model, it is 2N.</p>
+<p>Backward computes a gradient for the inputs and a gradient for the weights. Each costs 2n. Backward is therefore 4N.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>N</mi><mo>+</mo><mn>4</mn><mi>N</mi><mo>=</mo><mn>6</mn><mi>N</mi></mrow><annotation encoding="application/x-tex">2N + 4N = 6N</annotation></semantics></math></p>
+<p>Across D training tokens:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>≈</mo><mn>6</mn><mi>N</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">C \approx 6ND</annotation></semantics></math></p>
+<p>Generation has no backward pass. Its parameter term is 2N per token.</p>
+<h4 id="what-6nd-omits">What 6ND omits</h4>
+<p>Causal attention scores and value aggregation add 2Llayerssd FLOPs per token. A standard block has about 12d^2 parameters. The parameter term is approximately 24Llayersd^2.</p>
+<p>The omitted-to-parameter ratio is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2</mn><msub><mi>L</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi>s</mi></mrow></msub><mi>s</mi><mi>d</mi></mrow><mrow><mn>24</mn><msub><mi>L</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi>s</mi></mrow></msub><msup><mi>d</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mfrac><mi>s</mi><mrow><mn>12</mn><mi>d</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{2L_{layers}sd}{24L_{layers}d^2} = \frac{s}{12d}</annotation></semantics></math></p>
+<p>Kaplan calls this term negligible when d is greater than s divided by 12. For d = 4,096, the threshold is 49,152 tokens. At an 8k prompt, attention adds one sixth of the parameter term. At 32k, it adds two thirds. Long retrieved contexts are where 6ND undercounts most.</p>
+<h4 id="the-three-memory-tiers">The three memory tiers</h4>
+<p>Weight memory is Nb bytes. Use b = 4 for 32-bit floating point (fp32). Use b = 2 for bf16. Use b = 1 for 8-bit integer (int8). Use b = 0.5 for 4-bit integer (int4).</p>
+<p>A 27 B model uses 108 GB at fp32. It uses 54 GB at bf16. It uses 27 GB at int8. The fp32 weights already overflow one 80 GB card.</p>
+<p>Full Adam fine-tuning uses 16 bytes per parameter before activations. The source counts 2 bytes of bf16 weights, 2 of gradients, 4 of fp32 master weights, 4 of momentum, and 4 of variance. Pure fp32 also totals 16 bytes through four 4-byte states. An 8 B model needs 128 GB. A 27 B model needs 432 GB.</p>
+<p>The KV cache uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><msub><mi>L</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi><mi>s</mi></mrow></msub><msub><mi>n</mi><mrow><mi>k</mi><mi>v</mi></mrow></msub><msub><mi>d</mi><mrow><mi>h</mi><mi>e</mi><mi>a</mi><mi>d</mi></mrow></msub><mi>b</mi></mrow><annotation encoding="application/x-tex">2L_{layers}n_{kv}d_{head}b</annotation></semantics></math></p>
+<p>bytes per token.</p>
+<p>For Llama 3.1 8B, use 32 layers, 8 key-value heads, head dimension 128, and bf16.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>32</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>128</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>131</mn><mo>,</mo><mn>072</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> bytes</mtext></mrow><mo>=</mo><mn>128</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> KiB per token</mtext></mrow></mrow><annotation encoding="application/x-tex">2(32)(8)(128)(2) = 131{,}072 \text{ bytes} = 128 \text{ KiB per token}</annotation></semantics></math></p>
+<p>The cache then multiplies by context length and concurrency. With 16 GB of weights on an 80 GB card, 64 GB remains. That space holds 119 requests at 4k, 59 at 8k, and 14 at 32k.</p>
+<p>Pricing deployment by parameter count alone fails because context length changes concurrency. It also fails for MoE models. Mixtral 8x7B stores 46.7 B parameters but activates 12.9 B per token. Its memory resembles a 47 B model. Its compute resembles a 13 B model.</p>
+<h4 id="fine-tuning-choices">Fine-tuning choices</h4>
+<p>Serving the 27 B at fp32 fails at 108 GB. Serving it at bf16 uses 54 GB and leaves 26 GB. That cuts free cache memory from 64 GB to 26 GB, or by 2.5 times. A deeper and wider model also caches more per token.</p>
+<p>Full Adam state needs 128 GB for 8 B and 432 GB for 27 B. Those figures correspond to two and six 80 GB cards before activations.</p>
+<p>A rank-r LoRA matrix trains <code>r(din + dout)</code> values. Rank-16 LoRA on the query and output projections of all 32 layers in the 8 B model trains:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>,</mo><mn>096</mn><mo>+</mo><mn>4</mn><mo>,</mo><mn>096</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>32</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>8.39</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">16(4{,}096 + 4{,}096)(2)(32) = 8.39 \times 10^6</annotation></semantics></math></p>
+<p>parameters.</p>
+<p>The same full matrices contain 1.07 × 10^9 parameters. LoRA trains 0.78% as many. The reduction factor is d divided by 2r, or 128. Its gradients and Adam state use 134 MB. The frozen bf16 base remains 16 GB.</p>
+<p>Activation checkpointing adds one extra forward pass. That raises the parameter work from 6ND to 8ND. The increase is exactly 33%.</p>
+<h4 id="rag-prefill-check">RAG prefill check</h4>
+<p>An 8k prompt on 8 B has a parameter prefill term of:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>,</mo><mn>192</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.31</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow><annotation encoding="application/x-tex">2(8 \times 10^9)(8{,}192) = 1.31 \times 10^{14}</annotation></semantics></math></p>
+<p>FLOPs.</p>
+<p>Attention adds:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>32</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>,</mo><mn>096</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>,</mo><msup><mn>192</mn><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.76</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup></mrow><annotation encoding="application/x-tex">2(32)(4{,}096)(8{,}192^2) = 1.76 \times 10^{13}</annotation></semantics></math></p>
+<p>FLOPs.</p>
+<p>The total is 1.49 × 10^14 FLOPs. At 3.4 × 10^14 FLOP/s, prefill takes 0.44 seconds before the first output token. The cache is 1.07 GB per request. The remaining 64 GB holds 59 requests.</p>
+<p>At 32k, cache per request rises from 1.07 GB to 4.29 GB. Concurrency falls from 59 to 14. The parameter prefill term is 5.24 × 10^14 FLOPs. Attention is 2.81 × 10^14. The total is 8.06 × 10^14. Latency rises from 0.44 seconds to 2.4 seconds. That is 5.4 times for a four times longer context.</p>
+<p>The bf16 weight rule also predicts 810 GB for Llama 3.1 405B. An eight-card node with 80 GB per card holds 640 GB. The model therefore cannot fit on one such node at bf16. The source notes a 405 GB 8-bit floating-point (fp8) variant and a multi-node path for bf16.</p>
+<h4 id="practical-decision-1">Practical decision</h4>
+<p>Answer fit questions with weights, training state, and KV cache. Use LoRA by default above about 7 B on single-node hardware. Buy concurrency first by shortening and reranking context. Add attention and checkpointing corrections to 6ND. Use active parameters for MoE compute and stored parameters for memory. Use bf16 serving weights unless a card boundary forces int8 or int4. The source calls quantization the cheapest 2 to 4 times memory reduction in the stack. Use 4-bit frozen base weights for quantized LoRA when fine-tuning memory is the binding constraint.</p>
+<h3 id="63-three-observations-that-change-decisions-shape-embeddings-convergence">6.3 Three observations that change decisions: shape, embeddings, convergence</h3>
+<h4 id="shape-is-nearly-free-in-loss">Shape is nearly free in loss</h4>
+<p>At fixed N, changing feed-forward ratio, aspect ratio, and head dimension moves loss only a few percent across the measured range. Doubling N changes loss by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>N</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><msup><mn>2</mn><mrow><mi>−</mi><mn>0.076</mn></mrow></msup><mo>=</mo><mn>0.949</mn></mrow><annotation encoding="application/x-tex">\frac{L(2N)}{L(N)} = 2^{-0.076} = 0.949</annotation></semantics></math></p>
+<p>That is a 5.1% reduction.</p>
+<p>A ten times increase gives:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mi>−</mi><mn>0.076</mn></mrow></msup><mo>=</mo><mn>0.839</mn></mrow><annotation encoding="application/x-tex">10^{-0.076} = 0.839</annotation></semantics></math></p>
+<p>That is a 16.1% reduction.</p>
+<p>A shape sweep can cost more compute than its loss gain. The loss result does not make shape irrelevant. It moves shape selection to serving.</p>
+<p>Under multi-head attention, cache is 2nlayerdb bytes per token. It grows linearly with depth and does not depend directly on N. Depth also serializes decode. Forty-eight layers require 48 sequential layer executions per token. Twenty-four layers require 24.</p>
+<p>The result only holds within a wide practical range for dense decoder-only transformers. One layer remains bad at any width. A head dimension of 8 remains bad. MoE breaks a single-N comparison because stored and active parameters differ.</p>
+<h4 id="embeddings-distort-parameter-comparisons">Embeddings distort parameter comparisons</h4>
+<p>A standard transformer body is approximately:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mrow><mi>b</mi><mi>o</mi><mi>d</mi><mi>y</mi></mrow></msub><mo>≈</mo><mn>12</mn><msub><mi>n</mi><mrow><mi>l</mi><mi>a</mi><mi>y</mi><mi>e</mi><mi>r</mi></mrow></msub><msup><mi>d</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">N_{body} \approx 12n_{layer}d^2</annotation></semantics></math></p>
+<p>The embedding table is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mrow><mi>e</mi><mi>m</mi><mi>b</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><mi>V</mi><mi>d</mi></mrow><annotation encoding="application/x-tex">N_{embed} = Vd</annotation></semantics></math></p>
+<p>The body grows quadratically with width. The table grows linearly. Counting both bends the scaling fit because the embedding share changes with model size.</p>
+<p>GPT-2 small uses 12 layers, width 768, and vocabulary 50,257. Its body is 84.9 M parameters. Token and positional lookup tables total 39.4 M. The lookup share is 32%.</p>
+<p>Llama 3 70B uses width 8,192 and vocabulary 128,256 with untied embeddings. Its embedding count is 2.10 B against 70.6 B total. The share is 3.0%.</p>
+<p>Counting embeddings inflates the small model by 45% and the large model by 3%. The differential log shift is 0.15 decades.</p>
+<p>XLM-R base and BERT-base have the same 84.9 M body. Their vocabularies are 250,002 and 30,522. Their advertised totals are 278 M and 110 M. The 2.5 times difference is lookup rows. Both encode at 1.7 × 10^8 FLOPs per token. The multilingual table adds 168 M rows and 0.34 GB at bf16.</p>
+<p>A larger vocabulary can still help by emitting fewer tokens. If it reduces token count by a factor f, prefill and cache fall by f. A fixed context can also hold f times as much evidence. Choose vocabulary for tokenization efficiency on the actual corpus. Do not treat lookup rows as reasoning capacity.</p>
+<h4 id="convergence-misallocates-a-fixed-budget">Convergence misallocates a fixed budget</h4>
+<p>At fixed compute, a larger model stopped before convergence can outperform a small converged model. The scaling law for D was fit on fresh tokens. Repeated tokens have lower returns. Muennighoff et al. report negligible loss difference from fresh data through about four repeated epochs. Returns decay toward zero beyond that range.</p>
+<p>The failed rule is to train the biggest model that converges on the available corpus. That lets the validation plateau choose N. The plateau has no direct relationship to the approved compute budget.</p>
+<h4 id="worked-budget-comparison-1">Worked budget comparison</h4>
+<p>The corpus contains 20 B tokens. The budget is 1.2 × 10^21 FLOPs. At 3.4 × 10^14 FLOP/s and USD 2.50 per accelerator-hour, that is 980 accelerator-hours and about USD 2,450.</p>
+<p>A 300 M model converging after 20 passes processes 4 × 10^11 tokens.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>=</mo><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>7.2</mn><mo>×</mo><msup><mn>10</mn><mn>20</mn></msup></mrow><annotation encoding="application/x-tex">C_1 = 6(3 \times 10^8)(4 \times 10^{11}) = 7.2 \times 10^{20}</annotation></semantics></math></p>
+<p>It spends 60% of the budget. The remaining 4.8 × 10^20 FLOPs equal 392 accelerator-hours and USD 980. Epochs 1 through 4 are 20% of the spent tokens. Only 12% of the total budget lands in the productive four-epoch window.</p>
+<p>Cap repeats at four epochs. Then D = 8 × 10^10.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mfrac><mrow><mn>1.2</mn><mo>×</mo><msup><mn>10</mn><mn>21</mn></msup></mrow><mrow><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mn>2.5</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">N = \frac{1.2 \times 10^{21}}{6(8 \times 10^{10})} = 2.5 \times 10^9</annotation></semantics></math></p>
+<p>This model gets 32 tokens per parameter. It spends 100% of the budget. The parameter increase is 8.33 times. The scaling law predicts a loss multiplier of 0.851. That is a 14.9% reduction.</p>
+<p>For N near 2.4 B, compare 48 layers at width 2,048 with 24 layers at width 2,880. Both satisfy the body approximation. At bf16 with multi-head attention, their caches are 384 KiB and 270 KiB per token. Weights use 4.8 GB and leave 75.2 GB on an 80 GB card. At 8k, requests use 3.22 GB and 2.26 GB. The card holds 23 and 33 requests. The wider, shallower model gives 43% more throughput.</p>
+<p>For GPT-2 small, the body estimate is 84.93 M. Token embeddings are 38.60 M. Positional embeddings are 0.79 M. The sum is 124.3 M against a published 124 M. Agreement is 0.2%.</p>
+<h4 id="practical-decision-2">Practical decision</h4>
+<p>Compare non-embedding parameters for quality and compute. Use total parameters for hardware sizing. Choose shape from cache and latency constraints. Cap repeated data near four epochs before spending surplus on a larger N. Size N from the budget and token ceiling. Stop short of convergence unless converged loss is the experimental target. Buy fresh domain tokens before more repeated epochs.</p>
+<h3 id="64-test-time-compute-versus-pre-training-compute">6.4 Test-time compute versus pre-training compute</h3>
+<h4 id="lifetime-breakeven">Lifetime breakeven</h4>
+<p>Pre-training is a fixed cost:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi></mrow></msub><mo>=</mo><mn>6</mn><mi>N</mi><msub><mi>D</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">C_{pre} = 6ND_{pre}</annotation></semantics></math></p>
+<p>A RAG query costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi></mrow></msub><mo>=</mo><mn>2</mn><mi>N</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>T</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>T</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C_{query} = 2N(T_{in} + T_{out})</annotation></semantics></math></p>
+<p>Across Q queries, inference is Q times Cquery. If a test-time method multiplies query compute by m, the breakeven with added pre-training is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Q</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mi mathvariant="normal">Δ</mi><msub><mi>C</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi></mrow></msub></mrow><mrow><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><msub><mi>C</mi><mrow><mi>q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi></mrow></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">Q^{*} = \frac{\Delta C_{pre}}{(m-1)C_{query}}</annotation></semantics></math></p>
+<p>Pre-training is constant in Q. Inference is linear in Q. Lifetime query volume decides which bill amortizes.</p>
+<h4 id="search-needs-a-verifier">Search needs a verifier</h4>
+<p>The proposer generates candidate answers. The verifier scores them and selects one. Sampling without a verifier has the same expected accuracy as drawing one answer and choosing at random.</p>
+<p>Best-of-N is simple and competitive at larger budgets. Beam search is stronger at small budgets and on easier problems. Its advantage fades as budget and difficulty rise. Lookahead search loses at matched budget because rollouts displace complete candidates. A process reward model that scores steps beats an outcome reward model that scores only the final answer in the cited mathematical-reasoning result.</p>
+<p>The source boundary is conditional. Extra test-time compute is the better purchase for easy and moderate problems under modest inference load. Extra pre-training compute wins for genuinely hard problems under large inference load.</p>
+<p>At batch size one, decode is memory-bandwidth bound because each token streams all N weights. Parallel samples can share a prompt and advance together. That raises arithmetic intensity. Sequential revision cannot batch across dependent passes. It is therefore more expensive at equal FLOPs.</p>
+<p>A 3 B model run 256 times uses 1.54 × 10^12 FLOPs per output token. One 70 B pass uses 1.4 × 10^11. The smaller model uses 11 times more compute. Its bf16 weights use 6 GB instead of 140 GB. That is 23 times less weight memory.</p>
+<h4 id="worked-rag-query">Worked RAG query</h4>
+<p>The assistant serves 10,000 queries per day. Each query retrieves 10 chunks of 400 tokens. Question and instructions add 100 tokens. The answer adds 300. Tin is 4,100. Tout is 300. The total is 4,400 tokens.</p>
+<p>The attention term is 4.41 × 10^12 FLOPs. The parameter term is 6.56 × 10^13. Attention adds 6.7%. The source drops it from ratios because it cancels.</p>
+<p>An 8 B greedy pass costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo>,</mo><mn>400</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>7.04</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup></mrow><annotation encoding="application/x-tex">2(8 \times 10^9)(4{,}400) = 7.04 \times 10^{13}</annotation></semantics></math></p>
+<p>FLOPs. That is 0.207 seconds of accelerator time. It costs USD 0.144 per thousand queries.</p>
+<p>Best-of-16 shares one 4,100-token prefill. That prefill costs 6.56 × 10^13 FLOPs. Sixteen 300-token decode branches cost 7.68 × 10^13. An 8 B process reward model scoring 16 chains of 400 tokens costs 1.02 × 10^14. The total is 2.45 × 10^14 FLOPs. That is 3.48 times baseline and USD 0.50 per thousand queries.</p>
+<p>A 70 B greedy pass costs 6.16 × 10^14 FLOPs. That is 8.75 times baseline and USD 1.26 per thousand queries. Its 140 GB of bf16 weights also forces a second card.</p>
+<p>Pre-training the 70 B at 20 tokens per parameter costs 5.88 × 10^23 FLOPs. The 8 B comparison costs 7.68 × 10^21. The difference is 5.80 × 10^23.</p>
+<p>With m = 3.48:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>Q</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mn>5.80</mn><mo>×</mo><msup><mn>10</mn><mn>23</mn></msup></mrow><mrow><mn>2.48</mn><mo stretchy="false" form="prefix">(</mo><mn>7.04</mn><mo>×</mo><msup><mn>10</mn><mn>13</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mn>3.32</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><annotation encoding="application/x-tex">Q^{*} = \frac{5.80 \times 10^{23}} {2.48(7.04 \times 10^{13})} = 3.32 \times 10^9</annotation></semantics></math></p>
+<p>queries.</p>
+<p>At 10,000 per day, breakeven is 910 years. At 10 million per day, it is 332 days.</p>
+<p>One 300-token sample costs 4.80 × 10^12 FLOPs. Three hundred extra context tokens cost the same. Five 400-token chunks cost 3.20 × 10^13. That equals 6.7 samples.</p>
+<p>A 110 M cross-encoder reranking 100 candidates of 400 tokens costs 8.80 × 10^12 FLOPs. That is 0.125 times the baseline query. It is the cheapest verifier in the stack.</p>
+<p>The deployment consumes 1.61 × 10^10 inference tokens per year. The 70 B pre-training run uses 1.4 × 10^12. The ratio is 0.011. It lies two orders of magnitude below one.</p>
+<h4 id="practical-decision-3">Practical decision</h4>
+<p>Spend marginal FLOPs at test time until lifetime volume crosses Qstar. Use passage reranking before chain verification. Buy an extra sample before an extra chunk unless the miss is a retrieval-recall miss. Use best-of-N with a process reward model by default. Use beam search at small budgets on easy queries. Do not use lookahead search under the cited matched-budget result. Route more search compute only to predicted hard queries when the router is reliable. Measure pass-at-16 on the failing set. If the small model never proposes a correct answer, no verifier can rescue it.</p>
+<h3 id="65-the-small-model-plus-datastore-argument-and-its-limit">6.5 The small-model-plus-datastore argument and its limit</h3>
+<h4 id="what-retrieval-can-replace">What retrieval can replace</h4>
+<p>Parameters perform two jobs. Competence supports syntax, instruction following, attending to context, and copying. Content supports closed-book recall. Retrieval can substitute for content. It cannot substitute for the competence required to read the retrieved passage.</p>
+<p>The capacity argument alone is insufficient. Allen-Zhu and Li report a stable ceiling near 2 bits per parameter, including int8. A 7 B model then stores about:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">2(7 \times 10^9) = 1.4 \times 10^{10}</annotation></semantics></math></p>
+<p>bits.</p>
+<p>The source's comparison says this exceeds English Wikipedia and textbooks combined. The corpus can fit in principle. The economic difference is the write path.</p>
+<p>Embedding one 400-token chunk with a 110 M bi-encoder costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1.1</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>400</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>8.8</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">2(1.1 \times 10^8)(400) = 8.8 \times 10^{10}</annotation></semantics></math></p>
+<p>FLOPs.</p>
+<p>The index row is 3,072 bytes. At the chapter's throughput and price, the write costs USD 1.8 × 10^-7.</p>
+<p>Continued pre-training of a 7 B model on 1 B replay tokens costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>4.2</mn><mo>×</mo><msup><mn>10</mn><mn>19</mn></msup></mrow><annotation encoding="application/x-tex">6(7 \times 10^9)(1 \times 10^9) = 4.2 \times 10^{19}</annotation></semantics></math></p>
+<p>FLOPs.</p>
+<p>That is 34.3 accelerator-hours and USD 85.8. The write-path ratio is 4.8 × 10^8.</p>
+<p>The datastore wins because one fact requires one insert instead of a training run. It also supports updates when facts change.</p>
+<p>Kandpal et al. report that factual question-answering accuracy is log-linear in relevant pre-training documents per question, then extrapolate scale-only long-tail coverage to about 10^18 parameters. RETRO at 7.5 B matches GPT-3 at 175 B and Jurassic-1 at 178 B on the Pile with 25 times fewer parameters and a 2-trillion-token database. Atlas at 11 B exceeds 42% on Natural Questions from 64 examples. It is three points above a 540 B model with 50 times fewer parameters. A k-nearest-neighbor language model trained on 100 M tokens with a datastore from 3 B beats the same architecture trained on all 3 B. The source also reports a roughly 350 M phrase-prediction system that uses retrieval to distinguish a poor-quality sense from an inexpensive sense. Local retrieval is personalization rather than federated learning because no gradient or model update crosses the device boundary.</p>
+<h4 id="the-datastore-growth-limit">The datastore growth limit</h4>
+<p>Define rho from mean gold rank:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mrow><mover><mi>r</mi><mo accent="true">‾</mo></mover><mo>−</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>D</mi><mo stretchy="false" form="prefix">|</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho = \frac{\bar r - 1}{|D|}</annotation></semantics></math></p>
+<p>The number of chunks outranking gold is rho times corpus size. Gold survives top-k only when:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>≥</mo><mi>ρ</mi><mo stretchy="false" form="prefix">|</mo><mi>D</mi><mo stretchy="false" form="prefix">|</mo><mi>+</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">k \geq \rho |D| + 1</annotation></semantics></math></p>
+<p>The source treats rho as a retriever property that remains roughly fixed as documents are added. At fixed retriever quality, required retrieval depth grows linearly with datastore size.</p>
+<p>Each chunk is 400 tokens. A 32k context reserves 400 tokens for question and answer. The source caps the prompt at 80 chunks. As k grows, the answer-bearing fraction falls to 1 divided by k. The generator's job changes from finding one useful chunk in five to one in two hundred.</p>
+<p>The resolution is deep retrieval followed by a cross-encoder reranker. Retrieve approximately rho times corpus size. Rerank the candidates. Pass five chunks to the generator. Only the 110 M reranker bill grows with the corpus. The 8 B generator context stays flat.</p>
+<h4 id="worked-support-assistant">Worked support assistant</h4>
+<p>The index holds 50 M chunks of 400 tokens. That is 2 × 10^10 corpus tokens. Queries add 100 input tokens and emit 300 output tokens.</p>
+<p>A closed-book 70 B query over 400 tokens costs 5.6 × 10^13 FLOPs. It costs USD 0.114 per thousand queries. Its bf16 weights occupy 140 GB and require two accelerators.</p>
+<p>Training that model over the 2 × 10^10 corpus tokens costs 8.4 × 10^21 FLOPs. That is 6,863 accelerator-hours and USD 17,157 per refresh. The corpus is 1.4% of the model's 1.4 T Chinchilla-optimal training tokens.</p>
+<p>An 8 B model with 10 retrieved chunks processes 4,400 tokens. It costs 7.04 × 10^13 FLOPs and USD 0.144 per thousand queries. That is 1.26 times the 70 B closed-book query. Retrieval does not save per-query compute in this comparison. It saves weight memory and update cost.</p>
+<p>The 8 B weights occupy 16 GB on one card. A daily refresh of 20,000 changed chunks costs 1.76 × 10^15 FLOPs. That is USD 0.0036 instead of USD 17,157.</p>
+<p>The full-precision index costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>5</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1.536</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup></mrow><annotation encoding="application/x-tex">(5 \times 10^7)(768)(4) = 1.536 \times 10^{11}</annotation></semantics></math></p>
+<p>bytes.</p>
+<p>That is 153.6 GB. Product quantization at 96 bytes per vector reduces it to 4.8 GB. Here, compression is required rather than optional.</p>
+<p>If the corpus grows to 5 × 10^9 chunks, use the original mean rank of 3:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mn>2</mn><mrow><mn>5</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup></mrow></mfrac><mo>=</mo><mn>4</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>8</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\rho = \frac{2}{5 \times 10^7} = 4 \times 10^{-8}</annotation></semantics></math></p>
+<p>The minimum k becomes 201. The context becomes 80,400 tokens before question and answer. The gold chunk occupies 0.5% of the retrieved context instead of 20%.</p>
+<p>Stuffing all 201 chunks gives 80,800 total tokens. It costs 1.29 × 10^15 FLOPs.</p>
+<p>Reranking 80,400 tokens with a 110 M cross-encoder costs 1.77 × 10^13 FLOPs. The generator then reads five chunks for 3.84 × 10^13. The total is 5.61 × 10^13. That is 23 times cheaper than stuffing. It is the only compared design whose generator cost stays flat as the corpus grows.</p>
+<p>The assumed generator reduction is 8.75 times. The source compares it with reported 25 times and 50 times substitutions. The worked assumption is therefore three to six times more conservative.</p>
+<h4 id="practical-decision-4">Practical decision</h4>
+<p>Choose the smallest generator that passes a reading test with the gold chunk pasted into context. Put new factual content in the datastore. Use weights for style, procedures, output format, and tool conventions when retrieval is unreliable. Measure rho before promising that the design scales. Rerank instead of continually raising generator top-k. Quantize the index before shrinking the model again. If the gold chunk is already rank one and the small model still fails, buy more competence with parameters.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-61">Figure 6.1</h3>
+<h4 id="panel-a-allocation-policies-and-observed-models">Panel a: allocation policies and observed models</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Policy or model</th>
+<th style="text-align: right;">Parameters N</th>
+<th style="text-align: right;">Training tokens D</th>
+<th style="text-align: right;">Tokens per parameter</th>
+<th>Figure marker or rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kaplan rule</td>
+<td style="text-align: right;">grows with C^0.73</td>
+<td style="text-align: right;">grows with C^0.27</td>
+<td style="text-align: right;">falls with C^-0.46</td>
+<td>D proportional to N^0.37</td>
+</tr>
+<tr>
+<td>GPT-3</td>
+<td style="text-align: right;">175 B</td>
+<td style="text-align: right;">300 B</td>
+<td style="text-align: right;">1.7</td>
+<td>open square</td>
+</tr>
+<tr>
+<td>Gopher</td>
+<td style="text-align: right;">280 B</td>
+<td style="text-align: right;">300 B</td>
+<td style="text-align: right;">1.1</td>
+<td>open square</td>
+</tr>
+<tr>
+<td>Chinchilla rule</td>
+<td style="text-align: right;">grows with C^0.50</td>
+<td style="text-align: right;">grows with C^0.50</td>
+<td style="text-align: right;">20 at this scale</td>
+<td>D = 20N</td>
+</tr>
+<tr>
+<td>Chinchilla</td>
+<td style="text-align: right;">70 B</td>
+<td style="text-align: right;">1.4 T</td>
+<td style="text-align: right;">20</td>
+<td>filled circle</td>
+</tr>
+<tr>
+<td>Llama 1</td>
+<td style="text-align: right;">7 B</td>
+<td style="text-align: right;">1.0 T</td>
+<td style="text-align: right;">143</td>
+<td>filled diamond</td>
+</tr>
+<tr>
+<td>Llama 2</td>
+<td style="text-align: right;">7 B</td>
+<td style="text-align: right;">2.0 T</td>
+<td style="text-align: right;">286</td>
+<td>filled diamond</td>
+</tr>
+<tr>
+<td>Llama 3</td>
+<td style="text-align: right;">8 B</td>
+<td style="text-align: right;">15 T in the worked comparison</td>
+<td style="text-align: right;">1,875</td>
+<td>filled diamond</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="panel-b-lifetime-compute-under-the-same-training-budget">Panel b: lifetime compute under the same training budget</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Training compute</th>
+<th style="text-align: right;">Serving compute for 10^13 tokens</th>
+<th style="text-align: right;">Lifetime total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chinchilla-optimal, 77 B on 1.55 T</td>
+<td style="text-align: right;">0.72 × 10^24 FLOPs</td>
+<td style="text-align: right;">1.55 × 10^24 FLOPs</td>
+<td style="text-align: right;">2.27 × 10^24 FLOPs</td>
+</tr>
+<tr>
+<td>Over-trained, 8 B on 15 T</td>
+<td style="text-align: right;">0.72 × 10^24 FLOPs</td>
+<td style="text-align: right;">0.16 × 10^24 FLOPs</td>
+<td style="text-align: right;">0.88 × 10^24 FLOPs</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 6.1:</strong> (a) Three allocation policies, and the models that obeyed them. Kaplan's rule sends the ratio down as budgets grow - open squares, GPT-3 at 175 B×300 B tokens (1.7) and Gopher at 280 B×300 B (1.1). Chinchilla holds it at 20 - filled circle, 70 B×1.4 T. Every post-Chinchilla release sits far above both - filled diamonds, Llama 1 at 143, Llama 2 at 286, Llama 3 at 1,875. (b) The same 7.2 × 10^23 FLOP training budget, spent two ways: the Chinchilla-optimal shape costs 2.6× the lifetime compute of the over-trained shape once the model serves 10^13 tokens, because serving scales with N and not with D.</p>
+<h3 id="figure-62">Figure 6.2</h3>
+<h4 id="panel-a-fixed-memory-steps">Panel a: fixed memory steps</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align: right;">Arithmetic</th>
+<th style="text-align: right;">Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Serve 8 B at bf16</td>
+<td style="text-align: right;">8 × 2</td>
+<td style="text-align: right;">16 GB</td>
+</tr>
+<tr>
+<td>Serve 27 B at bf16</td>
+<td style="text-align: right;">27 × 2</td>
+<td style="text-align: right;">54 GB</td>
+</tr>
+<tr>
+<td>Serve 27 B at fp32</td>
+<td style="text-align: right;">27 × 4</td>
+<td style="text-align: right;">108 GB</td>
+</tr>
+<tr>
+<td>Fine-tune 8 B with Adam</td>
+<td style="text-align: right;">8 × 16</td>
+<td style="text-align: right;">128 GB</td>
+</tr>
+<tr>
+<td>Fine-tune 27 B with Adam</td>
+<td style="text-align: right;">27 × 16</td>
+<td style="text-align: right;">432 GB</td>
+</tr>
+<tr>
+<td>One-card boundary</td>
+<td style="text-align: right;">1 × 80</td>
+<td style="text-align: right;">80 GB</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="panel-b-variable-kv-cache-slopes">Panel b: variable KV-cache slopes</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Context s</th>
+<th style="text-align: right;">Cache per request</th>
+<th style="text-align: right;">Requests at 64 GB free</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">4k</td>
+<td style="text-align: right;">about 0.54 GB</td>
+<td style="text-align: right;">119</td>
+</tr>
+<tr>
+<td style="text-align: right;">8k</td>
+<td style="text-align: right;">1.07 GB</td>
+<td style="text-align: right;">59</td>
+</tr>
+<tr>
+<td style="text-align: right;">32k</td>
+<td style="text-align: right;">4.29 GB</td>
+<td style="text-align: right;">14</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 6.2:</strong> (a) Weight and optimizer memory are step functions you pay once: the same 27 B model is 54 GB or 108 GB depending only on b, and full Adam fine-tuning multiplies the parameter count by 16 bytes, putting an 8 B past one card and a 27 B past five. (b) The KV cache is a slope you pay per concurrent request, and retrieval sets its gradient: at 128 KiB per token for Llama 3.1 8B, the 64 GB left after weights holds 119 requests at a 4k context, 59 at 8k, and 14 at 32k. The weights never moved.</p>
+<h3 id="figure-63">Figure 6.3</h3>
+<h4 id="panel-a-loss-sensitivity">Panel a: loss sensitivity</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Change</th>
+<th style="text-align: right;">Loss reduction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shape at fixed N</td>
+<td style="text-align: right;">a few percent</td>
+</tr>
+<tr>
+<td>Double N</td>
+<td style="text-align: right;">5.1%</td>
+</tr>
+<tr>
+<td>Increase N ten times</td>
+<td style="text-align: right;">16.1%</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="panel-b-lookup-table-share">Panel b: lookup-table share</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: right;">Lookup-table share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XLM-R base, vocabulary 250k</td>
+<td style="text-align: right;">69%</td>
+</tr>
+<tr>
+<td>GPT-2 small</td>
+<td style="text-align: right;">32%</td>
+</tr>
+<tr>
+<td>BERT-base, vocabulary 30.5k</td>
+<td style="text-align: right;">22%</td>
+</tr>
+<tr>
+<td>Llama 3 8B</td>
+<td style="text-align: right;">13%</td>
+</tr>
+<tr>
+<td>Llama 3 70B</td>
+<td style="text-align: right;">3.0%</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="panel-c-allocation-of-the-12--1021-flop-budget">Panel c: allocation of the 1.2 × 10^21 FLOP budget</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Productive four-epoch share</th>
+<th>Other outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>300 M to convergence over 20 epochs</td>
+<td style="text-align: right;">12%</td>
+<td>epochs 5-20 have low return and 40% of budget remains unspent</td>
+</tr>
+<tr>
+<td>2.5 B at four epochs</td>
+<td style="text-align: right;">100%</td>
+<td>stopped before convergence</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 6.3:</strong> (a) At fixed N, architecture shape moves the loss by a few percent, less than the 5.1% that one doubling of N buys under αN = 0.076. (b) The fraction of a model's parameters that is a lookup table ranges from 69% to 3.0%, so total parameter count is not comparable across vocabularies. (c) The same budget spent two ways: converging a 300 M model puts 12% of the budget inside the productive four-epoch window and strands the other 88% in low-return repeats or leaves it unspent, while a 2.5 B model at four epochs spends all of it productively.</p>
+<h3 id="figure-64">Figure 6.4</h3>
+<h4 id="panel-a-proposer-and-verifier-in-a-rag-stack">Panel a: proposer and verifier in a RAG stack</h4>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;query q&quot;] --&gt; B[&quot;retrieve k chunks&quot;]
+    B --&gt; C[&quot;cross-encoder rerank&quot;]
+    C --&gt; D[&quot;sample m drafts&quot;]
+    D --&gt; E[&quot;process reward model&quot;]
+    E --&gt; F[&quot;selected answer&quot;]
+    E -.-&gt; G[&quot;sequential revision&quot;]
+    G -.-&gt; D
+    B -.-&gt; H[&quot;+0.45x per 5 chunks&quot;]
+    C -.-&gt; I[&quot;0.125x at 100 candidates&quot;]
+    D -.-&gt; J[&quot;+0.068x per draft&quot;]
+    E -.-&gt; K[&quot;1.455x at m = 16&quot;]</code></pre></details></figure>
+<h4 id="panel-b-cost-against-one-8-b-generation-pass">Panel b: cost against one 8 B generation pass</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Knob</th>
+<th style="text-align: right;">Relative per-query FLOPs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One extra sample</td>
+<td style="text-align: right;">0.068×</td>
+</tr>
+<tr>
+<td>Rerank 100 candidates with 110 M</td>
+<td style="text-align: right;">0.125×</td>
+</tr>
+<tr>
+<td>Five extra chunks</td>
+<td style="text-align: right;">0.45×</td>
+</tr>
+<tr>
+<td>Baseline 8 B, k = 10, one sample</td>
+<td style="text-align: right;">1.00×</td>
+</tr>
+<tr>
+<td>Process reward model over 16 chains</td>
+<td style="text-align: right;">1.455×</td>
+</tr>
+<tr>
+<td>Best-of-16 plus process reward model</td>
+<td style="text-align: right;">3.48×</td>
+</tr>
+<tr>
+<td>70 B, one sample</td>
+<td style="text-align: right;">8.75×</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 6.4:</strong> (a) Snell et al.'s proposer/verifier decomposition maps onto a RAG stack that already alternates between the two roles, with the reranker acting as a verifier over passages and the reward model as a verifier over chains. (b) Priced against a single 8 B generation pass, the passage-side verifier costs 0.125× while the chain-side verifier costs 1.455×, and searching sixteen drafts on the 8 B lands at 3.48× against 8.75× for one pass of the 70 B.</p>
+<h3 id="figure-65">Figure 6.5</h3>
+<h4 id="panel-a-two-write-paths-for-one-fact">Panel a: two write paths for one fact</h4>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;one new fact: a 400-token chunk&quot;]
+    A --&gt;|&quot;into model parameters&quot;| B[&quot;continued pre-training: 1 B replay tokens, 7 B&quot;]
+    A --&gt;|&quot;into datastore&quot;| C[&quot;embed once: 110 M encoder plus index insert&quot;]
+    B --&gt; D[&quot;4.2 x 10^19 FLOPs and USD 85.8&quot;]
+    C --&gt; E[&quot;8.8 x 10^10 FLOPs and USD 1.8 x 10^-7&quot;]
+    D -.-&gt; F[&quot;4.8 x 10^8 times&quot;]
+    F -.-&gt; E</code></pre></details></figure>
+<h4 id="panel-b-retrieval-depth-against-datastore-size">Panel b: retrieval depth against datastore size</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Datastore chunks</th>
+<th style="text-align: right;">rho times corpus size at rho = 4 × 10^-8</th>
+<th style="text-align: right;">Exact minimum from k greater than or equal to rho times corpus size plus 1</th>
+<th style="text-align: right;">Generator chunks after reranking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">5 × 10^6</td>
+<td style="text-align: right;">0.2</td>
+<td style="text-align: right;">2 after integer rounding</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">5 × 10^7</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">5 × 10^8</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">2 × 10^9</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">5 × 10^9</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">201</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table></div>
+<p>The plotted line uses the dominant linear term rho times corpus size. The exact inequality adds one. The figure marks the approximate collision with the 80-chunk context ceiling at 2 × 10^9 chunks.</p>
+<p><strong>Figure 6.5:</strong> (a) Capacity is not what makes weights the wrong place for a fact - the write path is. The same 400-token chunk costs $85.8 to put into a 7 B model's parameters and $1.8 × 10^-7 to put into an index, a factor of 4.8 × 10^8. (b) The datastore is not free to grow either: at a fixed retriever quality ρ = 4 × 10^-8, retrieval depth must rise linearly with |D|, and it collides with a 32k context window at two billion chunks. A reranker is what keeps the generator's slice flat while the corpus grows underneath it.</p>
+<p>There are no source tables in this chapter.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="numbered-drawing-order">Numbered drawing order</h3>
+<ol type="1">
+<li>Write training compute as 6ND.</li>
+<li>Add generation cost as 2N per token.</li>
+<li>Draw the lifetime bill with training and serving terms.</li>
+<li>Mark Dinf = 3Dtr as the crossover.</li>
+<li>Split memory into weights, Adam state, and KV cache.</li>
+<li>Draw the proposer and verifier path for test-time search.</li>
+<li>Split model parameters into competence and factual content.</li>
+<li>Draw datastore growth, deep retrieval, reranking, and a fixed five-chunk generator input.</li>
+</ol>
+<h3 id="90-100-word-script">90-100 word script</h3>
+<p>Start with the lifetime bill: training costs 6ND, and generation costs 2N per token. Ask for expected query volume before choosing model size. Chinchilla fixes the training-only ratio near 20 tokens per parameter, but a shipped system often favors a smaller model trained longer because serving scales with N. Next price weights, Adam state, and the KV cache separately. For retrieval, test whether the small model can answer when given the gold chunk. If it can, keep facts in the datastore. As the corpus grows, retrieve deeply, rerank cheaply, and keep the generator context flat.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-is-20-tokens-per-parameter-the-final-scaling-rule">1. Is 20 tokens per parameter the final scaling rule?</h3>
+<p>No, it is the Chinchilla level for a training-compute objective at that scale. Serving crosses training at Dinf = 3Dtr, so a heavily served system can justify a smaller model trained on far more tokens. The trade is a small loss penalty against lower memory and lower cost for every generated token.</p>
+<h3 id="2-does-a-27-b-model-fit-on-one-80-gb-card">2. Does a 27 B model fit on one 80 GB card?</h3>
+<p>Precision and workload decide. Weights use 108 GB at fp32 or 54 GB at bf16, while full Adam state uses 432 GB before activations. The KV cache then scales with context and concurrency, so the trade is quality against card count, interconnect traffic, and request capacity.</p>
+<h3 id="3-should-multi-step-failures-trigger-an-8-b-to-70-b-upgrade">3. Should multi-step failures trigger an 8 B to 70 B upgrade?</h3>
+<p>Not before measuring pass-at-16 and verifier quality. Best-of-16 plus a process reward model costs 3.48 times the 8 B baseline, while one 70 B pass costs 8.75 times and needs 910 years to amortize at 10,000 queries per day. Upgrade when the 8 B rarely proposes a correct answer because a verifier cannot select a candidate that never appears.</p>
+<h3 id="4-does-rag-always-reduce-per-query-compute">4. Does RAG always reduce per-query compute?</h3>
+<p>No. The worked 8 B with 10 chunks costs 1.26 times the 70 B closed-book query, so its wins are 16 GB rather than 140 GB of weights and a USD 0.0036 rather than USD 17,157 refresh bill. Use the smallest model that answers with the gold chunk, then retrieve deeply and rerank as the corpus grows because stuffing 201 candidates costs 1.29 × 10^15 FLOPs while rerank-then-read costs 5.61 × 10^13.</p>
+<h3 id="5-should-a-fixed-training-budget-fund-a-shape-sweep-or-a-small-model-trained-to-convergence">5. Should a fixed training budget fund a shape sweep or a small model trained to convergence?</h3>
+<p>Usually neither, because shape moves loss only a few percent at fixed non-embedding N and convergence lets the model-data pair choose the budget. On 20 B tokens and 1.2 × 10^21 FLOPs, a converged 300 M model leaves 40% unspent and puts only 12% inside the productive window, while 2.5 B at four epochs spends everything and predicts 14.9% lower loss. The limits matter because shape is nearly free only across the measured dense-transformer range and repeated data stays near fresh-data value only through about four epochs.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<h3 id="allocation-and-lifetime">Allocation and lifetime</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Values and committed relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kaplan allocation</td>
+<td>Kaplan uses alpha_N = 0.076, alpha_D = 0.095, N proportional to C^0.73, batch proportional to C^0.24, steps proportional to C^0.03, D proportional to C^0.27, and D divided by N proportional to C^-0.46. GPT-3 is 175 B on 300 B at 1.7. Gopher is 280 B on 300 B at 1.1.</td>
+</tr>
+<tr>
+<td>Chinchilla allocation</td>
+<td>Chinchilla uses 0.50 and 0.50 exponents, a level of 20, and 70 B on 1.4 T. Its 5.9 × 10^23 FLOPs sit within 17% of Gopher's 5.0 × 10^23 despite a 4× parameter gap. MMLU is 67.6% versus 60.0%, a displayed 7.6-point gain that the prose calls seven and a half points.</td>
+</tr>
+<tr>
+<td>Cost and crossover</td>
+<td>The cost constants are 3.4 × 10^14 FLOP/s and USD 2.50 per accelerator-hour. A 5.0 × 10^23 run is 1.5 × 10^9 seconds, 4.1 × 10^5 hours, and about USD 1.0 M. Serving crosses training at Dinf = 3Dtr, or 4.2 T generated tokens for Chinchilla.</td>
+</tr>
+<tr>
+<td>Post-Chinchilla comparison</td>
+<td>Llama ratios progress from 143 for 7 B on 1.0 T, to 286 for 7 B on 2.0 T, to 1,875 for 8 B on over 15 T. The last is 94× Chinchilla. The post-2023 range is 100-2,000. At 7.2 × 10^23 FLOPs, 77 B on 1.55 T uses 155 GB and 8 B on 15 T uses 16 GB. Serving is 1.55 × 10^11 versus 1.6 × 10^10 FLOPs per token, a 9.7× gap. At 10^13 annual tokens, about 2.7 × 10^10 daily, serving is 1.55 × 10^24 versus 1.6 × 10^23 and lifetime cost is 2.27 × 10^24 versus 8.8 × 10^23, a 2.6× gap. The 405 B and 15.6 T sanity check gives 3.79 × 10^25 against 3.8 × 10^25, or 0.3% agreement.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="compute-and-memory">Compute and memory</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Values and committed relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compute relation</td>
+<td>Parameter work is 2N forward, 4N backward, 6N training, and 2N generation. Attention adds s divided by 12d. At d = 4,096 the threshold is 49,152 tokens. The addition is one sixth at 8k and two thirds at 32k.</td>
+</tr>
+<tr>
+<td>Precision and training state</td>
+<td>Storage is 4 bytes for fp32, 2 for bf16, 1 for int8, and 0.5 for int4. Quantization is the cheapest stated route to a 2-4× reduction. A 27 B uses 108 GB, 54 GB, and 27 GB at the first three precisions. Adam uses 16 bytes per parameter, or 128 GB for 8 B and 432 GB for 27 B. Moving 27 B to bf16 cuts free memory from 64 GB to 26 GB, a 2.5× loss.</td>
+</tr>
+<tr>
+<td>Cache and mixture of experts</td>
+<td>Llama 3.1 8B uses 32 layers, 8 key-value heads, and head dimension 128. Its cache is 131,072 bytes or 128 KiB per token. With 64 GB free, concurrency is 119 at 4k, 59 at 8k, and 14 at 32k. Mixtral stores 46.7 B but activates 12.9 B.</td>
+</tr>
+<tr>
+<td>LoRA and long context</td>
+<td>Rank-16 LoRA on two projections in 32 layers trains 8.39 M against 1.07 B, or 0.78% and a 128× reduction. State is 134 MB above a 16 GB base. At 8k, parameter prefill is 1.31 × 10^14, attention is 1.76 × 10^13, total is 1.49 × 10^14, latency is 0.44 seconds, and cache is 1.07 GB. At 32k, cache is 4.29 GB, parameter work is 5.24 × 10^14, attention is 2.81 × 10^14, total is 8.06 × 10^14, and latency is 2.4 seconds. A 4× context produces 5.4× latency. Checkpointing raises 6ND to 8ND, or 33%. A 405 B uses 810 GB at bf16 against 640 GB on eight 80 GB cards, while fp8 is 405 GB.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="shape-embeddings-and-convergence">Shape, embeddings, and convergence</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Values and committed relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shape sensitivity</td>
+<td>Shape changes loss a few percent. Doubling N gives 0.949 or 5.1% lower loss. Ten times N gives 0.839 or 16.1% lower loss. Figure lookup shares are 69%, 32%, 22%, 13%, and 3.0%.</td>
+</tr>
+<tr>
+<td>Embedding shares</td>
+<td>GPT-2 small uses 12 layers, width 768, vocabulary 50,257, an 84.9 M body, and 39.4 M lookup parameters at 32%. Llama 3 70B uses width 8,192, vocabulary 128,256, and 2.10 B embeddings at 3.0% of 70.6 B. Including embeddings inflates the two ends by 45% and 3%, a 0.15-decade shift.</td>
+</tr>
+<tr>
+<td>Encoder vocabularies</td>
+<td>XLM-R base is 278 M with vocabulary 250,002. BERT-base is 110 M with vocabulary 30,522. Both bodies are 84.9 M and cost 1.7 × 10^8 FLOPs per token. The advertised ratio is 2.5×. The extra 168 M rows use 0.34 GB.</td>
+</tr>
+<tr>
+<td>Repeat and shape budget</td>
+<td>Repeats retain near-fresh value through about four epochs. A 20 B-token corpus with 1.2 × 10^21 FLOPs equals 980 hours and USD 2,450. A 300 M model over 20 passes uses 4 × 10^11 tokens and 7.2 × 10^20 FLOPs, or 60%. It strands 4.8 × 10^20, 392 hours, and USD 980. Only 12% is in the productive window and 88% is low-return or unspent. A 2.5 B at four epochs uses 8 × 10^10 tokens, 32 tokens per parameter, and 100% of budget. Its 8.33× parameter gain predicts 0.851 or 14.9% lower loss. Shapes 48 by 2,048 and 24 by 2,880 use 384 and 270 KiB per token, 3.22 and 2.26 GB per 8k request, and support 23 and 33 requests with 4.8 GB weights and 75.2 GB free, a 43% gain. The GPT-2 check is 84.93 M plus 38.60 M plus 0.79 M, or 124.3 M against 124 M with 0.2% agreement.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="test-time-compute">Test-time compute</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Values and committed relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small repeated model</td>
+<td>A 3 B run 256 times uses 1.54 × 10^12 FLOPs per output token, 11× one 70 B pass at 1.4 × 10^11. Weight memory is 6 GB versus 140 GB, or 23× less.</td>
+</tr>
+<tr>
+<td>Baseline query</td>
+<td>The worked query rate is 10,000 daily. Ten 400-token chunks, 100 instruction tokens, and 300 output tokens give Tin = 4,100 and 4,400 total. Attention is 4.41 × 10^12, or 6.7%, against a 6.56 × 10^13 parameter term. The 8 B baseline is 7.04 × 10^13, 0.207 seconds, and USD 0.144 per thousand.</td>
+</tr>
+<tr>
+<td>Best-of-16 and 70 B</td>
+<td>Best-of-16 uses 6.56 × 10^13 shared prefill, 7.68 × 10^13 decode, and 1.02 × 10^14 reward scoring. Total is 2.45 × 10^14, 3.48×, and USD 0.50 per thousand. The 70 B is 6.16 × 10^14, 8.75×, and USD 1.26 per thousand.</td>
+</tr>
+<tr>
+<td>Breakeven and marginal FLOPs</td>
+<td>Pre-training is 5.88 × 10^23 for 70 B and 7.68 × 10^21 for 8 B, a 5.80 × 10^23 difference. With m = 3.48 and excess 2.48, Qstar is 3.32 × 10^9. That is 910 years at 10,000 daily and 332 days at 10 million daily. A 300-token sample is 4.80 × 10^12. A 400-token chunk is 6.4 × 10^12, or 1.33 samples. Five chunks are 3.20 × 10^13, or 6.7 samples. A 110 M reranker over 100 by 400 tokens costs 8.80 × 10^12 or 0.125×. Figure increments are 0.068× per sample, 0.45× per five chunks, and 1.455× for the process reward model. Annual inference is 1.61 × 10^10 tokens against 1.4 × 10^12 pre-training tokens, a ratio of 0.011.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="retrieval-versus-parameters">Retrieval versus parameters</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Values and committed relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capacity and write paths</td>
+<td>Capacity is about 2 bits per parameter, or 1.4 × 10^10 bits for 7 B. One 400-token fact embedded by 110 M costs 8.8 × 10^10 FLOPs and adds a 3,072-byte row for USD 1.8 × 10^-7. A 7 B replay over 1 B tokens costs 4.2 × 10^19 FLOPs, 34.3 hours, and USD 85.8. The write ratio is 4.8 × 10^8.</td>
+</tr>
+<tr>
+<td>Published substitutions</td>
+<td>Scale-only long-tail recall extrapolates to about 10^18 parameters. RETRO at 7.5 B uses a 2 T-token database and matches 175 B and 178 B models with 25× fewer parameters. Atlas at 11 B exceeds 42% from 64 examples, beats 540 B by 3 points, and uses 50× fewer parameters. The nearest-neighbor result compares 100 M training tokens with a 3 B-token datastore. The phrase system is roughly 350 M.</td>
+</tr>
+<tr>
+<td>Context limit and large-model refresh</td>
+<td>A 32k window with 400 reserved tokens caps 400-token chunks at 80. The answer fraction degrades from 1 in 5 to 1 in 200. The starting index is 50 M chunks or 2 × 10^10 tokens. A closed-book 70 B query is 5.6 × 10^13 FLOPs and USD 0.114 per thousand with 140 GB weights. Refresh is 8.4 × 10^21 FLOPs, 6,863 hours, and USD 17,157. The corpus is 1.4% of 1.4 T.</td>
+</tr>
+<tr>
+<td>Retrieved small model and corpus growth</td>
+<td>The retrieved 8 B query is 7.04 × 10^13 FLOPs and USD 0.144 per thousand, or 1.26×, with 16 GB weights. Updating 20,000 chunks costs 1.76 × 10^15 FLOPs and USD 0.0036. A 50 M by 768 by 4-byte index is 153.6 GB. At 96 bytes per vector it is 4.8 GB. Mean rank 3 gives rho = 4 × 10^-8. At 5 × 10^9 chunks, a 100× growth, k is 201, context is 80,400 tokens, total is 80,800, and gold falls from 20% to 0.5%. Stuffing costs 1.29 × 10^15. Reranking costs 1.77 × 10^13 and five-chunk generation costs 3.84 × 10^13, for 5.61 × 10^13 total and a 23× gap. The assumed 8.75× generator reduction is three to six times more conservative than the 25× and 50× reports.</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/05_data_privacy_and_the_legal_surface.html"><small>Previous</small>Chapter 5. Data, Privacy, and the Legal Surface</a><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html"><small>Next</small>Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 22. Reranking | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/22_reranking.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html" aria-current="page">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 22. Reranking</h1><p class="chapter-meta">50 min estimated reading · Unit 31 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains why Retrieval-Augmented Generation (RAG) needs a second ranking stage, how to price and size it, and how cross-encoders, large language model (LLM) ranking modes, ranking losses, sliding-window prompting, instruction-aware scoring, and document-bound versus model-bound diagnosis support that choice.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A two-stage pipeline has a hard ceiling. End-to-end evidence recall is first-stage recall times conditional reranker recall, so a reranker cannot recover a document that retrieval never supplied.</li>
+<li>A Bidirectional Encoder Representations from Transformers (BERT) base cross-encoder costs about 0.195 ms per 288-token pair at the stated throughput. Depth therefore turns directly into latency, and <code>k = 100</code> costs about 19.5 ms.</li>
+<li>Rerank depth follows the first-stage recall curve and the reranker's distractor error. It is not a constant owned by the reranker or inherited from a paper.</li>
+<li>A frozen prompted LLM should compare candidates. Pointwise, pairwise, and listwise modes trade calibration, call count, accelerator bill, serial depth, and order sensitivity.</li>
+<li>monoT5's modeling error is its separable classification loss. RankT5 couples candidates with a listwise softmax loss while keeping serving cost unchanged.</li>
+<li>Zero-shot listwise reranking needs overlapping windows that move from the tail to the head. Any other schedule can leave deep candidates structurally unable to reach rank 1.</li>
+<li>Instruction awareness needs both an explicit instruction input and on-topic instruction-violating negatives. Random negatives alone let the scorer ignore the instruction. Compare the marginal value of one more document with the marginal value of a stronger ranker at the current <code>m</code>. The larger gain identifies whether the operating point is document-bound or model-bound.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of retrieval as auditions for a small theater. The first-stage retriever is the casting assistant. It scans a vast crowd and invites <code>k</code> people into the room. Its job is recall. Anyone left outside is gone for this performance. The reranker is the director. It can study each invited candidate with the role in mind, compare close choices, and choose the final <code>m</code>. Its job is precision and order. The director cannot cast someone the assistant never invited. The generator is the stage. Every extra actor sent onstage consumes space and rehearsal time. Sending all 100 candidates because the stage is large wastes time and can bury the right evidence in the middle. A focused cast of five often costs less because the director's audition removes far more generator prefill than it adds in reranking. Depth is the size of the audition room. A weak casting assistant may need 1,000 invitations. A stronger assistant may reach the same recall with 20. Each extra invitation creates one more expensive audition and one more chance that a distractor wins. Pointwise, pairwise, and listwise ranking are three audition formats. Pointwise asks each actor for a solo score. Pairwise runs head-to-head auditions. Listwise puts a group onstage together and asks for an ordering. The correct format depends on whether training can calibrate solo scores and whether the production can afford serial decisions. Sliding windows are a relay from the back row to the front. A deep candidate must win each hand-off. Start at the front or remove overlap, and the relay path breaks. Instructions are role notes. A director who reads only the script topic cannot distinguish "authoritative policy" from "discussion thread." The training set must include actors who fit the topic but violate the role note. Otherwise the director can ignore the note and still win every easy comparison. Finally, the producer asks where to spend the next quarter. If one more actor onstage helps more than a better director, the current show is document-bound. If a better director helps more at the same cast size, it is model-bound. The answer belongs to the current operating point, not to the pipeline forever.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieval-Augmented Generation</td>
+<td>Retrieval selects evidence before generation.</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td>Corpus size in chunks</td>
+<td>The cheap first stage may scan or index all <code>N</code>.</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>Candidate depth sent from stage 1 to stage 2</td>
+<td>Cross-encoder cost grows linearly with <code>k</code>.</td>
+</tr>
+<tr>
+<td><code>m</code></td>
+<td>Documents sent to the generator</td>
+<td>Generator prefill and evidence coverage change with <code>m</code>.</td>
+</tr>
+<tr>
+<td><code>R1(k)</code></td>
+<td>Probability that the gold chunk appears in the first-stage top <code>k</code></td>
+<td>This is the hard set-membership ceiling.</td>
+</tr>
+<tr>
+<td><code>R2(m given k)</code></td>
+<td>Probability that the reranker places the gold in the top <code>m</code>, conditioned on its presence in the top <code>k</code></td>
+<td>This isolates stage-2 ordering and truncation.</td>
+</tr>
+<tr>
+<td><code>R(m)</code></td>
+<td>Probability that the generator sees the gold chunk</td>
+<td>It equals the product of the two stage terms.</td>
+</tr>
+<tr>
+<td><code>d</code></td>
+<td>Dense embedding width</td>
+<td>A dot product costs <code>2d</code> floating-point operations (FLOPs).</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>Model parameter count</td>
+<td>The stated forward-pass rule charges about <code>2P</code> FLOPs per token.</td>
+</tr>
+<tr>
+<td><code>Lq</code></td>
+<td>Query token count</td>
+<td>It contributes to every query-document pair.</td>
+</tr>
+<tr>
+<td><code>Lp</code> or <code>Ld</code></td>
+<td>Passage or document token count</td>
+<td>It dominates pair length and listwise prompt size.</td>
+</tr>
+<tr>
+<td><code>Li</code></td>
+<td>Instruction token count</td>
+<td>It is the extra input cost for instruction-aware reranking.</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>Joint pair length</td>
+<td>For a cross-encoder, <code>L = Lq + Lp</code>, plus <code>Li</code> when used.</td>
+</tr>
+<tr>
+<td><code>h</code></td>
+<td>Transformer hidden width</td>
+<td>It appears in the attention-cost term.</td>
+</tr>
+<tr>
+<td><code>ell</code></td>
+<td>Transformer layer count</td>
+<td>It multiplies the attention-cost term.</td>
+</tr>
+<tr>
+<td>First-stage retriever</td>
+<td>Cheap sparse or dense scorer over the corpus</td>
+<td>It buys recall at large depth.</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>Dense first-stage system used in the Natural Questions measurements</td>
+<td>Its fitted recall slope is 3.0 points per depth doubling.</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>Sparse first-stage scoring system used in the comparisons</td>
+<td>Its fitted recall slope is 6.3 points per depth doubling.</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN) index</td>
+<td>Index that avoids flat dense scanning</td>
+<td>The worked example treats flat search time as an honest upper bound.</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>Joint query-document transformer</td>
+<td>It can condition every document token on every query token.</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Separate query and document encoders</td>
+<td>It permits document-side precomputation but lacks joint token interaction.</td>
+</tr>
+<tr>
+<td><code>[CLS]</code> and <code>[SEP]</code></td>
+<td>Classification position used for the score and separator token placed between fields</td>
+<td>They mark the joint sequence and expose the final relevance representation.</td>
+</tr>
+<tr>
+<td><code>epsilon</code> and <code>lambda = (k - 1)epsilon</code></td>
+<td>Per-distractor error probability and resulting Poisson mean</td>
+<td>They set the depth where extra distractors begin to hurt.</td>
+</tr>
+<tr>
+<td>Pointwise mode</td>
+<td>Score one candidate per decision</td>
+<td>Calls parallelize, but prompted absolute scores need calibration.</td>
+</tr>
+<tr>
+<td>Pairwise mode</td>
+<td>Compare two candidates per decision</td>
+<td>It creates ordinal judgments but may produce cycles.</td>
+</tr>
+<tr>
+<td>Listwise mode</td>
+<td>Order a group of candidates per decision</td>
+<td>It supplies context-level comparison but introduces serial windows and order sensitivity.</td>
+</tr>
+<tr>
+<td>Serial depth</td>
+<td>Longest dependent chain of model calls</td>
+<td>It determines wall-clock latency when calls cannot overlap.</td>
+</tr>
+<tr>
+<td>Comparator cycle</td>
+<td>A result such as <code>A &gt; B</code>, <code>B &gt; C</code>, and <code>C &gt; A</code></td>
+<td>A sort can hide the inconsistency and return arrival-order-dependent output.</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>Listwise window size</td>
+<td>It controls candidates seen per listwise decision.</td>
+</tr>
+<tr>
+<td><code>s</code> (window use)</td>
+<td>Sliding-window stride</td>
+<td>It controls overlap and how many ranks each call freezes.</td>
+</tr>
+<tr>
+<td><code>N_pointwise</code>, <code>N_all-pairs</code>, <code>N_listwise</code>, and <code>N_calls</code></td>
+<td>Call counts for each comparison mode, with the last two naming the window total</td>
+<td>They separate accelerator bill from serial wall-clock depth.</td>
+</tr>
+<tr>
+<td><code>n(g)</code> and <code>g</code> (window use)</td>
+<td>Consecutive wins and starting rank in progressive reranking</td>
+<td>Tail rescue probability decays with the win count.</td>
+</tr>
+<tr>
+<td><code>p_window</code></td>
+<td>Probability that a truly best candidate survives one listwise hand-off</td>
+<td>Tail rescue is <code>p_window</code> raised to <code>n(g)</code>.</td>
+</tr>
+<tr>
+<td><code>g</code> (training use)</td>
+<td>Candidate list size used by the RankT5 training loss</td>
+<td>Training cost grows linearly with this separate use of <code>g</code>.</td>
+</tr>
+<tr>
+<td>monoT5, <code>z_true</code>, <code>z_false</code>, and <code>s_i</code></td>
+<td>Pointwise Text-to-Text Transfer Transformer (T5), its two output logits, and sigmoid relevance score</td>
+<td>Its pointwise objective never compares same-query candidates.</td>
+</tr>
+<tr>
+<td>RankT5, <code>p_i</code>, <code>p_t</code>, and <code>y_i</code></td>
+<td>Ranking model, candidate softmax probability, gold probability, and relevance label</td>
+<td>Its listwise loss couples a query's candidates.</td>
+</tr>
+<tr>
+<td>Binary cross-entropy</td>
+<td>Pointwise classification loss</td>
+<td>Each document contributes independently.</td>
+</tr>
+<tr>
+<td>Listwise softmax cross-entropy</td>
+<td>Loss that normalizes scores over one query's list</td>
+<td>Its denominator makes candidates compete.</td>
+</tr>
+<tr>
+<td>LambdaRank</td>
+<td>Pairwise method that rescales gradients by absolute normalized discounted cumulative gain change</td>
+<td>It prices head-of-list inversions more heavily.</td>
+</tr>
+<tr>
+<td>poly-1, <code>epsilon_poly</code>, and <code>p_t</code></td>
+<td>Extra loss, its weight, and the gold softmax probability</td>
+<td>Its relative gradient contribution is <code>epsilon_poly * p_t</code>.</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank at 10 (MRR@10)</td>
+<td>Average reciprocal gold rank, truncated at 10</td>
+<td>It supports the fitted geometric rank model.</td>
+</tr>
+<tr>
+<td>Normalized discounted cumulative gain (nDCG)</td>
+<td>Rank metric with larger discounts near the head</td>
+<td>It exposes why all inversions should not cost the same.</td>
+</tr>
+<tr>
+<td>Mean average precision (MAP)</td>
+<td>Ranking metric preserved by monotone within-query calibration</td>
+<td>It cannot improve when ordering does not change.</td>
+</tr>
+<tr>
+<td><code>I</code>, <code>q</code>, <code>d</code>, and <code>u</code></td>
+<td>Intent instruction, query, document, and the two-document score gap</td>
+<td>They make the instruction-aware function and its impossibility proof explicit.</td>
+</tr>
+<tr>
+<td>Task-aware Retrieval with Instructions full model (TART-full)</td>
+<td>Instruction-aware cross-encoder described in the source</td>
+<td>Its 90/10 negative mixture supplies topical and instruction gradients.</td>
+</tr>
+<tr>
+<td>Intent-correct@1 and <code>n</code> (intent use)</td>
+<td>Top-1 intent success and number of symmetric intents</td>
+<td>An instruction-blind scorer is capped at <code>1/n</code>.</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>Generator extraction probability once gold is in context</td>
+<td>It scales end-to-end quality.</td>
+</tr>
+<tr>
+<td><code>C(m)</code></td>
+<td>Conditional probability that the ranker puts gold inside the first <code>m</code> slots</td>
+<td>It is the ranker's cumulative placement curve.</td>
+</tr>
+<tr>
+<td><code>E(m)</code> and <code>E_prime(m)</code></td>
+<td>Baseline and upgraded end-to-end quality at context size <code>m</code></td>
+<td>Their difference prices the ranker upgrade.</td>
+</tr>
+<tr>
+<td><code>p_rank</code> and <code>p_prime</code></td>
+<td>Baseline and upgraded geometric success probabilities</td>
+<td>The fitted baseline uses <code>p_rank = 0.18</code>.</td>
+</tr>
+<tr>
+<td><code>q_rank</code> and <code>q_prime</code></td>
+<td>Their complementary failure probabilities</td>
+<td>The cumulative placement curve is <code>1 - q_rank^m</code>.</td>
+</tr>
+<tr>
+<td>Document-bound</td>
+<td>One more document has the larger marginal gain</td>
+<td>The current context is too small for the available ranking.</td>
+</tr>
+<tr>
+<td>Model-bound</td>
+<td>A better ranker has the larger marginal gain at fixed <code>m</code></td>
+<td>The current context is large enough that ordering is the better lever.</td>
+</tr>
+<tr>
+<td><code>m*</code></td>
+<td>Crossing where the two marginal gains are equal</td>
+<td>The worked comparison gives approximately five documents.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="221-why-a-second-stage-exists-at-all">22.1 Why a second stage exists at all</h3>
+<h4 id="what">What</h4>
+<p>A two-stage pipeline separates a cheap recall estimator from an expensive precision and ordering estimator. The end-to-end evidence probability is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>R</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>R</mi><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo>∣</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>≤</mo><msub><mi>R</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">R(m) = R_1(k) R_2(m \mid k) \le R_1(k).</annotation></semantics></math> The inequality is the architecture. Stage 1 sets the ceiling. Stage 2 can approach that ceiling but cannot exceed it. Stage 1 optimizes recall over <code>N</code>. Stage 2 optimizes precision and order over <code>k</code>. The generator receives <code>m</code>, with <code>m</code> no larger than <code>k</code> and <code>k</code> far smaller than <code>N</code>.</p>
+<h4 id="why">Why</h4>
+<p>A dense first-stage dot product costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>d</mi><mo>=</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>,</mo><mn>536</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs per chunk</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">2d = 2(768) = 1{,}536\ \text{FLOPs per chunk}.</annotation></semantics></math> A BERT-base cross-encoder with <code>P = 110M</code>, a 32-token query, and a 256-token passage costs under the chapter's simple rule</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1.10</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>32</mn><mo>+</mo><mn>256</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs per pair</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">2(1.10 \times 10^8)(32 + 256) = 6.336 \times 10^{10}\ \text{FLOPs per pair}.</annotation></semantics></math> One cross-encoder pair is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><mrow><mn>1</mn><mo>,</mo><mn>536</mn></mrow></mfrac><mo>=</mo><mn>4.13</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">\frac{6.336 \times 10^{10}}{1{,}536} = 4.13 \times 10^7</annotation></semantics></math> times the arithmetic of one dot product. Running that accurate model over a 10-million-chunk corpus would cost</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="prefix">(</mo><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>6.34</mn><mo>×</mo><msup><mn>10</mn><mn>17</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs per query</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">10^7(6.336 \times 10^{10}) = 6.34 \times 10^{17}\ \text{FLOPs per query}.</annotation></semantics></math> The staged system with <code>k = 100</code> costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mn>536</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>100</mn><mo stretchy="false" form="prefix">(</mo><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>6.35</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">10^7(1{,}536) + 100(6.336 \times 10^{10}) = 6.35 \times 10^{12}\ \text{FLOPs}.</annotation></semantics></math> That is a reduction of <code>9.98 × 10^4</code>, close to five orders of magnitude. Stage 2 sees <code>10^-5</code> of the corpus and still spends 99.8% of retrieval arithmetic. The reranker also controls position. The source states that the same documents produce different generator quality when the answer-bearing chunk moves between the start, middle, and end of context. Recall cannot measure this ordering effect.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>If the gold chunk is absent from the top <code>k</code>, stage 1 failed. Adding a reranker cannot help. If the gold chunk is in the top <code>k</code> but outside the final <code>m</code>, stage 2 failed. Re-embedding the whole corpus targets the wrong stage. If a pipeline logs only end-to-end accuracy, it observes the product <code>R1 * R2</code> and cannot attribute failure to either factor. If the system passes all <code>k</code> candidates to a long-context generator, it pays much more prefill and exposes the answer to positional degradation.</p>
+<h4 id="cost-complexity-and-worked-example">Cost, complexity, and worked example</h4>
+<p>The worked stack uses 10 million chunks, 256 tokens per chunk, <code>d = 768</code> in 32-bit floating point (FP32), a BERT-base cross-encoder, a 7-billion-parameter generator, sustained throughput of <code>3.4 × 10^14</code> FLOPs per second, and memory bandwidth of 2.0 TB/s. Flat dense search streams</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">bytes</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>30.7</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">GB</mtext><mo>,</mo></mrow><annotation encoding="application/x-tex">10^7(768)(4\ \text{bytes}) = 30.7\ \text{GB},</annotation></semantics></math> which takes 15.4 ms at the stated bandwidth. An ANN index can reduce it, so 15.4 ms is an upper bound for stage 1.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Retrieval and reranking</th>
+<th style="text-align: right;">Generator prefill</th>
+<th style="text-align: right;">Total before decode</th>
+<th>Quality interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One stage, raw top 5</td>
+<td style="text-align: right;">15.4 ms</td>
+<td style="text-align: right;">52.7 ms</td>
+<td style="text-align: right;">68.1 ms</td>
+<td><code>R(5) = R1(5)</code>, with no second opinion or reorder.</td>
+</tr>
+<tr>
+<td>Retrieve 100, rerank to 5</td>
+<td style="text-align: right;">15.4 + 18.6 ms</td>
+<td style="text-align: right;">52.7 ms</td>
+<td style="text-align: right;">86.7 ms</td>
+<td>Raises the ceiling to <code>R1(100)</code> and controls position.</td>
+</tr>
+<tr>
+<td>Retrieve 100, send all 100</td>
+<td style="text-align: right;">15.4 ms</td>
+<td style="text-align: right;">1,054 ms</td>
+<td style="text-align: right;">1,069 ms</td>
+<td>Costs 12.3 times configuration 2 and usually buries the gold in a 25,600-token context.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The 100-candidate reranker costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>100</mn><mo stretchy="false" form="prefix">(</mo><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>18.6</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{100(6.336 \times 10^{10})}{3.4 \times 10^{14}} = 18.6\ \text{ms}.</annotation></semantics></math> Reducing prefill from 100 chunks to five removes 1,001 ms. The reranker returns 54 ms of generator time for each millisecond it spends. Its 18.6 ms adds 27% over the 68.1 ms raw-top-5 configuration. For 200 chunks, long-context prefill reaches 51,200 tokens and <code>7.17 × 10^14</code> FLOPs, or about 2.1 seconds. Cross-encoding the 200 candidates costs 37.3 ms before sending five. Published DPR measurements on Natural Questions give 78.4% top-20 and 85.4% top-100. The set-membership headroom is 7.0 points. That is 32% of the remaining <code>21.6</code> points of error.</p>
+<h4 id="decisions-and-limits">Decisions and limits</h4>
+<ul>
+<li>Measure recall at <code>k</code> and recall at <code>m</code> on the same query set before adding or removing the stage.</li>
+<li>Budget reranking against generator prefill saved, not only against retrieval latency.</li>
+<li>Use a set metric for stage 1 and a rank metric such as nDCG or MRR for stage 2.</li>
+<li>Keep the reranker's final order unless a deliberate diversity or recency pass replaces it.</li>
+<li>Treat <code>k = 100</code> as a starting point, then profile it.</li>
+<li>If a fixed-price generator application programming interface bills per call rather than per token, recompute the prefill trade in dollars.</li>
+<li>If generator accuracy is flat across insertion positions and prefill is cached across a multi-turn session, the reranker's remaining value can collapse to the set-membership gap.</li>
+</ul>
+<h3 id="222-cross-encoders-and-choosing-rerank-depth">22.2 Cross-encoders and choosing rerank depth</h3>
+<h4 id="what-1">What</h4>
+<p>A cross-encoder forms one sequence, <code>[CLS] query [SEP] document [SEP]</code>, then runs a joint transformer pass. Every document token can attend to every query token. That joint representation explains both quality and cost. The model can judge whether a passage answers this query, but no document representation can be precomputed offline.</p>
+<h4 id="why-1">Why</h4>
+<p>Let <code>L = Lq + Ld</code>. The chapter prices one pass as</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>P</mi><mi>L</mi><mo>+</mo><mn>4</mn><mi>ℓ</mi><msup><mi>L</mi><mn>2</mn></msup><mi>h</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">2PL + 4\ell L^2 h.</annotation></semantics></math> For BERT-base with <code>P = 1.10 × 10^8</code>, <code>ell = 12</code>, <code>h = 768</code>, and <code>L = 288</code>, the linear term is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1.10</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>288</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>6.336</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">2(1.10 \times 10^8)(288) = 6.336 \times 10^{10}.</annotation></semantics></math> The attention term is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>48</mn><mo stretchy="false" form="prefix">(</mo><msup><mn>288</mn><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>3.058</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">48(288^2)(768) = 3.058 \times 10^9.</annotation></semantics></math> The total is <code>6.642 × 10^10</code> FLOPs per pair. The quadratic term is only 4.8% of the linear term at this length. At <code>L = 1,024</code>, the attention term is <code>3.865 × 10^10</code> against a linear term of <code>2.253 × 10^11</code>, or 17.2%. Total cost grows 3.97 times for a 3.56 times length increase. The fitted exponent is 1.09, not 2. At the stated throughput, one pair costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>6.642</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>0.195</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{6.642 \times 10^{10}}{3.4 \times 10^{14}} = 0.195\ \text{ms}.</annotation></semantics></math> Reranking <code>k</code> candidates therefore costs <code>0.195k</code> ms. First-stage recall is close to linear in <code>log2(k)</code> over the fitted range. DPR rises from 78.4% at 20 to 85.4% at 100. That is 7.0 points over 2.32 doublings, or 3.0 points per doubling. BM25 rises from 59.1% to 73.7%, or 6.3 points per doubling. Going from 20 to 40 candidates buys 3.0 points for 3.9 ms, or 0.77 points per millisecond, behind the dense retriever. Going from 100 to 200 buys the same 3.0 points for 19.5 ms, or 0.15 points per millisecond. BM25 needs 3.07 doublings beyond <code>k = 20</code> to reach 78.4%, so it needs approximately <code>k = 168</code>. That is 8.4 times the depth and 8.4 times the reranker bill of DPR at <code>k = 20</code>.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>Depth is not monotonically helpful. Let <code>epsilon</code> be the chance that one irrelevant candidate outscores gold. The number of distractors above gold is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Binomial</mo><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo>,</mo><mi>ϵ</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mrow><annotation encoding="application/x-tex">\mathop{\text{Binomial}}(k - 1, \epsilon),</annotation></semantics></math> with approximation</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>Poisson</mo><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>ϵ</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathop{\text{Poisson}}((k - 1)\epsilon).</annotation></semantics></math> Gold reaches the top <code>m</code> only when fewer than <code>m</code> distractors beat it. <code>R1(k)</code> rises with depth while <code>R2(m given k)</code> falls. Their product can peak at an interior depth and then collapse. Inherited depth also wastes retriever improvements. A better first stage should often be redeemed as lower <code>k</code>, not stored as unmeasured headroom.</p>
+<h4 id="cost-complexity-and-worked-example-1">Cost, complexity, and worked example</h4>
+<p>The example uses <code>m = 5</code>, a 20 ms reranking budget, and <code>epsilon = 0.01</code>. At fixed <code>k = 100</code>, BM25 buys a 73.7% ceiling for 19.5 ms and dense retrieval buys 85.4%. Dense retrieval at <code>k = 20</code> still reaches 78.4% in 3.9 ms, beating the BM25 ceiling by 4.7 points and returning 15.6 ms.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;"><code>k</code></th>
+<th style="text-align: right;">Rerank time</th>
+<th style="text-align: right;"><code>R1(k)</code></th>
+<th style="text-align: right;"><code>R2(5 given k)</code></th>
+<th style="text-align: right;">End-to-end <code>R(5)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">3.9 ms</td>
+<td style="text-align: right;">78.4%</td>
+<td style="text-align: right;">100.0%</td>
+<td style="text-align: right;">78.4%</td>
+</tr>
+<tr>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">9.8 ms</td>
+<td style="text-align: right;">82.4%</td>
+<td style="text-align: right;">100.0%</td>
+<td style="text-align: right;">82.4%</td>
+</tr>
+<tr>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">19.5 ms</td>
+<td style="text-align: right;">85.4%</td>
+<td style="text-align: right;">99.7%</td>
+<td style="text-align: right;">85.1%</td>
+</tr>
+<tr>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">39.0 ms</td>
+<td style="text-align: right;">88.4%</td>
+<td style="text-align: right;">94.8%</td>
+<td style="text-align: right;">83.8%</td>
+</tr>
+<tr>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">97.5 ms</td>
+<td style="text-align: right;">92.3%</td>
+<td style="text-align: right;">44.2%</td>
+<td style="text-align: right;">40.8%</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">195.0 ms</td>
+<td style="text-align: right;">95.3%</td>
+<td style="text-align: right;">2.9%</td>
+<td style="text-align: right;">2.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p>The illustrative product peaks near <code>k = 150</code>. Rows beyond the published 85.4% DPR point extrapolate the fitted slope. They show shape, not a forecast. The Nogueira and Cho counterexample keeps that claim honest. BERT-large reranking of BM25's top 1,000 reports MRR@10 of 0.365 on the Microsoft Machine Reading Comprehension (MS MARCO) development set, against 0.187 for BM25 alone. At <code>epsilon = 0.01</code>, the Poisson mean is 9.99 and the chance of at most nine distractors is 0.46. At <code>epsilon = 0.005</code>, the mean is 5.0 and that chance is 0.97. An MRR@10 of 0.365 then implies a harmonic-mean rank near 2.7 among top-10 successes. The collapse constant is system-specific.</p>
+<h4 id="decisions-and-limits-1">Decisions and limits</h4>
+<ul>
+<li>Start near <code>k = 100</code> behind a dense or hybrid retriever, then refit after each first-stage change. Route depth by query class when a long-tail slice has a materially steeper recall curve than ordinary traffic.</li>
+<li>Measure recall at <code>k</code> values 20, 50, 100, and 200 on one held-out set.</li>
+<li>Measure <code>epsilon</code> before going deeper than 200.</li>
+<li>Spend on a stronger first stage before recurring per-query depth when retraining and re-embedding are available.</li>
+<li>If depth is fixed, scoring the best 256-token window instead of a 1,024-token candidate cuts pair cost by roughly four times. Similarity-based early exit at an empirical layer is another option. An exit that is too early reads more like lexical overlap than composed relevance.</li>
+<li>Do not truncate long candidates if answers often span windows. That converts ranking failure into recall failure.</li>
+<li>Widen the evaluation set when a three-point difference sits inside noise.</li>
+</ul>
+<h3 id="223-llm-rerankers-pointwise-pairwise-listwise">22.3 LLM rerankers: pointwise, pairwise, listwise</h3>
+<h4 id="what-2">What</h4>
+<p>The three modes differ by how many candidates the model sees when it commits to a judgment. Pointwise produces one absolute score. Pairwise produces a winner between two candidates. Listwise produces a permutation over a window. Classical learning-to-rank can place coupling in the loss. McRank treats ordinal grades 0 through 4 as pointwise classes. RankNet keeps one-document forward passes and couples documents in a pairwise loss. SetRank removes positional embeddings so its self-attention scorer is permutation-invariant. A frozen prompted LLM cannot change its loss, so comparison must happen inside the context window.</p>
+<h4 id="why-2">Why</h4>
+<p>For a 7-billion-parameter reranker under the <code>2P</code> rule and the stated throughput, one input token costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>1.4</mn><mo>×</mo><msup><mn>10</mn><mn>10</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>4.12</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>5</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">s</mtext><mo>=</mo><mn>0.0412</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{1.4 \times 10^{10}}{3.4 \times 10^{14}} = 4.12 \times 10^{-5}\ \text{s} = 0.0412\ \text{ms}.</annotation></semantics></math> With a 32-token query, 256-token document, and 50 instruction tokens, a pointwise prompt uses 338 tokens and costs 13.9 ms. A pairwise prompt uses 594 tokens and costs 24.5 ms. A listwise prompt with <code>w = 20</code> uses 5,202 prefill tokens plus about 60 decoded identifier tokens, or 216.8 ms per call. Call counts are</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mtext mathvariant="normal">pointwise</mtext></msub><mo>=</mo><mi>k</mi><mo>,</mo></mrow><annotation encoding="application/x-tex">N_{\text{pointwise}} = k,</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mtext mathvariant="normal">all-pairs</mtext></msub><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><mi>k</mi><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mrow><annotation encoding="application/x-tex">N_{\text{all-pairs}} = \binom{k}{2},</annotation></semantics></math> and, at stride <code>w / 2</code>,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mtext mathvariant="normal">listwise</mtext></msub><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>k</mi><mo>−</mo><mi>w</mi></mrow><mrow><mi>w</mi><mi>/</mi><mn>2</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mi>k</mi></mrow><mi>w</mi></mfrac><mo>−</mo><mn>1</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">N_{\text{listwise}} = 1 + \frac{k - w}{w/2} = \frac{2k}{w} - 1.</annotation></semantics></math> At <code>k = 100</code> and <code>w = 20</code>, listwise needs nine serial calls. Pairwise top-<code>m</code> selection does not require all pairs. A heap needs at most</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi><mo>+</mo><mn>2</mn><mi>m</mi><mo stretchy="false" form="prefix">⌈</mo><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mi>k</mi><mo stretchy="false" form="postfix">⌉</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">2k + 2m\lceil \log_2 k \rceil.</annotation></semantics></math> At <code>k = 100</code> and <code>m = 10</code>, that is <code>200 + 140 = 340</code> comparisons instead of 4,950. A single-elimination tournament finds top 1 in <code>k - 1 = 99</code> comparisons.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Zero-shot pointwise scores are cardinal quantities across documents the model never saw together. The prompt supplies no cross-document calibration. Pairwise comparisons may violate transitivity. A sorting algorithm still returns an order after a cycle, but that order depends on the comparison sequence. Listwise output can change when the input permutation changes. Its windows are also context-bounded and serial. The source treats the origin of zero-shot comparative ability as an open hypothesis. Next-token prediction may encode orderings that instruction tuning elicits, but this is not presented as a result.</p>
+<h4 id="cost-complexity-and-worked-example-2">Cost, complexity, and worked example</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th style="text-align: right;">Calls</th>
+<th style="text-align: right;">Total tokens</th>
+<th style="text-align: right;">Accelerator time</th>
+<th style="text-align: right;">Wall-clock at stated depth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BERT-base cross-encoder baseline</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">28,800</td>
+<td style="text-align: right;">19.5 ms</td>
+<td style="text-align: right;">0.195 ms</td>
+</tr>
+<tr>
+<td>Pointwise LLM</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">33,800</td>
+<td style="text-align: right;">1.39 s</td>
+<td style="text-align: right;">13.9 ms</td>
+</tr>
+<tr>
+<td>Pairwise all-pairs</td>
+<td style="text-align: right;">4,950</td>
+<td style="text-align: right;">2,940,300</td>
+<td style="text-align: right;">121.1 s</td>
+<td style="text-align: right;">24.5 ms</td>
+</tr>
+<tr>
+<td>Pairwise heap top 10</td>
+<td style="text-align: right;">340</td>
+<td style="text-align: right;">201,960</td>
+<td style="text-align: right;">8.32 s</td>
+<td style="text-align: right;">3.43 s</td>
+</tr>
+<tr>
+<td>Pairwise tournament top 1</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">58,806</td>
+<td style="text-align: right;">2.42 s</td>
+<td style="text-align: right;">171 ms</td>
+</tr>
+<tr>
+<td>Listwise with <code>w = 20</code></td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">47,358</td>
+<td style="text-align: right;">1.95 s</td>
+<td style="text-align: right;">1.95 s</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pointwise is the cheapest LLM mode and still costs 71.4 times the cross-encoder's accelerator time. The parameter-only ratio is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup></mrow><mrow><mn>1.10</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>338</mn><mn>288</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>74.7</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\left(\frac{7 \times 10^9}{1.10 \times 10^8}\right)\left(\frac{338}{288}\right) = 74.7.</annotation></semantics></math> Correcting for the cross-encoder attention term divides by <code>6.642 / 6.336 = 1.048</code> and gives 71.2. The remaining 0.3% is rounding. A cascade costs 19.5 ms to reduce 100 candidates to 20, then 216.8 ms for one listwise call. Total wall-clock is 236.3 ms. That is 8.3 times faster than full listwise reranking and uses nine times fewer LLM tokens. An 8,192-token context could hold</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">⌊</mo><mfrac><mrow><mn>8</mn><mo>,</mo><mn>192</mn><mo>−</mo><mn>82</mn></mrow><mn>256</mn></mfrac><mo stretchy="true" form="postfix">⌋</mo></mrow><mo>=</mo><mn>31</mn></mrow><annotation encoding="application/x-tex">\left\lfloor \frac{8{,}192 - 82}{256} \right\rfloor = 31</annotation></semantics></math> passages. The published <code>w = 20</code> leaves 55% headroom. The limiting factor is ordering quality over longer lists, not raw fit.</p>
+<h4 id="decisions-and-limits-2">Decisions and limits</h4>
+<ul>
+<li>Default to listwise for a frozen prompted LLM and pointwise for a fine-tuned model with a ranking loss. If long candidates force <code>w</code> below about eight, listwise competition becomes too small to justify its price.</li>
+<li>Avoid all-pairs above about <code>k = 20</code> unless concurrency is idle and latency dominates cost.</li>
+<li>Budget by serial depth, not only call count.</li>
+<li>Cascade a cross-encoder before an LLM unless the two stages disagree systematically about relevance.</li>
+<li>Measure listwise permutation sensitivity and pairwise cycle rate.</li>
+<li>Use all-pairs or permutation self-consistency mainly for offline labeling when latency is irrelevant.</li>
+</ul>
+<h3 id="224-monot5-to-rankt5-from-classification-to-ranking-losses">22.4 monoT5 to RankT5: from classification to ranking losses</h3>
+<h4 id="what-3">What</h4>
+<p>monoT5 formats the input as a query, document, and <code>Relevant:</code> prompt. It emits one token, <code>true</code> or <code>false</code>, then scores a candidate with</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub><mo>=</mo><mi>σ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>z</mi><mtext mathvariant="normal">true</mtext></msub><mo>−</mo><msub><mi>z</mi><mtext mathvariant="normal">false</mtext></msub><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">s_i = \sigma(z_{\text{true}} - z_{\text{false}}).</annotation></semantics></math> The model trains on roughly <code>5 × 10^5</code> MS MARCO query-passage pairs. The source reports transfer from that training to Text REtrieval Conference (TREC) Robust04, where monoT5 beats BERT-based rerankers and BM25 without a Robust04 label. RankT5 keeps the candidate encoder and exposes an unnormalized real-valued score from the unused sentinel token named <code>extra_id_10</code>. The material improvement comes from the loss, not from the output head.</p>
+<h4 id="why-3">Why</h4>
+<p>The monoT5 pointwise objective is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mtext mathvariant="normal">point</mtext></msub><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>ℓ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal{L}_{\text{point}} = \sum_i \ell(s_i, y_i).</annotation></semantics></math> Its gradient with respect to one score depends only on that document and label. Two documents competing for one slot never meet in one term. Move one negative score from 0.02 to 0.10. On an easy query with gold at 0.90, order does not change. On a hard query with gold at 0.05, the negative passes gold. Binary cross-entropy assigns the same penalty in both cases:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>ℓ</mi><mo>=</mo><mi>−</mi><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.90</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.98</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.1054</mn><mo>−</mo><mn>0.0202</mn><mo>=</mo><mn>0.0852</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nats</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\Delta \ell = -\ln(0.90) + \ln(0.98) = 0.1054 - 0.0202 = 0.0852\ \text{nats}.</annotation></semantics></math> RankT5 uses listwise softmax cross-entropy</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℓ</mi><mo>=</mo><mi>−</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>t</mi></msub><mo>,</mo></mrow><annotation encoding="application/x-tex">\ell = -\log p_t,</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>t</mi></msub><mo>=</mo><mfrac><msup><mi>e</mi><msub><mi>s</mi><mi>t</mi></msub></msup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><msub><mi>s</mi><mi>j</mi></msub></msup></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">p_t = \frac{e^{s_t}}{\sum_j e^{s_j}}.</annotation></semantics></math> The same perturbation costs 0.0100 nats on the easy query and 0.5859 on the hard query, a factor of 58.8. For one positive, the listwise gradient is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mi>ℓ</mi></mrow><mrow><mi>∂</mi><msub><mi>s</mi><mi>i</mi></msub></mrow></mfrac><mo>=</mo><msub><mi>p</mi><mi>i</mi></msub><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{\partial \ell}{\partial s_i} = p_i - y_i.</annotation></semantics></math> Positive pull has magnitude <code>1 - pt</code>. All negatives together have the same magnitude. Each negative receives weight according to how close it is to winning. Binary cross-entropy has negative-to-positive ratio</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><munder><mo>∑</mo><mi>j</mi></munder><mi>σ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>1</mn><mo>−</mo><mi>σ</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{\sum_j \sigma(s_j)}{1 - \sigma(s_t)}.</annotation></semantics></math> With gold at 0.90 and negatives at 0.02, the ratio is 3.8 at <code>k = 20</code> and 19.8 at <code>k = 100</code>.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>A 94% relevance classifier can leave nDCG unchanged because classification grades a boundary while ranking grades order inside the positive class. Changing <code>P(true)</code> to the logit cannot fix the ordering. The sigmoid is strictly increasing. Platt scaling and isotonic regression also cannot fix MRR, nDCG, or MAP within a query. Monotone maps preserve the permutation exactly. A flat pairwise loss also misprices rank position. Swapping ranks 1 and 2 changes the nDCG discount by 0.3691. Swapping ranks 99 and 100 changes it by 0.000325. The ratio is 1,137 to one. LambdaRank addresses this by weighting a pair by absolute nDCG change.</p>
+<h4 id="cost-complexity-and-worked-example-3">Cost, complexity, and worked example</h4>
+<p>The 32,128-entry language-model head costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>32</mn><mo>,</mo><mn>128</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>4.93</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">2(768)(32{,}128) = 4.93 \times 10^7\ \text{FLOPs}.</annotation></semantics></math> Against a <code>5.20 × 10^10</code> encoder pass, that is 0.095%. The vocabulary head is not the material defect. T5-base encoder blocks contain</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn><mo stretchy="false" form="prefix">(</mo><mn>4</mn><msup><mi>h</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>h</mi><msub><mi>d</mi><mrow><mi>f</mi><mi>f</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>12</mn><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo stretchy="false" form="prefix">(</mo><msup><mn>768</mn><mn>2</mn></msup><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>768</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo>,</mo><mn>072</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>8.49</mn><mo>×</mo><msup><mn>10</mn><mn>7</mn></msup></mrow><annotation encoding="application/x-tex">12(4h^2 + 2h d_{ff}) = 12(4(768^2) + 2(768)(3{,}072)) = 8.49 \times 10^7</annotation></semantics></math> parameters. Its embedding table has <code>2.47 × 10^7</code> entries used as lookups rather than per-token matrix multiplies. At <code>L = 288</code>, the encoder costs <code>4.89 × 10^10</code> FLOPs plus <code>3.06 × 10^9</code> attention FLOPs, or <code>5.20 × 10^10</code> total and 0.153 ms per candidate. One decoder step adds <code>2.26 × 10^8</code> FLOPs, under 1%.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Sequences per epoch</th>
+<th style="text-align: right;">Training FLOPs</th>
+<th style="text-align: right;">Time at stated throughput</th>
+<th style="text-align: right;">Serving at <code>k = 100</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>monoT5, one positive and one negative</td>
+<td style="text-align: right;"><code>1.0 × 10^6</code></td>
+<td style="text-align: right;"><code>1.56 × 10^17</code></td>
+<td style="text-align: right;">459 s</td>
+<td style="text-align: right;">15.3 ms</td>
+</tr>
+<tr>
+<td>RankT5, list size <code>g = 16</code></td>
+<td style="text-align: right;"><code>8.0 × 10^6</code></td>
+<td style="text-align: right;"><code>1.25 × 10^18</code></td>
+<td style="text-align: right;">3,669 s, or 61 minutes</td>
+<td style="text-align: right;">15.3 ms</td>
+</tr>
+</tbody>
+</table></div>
+<p>The fix costs eight times more in training and nothing more at serving. Uniformly sampling 15 negatives from 10 million chunks can give <code>pt = 0.9983</code> and 0.0017 nats of loss. A real first-stage list with a 0.92 distractor produces 0.841 nats. The random-negative loss is 504 times smaller. In the figure's 20-document example, pointwise training sends 71.9% of negative gradient to the top distractor and 28.1% to 18 settled documents. Listwise training sends 96.9% to the error-causing distractor. BERT-base's published <code>1.10 × 10^8</code> parameters minus its <code>2.38 × 10^7</code> embedding block leaves <code>8.6 × 10^7</code>, within 1.3% of the T5 block formula. The 0.195 ms versus 0.153 ms gap reflects the 27% of embedding parameters charged by the simple <code>2PL</code> rule but not multiplied inside the encoder blocks. The poly-1 variant adds</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϵ</mi><mtext mathvariant="normal">poly</mtext></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">\epsilon_{\text{poly}}(1 - p_t).</annotation></semantics></math> Its gradient contribution relative to cross-entropy is <code>epsilon_poly * pt</code>, so it matters after cross-entropy already considers an example nearly finished.</p>
+<h4 id="decisions-and-limits-3">Decisions and limits</h4>
+<ul>
+<li>Use a listwise softmax loss when training control is available.</li>
+<li>Keep a pointwise objective when a downstream abstention gate needs scores comparable across queries.</li>
+<li>Build lists from the production first stage or a refreshed hard-negative pool.</li>
+<li>Set <code>g</code> from the number of plausible competitors, not only available memory.</li>
+<li>Present RankT5 as an eight-times training-cost change at <code>g = 16</code>, not a serving-latency change.</li>
+<li>Add poly-1 only after the base listwise loss and negative sampling are sound.</li>
+</ul>
+<h3 id="225-zero-shot-listwise-prompting-and-the-sliding-window">22.5 Zero-shot listwise prompting and the sliding window</h3>
+<h4 id="what-4">What</h4>
+<p>The prompted ranker labels passages <code>1</code> through <code>w</code>, supplies the query, and asks for a permutation such as <code>[4] &gt; [2] &gt; [7] &gt; ...</code>. It scores nothing and trains nothing. When <code>k</code> exceeds <code>w</code>, progressive reranking moves an overlapping window from the tail toward the head. It reranks the window, writes the result in place, moves forward by stride <code>s</code>, and repeats. The call count is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mtext mathvariant="normal">calls</mtext></msub><mo>=</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>k</mi><mo>−</mo><mi>w</mi></mrow><mi>s</mi></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">N_{\text{calls}} = 1 + \frac{k - w}{s}.</annotation></semantics></math> For <code>k = 100</code>, <code>w = 20</code>, and <code>s = 10</code>, it makes nine calls.</p>
+<h4 id="why-4">Why</h4>
+<p>After a window covering <code>[low, high]</code> is ranked, only its top <code>w - s</code> positions reappear in the next window. Its bottom <code>s</code> positions freeze permanently. A document starting at rank <code>g</code> must survive</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>min</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">⌈</mo><mfrac><mi>g</mi><mi>s</mi></mfrac><mo stretchy="true" form="postfix">⌉</mo></mrow><mo>,</mo><msub><mi>N</mi><mtext mathvariant="normal">calls</mtext></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">n(g) = \min\left(\left\lceil \frac{g}{s} \right\rceil, N_{\text{calls}}\right)</annotation></semantics></math> consecutive windows to reach the head. The counts are nine from rank 100, five from rank 50, two from rank 20, and one from rank 10. If one-window survival is <code>p_window</code>, rescue probability is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>p</mi><mtext mathvariant="normal">window</mtext><mrow><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">p_{\text{window}}^{n(g)}.</annotation></semantics></math> At <code>p_window = 0.9</code>, a rank-100 candidate reaches the head with probability 0.387. A rank-10 candidate does so with probability 0.900. The gap is 2.32 times and comes only from the schedule. The schedule is one bubble-sort pass, not a full sort.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>Five disjoint blocks of 20 can move a rank-100 document only to rank 81, the top of its own block. Sliding from the head toward the tail also caps rank-100 promotion at 81 because the top ranks freeze before the tail is read. Setting <code>s = w</code> removes overlap, so no document crosses a block boundary. Malformed permutations can repeat identifiers, omit identifiers, or emit values outside the valid range. Silent fallback can make a broken ranker look merely useless. The repair algorithm keeps valid identifiers in first-appearance order, drops duplicates and out-of-range values, then appends missing identifiers in original relative order. A total parse failure returns the first-stage order.</p>
+<h4 id="cost-complexity-and-worked-example-4">Cost, complexity, and worked example</h4>
+<p>A call contains <code>Li + Lq + wLd</code> prefill tokens and about <code>3w</code> decoded identifier tokens. With <code>Li = 50</code>, <code>Lq = 32</code>, and <code>Ld = 256</code>, that is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>82</mn><mo>+</mo><mn>259</mn><mi>w</mi></mrow><annotation encoding="application/x-tex">82 + 259w</annotation></semantics></math> tokens per call. The example adds 80 ms of round-trip and queueing time per call. All windows are serial.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Schedule</th>
+<th style="text-align: right;">Calls</th>
+<th style="text-align: right;">Tokens</th>
+<th style="text-align: right;">Compute</th>
+<th style="text-align: right;">Compute plus round trip</th>
+<th style="text-align: right;">Rank-100 ceiling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>w = 10</code>, <code>s = 5</code></td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">50,768</td>
+<td style="text-align: right;">2,092 ms</td>
+<td style="text-align: right;">3,612 ms</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>w = 20</code>, <code>s = 10</code></td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">47,358</td>
+<td style="text-align: right;">1,951 ms</td>
+<td style="text-align: right;">2,671 ms</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>w = 40</code>, <code>s = 20</code></td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">41,768</td>
+<td style="text-align: right;">1,721 ms</td>
+<td style="text-align: right;">2,041 ms</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td><code>w = 20</code>, <code>s = 20</code></td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">26,310</td>
+<td style="text-align: right;">1,084 ms</td>
+<td style="text-align: right;">1,484 ms</td>
+<td style="text-align: right;">81</td>
+</tr>
+</tbody>
+</table></div>
+<p>At stride <code>w / 2</code>, document slots total</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>N</mi><mtext mathvariant="normal">calls</mtext></msub><mi>w</mi><mo>=</mo><mn>2</mn><mi>k</mi><mo>−</mo><mi>w</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">N_{\text{calls}}w = 2k - w.</annotation></semantics></math> With <code>w = 20</code>, the nine windows read 180 document slots, or 46,080 document tokens. Nine prompt-and-output overheads add 1,278 tokens for a total of 47,358. Doubling <code>w</code> from 20 to 40 cuts calls by 2.25 times but tokens by only 11.8%. The round-trip-aware saving is 24%. The wider window improves tail rescue if</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>p</mi><mn>40</mn><mn>4</mn></msubsup><mo>&gt;</mo><msubsup><mi>p</mi><mn>20</mn><mn>9</mn></msubsup><mo>,</mo></mrow><annotation encoding="application/x-tex">p_{40}^4 &gt; p_{20}^9,</annotation></semantics></math> or</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mn>40</mn></msub><mo>&gt;</mo><msubsup><mi>p</mi><mn>20</mn><mn>2.25</mn></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">p_{40} &gt; p_{20}^{2.25}.</annotation></semantics></math> At <code>p20 = 0.9</code>, break-even is 0.789. Per-window reliability may fall 11 points and still improve total tail rescue. Dropping overlap saves 44.4% of tokens but leaves the rank-100 ceiling at 81. Halving <code>k</code> from 100 to 50 cuts the default wall-clock from 2,671 ms to 1,187 ms, or 56%. Depth moves the document-token bill linearly. Window size mainly changes overhead. Pointwise reads 25,600 document tokens and repeats the 82-token preamble 100 times. Listwise reads 1.80 times more document tokens but only 1.40 times more total tokens because it amortizes the preamble.</p>
+<h4 id="decisions-and-limits-4">Decisions and limits</h4>
+<ul>
+<li>Default to <code>w = 20</code>, <code>s = w / 2</code>, and back-to-front motion.</li>
+<li>Cut <code>k</code>, not <code>w</code>, when a large latency reduction is required, then pay attention to recall lost below the new depth.</li>
+<li>Number passages locally from 1 through <code>w</code> so global first-stage rank does not anchor the model.</li>
+<li>Log permutation repair rate and input-output rank correlation.</li>
+<li>Use permutation self-consistency offline. Twenty repeated runs cost about 39 seconds per query under the default schedule.</li>
+<li>If recall at 50 is materially below recall at 100, keep depth and consider a cross-encoder cascade from 100 to 20 before one listwise window, about 217 ms for the LLM window plus the cross-encoder pass.</li>
+</ul>
+<h3 id="226-instruction-aware-reranking">22.6 Instruction-aware reranking</h3>
+<h4 id="what-5">What</h4>
+<p>An instruction-blind scorer computes <code>s_theta(q, d)</code>. Instruction-aware reranking adds the user's intent as a third argument and computes <code>s_theta(I plus q plus d)</code> in one cross-encoder sequence. This makes every document token attend to every instruction token. The index can remain instruction-independent.</p>
+<h4 id="why-5">Why</h4>
+<p>Take two on-topic documents and two instructions. Document 1 is correct for instruction 1, and document 2 is correct for instruction 2. An instruction-blind scorer assigns fixed scores <code>a</code> and <code>b</code>. Let <code>u = a - b</code>. The paired loss is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℒ</mi><mn>1</mn></msub><mo>+</mo><msub><mi>ℒ</mi><mn>2</mn></msub><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>u</mi></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><msup><mi>e</mi><mi>u</mi></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo>+</mo><msup><mi>e</mi><mi>u</mi></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>u</mi></mrow></msup><mo stretchy="false" form="postfix">)</mo><mo>≥</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>4</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">\mathcal{L}_1 + \mathcal{L}_2 = \log(1 + e^{-u}) + \log(1 + e^u) = \log(2 + e^u + e^{-u}) \ge \log 4.</annotation></semantics></math> Average loss cannot go below <code>log 2 = 0.693</code> nats. With <code>n</code> symmetric instructions, total loss is at least <code>n log n</code>, average loss is at least <code>log n</code>, and intent-correct@1 is at most <code>1 / n</code>. The cap is 50% for two intents and 33% for three. More parameters cannot lower a floor caused by missing function arguments. Concatenating <code>I</code> is necessary but not sufficient. Off-topic random negatives can be rejected by the query alone. They supply almost no gradient that requires reading the instruction. The instruction becomes a real input only when a negative cannot be rejected without it. TART-full trains on instruction, query, and document across dozens of retrieval datasets. Each task has one human-written instruction and no synthetic instruction generation. Its negative pool is 90% random and 10% mined through Contriever and instruction-violating documents. The random majority teaches topic. The mined tenth carries the instruction-following gradient. The source reports cross-task gains over substantially larger rerankers that see only query and document.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>An instruction on only the query side of a bi-encoder can move one query vector, but document vectors were built before the intent existed. It works only when intent is already a useful direction in the index geometry. Folding intent into query words makes those words compete with topic terms in first-stage matching. A bag-of-terms score also cannot directly represent a negative intent such as excluding discussion threads. Training with random negatives only can spend 11.7% more compute while leaving intent-correct@1 unchanged. A single-intent benchmark cannot detect instruction following. When <code>n = 1</code>, the floor is <code>log 1 = 0</code>.</p>
+<h4 id="cost-complexity-and-worked-example-5">Cost, complexity, and worked example</h4>
+<p>The example uses a 4-million-chunk corpus, BERT-base, a 32-token query, 256-token documents, <code>k = 100</code>, and two overlapping intents.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Pair length</th>
+<th style="text-align: right;">Pair FLOPs</th>
+<th style="text-align: right;">Pair time</th>
+<th style="text-align: right;">Depth-100 time</th>
+<th>Predicted intent result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instruction-blind</td>
+<td style="text-align: right;">288</td>
+<td style="text-align: right;"><code>6.642 × 10^10</code></td>
+<td style="text-align: right;">0.195 ms</td>
+<td style="text-align: right;">19.5 ms</td>
+<td>At most 50% intent-correct@1.</td>
+</tr>
+<tr>
+<td>Add 32-token instruction, random negatives</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;"><code>7.418 × 10^10</code></td>
+<td style="text-align: right;">0.218 ms</td>
+<td style="text-align: right;">21.8 ms</td>
+<td>No predicted quality change.</td>
+</tr>
+<tr>
+<td>Same input, 90/10 negatives</td>
+<td style="text-align: right;">320</td>
+<td style="text-align: right;"><code>7.418 × 10^10</code></td>
+<td style="text-align: right;">0.218 ms</td>
+<td style="text-align: right;">21.8 ms</td>
+<td>Mined tenth makes ignoring instruction costly.</td>
+</tr>
+</tbody>
+</table></div>
+<p>At <code>L = 320</code>, the linear term is <code>7.040 × 10^10</code> and attention adds <code>3.775 × 10^9</code>, for <code>7.418 × 10^10</code> FLOPs. The added instruction costs 2.3 ms at depth 100, or 11.7%. If the mined tenth contains symmetric instruction violations, an instruction-ignoring model contributes</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.10</mn><mo stretchy="false" form="prefix">(</mo><mn>0.693</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.069</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nats</mtext></mrow><annotation encoding="application/x-tex">0.10(0.693) = 0.069\ \text{nats}</annotation></semantics></math> of irreducible batch loss. A plateau near this scale signals that the model is still deciding whether to use the instruction. The same 2.3 ms could buy about</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>2.32</mn><mn>0.195</mn></mfrac><mo>=</mo><mn>11.9</mn></mrow><annotation encoding="application/x-tex">\frac{2.32}{0.195} = 11.9</annotation></semantics></math> more candidates. Going from <code>k = 100</code> to 112 at 3.0 recall points per doubling buys</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3.0</mn><msub><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>2</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>1.12</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.49</mn></mrow><annotation encoding="application/x-tex">3.0\log_2(1.12) = 0.49</annotation></semantics></math> recall points. The instruction costs about half a first-stage recall point under this comparison. The fitted length exponent predicts</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>320</mn><mn>288</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>1.09</mn></msup><mo>=</mo><mn>1.122</mn><mo>,</mo></mrow><annotation encoding="application/x-tex">\left(\frac{320}{288}\right)^{1.09} = 1.122,</annotation></semantics></math> or 12.2%, close to the exact 11.7%. The gap comes from fitting the exponent over a range with a larger quadratic share.</p>
+<h4 id="decisions-and-limits-5">Decisions and limits</h4>
+<ul>
+<li>Use a metadata filter when a reliable document type already expresses the intent.</li>
+<li>Otherwise put the instruction in the cross-encoder and keep the retrieval index instruction-independent.</li>
+<li>Reserve about 10% of negatives for on-topic instruction violations from the production index.</li>
+<li>Audit the median absolute score change when only the instruction changes.</li>
+<li>Write one human instruction per stable intent. Normalize free user text into a small closed set when appropriate.</li>
+<li>Evaluate the same query under multiple instructions with different gold documents.</li>
+<li>A frozen instruction-tuned LLM is a useful low-traffic experiment. A trained cross-encoder better matches high traffic with a small stable intent set.</li>
+<li>Embedding task instructions into every document makes the index valid only for the instruction used at build time. A new intent then requires re-embedding all 4 million chunks in the example.</li>
+</ul>
+<h3 id="227-document-bound-versus-model-bound">22.7 Document-bound versus model-bound</h3>
+<h4 id="what-6">What</h4>
+<p>This is the central processing unit (CPU)-bound versus input-output-bound question asked about quality rather than runtime. Write first-stage recall as <code>R1</code>, generator extraction as <code>A</code>, and conditional ranker coverage as <code>C(m)</code>. End-to-end quality is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>A</mi><msub><mi>R</mi><mn>1</mn></msub><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mi>.</mi></mrow><annotation encoding="application/x-tex">E(m) = A R_1 C(m).</annotation></semantics></math> One more document gains <code>E(m + 1) - E(m)</code>. A better ranker at fixed <code>m</code> gains <code>E_prime(m) - E(m)</code>. The larger marginal names the bound. If the document gain is larger, the operating point is document-bound. If the ranker gain is larger, it is model-bound.</p>
+<h4 id="why-6">Why</h4>
+<p>Model gold rank geometrically:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">[</mo><mtext mathvariant="normal">rank</mtext><mo>=</mo><mi>r</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mtext mathvariant="normal">rank</mtext></msub><msup><mo stretchy="false" form="postfix">)</mo><mrow><mi>r</mi><mo>−</mo><mn>1</mn></mrow></msup><msub><mi>p</mi><mtext mathvariant="normal">rank</mtext></msub><mi>.</mi></mrow><annotation encoding="application/x-tex">\Pr[\text{rank} = r] = (1 - p_{\text{rank}})^{r-1}p_{\text{rank}}.</annotation></semantics></math> With <code>q_rank = 1 - p_rank</code>, cumulative placement is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><msubsup><mi>q</mi><mtext mathvariant="normal">rank</mtext><mi>m</mi></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">C(m) = 1 - q_{\text{rank}}^m.</annotation></semantics></math> Nogueira and Cho report MRR@10 of 0.365. Using <code>p_rank = 0.18</code> gives 0.367, within 0.002, so it is a defensible stand-in for the worked cross-encoder. Adding a document changes coverage by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>p</mi><msup><mi>q</mi><mi>m</mi></msup><mi>.</mi></mrow><annotation encoding="application/x-tex">C(m + 1) - C(m) = p q^m.</annotation></semantics></math> Upgrading from <code>q</code> to a better <code>q_prime</code> changes coverage by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>q</mi><mi>m</mi></msup><mo>−</mo><msubsup><mi>q</mi><mtext mathvariant="normal">prime</mtext><mi>m</mi></msubsup><mi>.</mi></mrow><annotation encoding="application/x-tex">q^m - q_{\text{prime}}^m.</annotation></semantics></math> Equating the two gives</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>m</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mi>q</mi></mrow><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><msub><mi>q</mi><mtext mathvariant="normal">prime</mtext></msub><mo>−</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mi>q</mi></mrow></mfrac><mi>.</mi></mrow><annotation encoding="application/x-tex">m^{*} = \frac{\ln q}{\ln q_{\text{prime}} - \ln q}.</annotation></semantics></math> The common factors <code>A</code> and <code>R1</code> cancel. The crossing depends on the two rankers, not on generator extraction or first-stage recall. For <code>p = 0.18</code>, <code>q = 0.82</code>, upgraded <code>p_prime = 0.212</code>, and <code>q_prime = 0.788</code>,</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>m</mi><mo>*</mo></msup><mo>=</mo><mfrac><mrow><mi>−</mi><mn>0.1985</mn></mrow><mrow><mi>−</mi><mn>0.2383</mn><mo>+</mo><mn>0.1985</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>−</mi><mn>0.1985</mn></mrow><mrow><mi>−</mi><mn>0.0398</mn></mrow></mfrac><mo>=</mo><mn>4.99</mn><mo>≈</mo><mn>5</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">m^{*} = \frac{-0.1985}{-0.2383 + 0.1985} = \frac{-0.1985}{-0.0398} = 4.99 \approx 5.</annotation></semantics></math> At <code>m = 4</code>, a fifth document buys 8.14 coverage points while the better ranker buys 6.64. At <code>m = 6</code>, a seventh document buys 5.47 while the ranker buys 6.44.</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>Deleting the reranker and measuring a 15-point drop tests total contribution. It does not measure the marginal value of the next reranker improvement. A large total contribution and a small marginal return can coexist. Removal answers "keep or cut." It does not answer "fetch more or rank better." Calling a whole pipeline model-bound without naming <code>m</code> hides the operating point. The same pipeline can be document-bound at <code>m = 3</code> and model-bound at <code>m = 8</code>. The geometric model makes <code>C(m)</code> monotone. Real generator quality can follow a U-shaped positional curve, so extra documents may eventually hurt. The chapter tells the reader to cap <code>m</code> by the smaller of these two ceilings.</p>
+<h4 id="cost-complexity-and-worked-example-6">Cost, complexity, and worked example</h4>
+<p>Use <code>R1 = 85.4%</code>, stated generator extraction <code>A = 75%</code>, baseline <code>p = 0.18</code>, and upgraded <code>p_prime = 0.212</code>. The common factor is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><mn>0.75</mn><mo stretchy="false" form="prefix">(</mo><mn>0.854</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.6405</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">AR_1 = 0.75(0.854) = 0.6405.</annotation></semantics></math></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Operating point</th>
+<th style="text-align: right;">Baseline quality</th>
+<th style="text-align: right;">Add one document</th>
+<th style="text-align: right;">Upgrade ranker at same <code>m</code></th>
+<th>Diagnosis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>m = 3</code></td>
+<td style="text-align: right;">28.7%</td>
+<td style="text-align: right;">35.1%, gain 6.4</td>
+<td style="text-align: right;">32.7%, gain 4.0</td>
+<td>Document-bound by 2.4 points.</td>
+</tr>
+<tr>
+<td><code>m = 8</code></td>
+<td style="text-align: right;">51.0%</td>
+<td style="text-align: right;">53.3%, gain 2.4</td>
+<td style="text-align: right;">54.5%, gain 3.6</td>
+<td>Model-bound.</td>
+</tr>
+</tbody>
+</table></div>
+<p>One extra 256-token document costs</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>7</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>256</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>3.584</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs</mtext><mo>,</mo></mrow><annotation encoding="application/x-tex">2(7 \times 10^9)(256) = 3.584 \times 10^{12}\ \text{FLOPs},</annotation></semantics></math> or</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>3.584</mn><mo>×</mo><msup><mn>10</mn><mn>12</mn></msup></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>10.5</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mi>.</mi></mrow><annotation encoding="application/x-tex">\frac{3.584 \times 10^{12}}{3.4 \times 10^{14}} = 10.5\ \text{ms}.</annotation></semantics></math> At <code>m = 3</code>, the document gains 0.61 quality points per millisecond. At <code>m = 8</code>, it gains 0.22. The model predicts at <code>m = 5</code></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.6405</mn><mo stretchy="false" form="prefix">(</mo><mn>0.6293</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>40.3</mn><mi>%</mi><mi>.</mi></mrow><annotation encoding="application/x-tex">0.6405(0.6293) = 40.3\%.</annotation></semantics></math> The cited end-to-end Natural Questions value is 41.5. Matching it requires</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mfrac><mn>0.415</mn><mrow><mn>0.854</mn><mo stretchy="false" form="prefix">(</mo><mn>0.6293</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mn>0.772</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">A = \frac{0.415}{0.854(0.6293)} = 0.772.</annotation></semantics></math> The stated 75% extraction assumption is about two points low. The source calls this a same-ballpark check, not a replication. The value <code>m* = 5</code> is a worked value, not a constant. The supporting published evidence is one plot where separation beyond five documents is small. The framing survives. The specific crossing must be remeasured. At <code>m = 100</code> and <code>q = 0.82</code>, the marginal document term is numerically near zero. Moving from five to 100 chunks adds about 95 times 10.5 ms, roughly one second of prefill, before any positional harm.</p>
+<h4 id="decisions-and-limits-6">Decisions and limits</h4>
+<ul>
+<li>Measure both marginals on one held-out set at the current <code>m</code>.</li>
+<li>If no stronger reranker is available, use oracle ordering as an upper bound.</li>
+<li>Use below five versus above five only as a prior, then derive the crossing from the actual rankers. A wider ranker gap pulls the crossing toward one and makes the operating region model-bound earlier.</li>
+<li>Always state the operating point, such as "model-bound at <code>m = 8</code>."</li>
+<li>Re-run after changes to context budget, first stage, or chunk size.</li>
+<li>Do not manufacture a flip from a small evaluation set when changes are inside noise.</li>
+<li>Use removal ablation only when deciding whether the stage contributes at all.</li>
+<li>If the purchasable ranker gap is under one point, depth may remain the only practical dial.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-221">Figure 22.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;Corpus: N = 10^7 chunks&quot;] --&gt; B[&quot;Stage 1: dot product over N. Optimize recall R1 at k. 1,536 FLOPs per chunk. 15.4 ms flat-search upper bound&quot;]
+    B --&gt; C[&quot;Candidates: k = 100. Dropped N - k are unrecoverable&quot;]
+    C --&gt; D[&quot;Stage 2: cross-encoder over k. Optimize precision and order. 18.6 ms. 10^-5 of corpus and 99.8% of retrieval FLOPs&quot;]
+    D --&gt; E[&quot;Context: m = 5&quot;]
+    E --&gt; F[&quot;Generator prefill. 52.7 ms at m = 5. 1,054 ms at m = 100&quot;]
+    F --&gt; G[&quot;R at m = R1 at k times R2 at m given k. R at m cannot exceed R1 at k&quot;]</code></pre></details></figure>
+<p><strong>Figure 22.1:</strong> The stages multiply, so the first sets a ceiling the second can approach but never exceed. The second stage sees 10-5 of the corpus, spends 99.8% of the retrieval arithmetic, and pays for itself by removing 1,001 ms of generator prefill for 18.6 ms of its own.</p>
+<h3 id="figure-222">Figure 22.2</h3>
+<pre class="text"><code>first-stage recall
+90% |                         dense, dashed extrapolation
+    |                   o.....
+80% | o----------------&#39;                 BM25, dotted extrapolation
+    | ................................o  k about 168
+70% |                         square
+    |                 BM25 slope 6.3 points per doubling
+60% | square
+    +------------------------------------------------------
+       20             50             100             200
+       3.9 ms         9.8 ms         19.5 ms         39.0 ms
+dense slope: 3.0 points per doubling
+equal recall: 78.4% costs k = 20 dense and k about 168 sparse
+price ratio: 8.4 times depth and 8.4 times reranker cost</code></pre>
+<p><strong>Figure 22.2:</strong> Fitted to DPR's published Natural Questions results, recall climbs 3.0 points per doubling of depth behind a dense first stage and 6.3 behind BM25 - so the weaker retriever must buy with depth what the stronger one already has, and pays 8.4× the cross-encoder bill on every query to reach the same ceiling. Dashed segments are extrapolated past the fitted range.</p>
+<h3 id="figure-223">Figure 22.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    subgraph P[&quot;Pointwise&quot;]
+        P1[&quot;q plus d_i&quot;] --&gt; P2[&quot;one score s_i&quot;]
+        P3[&quot;100 calls. Serial depth 1. 13.9 ms wall-clock. 1.39 s bill. No coupling&quot;]
+    end
+    subgraph Q[&quot;Pairwise&quot;]
+        Q1[&quot;q plus d_i plus d_j&quot;] --&gt; Q2[&quot;verdict d_i over d_j&quot;]
+        Q3[&quot;All-pairs: 4,950 calls, depth 1. Heap top 10: 340 calls, depth 140. Tournament top 1: 99 calls, depth 7. May cycle&quot;]
+    end
+    subgraph L[&quot;Listwise, w = 20&quot;]
+        L1[&quot;q plus 20 candidates&quot;] --&gt; L2[&quot;permutation&quot;]
+        L3[&quot;9 calls. Serial depth 9. 1.95 s wall-clock and bill. Order-sensitive&quot;]
+    end
+    P --&gt; Q --&gt; L</code></pre></details></figure>
+<p><strong>Figure 22.3:</strong> Descending the page, the model sees more candidates per decision and needs fewer calls to rank them, but the calls stop being independent: pointwise and all-pairs are depth 1 and parallelize completely, while sorted-pairwise and listwise trade call count for a serial chain that latency budgets feel directly.</p>
+<h3 id="figure-224">Figure 22.4</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Design</th>
+<th>Candidate input</th>
+<th>Output and loss</th>
+<th style="text-align: right;">Gold gradient</th>
+<th style="text-align: right;">Top-distractor gradient</th>
+<th style="text-align: right;">Eighteen-tail gradient</th>
+<th>Negative allocation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>monoT5 classification</td>
+<td>One <code>q plus d_i</code> pair</td>
+<td><code>P(true)</code> with binary cross-entropy</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.36</td>
+<td>71.9% to the error, 28.1% to settled documents.</td>
+</tr>
+<tr>
+<td>RankT5 ranking</td>
+<td>One query's list</td>
+<td>Real logit with listwise softmax</td>
+<td style="text-align: right;">0.569</td>
+<td style="text-align: right;">0.551</td>
+<td style="text-align: right;">0.018</td>
+<td>96.9% to the error, with equal positive and negative mass.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 22.4:</strong> Both designs run the identical encoder over the identical candidate and differ only in what the loss is allowed to see. The gradient is where that difference lands. Bars are drawn to scale for one query whose gold passage scores 0.90 behind a distractor at 0.92, with eighteen tail documents at 0.02.</p>
+<h3 id="figure-225">Figure 22.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart BT
+    W1[&quot;Window 1: ranks 81 to 100. Freeze 91 to 100&quot;] --&gt; W2[&quot;Window 2: ranks 71 to 90. Freeze 81 to 90&quot;]
+    W2 --&gt; W3[&quot;Window 3: ranks 61 to 80&quot;]
+    W3 --&gt; W4[&quot;Window 4: ranks 51 to 70&quot;]
+    W4 --&gt; W5[&quot;Window 5: ranks 41 to 60&quot;]
+    W5 --&gt; W6[&quot;Window 6: ranks 31 to 50&quot;]
+    W6 --&gt; W7[&quot;Window 7: ranks 21 to 40&quot;]
+    W7 --&gt; W8[&quot;Window 8: ranks 11 to 30&quot;]
+    W8 --&gt; W9[&quot;Window 9: ranks 1 to 20. Only this call can place the document at rank 1&quot;]</code></pre></details></figure>
+<p><strong>Figure 22.5:</strong> Back-to-front sliding at w = 20, s = 10 over k = 100: every call permanently fixes the bottom ten ranks of its window, so the staircase is the only path by which a rank-100 document reaches rank 1 - and it requires winning all nine windows in a row.</p>
+<h3 id="figure-226">Figure 22.6</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th></th>
+<th>Off topic</th>
+<th>On topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Follows instruction</td>
+<td>Rejected on topic alone</td>
+<td>Positive document</td>
+</tr>
+<tr>
+<td>Violates instruction</td>
+<td>Random negatives, the other 90%</td>
+<td>Mined 10%, the only quadrant that requires reading the instruction</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>An instruction-blind scorer cannot separate the on-topic column by instruction. For two symmetric intents, its per-example floor is <code>log 2 = 0.693</code> nats. <strong>Figure 22.6:</strong> Only the shaded quadrant - documents that match the query's topic but violate its instruction - puts gradient on the instruction tokens. The 90% random negatives are already rejected by the query, so they train topical relevance and leave the model free to ignore the instruction entirely.</p>
+</blockquote>
+<h3 id="figure-227">Figure 22.7</h3>
+<pre class="text"><code>marginal gain in C(m), percentage points
+15 | fetch o
+   |        \
+10 |         o
+   |           \       m* = 5
+ 5 | rerank . . square . X . square . .
+   |                      \ o      o       fetch
+ 0 +------------------------------------------------
+      1   2   3   4   5   6   7   8   9   10
+      document-bound       |       model-bound
+      one more document    |       better ranker</code></pre>
+<p><strong>Figure 22.7:</strong> The bound flips where the two marginals cross. Under a geometric rank model fitted to Nogueira and Cho's reported MRR@10 of 0.365 (p = 0.18), sending one more document (solid) beats upgrading to a 3.2-point-better ranker (dashed) up to m⋆ = 5, and loses to it after. The generator's extraction rate and the first stage's recall scale both curves equally and so cannot move the crossing.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a funnel with corpus <code>N</code>, candidates <code>k</code>, and final context <code>m</code>.</li>
+<li>Write the multiplicative ceiling under it.</li>
+<li>Put <code>1,536 FLOPs</code> beside stage 1 and <code>0.195 ms per pair</code> beside stage 2.</li>
+<li>Draw the rising recall curve and the falling distractor-survival curve against <code>k</code>.</li>
+<li>Draw pointwise, pairwise, and listwise boxes. Add call count and serial depth.</li>
+<li>Draw nine overlapping windows from ranks 81 to 100 back toward ranks 1 to 20.</li>
+<li>Add instruction as the third scorer input. Shade the on-topic instruction-violating negative quadrant.</li>
+<li>Finish with two marginal curves crossing at <code>m* = 5</code>.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the funnel: a cheap retriever finds k candidates from N, then an expensive cross-encoder keeps m. Write R at m as R1 at k times R2 at m given k, so missed candidates are unrecoverable. Price one pair at 0.195 milliseconds and make depth a budget, not a tradition. Next compare pointwise, pairwise, and listwise modes by candidates seen per decision and serial depth. Show the back-to-front overlapping window, because only that staircase can rescue rank 100. Finally add instruction as a third argument and compare one more document with a better ranker at the current m.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-what-rerank-depth-do-you-use-and-why">1. "What rerank depth do you use, and why?"</h3>
+<p>Answer: price the pair, fit first-stage recall at depths 20, 50, 100, and 200, and measure the reranker's distractor rate instead of inheriting a bare number. BERT-base at 288 tokens costs 0.195 ms per candidate, while fitted recall rose 3.0 points per doubling behind Dense Passage Retrieval and 6.3 behind BM25. Start near 100 for a dense or hybrid retriever, then stop where marginal recall per millisecond loses to the rest of the budget because accumulated distractors can make deeper actively worse.</p>
+<h3 id="2-pointwise-pairwise-or-listwise-for-a-frozen-llm-over-100-candidates">2. "Pointwise, pairwise, or listwise for a frozen LLM over 100 candidates?"</h3>
+<p>Answer: choose listwise by default because a frozen prompt cannot create cross-document calibration for pointwise scores, then report both accelerator cost and serial depth. Pointwise bills 1.39 seconds, all-pairs bills 121.1 seconds at depth 1, and nine listwise windows bill 1.95 seconds at depth 9. A cross-encoder cascade to 20 candidates followed by one listwise window costs about 236.3 ms and is the practical comparison.</p>
+<h3 id="3-why-slide-listwise-windows-from-the-back-and-why-overlap-them">3. "Why slide listwise windows from the back, and why overlap them?"</h3>
+<p>Answer: promotion needs a complete path, and back-to-front overlap lets a rank-100 candidate enter the next window whenever it finishes in the top <code>w - s</code>, requiring nine wins at <code>w = 20</code> and <code>s = 10</code>. Head-first motion freezes the head before the tail appears, while disjoint windows freeze block boundaries, so both alternatives cap rank-100 promotion at 81. Log the permutation repair rate too because malformed output can silently preserve the input order.</p>
+<h3 id="4-we-added-an-instruction-and-quality-did-not-change-what-failed">4. "We added an instruction and quality did not change. What failed?"</h3>
+<p>Answer: inspect the negatives before rewriting the prompt because random off-topic negatives let the query solve the loss and give the instruction no useful gradient. Mine on-topic documents that violate the instruction for about 10% of the pool, then swap only the instruction for the same query-document pair and treat near-zero score movement as evidence that the instruction is decorative. Evaluate the same query across intents because a single-intent benchmark cannot detect instruction following.</p>
+<h3 id="5-should-we-send-more-documents-or-buy-a-better-reranker">5. "Should we send more documents or buy a better reranker?"</h3>
+<p>Answer: compare the two marginals by measuring quality at <code>m + 1</code> and a stronger ranker at the original <code>m</code>. In the worked example, the document and ranker gains are 6.4 and 4.0 points at <code>m = 3</code>, so it is document-bound, while they are 2.4 and 3.6 at <code>m = 8</code>, so it is model-bound. A removal ablation tests total contribution but does not identify where the next investment belongs.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<h3 id="two-stage-arithmetic">Two-stage arithmetic</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dense dot product at <code>d = 768</code></td>
+<td style="text-align: right;">1,536 FLOPs</td>
+</tr>
+<tr>
+<td>BERT-base pair under simple <code>2PL</code> rule</td>
+<td style="text-align: right;"><code>6.336 × 10^10</code> FLOPs</td>
+</tr>
+<tr>
+<td>Full BERT-base pair with attention term</td>
+<td style="text-align: right;"><code>6.642 × 10^10</code> FLOPs</td>
+</tr>
+<tr>
+<td>Pair versus dot-product ratio</td>
+<td style="text-align: right;"><code>4.13 × 10^7</code></td>
+</tr>
+<tr>
+<td>One-stage cross-encoding over 10 million chunks</td>
+<td style="text-align: right;"><code>6.34 × 10^17</code> FLOPs</td>
+</tr>
+<tr>
+<td>Staged retrieval with <code>k = 100</code></td>
+<td style="text-align: right;"><code>6.35 × 10^12</code> FLOPs</td>
+</tr>
+<tr>
+<td>Staging reduction</td>
+<td style="text-align: right;"><code>9.98 × 10^4</code></td>
+</tr>
+<tr>
+<td>Stage-2 corpus share</td>
+<td style="text-align: right;"><code>10^-5</code></td>
+</tr>
+<tr>
+<td>Stage-2 retrieval arithmetic share</td>
+<td style="text-align: right;">99.8%</td>
+</tr>
+<tr>
+<td>Flat-search bytes</td>
+<td style="text-align: right;">30.7 GB</td>
+</tr>
+<tr>
+<td>Flat-search upper-bound time</td>
+<td style="text-align: right;">15.4 ms</td>
+</tr>
+<tr>
+<td>Rerank 100 candidates</td>
+<td style="text-align: right;">18.6 ms under the simple pair rule, 19.5 ms with attention</td>
+</tr>
+<tr>
+<td>Prefill five 256-token chunks with 7B generator</td>
+<td style="text-align: right;">52.7 ms</td>
+</tr>
+<tr>
+<td>Prefill 100 chunks</td>
+<td style="text-align: right;">1,054 ms</td>
+</tr>
+<tr>
+<td>Prefill removed by reranking 100 to five</td>
+<td style="text-align: right;">1,001 ms</td>
+</tr>
+<tr>
+<td>Generator time returned per reranker millisecond</td>
+<td style="text-align: right;">54 ms</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="depth-and-recall">Depth and recall</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DPR Natural Questions top 20</td>
+<td style="text-align: right;">78.4%</td>
+</tr>
+<tr>
+<td>DPR Natural Questions top 100</td>
+<td style="text-align: right;">85.4%</td>
+</tr>
+<tr>
+<td>DPR slope</td>
+<td style="text-align: right;">3.0 points per doubling</td>
+</tr>
+<tr>
+<td>BM25 Natural Questions top 20</td>
+<td style="text-align: right;">59.1%</td>
+</tr>
+<tr>
+<td>BM25 Natural Questions top 100</td>
+<td style="text-align: right;">73.7%</td>
+</tr>
+<tr>
+<td>BM25 slope</td>
+<td style="text-align: right;">6.3 points per doubling</td>
+</tr>
+<tr>
+<td>BM25 depth for 78.4% fitted recall</td>
+<td style="text-align: right;">About 168</td>
+</tr>
+<tr>
+<td>Cost multiplier against DPR at 20</td>
+<td style="text-align: right;">8.4 times</td>
+</tr>
+<tr>
+<td>Cross-encoder cost per candidate</td>
+<td style="text-align: right;">0.195 ms</td>
+</tr>
+<tr>
+<td>Illustrative optimum at <code>epsilon = 0.01</code>, <code>m = 5</code></td>
+<td style="text-align: right;">Near <code>k = 150</code></td>
+</tr>
+<tr>
+<td>Nogueira and Cho MRR@10 at <code>k = 1,000</code></td>
+<td style="text-align: right;">0.365</td>
+</tr>
+<tr>
+<td>Consistent illustrative distractor rate</td>
+<td style="text-align: right;">About 0.005</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="llm-ranking-modes">LLM ranking modes</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7B reranker token time</td>
+<td style="text-align: right;">0.0412 ms</td>
+</tr>
+<tr>
+<td>Pointwise prompt</td>
+<td style="text-align: right;">338 tokens, 13.9 ms</td>
+</tr>
+<tr>
+<td>Pairwise prompt</td>
+<td style="text-align: right;">594 tokens, 24.5 ms</td>
+</tr>
+<tr>
+<td>Listwise <code>w = 20</code> call</td>
+<td style="text-align: right;">5,262 total tokens, 216.8 ms</td>
+</tr>
+<tr>
+<td>All-pairs at <code>k = 100</code></td>
+<td style="text-align: right;">4,950 calls</td>
+</tr>
+<tr>
+<td>Heap top 10</td>
+<td style="text-align: right;">340 calls, serial depth 140</td>
+</tr>
+<tr>
+<td>Tournament top 1</td>
+<td style="text-align: right;">99 calls, serial depth 7</td>
+</tr>
+<tr>
+<td>Sliding listwise</td>
+<td style="text-align: right;">9 calls, serial depth 9</td>
+</tr>
+<tr>
+<td>Pointwise accelerator bill</td>
+<td style="text-align: right;">1.39 s</td>
+</tr>
+<tr>
+<td>All-pairs accelerator bill</td>
+<td style="text-align: right;">121.1 s</td>
+</tr>
+<tr>
+<td>Listwise accelerator bill</td>
+<td style="text-align: right;">1.95 s</td>
+</tr>
+<tr>
+<td>Cheapest LLM versus cross-encoder</td>
+<td style="text-align: right;">71.4 times</td>
+</tr>
+<tr>
+<td>Cross-encoder to 20 plus one listwise window</td>
+<td style="text-align: right;">236.3 ms</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="losses-and-training">Losses and training</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language-model head cost</td>
+<td style="text-align: right;"><code>4.93 × 10^7</code> FLOPs</td>
+</tr>
+<tr>
+<td>Head share of T5 encoder pass</td>
+<td style="text-align: right;">0.095%</td>
+</tr>
+<tr>
+<td>Pointwise penalty in both perturbation cases</td>
+<td style="text-align: right;">0.0852 nats</td>
+</tr>
+<tr>
+<td>Listwise easy-query penalty</td>
+<td style="text-align: right;">0.0100 nats</td>
+</tr>
+<tr>
+<td>Listwise hard-query penalty</td>
+<td style="text-align: right;">0.5859 nats</td>
+</tr>
+<tr>
+<td>Penalty ratio</td>
+<td style="text-align: right;">58.8 times</td>
+</tr>
+<tr>
+<td>Pointwise negative-to-positive ratio at <code>k = 20</code></td>
+<td style="text-align: right;">3.8</td>
+</tr>
+<tr>
+<td>Pointwise negative-to-positive ratio at <code>k = 100</code></td>
+<td style="text-align: right;">19.8</td>
+</tr>
+<tr>
+<td>nDCG swap ratio, head versus ranks 99 and 100</td>
+<td style="text-align: right;">1,137 to one</td>
+</tr>
+<tr>
+<td>T5-base pair cost</td>
+<td style="text-align: right;"><code>5.20 × 10^10</code> FLOPs, 0.153 ms</td>
+</tr>
+<tr>
+<td>monoT5 epoch</td>
+<td style="text-align: right;"><code>1.56 × 10^17</code> FLOPs, 459 s</td>
+</tr>
+<tr>
+<td>RankT5 epoch at <code>g = 16</code></td>
+<td style="text-align: right;"><code>1.25 × 10^18</code> FLOPs, 3,669 s</td>
+</tr>
+<tr>
+<td>Training multiplier</td>
+<td style="text-align: right;">8 times</td>
+</tr>
+<tr>
+<td>Serving cost for either at <code>k = 100</code></td>
+<td style="text-align: right;">15.3 ms</td>
+</tr>
+<tr>
+<td>Random-negative listwise loss</td>
+<td style="text-align: right;">0.0017 nats</td>
+</tr>
+<tr>
+<td>Hard first-stage list loss</td>
+<td style="text-align: right;">0.841 nats</td>
+</tr>
+<tr>
+<td>Loss ratio</td>
+<td style="text-align: right;">504 times</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="sliding-windows-and-instructions">Sliding windows and instructions</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default sliding schedule</td>
+<td style="text-align: right;"><code>k = 100</code>, <code>w = 20</code>, <code>s = 10</code></td>
+</tr>
+<tr>
+<td>Default calls</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>Default tokens</td>
+<td style="text-align: right;">47,358</td>
+</tr>
+<tr>
+<td>Default compute</td>
+<td style="text-align: right;">1,951 ms</td>
+</tr>
+<tr>
+<td>Default with 80 ms round trip per call</td>
+<td style="text-align: right;">2,671 ms</td>
+</tr>
+<tr>
+<td>Rank-100 rescue at <code>p_window = 0.9</code></td>
+<td style="text-align: right;">0.387</td>
+</tr>
+<tr>
+<td>Rank-10 rescue at <code>p_window = 0.9</code></td>
+<td style="text-align: right;">0.900</td>
+</tr>
+<tr>
+<td>Wider-window token saving</td>
+<td style="text-align: right;">11.8%</td>
+</tr>
+<tr>
+<td>Wider-window round-trip-aware saving</td>
+<td style="text-align: right;">24%</td>
+</tr>
+<tr>
+<td>No-overlap token saving</td>
+<td style="text-align: right;">44.4%, with ceiling 81</td>
+</tr>
+<tr>
+<td>Halving depth wall-clock saving</td>
+<td style="text-align: right;">56%</td>
+</tr>
+<tr>
+<td>TART negative mix</td>
+<td style="text-align: right;">90% random, 10% mined</td>
+</tr>
+<tr>
+<td>Two-intent blind loss floor</td>
+<td style="text-align: right;">0.693 nats per example</td>
+</tr>
+<tr>
+<td>Two-intent top-1 cap</td>
+<td style="text-align: right;">50%</td>
+</tr>
+<tr>
+<td>Instruction-aware pair-time increase</td>
+<td style="text-align: right;">11.7%</td>
+</tr>
+<tr>
+<td>Instruction time at depth 100</td>
+<td style="text-align: right;">2.3 ms</td>
+</tr>
+<tr>
+<td>Equivalent added candidates</td>
+<td style="text-align: right;">About 12</td>
+</tr>
+<tr>
+<td>Equivalent fitted recall</td>
+<td style="text-align: right;">0.49 points</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="bound-diagnostic">Bound diagnostic</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baseline geometric <code>p_rank</code></td>
+<td style="text-align: right;">0.18</td>
+</tr>
+<tr>
+<td>Upgraded <code>p_rank</code></td>
+<td style="text-align: right;">0.212</td>
+</tr>
+<tr>
+<td>Fitted MRR@10</td>
+<td style="text-align: right;">0.367 versus reported 0.365</td>
+</tr>
+<tr>
+<td>Worked crossing</td>
+<td style="text-align: right;"><code>m* = 4.99</code>, about 5</td>
+</tr>
+<tr>
+<td>At <code>m = 3</code>, document gain</td>
+<td style="text-align: right;">6.4 points</td>
+</tr>
+<tr>
+<td>At <code>m = 3</code>, ranker gain</td>
+<td style="text-align: right;">4.0 points</td>
+</tr>
+<tr>
+<td>At <code>m = 8</code>, document gain</td>
+<td style="text-align: right;">2.4 points</td>
+</tr>
+<tr>
+<td>At <code>m = 8</code>, ranker gain</td>
+<td style="text-align: right;">3.6 points</td>
+</tr>
+<tr>
+<td>One extra 256-token chunk</td>
+<td style="text-align: right;"><code>3.584 × 10^12</code> FLOPs, 10.5 ms</td>
+</tr>
+<tr>
+<td>Predicted exact match at <code>m = 5</code></td>
+<td style="text-align: right;">40.3%</td>
+</tr>
+<tr>
+<td>Cited exact match</td>
+<td style="text-align: right;">41.5%</td>
+</tr>
+<tr>
+<td>Extraction rate needed to match cited value</td>
+<td style="text-align: right;">0.772</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html"><small>Previous</small>Chapter 21. Learned Sparse and Multi-Vector Retrieval</a><a href="../chapters/23_generative_retrieval.html"><small>Next</small>Chapter 23. Generative Retrieval</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

@@ -1,0 +1,1130 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 33. Evaluating Generation | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/33_evaluating_generation.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group" open><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html" aria-current="page">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part X. Evaluation</p><h1>Chapter 33. Evaluating Generation</h1><p class="chapter-meta">45 min estimated reading · Unit 42 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how to choose and interpret generation metrics for a Retrieval-Augmented Generation (RAG) system when oracle access, claim coverage, output length, and summarization behavior all affect the result.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Faithfulness asks whether an answer follows the retrieved context. Factuality asks whether it is true in the world.</li>
+<li>Oracle access decides where a metric can run. Context-only checks fit a per-request gate. External-source checks usually belong in scheduled evaluation.</li>
+<li>Fine-grained Atomic Evaluation of Factual Precision (FActScore) splits a long answer into atomic facts, verifies each fact, and averages the support verdicts.</li>
+<li>FActScore is precision-only. A system can earn a perfect score by stating one safe fact and omitting everything else.</li>
+<li>VeriScore adds context-aware claim extraction and a recall term based on how many verifiable claims a good answer should contain.</li>
+<li>Retrieval Augmented Generation Assessment (RAGAS) separately scores answer support, answer relevance, and retrieved-context relevance with no external ground truth.</li>
+<li>Longer outputs tend to accumulate more unsupported facts. Report scores by position or length bucket, not only as one pooled average. Abstractive summarization has no settled zero-hallucination target. A checker can confuse useful bridging inference with fabrication.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a newsroom that publishes answers from a research desk. The retriever, meaning the search stage, is the researcher who puts source pages on a reporter's desk. The generator, meaning the writing model, is the reporter who turns those pages into an answer. The evaluator is the fact-checking editor. The editor first asks which archive is open before deadline. If only the reporter's source packet is available, the editor can test faithfulness, meaning whether every claim follows from that packet. If the editor can also reach a trusted outside archive, the editor can test factuality, meaning whether every claim is true beyond the packet. That outside archive is the oracle, meaning the evidence source used to decide support. An outside archive may answer slowly, reject too many requests, or be unavailable. The editor therefore uses the packet-only check on every draft and saves the outside-archive check for a scheduled audit. FActScore is the editor's claim-card method. The editor cuts a long article into atomic facts, meaning minimal cards that each make one independently checkable claim. Each card gets a supported or unsupported mark. The average of those marks gives a fine-grained precision score. The method can distinguish an article with three wrong details from one that invents nearly everything. The claim-card method has a loophole. A reporter can submit one safe sentence, earn one supported mark out of one, and receive a perfect score. VeriScore closes that newsroom loophole in two ways. First, the editor reads the whole article while making cards, so a word such as "its" keeps the earlier noun it refers to. The editor also removes cards that no available source could settle. Second, the editor compares the card count with the usual number of verifiable claims in a good article. That comparison supplies recall, meaning a penalty for saying too little. Precision and recall then combine into an F1 score, meaning their harmonic balance. RAGAS turns the newsroom into a three-way desk check. The assignment is the query. The research packet is the retrieved context. The article is the answer. The editor checks whether the article follows the packet, whether the article answers the assignment, and whether the packet actually serves the assignment. Those three checks identify whether the reporter, the researcher, or the assignment match caused the problem. One final newsroom problem remains. A longer article often begins with well-supported headline facts and ends with weaker details. An early invented detail can also shape later sentences because the reporter keeps writing from the draft already on the page. The editor must therefore chart errors by sentence position instead of hiding them inside one average. Summaries create a harder boundary. A good editor may join two source facts into one compressed sentence.</p>
+<p>A simple entailment check can mark that bridging inference, meaning a reasonable connection made during compression, exactly as it marks an invention. Driving every flag to zero can force the reporter to copy source sentences and stop summarizing. The newsroom can set policy for its own risk, but the chapter leaves the acceptable amount of bridging-type unsupported content as an open question with no settled threshold.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves source text before generating an answer</td>
+<td>Its query, context, and answer create the artifacts these metrics inspect</td>
+</tr>
+<tr>
+<td>Retriever</td>
+<td>The stage that finds and returns context</td>
+<td>Poor retrieval can make a grounded answer wrong in the world</td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>The model that writes from retrieved context</td>
+<td>It can ignore, distort, or extend beyond the context</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>The user's question, written as q in the formulas</td>
+<td>Answer relevance and context relevance both compare against it</td>
+</tr>
+<tr>
+<td>Retrieved context</td>
+<td>The text returned for the query, written as c(q)</td>
+<td>It is the reachable oracle for faithfulness</td>
+</tr>
+<tr>
+<td>Answer</td>
+<td>The generated response, written as a(q) in RAGAS</td>
+<td>It supplies the claims being evaluated</td>
+</tr>
+<tr>
+<td>Generation y</td>
+<td>One complete generated response in the FActScore and VeriScore formulas</td>
+<td>Its extracted claims form the unit being scored</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>The evidence source used to decide whether a claim is supported</td>
+<td>Oracle reachability determines which metric can run at a given cadence</td>
+</tr>
+<tr>
+<td>External oracle</td>
+<td>A trusted source outside the retrieved prompt context</td>
+<td>It enables factuality checks but adds retrieval latency, rate limits, and availability risk</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether a claim is entailed by the retrieved context</td>
+<td>It tests generator grounding against evidence already in hand</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether a claim is true in the world</td>
+<td>It catches wrong retrieved context that a generator repeats faithfully</td>
+</tr>
+<tr>
+<td>Entailment</td>
+<td>A judgment that evidence supports a claim</td>
+<td>Faithfulness and document-level gates depend on this judgment</td>
+</tr>
+<tr>
+<td>Truthfulness gate</td>
+<td>An automated check that blocks a change when measured truthfulness falls</td>
+<td>Its cadence must fit the metric's oracle cost</td>
+</tr>
+<tr>
+<td>Continuous integration (CI)</td>
+<td>The per-push or pull-request checking pipeline</td>
+<td>It favors context-only checks that finish within a request-scoped budget</td>
+</tr>
+<tr>
+<td>Canary check</td>
+<td>A limited check on live traffic</td>
+<td>It is another place where seconds of latency matter</td>
+</tr>
+<tr>
+<td>Request-scoped budget</td>
+<td>The latency and cost allowed around one request or change</td>
+<td>External retrieval per claim often does not fit it</td>
+</tr>
+<tr>
+<td>Scheduled offline pass</td>
+<td>A nightly or weekly evaluation batch</td>
+<td>It can tolerate external retrieval and controlled query volume</td>
+</tr>
+<tr>
+<td>Reference-free metric</td>
+<td>A metric that needs no labeled answer or outside ground truth</td>
+<td>RAGAS can run where only query, context, and answer exist</td>
+</tr>
+<tr>
+<td>Human-judgment correlation</td>
+<td>Agreement between a metric and human ratings in a study</td>
+<td>It says how a runnable metric behaves, not whether a pipeline can afford it</td>
+</tr>
+<tr>
+<td>Atomic fact</td>
+<td>A minimal, self-contained, independently verifiable statement</td>
+<td>It gives long-form evaluation finer resolution than sentence or response labels</td>
+</tr>
+<tr>
+<td>Atomic-fact set A(y)</td>
+<td>All atomic facts extracted from generation y</td>
+<td>Its size is the FActScore denominator</td>
+</tr>
+<tr>
+<td>Atomic-fact item a_i</td>
+<td>The atomic fact at index i</td>
+<td>Each item receives one support verdict</td>
+</tr>
+<tr>
+<td>Set cardinality bars</td>
+<td>The number of items in a set, such as the size of A(y) or T</td>
+<td>They turn extracted sets into metric denominators</td>
+</tr>
+<tr>
+<td>Long-form generation</td>
+<td>A response containing many claims, such as a biography or report</td>
+<td>One binary grade loses the location and count of partial errors</td>
+</tr>
+<tr>
+<td>Atomic-fact extraction</td>
+<td>A language model call that decomposes text into single-claim statements</td>
+<td>Every downstream score depends on extraction quality</td>
+</tr>
+<tr>
+<td>Language model (LM)</td>
+<td>A model used to extract or judge claims</td>
+<td>It adds cost and can introduce its own errors</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>The model used by RAGAS and other judge pipelines</td>
+<td>It manufactures statements, questions, or relevance filters for comparison</td>
+</tr>
+<tr>
+<td>Verification source S</td>
+<td>The trusted source used to check a fact</td>
+<td>Source choice controls what "supported" means</td>
+</tr>
+<tr>
+<td>Support indicator</td>
+<td>A binary value that is 1 for a supported fact and 0 otherwise</td>
+<td>FActScore averages these verdicts</td>
+</tr>
+<tr>
+<td>Fine-grained Atomic Evaluation of Factual Precision (FActScore)</td>
+<td>The average support verdict across extracted atomic facts</td>
+<td>It turns whole-response pass or fail into per-claim precision</td>
+</tr>
+<tr>
+<td>Per-response precision</td>
+<td>Supported claims divided by claims made in one response</td>
+<td>It measures correctness among stated claims but rewards silence</td>
+</tr>
+<tr>
+<td>No-context estimator</td>
+<td>An LM judges a fact from its own memory</td>
+<td>It is cheapest and weakest because it consults no outside oracle</td>
+</tr>
+<tr>
+<td>Retrieve-and-judge estimator</td>
+<td>Retrieval finds evidence from S, then an LM judges the fact against it</td>
+<td>It provides a genuine external check at the highest per-fact cost</td>
+</tr>
+<tr>
+<td>Non-parametric probability estimator</td>
+<td>A masked model predicts claim tokens with retrieved evidence</td>
+<td>It reuses a forward pass and is noisier than full retrieve-and-judge verification</td>
+</tr>
+<tr>
+<td>Masked-language model</td>
+<td>A model asked to reconstruct hidden claim tokens</td>
+<td>Its reconstruction score supplies the non-parametric estimate</td>
+</tr>
+<tr>
+<td>Ensemble</td>
+<td>A combination of the no-context, retrieve-and-judge, and non-parametric estimates</td>
+<td>It combines the three verification signals</td>
+</tr>
+<tr>
+<td>Extractor failure</td>
+<td>A merged, dropped, split, or unresolved claim created during extraction</td>
+<td>It changes what the verifier sees before support judgment begins</td>
+</tr>
+<tr>
+<td>Versioned source snapshot</td>
+<td>A fixed copy of the verification source</td>
+<td>It prevents source drift from looking like a model regression</td>
+</tr>
+<tr>
+<td>Claim count</td>
+<td>The number of extracted facts in an answer</td>
+<td>A falling count can inflate precision without improving the model</td>
+</tr>
+<tr>
+<td>VeriScore</td>
+<td>An F1 combination of claim precision and claim-count recall</td>
+<td>It penalizes systems that earn precision by under-generating</td>
+</tr>
+<tr>
+<td>Context-aware extraction</td>
+<td>Claim extraction that reads the full generation</td>
+<td>It resolves pronouns and omitted subjects across sentences</td>
+</tr>
+<tr>
+<td>Verifiable claim</td>
+<td>A claim whose truth a source can settle</td>
+<td>VeriScore scores only this set</td>
+</tr>
+<tr>
+<td>Verifiable set V(y) and item v_i</td>
+<td>The filtered claims from generation y and one indexed claim</td>
+<td>Verification counts support only over this set</td>
+</tr>
+<tr>
+<td>Unverifiable claim</td>
+<td>An opinion, prediction, or context-dependent claim with no checkable ground truth</td>
+<td>Counting it as false would confuse non-verifiability with hallucination</td>
+</tr>
+<tr>
+<td>Truth-apt content</td>
+<td>Content that can be judged true or false</td>
+<td>Claims without it are removed before VeriScore verification</td>
+</tr>
+<tr>
+<td>C</td>
+<td>The number of verifiable claims in a response</td>
+<td>It forms the precision denominator and recall numerator</td>
+</tr>
+<tr>
+<td>C_sup</td>
+<td>The number of verifiable claims supported by S</td>
+<td>It forms the precision numerator</td>
+</tr>
+<tr>
+<td>Precision P</td>
+<td>C_sup divided by C</td>
+<td>It identifies factuality among the claims the system chose to make</td>
+</tr>
+<tr>
+<td>Reference constant K</td>
+<td>The average verifiable-claim count in good responses for one task</td>
+<td>It defines how much content recall expects</td>
+</tr>
+<tr>
+<td>Recall R</td>
+<td>The smaller of C divided by K and 1</td>
+<td>It penalizes under-generation and saturates for sufficiently complete answers</td>
+</tr>
+<tr>
+<td>F1 score</td>
+<td>Two times precision times recall, divided by their sum</td>
+<td>VeriScore uses it to balance support and coverage</td>
+</tr>
+<tr>
+<td>Under-generation</td>
+<td>Saying too little to avoid making risky claims</td>
+<td>Precision-only metrics can reward it</td>
+</tr>
+<tr>
+<td>Retrieval Augmented Generation Assessment (RAGAS)</td>
+<td>A metric suite for faithfulness, answer relevance, and context relevance</td>
+<td>It separates three failures without an external oracle</td>
+</tr>
+<tr>
+<td>Statement set T</td>
+<td>The checkable statements extracted from an answer</td>
+<td>Its size is the denominator of RAGAS faithfulness</td>
+</tr>
+<tr>
+<td>Supported-statement count V</td>
+<td>The number of T statements entailed by context</td>
+<td>It is the numerator of RAGAS faithfulness</td>
+</tr>
+<tr>
+<td>RAGAS faithfulness F</td>
+<td>V divided by the size of T</td>
+<td>It measures answer support against retrieved context</td>
+</tr>
+<tr>
+<td>Answer relevance AR</td>
+<td>Mean similarity between the real query and questions regenerated from the answer</td>
+<td>It detects a supported answer to the wrong question</td>
+</tr>
+<tr>
+<td>Regenerated question</td>
+<td>A question an LLM infers from answer text alone</td>
+<td>It supplies the missing artifact for answer relevance</td>
+</tr>
+<tr>
+<td>Regenerated-question count n and item q'_i</td>
+<td>The number of generated questions and one indexed question</td>
+<td>They define the mean used for answer relevance</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>A numeric representation used to compare question meaning</td>
+<td>RAGAS uses it for generated-question similarity</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>The similarity used between the real and regenerated question embeddings</td>
+<td>Averaging it across questions yields AR</td>
+</tr>
+<tr>
+<td>Similarity function sim</td>
+<td>The formula symbol for cosine similarity</td>
+<td>It scores each real-query and regenerated-query pair before averaging</td>
+</tr>
+<tr>
+<td>Context relevance CR</td>
+<td>Kept relevant context sentences divided by retrieved context sentences</td>
+<td>It measures how much returned text was useful for the query</td>
+</tr>
+<tr>
+<td>Extracted sentence set S_ext</td>
+<td>Context sentences an LLM judges necessary for the query</td>
+<td>Its size is the numerator of CR</td>
+</tr>
+<tr>
+<td>Holistic LLM judge</td>
+<td>One call that gives the query, context, and answer one overall score</td>
+<td>It is cheaper to build but hides which pipeline stage failed</td>
+</tr>
+<tr>
+<td>Diagnostic separation</td>
+<td>Keeping retriever, generator, and query mismatch signals distinct</td>
+<td>It turns a low score into an actionable failure location</td>
+</tr>
+<tr>
+<td>Output-length dependence</td>
+<td>The tendency for accuracy to decline as generation continues</td>
+<td>Raw scores can compare length as much as quality</td>
+</tr>
+<tr>
+<td>Document support d(f)</td>
+<td>How often a fact is supported in the pre-training corpus</td>
+<td>High-support facts tend to appear early and be recalled more accurately</td>
+</tr>
+<tr>
+<td>Autoregressive generation</td>
+<td>Generation that conditions each next step on earlier output</td>
+<td>One fabrication can become context for later fabrications</td>
+</tr>
+<tr>
+<td>Pooled average</td>
+<td>One score across every claim position</td>
+<td>It hides whether errors cluster late in an answer</td>
+</tr>
+<tr>
+<td>Position bucket</td>
+<td>A sentence-index or token-range group used for separate scoring</td>
+<td>It reveals where unsupported-fact density rises</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>Unsupported or contradictory generated content</td>
+<td>Its meaning becomes difficult around abstractive compression</td>
+</tr>
+<tr>
+<td>Intrinsic hallucination</td>
+<td>A generated claim that contradicts the source</td>
+<td>It calls for a different response than a merely absent claim</td>
+</tr>
+<tr>
+<td>Extrinsic hallucination</td>
+<td>A generated claim that adds something the source does not state</td>
+<td>It can be fabrication or a reasonable bridging inference</td>
+</tr>
+<tr>
+<td>Bridging inference</td>
+<td>A compressed connection between source facts that the source never states in one sentence</td>
+<td>An entailment checker can confuse it with invention</td>
+</tr>
+<tr>
+<td>Abstractive summarization</td>
+<td>Summarization that paraphrases and combines facts</td>
+<td>A zero flag target can destroy the intended abstraction</td>
+</tr>
+<tr>
+<td>Extractive summarization</td>
+<td>Summarization that copies source spans</td>
+<td>It can satisfy a strict checker while losing abstractive value</td>
+</tr>
+<tr>
+<td>Tolerance band</td>
+<td>A policy range for acceptable bridging-type unsupported content</td>
+<td>The field supplies no settled universal threshold</td>
+</tr>
+<tr>
+<td>Document-level entailment gate</td>
+<td>A checker that compares each summary sentence with its own source document</td>
+<td>It avoids an external retrieval round trip</td>
+</tr>
+<tr>
+<td>Natural language inference (NLI)</td>
+<td>A model judgment about whether one text supports another</td>
+<td>It provides the cheap document-level check in the worked example</td>
+</tr>
+<tr>
+<td>SummaC</td>
+<td>The named style of document-level NLI checker in the example</td>
+<td>It represents a first-line summarization gate</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="331-faithfulness-versus-factuality-restated-for-evaluation">33.1 Faithfulness versus factuality, restated for evaluation</h3>
+<h4 id="what-it-is">What it is</h4>
+<p>Faithfulness and factuality answer different questions.</p>
+<p>A claim is faithful when the retrieved context entails it. A claim is factual when it is true in the world.</p>
+<p>The context is already present. The world is not. Each metric therefore uses a different oracle.</p>
+<p>Faithfulness re-reads text already in the prompt. Its main operation is one more entailment judgment over content that retrieval and generation already produced. Its cost and latency are of the same order as the original generation call.</p>
+<p>Factuality must consult something the generator did not produce. The checker may query a search application programming interface (API), read a live database, or fetch a page outside the retriever's index. It must do this for every atomic claim or every batch of claims.</p>
+<p>That work adds a retrieval round trip. It inherits external latency, rate limits, and availability.</p>
+<h4 id="why-it-exists">Why it exists</h4>
+<p>The distinction first localizes a wrong answer to the generator or retriever. For evaluation, it also decides which check can run at a given cadence.</p>
+<p>A context-only RAGAS faithfulness check can fit in CI, a canary, or another seconds-scale budget. An external-source FActScore pass fits better in a nightly benchmark or weekly regression suite. The metric should follow reachable evidence, not a preference for one truth axis.</p>
+<p>Es et al. (2024) motivate RAGAS's faithfulness, answer relevance, and context relevance as reference-free. A fielded system cannot assume external ground truth for every query at evaluation time.</p>
+<h4 id="what-fails-without-it">What fails without it</h4>
+<p>Choosing a metric only because its paper reports stronger human correlation can break the evaluation pipeline.</p>
+<p>Correlation describes metric quality after the check runs. It does not prove that the required oracle can answer at the needed latency or volume. A factuality gate can fail on quota or timeout while the RAG system itself remains unchanged.</p>
+<p>A precision-only factuality score also rewards answers that make fewer claims. VeriScore addresses that later. Raw scores also vary with output length.</p>
+<p>A system that writes more creates more opportunities for unsupported claims.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>The chapter's illustrative documentation benchmark uses Q = 200 questions. Each answer averages 4 atomic claims. That yields 200 × 4 = 800 claims.</p>
+<p>Batching 5 claims per verifier call yields 800 / 5 = 160 calls. The external-oracle configuration takes 3 seconds per call. Its serial runtime is 160 × 3 = 480 seconds, or 8 minutes.</p>
+<p>The context-only configuration takes 0.8 seconds per call. Its serial runtime is 160 × 0.8 = 128 seconds, or about 2.1 minutes. The team merges about 20 pull requests per day and averages 3 pushes per request.</p>
+<p>That creates 60 CI runs. Running 160 external calls on every run creates 60 × 160 = 9,600 external verification calls per day. The illustrative endpoint cap is 2,000 automated queries per API key per day.</p>
+<p>The CI plan is 9,600 / 2,000 ≈ 4.8 times over budget. The context-only plan makes zero external calls.</p>
+<p>Removing the fetch makes each call about 3.75 times faster in the example.</p>
+<h4 id="practical-decisions">Practical decisions</h4>
+<p>Use context-only faithfulness for a default CI or regression gate. An internal database or pinned snapshot can support a tighter factuality cadence when the team controls it at CI volume. Schedule external-oracle factuality as an offline batch sized to source capacity.</p>
+<p>Tighten that schedule after a corpus refresh or document migration, when faithfulness and factuality may diverge. Run faithfulness and factuality on the same generated output when possible. That choice removes sampling noise between separately generated answers.</p>
+<p>If factuality needs a separate slow harness, log the two runs' faithfulness scores as a control. Pair factuality precision with recall unless abstention is intentionally the safe objective. In that abstention case, also track claims delivered per question.</p>
+<p>Report output length with every comparison unless both systems have verified, statistically indistinguishable lengths on the same evaluation set. Use periodic human-audited samples to catch a stale or wrong automated oracle. If faithfulness stays flat while factuality drops after a system change, inspect retrieved context and the factuality oracle before calling it a generation regression.</p>
+<h3 id="332-factscore-and-atomic-facts">33.2 FActScore and atomic facts</h3>
+<h4 id="what-it-is-1">What it is</h4>
+<p>A whole-response binary label uses the wrong unit for long-form text. One wrong birth year amid fourteen correct details and an invented career both receive the same zero.</p>
+<p>FActScore changes the unit to an atomic fact. An atomic fact is minimal, self-contained, verifiable, and limited to one piece of information. "Bridget Fonda is an actress" is atomic.</p>
+<p>"Bridget Fonda is an American actress, model, and producer" contains several claims. One generated sentence can produce two, three, or more atomic facts. An LM processes the generation sentence by sentence.</p>
+<p>For generation y, it emits A(y) = {a₁, a₂, ..., aₙ}. Each aᵢ receives a binary support verdict against trusted source S.</p>
+<p>The score is: FActScore(y) = (1 / |A(y)|) Σᵢ₌₁^|A(y)| 𝟙[aᵢ is supported by S] The value is bounded between 0 and 1.</p>
+<p>It is per-response precision.</p>
+<h4 id="why-it-exists-1">Why it exists</h4>
+<p>Atomic facts create as many score gradations as the answer has claims. That resolution lets a weekly report distinguish partial improvement from total failure. FActScore's contribution is the unit being averaged, not a new support classifier.</p>
+<h4 id="verification-choices">Verification choices</h4>
+<p>The no-context estimator asks an LM to judge aᵢ from parametric memory.</p>
+<p>It is the cheapest option. It is also the weakest because it asks the same kind of model that may hallucinate to catch the error. The retrieve-and-judge estimator retrieves a relevant passage from S.</p>
+<p>An LM then judges aᵢ against that passage. It is the only estimator in the set with a genuine external oracle. It is also the most expensive per fact.</p>
+<p>The non-parametric probability estimator masks the tokens in aᵢ. A retrieval-augmented masked-language model predicts those tokens. It reuses one forward pass instead of a full retrieval-plus-judgment call.</p>
+<p>It is cheaper and noisier. The ensemble combines the no-context, retrieve-and-judge, and non-parametric estimators.</p>
+<h4 id="what-fails-without-it-1">What fails without it</h4>
+<p>Sentence-level scoring still bundles true and false clauses.</p>
+<p>For example, one sentence can correctly call Bridget Fonda an American actress and falsely call her a two-time Olympic medalist. A sentence verifier must choose one label or average internally. Either choice loses the fine-grained location of the error.</p>
+<p>The extraction step is itself an LM call. It can merge two facts, drop an asserted fact, or split a compound entity in a way that changes support. Every score sits downstream of this extraction risk.</p>
+<h4 id="worked-example-and-cost">Worked example and cost</h4>
+<p>A six-sentence biography contains three errors.</p>
+<p>The current university is wrong. The fellowship is invented. The graduation year is wrong.</p>
+<p>Binary grading returns 0. Atomic extraction produces |A(y)| = 14 facts, or roughly 2.3 per sentence. Retrieve-and-judge finds 11 supported facts and 3 unsupported facts.</p>
+<p>FActScore(y) = 11 / 14 ≈ 0.79. A second system supports only 2 of the same 14 facts. Binary grading also returns 0 for it.</p>
+<p>FActScore returns 2 / 14 ≈ 0.14. The gap from 0.79 to 0.14 preserves the regression signal. One retrieve-and-judge check takes about 0.9 seconds.</p>
+<p>Fourteen checks take 14 × 0.9 ≈ 12.6 seconds serially. A 250-biography benchmark at 14 facts each needs 3,500 checks.</p>
+<p>At 0.9 seconds each, that is 3,500 × 0.9 ≈ 3,150 seconds. The total is about 52 minutes serially. This matches an overnight batch better than a per-push gate.</p>
+<h4 id="precision-only-edge-case">Precision-only edge case</h4>
+<p>"Marie Curie was a scientist" is one trivial, supported atomic fact.</p>
+<p>For that answer, |A(y)| = 1 and FActScore = 1 / 1 = 1.0. The answer says almost nothing yet earns a perfect score. The formula has no term that rewards coverage.</p>
+<h4 id="practical-decisions-1">Practical decisions</h4>
+<p>Use atomic facts when a regression smaller than a full right-to-wrong flip matters.</p>
+<p>Skip decomposition for single-field outputs where every sentence already contains one claim. Use retrieve-and-judge by default when factuality needs a real outside source. Use non-parametric scoring or an ensemble when per-fact LM judgment is unaffordable and a noisier signal is acceptable.</p>
+<p>Pin S to a fixed, versioned snapshot when model comparison is the goal. If the goal is current-world factuality, pin the query date instead of source content. Report |A(y)| beside every FActScore value.</p>
+<p>Human-audit a sample after deploying a new estimator or judge model. Agreement measured on biographies does not automatically transfer to medical or legal generation. Check claim count and source-snapshot stability before trusting an apparent score jump from 0.62 to 0.89.</p>
+<h3 id="333-veriscore-unverifiable-claims-and-the-recall-correction">33.3 VeriScore, unverifiable claims, and the recall correction</h3>
+<h4 id="what-it-is-2">What it is</h4>
+<p>VeriScore answers the silence loophole in FActScore.</p>
+<p>The motivating dashboard rises from a season average near 0.75 to 0.97. At the same time, summaries shrink from six sentences to two terse sentences.</p>
+<p>The system became quieter, not more accurate. Song et al. (2024) add two independent corrections. The first correction changes claim extraction.</p>
+<p>The extractor reads the whole generation as context. This resolves references across sentences. In the source example, "The plant is native to South America" supplies the referent for "Its large, starchy, sweet-tasting tuberous roots are a staple food crop."</p>
+<p>A sentence-only extractor sees "its" without an antecedent and can emit a broken claim. Context-aware extraction avoids that failure. It also drops opinions, predictions, and claims whose truth no available source can settle.</p>
+<p>Those claims are unverifiable. They are not automatically unsupported. The result is V(y) = {v₁, ..., v_C}, the set of C verifiable claims.</p>
+<p>The second correction adds claim-count recall. Let C_sup be the number of vᵢ claims supported by S. Precision remains:</p>
+<p>P = C_sup / C K is the average number of verifiable claims in good, human-written responses for this task. The team estimates K once from a reference corpus.</p>
+<p>It holds K fixed for every response in the run. Recall is:</p>
+<p>R = min(C / K, 1) Responses with at least K verifiable claims saturate recall at 1. Shorter responses receive a penalty in direct proportion to C / K.</p>
+<p>VeriScore combines the terms: VeriScore(y) = 2PR / (P + R)</p>
+<h4 id="why-it-exists-2">Why it exists</h4>
+<p>Context-aware extraction fixes what gets counted. Recall fixes the incentive around how much gets counted.</p>
+<p>VeriScore does not improve the support verifier beyond FActScore. It changes what the system receives credit for.</p>
+<h4 id="what-fails-without-it-2">What fails without it</h4>
+<p>Fixing only pronoun resolution still leaves precision divided by whatever the model chose to say. That score remains perfect at C = 1 when the one claim is supported.</p>
+<p>Treating unverifiable claims as false confuses lack of checkable ground truth with hallucination. Borrowing one K across unrelated tasks can punish correct terseness. Recomputing K per response gives C / C = 1.</p>
+<p>That silently removes the recall correction.</p>
+<h4 id="worked-example-and-cost-1">Worked example and cost</h4>
+<p>The illustrative summarization task uses K = 12 verifiable claims. This is a stated, plausible constant for the example. It is not a published universal constant.</p>
+<p>The full-effort response has C = 14 and C_sup = 11. P = 11 / 14 ≈ 0.786. R = min(14 / 12, 1) = 1.</p>
+<p>VeriScore = (2 × 0.786 × 1) / (0.786 + 1) ≈ 0.880. The hedging response has C = 2 and C_sup = 2.</p>
+<p>FActScore gives 2 / 2 = 1.0. For VeriScore, P = 1.0. R = min(2 / 12, 1) ≈ 0.167.</p>
+<p>VeriScore = (2 × 1.0 × 0.167) / (1.0 + 0.167) ≈ 0.286. The response falls from 1.0 to 0.286. The source describes this as a nearly 3.5 times swing.</p>
+<p>Whole-generation extraction uses one call at roughly 1.5 seconds. Six sentence-level extraction calls at about 0.4 seconds each total about 2.4 seconds. Verification remains 14 retrieve-and-judge calls at 0.9 seconds each.</p>
+<p>That is about 12.6 seconds per response. Verification dominates extraction by close to an order of magnitude. The one-fact Marie Curie answer also changes.</p>
+<p>With K = 12, C = 1 and C_sup = 1. P = 1.0. R = min(1 / 12, 1) ≈ 0.083.</p>
+<p>VeriScore ≈ (2 × 1.0 × 0.083) / 1.083 ≈ 0.154. The edge case moves from a perfect FActScore to near the bottom of the scale.</p>
+<h4 id="practical-decisions-2">Practical decisions</h4>
+<p>Remove unverifiable claims from both numerator and denominator.</p>
+<p>Skip that filter only when every generated field is verifiable by construction. Use full-document context for outputs longer than one or two sentences. Sentence-level extraction can remain for self-contained, single-fact sentences with no cross-sentence references.</p>
+<p>Estimate K from the task's own good-response distribution. Re-estimate it only when the task or expected response length changes. Hold K fixed for the full evaluation run.</p>
+<p>Report P, R, and VeriScore together. A drop with stable P and falling R indicates under-generation. A drop with falling P indicates a factuality regression.</p>
+<h3 id="334-ragas-faithfulness-answer-relevance-and-context-relevance">33.4 RAGAS, faithfulness, answer relevance, and context relevance</h3>
+<h4 id="what-it-is-3">What it is</h4>
+<p>RAGAS starts from three artifacts available for every response.</p>
+<p>They are query q, retrieved context c(q), and answer a(q). It needs no labeled question-answer pairs, reference answer, external database, or human in the loop. It creates three directed comparisons.</p>
+<p>Faithfulness compares answer with context. An LLM reads the question and answer and extracts statements T = {t₁, ..., tₙ}. Each tᵢ is checked for inference from c(q) alone.</p>
+<p>Let V be the number supported by context. The score is: F = V / |T|</p>
+<p>The check costs one extraction call plus |T| verification calls. It adds no retrieval round trip.</p>
+<p>Answer relevance compares answer with query. An LLM reads only the answer and generates n questions {q'₁, ..., q'ₙ} that the answer would fit. Each regenerated question and the real query receive embeddings.</p>
+<p>The score averages their cosine similarities: AR = (1 / n) Σᵢ₌₁ⁿ sim(q, q'ᵢ) Context relevance compares context with query.</p>
+<p>An LLM extracts S_ext, the context sentences needed to answer q. The score is: CR = |S_ext| / |sentences in c(q)|</p>
+<h4 id="why-it-exists-3">Why it exists</h4>
+<p>Each score asks an LLM to manufacture the missing half of a direct comparison.</p>
+<p>Faithfulness manufactures statements from the answer. Answer relevance manufactures questions from the answer. Context relevance manufactures a relevance filter over the context.</p>
+<p>The three edges keep retrieval noise, unsupported generation, and wrong-question answering separate.</p>
+<h4 id="what-fails-without-it-3">What fails without it</h4>
+<p>A single end-to-end LLM judge is faster to build and cheaper to run. It returns one holistic score. A low holistic score does not reveal whether the retriever returned noise, the generator exceeded good context, or the generator answered another question.</p>
+<p>Blending F, AR, and CR into one diagnostic number recreates the same collapse. RAGAS faithfulness also cannot prove world truth.</p>
+<p>A confidently wrong context can support a perfectly faithful but factually wrong answer.</p>
+<h4 id="worked-example-and-cost-2">Worked example and cost</h4>
+<p>The query asks, "What is the timeout for a stuck deployment job?" The retriever returns 10 context sentences. The context-relevance extractor keeps 3.</p>
+<p>CR = 3 / 10 = 0.30. The other 7 sentences describe an unrelated configuration flag under a shared heading. The generator writes a two-sentence answer.</p>
+<p>Extraction yields |T| = 4 statements. Context supports 3 and does not support 1 specific timeout value. F = 3 / 4 = 0.75.</p>
+<p>Answer relevance regenerates n = 3 questions. Their cosine similarities to the real query are 0.91, 0.88, and 0.52. AR = (0.91 + 0.88 + 0.52) / 3 ≈ 0.77.</p>
+<p>The combination localizes the main problem to retrieval. The passage is 70 percent irrelevant material. The generator still mostly follows it and mostly answers the right question.</p>
+<p>Faithfulness costs 1 extraction call and 4 verification calls. Answer relevance costs 1 question-generation call and 3 embedding comparisons. Context relevance costs 1 extraction call.</p>
+<p>At roughly 0.8 seconds per LLM call, the three-score pipeline runs in under 10 seconds for one response. All three calls stay context-only.</p>
+<h4 id="practical-decisions-3">Practical decisions</h4>
+<p>Compute all three scores together by default.</p>
+<p>Use faithfulness alone only after context relevance has proven consistently high and a cheaper generator-regression signal is enough. Use RAGAS for per-push or canary checks. Pair it with an offline FActScore or VeriScore pass when world truth matters.</p>
+<p>Use at least n = 3 regenerated questions for answer relevance. Increase n only after measuring run-to-run variance on a held-out sample. Route low CR to chunking, ranking, or retriever ownership.</p>
+<p>Route high CR with falling F to generator ownership. Log F, AR, and CR separately. A top-line blend can serve a dashboard, but debugging and on-call views need all three signals.</p>
+<p>If CR falls after the evaluator swaps to a cheaper extraction model, rerun the same saved contexts through the previous extractor. A recovered score identifies evaluator drift. A score that stays low supports a real retrieval regression.</p>
+<h3 id="335-error-length-dependence-and-summarizations-open-question">33.5 Error length dependence and summarization's open question</h3>
+<h4 id="what-it-is-4">What it is</h4>
+<p>FActScore and VeriScore pool every atomic fact in a response.</p>
+<p>That average treats an early claim and a late claim as exchangeable. Min et al. (2023) report that biography-generation accuracy declines with length. The first sentence or two tend to use salient, high-frequency facts.</p>
+<p>Those facts have high document support d(f) in the pre-training corpus. Later sentences reach for lower-support facts such as a specific graduation year, minor collaborator, or obscure award. Parametric recall is less reliable in that low-d(f) region.</p>
+<p>Autoregressive generation compounds the effect. A fabricated detail in sentence three becomes conditioning context for sentence four.</p>
+<p>The model receives no decoding signal that the earlier claim was wrong. Errors can seed later errors rather than accumulate independently.</p>
+<h4 id="why-it-exists-4">Why it exists</h4>
+<p>Position-stratified reporting separates uniform fabrication from late-answer degradation. The evaluator can bucket facts by sentence index or token quartile.</p>
+<p>It then reports precision for each bucket. The evaluation cost adds only bookkeeping. A rising unsupported-fact curve supports a targeted length cap or early stop.</p>
+<p>One pooled score cannot expose that pattern.</p>
+<h4 id="the-summarization-boundary">The summarization boundary</h4>
+<p>Biography evaluation has a clean target. Every atomic fact should be entailed by its source. Summarization has a harder target because compression can require bridging inference.</p>
+<p>The source example combines a 2011 company join date with a later chief executive officer appointment. The summary says the person became chief executive officer within the decade. The source states the two facts separately and never uses the word "promoted."</p>
+<p>An entailment checker can treat this bridge exactly like an outright invention. The intrinsic-versus-extrinsic split does not settle the issue. Intrinsic content contradicts the source.</p>
+<p>Extrinsic content adds something the source does not state. An extrinsic addition may be a reasonable bridge or a fabrication.</p>
+<p>Maynez et al. (2020) report hallucinations in more than 70 percent of generated abstractive summaries. Roughly 90 percent of those hallucinations are factually wrong, unsupported by or contradictory to the source. Forcing a summary to one sentence does not settle whether hallucination comes from output amount or abstraction itself.</p>
+<p>A one-sentence summary can still bridge. It can also fabricate its one claim.</p>
+<h4 id="what-fails-without-it-4">What fails without it</h4>
+<p>Driving a summarization flag rate to zero rewards copying source spans. The dashboard can improve while an abstractive summarizer quietly becomes extractive.</p>
+<p>A length cap applied before locating the error region also removes information from every answer. A generic faithfulness checker can flag good bridging and fabrication identically. The field has not published a settled threshold for acceptable bridging-type unsupported content.</p>
+<p>That boundary remains an open question.</p>
+<h4 id="worked-example-and-cost-3">Worked example and cost</h4>
+<p>The illustrative support desk closes 8,000 tickets per day. Each ticket receives a one-paragraph abstractive summary. At a 70 percent hallucination floor:</p>
+<p>8,000 × 0.70 = 5,600 summaries contain at least one hallucination. If 90 percent of those are factually wrong: 5,600 × 0.90 = 5,040 summaries contain a wrong claim.</p>
+<p>That is 5,040 / 8,000 = 63 percent of all summaries. A document-level NLI gate in the style of SummaC compares each summary sentence with its own ticket. It needs no external retrieval because the source is already present.</p>
+<p>The example assumes, illustratively, that the gate catches 60 percent of genuinely wrong summaries. The remaining count is:</p>
+<p>5,040 × (1 - 0.60) = 2,016 per day. One NLI forward pass takes well under 200 milliseconds per summary. Using 0.2 seconds for the arithmetic, 8,000 × 0.2 ≈ 1,600 seconds.</p>
+<p>That is under 27 minutes serially and can run in parallel. Retrieve-and-judge costs about 0.9 seconds per atomic fact. The document-level gate is roughly 4 to 5 times cheaper per item because it already has the source document.</p>
+<p>The 70 percent figure is a conservative floor, not a worst case. More extractive, copy-heavy systems hallucinate less. More abstractive systems hallucinate more.</p>
+<h4 id="practical-decisions-4">Practical decisions</h4>
+<p>Report factuality by position or length bucket whenever output length varies.</p>
+<p>Use one pooled score only for fixed-length, single-field outputs with no useful position axis. Use a tolerance band for bridging-type unsupported content in abstractive summarization. Use a strict zero target only when any unsupported claim is unacceptable, such as in the legal, medical, or downstream-agent examples named by the source.</p>
+<p>Label flags as intrinsic or extrinsic before choosing a fix. A coarse binary flag can support first-pass triage if finer labels follow later. Use a document-level entailment gate before full atomic-fact retrieval verification for single-document summaries.</p>
+<p>Use atomic-fact verification for synthesis across multiple retrieved documents. Treat length or truncation caps as last-resort mitigation. Apply them after position-stratified reporting identifies where error density rises.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-331">Figure 33.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A[&quot;Can the check reach a source of truth outside what the system itself retrieved?&quot;]
+    A --&gt;|No external oracle| B[&quot;Faithfulness only. Verify claims against retrieved context. No external call. RAGAS, section 33.4&quot;]
+    A --&gt;|External oracle reachable| C[&quot;Factuality. Decompose into atomic claims. Verify each against an external source. FActScore, section 33.2&quot;]
+    C --&gt; D[&quot;Precision alone rewards silence. Add recall over unverifiable or missing claims. VeriScore, section 33.3&quot;]
+    B --&gt; E[&quot;Either branch. Normalize by output length before comparing systems or prompts. Section 33.5&quot;]
+    D --&gt; E</code></pre></details></figure>
+<p>Figure 33.1: Which of this chapter's four metrics you can run, and where in a pipeline you can afford to run it, is decided by which oracle is reachable at check time, not by which axis matters more.</p>
+<h3 id="figure-332">Figure 33.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Y[&quot;y, a long-form generation. Example, a generated biography with six or more sentences&quot;]
+    X[&quot;Atomic-fact extraction. An LM makes minimal, single-claim statements. A(y) = {a1, a2, ..., an}&quot;]
+    N[&quot;No-context. LM judges ai from its own memory&quot;]
+    R[&quot;Retrieve plus LM. Retrieve from S, then judge ai against the passage&quot;]
+    P[&quot;Non-parametric. Mask ai tokens, retrieve, and score mask predictions&quot;]
+    E[&quot;Ensemble. Combine all three estimators&quot;]
+    S[&quot;FActScore(y). Plain average of support verdicts over A(y)&quot;]
+    Y --&gt; X
+    X --&gt; N
+    X --&gt; R
+    X --&gt; P
+    X --&gt; E
+    N --&gt; S
+    R --&gt; S
+    P --&gt; S
+    E --&gt; S</code></pre></details></figure>
+<p>FActScore(y) = (1 / |A(y)|) Σᵢ₌₁^|A(y)| 𝟙[aᵢ is supported by S]</p>
+<p>Figure 33.2: FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts.</p>
+<h3 id="figure-333">Figure 33.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Y[&quot;y, a long-form generation&quot;]
+    X[&quot;Context-aware extraction. Read the full generation. Drop claims with no checkable referent or truth-apt content. Output V(y) = {v1, ..., vC}&quot;]
+    P[&quot;Verify each vi against S. Count supported claims Csup. P = Csup / C&quot;]
+    R[&quot;Compare C with fixed task reference K. K is average verifiable claims in a good response. R = min(C / K, 1)&quot;]
+    V[&quot;VeriScore(y) = 2PR / (P + R)&quot;]
+    Y --&gt; X
+    X --&gt; P
+    X --&gt; R
+    P --&gt; V
+    R --&gt; V</code></pre></details></figure>
+<p>Figure 33.3: VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing.</p>
+<h3 id="figure-334">Figure 33.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    C((&quot;c(q), context&quot;))
+    Q((&quot;q, query&quot;))
+    A((&quot;a(q), answer&quot;))
+    C --&gt;|&quot;Context relevance. Extract needed context sentences. CR = kept / retrieved&quot;| Q
+    C --&gt;|&quot;Faithfulness. Extract answer statements. Verify each against context. F = V / count(T)&quot;| A
+    A --&gt;|&quot;Answer relevance. Regenerate questions from answer. Compare with q by embedding similarity. AR = mean similarity&quot;| Q</code></pre></details></figure>
+<p>Figure 33.4: RAGAS scores every edge of the query-context-answer triangle, so a low score points at the retriever, the generator, or a mismatched question independently.</p>
+<h3 id="figure-335">Figure 33.5</h3>
+<pre class="text"><code>fraction unsupported
+
+0.5 |                                      *  per-position rate
+    |
+0.4 |
+    |                               *
+0.3 |
+    |                        * * * * * *  pooled average
+0.2 |          * * * * * * * * * * * *
+    |                 *
+0.1 |          *
+    |    *
+0.0 +----------------------------------------&gt; sentence position
+       1     2     3     4     5     6</code></pre>
+<p>Figure 33.5: Illustrative per-position hallucination rates, constructed to show the shape of the effect Min et al. (2023) report qualitatively: unsupported-fact density rises with position in the generation, while a single pooled FActScore number reports one flat average that hides where the generation actually breaks down.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw three boxes labeled query q, context c(q), and answer a(q).</li>
+<li>Draw an arrow from answer to context. Label it faithfulness and write F = V / |T|.</li>
+<li>Draw an arrow from answer to query. Label it answer relevance and write AR = mean question similarity.</li>
+<li>Draw an arrow from context to query. Label it context relevance and write CR = relevant sentences / retrieved sentences.</li>
+<li>Above the triangle, draw a decision diamond labeled "External oracle reachable?"</li>
+<li>On the no branch, point to the RAGAS triangle and label it per-request.</li>
+<li>On the yes branch, draw answer to atomic facts to source verdicts. Label the average FActScore.</li>
+<li>Add a second branch from the fact count to R = min(C / K, 1). Merge it with precision into VeriScore.</li>
+<li>Under both branches, draw a six-position error curve rising toward the right.</li>
+<li>End with a note: report claim count and length, and keep the summarization bridging threshold open.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the oracle, because it determines the metric. If I only have retrieved context, I score faithfulness and RAGAS can separate answer, query, and context failures. If I can reach a trusted external source, I split the output into atomic facts and run FActScore. Then I add VeriScore's recall term so the model cannot win by saying almost nothing. I always report claim count and output length, because longer answers expose more chances to fail. For summarization, I bucket errors by position and avoid a zero hallucination target, since valid bridging and fabrication can trigger the same entailment check.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-can-a-weekly-factuality-metric-fail-as-a-per-push-truthfulness-gate">1. Why can a weekly factuality metric fail as a per-push truthfulness gate?</h3>
+<p>Faithfulness uses retrieved context already in the request, while factuality needs an outside oracle for every claim or batch. Check the source's latency, rate limit, availability, and daily call budget before reusing the metric. Use a context-only gate when external access cannot meet CI volume.</p>
+<h3 id="2-what-does-factscore-fix-and-what-can-still-make-its-score-misleading">2. What does FActScore fix, and what can still make its score misleading?</h3>
+<p>It fixes the unit of evaluation by splitting a long answer into independently verifiable atomic facts and averaging their verdicts. It remains precision-only, depends on an LM extractor, and can rise when claim count falls or when source S changes. Check |A(y)| and the pinned source before treating a jump as model improvement.</p>
+<h3 id="3-why-does-veriscore-need-both-context-aware-extraction-and-recall">3. Why does VeriScore need both context-aware extraction and recall?</h3>
+<p>Whole-generation extraction resolves references and removes claims that no source can verify. Recall R = min(C / K, 1) separately prevents a model from winning by making very few safe claims. Use a task-specific fixed K because a biography and a deliberately terse support reply should not share one expected claim count.</p>
+<h3 id="4-what-does-high-ragas-faithfulness-with-low-answer-relevance-mean">4. What does high RAGAS faithfulness with low answer relevance mean?</h3>
+<p>The answer's claims follow the retrieved context, but they do not address the actual query. Inspect query understanding and retrieval scope before changing grounding behavior. Also keep F, AR, and CR separate because one blended score would hide this diagnosis.</p>
+<h3 id="5-why-should-a-team-reject-a-zero-hallucination-target-for-every-abstractive-summary">5. Why should a team reject a zero hallucination target for every abstractive summary?</h3>
+<p>A basic entailment checker can flag reasonable bridging inference and outright fabrication in the same way. Driving the flag rate to zero can turn the system extractive, while a pooled score can also hide late-answer degradation. Separate intrinsic from extrinsic flags, bucket errors by position, and set policy from the product's harm profile because the chapter reports no settled universal threshold.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or expression</th>
+<th>Meaning in the source</th>
+<th>Boundary or interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 questions</td>
+<td>Illustrative documentation benchmark size</td>
+<td>Used only in the oracle-cost example</td>
+</tr>
+<tr>
+<td>4 claims per answer</td>
+<td>Illustrative mean atomic-fact count</td>
+<td>Produces 800 claims across 200 questions</td>
+</tr>
+<tr>
+<td>800 claims</td>
+<td>200 × 4</td>
+<td>Full-run claim volume</td>
+</tr>
+<tr>
+<td>5 claims per call</td>
+<td>Illustrative verifier batch size</td>
+<td>Produces 160 calls</td>
+</tr>
+<tr>
+<td>160 calls</td>
+<td>800 / 5</td>
+<td>Full-run batched verifier volume</td>
+</tr>
+<tr>
+<td>3 seconds per call</td>
+<td>Illustrative external-oracle latency</td>
+<td>Includes retrieval and reading before judgment</td>
+</tr>
+<tr>
+<td>480 seconds</td>
+<td>160 × 3</td>
+<td>External-oracle serial runtime</td>
+</tr>
+<tr>
+<td>8 minutes</td>
+<td>480 seconds</td>
+<td>Comfortable for an overnight run</td>
+</tr>
+<tr>
+<td>0.8 seconds per call</td>
+<td>Illustrative context-only judge latency</td>
+<td>No external fetch</td>
+</tr>
+<tr>
+<td>128 seconds</td>
+<td>160 × 0.8</td>
+<td>Context-only serial runtime</td>
+</tr>
+<tr>
+<td>About 2.1 minutes</td>
+<td>128 seconds</td>
+<td>Falls further with concurrency</td>
+</tr>
+<tr>
+<td>20 pull requests per day</td>
+<td>Illustrative merge volume</td>
+<td>Multiplied by 3 pushes each</td>
+</tr>
+<tr>
+<td>3 pushes per pull request</td>
+<td>Illustrative push volume</td>
+<td>Produces 60 CI runs per day</td>
+</tr>
+<tr>
+<td>60 CI runs per day</td>
+<td>20 × 3</td>
+<td>Per-push evaluation cadence</td>
+</tr>
+<tr>
+<td>9,600 external calls per day</td>
+<td>60 × 160</td>
+<td>Factuality check reused on every push</td>
+</tr>
+<tr>
+<td>2,000 automated queries per day</td>
+<td>Illustrative public endpoint cap per API key</td>
+<td>External source cannot sustain 9,600 calls</td>
+</tr>
+<tr>
+<td>About 4.8 times over budget</td>
+<td>9,600 / 2,000</td>
+<td>Pipeline fails on quota, not truthfulness</td>
+</tr>
+<tr>
+<td>Zero external calls</td>
+<td>Context-only configuration</td>
+<td>Removes source quota and rate-limit failure</td>
+</tr>
+<tr>
+<td>About 3.75 times lower latency</td>
+<td>3 / 0.8</td>
+<td>Comes only from removing the external fetch</td>
+</tr>
+<tr>
+<td>Two, three, or more facts</td>
+<td>Typical decomposition of one generated sentence</td>
+<td>Shows why sentence scoring is too coarse</td>
+</tr>
+<tr>
+<td>0 to 1</td>
+<td>FActScore range</td>
+<td>Per-response precision</td>
+</tr>
+<tr>
+<td>4 automatic estimators</td>
+<td>No-context, retrieve-and-judge, non-parametric probability, and their ensemble</td>
+<td>They trade oracle strength for verification cost</td>
+</tr>
+<tr>
+<td>Six or more sentences</td>
+<td>Long-form example in Figure 33.2</td>
+<td>Descriptive example, not a universal threshold</td>
+</tr>
+<tr>
+<td>6 sentences</td>
+<td>Worked biography length</td>
+<td>Contains 3 located errors</td>
+</tr>
+<tr>
+<td>1 wrong fact amid 14 correct details</td>
+<td>Opening binary-grading contrast</td>
+<td>Whole-response grading still returns the same zero as a fabricated career</td>
+</tr>
+<tr>
+<td>3 errors</td>
+<td>Wrong university, invented fellowship, wrong graduation year</td>
+<td>Binary grading still returns 0</td>
+</tr>
+<tr>
+<td>14 atomic facts</td>
+<td>Extracted from the 6-sentence biography</td>
+<td>About 2.3 facts per sentence</td>
+</tr>
+<tr>
+<td>11 supported and 3 unsupported</td>
+<td>First FActScore result</td>
+<td>11 / 14 ≈ 0.79</td>
+</tr>
+<tr>
+<td>2 supported of 14</td>
+<td>Worse comparison system</td>
+<td>2 / 14 ≈ 0.14</td>
+</tr>
+<tr>
+<td>0.9 seconds per fact</td>
+<td>Retrieve-and-judge cost</td>
+<td>One retrieval plus one LM judgment</td>
+</tr>
+<tr>
+<td>About 12.6 seconds</td>
+<td>14 × 0.9</td>
+<td>Serial cost for one biography</td>
+</tr>
+<tr>
+<td>250 biographies</td>
+<td>Original FActScore evaluation scale cited by the source</td>
+<td>Produces 3,500 checks at 14 facts each</td>
+</tr>
+<tr>
+<td>3,500 checks</td>
+<td>250 × 14</td>
+<td>Full benchmark fact volume</td>
+</tr>
+<tr>
+<td>About 3,150 seconds</td>
+<td>3,500 × 0.9</td>
+<td>Serial benchmark runtime</td>
+</tr>
+<tr>
+<td>About 52 minutes</td>
+<td>3,150 seconds</td>
+<td>Fits an overnight batch before concurrency</td>
+</tr>
+<tr>
+<td>1 fact and score 1.0</td>
+<td>Marie Curie edge case</td>
+<td>Exposes the precision-only loophole</td>
+</tr>
+<tr>
+<td>0.62 to 0.89</td>
+<td>Interview scenario score jump</td>
+<td>Check claim count and source drift before shipping</td>
+</tr>
+<tr>
+<td>0.75 to 0.97</td>
+<td>Support-summary dashboard change</td>
+<td>Coincides with under-generation</td>
+</tr>
+<tr>
+<td>6 sentences to 2</td>
+<td>Summary-length contraction</td>
+<td>Explains why precision rises without better coverage</td>
+</tr>
+<tr>
+<td>K = 12</td>
+<td>Illustrative good-summary verifiable-claim average</td>
+<td>Task-specific and not a published universal constant</td>
+</tr>
+<tr>
+<td>C = 14, C_sup = 11</td>
+<td>Full-effort VeriScore example</td>
+<td>P ≈ 0.786</td>
+</tr>
+<tr>
+<td>R = 1</td>
+<td>min(14 / 12, 1)</td>
+<td>Recall saturates above K</td>
+</tr>
+<tr>
+<td>VeriScore ≈ 0.880</td>
+<td>Full-effort combined score</td>
+<td>Uses P ≈ 0.786 and R = 1</td>
+</tr>
+<tr>
+<td>C = 2, C_sup = 2</td>
+<td>Hedging VeriScore example</td>
+<td>FActScore precision is 1.0</td>
+</tr>
+<tr>
+<td>R ≈ 0.167</td>
+<td>min(2 / 12, 1)</td>
+<td>Penalizes the low claim count</td>
+</tr>
+<tr>
+<td>VeriScore ≈ 0.286</td>
+<td>Hedging combined score</td>
+<td>Nearly 3.5 times below the perfect precision score</td>
+</tr>
+<tr>
+<td>1.5 seconds</td>
+<td>One context-aware extraction call</td>
+<td>Reads the whole generation</td>
+</tr>
+<tr>
+<td>6 × 0.4 ≈ 2.4 seconds</td>
+<td>Six sentence-level extraction calls</td>
+<td>More extraction time than the one context-aware call</td>
+</tr>
+<tr>
+<td>14 × 0.9 ≈ 12.6 seconds</td>
+<td>Verification after extraction</td>
+<td>Dominates extraction by close to an order of magnitude</td>
+</tr>
+<tr>
+<td>R ≈ 0.083</td>
+<td>min(1 / 12, 1)</td>
+<td>Recall for the one-fact edge case</td>
+</tr>
+<tr>
+<td>VeriScore ≈ 0.154</td>
+<td>One-fact edge-case score</td>
+<td>Closes the FActScore loophole</td>
+</tr>
+<tr>
+<td>More than 1 or 2 sentences</td>
+<td>Default point for document-level claim context</td>
+<td>Self-contained single-fact outputs can remain sentence-level</td>
+</tr>
+<tr>
+<td>n at least 3</td>
+<td>Default regenerated-question count for AR</td>
+<td>Increase only after variance testing</td>
+</tr>
+<tr>
+<td>10 context sentences</td>
+<td>RAGAS worked example retrieval</td>
+<td>Only 3 are needed</td>
+</tr>
+<tr>
+<td>3 / 10 = 0.30</td>
+<td>Context relevance</td>
+<td>Indicates 70 percent irrelevant material</td>
+</tr>
+<tr>
+<td>2 answer sentences</td>
+<td>RAGAS worked example output</td>
+<td>Extracts into 4 statements</td>
+</tr>
+<tr>
+<td>3 / 4 = 0.75</td>
+<td>RAGAS faithfulness</td>
+<td>One timeout claim lacks context support</td>
+</tr>
+<tr>
+<td>3 regenerated questions</td>
+<td>Answer-relevance example</td>
+<td>Similarities are 0.91, 0.88, and 0.52</td>
+</tr>
+<tr>
+<td>About 0.77</td>
+<td>(0.91 + 0.88 + 0.52) / 3</td>
+<td>Answer relevance</td>
+</tr>
+<tr>
+<td>1 extraction plus 4 verification calls</td>
+<td>Faithfulness cost in the RAGAS example</td>
+<td>Context-only</td>
+</tr>
+<tr>
+<td>1 generation plus 3 comparisons</td>
+<td>Answer-relevance cost</td>
+<td>Embedding comparisons are described as cheap</td>
+</tr>
+<tr>
+<td>1 extraction call</td>
+<td>Context-relevance cost</td>
+<td>Produces the relevant sentence subset</td>
+</tr>
+<tr>
+<td>Under 10 seconds</td>
+<td>Full RAGAS three-score runtime per response</td>
+<td>Uses roughly 0.8 seconds per LLM call</td>
+</tr>
+<tr>
+<td>3 artifacts and 3 directed scores</td>
+<td>Query, context, and answer form the RAGAS triangle</td>
+<td>The scores preserve separate failure locations</td>
+</tr>
+<tr>
+<td>40 percent</td>
+<td>Summarization checker flag rate in the opening scenario</td>
+<td>Zero is not an obviously valid target</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>Join year in the bridging-inference example</td>
+<td>The later appointment is stated separately, so the compressed bridge is not a verbatim source claim</td>
+</tr>
+<tr>
+<td>First 1 or 2 sentences</td>
+<td>Region associated with salient, high-support facts</td>
+<td>Later facts move into the low-support tail</td>
+</tr>
+<tr>
+<td>Sentence 3 to sentence 4</td>
+<td>Autoregressive error example</td>
+<td>An earlier fabrication becomes later conditioning context</td>
+</tr>
+<tr>
+<td>6 sentence positions</td>
+<td>Figure 33.5 horizontal range</td>
+<td>The plotted unsupported rate rises with position</td>
+</tr>
+<tr>
+<td>About 0.05, 0.08, 0.15, 0.22, 0.35, and 0.48</td>
+<td>Figure 33.5 illustrative per-position rates, with a pooled line near 0.22</td>
+<td>The constructed curve shows shape, not measured benchmark values</td>
+</tr>
+<tr>
+<td>More than 70 percent</td>
+<td>Maynez et al. floor for summaries containing hallucinations</td>
+<td>The source calls 70 percent conservative, not worst case</td>
+</tr>
+<tr>
+<td>Roughly 90 percent</td>
+<td>Share of those hallucinations that are factually wrong</td>
+<td>Not benign paraphrase</td>
+</tr>
+<tr>
+<td>1 sentence</td>
+<td>Maximum-compression probe</td>
+<td>Brevity can still bridge or fabricate</td>
+</tr>
+<tr>
+<td>8,000 tickets per day</td>
+<td>Illustrative support-desk volume</td>
+<td>One summary per ticket</td>
+</tr>
+<tr>
+<td>5,600 summaries</td>
+<td>8,000 × 0.70</td>
+<td>Contain at least one hallucination</td>
+</tr>
+<tr>
+<td>5,040 summaries</td>
+<td>5,600 × 0.90</td>
+<td>Contain a factually wrong claim</td>
+</tr>
+<tr>
+<td>63 percent</td>
+<td>5,040 / 8,000</td>
+<td>Wrong-claim share before a gate</td>
+</tr>
+<tr>
+<td>60 percent caught</td>
+<td>Illustrative NLI gate effectiveness</td>
+<td>Not a published threshold</td>
+</tr>
+<tr>
+<td>2,016 per day</td>
+<td>5,040 × (1 - 0.60)</td>
+<td>Wrong-claim summaries remaining</td>
+</tr>
+<tr>
+<td>Well under 200 milliseconds</td>
+<td>NLI forward pass per summary</td>
+<td>Source already in hand</td>
+</tr>
+<tr>
+<td>About 1,600 seconds</td>
+<td>8,000 × 0.2</td>
+<td>Serial gate runtime</td>
+</tr>
+<tr>
+<td>Under 27 minutes</td>
+<td>About 1,600 seconds</td>
+<td>Batch can also parallelize</td>
+</tr>
+<tr>
+<td>Roughly 4 to 5 times cheaper</td>
+<td>Document entailment versus 0.9-second retrieve-and-judge item</td>
+<td>Savings come from no retrieval</td>
+</tr>
+<tr>
+<td>No settled threshold</td>
+<td>Acceptable bridging-type unsupported content</td>
+<td>Explicit open-question boundary</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/32_evaluating_retrieval.html"><small>Previous</small>Chapter 32. Evaluating Retrieval</a><a href="../chapters/34_evaluating_the_system.html"><small>Next</small>Chapter 34. Evaluating the System</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

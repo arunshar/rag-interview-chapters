@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>00.06. For Practicing Engineers | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/00_06_for_practicing_engineers.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group" open><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html" aria-current="page">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Front matter</p><h1>00.06. For Practicing Engineers</h1><p class="chapter-meta">27 min estimated reading · Unit 6 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This unit maps the technical content of Retrieval-Augmented Generation (RAG) to the decisions, failures, costs, and trade-offs that practicing engineers face.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Use corpus size to reason about memory and query rate to reason about compute. Sizing from only one axis can starve the cluster on the other.</li>
+<li>When recall misses its target under a latency budget, tune search-time parameters first, build parameters second, and the index family last.</li>
+<li>Route each symptom to its relevant decision area, including retrieval, context use, citations, freshness, evaluation, and datastore safety.</li>
+<li>Diagnose a quality regression at the stage that moved. A single end-to-end score cannot identify which of five stages caused it.</li>
+<li>Do not assume retrieval or more context always helps. Retrieval flips roughly 10% of otherwise-correct answers to wrong, and middle-position evidence remains less reliable in a longer window.</li>
+<li>Start with Chapters 30, 34, 17, and 37 for context use, system evaluation, vector-store operations, and latency and cost.</li>
+<li>Keep stable principles separate from volatile tools. Ask which constraint a new technique addresses and what it trades away.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a RAG system as a factory line viewed from one control room. The corpus fills the warehouse, while the query rate sets the conveyor speed. Those two gauges load different resources. A manager who sizes the factory from only one gauge builds a line that stalls on the other.</p>
+<p>The control panel has three levels of intervention. Search-time knobs sit on the panel and can change per request. Build knobs stop the line for a rebuild. Replacing the index family changes the operating model of the factory itself. Downstream, an answer passes through five stations. When output quality drops, the engineer must find the station that moved instead of repairing the station the team knows best.</p>
+<p>The factory also receives outside material. Retrieved text can be unreliable or hostile, so the intake path can place untrusted material inside a privileged process. A longer workbench does not ensure that workers use evidence placed in its middle. A label attached after production may be topically related without proving where the answer came from. The book is the control-room manual. It routes each symptom to the right chapter, shows the measured cost of optimistic defaults, and ends every new-tool review with two checks: the constraint addressed and the trade-off accepted.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning in this unit</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieval-Augmented Generation, evaluated by stage and as a whole</td>
+<td>It anchors the system named throughout the engineering decision map.</td>
+</tr>
+<tr>
+<td>Index</td>
+<td>The search structure whose memory, build, freshness, and operational costs must be sized.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Index memory arithmetic</td>
+<td>The end-to-end calculation that turns corpus scale into index memory needs.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Query rate</td>
+<td>The workload axis that drives compute rather than corpus memory.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>Whether retrieval returns the needed material. It trades against latency and memory.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Latency budget</td>
+<td>The time constraint within which retrieval and the other system stages must operate.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Search-time parameters</td>
+<td>Per-request settings that should be tried first because they are reversible.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Build parameters</td>
+<td>Settings that should be tried second because changing them costs a rebuild.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Index family</td>
+<td>The underlying index choice. Changing it also changes the operational story.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>HNSW</td>
+<td>Hierarchical Navigable Small World graph index</td>
+<td>It anchors a graph-based index family in the engineering decision map.</td>
+</tr>
+<tr>
+<td>IVF</td>
+<td>Inverted File index</td>
+<td>It anchors a partition-based index family in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Disk-resident index</td>
+<td>An index family option that keeps the index on disk.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Vocabulary mismatch</td>
+<td>The case where user queries do not look like the documents they should retrieve.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Query expansion and rewriting</td>
+<td>A Chapter 24 route for vocabulary mismatch.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>doc2query</td>
+<td>A Section 29.2 document-expansion route for vocabulary mismatch.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Learned sparse model</td>
+<td>A Section 21.1 model that expands implicitly.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Hybrid lexical and dense channel</td>
+<td>A retrieval design that combines lexical and dense results.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>RRF</td>
+<td>Reciprocal Rank Fusion for lexical and dense channels</td>
+<td>It identifies the rank-only fusion method in Section 21.6.</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The generator input area where evidence position affects use.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Top-k truncation</td>
+<td>The decision about how many retrieved items to keep for context.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>U-curve</td>
+<td>The measured pattern in which evidence at either end of context is used more reliably than evidence in the middle.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Closed-book answer</td>
+<td>An answer produced without retrieval. It can outperform a retrieval-augmented answer in a stated regime.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Tombstone</td>
+<td>The deletion mechanism discussed with freshness and graph degradation.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Graph degradation</td>
+<td>Index damage that can accumulate under deletion.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Re-indexing</td>
+<td>Rebuilding the index as the corpus changes.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Sharding</td>
+<td>A vector-store operating concern covered in Chapter 17.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Replication</td>
+<td>A vector-store operating concern covered in Chapter 17.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Metadata filtering</td>
+<td>A restriction on retrieval results that can silently empty a result set.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Over-filtering</td>
+<td>Applying metadata restrictions so strongly that useful results disappear.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Reordering retrieved candidates after retrieval.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Rerank depth</td>
+<td>How many candidates enter reranking, with a trade-off surface engineers must size.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Engineering decision map</td>
+<td>The source's two-column route from a live decision or problem to its primary chapters.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Multi-hop retrieval</td>
+<td>Retrieval that follows more than one step.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Iterative retrieval</td>
+<td>Retrieval that repeats as the system develops the answer.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Grounding</td>
+<td>Producing an answer from supporting retrieved material.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Judgment set</td>
+<td>The evaluation set named alongside retrieval metrics.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether an answer remains supported by its evidence.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Macro -&gt; micro -&gt; mezzo</td>
+<td>The Section 34.2 diagnostic sequence for attributing a regression.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Remove-the-evidence ablation</td>
+<td>The Section 34.4 diagnostic that tests behavior after evidence is removed.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Adaptive gating</td>
+<td>The decision about whether to retrieve for a query. The book treats it as the first design decision.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>High-popularity questions</td>
+<td>The stated question regime where retrieval-augmented accuracy falls below closed-book accuracy.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Learned controller</td>
+<td>A router, retrieval gate, or confidence-triggered loop trained on a query distribution.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Distribution shift</td>
+<td>A change in query distribution that degrades learned controllers.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Semantic chunking</td>
+<td>A chunking method whose published benchmark advantage is tied here to manufactured topic discontinuities.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Post-hoc citation</td>
+<td>A citation added after generation. It shows topical similarity, not answer provenance.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Indirect prompt injection</td>
+<td>The threat created when retrieval places untrusted text into privileged context.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Datastore poisoning</td>
+<td>Hostile content written into the source that retrieval can expose to the system.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Multi-tenancy</td>
+<td>A Chapter 38 concern for serving multiple tenants.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Residency</td>
+<td>A Chapter 38 concern about where data or service state must remain.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Federation</td>
+<td>A Chapter 38 concern for routing across separated sources.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>PDF-shaped corpus</td>
+<td>A Portable Document Format (PDF) corpus whose tables and layout need the Chapter 14 treatment</td>
+<td>It routes layout-sensitive ingestion to the correct chapter.</td>
+</tr>
+<tr>
+<td>LLM-based graph construction</td>
+<td>Large language model (LLM) graph building whose million-document cost is compared with a vanilla vector index</td>
+<td>It exposes the graph-construction cost decision.</td>
+</tr>
+<tr>
+<td>Graph RAG</td>
+<td>A graph-based retrieval design that must be justified by genuinely relational corpora.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Static corpus</td>
+<td>An index assumption that production workloads violate.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>RAG card</td>
+<td>An Appendix D reporting template for what a system retrieves, how it was evaluated, and what it abstains on.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Index datasheet</td>
+<td>An Appendix D reporting template for what an index costs.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Design checklist</td>
+<td>An Appendix C artifact meant to be run during a design review.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Cost per query</td>
+<td>The stage-by-stage cost measure covered in Chapter 37.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Stable layer</td>
+<td>Geometry, arithmetic, token economics, and evaluation principles that the source says will not move.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>High-dimensional geometry</td>
+<td>The geometry used to explain why exact search fails at scale.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Exact search</td>
+<td>The search approach that the stable layer says dies in high-dimensional space.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Bandwidth arithmetic</td>
+<td>The index calculation named alongside memory arithmetic.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Token economics</td>
+<td>The stable cost reasoning attached to token use.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Volatile layer</td>
+<td>Models, databases, frameworks, and rerankers that move every quarter.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Orchestration framework</td>
+<td>One volatile tool category that no book can track continuously.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>The limitation a new technique claims to address.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>Trade-off</td>
+<td>What the new technique gives up in exchange.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+<tr>
+<td>k</td>
+<td>The number of retrieved items kept for context. The source predicts this is probably the setting an engineer will change.</td>
+<td>It anchors a term used in the engineering decision map.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="1-engineering-focus">1. Engineering focus</h3>
+<h4 id="what">What</h4>
+<p>The book uses interview questions as its organization, but almost none of its technical content is interview-specific. It covers index-sizing arithmetic, the trade-off surface behind rerank depth, and stage attribution for end-to-end accuracy regressions.</p>
+<h4 id="why">Why</h4>
+<p>Engineers perform the same calculations on the job under the same constraints and usually with less time. This unit maps chapters to the decisions they actually face.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>An engineer can mistake the book for interview preparation and miss its direct use in planning, diagnosis, design review, and operations.</p>
+<h4 id="stated-cost">Stated cost</h4>
+<p>The source states a time constraint rather than a numeric price. On-the-job decisions usually allow less time.</p>
+<h3 id="2-when-to-reach-for-this-book">2. When to Reach for This Book</h3>
+<h4 id="you-are-sizing-an-index-and-someone-asks-how-many-machines">You are sizing an index and someone asks how many machines</h4>
+<ul>
+<li><strong>What:</strong> Start with Section 16.5 for end-to-end index memory arithmetic. Then use Section 41.1 to turn corpus size and query rate into a node count without guessing.</li>
+<li><strong>Why:</strong> Corpus size and query rate drive different resources. Corpus size drives memory, while query rate drives compute.</li>
+<li><strong>Failure without it:</strong> Sizing for the number the product team repeats in planning meetings can produce a cluster starved on the other axis.</li>
+<li><strong>Stated cost:</strong> No numeric cost is stated. The operational cost is an underprovisioned resource axis.</li>
+</ul>
+<h4 id="recall-is-short-of-target-and-you-have-a-latency-budget">Recall is short of target and you have a latency budget</h4>
+<ul>
+<li><strong>What:</strong> Chapter 15 presents the recall, latency, and memory triangle. Turn search-time parameters first, build parameters second, and the index family last. Section 15.6 gives the decision procedure.</li>
+<li><strong>Why:</strong> Search-time parameters are reversible per request. Build parameters require a rebuild. An index-family change alters the operational story.</li>
+<li><strong>Failure without it:</strong> The team can choose a costly and disruptive change before trying a reversible one.</li>
+<li><strong>Stated cost:</strong> A build-parameter change costs a rebuild. An index-family change costs an operational redesign.</li>
+</ul>
+<h4 id="your-users-queries-do-not-look-like-your-documents">Your users' queries do not look like your documents</h4>
+<ul>
+<li><strong>What:</strong> Treat this as vocabulary mismatch. Four routes address it. Chapter 24 covers query expansion and rewriting. Section 29.2 covers document expansion with doc2query. Section 21.1 covers implicit expansion with a learned sparse model. Section 21.6 covers a hybrid lexical and dense channel fused with RRF. Chapter 24 opens with the taxonomy for choosing among them.</li>
+<li><strong>Why:</strong> The mismatch has separate fixes rather than one universal remedy.</li>
+<li><strong>Failure without it:</strong> The team can apply the wrong class of fix to the mismatch.</li>
+<li><strong>Stated cost:</strong> The four fixes have four different costs. This section does not assign numeric amounts to them.</li>
+</ul>
+<h4 id="the-retrieved-document-is-right-and-the-answer-is-still-wrong">The retrieved document is right and the answer is still wrong</h4>
+<ul>
+<li><strong>What:</strong> Start with Chapter 30. Context position is measurable, and a longer window does not fix the failure. Chapter 31 covers the case where the answer is right but its citation does not support it.</li>
+<li><strong>Why:</strong> Correct retrieval does not guarantee correct evidence use or correct attribution.</li>
+<li><strong>Failure without it:</strong> The team can keep changing retrieval even though the failure lives in context use, generation, or citation support.</li>
+<li><strong>Stated cost:</strong> No numeric cost is stated. The source identifies wasted intervention at the wrong stage as the practical failure.</li>
+</ul>
+<h4 id="the-index-has-to-stay-fresh-and-the-corpus-will-not-sit-still">The index has to stay fresh and the corpus will not sit still</h4>
+<ul>
+<li><strong>What:</strong> Section 17.1 covers tombstones, graph degradation under deletion, and the point where a rebuild becomes cheaper than continued patching. Section 41.2 works the entire freshness design as a drill.</li>
+<li><strong>Why:</strong> A production corpus is not static.</li>
+<li><strong>Failure without it:</strong> Deletion and continued patching can degrade the graph while the team avoids a rebuild that has become cheaper.</li>
+<li><strong>Stated cost:</strong> The decision compares continued patching with rebuilding. No numeric threshold is stated here.</li>
+</ul>
+<h4 id="quality-dropped-and-nobody-changed-anything">Quality dropped and nobody changed anything</h4>
+<ul>
+<li><strong>What:</strong> Use Chapter 34. A single end-to-end number cannot identify which of five stages moved. Apply the macro -&gt; micro -&gt; mezzo method from Section 34.2 and the remove-the-evidence ablation from Section 34.4. Section 41.6 runs both on a complete example.</li>
+<li><strong>Why:</strong> RAG must be diagnosed by stage rather than only end to end.</li>
+<li><strong>Failure without it:</strong> Teams fix the stage they know best instead of the stage that moved.</li>
+<li><strong>Stated cost:</strong> No numeric cost is stated. The cost is misdirected regression work.</li>
+</ul>
+<h4 id="someone-can-write-into-your-datastore">Someone can write into your datastore</h4>
+<ul>
+<li><strong>What:</strong> Use Chapter 36. Indirect prompt injection is RAG's native threat model because retrieval places untrusted text into privileged context. Section 36.5 covers poisoning. Chapter 35 covers unreliable rather than hostile documents.</li>
+<li><strong>Why:</strong> Datastore write access creates a direct path from untrusted content to privileged context.</li>
+<li><strong>Failure without it:</strong> The system can treat hostile or unreliable retrieved text as privileged input.</li>
+<li><strong>Stated cost:</strong> No numeric cost is stated. The source frames this as a vulnerability boundary.</li>
+</ul>
+<h3 id="3-chapter-map-by-engineering-decision">3. Chapter Map by Engineering Decision</h3>
+<h4 id="what-1">What</h4>
+<p>Use the following map to route an engineering decision to its primary chapters.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Decision or problem</th>
+<th>Primary chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Whether to retrieve at all</td>
+<td>Chapters 1 and 25</td>
+</tr>
+<tr>
+<td>Choosing chunk size and overlap</td>
+<td>Chapter 13</td>
+</tr>
+<tr>
+<td>Tables, layout, and PDF-shaped corpora</td>
+<td>Chapter 14</td>
+</tr>
+<tr>
+<td>Choosing an embedding model</td>
+<td>Chapters 12 and 20</td>
+</tr>
+<tr>
+<td>Index family, including HNSW, IVF, and disk-resident</td>
+<td>Chapter 15</td>
+</tr>
+<tr>
+<td>Compression and index memory</td>
+<td>Chapter 16 and Section 41.1</td>
+</tr>
+<tr>
+<td>Freshness, deletion, and re-indexing</td>
+<td>Chapter 17 and Section 41.2</td>
+</tr>
+<tr>
+<td>Metadata filtering and over-filtering</td>
+<td>Sections 17.5 and 17.6</td>
+</tr>
+<tr>
+<td>Adding a lexical channel and hybrid fusion</td>
+<td>Chapter 18 and Section 21.6</td>
+</tr>
+<tr>
+<td>Reranking and rerank depth</td>
+<td>Chapter 22</td>
+</tr>
+<tr>
+<td>Query rewriting and conversational turns</td>
+<td>Chapter 24</td>
+</tr>
+<tr>
+<td>Routing across multiple sources</td>
+<td>Chapters 25 and 38</td>
+</tr>
+<tr>
+<td>Multi-hop and iterative retrieval</td>
+<td>Chapter 26</td>
+</tr>
+<tr>
+<td>Fine-tuning the generator for grounding</td>
+<td>Chapter 27</td>
+</tr>
+<tr>
+<td>Training or adapting the retriever</td>
+<td>Chapter 28</td>
+</tr>
+<tr>
+<td>Manufacturing retrieval training data</td>
+<td>Chapter 29</td>
+</tr>
+<tr>
+<td>Context ordering and top-k truncation</td>
+<td>Chapter 30</td>
+</tr>
+<tr>
+<td>Citations and attribution</td>
+<td>Chapter 31</td>
+</tr>
+<tr>
+<td>Retrieval metrics and judgment sets</td>
+<td>Chapter 32</td>
+</tr>
+<tr>
+<td>Faithfulness and answer-quality metrics</td>
+<td>Chapter 33</td>
+</tr>
+<tr>
+<td>Attributing a regression to a stage</td>
+<td>Chapter 34</td>
+</tr>
+<tr>
+<td>Conflicting or unreliable sources</td>
+<td>Chapter 35</td>
+</tr>
+<tr>
+<td>Prompt injection and datastore poisoning</td>
+<td>Chapter 36</td>
+</tr>
+<tr>
+<td>Latency budget and cost per query</td>
+<td>Chapter 37</td>
+</tr>
+<tr>
+<td>Multi-tenancy, residency, and federation</td>
+<td>Chapter 38</td>
+</tr>
+<tr>
+<td>Images, video, and non-text corpora</td>
+<td>Chapter 39</td>
+</tr>
+<tr>
+<td>Entity-heavy and relation-heavy corpora</td>
+<td>Chapter 40</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="why-1">Why</h4>
+<p>The map begins with the engineering problem rather than the book sequence. It gives a direct path from a live decision to the relevant material.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>An engineer must search the full chapter sequence instead of starting from the problem at hand.</p>
+<h4 id="stated-cost-1">Stated cost</h4>
+<p>The map itself states no cost. Several routes point to cost-bearing decisions, including index memory, rebuilds, rerank depth, latency, and cost per query.</p>
+<h3 id="4-if-you-only-read-four-chapters">4. If You Only Read Four Chapters</h3>
+<h4 id="chapter-30-lost-in-the-middle">Chapter 30, Lost in the Middle</h4>
+<ul>
+<li><strong>What:</strong> It challenges the reflex that filling the context window is free and therefore good.</li>
+<li><strong>Why:</strong> The U-curve is measured. A longer window does not remove it. A regime exists in which a retrieval-augmented answer is worse than a closed-book answer.</li>
+<li><strong>Failure without it:</strong> A team can keep increasing context when reducing k is the legitimate quality intervention.</li>
+<li><strong>Stated cost:</strong> Filling the window is not free. The source predicts that k is probably the one setting an engineer will change after reading the book.</li>
+</ul>
+<h4 id="chapter-34-evaluating-the-system">Chapter 34, Evaluating the System</h4>
+<ul>
+<li><strong>What:</strong> It provides a mechanical method for locating the cause of a regression in exactly one of five stages.</li>
+<li><strong>Why:</strong> A drop in answer accuracy is a symptom, not a stage diagnosis.</li>
+<li><strong>Failure without it:</strong> Teams repair the stage they are most comfortable with.</li>
+<li><strong>Stated cost:</strong> The chapter pays for itself the first time something regresses.</li>
+</ul>
+<h4 id="chapter-17-operating-a-vector-store">Chapter 17, Operating a Vector Store</h4>
+<ul>
+<li><strong>What:</strong> It removes the static-corpus assumption behind the index derivations in Chapter 15. It covers tombstones, graph degradation, sharding, replication, metadata filtering that silently empties a result set, and the fact that no vector database wins on every axis.</li>
+<li><strong>Why:</strong> Production never has a static corpus.</li>
+<li><strong>Failure without it:</strong> Static-corpus reasoning misses the operational effects of change.</li>
+<li><strong>Stated cost:</strong> The chapter makes the cost of the static-corpus assumption explicit through deletion, degradation, distribution, filtering, and rebuild concerns.</li>
+</ul>
+<h4 id="chapter-37-latency-cost-and-systems">Chapter 37, Latency, Cost, and Systems</h4>
+<ul>
+<li><strong>What:</strong> It shows where milliseconds and dollars go, stage by stage.</li>
+<li><strong>Why:</strong> Most latency intuitions are wrong by an order of magnitude in one direction or the other.</li>
+<li><strong>Failure without it:</strong> The team can watch the wrong component while another dominates cost per query.</li>
+<li><strong>Stated cost:</strong> Cost per query is usually dominated by a component the team is not watching.</li>
+</ul>
+<h3 id="5-where-this-book-disagrees-with-the-consensus">5. Where This Book Disagrees with the Consensus</h3>
+<h4 id="what-2">What</h4>
+<p>The book treats retrieval folklore as unusually optimistic. It attaches measurements to positions that cut against that folklore so engineers can check them.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Position</th>
+<th>Why it matters</th>
+<th>Failure without it</th>
+<th>Stated cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval is not a free improvement</td>
+<td>Section 1.5 reports that it flips roughly 10% of otherwise-correct answers to wrong. On high-popularity questions, retrieval-augmented accuracy falls below closed-book accuracy.</td>
+<td>"Always retrieve" becomes an unexamined default. Adaptive gating is deferred even though it is decision one in Section 25.1.</td>
+<td>Retrieval has a measured accuracy cost rather than a neutral effect.</td>
+</tr>
+<tr>
+<td>More context is not better</td>
+<td>Evidence in the middle is used less reliably than evidence at either end. Sections 30.1 to 30.3 show that a longer window does not fix this.</td>
+<td>A team treats retrieving fewer documents as only a cost compromise.</td>
+<td>Section 30.6 treats fewer documents as a quality intervention.</td>
+</tr>
+<tr>
+<td>Semantic chunking's benchmark advantage mostly does not transfer</td>
+<td>Section 13.6 explains that published gains come from corpora made by stitching unrelated documents together. That construction manufactures the topic discontinuities the method detects.</td>
+<td>A team assumes those gains transfer to its corpus even when its corpus lacks those discontinuities.</td>
+<td>No numeric cost is stated. The benchmark advantage can fail to transfer.</td>
+</tr>
+<tr>
+<td>Post-hoc citations are close to worthless as grounding evidence</td>
+<td>Section 31.3 explains that a citation added after generation identifies topical similarity, not the document from which the answer came.</td>
+<td>A team mistakes topical similarity for attribution.</td>
+<td>If attribution matters, it must be built into answer production.</td>
+</tr>
+<tr>
+<td>Every learned controller shares one weakness</td>
+<td>Section 25.7 explains that routers, retrieval gates, and confidence-triggered loops train on a query distribution and degrade when that distribution shifts.</td>
+<td>A team budgets for building the controller but not for detecting distribution shift.</td>
+<td>Distribution-shift detection needs its own budget.</td>
+</tr>
+<tr>
+<td>A graph has to earn its place</td>
+<td>Section 40.1 shows that Graph RAG fits genuinely relational corpora.</td>
+<td>A team applies graph construction where relationships do not justify it.</td>
+<td>LLM-based graph construction over a million-document corpus can cost about 475 times the build cost of a vanilla vector index before any query runs.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="why-2">Why</h4>
+<p>Each disagreement converts an optimistic default into a decision with a measurable failure mode or explicit trade-off.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Teams can always retrieve, always add context, trust benchmark gains, attach citations after generation, ignore query shift, or build a graph without testing whether the corpus justifies those choices.</p>
+<h4 id="stated-cost-2">Stated cost</h4>
+<p>The source gives two explicit magnitudes. Retrieval flips roughly 10% of otherwise-correct answers to wrong. Million-document LLM-based graph construction can cost about 475 times a vanilla vector-index build.</p>
+<h3 id="6-artifacts-you-can-take-to-work">6. Artifacts You Can Take to Work</h3>
+<h4 id="what-3">What</h4>
+<p>Appendix C provides design checklists for retrieval, indexing, evaluation, credibility, and latency. They are written for use in a design review rather than passive reading.</p>
+<p>Appendix D provides the RAG card and index datasheet. These reporting templates state what a system retrieves from, how it was evaluated, what it abstains on, and what its index costs.</p>
+<h4 id="why-3">Why</h4>
+<p>Retrieval systems pass between teams more often than they are rewritten. A new owner's questions are predictable enough to answer in advance.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>A handoff can omit the system's sources, evaluation boundary, abstention behavior, or index cost.</p>
+<h4 id="stated-cost-3">Stated cost</h4>
+<p>No numeric cost is stated. The artifacts reduce repeated ownership questions and missing handoff information.</p>
+<h3 id="7-staying-current">7. Staying Current</h3>
+<h4 id="what-4">What</h4>
+<p>The stable layer is smaller than it looks, and the book focuses on it. It includes high-dimensional geometry and why exact search dies in it, index memory and bandwidth arithmetic, token economics, and the requirement to evaluate retrieval and generation separately and then together. The source says this layer will not move.</p>
+<p>The volatile layer includes embedding models, vector databases, orchestration frameworks, and the current best reranker. It moves every quarter, and no book can track it.</p>
+<h4 id="why-4">Why</h4>
+<p>When a new technique appears, ask two questions. Which constraint does it address? What does it trade away?</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>A technique that cannot answer the trade-off question has not been measured properly yet.</p>
+<h4 id="stated-cost-4">Stated cost</h4>
+<p>No numeric cost is stated. The volatile layer requires recurring evaluation because it changes every quarter.</p>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest records zero numbered figures and zero numbered tables for this unit. Page xxiv contains one unnumbered, two-column engineering decision map, reproduced above as Markdown. It has no number or caption, so the manifest count remains 0/0.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="numbered-draw-order">Numbered draw order</h3>
+<ol type="1">
+<li>Draw two input gauges labeled <code>corpus size -&gt; memory</code> and <code>query rate -&gt; compute</code> .</li>
+<li>Draw a three-step knob ladder labeled <code>search time</code> , <code>build</code> , and <code>index family</code> .</li>
+<li>Mark the costs beside the ladder as <code>reversible per request</code> , <code>rebuild</code> , and <code>operational change</code> .</li>
+<li>Draw a five-stage horizontal line and circle one unknown stage as the regression source.</li>
+<li>Under the line, draw a U-curve with <code>context start</code> , <code>middle</code> , and <code>context end</code> .</li>
+<li>Add an intake arrow labeled <code>untrusted retrieved text -&gt; privileged context</code> .</li>
+<li>Finish with two review questions labeled <code>constraint addressed?</code> and <code>trade-off accepted?</code> .</li>
+</ol>
+<h3 id="90-to-100-word-script">90 to 100 word script</h3>
+<p>Start with two dials because corpus size and query rate load different resources. Then draw the three-knob ladder. Search-time settings come first because each request can reverse them. Build settings come second because they require a rebuild. Index family comes last because it changes operations. Next, trace one answer through the five-stage line and circle the stage that moved. Add the context U-curve to show why a longer window does not cure middle-position loss. Finish with the safety gate. Retrieved text is untrusted, citations must support claims, and every new technique must name its constraint and trade-off.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-not-make-retrieval-the-default-for-every-query">1. Why not make retrieval the default for every query?</h3>
+<p>Retrieval is not neutral. It flips roughly 10% of otherwise-correct answers to wrong, and retrieval-augmented accuracy is below closed-book accuracy on high-popularity questions. Adaptive gating is the first design decision, not a later optimization.</p>
+<h3 id="2-if-evidence-is-lost-in-the-middle-why-not-use-a-longer-context-window">2. If evidence is lost in the middle, why not use a longer context window?</h3>
+<p>A longer window does not remove the measured U-curve. Evidence in the middle remains less reliably used than evidence at either end. Retrieving fewer documents can improve quality.</p>
+<h3 id="3-what-should-you-tune-when-recall-misses-its-target-under-a-latency-budget">3. What should you tune when recall misses its target under a latency budget?</h3>
+<p>Tune search-time parameters first because they are reversible per request. Tune build parameters second because they require a rebuild. Change the index family last because it changes the operational story.</p>
+<h3 id="4-why-is-a-post-hoc-citation-weak-grounding-evidence">4. Why is a post-hoc citation weak grounding evidence?</h3>
+<p>It identifies a document that is topically similar to the answer, not necessarily the document from which the answer came. If attribution matters, build it into answer production.</p>
+<h3 id="5-how-do-you-diagnose-a-quality-drop-when-nobody-changed-the-system">5. How do you diagnose a quality drop when nobody changed the system?</h3>
+<p>Do not rely on one end-to-end number. Find which of five stages moved with the macro -&gt; micro -&gt; mezzo method and the remove-the-evidence ablation. Repair the stage that moved rather than the stage the team knows best.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 reach cases</td>
+<td>The source routes seven recurring engineering situations to specific chapters and sections.</td>
+</tr>
+<tr>
+<td>27 decision rows</td>
+<td>The engineering decision map contains 27 problem-to-chapter mappings.</td>
+</tr>
+<tr>
+<td>4 fixes</td>
+<td>Vocabulary mismatch has four routes with four different costs.</td>
+</tr>
+<tr>
+<td>5 stages</td>
+<td>A single end-to-end score cannot identify which stage caused a quality regression.</td>
+</tr>
+<tr>
+<td>4 chapters</td>
+<td>The recommended short path is Chapters 30, 34, 17, and 37.</td>
+</tr>
+<tr>
+<td>6 disagreements</td>
+<td>The source gives six positions that cut against optimistic retrieval folklore.</td>
+</tr>
+<tr>
+<td>Roughly 10%</td>
+<td>Retrieval flips roughly this share of otherwise-correct answers to wrong.</td>
+</tr>
+<tr>
+<td>Decision 1</td>
+<td>Adaptive gating is the first design decision rather than a later optimization.</td>
+</tr>
+<tr>
+<td>1 order of magnitude</td>
+<td>Most latency intuitions are wrong by this amount in one direction or the other.</td>
+</tr>
+<tr>
+<td>1 million documents</td>
+<td>The stated corpus scale for the graph-construction cost comparison.</td>
+</tr>
+<tr>
+<td>About 475 times</td>
+<td>LLM-based graph construction can cost this much relative to building a vanilla vector index before any query runs.</td>
+</tr>
+<tr>
+<td>5 checklist areas</td>
+<td>Appendix C covers retrieval, indexing, evaluation, credibility, and latency.</td>
+</tr>
+<tr>
+<td>2 reporting templates</td>
+<td>Appendix D provides the RAG card and the index datasheet.</td>
+</tr>
+<tr>
+<td>2 stages, then 1 system</td>
+<td>Retrieval and generation must be evaluated separately and then together.</td>
+</tr>
+<tr>
+<td>2 review questions</td>
+<td>Ask which constraint a new technique addresses and what it trades away.</td>
+</tr>
+<tr>
+<td>Every quarter</td>
+<td>The volatile layer of models, databases, frameworks, and rerankers changes at this cadence.</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/00_05_for_interview_candidates.html"><small>Previous</small>00.05. For Interview Candidates</a><a href="../chapters/00_07_notation_and_symbols.html"><small>Next</small>00.07. Notation and Symbols</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

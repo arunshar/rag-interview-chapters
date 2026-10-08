@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 26. Iterative, Recursive, and Agentic Retrieval | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/26_iterative_recursive_and_agentic_retrieval.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group" open><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html" aria-current="page">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VII. Query Understanding and Control Flow</p><h1>Chapter 26. Iterative, Recursive, and Agentic Retrieval</h1><p class="chapter-meta">51 min estimated reading · Unit 35 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: Explain why a single retrieval call fails when the useful query appears only after reasoning begins, then compare the retrieval-augmented generation (RAG) control loops that retrieve again, critique evidence, learn search behavior, fan out across sources, and stop before extra rounds reduce value.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>One-shot retrieval freezes the query and context too early. Multi-hop drift, unresolved references, and stale-but-relevant evidence all place the deciding information after the only retrieval call.</li>
+<li>ITER-RETGEN, retrieval-augmented generation alternating with generation-augmented retrieval, feeds a draft back into the original query and replaces the retrieved set. This keeps prompt size linear in the number of rounds.</li>
+<li>Recursive methods derive a new hop from partial reasoning. Interleaved Retrieval with Chain-of-Thought Reasoning (IRCoT) keeps every passage, while Self-Ask keeps short intermediate answers.</li>
+<li>Forward-Looking Active Retrieval-Augmented Generation (FLARE) drafts a sentence, triggers on its minimum token probability, removes the uncertain span, retrieves, and regenerates.</li>
+<li>Corrective Retrieval-Augmented Generation (CRAG) uses a separate evaluator and two thresholds. Its ambiguous band preserves local evidence while adding web evidence, so a false positive costs context instead of the answer.</li>
+<li>Self-Reflective Retrieval-Augmented Generation (Self-RAG) compiles critique into reflection tokens. The tokens are cheap, but ranking one continuation per passage makes decode compute scale with the branch count.</li>
+<li>Search-R1 treats the whole think, search, information, and answer trace as the action. Group Relative Policy Optimization (GRPO) removes the critic used by Proximal Policy Optimization (PPO), but groups with identical rewards yield zero gradient. Agentic fan-out wins only when it overlaps multiple source-specific loops. Stopping must compare marginal coverage, dilution, latency, and price. Model confidence alone does not express those quantities.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a field team crossing a chain of islands with one radio call to headquarters. The first island is easy to name from the mission brief. The second is reachable only after the team reads a sign on the first.</p>
+<p>A one-shot dispatcher sends every map before departure and cannot include that hidden name. ITER-RETGEN lets the scout radio back a draft route. Headquarters joins it to the mission and sends a replacement map.</p>
+<p>IRCoT turns the journey into a growing field notebook, so every map stays in the pack. Self-Ask carries only the next island name. Its pack stays light, but a short note may omit evidence needed later.</p>
+<p>FLARE sends a scout ahead. The team erases an uncertain word from the scout's draft before asking for a map. CRAG adds an independent inspector who replaces bad maps, trims good ones, and pairs uncertain ones with an outside map.</p>
+<p>Self-RAG gives the scout compact signal flags. The flags cost little, but sending one scout down every candidate trail does not. Search-R1 lets reward shape search and stopping. GRPO learns nothing when every expedition succeeds or every expedition fails.</p>
+<p>Agentic retrieval sends separate teams to separate islands. Parallel travel helps only when several teams need follow-up calls. Each team still owes a summary. The final rule is not "walk until confident." Stop when expected evidence gain no longer beats dilution and cost.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Decode</th>
+<th>Operational consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One-shot retrieval</td>
+<td>Score one query once, freeze top-k context, then generate</td>
+<td>No later evidence can repair the query or judge the retrieved set</td>
+</tr>
+<tr>
+<td>Answer drift</td>
+<td>A fluent answer is supported by the supplied context but answers the wrong implied question</td>
+<td>Groundedness can remain green</td>
+</tr>
+<tr>
+<td>Unresolved reference</td>
+<td>The surface query omits a referent stored in dialogue history</td>
+<td>Rewrite to a self-contained query before retrieval</td>
+</tr>
+<tr>
+<td>Stale-but-relevant retrieval</td>
+<td>The ranker returns topically correct but outdated or contradictory text</td>
+<td>Recall at k cannot detect currency</td>
+</tr>
+<tr>
+<td>Bridge entity</td>
+<td>A term found in hop j that is required to retrieve hop j + 1</td>
+<td>Sequential retrieval is necessary when the bridge is not in the original query</td>
+</tr>
+<tr>
+<td>D, d, C, k, N, s(q,d), p(a given q,C), f_j, d_j, h, rho_j, and e</td>
+<td>Corpus, document, context, depth, size, scores, hop facts, hop documents, chain depth, hop recall, and bridge entity</td>
+<td>They expose why later documents may be unreachable from the original query</td>
+</tr>
+<tr>
+<td>q</td>
+<td>Original user query</td>
+<td>It anchors later query rewrites</td>
+</tr>
+<tr>
+<td>q*</td>
+<td>Self-contained information need reconstructed from query and history</td>
+<td>It resolves references before ranking</td>
+</tr>
+<tr>
+<td>D_t</td>
+<td>Retrieved set at round t</td>
+<td>Replacement keeps context flat, accumulation grows it</td>
+</tr>
+<tr>
+<td>y_t</td>
+<td>Generated draft or partial answer at round t</td>
+<td>It can reveal the missing bridge entity</td>
+</tr>
+<tr>
+<td>Q, C as a size, T, r_1, and r_2</td>
+<td>Query tokens, chunk tokens, rounds, hop-1 recall, and hop-2 recall</td>
+<td>These symbols price replacement and accumulation</td>
+</tr>
+<tr>
+<td>ITER-RETGEN</td>
+<td>Alternate retrieval and generation with query q joined to the prior draft</td>
+<td>Same index, new query, linear prompt growth under replacement</td>
+</tr>
+<tr>
+<td>Iterative retrieval</td>
+<td>Repeat retrieval with a revised version of the same information need</td>
+<td>A draft often drives the revision</td>
+</tr>
+<tr>
+<td>Recursive retrieval</td>
+<td>Emit a new reasoning step or sub-question whose answer determines the next hop</td>
+<td>Queries can differ semantically across hops</td>
+</tr>
+<tr>
+<td>Static fan-out</td>
+<td>Generate independent sub-queries from q and retrieve them concurrently</td>
+<td>Works for comparisons, not dependent bridge chains</td>
+</tr>
+<tr>
+<td>Reciprocal Rank Fusion (RRF)</td>
+<td>Fuse several ranked lists without needing comparable raw scores</td>
+<td>Useful after independent parallel retrieval</td>
+</tr>
+<tr>
+<td>IRCoT</td>
+<td>Recurse on one declarative chain-of-thought sentence and accumulate passages</td>
+<td>Strong evidence retention, quadratic prefill in step count</td>
+</tr>
+<tr>
+<td>Self-Ask</td>
+<td>Recurse on one explicit single-hop question and carry extracted intermediate answers</td>
+<td>Flat passage footprint, possible evidence loss during compression</td>
+</tr>
+<tr>
+<td>p_on</td>
+<td>Per-hop retrieval probability when the query names that hop's subject</td>
+<td>Recursive loops try to make every hop on-subject</td>
+</tr>
+<tr>
+<td>p_off</td>
+<td>Per-hop retrieval probability when the query omits the hop's subject</td>
+<td>It collapses one-shot coverage on bridge questions</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Probability of extracting the bridge correctly</td>
+<td>It compounds with recursive depth</td>
+</tr>
+<tr>
+<td>P_one-shot, P_rec, m, n, tau, R, and p_i</td>
+<td>One-shot coverage, recursive coverage, draft tokens, answer sentences, token time, retrieval-path cost, and token probability</td>
+<td>These symbols price recursive and FLARE loops</td>
+</tr>
+<tr>
+<td>Compositionality gap</td>
+<td>Fraction of compositional questions missed despite correct isolated sub-answers</td>
+<td>Scale did not remove the structural composition problem in the reported GPT-3 study</td>
+</tr>
+<tr>
+<td>FLARE</td>
+<td>Draft the next sentence, inspect confidence, retrieve if needed, then regenerate</td>
+<td>Retrieval timing becomes sentence-specific</td>
+</tr>
+<tr>
+<td>theta</td>
+<td>Trigger threshold over the minimum draft-token probability</td>
+<td>Decides whether to retrieve</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>Mask threshold over draft-token probabilities</td>
+<td>Decides which tokens are removed from the query</td>
+</tr>
+<tr>
+<td>Implicit FLARE query</td>
+<td>Mask low-confidence tokens and retrieve with the remainder</td>
+<td>Adds no model call, but can erase the subject or blend two needs</td>
+</tr>
+<tr>
+<td>Explicit FLARE query</td>
+<td>Generate one question per uncertain span</td>
+<td>Adds one short model call per span and separates needs</td>
+</tr>
+<tr>
+<td>f*</td>
+<td>Trigger-rate break-even against retrieval before every sentence</td>
+<td>Equals retrieval cost divided by draft-plus-retrieval cost</td>
+</tr>
+<tr>
+<td>CRAG</td>
+<td>Grade the retrieved set, then filter local evidence, use web evidence, or do both</td>
+<td>Adds an explicit correction point</td>
+</tr>
+<tr>
+<td>tau_lo</td>
+<td>Lower CRAG threshold</td>
+<td>Scores below it enter INCORRECT</td>
+</tr>
+<tr>
+<td>tau_hi</td>
+<td>Upper CRAG threshold</td>
+<td>Scores above it enter CORRECT</td>
+</tr>
+<tr>
+<td>INCORRECT</td>
+<td>Discard local results, rewrite to keywords, search the web</td>
+<td>A false positive here can delete a correct local answer</td>
+</tr>
+<tr>
+<td>AMBIGUOUS</td>
+<td>Keep filtered local evidence and append filtered web evidence</td>
+<td>Converts some false positives into extra prefill</td>
+</tr>
+<tr>
+<td>CORRECT</td>
+<td>Split local chunks into strips, rescore, drop weak strips, recompose</td>
+<td>Reduces boilerplate without a web call</td>
+</tr>
+<tr>
+<td>Knowledge strip</td>
+<td>A sentence or two cut from a retrieved chunk and rescored</td>
+<td>Fine-grained evidence filtering</td>
+</tr>
+<tr>
+<td>Delta and p</td>
+<td>Change in answer-presence probability and probability local top-k contains the answer</td>
+<td>They expose the false-positive penalty</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Evaluator recall on genuinely unhelpful sets</td>
+<td>Controls misses rescued</td>
+</tr>
+<tr>
+<td>f</td>
+<td>Evaluator false-positive rate on genuinely helpful sets</td>
+<td>Controls hits discarded</td>
+</tr>
+<tr>
+<td>alpha</td>
+<td>Web fallback success after a local miss</td>
+<td>Multiplies rescued misses</td>
+</tr>
+<tr>
+<td>alpha_0</td>
+<td>Web fallback success after a local hit was discarded</td>
+<td>Reduces, but does not erase, the false-positive penalty</td>
+</tr>
+<tr>
+<td>Self-RAG</td>
+<td>Add learned reflection-token groups to the generator vocabulary</td>
+<td>Critique becomes a decoder probability</td>
+</tr>
+<tr>
+<td>Retrieve</td>
+<td>Reflection group with yes, no, and continue</td>
+<td>Gates evidence per segment</td>
+</tr>
+<tr>
+<td>IsRel</td>
+<td>Reflection group with relevant and irrelevant</td>
+<td>Judges a retrieved passage</td>
+</tr>
+<tr>
+<td>IsSup</td>
+<td>Reflection group with fully supported, partially supported, and no support</td>
+<td>Judges entailment of the generated segment</td>
+</tr>
+<tr>
+<td>IsUse</td>
+<td>Reflection group with ratings 1 through 5</td>
+<td>Rates the completed response</td>
+</tr>
+<tr>
+<td>s_G</td>
+<td>Probability of the desired reflection token normalized within its legal group</td>
+<td>Supports calibrated workload-specific thresholds</td>
+</tr>
+<tr>
+<td>V, C, M, x, d_i, y_1:t-1, and w_G</td>
+<td>Vocabulary, distilled critic, generator, input, passage i, prior prefix, and critique weight</td>
+<td>These symbols define Self-RAG training and ranking</td>
+</tr>
+<tr>
+<td>K</td>
+<td>Number of retrieved passages and candidate continuations per segment</td>
+<td>Multiplies Self-RAG decode compute</td>
+</tr>
+<tr>
+<td>Distilled critic</td>
+<td>Model trained from external teacher labels and used to annotate the full corpus offline</td>
+<td>Removes the teacher from serving</td>
+</tr>
+<tr>
+<td>Search-R1</td>
+<td>Policy emits think, search, information, and answer tags in one interleaved trace</td>
+<td>Exact match can supervise the whole control flow</td>
+</tr>
+<tr>
+<td>PPO</td>
+<td>Policy optimization with a learned value network baseline</td>
+<td>A 7B critic plus training state costs 112 GB under the stated accounting</td>
+</tr>
+<tr>
+<td>GRPO</td>
+<td>Normalize each rollout reward by the mean and standard deviation of a same-question group</td>
+<td>Removes critic memory and adds G-way rollout compute</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Rollouts sampled for one question</td>
+<td>Larger G reduces some dead groups and raises generation cost</td>
+</tr>
+<tr>
+<td>A-hat_i, r_i, mu, sigma, c, and p</td>
+<td>Rollout advantage, reward, group mean, group deviation, success count, and success share</td>
+<td>They define Group Relative Policy Optimization statistics</td>
+</tr>
+<tr>
+<td>Dead group</td>
+<td>Every rollout has the same reward, so reward standard deviation is zero</td>
+<td>Implementations set every advantage to zero</td>
+</tr>
+<tr>
+<td>Retrieved-span mask</td>
+<td>Exclude information tokens supplied by the search engine from the policy loss</td>
+<td>Prevents imitation of retriever output</td>
+</tr>
+<tr>
+<td>lambda, q_t, n, and EM</td>
+<td>Per-search penalty, answer probability at turn t, search count, and exact match</td>
+<td>They make learned stopping economic</td>
+</tr>
+<tr>
+<td>Sub-agent</td>
+<td>A model, private context, and exclusive retrieval interface</td>
+<td>Its summary adds an unavoidable decode</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>Policy that dispatches sub-agents and synthesizes their outputs</td>
+<td>Owns global step and spend limits</td>
+</tr>
+<tr>
+<td>Fan-out</td>
+<td>Run source-specific loops concurrently</td>
+<td>Converts a sum of round counts into a maximum</td>
+</tr>
+<tr>
+<td>L, d, T, N, m, n_s, and c</td>
+<td>Layers, model width, tokens, parameters, agent count, rounds for source s, and per-round cost</td>
+<td>They price split attention and fan-out</td>
+</tr>
+<tr>
+<td>Conjunctive reliability</td>
+<td>Probability every required agent result is correct</td>
+<td>Equals a_agent raised to m when agents have equal independent accuracy</td>
+</tr>
+<tr>
+<td>2m + 2 scoreboards</td>
+<td>Retrieval and faithfulness per agent, plus dispatch and synthesis</td>
+<td>Minimum attribution surface for m agents</td>
+</tr>
+<tr>
+<td>C(T)</td>
+<td>Probability all required evidence is present after T rounds</td>
+<td>Saturates at the deepest traffic hop</td>
+</tr>
+<tr>
+<td>u(T)</td>
+<td>Probability the generator uses gold evidence amid competing passages</td>
+<td>Falls as accumulated context grows</td>
+</tr>
+<tr>
+<td>pi_h, Phi, mu, m, and beta_dilution</td>
+<td>Hop-depth share, normal cumulative distribution, score margin, misgrounded floor, and dilution rate</td>
+<td>They define evidence use as context grows</td>
+</tr>
+<tr>
+<td>A(T), Lambda(T), Delta C_T, and Delta A_T</td>
+<td>Accuracy, latency, marginal coverage, and marginal accuracy after T rounds</td>
+<td>They define accuracy and economic stopping crossings</td>
+</tr>
+<tr>
+<td>T*</td>
+<td>Accuracy-optimal number of rounds</td>
+<td>Three in the stated accumulating example</td>
+</tr>
+<tr>
+<td>T-dagger</td>
+<td>Economically optimal number of rounds</td>
+<td>Two at 100 ms per accuracy point in the stated example</td>
+</tr>
+<tr>
+<td>Prefix caching</td>
+<td>Reuse the unchanged prefix of an append-only prompt</td>
+<td>Lowers accumulating-loop latency without changing accuracy</td>
+</tr>
+<tr>
+<td>Best Match 25 (BM25) and Embeddings from Bidirectional Encoder Representations (E5)</td>
+<td>Sparse term scoring and the dense encoder named in Search-R1</td>
+<td>They represent two retrieval families used in the source</td>
+</tr>
+<tr>
+<td>Generative Pre-trained Transformer (GPT), Text-to-Text Transfer Transformer (T5), Incomplete Information Reading Comprehension (IIRC), and American Invitational Mathematics Examination (AIME)</td>
+<td>Generator and evaluator families, multi-hop reading benchmark, and mathematics benchmark</td>
+<td>They decode model names and bound two reported comparisons</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="261-why-one-shot-retrieval-breaks">26.1 Why one-shot retrieval breaks</h3>
+<p>What:</p>
+<ul>
+<li>A user query q is scored against corpus D with s(q, d).</li>
+<li>The top k documents become context C.</li>
+<li>The generator produces p(a given q, C).</li>
+<li>One-shot means s is evaluated once and C is frozen before the first output token.</li>
+</ul>
+<p>Why the failure appears:</p>
+<ul>
+<li>Multi-hop drift needs facts f_1 through f_h in documents d_1 through d_h.</li>
+<li>Under the source's independence model, complete evidence has probability</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">complete evidence</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>h</mi></munderover><msub><mi>ρ</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\Pr(\text{complete evidence}) = \prod_{j=1}^{h} \rho_j(q)</annotation></semantics></math></p>
+<ul>
+<li>Even the optimistic equal-hop example gives 0.8 squared = 0.64 for two hops.</li>
+<li>The deeper issue is that the term that identifies d_2 is f_1, and f_1 is absent from q.</li>
+<li>Iteration changes the second event from rho_2(q) to rho_2(q, f_1).</li>
+</ul>
+<p>Failure without it:</p>
+<ul>
+<li>In the penicillin example, the system retrieves passages about penicillin, a discovery, a scientist, and a date.</li>
+<li>It answers "Alexander Fleming, in 1928."</li>
+<li>The passages support that response, so the error is answer drift rather than an unsupported hallucination.</li>
+<li>A groundedness check compares the answer with the wrong but internally consistent context and does not fire.</li>
+<li>In a conversation, "when did he start the company?" has only "start" and "company" after stoplisting.</li>
+<li>Those terms contribute 1.10 and 1.73 inverse document frequency units.</li>
+<li>The total 2.83 is about 15% of the 18.31 units in the self-contained question.</li>
+<li>The missing PayPal or Tesla referent remains in turn t - 1 and never enters ranking.</li>
+<li>Stale text survives a perfect ranker because topical relevance does not imply current truth.</li>
+<li>Recall at k is blind to this mode by construction.</li>
+</ul>
+<p>Cost and complexity:</p>
+<ul>
+<li>Raising k and changing the encoder still rank documents against a fixed, incomplete query.</li>
+<li>In a corpus of 10^7 chunks, the term frequencies are 4,000 for penicillin, 300,000 for element, 400,000 for scientist, 800,000 for discovered, and 2,000,000 for found.</li>
+<li>Their stated BM25 inverse document frequency values are 7.82, 3.48, 3.18, 2.44, and 1.39.</li>
+<li>They sum to 18.31.</li>
+<li>Penicillin supplies 7.82 / 18.31 = 43% of the discriminative mass.</li>
+<li>The Lavoisier passage can contribute at most the remaining 10.49 units because it lacks penicillin.</li>
+<li>Dense retrieval changes the winners but still receives a query that lacks sulfur.</li>
+<li>At k = 50 and 400 tokens per chunk, context reaches 20,000 tokens and exceeds an 8k window.</li>
+<li>A 7B prefill costs 2 x 20,000 x 7 x 10^9 = 2.8 x 10^14 floating-point operations.</li>
+<li>At 3.4 x 10^14 floating-point operations per second, that is 824 ms, versus 82 ms at k = 5.</li>
+<li>Two k = 5 hops prefill roughly 2,000 tokens each.</li>
+<li>The source prices those prefills at 2 x 70 = 140 ms.</li>
+<li>A 7B model in 16-bit floating point (FP16) holds 14 GB of weights.</li>
+<li>At 3.35 TB/s, decode costs 14 / 3350 = 4.2 ms per token.</li>
+<li>A 20-token bridge query costs 84 ms.</li>
+<li>The stated total is 224 ms versus 700 ms for widening.</li>
+</ul>
+<p>Mechanism example:</p>
+<ul>
+<li>Hop 1 retrieves penicillin chemistry and exposes sulfur.</li>
+<li>Sulfur appears in 30,000 chunks.</li>
+<li>Its hop-2 inverse document frequency is ln(9,970,000.5 / 30,000.5) = 5.81.</li>
+<li>The second query asks who established that sulfur is an element.</li>
+<li>The intended chain ends at Lavoisier's 1777 argument that sulfur is an element rather than a compound.</li>
+<li>The source limits the benchmark claim to HotpotQA's bridge construction, where two gold paragraphs appear among ten distractors and the second is reached through an entity in the first.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Label 300 production queries as single-hop, multi-hop, reference-bearing, or currency-sensitive. Spend on the retriever by default when multi-hop is under 10%, unless that slice carries disproportionate value. Resolve references before retrieval. Widen k only for a measured recall at 50 minus recall at 5 depth gap. Prefer a cross-encoder for depth and a second query for a missing term. Put a relevance grader before generation for stale or contradictory evidence. Track retrieval calls, unresolved-reference flags, newest-chunk age, and cross-chunk contradiction.</li>
+</ul>
+<h3 id="262-iterative-retrieval-with-iter-retgen">26.2 Iterative retrieval with ITER-RETGEN</h3>
+<p>What:</p>
+<ul>
+<li>A bridge question maps billing-api to prod-ledger-3 in d_1.</li>
+<li>It then maps prod-ledger-3 to eu-central-1 in d_2.</li>
+<li>The bridge entity e occurs in both documents and in neither the original question nor the answer.</li>
+<li>One-shot chain recall is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mtext mathvariant="normal">one-shot</mtext></msub><mo>=</mo><msub><mi>r</mi><mn>1</mn></msub><msub><mi>r</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">R_{\text{one-shot}} = r_1 r_2</annotation></semantics></math></p>
+<ul>
+<li>ITER-RETGEN alternates retrieval and generation:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mn>1</mn></msub><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">D_1 = R(q, k)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mn>1</mn></msub><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><msub><mi>D</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y_1 = G(q, D_1)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>D</mi><mi>t</mi></msub><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>⊕</mo><msub><mi>y</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>,</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">D_t = R(q \oplus y_{t-1}, k)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>t</mi></msub><mo>=</mo><mi>G</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><msub><mi>D</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>t</mi><mo>=</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">y_t = G(q, D_t), \qquad t = 2, \ldots, T</annotation></semantics></math></p>
+<p>Why:</p>
+<ul>
+<li>The round-one draft is the available rewrite that can contain e.</li>
+<li>Joining q with y_t-1 retains the user's need while adding the bridge.</li>
+<li>Retrieving on y_t-1 alone risks drift toward an elaboration in the draft.</li>
+<li>D_t replaces D_t-1, so the prompt stays at k chunks.</li>
+</ul>
+<p>Failure without it:</p>
+<ul>
+<li>d_2 shares no useful content term with q.</li>
+<li>Over N = 2 x 10^6 chunks, its expected rank is about 10^6.</li>
+<li>Raising k would need corpus-scale depth to reach it.</li>
+<li>Static decomposition also fails because "which region is prod-ledger-3 in?" cannot be written before hop 1.</li>
+<li>Static fan-out remains better for independent comparisons such as Postgres versus MySQL logical replication.</li>
+<li>The deciding property is decomposition topology, not the phrase "multi-hop."</li>
+</ul>
+<p>Cost and complexity:</p>
+<ul>
+<li>Replacement prefill over T rounds is T(Q + kC).</li>
+<li>Accumulation prefill is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mi>Q</mi><mo>+</mo><mi>k</mi><mi>C</mi><mfrac><mrow><mi>T</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">TQ + kC\frac{T(T+1)}{2}</annotation></semantics></math></p>
+<ul>
+<li>A round after chain depth h is a fixed point because D_h+1 is approximately D_h.</li>
+<li>That extra round still pays for one retrieval and one decode.</li>
+</ul>
+<p>Worked example:</p>
+<ul>
+<li>N = 2 x 10^6 chunks.</li>
+<li>C = 400 tokens, Q = 200 tokens, 7B FP16 generator, k = 5.</li>
+<li>r_1 = 0.86 and r_2 = 0.09.</li>
+<li>Retrieval costs 8 ms for embedding, 15 ms for approximate nearest-neighbor search over 100 candidates, and 60 ms for cross-encoding.</li>
+<li>Total retrieval is 83 ms.</li>
+<li>Prefill throughput is 3.4 x 10^14 floating-point operations per second.</li>
+<li>Decode is 4.2 ms per token and answers use 80 tokens.</li>
+<li>One-shot k = 5 gives 0.86 x 0.09 = 7.7% chain recall.</li>
+<li>Its 2,200-token prefill is 3.08 x 10^13 floating-point operations, or 91 ms.</li>
+<li>Decode is 336 ms.</li>
+<li>Total is 83 + 91 + 336 = 510 ms.</li>
+<li>One-shot k = 50 gives r_1 = 0.97 and r_2 = 0.17.</li>
+<li>Chain recall is 16.5%.</li>
+<li>The 20,200-token prefill is 832 ms.</li>
+<li>Total is 1,251 ms.</li>
+<li>Two-round ITER-RETGEN has 0.86 x 0.90 = 0.774 probability of placing e in the second query.</li>
+<li>Hop-2 top-5 recall given q joined to y_1 is 0.78.</li>
+<li>Chain recall is 0.774 x 0.78 = 60.4%.</li>
+<li>Two identical 510 ms rounds total 1,020 ms.</li>
+<li>The source's cost check calls this 134 ms cheaper than wide one-shot and 3.7 times its chain recall. The listed totals give 1,251 - 1,020 = 231 ms, so the 134 ms claim does not reconcile.</li>
+<li>A later takeaway reports 992 ms for the same comparison. Preserve this as a source-level discrepancy rather than silently changing either value.</li>
+<li>An accumulating IRCoT-style loop with T = 7 prefills 7 x 200 + 2,000 x 28 = 57,400 tokens.</li>
+<li>The source prices this as 2,009 ms prefill, 2,352 ms decode, and 581 ms retrieval. The stated throughput formula gives 2,364 ms for prefill, so the source's prefill ledger does not reconcile.</li>
+<li>Total is 4,942 ms, or 10.0 times the 510 ms one-shot configuration.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Default to T = 2 and require a labeled three-hop slice before T = 3. Route independent sub-questions to parallel RRF fan-out and dependent bridge chains to alternation. Replace passage text each round. Carry chunk identifiers when final citations require early evidence. Log every issued query. Use a hard wall-clock budget and return a partial answer at timeout.</li>
+</ul>
+<h3 id="263-recursive-retrieval-with-ircot-and-self-ask">26.3 Recursive retrieval with IRCoT and Self-Ask</h3>
+<p>What:</p>
+<ul>
+<li>An h-hop chain needs the next query to name an entity emitted by the previous hop.</li>
+<li>One-shot names only the first subject:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mtext mathvariant="normal">one-shot</mtext></msub><mo>=</mo><msub><mi>p</mi><mtext mathvariant="normal">on</mtext></msub><msubsup><mi>p</mi><mtext mathvariant="normal">off</mtext><mrow><mi>h</mi><mo>−</mo><mn>1</mn></mrow></msubsup></mrow><annotation encoding="application/x-tex">P_{\text{one-shot}} = p_{\text{on}}p_{\text{off}}^{h-1}</annotation></semantics></math></p>
+<ul>
+<li>A recursive loop makes every retrieval on-subject but must extract each bridge correctly:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mtext mathvariant="normal">rec</mtext></msub><mo>=</mo><msubsup><mi>p</mi><mtext mathvariant="normal">on</mtext><mi>h</mi></msubsup><msup><mi>a</mi><mrow><mi>h</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">P_{\text{rec}} = p_{\text{on}}^h a^{h-1}</annotation></semantics></math></p>
+<p>Why:</p>
+<ul>
+<li>The example question asks who was president of the United States after the Soviet Union dissolved.</li>
+<li>The first evidence names December 1991 and George H. W. Bush.</li>
+<li>The missing query asks who was elected in November 1992.</li>
+<li>That leads to Bill Clinton taking office in January 1993.</li>
+<li>The second query does not exist until the first hop supplies the date transition.</li>
+</ul>
+<p>Failure without it:</p>
+<ul>
+<li>With p_on = 0.85, p_off = 0.25, and a = 0.90, two-hop one-shot coverage is 0.85 x 0.25 = 0.21.</li>
+<li>The recursive loop gives 0.85 squared x 0.90 = 0.65.</li>
+<li>At h = 3, one-shot gives 0.053 and recursion gives 0.85 cubed x 0.90 squared = 0.50.</li>
+<li>At h = 5, recursive coverage falls to 0.85 to the fifth x 0.90 to the fourth = 0.29.</li>
+<li>Recursion repairs the missing query but does not make depth free.</li>
+</ul>
+<p>IRCoT mechanism:</p>
+<ul>
+<li>Retrieve on q.</li>
+<li>Write exactly one declarative chain-of-thought sentence from q, all accumulated passages, and all prior reasoning sentences.</li>
+<li>Use that sentence verbatim as the next query.</li>
+<li>Append the new passages.</li>
+<li>Stop on the phrase "so the answer is" or a hard step cap.</li>
+<li>Run a final question-answering reader over the full collection.</li>
+<li>The declarative sentence matches the register of corpus prose, which suits BM25.</li>
+</ul>
+<p>Self-Ask mechanism:</p>
+<ul>
+<li>A few-shot prompt emits "Are follow up questions needed here: Yes."</li>
+<li>It emits one single-hop follow-up question.</li>
+<li>Only that question reaches the retriever or search engine.</li>
+<li>The result returns as "Intermediate answer:".</li>
+<li>Passages are dropped after extracting the short answer.</li>
+<li>The loop ends with "So the final answer is."</li>
+<li>The reported compositionality gap did not close across the GPT-3 family. The claim is about that measurement, not all model families.</li>
+</ul>
+<p>Cost and complexity:</p>
+<ul>
+<li>IRCoT preserves passages and grows prefill with T(T + 1) / 2.</li>
+<li>Self-Ask preserves short answer strings and grows passage processing linearly.</li>
+<li>A corpus catalog inside the prompt does not substitute for an index.</li>
+<li>A B-tree prunes, while attention still reads every in-context index entry.</li>
+</ul>
+<p>Worked example:</p>
+<ul>
+<li>k = 5 passages, 200 tokens each, 50 ms per retrieval.</li>
+<li>Decode rate is 50 tokens per second.</li>
+<li>All questions are two-hop and bridged.</li>
+<li>One-shot uses 1,000 document tokens.</li>
+<li>One retrieval plus a 40-token answer costs 0.05 + 40 / 50 = 0.85 seconds.</li>
+<li>Evidence coverage is 0.21.</li>
+<li>IRCoT uses T = 3.</li>
+<li>Loop prefill is 1,000 x 6 = 6,000 document tokens.</li>
+<li>The final reader adds 3,000, for 9,000 total.</li>
+<li>Each reasoning step costs 0.05 + 30 / 50 = 0.65 seconds.</li>
+<li>Three steps plus a 0.80 second reader cost 2.75 seconds.</li>
+<li>That is 3.2 times one-shot latency.</li>
+<li>Self-Ask uses two follow-ups and processes 2,000 document tokens.</li>
+<li>It achieves the same 0.65 evidence coverage in the stated model.</li>
+<li>This is a 4.5 times document-token reduction versus IRCoT.</li>
+<li>At $0.50 per million input tokens and one million daily queries, stated prompt-token costs are $500, $4,500, and $1,000 per day for one-shot, IRCoT, and Self-Ask.</li>
+<li>The simple model predicts a 44-point gain from 21% to 65%.</li>
+<li>The reported IRCoT results are up to 21 points in retrieval recall and up to 15 points in downstream question answering on HotpotQA, 2WikiMultihopQA, MuSiQue, and IIRC.</li>
+<li>Replacing p_off = 0.25 with 0.55 raises one-shot coverage to 0.47 and leaves an 18-point gap.</li>
+<li>The source recommends about 0.5 as a public-benchmark prior and requires measurement on the actual corpus.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Use Self-Ask when each bridge compresses to an entity, date, or title. Use IRCoT when a hop is a multi-sentence clause or symptom that the final reader must cite. Cap at four retrieval steps and monitor the cap-hit rate. Use k = 3 to 5 per step and widen only hop 1 when it is ambiguous. Require both an emitted terminator and a hard cap. Treat cap hits as abstention candidates. Measure per-hop gold-paragraph recall.</li>
+</ul>
+<h3 id="264-confidence-triggered-retrieval-with-flare">26.4 Confidence-triggered retrieval with FLARE</h3>
+<p>What:</p>
+<ul>
+<li>The answer is a sentence sequence s_1 through s_n.</li>
+<li>Before sentence s_t, FLARE drafts a throwaway sentence without retrieval.</li>
+<li>It triggers when the minimum draft-token probability falls below theta:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">retrieve</mtext><mo>⇔</mo><munder><mi>min</mi><mrow><mn>1</mn><mo>≤</mo><mi>i</mi><mo>≤</mo><mi>m</mi></mrow></munder><msub><mi>p</mi><mi>i</mi></msub><mo>&lt;</mo><mi>θ</mi></mrow><annotation encoding="application/x-tex">\text{retrieve} \Longleftrightarrow \min_{1 \le i \le m} p_i &lt; \theta</annotation></semantics></math></p>
+<ul>
+<li>It removes low-confidence guesses from the retrieval query.</li>
+<li>It retrieves passages, regenerates s_t, discards the draft, and drops the passages after regeneration.</li>
+</ul>
+<p>Why:</p>
+<ul>
+<li>A question-only retrieval can support opening sentences while later sentences introduce new facts.</li>
+<li>Retrieving every sentence spends searches on grounded text.</li>
+<li>A local uncertainty spike identifies the sentence that needs evidence.</li>
+<li>The uncertain span cannot remain in the query because retrieval would find neighbors of the model's guess and manufacture apparent support.</li>
+</ul>
+<p>Failure without it:</p>
+<ul>
+<li>For 24 tokens at probability 0.95 and one fabricated token at 0.10, the mean is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>24</mn><mo>×</mo><mn>0.95</mn><mo>+</mo><mn>0.10</mn></mrow><mn>25</mn></mfrac><mo>=</mo><mfrac><mn>22.9</mn><mn>25</mn></mfrac><mo>=</mo><mn>0.916</mn></mrow><annotation encoding="application/x-tex">\frac{24 \times 0.95 + 0.10}{25} = \frac{22.9}{25} = 0.916</annotation></semantics></math></p>
+<ul>
+<li>Perplexity is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mfrac><mrow><mn>24</mn><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mn>0.95</mn><mo>+</mo><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mn>0.10</mn></mrow><mn>25</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mn>0.1414</mn></msup><mo>=</mo><mn>1.152</mn></mrow><annotation encoding="application/x-tex">\exp\left(-\frac{24\ln 0.95 + \ln 0.10}{25}\right) = e^{0.1414} = 1.152</annotation></semantics></math></p>
+<ul>
+<li>The no-fabrication comparator is e to the 0.0513 = 1.053.</li>
+<li>The perplexity gap is 9%, while the minimum falls from 0.95 to 0.10.</li>
+<li>A mean or perplexity is a low-pass filter over the local event.</li>
+</ul>
+<p>Implicit and explicit queries:</p>
+<ul>
+<li>The implicit query masks every token below beta.</li>
+<li>Example: "Joe Biden attended [mask], where he earned [mask]."</li>
+<li>It adds zero model calls.</li>
+<li>It can leave a contentless frame when the subject is masked.</li>
+<li>It blends independent uncertain facts into one query.</li>
+<li>The explicit method generates one question per uncertain span.</li>
+<li>Examples: "Which university did Joe Biden attend?" and "What degree did Joe Biden earn?"</li>
+<li>It adds one short generation per span.</li>
+<li>It yields an interrogative query and separates independent needs.</li>
+<li>Theta decides whether to search.</li>
+<li>Beta decides what to delete.</li>
+<li>Both require per-token log probabilities.</li>
+<li>If the serving application programming interface (API) does not return log probabilities, this form of confidence triggering is not implementable.</li>
+<li>The stated fallback is a learned control token such as Self-RAG's Retrieve token.</li>
+</ul>
+<p>Cost and complexity:</p>
+<ul>
+<li>A 12-sentence biography has 25 tokens per sentence.</li>
+<li>A 7B FP16 model on one H100 uses the 14 GB / 3.35 TB/s roofline.</li>
+<li>Decode is 4.2 ms per token.</li>
+<li>One sentence costs 105 ms and the 300-token answer costs 1,260 ms.</li>
+<li>Retrieval is 8 ms embedding plus 15 ms approximate nearest-neighbor search.</li>
+<li>Five 100-token passages require 2 x 500 x 7 x 10^9 = 7.0 x 10^12 floating-point operations.</li>
+<li>At 3.4 x 10^14 floating-point operations per second, prefill costs 21 ms.</li>
+<li>Total retrieval path R is 44 ms.</li>
+<li>Retrieve once costs 44 + 1,260 = 1,304 ms.</li>
+<li>Retrieve before every sentence costs 12 x 44 + 1,260 = 1,788 ms.</li>
+<li>It performs 12 searches and injects 6,000 retrieved tokens.</li>
+<li>Implicit FLARE firing on 4 of 12 sentences costs 1,260 + 4 x (105 + 44) = 1,856 ms.</li>
+<li>It performs 4 searches and injects 2,000 retrieved tokens.</li>
+<li>Six explicit 12-token question generations add 6 x 12 x 4.2 = 302 ms.</li>
+<li>Explicit total is 2,158 ms.</li>
+</ul>
+<p>Break-even criterion:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mo>*</mo></msup><mo>=</mo><mfrac><mi>R</mi><mrow><mi>m</mi><mi>τ</mi><mo>+</mo><mi>R</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">f^{*} = \frac{R}{m\tau + R}</annotation></semantics></math></p>
+<ul>
+<li>With R = 44 ms and sentence decode m tau = 105 ms, f* = 44 / 149 = 0.295.</li>
+<li>A 1 / 3 trigger rate is above break-even, so FLARE is 68 ms slower than fixed every-sentence retrieval in this example.</li>
+<li>It still uses one third the searches and one third the injected context.</li>
+<li>With a 400 ms web search, f* = 400 / 505 = 0.79.</li>
+<li>The 4.2 ms token time is a roofline, not a measurement.</li>
+<li>The source gives 70% to 85% of roofline and 5 to 6 ms per token as the honest batch-1 range.</li>
+<li>With tau = 6 ms and a 40 ms retrieval assumption, f* = 40 / (150 + 40) = 0.21.</li>
+<li>A practice note separately rounds the local-index break-even to 28% at 40 ms and 105 ms.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Trigger on minimum token probability and calibrate theta on labeled data for a heavily quantized or poorly calibrated model. Compute f* before adoption. Never include a flagged span in the query. Start with implicit masking and escalate when masking removes the subject or a sentence has two independent uncertain spans. Budget about 50 ms per 12-token question. Cap triggers per answer. Four searches bound the stated 12-sentence example. Drop each step's passages unless later sentences depend on them.</li>
+</ul>
+<h3 id="265-corrective-rag">26.5 Corrective RAG</h3>
+<p>What:</p>
+<ul>
+<li>CRAG inserts a separately trained retrieval evaluator between retrieval and generation.</li>
+<li>It scores each query-document pair, aggregates one confidence for the set, and applies tau_lo &lt; tau_hi.</li>
+<li>CORRECT splits chunks into one- or two-sentence strips, rescores them, drops weak strips, and recomposes the survivors.</li>
+<li>INCORRECT discards local results, rewrites the query into keywords, performs web search, and filters those results.</li>
+<li>AMBIGUOUS keeps filtered local strips and appends filtered web results.</li>
+<li>The architecture wraps any retriever and generator. The reported Self-CRAG system wraps Self-RAG.</li>
+</ul>
+<p>Why:</p>
+<ul>
+<li>A binary gate trades rescued misses against discarded hits:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mi>r</mi><mi>α</mi><mo>−</mo><mi>p</mi><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>α</mi><mn>0</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\Delta = (1-p)r\alpha - pf(1-\alpha_0)</annotation></semantics></math></p>
+<ul>
+<li>The first term is misses rescued.</li>
+<li>The second is helpful local evidence discarded by an evaluator false positive.</li>
+<li>When p = 0.72, each point of f is weighted about 2.5 times each point of 1 - r.</li>
+<li>The ambiguous band keeps local evidence, driving the discard factor toward zero for cases inside the band.</li>
+</ul>
+<p>Failure without it:</p>
+<ul>
+<li>Retriever similarity is the objective used to select top-k, so its maximum measures the index's best topical match rather than answer containment.</li>
+<li>An unanswerable query still has a nearest neighbor.</li>
+<li>A generator grading its own retrieval shares the generator's blind spots.</li>
+<li>The fluent, topical, wrong case is the case most likely to receive agreement.</li>
+<li>CRAG's evaluator is a separately fine-tuned T5-large of about 0.77B parameters.</li>
+<li>It was fitted on PopQA, so published thresholds must not be treated as calibrated on a new domain.</li>
+</ul>
+<p>Cost and worked example:</p>
+<ul>
+<li>Local recall at 5 is p = 0.72.</li>
+<li>The 7B generator is correct 85% of the time when the answer is present and never when absent.</li>
+<li>Evaluator recall on unhelpful sets is r = 0.85 and false-positive rate on helpful sets is f = 0.08.</li>
+<li>Web success is alpha = 0.60 after a local miss and alpha_0 = 0.50 after discarding a local hit.</li>
+<li>Web search costs $5 per 1,000 calls and 400 ms.</li>
+<li>No evaluator gives 0.72 x 0.85 = 0.612 accuracy.</li>
+<li>A binary gate escalates 0.28 x 0.85 + 0.72 x 0.08 = 0.296 of queries.</li>
+<li>Its three surviving paths contribute 0.563, 0.024, and 0.121, for 0.709 accuracy.</li>
+<li>Put three quarters of false positives into AMBIGUOUS.</li>
+<li>That branch contributes 0.0432 x 0.85 + 0.0144 x 0.50 x 0.85 = 0.0367 + 0.0061 = 0.043.</li>
+<li>Three verdicts give 0.727 accuracy, 11.5 points over naive RAG and 1.8 points over the binary gate.</li>
+<li>Five pairs at about 230 tokens each send 1,150 tokens through the 0.77B evaluator.</li>
+<li>Compute is 1,150 x 2 x 0.77 x 10^9 = 1.77 x 10^12 floating-point operations.</li>
+<li>At 3.4 x 10^14 per second, that is 5.2 ms.</li>
+<li>A 2,000-token 7B generator prefill is 82 ms, so the evaluator adds 6.3%.</li>
+<li>At $2.50 per graphics processing unit (GPU) hour, 1,000 evaluator runs cost about $0.004.</li>
+<li>Fallback costs 0.296 x $5 = $1.48 per 1,000 queries.</li>
+<li>That is $0.013 per corrected answer for 115 wrong-to-right conversions.</li>
+<li>Mean latency rises 123 ms.</li>
+<li>At a 30% escalation rate, p95 pays the full 400 ms web path.</li>
+<li>Reported Self-CRAG accuracy is 61.8 on PopQA, about seven points above the Self-RAG baseline it wraps.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Fit both thresholds on 300 to 500 local labeled queries. If labels are unavailable, log scores without routing for one release cycle. Keep tau_lo conservative because a false positive below it costs the answer. Turn strip filtering on above roughly 200 tokens and off for short propositions. Do not split tables or code at sentence boundaries. Alert when escalation drifts from 30% toward 45%. Under load, cap escalations and degrade to local-only. Without outbound search, route INCORRECT to abstention or handoff.</li>
+</ul>
+<h3 id="266-self-rag">26.6 Self-RAG</h3>
+<p>What:</p>
+<ul>
+<li>Self-RAG extends vocabulary V with reflection-token groups.</li>
+<li>Retrieve has yes, no, and continue.</li>
+<li>IsRel has relevant and irrelevant.</li>
+<li>IsSup has fully supported, partially supported, and no support.</li>
+<li>IsUse has ratings 1 through 5.</li>
+<li>The group-normalized probability is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>G</mi></msub><mo>=</mo><mfrac><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mover><mi>r</mi><mo accent="true">̂</mo></mover><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><mi>r</mi><mo>∈</mo><mi>G</mi></mrow></munder><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">s_G = \frac{p(\hat r)}{\sum_{r \in G} p(r)}</annotation></semantics></math></p>
+<ul>
+<li>With K passages, generate one candidate segment per passage and rank candidate i by</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><msubsup><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>t</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msubsup><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>t</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>∣</mo><mi>x</mi><mo>,</mo><msub><mi>d</mi><mi>i</mi></msub><mo>,</mo><msub><mi>y</mi><mrow><mn>1</mn><mo>:</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><munder><mo>∑</mo><mi>G</mi></munder><msub><mi>w</mi><mi>G</mi></msub><msubsup><mi>s</mi><mi>G</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">f(\hat y_t^{(i)}) = \log p(\hat y_t^{(i)} \mid x,d_i,y_{1:t-1}) + \sum_G w_G s_G^{(i)}</annotation></semantics></math></p>
+<ul>
+<li>The weights w_G are set at decode time.</li>
+</ul>
+<p>Why:</p>
+<ul>
+<li>A reflection decision arrives as a probability from one legal token group.</li>
+<li>It needs no second critique prompt and no free-form string parser.</li>
+<li>Tokens occur per segment, so retrieval and support checks can happen mid-answer.</li>
+<li>In contrast, FLARE uses ordinary token confidence as a proxy for uncertainty.</li>
+</ul>
+<p>Training and claim limit:</p>
+<ul>
+<li>GPT-4 labels a modest sample using type-specific prompts and demonstrations.</li>
+<li>A critic C is distilled from those labels.</li>
+<li>C annotates the full generator corpus offline by inserting reflection tokens.</li>
+<li>Generator M trains on that corpus with ordinary next-token loss.</li>
+<li>A 150,000-instance corpus with 20,000 teacher-labeled examples uses 20,000 teacher calls plus 150,000 local critic calls.</li>
+<li>This is 7.5 times fewer expensive teacher calls than direct teacher annotation.</li>
+<li>Serving does not use C.</li>
+<li>The student inherits a teacher ceiling on the taught judgment.</li>
+<li>At serving time, content and critique share weights, so their errors remain correlated.</li>
+<li>A separate CRAG evaluator decorrelates weights but judges documents, not the generated text.</li>
+</ul>
+<p>Cost and worked example:</p>
+<ul>
+<li>Generator is 7B at 50 tokens per second, or 20 ms per token. Prefill is 8,000 tokens per second. K = 5, passages are 200 tokens, the question and instruction use 100 tokens, and the answer has four 30-token segments.</li>
+<li>Vanilla RAG prefills 1,100 tokens in 0.14 seconds and decodes 120 tokens in 2.40 seconds, totaling 2.54 seconds.</li>
+<li>Self-RAG decodes 30 content plus three reflection tokens on five branches per segment. That is 4 x 5 x 33 = 660 tokens, excluding one closing IsUse. Initial prefill is 1,500 tokens. Reseeding adds 495. Total prefill is 1,995 tokens or 0.25 seconds. Batched decode is 2.64 seconds. Total is 2.89 seconds, or 1.14 times latency and 5.5 times decode compute.</li>
+<li>Of 540 extra tokens, 60 are reflection tokens and 480 are discarded content. Reflection is 11% of the extra decode. The 0.77B external evaluator has 1,155 parameter-token units versus 3,780 for Self-RAG, making the latter 3.3 times more expensive. Five-way self-consistency is 5.0 times baseline. Self-RAG adds the 33 / 30 = 1.10 reflection overhead.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Set K before critique weights. Default K = 5 only when accuracy justifies 5.5 times decode. Use K = 2 for a cost-bound workload, yielding about 2.2 times decode. Read probabilities rather than argmax labels. Weight IsSup over IsUse for audited output. Distill from outside the generator family when rules permit. Re-annotate when the meaning of support changes.</li>
+</ul>
+<h3 id="267-search-r1-grpo-and-learned-stopping">26.7 Search-R1, GRPO, and learned stopping</h3>
+<p>What:</p>
+<ul>
+<li>Search-R1 emits four tags in one policy trace: think, search, information, and answer.</li>
+<li>Closing search pauses decoding, runs E5 retrieval over Wikipedia, inserts the top three passages inside information tags, and resumes.</li>
+<li>Answer ends the rollout.</li>
+<li>The only reward is exact match (EM) against the gold answer.</li>
+<li>There is no format bonus, process supervision, or explicit search-count reward.</li>
+</ul>
+<p>Why GRPO:</p>
+<ul>
+<li>A binary reward is sparse.</li>
+<li>PPO learns a value-network baseline.</li>
+<li>For a 7B critic at bf16 under AdamW, the source counts 14 GB weights, 14 GB gradients, and 84 GB fp32 moments plus master weights.</li>
+<li>Total critic memory is 112 GB.</li>
+<li>GRPO samples G rollouts for one question and uses group statistics:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>A</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>r</mi><mi>i</mi></msub><mo>−</mo><mi>μ</mi></mrow><mi>σ</mi></mfrac></mrow><annotation encoding="application/x-tex">\hat A_i = \frac{r_i-\mu}{\sigma}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mo>=</mo><mfrac><mn>1</mn><mi>G</mi></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>G</mi></munderover><msub><mi>r</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\mu = \frac{1}{G}\sum_{j=1}^{G}r_j</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mi>G</mi></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>G</mi></munderover><mo stretchy="false" form="prefix">(</mo><msub><mi>r</mi><mi>j</mi></msub><mo>−</mo><mi>μ</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\sigma = \sqrt{\frac{1}{G}\sum_{j=1}^{G}(r_j-\mu)^2}</annotation></semantics></math></p>
+<ul>
+<li>For c successes, p = c / G.</li>
+<li>A correct rollout has advantage square root of (1 - p) / p.</li>
+<li>A wrong rollout has negative advantage square root of p / (1 - p).</li>
+<li>At G = 5 with one success, the success is +2.0 and each failure is -0.5.</li>
+<li>With one failure, the signs mirror.</li>
+<li>Advantages within a nondegenerate group sum to zero.</li>
+</ul>
+<p>Failure without safeguards:</p>
+<ul>
+<li>A same-reward group has sigma = 0 and implementations set every advantage to zero.</li>
+<li>Dead-group probability is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mtext mathvariant="normal">dead</mtext></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><mi>G</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msup><mi>p</mi><mi>G</mi></msup><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>G</mi></msup></mrow><annotation encoding="application/x-tex">P_{\text{dead}}(p,G) = p^G + (1-p)^G</annotation></semantics></math></p>
+<ul>
+<li>At G = 5 it is 0.0625 for p = 0.5, 0.5905 for p = 0.9, and 0.7738 for p = 0.95.</li>
+<li>An 810-token rollout contains 40 prompt tokens, 170 generated tokens, and 600 retrieved tokens.</li>
+<li>Retrieved spans are 74% of the sequence.</li>
+<li>They must be masked out of policy loss because the policy did not author them.</li>
+<li>Keep them in the reference-policy Kullback-Leibler term because they are legitimate context.</li>
+</ul>
+<p>Search cost objective:</p>
+<ul>
+<li>Exact match alone learns "search if q_t+1 &gt; q_t."</li>
+<li>Add r = EM - lambda n over n searches.</li>
+<li>The learned condition becomes "search if q_t+1 - q_t &gt; lambda."</li>
+<li>One call is 20 ms retrieval plus a 300-token 3B prefill.</li>
+<li>Prefill is 300 x 6 x 10^9 / 3.4 x 10^14 = 5.3 ms.</li>
+<li>If the product pays 100 ms per exact-match point, lambda = 0.01 x 25 / 100 = 0.0025.</li>
+</ul>
+<p>Training cost:</p>
+<ul>
+<li>A 3B policy uses 6 x 10^9 operations per token forward and 1.8 x 10^10 forward plus backward. One 810-token rollout costs 1.02 x 10^12 decode, 3.84 x 10^12 prefill, 4.86 x 10^12 reference forward, and 1.458 x 10^13 policy forward plus backward. Total is 2.430 x 10^13, or 71.5 ms.</li>
+<li>G = 5 costs 357 ms per question. For 100,000 questions, one pass is 35,750 seconds, 9.93 GPU-hours, or $24.82 at $2.50 per GPU-hour.</li>
+<li>A mix of 30% at p = 0.95, 25% at p = 0.05, and 45% at p = 0.5 gives 45.4% dead groups. That wastes 4.51 GPU-hours and $11.27. Useful throughput is 54,630 groups, or 5,504 per GPU-hour.</li>
+<li>Generation plus prefill is 14.3 ms. Reference forward plus update is 57.2 ms. Skipping the latter on dead groups saves 26.0 ms per 71.5 ms, a 36.3% cut, reaching 6.32 GPU-hours and $15.80 with identical gradients.</li>
+<li>A G = 5 probe filters the 55% all-right or all-wrong prompts. Training 45,000 remaining prompts costs 4.47 GPU-hours and yields 42,188 useful groups, or 9,438 per GPU-hour. This is 1.72 times baseline and surrenders 22.6% of easy and hard questions that would have signaled. The source names this dynamic sampling.</li>
+<li>Decode becomes compute-bound around batch 102. Batch at 128 or higher. Raising G from 5 to 16 at p = 0.9 lowers dead share from 0.5905 to 0.1853 and roughly triples the bill.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Start with G = 5 and use dead-group rate as the main training metric. Below about 10% is acceptable. Above 40% indicates polarized prompts. Prefilter before raising G. Add the per-call penalty on the first run. Keep the hand-tuned controller as a shadow on shifted data. Cap turns at twice observed p99 even after learning to stop.</li>
+</ul>
+<h3 id="268-agentic-rag-and-its-costs">26.8 Agentic RAG and its costs</h3>
+<p>What and why:</p>
+<ul>
+<li>A sub-agent binds a model, a private context, and one retrieval interface.</li>
+<li>A controller dispatches agents and synthesizes summaries.</li>
+<li>Splitting T tokens over m contexts divides the quadratic attention term by m and leaves the linear model term unchanged.</li>
+<li>Prefill accounting is 2NT plus 4LdT squared.</li>
+<li>For a 7B model with L = 32 and d = 4,096, 4Ld = 5.24 x 10^5.</li>
+<li>One 16,300-token context costs 2.28 x 10^14 linear plus 1.39 x 10^14 attention operations.</li>
+<li>Total is 3.68 x 10^14, or 1,081 ms at 3.4 x 10^14 per second.</li>
+<li>Four agents each read 4,000 retrieved tokens plus a 300-token prompt.</li>
+<li>Each prefill is 6.99 x 10^13 operations, or 206 ms.</li>
+<li>Four devices make that 206 ms of wall clock.</li>
+</ul>
+<p>Failure and crossover:</p>
+<ul>
+<li>Each agent must decode a summary.</li>
+<li>At 4.18 ms per token, a 200-token summary costs 836 ms and extra hardware does not shorten it.</li>
+<li>One source round costs about c = 815 ms: 125 ms for a 30-token query, 400 ms source wait, and 290 ms to read 4,000 new tokens in a 20,300-token context.</li>
+<li>Fan-out adds 836 ms summary decode and 47 ms controller prefill, or 883 ms.</li>
+<li>It wins only when</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mrow><mo stretchy="true" form="prefix">(</mo><munder><mo>∑</mo><mi>s</mi></munder><msub><mi>n</mi><mi>s</mi></msub><mo>−</mo><munder><mi>max</mi><mi>s</mi></munder><msub><mi>n</mi><mi>s</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>&gt;</mo><mn>883</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> ms</mtext></mrow></mrow><annotation encoding="application/x-tex">c\left(\sum_s n_s-\max_s n_s\right) &gt; 883\text{ ms}</annotation></semantics></math></p>
+<ul>
+<li>Equivalently, removed serial work must exceed 1.08 rounds.</li>
+<li>Concurrent fixed retrievals do not need agents.</li>
+<li>Agent behavior is justified when a source must generate a follow-up query and decide whether to continue.</li>
+</ul>
+<p>Worked example:</p>
+<ul>
+<li>The legal assistant uses four sources, a 7B model, 4,000 retrieved tokens per source, 200-token summaries, and a 150-token final answer. Prices are $3 per million input and $15 per million output tokens.</li>
+<li>One 16,300-token call costs 1,081 ms prefill plus 627 ms decode, or 1,708 ms and $0.0512. Four non-looping agents take 1,042 ms concurrently and the controller takes 674 ms. Total is 1,715 ms, 7 ms slower. Hardware is 4,842 versus 1,708 device-milliseconds, or 2.8 times. Cost is $0.0692, 35% higher.</li>
+<li>With second rounds for case law and graph, the monolith costs 3,363 ms and $0.0761. Fan-out costs 2,457 ms and $0.0941. It is 27% faster and 24% more expensive.</li>
+<li>The reported research system uses about 15 times chat tokens versus 4 times for one agent, implying about 3.7 times fan-out. Here two rounds give 2 x $0.0941 / $0.0512 = 3.68. The claim is limited to rounds times fan-out. Four required agents at 0.9 each yield 0.656 conjunctive reliability. Attribution needs 2m + 2 scoreboards, or 10.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Use agents only for sources that generate follow-up queries. Keep fan-out depth at one until a deeper layer is measured. Default summaries to 200 tokens. A critic layer plus synthesis can exceed two seconds of pure decode. Put one global step-and-spend budget in the controller, cap it at twice measured p99 rounds, and return the best partial synthesis when it binds.</li>
+</ul>
+<h3 id="269-when-to-stop">26.9 When to stop</h3>
+<p>What:</p>
+<ul>
+<li>Coverage over a hop-depth mixture is</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>h</mi><mo>≤</mo><mi>T</mi></mrow></munder><msub><mi>π</mi><mi>h</mi></msub><msubsup><mi>p</mi><mtext mathvariant="normal">on</mtext><mi>h</mi></msubsup><msup><mi>a</mi><mrow><mi>h</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">C(T) = \sum_{h \le T}\pi_h p_{\text{on}}^h a^{h-1}</annotation></semantics></math></p>
+<ul>
+<li>The measured mix is 55% one-hop, 30% two-hop, 12% three-hop, and 3% four-hop.</li>
+<li>With p_on = 0.85 and a = 0.90, coverage is 0.468, 0.663, 0.722, 0.734, and 0.734 for T = 1 through 5.</li>
+<li>Marginal coverage gains are 19.5, 6.0, 1.1, and 0.0 points.</li>
+<li>Coverage saturates at the deepest hop in the traffic mixture.</li>
+</ul>
+<p>Dilution and accuracy:</p>
+<ul>
+<li>Gold-passage utilization among n passages is u = Phi(mu) to the n - 1.</li>
+<li>In an accumulating loop n = kT.</li>
+<li>With k = 5 and mu = 2.5, Phi(2.5) = 0.9938.</li>
+<li>Each round multiplies utilization by Phi(2.5) to the fifth = 0.969.</li>
+<li>This is a 3.1% relative grounding tax per extra round.</li>
+<li>With a misgrounded floor m = 0.31:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>m</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo><mi>u</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A(T) = m + (1-m)C(T)u(T)</annotation></semantics></math></p>
+<ul>
+<li>Accuracy rises exactly when</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi mathvariant="normal">Δ</mi><msub><mi>C</mi><mi>T</mi></msub></mrow><mrow><mi>C</mi><mo stretchy="false" form="prefix">(</mo><mi>T</mi><mo>−</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>&gt;</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>μ</mi><msup><mo stretchy="false" form="postfix">)</mo><mrow><mi>−</mi><mi>k</mi></mrow></msup><mo>−</mo><mn>1</mn><mo>≈</mo><mi>k</mi><mi>β</mi></mrow><annotation encoding="application/x-tex">\frac{\Delta C_T}{C(T-1)} &gt; \Phi(\mu)^{-k}-1 \approx k\beta</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mi>−</mi><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>μ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\beta = -\ln\Phi(\mu)</annotation></semantics></math></p>
+<ul>
+<li>Here beta = 0.00623 and the threshold is 3.16%.</li>
+<li>Round 2 gives 19.5 / 46.8 = 41.7%.</li>
+<li>Round 3 gives 6.0 / 66.3 = 9.0%.</li>
+<li>Round 4 gives 1.1 / 72.2 = 1.6%.</li>
+<li>The accuracy optimum is T* = 3.</li>
+</ul>
+<p>Latency and economic stop:</p>
+<ul>
+<li>Prefill costs 0.041 ms per token for the stated 7B system.</li>
+<li>Decode costs 4.2 ms per token.</li>
+<li>Retrieval costs 83 ms per call.</li>
+<li>Each round emits 30 reasoning tokens and the final reader emits 80.</li>
+<li>Round t costs 83 ms retrieval, 0.041(200 + 1,000t) ms prefill, and 126 ms decode.</li>
+<li>Each round also adds 41 ms to the reader prefill.</li>
+<li>Marginal latency rises by 340, 381, 422, and 463 ms in the source's formula ledger. The table differences are 321, 356, 391, and 426 ms, so the two source ledgers do not reconcile.</li>
+<li>At 100 ms per accuracy point, round 2 returns 11.8 points worth 1,180 ms and is accepted.</li>
+<li>Round 3 returns 2.45 points worth 245 ms against 381 ms and is refused.</li>
+<li>The economic optimum is T-dagger = 2.</li>
+<li>A terminator or confidence signal contains no k, beta, or milliseconds.</li>
+<li>Use it only as a tiebreak below a derived hard cap.</li>
+</ul>
+<p>Replacement, caching, and claim limits:</p>
+<ul>
+<li>Prefix caching makes later append-only rounds prefill 1,000 new tokens. Marginal cost is 83 + 35 + 126 = 244 ms. The earlier 0.041 ms rate implies 41 ms rather than 35 ms, which is another source-level discrepancy. Accumulating T = 3 falls from 1,306 to 1,076 ms. Round 3 then costs 244 ms against 245 ms of value. Replacement is cache-hostile because text below the question changes.</li>
+<li>One accumulating round takes 629 ms, uses 2,400 tokens, costs $7,200 per million queries, and reaches 62.5%. Plain one-shot takes 461 ms, so loop overhead is 168 ms.</li>
+<li>Three accumulating rounds use 9,800 tokens, cost $29,400, take 1,306 ms, and reach 76.7%. Five use 21,200 tokens, cost $63,600, take 2,123 ms, and fall to 74.6%. The extras spend $34,200 and 817 ms while losing 2.1 points.</li>
+<li>Three replacing rounds use 4,800 tokens, cost $14,400, take 1,131 ms, and reach 79.6%. T = 4 reaches 80.4% and then stays flat. Versus accumulation at T = 3, replacement is 2.9 points higher, 175 ms faster, and 51% cheaper. Its 0.8-point fourth-round gain costs 251 ms, so T-dagger = 3.</li>
+<li>The 14.2-point one-to-three gain matches the cited upper bound of 15 points for IRCoT. Turnover at 20 passages matches the separate cited observation of decline at 20 documents.</li>
+</ul>
+<p>Practice decisions:</p>
+<ul>
+<li>Measure traffic hop depth before setting a cap. Replace passages by default and re-fetch saved chunk identifiers when citations need early evidence. Continue only while both marginal inequalities hold. Enable prefix caching before shortening an accumulating loop. Budget passages carried, not only rounds. Gate release on answer accuracy at each T, never coverage alone.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-261">Figure 26.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+q[&quot;query q&quot;] --&gt; s[&quot;score s(q,d), keep top-k&quot;] --&gt; g[&quot;generate p(a given q,C)&quot;]
+later[&quot;drift: penicillin 43%, sulfur after hop 1. reference: start and company 15%, Tesla in t - 1. staleness: top-5 on topic, recall at 5 = 1.0, date in passage&quot;] -.-&gt; s</code></pre></details></figure>
+<p>Figure 26.1: All three one-shot failures put the deciding term on the far side of the single retrieval call, so the retriever scores a query that is missing it and the control flow offers no second pass in which to use it.</p>
+<h3 id="figure-262">Figure 26.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+oneq[&quot;one-shot q&quot;] --&gt; oner[&quot;retrieve d1, e is absent from q&quot;] --&gt; oneg[&quot;generate answer drift, d2 missed at expected rank about N / 2&quot;]
+iterq[&quot;iterative q&quot;] --&gt; d1[&quot;retrieve D1&quot;] --&gt; y1[&quot;generate y1 containing e&quot;] --&gt; qy[&quot;q joined with y1&quot;] --&gt; d2[&quot;retrieve replacement D2&quot;] --&gt; y2[&quot;generate y2, prompt stays at k and cost is linear in T&quot;]</code></pre></details></figure>
+<p>Figure 26.2: One-shot retrieval cannot reach the second document of a bridge chain because the query never contains the bridge entity. Feeding the round-one draft back into the query supplies it, at the price of one more retrieval and one more decode.</p>
+<h3 id="figure-263">Figure 26.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+iq[&quot;IRCoT question q&quot;] --&gt; ir1[&quot;retrieve D1&quot;] --&gt; is1[&quot;CoT sentence s1&quot;] --&gt; ir2[&quot;retrieve D2 and accumulate&quot;] --&gt; reader[&quot;reader over every passage, T times k&quot;]
+saq[&quot;Self-Ask question q&quot;] --&gt; sq1[&quot;follow-up q1&quot;] --&gt; a1[&quot;extract a1, drop passages&quot;] --&gt; sq2[&quot;follow-up q2 contains a1&quot;] --&gt; final[&quot;final answer, carry T short strings&quot;]</code></pre></details></figure>
+<p>Figure 26.3: Both loops derive the next query from the model's own partial reasoning. They differ in what survives into the next prompt. IRCoT carries every retrieved passage forward, Self-Ask carries only the extracted sub-answers.</p>
+<h3 id="figure-264">Figure 26.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+ctx[&quot;context and prior sentences&quot;] --&gt; draft[&quot;draft: Joe Biden 0.98, attended 0.93, Pennsylvania 0.12, earned 0.91, law degree 0.28&quot;] --&gt; gate[&quot;minimum token probability below theta&quot;]
+gate --&gt; implicit[&quot;implicit: mask tokens below beta&quot;] --&gt; retrieve[&quot;retrieve k passages&quot;] --&gt; regen[&quot;regenerate sentence, discard draft&quot;]
+gate --&gt; explicit[&quot;explicit: one question per span&quot;] --&gt; retrieve</code></pre></details></figure>
+<p>Figure 26.4: Confidence triggering reads a throwaway draft's minimum token probability to decide whether to search, then builds the query from everything except the tokens that triggered it.</p>
+<h3 id="figure-265">Figure 26.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+docs[&quot;local top-k&quot;] --&gt; eval[&quot;T5-large evaluator, 0.77B&quot;] --&gt; bad[&quot;INCORRECT below tau_lo&quot;] --&gt; web[&quot;discard local, rewrite, web search&quot;] --&gt; gen[&quot;recomposed knowledge to generator&quot;]
+eval --&gt; amb[&quot;AMBIGUOUS&quot;] --&gt; both[&quot;keep local strips and append web&quot;] --&gt; gen
+eval --&gt; good[&quot;CORRECT above tau_hi&quot;] --&gt; strips[&quot;split, rescore, drop weak&quot;] --&gt; gen</code></pre></details></figure>
+<p>Figure 26.5: Two thresholds, not one. The middle band exists so that a document scored low by mistake is carried forward alongside web results rather than deleted, which converts the evaluator's false-positive cost from a lost answer into a longer prompt.</p>
+<h3 id="figure-266">Figure 26.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+teacher[&quot;GPT-4 teacher&quot;] -.-&gt; critic[&quot;distilled critic C&quot;] -.-&gt; corpus[&quot;corpus annotated offline&quot;] -.-&gt; model[&quot;generator M&quot;]
+prefix[&quot;decoded prefix&quot;] --&gt; retrieve[&quot;Retrieve token&quot;] --&gt; branches[&quot;K passage-conditioned candidates with IsRel and IsSup&quot;] --&gt; rank[&quot;rank with log probability plus weighted group scores&quot;] --&gt; win[&quot;append winner, discard K - 1, loop&quot;]
+retrieve --&gt; skip[&quot;no: continue without passage branch&quot;] --&gt; rank</code></pre></details></figure>
+<p>Figure 26.6: Supervision enters from an external teacher once, offline (dashed, top), then freezes into the generator's own vocabulary. So at serving time the critique costs a token per segment, but the K-way branch it exists to rank costs K times the decode.</p>
+<h3 id="figure-267">Figure 26.7</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+rollout[&quot;810-token rollout: 40 prompt, 170 generated, 600 retrieved and masked&quot;] --&gt; learnable[&quot;p = 0.4: +1.22, -0.82, -0.82, +1.22, -0.82, sigma = 0.49&quot;] --&gt; gradient[&quot;gradient flows, rare outcome weighted 1.5 times&quot;]
+rollout --&gt; dead[&quot;p = 1: five advantages 0.00, sigma = 0&quot;] --&gt; zero[&quot;five backward passes, zero gradient&quot;]</code></pre></details></figure>
+<p>Figure 26.7: GRPO swaps PPO's 112 GB critic for the group mean, which costs nothing and returns nothing whenever all G rollouts agree. The retrieved spans in panel A must be masked, or 74% of the sequence trains the policy to imitate the search engine.</p>
+<h3 id="figure-268">Figure 26.8</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+mono[&quot;one call, both loops serialized&quot;] --&gt; mtime[&quot;3,363 ms&quot;]
+fan[&quot;four agents, two looping&quot;] --&gt; summaries[&quot;parallel prefills, waits, 836 ms summaries&quot;] --&gt; controller[&quot;controller answer&quot;] --&gt; ftime[&quot;2,457 ms&quot;]</code></pre></details></figure>
+<p>Figure 26.8: Fan-out converts a sum of retrieval rounds into a maximum, and pays for it with one 836 ms summary decode per agent. A tax that no amount of added hardware reduces, and that a single looping source never repays.</p>
+<h3 id="figure-269">Figure 26.9</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+t1[&quot;T1: accumulate 62.5%&quot;] --&gt; t2[&quot;T2: 74.2%, T dagger&quot;] --&gt; t3[&quot;T3: 76.7%, T star&quot;] --&gt; t4[&quot;T4: 76.0%&quot;] --&gt; t5[&quot;T5: 74.6%&quot;]
+r1[&quot;replacement&quot;] --&gt; r3[&quot;T3: 79.6%&quot;] --&gt; r4[&quot;T4: 80.4%&quot;] --&gt; r5[&quot;flat after T4&quot;]
+g2[&quot;round 2 gain 11.8 points, cost 340 ms&quot;] --&gt; g3[&quot;round 3 gain 2.45 points, cost 381 ms&quot;] --&gt; g4[&quot;round 4 loses 0.7 points, cost 422 ms&quot;] --&gt; g5[&quot;round 5 loses 1.4 points, cost 463 ms&quot;]</code></pre></details></figure>
+<p>Figure 26.9: Coverage saturates while dilution compounds, so an accumulating loop peaks at T ⋆ = 3 and declines thereafter. Charging 100 ms per accuracy point moves the stop one round earlier to T † = 2. Carrying extracted strings instead of passages removes the turnover entirely and leaves only the budget to decide.</p>
+<h3 id="table-261">Table 26.1</h3>
+<p>Table 26.1: An accumulating loop over the depth mixture above. Coverage saturates by round four while dilution keeps compounding, so accuracy peaks at T = 3 and then falls, at monotonically rising cost.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">T</th>
+<th style="text-align: right;">C(T)</th>
+<th style="text-align: right;">u(T)</th>
+<th style="text-align: right;">A(T)</th>
+<th style="text-align: right;">Λ(T)</th>
+<th style="text-align: right;">prompt tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.468</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">62.5%</td>
+<td style="text-align: right;">629 ms</td>
+<td style="text-align: right;">2,400</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.663</td>
+<td style="text-align: right;">0.945</td>
+<td style="text-align: right;">74.2%</td>
+<td style="text-align: right;">950 ms</td>
+<td style="text-align: right;">5,600</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.722</td>
+<td style="text-align: right;">0.916</td>
+<td style="text-align: right;">76.7%</td>
+<td style="text-align: right;">1,306 ms</td>
+<td style="text-align: right;">9,800</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.734</td>
+<td style="text-align: right;">0.888</td>
+<td style="text-align: right;">76.0%</td>
+<td style="text-align: right;">1,697 ms</td>
+<td style="text-align: right;">15,000</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.734</td>
+<td style="text-align: right;">0.861</td>
+<td style="text-align: right;">74.6%</td>
+<td style="text-align: right;">2,123 ms</td>
+<td style="text-align: right;">21,200</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<ol type="1">
+<li>Draw one-shot query, top-k, and answer boxes. Mark the missing return edge.</li>
+<li>Add a bridge entity after the first retrieval. Loop the draft plus original question into round two.</li>
+<li>Split recursive retrieval into IRCoT's growing passage pack and Self-Ask's short answer strings.</li>
+<li>Add FLARE's draft, minimum-probability gate, masked or explicit query, and regeneration.</li>
+<li>Add CRAG's two thresholds, Self-RAG's K branches, and Search-R1's masked information spans.</li>
+<li>Finish with parallel agent lanes and a marginal stop ledger for coverage, dilution, and latency.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>One-shot retrieval fails when the term needed for the next search appears only after the first search. Iteration feeds a draft back into the original query. Recursion goes further and emits a new hop. IRCoT carries passages, while Self-Ask carries extracted answers. FLARE searches only when a draft token is weak. CRAG grades evidence with an ambiguous safety band. Self-RAG learns reflection tokens, but pays for K candidate decodes. Search-R1 learns the whole trace with GRPO. Agents help only when independent source loops overlap. Stop when marginal evidence gain no longer beats dilution, latency, and price.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-is-iterative-retrieval-the-same-as-recursive-retrieval-and-when-do-ircot-or-self-ask-win">1. Is iterative retrieval the same as recursive retrieval, and when do IRCoT or Self-Ask win?</h3>
+<p>No, iteration revises the current information need, while recursion emits a new dependent reasoning step or sub-question. IRCoT keeps passages and wins when later citation or multi-sentence conditions matter, while Self-Ask keeps short answers and wins when bridges compress safely. Parallel fan-out belongs to independent sub-questions.</p>
+<h3 id="2-does-flare-retrieve-the-uncertain-draft-and-does-crag-use-retriever-similarity">2. Does FLARE retrieve the uncertain draft, and does CRAG use retriever similarity?</h3>
+<p>No to both. FLARE removes tokens below beta after theta triggers because the uncertain guess would retrieve support for itself, while CRAG uses a separate answer-containment evaluator. CRAG's two thresholds preserve marginal local evidence in AMBIGUOUS while adding web evidence because a binary low-score gate can discard correct local evidence.</p>
+<h3 id="3-are-self-rag-reflection-tokens-free-and-independent">3. Are Self-RAG reflection tokens free and independent?</h3>
+<p>The token overhead is small, but K candidate continuations make decode compute scale with K. In the example, latency rises 14% while decode compute rises 5.5 times. External supervision enters during distillation, but content and critique share generator weights at serving, so their errors can correlate.</p>
+<h3 id="4-what-does-search-r1-learn-from-exact-match-and-what-can-grpo-not-learn">4. What does Search-R1 learn from exact match, and what can GRPO not learn?</h3>
+<p>Exact match can reinforce think, search, and stop choices across the whole trace, but it does not price searches, so add EM minus lambda times search count. GRPO removes PPO's 112 GB critic by using G-rollout group statistics, but it returns zero gradient when all rewards agree. Retrieved information tokens must be masked from policy loss.</p>
+<h3 id="5-when-is-agentic-rag-worth-its-cost-and-how-should-the-loop-stop">5. When is agentic RAG worth its cost, and how should the loop stop?</h3>
+<p>Fan-out is worth it when parallel source-specific loops remove more than 1.08 serial rounds under the stated costs, while fixed concurrent retrievals need no agents. Stop first at the accuracy crossing and then at the economic crossing, which here gives T ⋆ = 3 and T † = 2. A terminator is only a tiebreak under a hard cap because confidence contains neither dilution nor milliseconds.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source location</th>
+<th>Exact remaining measurements and limits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26.1 opening and figure</td>
+<td>The support bug reports recall at 5 of 0.94. The stale-text figure uses top-5 all on topic and recall at 5 of 1.0.</td>
+</tr>
+<tr>
+<td>26.1 interview arithmetic</td>
+<td>The worked derivation gives 224 ms for two hops. A later interview prompt gives 249 ms for two k = 5 hops plus a 20-token bridge decode. The adjudication budget is p95 800 ms.</td>
+</tr>
+<tr>
+<td>26.2 operational limits</td>
+<td>The opening retrieval has 100% recall for billing-service documents. At T = 3, replacement prefills 6,600 tokens versus 12,600 for accumulation and implies about 1.5 seconds p50.</td>
+</tr>
+<tr>
+<td>26.2 staff case</td>
+<td>A five-step accumulating loop prefills 31,000 tokens and takes about 3.2 seconds, or 2.6 times a 1.2 second p99 budget. The source contrasts it with a two-round replacement result of 992 ms.</td>
+</tr>
+<tr>
+<td>26.3 selection boundary</td>
+<td>The interview constraint is an 8k window and 2 second p95. The operational cap is four retrievals. At five hops, modeled recursive coverage is 0.29.</td>
+</tr>
+<tr>
+<td>26.4 long answer boundary</td>
+<td>The feature spans 8 to 12 sentences. Moving every-sentence retrieval to a 400 ms web search would add 4.8 seconds to a 12-sentence answer.</td>
+</tr>
+<tr>
+<td>26.5 filtering boundary</td>
+<td>A relevant document may be four fifths boilerplate. Local threshold fitting needs 300 to 500 labeled queries. Strip filtering turns on at roughly 200 tokens, except for tables and code.</td>
+</tr>
+<tr>
+<td>26.6 critique boundary</td>
+<td>Repeating post-hoc self-critique eight times is described as convergence toward confidence, not truth. K = 5 behaves like a 5 times inference method even though the reflection-token share is only 11% of extra decode.</td>
+</tr>
+<tr>
+<td>26.7 controller setup</td>
+<td>The opening hand rules are MAX_HOPS = 3, confidence threshold 0.4, and search when more than one entity appears. They came from 500 development questions 18 months earlier. A single 80 GB device cannot hold the stated 112 GB PPO critic state.</td>
+</tr>
+<tr>
+<td>26.7 reported limits</td>
+<td>The cited comparison says GRPO reaches higher reward faster while PPO is more stable. The cited dynamic-sampling recipe matches baseline AIME score in half the training steps.</td>
+</tr>
+<tr>
+<td>26.8 review-layer boundary</td>
+<td>The opening failure reaches 2.5 second p95 after six weeks and raises the token bill by a quarter. Six agents plus review require 2,189 ms of decode before retrieval and 14 scoreboards.</td>
+</tr>
+<tr>
+<td>26.9 serving boundary</td>
+<td>The shipped cap is 5 after about a 12-point multi-hop gain. Cutting it to 3 returns answers 800 ms sooner and scores higher. Under a 900 ms target, the stated T = 2 replacement point is 880 ms at 75.6%.</td>
+</tr>
+<tr>
+<td>26.9 routing boundary</td>
+<td>Depth at least 3 is 15% in the measured mixture, so routing changes p50 but not p95. Below 5%, routing can fix p95 without spending the deep path on most traffic.</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/25_routing_and_adaptive_retrieval.html"><small>Previous</small>Chapter 25. Routing and Adaptive Retrieval</a><a href="../chapters/27_fine_tuning_the_generator.html"><small>Next</small>Chapter 27. Fine-tuning the Generator</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

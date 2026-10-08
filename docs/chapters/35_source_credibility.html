@@ -1,0 +1,1522 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 35. Source Credibility | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/35_source_credibility.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group" open><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html" aria-current="page">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part XI. Trust, Credibility, and Adversarial Robustness</p><h1>Chapter 35. Source Credibility</h1><p class="chapter-meta">50 min estimated reading · Unit 44 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how Retrieval-Augmented Generation (RAG) systems measure source credibility, act on weak evidence, and preserve freshness, pluralism, and fair exposure.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Trustworthiness has six aspects tied to three pipeline stages. A single blended score cannot tell an engineer which component failed.</li>
+<li>Relevance and credibility are separate axes. One low-credibility document can reduce answer accuracy by 20-30 percentage points even inside an otherwise credible context.</li>
+<li>The RA-RAG method estimates source reliability from cross-source agreement, then gives each selected source one reliability-weighted vote.</li>
+<li>Credibility-aware generation (CAG) trains a model on document-level and sentence-level credibility labels plus teacher-generated reasoning traces.</li>
+<li>The CrAM method uses causal tracing to find gullible attention heads, then scales only those heads on low-credibility spans without retraining the model.</li>
+<li>Choose RA-RAG when stable source identity exists, CAG when labeled data and training time exist, and CrAM when neither resource is available and a fast intervention is needed.</li>
+<li>Source credibility does not measure claim freshness or viewpoint coverage. Citation chains can launder stale facts, and credible sources can share one blind spot. Fair exposure requires a ranking policy over repeated queries. A doubly stochastic matrix can balance credibility-weighted utility with group exposure.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture a newsroom preparing a public briefing from a crowded clipping archive.</p>
+<p>The assignment desk is the retriever. The reporter is the generator. The fact-check desk is the checking stage.</p>
+<p>The newsroom tracks six trust questions at those three desks. The assignment desk owns robustness and privacy because it controls what enters the room. The reporter owns fairness and transparency because those shape how the clippings become a story. The fact-check desk owns factuality and accountability because it verifies claims and assigns failures. A single newsroom score would hide which desk needs repair.</p>
+<p>The assignment desk also learns that relevance is not credibility. One polished but outdated clipping can sway the reporter even when every other clipping is sound. The cure is not simply to use fewer clippings. Each clipping needs an independent credibility signal.</p>
+<p>The newsroom has three ways to create or use that signal. RA-RAG keeps a reputation ledger for named outlets. It watches which outlets agree with reliable consensus across checkable questions, then gives each outlet one weighted vote. CAG trains the reporter with high-, medium-, and low-credibility examples plus explanations of why one claim should beat another. CrAM finds the reporter's gullible attention channels, meaning the specific model heads that carry misinformation, and lowers only those channels when a weak clipping appears.</p>
+<p>The editor chooses by available resources. A stable byline or publisher identity supports RA-RAG. Credibility-labeled examples and days for training support CAG. If neither exists, CrAM can provide a same-day, narrower intervention when an upstream score is already attached to each span.</p>
+<p>Even a well-run newsroom can still fail. A 2020 statistic republished in a 2023 summary can look newly measured when the source chain is never followed back. That is credibility laundering, or old evidence wearing a new date.</p>
+<p>The newsroom can also gather five excellent clippings that all discuss the same Michael Jordan. The problem is then coverage, not credibility. The editor must spend some rank slots on distinct disambiguation candidates rather than five redundant accounts of one candidate.</p>
+<p>Finally, the largest wire services can occupy every visible slot forever while credible regional outlets receive none. The newsroom replaces one fixed ordering with a rotation policy. Across many editions, exposure follows a chosen fairness constraint while each reader still receives one concrete ranked list.</p>
+<p>The newsroom lesson is to separate the questions. Trust, credibility, freshness, coverage, and exposure interact, but no one score or method answers all five.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves documents before a model writes an answer</td>
+<td>Its trust depends on retrieval, generation, and checking, not only the model</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>A model that generates text from learned parameters and current context</td>
+<td>The generator may synthesize all retrieved documents without a credibility distinction</td>
+</tr>
+<tr>
+<td>Trustworthiness</td>
+<td>The collection of properties that make a system safe, inspectable, and dependable</td>
+<td>The chapter splits it into six actionable aspects</td>
+</tr>
+<tr>
+<td>Pipeline stage</td>
+<td>One functional part of the end-to-end system</td>
+<td>Each trust failure belongs to a stage with a different fix</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>Selecting documents for the query</td>
+<td>It owns robustness and privacy</td>
+</tr>
+<tr>
+<td>Generation</td>
+<td>Synthesizing an answer from the query and retrieved context</td>
+<td>It owns fairness and transparency</td>
+</tr>
+<tr>
+<td>Checking</td>
+<td>Verifying the generated answer after writing</td>
+<td>It owns factuality and accountability</td>
+</tr>
+<tr>
+<td>Robustness</td>
+<td>Graceful behavior under noisy or adversarial queries</td>
+<td>A retriever should not collapse when the input is disturbed</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>Avoiding sensitive information in retrieved context</td>
+<td>Retrieval can expose records even before an answer is written</td>
+</tr>
+<tr>
+<td>Fairness</td>
+<td>Treating comparable entities or viewpoints comparably</td>
+<td>The generator can privilege one group or view</td>
+</tr>
+<tr>
+<td>Transparency</td>
+<td>Making the path from evidence to answer inspectable</td>
+<td>It exposes how the generator synthesized the retrieved material</td>
+</tr>
+<tr>
+<td>Factuality</td>
+<td>Whether a claim is true</td>
+<td>It is only one of six trust aspects</td>
+</tr>
+<tr>
+<td>Accountability</td>
+<td>Assigning responsibility for an error to a specific component</td>
+<td>It lets teams route incidents to an owner</td>
+</tr>
+<tr>
+<td>Credibility laundering</td>
+<td>Re-citing an old fact through newer pages until it appears current</td>
+<td>A recent page date can hide an old origin date</td>
+</tr>
+<tr>
+<td>False-negative citation</td>
+<td>A relevant source omitted from one reference list and then omitted by later work</td>
+<td>Citation chains can propagate missing evidence as if coverage were complete</td>
+</tr>
+<tr>
+<td>Radar chart</td>
+<td>A plot with one axis per trust aspect</td>
+<td>Its shape reveals a weak axis that an aggregate can hide</td>
+</tr>
+<tr>
+<td>Radar symbols r_i and Area</td>
+<td>Per-axis score i and the hexagon area formed by all six scores</td>
+<td>They expose why two different failure shapes can have almost equal total area</td>
+</tr>
+<tr>
+<td>Cyclic index i+1 mod 6</td>
+<td>The next radar axis, wrapping the sixth axis back to the first</td>
+<td>It closes the sixth triangle in the area sum</td>
+</tr>
+<tr>
+<td>Ground-truth reasoning trace</td>
+<td>The reference sequence of reasoning steps used for evaluation</td>
+<td>Transparency prompts can be scored against it</td>
+</tr>
+<tr>
+<td>Personally identifiable information (PII)</td>
+<td>Data that can identify a person</td>
+<td>It is the sensitive content used in the retrieval-privacy example</td>
+</tr>
+<tr>
+<td>Relevance</td>
+<td>How well a document matches the query</td>
+<td>It does not say whether the document is trustworthy</td>
+</tr>
+<tr>
+<td>Query q, document d, and answer a</td>
+<td>The input, one evidence item, and the generated result</td>
+<td>They keep retrieval and generation formulas scoped to the objects they consume</td>
+</tr>
+<tr>
+<td>Relevance score rel(q,d)</td>
+<td>Query-document match used by the baseline ranker</td>
+<td>It omits the separate credibility value c_i</td>
+</tr>
+<tr>
+<td>Credibility</td>
+<td>How much a document or source should be trusted</td>
+<td>It must enter separately from relevance</td>
+</tr>
+<tr>
+<td>Dot product</td>
+<td>A similarity score between vector representations</td>
+<td>It can rank an on-topic but unreliable document highly</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>A normalized comparison between two embeddings</td>
+<td>Tightening its threshold cannot separate credibility tiers</td>
+</tr>
+<tr>
+<td>Embedding</td>
+<td>A vector representation of a query or document</td>
+<td>It supports relevance ranking and geometric diversity measures</td>
+</tr>
+<tr>
+<td>Cross-encoder reranker</td>
+<td>A model that jointly scores a query and passage after retrieval</td>
+<td>It can refine relevance while still omitting credibility</td>
+</tr>
+<tr>
+<td>Top-k retrieval</td>
+<td>Selecting the k highest-ranked items</td>
+<td>Lowering k can remove useful corroboration without removing the bad source</td>
+</tr>
+<tr>
+<td>Credibility tier</td>
+<td>A high, medium, or low trust label</td>
+<td>It gives the generator an explicit source-quality signal</td>
+</tr>
+<tr>
+<td>Credibility tag c_i</td>
+<td>The score or tier attached to document or span i</td>
+<td>CAG uses such labels in training, while CrAM consumes c_i at inference</td>
+</tr>
+<tr>
+<td>RA-RAG</td>
+<td>The source's name for reliability from cross-source agreement</td>
+<td>It works when documents have stable source identities</td>
+</tr>
+<tr>
+<td>Source identity</td>
+<td>A stable publisher, domain, account, or other origin key</td>
+<td>RA-RAG indexes reliability by this key</td>
+</tr>
+<tr>
+<td>Source reliability r_s</td>
+<td>A scalar from 0 to 1 for source s</td>
+<td>It weights which source votes count</td>
+</tr>
+<tr>
+<td>RA-RAG symbols S, Q, k, and K</td>
+<td>Source count, calibration-query count, documents per source, and retained source count</td>
+<td>Lowercase k and uppercase K control different stages of the online reduction</td>
+</tr>
+<tr>
+<td>Source answer answer_s(q)</td>
+<td>The answer returned by source s for query q</td>
+<td>Agreement compares it with the current consensus</td>
+</tr>
+<tr>
+<td>Indicator function</td>
+<td>A value of 1 when a source answer equals consensus and 0 otherwise</td>
+<td>Averaging it over Q queries defines r_s</td>
+</tr>
+<tr>
+<td>Cross-source agreement</td>
+<td>Measuring which sources agree across checkable questions</td>
+<td>It creates reliability scores without manual source labels</td>
+</tr>
+<tr>
+<td>Calibration query</td>
+<td>A checkable question used to estimate reliability or inspect heads</td>
+<td>It supports an offline reusable artifact</td>
+</tr>
+<tr>
+<td>Consensus</td>
+<td>The answer supported by the current reliability-weighted source pool</td>
+<td>RA-RAG estimates it jointly with source reliability</td>
+</tr>
+<tr>
+<td>Fixed point</td>
+<td>A stable result after reliability and consensus repeatedly update each other</td>
+<td>It prevents raw source volume from defining truth</td>
+</tr>
+<tr>
+<td>Per-source voting</td>
+<td>Giving one ballot to each source instead of each document</td>
+<td>A content farm cannot gain votes by adding duplicates</td>
+</tr>
+<tr>
+<td>Weighted majority vote</td>
+<td>Adding reliability scores for all sources supporting an answer</td>
+<td>Reliability rather than volume determines the result</td>
+</tr>
+<tr>
+<td>Argmax</td>
+<td>Selecting the answer with the largest summed score</td>
+<td>It defines RA-RAG's final vote</td>
+</tr>
+<tr>
+<td>Credibility-aware generation (CAG)</td>
+<td>Fine-tuning a generator to reason about credibility from document content</td>
+<td>It generalizes to unseen or unidentified sources</td>
+</tr>
+<tr>
+<td>Multi-granularity annotation</td>
+<td>Labeling credibility at both document and sentence levels</td>
+<td>One weak sentence cannot hide inside a strong document</td>
+</tr>
+<tr>
+<td>Teacher model</td>
+<td>A capable model that produces training explanations</td>
+<td>CAG uses it to demonstrate how to weigh conflicting claims</td>
+</tr>
+<tr>
+<td>Reasoning trace</td>
+<td>An explanation connecting credibility labels to an answer</td>
+<td>It teaches conflict resolution rather than label classification alone</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Updating model weights on task-specific examples</td>
+<td>CAG pays this offline cost to create a general skill</td>
+</tr>
+<tr>
+<td>Zero-shot prompting</td>
+<td>Giving instructions without task-specific training</td>
+<td>Bare credibility labels may remain just more competing context</td>
+</tr>
+<tr>
+<td>Synthetic noise</td>
+<td>Artificially injected low-quality context</td>
+<td>It tests whether CAG remains robust to unseen noise</td>
+</tr>
+<tr>
+<td>CrAM</td>
+<td>The source's name for the targeted attention intervention</td>
+<td>The assigned pages do not expand the method name</td>
+</tr>
+<tr>
+<td>Attention head</td>
+<td>One model component that selects which token information to carry forward</td>
+<td>CrAM changes only heads causally linked to misinformation</td>
+</tr>
+<tr>
+<td>Attention weight alpha</td>
+<td>The influence one head gives to one token</td>
+<td>CrAM multiplies it by span credibility in selected heads</td>
+</tr>
+<tr>
+<td>CrAM symbols alpha_(h,i), scaled alpha, and alpha prime</td>
+<td>Original, credibility-scaled, and renormalized attention for head h and token i</td>
+<td>They separate the selective multiply from the normalization actually used by the head</td>
+</tr>
+<tr>
+<td>Residual stream</td>
+<td>The shared model representation that attention writes into</td>
+<td>Gullible heads can carry misinformation into it</td>
+</tr>
+<tr>
+<td>Causal tracing</td>
+<td>Patching or removing a component and measuring the output change</td>
+<td>It identifies heads that actually propagate a false claim</td>
+</tr>
+<tr>
+<td>Ablation</td>
+<td>Temporarily suppressing a component to test its effect</td>
+<td>A large probability shift marks a causally important head</td>
+</tr>
+<tr>
+<td>Gullible-head set H_gullible</td>
+<td>The selected heads whose removal reduces reliance on misinformation</td>
+<td>CrAM limits its intervention to this set</td>
+</tr>
+<tr>
+<td>Renormalization</td>
+<td>Rescaling modified attention weights so they sum correctly</td>
+<td>It converts credibility-scaled values into usable attention shares</td>
+</tr>
+<tr>
+<td>Upstream scorer</td>
+<td>A separate component that supplies credibility scores</td>
+<td>CrAM acts on c_i but does not produce it</td>
+</tr>
+<tr>
+<td>Resource gate</td>
+<td>A yes-or-no check for an implementation prerequisite</td>
+<td>Stable identity and labeled data choose among the three methods</td>
+</tr>
+<tr>
+<td>Origin date t_0</td>
+<td>The date when a fact or statistic was first established</td>
+<td>It is the correct reference point for claim freshness</td>
+</tr>
+<tr>
+<td>Citation hop t_n</td>
+<td>A later page that repeats or cites the fact</td>
+<td>Its newer date can reset apparent age</td>
+</tr>
+<tr>
+<td>Citation symbols C_i, n, and current time</td>
+<td>Hop i, chain length, and the evaluation date</td>
+<td>They distinguish the retrieved wrapper from the origin and the time of scoring</td>
+</tr>
+<tr>
+<td>Freshness half-life tau_(1/2)</td>
+<td>The decay interval in the exponential freshness weight</td>
+<td>Changing it rescales decay but does not reveal a hidden t_0</td>
+</tr>
+<tr>
+<td>Freshness weight</td>
+<td>A score that favors recent evidence</td>
+<td>It becomes misleading when computed from the wrong hop</td>
+</tr>
+<tr>
+<td>Half-life</td>
+<td>The time required for an exponential freshness weight to halve</td>
+<td>The worked example uses one year</td>
+</tr>
+<tr>
+<td>Time-persistent fact</td>
+<td>A fact expected to remain fixed, such as a historical date</td>
+<td>It can tolerate a stable credibility check</td>
+</tr>
+<tr>
+<td>Time-sensitive fact</td>
+<td>A value that may change, such as a count or price</td>
+<td>It needs re-verification even without laundering</td>
+</tr>
+<tr>
+<td>Re-citation velocity</td>
+<td>How often a claim is repeated by new sources</td>
+<td>High velocity may indicate laundering rather than independent consensus</td>
+</tr>
+<tr>
+<td>Pluralism</td>
+<td>Representing distinct credible entities, subtopics, or viewpoints</td>
+<td>Credible sources can still share a blind spot</td>
+</tr>
+<tr>
+<td>Permutation</td>
+<td>One ordered arrangement of candidate documents</td>
+<td>A classical ranker chooses one fixed list</td>
+</tr>
+<tr>
+<td>Ranking symbols pi and L</td>
+<td>A permutation and the selected top-K document list</td>
+<td>The source moves from an ordered position-weighted objective to a set-level diversity objective</td>
+</tr>
+<tr>
+<td>Utility u(d)</td>
+<td>A document's credibility-weighted relevance</td>
+<td>Pure utility ranking can return redundant documents</td>
+</tr>
+<tr>
+<td>Position bias v(k)</td>
+<td>The attention discount at rank k</td>
+<td>Higher positions receive more exposure</td>
+</tr>
+<tr>
+<td>Normalized discounted cumulative gain (NDCG)</td>
+<td>A ranking metric that uses position discount</td>
+<td>The source relates its discount to v(k)</td>
+</tr>
+<tr>
+<td>Intra-list average distance (ILAD)</td>
+<td>Mean pairwise embedding distance inside the result list</td>
+<td>It measures geometric spread but not meaningful stance coverage</td>
+</tr>
+<tr>
+<td>Coverage</td>
+<td>The fraction of a known stance or entity set touched by the result list</td>
+<td>It detects missing disambiguation candidates</td>
+</tr>
+<tr>
+<td>Stance set S</td>
+<td>The global set of entities, subtopics, or positions that matter</td>
+<td>Coverage needs this reference set</td>
+</tr>
+<tr>
+<td>Document embedding e_i and covered set S_d</td>
+<td>Geometry for item i and the stances covered by document d</td>
+<td>ILAD uses e_i while coverage uses S_d, so the metrics answer different questions</td>
+</tr>
+<tr>
+<td>Lambda weights</td>
+<td>The coefficients that trade utility against ILAD and coverage</td>
+<td>Setting both to zero recovers credibility-only ranking</td>
+</tr>
+<tr>
+<td>Maximal marginal relevance (MMR)</td>
+<td>A greedy method that trades relevance against distance from selected documents</td>
+<td>It removes near-duplicates but cannot define diverse with respect to what</td>
+</tr>
+<tr>
+<td>Group exposure</td>
+<td>The average rank attention received by a document group</td>
+<td>It reveals credible groups that stay invisible</td>
+</tr>
+<tr>
+<td>Hard ranking</td>
+<td>One deterministic list with each item either placed or absent</td>
+<td>Documents below the cutoff receive zero exposure</td>
+</tr>
+<tr>
+<td>Assignment matrix P</td>
+<td>A matrix saying which document occupies which position</td>
+<td>Relaxing it creates a probabilistic ranking policy</td>
+</tr>
+<tr>
+<td>Assignment entry P_(d,k)</td>
+<td>Probability or hard indicator that document d occupies position k</td>
+<td>Multiplying it by v(k) produces expected document exposure</td>
+</tr>
+<tr>
+<td>Matrix dimensions N and K</td>
+<td>Candidate count and displayed position count</td>
+<td>They expose the source's rectangular-matrix claim limit when N differs from K</td>
+</tr>
+<tr>
+<td>Doubly stochastic matrix</td>
+<td>A soft assignment with fractional position probabilities</td>
+<td>It makes exposure continuous and constrainable</td>
+</tr>
+<tr>
+<td>Demographic parity</td>
+<td>Equal exposure for groups regardless of utility</td>
+<td>It can override measured credibility differences</td>
+</tr>
+<tr>
+<td>Disparate treatment</td>
+<td>Exposure proportional to average group utility</td>
+<td>It is usually the preferred credibility-compatible constraint</td>
+</tr>
+<tr>
+<td>Linear program (LP)</td>
+<td>An optimization with a linear objective and linear constraints</td>
+<td>It can maximize utility under an exposure requirement</td>
+</tr>
+<tr>
+<td>Birkhoff-von Neumann theorem</td>
+<td>The decomposition of a doubly stochastic matrix into weighted hard permutations</td>
+<td>It turns the soft policy into rankings that can be served</td>
+</tr>
+<tr>
+<td>Convex combination</td>
+<td>Weighted components whose nonnegative weights sum to 1</td>
+<td>It supplies the permutation-sampling probabilities</td>
+</tr>
+<tr>
+<td>Birkhoff symbols alpha_i and Pi_i</td>
+<td>Mixture weight i and hard permutation matrix i</td>
+<td>Sampling Pi_i with probability alpha_i serves the soft policy in expectation</td>
+</tr>
+<tr>
+<td>Amortized guarantee</td>
+<td>A target satisfied on average across repeated rankings</td>
+<td>It costs less utility than forcing every query to meet the target</td>
+</tr>
+<tr>
+<td>FAIR</td>
+<td>The source's name for a deterministic prefix swap rule</td>
+<td>It gives a hard per-query group floor but cannot express utility-proportional exposure</td>
+</tr>
+<tr>
+<td>Corpus graph</td>
+<td>An offline graph linking each document to nearby documents</td>
+<td>It supports a faster online exposure approximation</td>
+</tr>
+<tr>
+<td>Frontier</td>
+<td>The candidate queue expanded from graph neighbors</td>
+<td>Group-aware rules steer which documents enter each batch</td>
+</tr>
+<tr>
+<td>Frontier symbols I, S, R, CG, and F</td>
+<td>Candidate set, reranker, result list, corpus graph, and frontier</td>
+<td>They name every state in Figure 35.9's repeated online loop</td>
+</tr>
+<tr>
+<td>Queries per second (QPS)</td>
+<td>The serving rate of the system</td>
+<td>Solving an LP for every query is too slow at production scale</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="351-six-aspects-across-three-stages-a-trustworthiness-taxonomy">35.1 Six aspects across three stages: a trustworthiness taxonomy</h3>
+<h4 id="stage-aware-trust">Stage-aware trust</h4>
+<ul>
+<li>What: Retrieval owns robustness and privacy, generation owns fairness and transparency, and checking owns factuality and accountability.</li>
+<li>Why: Each axis points to one component and one incident owner.</li>
+<li>Failure without it: A 2% sentence-level hallucination rate says nothing about patient-record leakage, viewpoint bias, traceability, or responsibility.</li>
+<li>Cost or complexity: Teams must maintain six evaluation scores and stage tags instead of one dashboard number.</li>
+</ul>
+<p>Credibility laundering is a transparency failure with a factuality symptom. A false-negative citation is an accountability failure because the citation graph propagates an omission without one clear author introducing it.</p>
+<h4 id="survey-style-evaluation-and-radar-area">Survey-style evaluation and radar area</h4>
+<ul>
+<li>What: A 2024 survey attributed to Zhou et al. uses structured prompts and a six-axis radar chart.</li>
+<li>Why: The chart's shape exposes a collapsed axis.</li>
+<li>Failure without it: Total area can make a spiky model look almost identical to a uniformly mediocre one.</li>
+<li>Cost or complexity: Transparency evaluation can require generated intermediate reasoning and overlap against a ground-truth reasoning trace.</li>
+</ul>
+<p>The source reports LLaMA-2-13B as uniformly weak. It reports GPT-3.5-Turbo as strong on five axes but weak on privacy. It reports GPT-4 as strongest overall among the three in that 2024 evaluation.</p>
+<p>For six equally spaced axes, the area is:</p>
+<p><code>Area = 0.5 × sin(60 degrees) × sum from i=1 to 6 of r_i r_(i+1 mod 6)</code></p>
+<p>Model A scores <code>(0.80, 0.30, 0.75, 0.70, 0.85, 0.60)</code>. Its consecutive products sum to 2.575, so <code>0.5 × 0.866 × 2.575 = about 1.115</code>. Model B scores 0.65 on all six axes. Its products sum to 2.535, so <code>0.5 × 0.866 × 2.535 = about 1.098</code>. The areas differ by less than 2% despite opposite failure shapes.</p>
+<h4 id="operating-rules">Operating rules</h4>
+<ul>
+<li>What: Report all six scores, tag every prompt by stage, and keep privacy independently visible.</li>
+<li>Why: Privacy can collapse while the other five axes remain strong.</li>
+<li>Failure without it: Averaging can hide a disqualifying privacy weakness.</li>
+<li>Cost or complexity: If policy proves personal data can never enter context, use a five-axis deployment chart but retain an auditable privacy-exclusion flag.</li>
+</ul>
+<p>Re-run all six axes when the base generator changes. Route an incident to its stage before choosing a fix.</p>
+<h3 id="352-one-bad-document-among-many-good-ones">35.2 One bad document among many good ones</h3>
+<h4 id="relevance-is-not-credibility">Relevance is not credibility</h4>
+<ul>
+<li>What: Standard retrieval ranks by <code>rel(q,d)</code> and generates <code>a = LLM(q, d_1, ..., d_k)</code>.</li>
+<li>Why: Relevance finds on-topic text.</li>
+<li>Failure without it: A current article, an outdated report, and artificial intelligence (AI) generated text can use similar language while deserving different trust.</li>
+<li>Cost or complexity: A second score must be computed and attached as <code>a = LLM(q, {(d_i, c_i)} from i=1 to k)</code>.</li>
+</ul>
+<p>High credibility includes recent established reporting or peer-reviewed work with real citation impact. Medium credibility includes a general encyclopedia reference. Low credibility includes a six- or seven-year stale report or model-generated text republished as fact.</p>
+<p>One low-quality document can reduce answer accuracy by 20-30 percentage points. The generator weights every document equally by default. Raising a relevance threshold or shrinking k attacks the wrong axis and can remove the one good anchor.</p>
+<h4 id="contamination-experiment">Contamination experiment</h4>
+<ul>
+<li>What: A medical RAG benchmark has 1,000 questions, k = 5 documents, and an 82% credible-context baseline.</li>
+<li>Why: It quantifies the effect of replacing one retrieved item with an on-topic low-credibility document.</li>
+<li>Failure without it: Aggregate accuracy can hide the mixed-quality queries that users actually encounter.</li>
+<li>Cost or complexity: Applying the reported drop gives <code>82 - 30 = 52%</code> to <code>82 - 20 = 62%</code> accuracy, so roughly one in four to one in three answers flips.</li>
+</ul>
+<p>Source arithmetic defect: a 20-30 point loss over 1,000 questions means 200-300 total flips, or one in five to three in ten questions. Relative to the 820 initially correct answers, it is 24.4-36.6%, so the source's one-in-four to one-in-three wording does not exactly match either denominator.</p>
+<p>Keeping only the top three documents does not guarantee removal of the contaminant. Search-optimized misinformation can survive while a terse credible source disappears.</p>
+<h4 id="operating-rules-1">Operating rules</h4>
+<ul>
+<li>What: Tag credibility at ingestion, treat one contaminant as an incident, and never use k reduction as a credibility control.</li>
+<li>Why: One offline score per document directly targets the missing signal.</li>
+<li>Failure without it: Query-time relevance stays blind to trust.</li>
+<li>Cost or complexity: The source calls one index-time score negligible beside embedding and reranking already paid on requests.</li>
+</ul>
+<p>Escalate credibility weighting first in medical, legal, and financial domains. Skip the axis only when the corpus is already homogeneous from end to end.</p>
+<h3 id="353-ra-rag-reliability-from-cross-source-agreement">35.3 RA-RAG: reliability from cross-source agreement</h3>
+<h4 id="offline-reliability-estimation">Offline reliability estimation</h4>
+<ul>
+<li>What: For each source s, RA-RAG estimates <code>r_s</code> in <code>[0,1]</code> over about Q = 200 fact-checkable queries.</li>
+<li>Why: Cross-source agreement supplies a label without a human-maintained allowlist.</li>
+<li>Failure without it: A raw majority lets many weak sources define consensus.</li>
+<li>Cost or complexity: Reliability and consensus update iteratively until they converge.</li>
+</ul>
+<p>The score is:</p>
+<p><code>r_s = (1 / Q) × sum over q of indicator[answer_s(q) = consensus(q)]</code></p>
+<p>Sources close to the current consensus gain weight. The next consensus uses reliability-weighted votes. The source warns that agreement measures consensus, not correctness, so a shared blind spot survives.</p>
+<h4 id="online-per-source-voting">Online per-source voting</h4>
+<ul>
+<li>What: Retrieve top-k documents per source, keep K sources using reliability plus query relevance, then vote once per source.</li>
+<li>Why: One source cannot gain influence by flooding the index with near-duplicates.</li>
+<li>Failure without it: Document-pooled voting rewards volume.</li>
+<li>Cost or complexity: The answer is <code>argmax over a of the sum of r_s for sources voting for a</code>.</li>
+</ul>
+<p>In the coronavirus disease 2019 (COVID-19) example, Cable News Network (CNN), Mayo Clinic, and Wikipedia answer severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). A conspiracy blog answers fifth-generation (5G) networks. Reliabilities are 0.95, 0.93, 0.90, and 0.20. Two more weak sources at 0.15 each create a 3-to-3 raw tie. Weighted totals are 2.78 for SARS-CoV-2 and 0.50 for 5G.</p>
+<h4 id="cost-and-measured-results">Cost and measured results</h4>
+<ul>
+<li>What: S = 1,000 sources with k = 5 create 5,000 candidates, but K = 4 sends only 20 documents to the generator.</li>
+<li>Why: Offline scores let online inference consult a tiny reliable subset.</li>
+<li>Failure without it: Consulting every source creates an unusable context.</li>
+<li>Cost or complexity: <code>1 - 20 / 5,000 = 0.996</code>, or 99.6% token reduction. At about 500 tokens per document, the comparison is 10,000 tokens versus 2.5 million.</li>
+</ul>
+<p>Hwang et al. report 73.7% versus 63.4% on Natural Questions. They report 91.3% versus 81.2% on TriviaQA. Both gains are roughly 10 percentage points.</p>
+<p>Use RA-RAG when stable source identity exists and labeled training data does not. Size Q by convergence and answer checkability rather than treating 200 as universal. Choose K from token cost versus corroboration recall. Re-estimate reliability when agreement drops or a source changes, not only on a calendar.</p>
+<h3 id="354-cag-training-the-model-to-reason-about-credibility">35.4 CAG: training the model to reason about credibility</h3>
+<h4 id="multi-granularity-training">Multi-granularity training</h4>
+<ul>
+<li>What: CAG labels relevance and credibility at both document and sentence level, then fine-tunes the generator.</li>
+<li>Why: Content-based judgment works on sources with no stable identity or prior score.</li>
+<li>Failure without it: A document-only label either hides one rumor inside a good article or discounts an otherwise useful article.</li>
+<li>Cost or complexity: Building labels, generating explanations, and running a fine-tune take days.</li>
+</ul>
+<p>A GPT-3.5 teacher produces explanations that weigh high-, medium-, and low-tier claims. The model can learn from register, specificity, internal consistency, and the presence of authoritative citations. The target trains on <code>(query, tagged documents, reasoning trace, answer)</code> tuples. Bare labels teach classification. Reasoning traces teach how to resolve disagreement by tier.</p>
+<h4 id="why-prompting-alone-loses">Why prompting alone loses</h4>
+<ul>
+<li>What: The zero-shot alternative appends credibility labels to the prompt without training.</li>
+<li>Why: It is cheap and exposes the same labels.</li>
+<li>Failure without it: The labels remain tokens competing for attention, with no learned rule that the higher-tier claim should win.</li>
+<li>Cost or complexity: CAG pays one offline training run so ordinary inference needs no source lookup.</li>
+</ul>
+<p>In the Nobel example, the official record says Wilhelm Röntgen won the first Nobel Prize in Physics in 1901. An unaffiliated blog says Albert Einstein. The teacher explains why the official high-tier source wins and notes that Einstein won a Nobel Prize, but not the first physics prize.</p>
+<h4 id="reported-experiments-and-operating-rules">Reported experiments and operating rules</h4>
+<ul>
+<li>What: Pan et al. report 50.9% HotpotQA accuracy, described as an 82% relative improvement.</li>
+<li>Why: Solving backward gives <code>50.9 / 1.82 = about 28.0%</code> for the base RAG model.</li>
+<li>Failure without it: Reporting only 82% can hide the absolute starting point.</li>
+<li>Cost or complexity: Under 80% synthetic noise, CAG reaches 89% versus 77.3%, an 11.7-point gap.</li>
+</ul>
+<p>The absolute HotpotQA difference from the inferred baseline is 22.9 points. Source wording defect: the source later calls 22.9 a relative gap. It is the absolute percentage-point gap, while 82% is the stated relative improvement. The source treats these gains as the same broad order as other credibility interventions, not as a universal guarantee.</p>
+<p>Choose CAG for varied queries when labels and training runway exist. Use sentence-level labels unless documents are short or internally homogeneous. Re-annotate and retrain when label quality or misinformation patterns drift. Choose CrAM when the deployment cannot absorb the training cycle.</p>
+<h3 id="355-cram-down-weighting-attention-on-gullible-heads">35.5 CrAM: down-weighting attention on gullible heads</h3>
+<h4 id="causal-head-selection">Causal head selection</h4>
+<ul>
+<li>What: CrAM patches or ablates every attention head on about 100 examples containing a true and a false claim.</li>
+<li>Why: The probability change after ablation identifies heads that causally carry misinformation.</li>
+<li>Failure without it: Uniform scaling damages positional, syntactic, and copying behavior in heads unrelated to source trust.</li>
+<li>Cost or complexity: Keep the top 100-300 heads in <code>H_gullible</code>. The offline artifact is only a list of indices, with no gradient step or labeled fine-tuning corpus.</li>
+</ul>
+<p>The calibration is task-specific. Recalibrate when the deployment moves to a materially different domain.</p>
+<h4 id="inference-time-intervention">Inference-time intervention</h4>
+<ul>
+<li>What: Multiply attention on span i by credibility c_i only when head h belongs to <code>H_gullible</code>, then renormalize.</li>
+<li>Why: The intervention turns down the mechanism that brings weak evidence into the residual stream.</li>
+<li>Failure without it: A prompt asking the model to ignore a source still competes for attention like every other token.</li>
+<li>Cost or complexity: CrAM requires an upstream credibility score and adds a per-token multiply plus renormalization in selected heads.</li>
+</ul>
+<p>The piecewise rule is:</p>
+<p><code>scaled_alpha_(h,i) = alpha_(h,i) × c_i when h is in H_gullible</code></p>
+<p><code>scaled_alpha_(h,i) = alpha_(h,i) otherwise</code></p>
+<p><code>alpha_prime_(h,i) = scaled_alpha_(h,i) / sum over j of scaled_alpha_(h,j)</code></p>
+<p>CrAM does not judge credibility. If c_i is wrong, it can confidently suppress the correct document.</p>
+<h4 id="attention-arithmetic-and-measured-scope">Attention arithmetic and measured scope</h4>
+<ul>
+<li>What: Document A has c_A = 0.8 and 30% initial attention. Document B has c_B = 0.1 and 20% initial attention.</li>
+<li>Why: The Nobel example compares Wilhelm Röntgen in 1901 with the incorrect Einstein claim.</li>
+<li>Failure without it: Initial document-only share favors A by only <code>0.30 / (0.30 + 0.20) = 60%</code>.</li>
+<li>Cost or complexity: Scaling gives 0.24 and 0.02, a 12-to-1 ratio, then <code>0.24 / 0.26 = 92.3%</code> for A after renormalization.</li>
+</ul>
+<p>A 32-layer model with 32 heads per layer has 1,024 heads. Selecting 100-300 touches about 10-29% and leaves 71-90% unchanged.</p>
+<p>CrAM reports 91.3% accuracy on targeted adversarial misinformation injection, described as near-Oracle. It reports only 33.6% on Natural Questions, versus RA-RAG at 73.7%. The source connects that spread to CrAM's narrow calibration target. Source defect: the sanity-check sentence calls CrAM a 12-head-class intervention, which conflicts with the 100-300 gullible-head range stated and computed throughout the section.</p>
+<p>Use CrAM for an hours-not-days intervention with no training budget. Restrict it to causally selected heads. Treat it as a stopgap when broad accuracy matters, and investigate head coverage or renormalized attention when correctly scored attacks still pass.</p>
+<h3 id="356-choosing-among-the-three">35.6 Choosing among the three</h3>
+<h4 id="two-resource-gates">Two resource gates</h4>
+<ul>
+<li>What: Check stable source identity first. If it exists, choose RA-RAG. If not, check for a credibility-labeled corpus and days to fine-tune. Choose CAG when both exist and CrAM when they do not.</li>
+<li>Why: Each headline result assumes the resource its mechanism consumes.</li>
+<li>Failure without it: Picking the largest benchmark number can select a method with no input or training artifact to act on.</li>
+<li>Cost or complexity: RA-RAG and CrAM setup are measured in hours. CAG setup is measured in engineer-days.</li>
+</ul>
+<p>CrAM is the residual leaf, not a universal default. Source prerequisite gap: the two-gate tree sends the neither branch to CrAM, but CrAM still needs an independent upstream scorer to supply c_i. The methods can compose. RA-RAG's r_s can feed CrAM's c_i at effectively zero marginal scoring cost.</p>
+<h4 id="per-pool-marketplace-example">Per-pool marketplace example</h4>
+<ul>
+<li>What: Pool 1 has seller listings and regulator notices with publishers, so it routes to RA-RAG.</li>
+<li>Why: Pool 2 has anonymous reviews but an existing labeled spam corpus, so it routes to CAG.</li>
+<li>Failure without it: Pool 3 is a same-week partner launch with neither resource, so waiting for RA-RAG identity or CAG labels misses the deadline.</li>
+<li>Cost or complexity: Pool 3 routes to CrAM as the same-day option.</li>
+</ul>
+<p>Run the decision tree per content pool rather than once for the product. Standardize the interface as a credibility score, not as one credibility mechanism.</p>
+<h4 id="timed-cram-calibration">Timed CrAM calibration</h4>
+<ul>
+<li>What: Reuse 100 examples and a 32-layer, 32-head model.</li>
+<li>Why: The arithmetic makes the same-day claim testable.</li>
+<li>Failure without it: "No training" can hide a real calibration cost.</li>
+<li>Cost or complexity: <code>100 × 1,024 = 102,400</code> ablation passes. At 50 milliseconds each, <code>102,400 × 0.05 = 5,120 seconds</code>, or about 85 minutes.</li>
+</ul>
+<p>The source describes RA-RAG as an afternoon of application programming interface (API) calls. It describes CrAM as under two hours of compute plus engineering integration. It describes CAG as engineer-days because annotation dominates. The calibration-set sizes do not scale with corpus size in these examples.</p>
+<p>Re-walk the tree when a resource changes. Give CrAM a migration date for broad traffic. Escalate to human review whenever r_s, a credibility label, or c_i itself is suspect.</p>
+<h3 id="357-temporal-awareness-and-credibility-laundering">35.7 Temporal awareness and credibility laundering</h3>
+<h4 id="the-citation-chain-blind-spot">The citation-chain blind spot</h4>
+<ul>
+<li>What: A fact originates at t_0 and is repeated through pages C_1 to C_n with newer dates t_1 through t_n.</li>
+<li>Why: A naive freshness filter sees <code>current time - t_n</code>, while the claim's real age is <code>current time - t_0</code>.</li>
+<li>Failure without it: Each citation hop resets apparent age without re-measuring the fact.</li>
+<li>Cost or complexity: Query-time chain dereferencing scales with corpus size and query volume, so origin dates should be annotated offline where possible.</li>
+</ul>
+<p>A 2020 statistic can look like 2023 research when a 2023 summary links to it. A chain re-cited frequently can pass a strict recent-publication filter indefinitely because the filter checks the wrong timestamp.</p>
+<p>The mirror failure is a false-negative citation. Later authors inherit a missing reference because they trust the most recent reference list.</p>
+<h4 id="freshness-weight-experiment">Freshness-weight experiment</h4>
+<ul>
+<li>What: Use <code>w(t) = 2^(-(current time - t) / half-life)</code> with a one-year half-life in 2026.</li>
+<li>Why: The statistic began in 2020 but the retrieved summary was published in 2023.</li>
+<li>Failure without it: The summary date produces <code>2^-3 = 0.125</code>, while the origin date produces <code>2^-6 = about 0.0156</code>.</li>
+<li>Cost or complexity: <code>0.125 / 0.0156 = about 8</code>, so one laundering hop gives an 8-fold overestimate.</li>
+</ul>
+<p>A second hop in 2025 gives a weight of 0.5 against the unchanged 0.0156, or a 32-fold overestimate. Each additional hop multiplies distortion by about <code>2^delta</code>, where delta is the apparent date advance. The source states no upper bound as chain length grows. The one-year half-life is a domain-tuned example, not a universal constant.</p>
+<h4 id="operating-rules-and-claim-limits">Operating rules and claim limits</h4>
+<ul>
+<li>What: Prefer first-published or origin dates over last-modified or last-cited dates, and label facts as time-persistent or time-sensitive.</li>
+<li>Why: A reliable source can still carry stale evidence.</li>
+<li>Failure without it: RA-RAG, CAG, and CrAM source scores are mistaken for claim freshness.</li>
+<li>Cost or complexity: When provenance stops after one hop, discount the freshness boost rather than trusting it fully.</li>
+</ul>
+<p>Treat high re-citation velocity as an audit signal, not automatic consensus. Three independent measurements and three citations of one 2020 measurement can look identical until provenance is checked. The source specifically contrasts <code>datePublished</code> with <code>dateModified</code> metadata. Audit reference-list omissions as well as stale dates. An offline earliest-origin annotation can satisfy a one-year provenance requirement without a chain walk on every query.</p>
+<h3 id="358-pluralism-when-every-credible-source-shares-a-blind-spot">35.8 Pluralism: when every credible source shares a blind spot</h3>
+<h4 id="credibility-only-ranking-misses-ambiguity">Credibility-only ranking misses ambiguity</h4>
+<ul>
+<li>What: A classical ranker chooses a permutation maximizing <code>sum from k=1 to K of u(d_at_k) × v(k)</code>.</li>
+<li>Why: Utility rewards credible relevance and v(k) accounts for position bias.</li>
+<li>Failure without it: The objective contains no relationship between documents, so 14 excellent candidates about one Michael Jordan can fill every slot.</li>
+<li>Cost or complexity: Raising the credibility threshold can strengthen the dominant cluster rather than diversify it.</li>
+</ul>
+<p>The position discount is the same type used by NDCG.</p>
+<p>The source's query intends Michael I. Jordan, the Berkeley machine learning researcher, but credible results all describe the basketball player. The sources are correct, attributable, and mutually corroborating. The candidate set is still incomplete.</p>
+<h4 id="ilad-coverage-and-the-combined-objective">ILAD, coverage, and the combined objective</h4>
+<ul>
+<li>What: ILAD measures mean pairwise embedding distance inside list L.</li>
+<li>Why: It catches near-duplicate retrieval.</li>
+<li>Failure without it: Geometric distance can reward an irrelevant tangent rather than a missing credible stance.</li>
+<li>Cost or complexity: <code>ILAD(L) = 2 / (K(K-1)) × sum over i less than j of (1 - cosine(e_i,e_j))</code>.</li>
+</ul>
+<p>Coverage uses a known stance set S:</p>
+<p><code>coverage(L) = size of the union of S_d for d in L, divided by size of S</code></p>
+<p>The combined objective is:</p>
+<p><code>maximize over lists L of size K: sum of u(d) + lambda_1 × ILAD(L) + lambda_2 × coverage(L)</code></p>
+<p>At lambda_1 = lambda_2 = 0, the objective becomes the classical credibility-only ranker. Source claim limit: zero diversity weights recover the same top-K set by utility, but not the earlier position-weighted permutation objective because the combined formula omits v(k). MMR from Carbonell and Goldstein in 1998 uses relevance plus distance but no explicit stance coverage.</p>
+<h4 id="michael-jordan-worked-example">Michael Jordan worked example</h4>
+<ul>
+<li>What: The pool has 20 documents and four candidates: 14 basketball, 3 footballer, 2 actor, and 1 researcher.</li>
+<li>Why: Mean utilities are 0.90, 0.75, 0.70, and 0.62.</li>
+<li>Failure without it: Pure utility with K = 5 returns five basketball documents totaling 4.40, coverage 1/4 or 0.25, and ILAD 0.08.</li>
+<li>Cost or complexity: With lambda_1 = 0.3 and lambda_2 = 0.5, the list totals 3.85, a 12.5% credibility drop, but reaches coverage 4/4 and ILAD 0.68.</li>
+</ul>
+<p>The diversified list keeps two basketball documents and adds the footballer, actor, and researcher. Among 10 pairs, one has distance 0.08 and nine have about 0.75. <code>(0.08 + 9 × 0.75) / 10 = about 0.68</code>, an 8.5-fold ILAD increase.</p>
+<p>The source cites a 2015 survey by Santos, Macdonald, and Ounis for the broader trade-off shape. A 60% credibility loss for only a 25-point coverage gain would signal an over-weighted coverage term.</p>
+<p>Activate lambda_2 only for genuine ambiguity. The source says 95% of queries are not ambiguous in this example framing. Build S from Wikipedia disambiguation pages, Wikidata instance-of collisions, or a domain taxonomy before embedding clusters. Use ILAD alone only as a last resort when no enumerable stance set exists. Filter for credibility before running pluralism selection. Cap acceptable aggregate-credibility loss, for example at 15-20%.</p>
+<h3 id="359-fair-exposure-doubly-stochastic-rankings-and-group-constraints">35.9 Fair exposure: doubly stochastic rankings and group constraints</h3>
+<h4 id="from-a-list-to-an-exposure-policy">From a list to an exposure policy</h4>
+<ul>
+<li>What: A hard ranking uses a 0-or-1 assignment matrix P. Relaxing entries to <code>[0,1]</code> creates the source's doubly stochastic soft ranking.</li>
+<li>Why: Exposure becomes continuous rather than zero below a hard cutoff.</li>
+<li>Failure without it: Credible regional outlets can receive zero exposure forever even when they express the same stance.</li>
+<li>Cost or complexity: <code>exposure(d) = sum from k=1 to K of P_(d,k) × v(k)</code>, and group exposure averages over group members.</li>
+</ul>
+<p>In the hard matrix, each document row sums to at most one and each position column sums to exactly one. For the relaxed policy, the source states that rows and columns sum to one. Source dimensional defect: the source also defines P as N by K with K smaller than N and earlier gives document rows sums of at most one. Every row and column cannot both sum to one unless N equals K, so the rectangular claim and the later Birkhoff invocation are not jointly valid as written.</p>
+<p>Demographic parity requires equal group exposure. Disparate treatment requires exposure ratios to match average utility ratios. In formulas, <code>exposure(G_1) = exposure(G_2)</code> for parity, while <code>exposure(G_1) / exposure(G_2) = mean_u(G_1) / mean_u(G_2)</code> for disparate treatment. The source usually prefers disparate treatment because it preserves credibility differences.</p>
+<p>The optimization maximizes <code>sum over d of u(d) × exposure(d)</code> subject to the soft-ranking and exposure constraints. Singh and Joachims formalized this LP in 2018. Biega, Gummadi, and Weikum argued in 2018 for fairness across a sequence of rankings.</p>
+<h4 id="serving-and-approximation">Serving and approximation</h4>
+<ul>
+<li>What: The Birkhoff-von Neumann theorem decomposes P as <code>P = sum_i alpha_i Pi_i</code>, with weights summing to 1.</li>
+<li>Why: Sampling hard permutation Pi_i with probability alpha_i serves one list while preserving fairness in expectation.</li>
+<li>Failure without it: The LP returns a matrix rather than a displayable ranking.</li>
+<li>Cost or complexity: FAIR from Zehlike et al. in 2017 gives a per-query prefix floor but costs more aggregate accuracy and cannot express utility-proportional exposure.</li>
+</ul>
+<p>Production systems avoid solving an LP per query at high QPS. They build a corpus graph offline and use an online frontier loop. The source lists six steering policies. Two graph-building policies link across groups and cap neighbor domination. Four in-process policies skip same-group neighbors, balance batch proportions, guarantee each group a batch share, and prefer earlier-discovered neighbors within a group.</p>
+<h4 id="exposure-worked-example">Exposure worked example</h4>
+<ul>
+<li>What: Twelve documents include 8 wire-service items at mean utility 0.90, 3 regional items at 0.75, and 1 independent item at 0.60.</li>
+<li>Why: Six rank discounts are 1.000, 0.631, 0.500, 0.431, 0.387, and 0.356, summing to 3.305.</li>
+<li>Failure without it: A hard top-6 gives every slot to Group A. Average exposures are 0.413 for A and 0 for B and C, producing an infinite A-to-B ratio instead of the utility ratio 1.2.</li>
+<li>Cost or complexity: Under disparate treatment, solve <code>a=0.90t</code>, <code>b=0.75t</code>, <code>c=0.60t</code>, and <code>8a+3b+c=3.305</code>. This gives t=0.329, a=0.296, b=0.247, and c=0.197.</li>
+</ul>
+<p>Group A drops from 0.413 to 0.296, a 28% reduction. Groups B and C rise from zero to utility-proportional exposure.</p>
+<p>Default to disparate treatment unless policy requires parity. Amortize across the query stream, and use FAIR only for a mandatory per-query floor. Solve the exact LP offline for stable group structures and validate the frontier approximation against measured group exposure. Do not intervene when exposure already matches utility.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-351">Figure 35.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  r[&quot;Retrieval&quot;] --&gt; g[&quot;Generation&quot;] --&gt; c[&quot;Checking&quot;]
+  r --&gt; ra[&quot;Robustness and Privacy&quot;]
+  g --&gt; ga[&quot;Fairness and Transparency&quot;]
+  c --&gt; ca[&quot;Factuality and Accountability&quot;]
+  style g stroke-dasharray: 5 5
+  style c stroke-dasharray: 1 4</code></pre></details></figure>
+<p>Figure 35.1: Each of the six trustworthiness aspects is native to one pipeline stage, so a failure on any one axis points to a specific component to fix, not to "the model."</p>
+<h3 id="figure-352">Figure 35.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  d1[&quot;Peer-reviewed report&quot;] --&gt; g[&quot;Generator: unweighted&quot;]
+  d2[&quot;Recent news article&quot;] --&gt; g
+  d3[&quot;Peer-reviewed report&quot;] --&gt; g
+  d4[&quot;2018 blog post&quot;] -.-&gt; g
+  d5[&quot;Recent news article&quot;] --&gt; g
+  g --&gt; a[&quot;Answer accuracy drops 20-30 points&quot;]
+  style d4 stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.2: One low-credibility document (dashed) mixed into an otherwise credible context set is enough to measurably degrade answer accuracy, because the generator weights every document equally by default.</p>
+<h3 id="figure-353">Figure 35.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  o[&quot;Offline: r_s from cross-source agreement on Q about 200 queries&quot;] -. &quot;r_s&quot; .-&gt; k[&quot;Keep K = 4 reliable-and-relevant sources&quot;]
+  p[&quot;Retrieve top-k per source across S = 1,000 sources&quot;] --&gt; k
+  k --&gt; v[&quot;Weighted vote: sum r_s by answer&quot;]
+  o -. &quot;r_s&quot; .-&gt; v
+  v --&gt; a[&quot;Answer&quot;]
+  style o stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.3: Reliability is estimated once offline from cross-source agreement, then reused at query time to select which sources vote and how much each vote counts.</p>
+<h3 id="figure-354">Figure 35.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  a[&quot;Annotate relevance and credibility at document and sentence level&quot;] --&gt; t[&quot;Teacher GPT-3.5 generates credibility-reasoning explanations&quot;]
+  o[&quot;Offline once: data construction and training run&quot;] -.-&gt; t
+  t --&gt; f[&quot;Fine-tune target LLM on query, tagged documents, reasoning, and answer&quot;]
+  f --&gt; i[&quot;Inference: reason about unseen-source credibility with zero lookup&quot;]
+  style o stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.4: CAG spends a training run once, offline, so that at inference time credibility reasoning runs on document content alone, with no source lookup required.</p>
+<h3 id="figure-355">Figure 35.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  c[&quot;Causal tracing on about 100 calibration examples&quot;] --&gt; h[&quot;Select top 100-300 gullible heads by ablation effect&quot;]
+  o[&quot;Offline once: no gradient step and no labeled fine-tuning set&quot;] -.-&gt; h
+  h --&gt; s[&quot;Inference: scale attention on low-credibility spans by c_i only inside selected heads&quot;]
+  s --&gt; r[&quot;Renormalize modified attention weights&quot;]
+  style o stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.5: CrAM spends a one-time calibration pass identifying which heads propagate misinformation, then reweights only those heads' attention at every subsequent query, with no training run.</p>
+<h3 id="figure-356">Figure 35.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  a{&quot;Stable, identifiable source per document?&quot;}
+  a -- &quot;yes&quot; --&gt; r[&quot;RA-RAG: no training, best explainability, Q about 200&quot;]
+  a -- &quot;no&quot; --&gt; b{&quot;Credibility-labeled corpus and days to fine-tune?&quot;}
+  b -- &quot;yes&quot; --&gt; c[&quot;CAG: best overall accuracy and unseen-source generalization&quot;]
+  b -- &quot;no&quot; --&gt; d[&quot;CrAM: hours not days, plug-and-play, narrowest coverage&quot;]
+  style r stroke-dasharray: 5 5
+  style c stroke-dasharray: 5 5
+  style d stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.6: Both gates test for a resource you already have or lack - source identity, then labeled training data - not for which method scores best on a benchmark.</p>
+<h3 id="figure-357">Figure 35.7</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  t0[&quot;t_0 = 2020: statistic first measured&quot;] --&gt; t1[&quot;t_1 = 2023: summary links to it&quot;] --&gt; t2[&quot;t_2 = 2026: RAG retrieves this page&quot;]
+  f[&quot;Freshness filter reads only current time minus t_2 or t_1&quot;] -.-&gt; t2
+  x[&quot;t_0 never dereferenced&quot;] -.-&gt; t0
+  style f stroke-dasharray: 5 5</code></pre></details></figure>
+<p>Figure 35.7: Every hop in the citation chain resets the apparent age to zero. The freshness filter only ever sees the box on the right, never the origin date on the left.</p>
+<h3 id="figure-358">Figure 35.8</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Rank</th>
+<th>Credibility-only, lambda_1 = lambda_2 = 0</th>
+<th>Combined, lambda_1 = 0.3 and lambda_2 = 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Basketball, u = 0.90</td>
+<td>Basketball, u = 0.90</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Basketball, u = 0.89</td>
+<td>Basketball, u = 0.88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Basketball, u = 0.88</td>
+<td>Footballer, u = 0.75</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Basketball, u = 0.87</td>
+<td>Actor, u = 0.70</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Basketball, u = 0.86</td>
+<td>Researcher, u = 0.62</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 35.8: Sorting by credibility alone returns five mutually redundant, individually correct documents. Adding coverage to the objective spends two of five slots on redundancy and recovers all four disambiguation candidates.</p>
+<h3 id="figure-359">Figure 35.9</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  i[&quot;Candidate set I: credibility-filtered&quot;] --&gt; b[&quot;Batch scored by reranker S and appended to result R&quot;]
+  b --&gt; n[&quot;Neighbors pulled from offline corpus graph&quot;]
+  n --&gt; f[&quot;Frontier F steered by policies 1-6&quot;]
+  f -- &quot;repeat until budget spent&quot; --&gt; b
+  subgraph K[&quot;Group key&quot;]
+    w((&quot;Wire service&quot;))
+    r[&quot;Regional outlet&quot;]
+    o[&quot;Independent outlet&quot;]
+  end
+  style r stroke-dasharray: 5 5
+  style o stroke-dasharray: 1 4</code></pre></details></figure>
+<p>Figure 35.9: The frontier loop approximates fair exposure by steering which documents enter each batch, not by solving the exposure LP directly.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw three pipeline boxes: Retrieval, Generation, and Checking.</li>
+<li>Put Robustness and Privacy under Retrieval.</li>
+<li>Put Fairness and Transparency under Generation.</li>
+<li>Put Factuality and Accountability under Checking.</li>
+<li>Draw five retrieved documents entering one generator.</li>
+<li>Mark one document as low credibility and write "20-30 point drop."</li>
+<li>Draw the RA-RAG lane: offline agreement, source scores, per-source weighted vote.</li>
+<li>Draw the CAG lane: multi-level labels, teacher explanations, fine-tuning, unseen-source inference.</li>
+<li>Draw the CrAM lane: causal tracing, 100-300 gullible heads, credibility scaling, renormalization.</li>
+<li>Draw the resource tree: stable source identity, labeled data, then neither.</li>
+<li>Draw a 2020 to 2023 to 2026 citation chain and circle the hidden 2020 origin.</li>
+<li>Draw a credibility-only list containing five basketball results.</li>
+<li>Draw a coverage-aware list containing basketball, footballer, actor, and researcher results.</li>
+<li>Draw a soft ranking matrix feeding sampled hard rankings.</li>
+<li>Add group-exposure constraints and a corpus-graph frontier loop.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Source credibility starts by separating six trust axes across retrieval, generation, and checking. Relevance alone is unsafe because one bad document can cut accuracy by 20 to 30 points. If sources have stable identities, RA-RAG learns reliability from cross-source agreement. If labeled examples and training time exist, CAG teaches the generator to reason about credibility. Otherwise, CrAM down-weights low-credibility spans only in causally identified gullible heads. Then add two separate controls: trace claim origin dates to stop credibility laundering, and optimize coverage plus group exposure so credible sources do not share one blind spot or monopolize every rank.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-a-rag-system-has-a-2-hallucination-rate-is-it-trustworthy">1. A RAG system has a 2% hallucination rate. Is it trustworthy?</h3>
+<p>Not from that number alone. Map robustness and privacy to retrieval, fairness and transparency to generation, and factuality and accountability to checking, then inspect all six scores and the stage behind each failure.</p>
+<h3 id="2-why-does-one-bad-document-matter-when-nine-others-are-credible">2. Why does one bad document matter when nine others are credible?</h3>
+<p>The generator weights the retrieved passages equally unless credibility enters explicitly, so one fluent contaminant can reduce accuracy by 20-30 points. Raising the relevance threshold or shrinking k cannot solve an independent credibility problem and may remove useful corroboration.</p>
+<h3 id="3-what-makes-ra-rag-resistant-to-a-content-farm">3. What makes RA-RAG resistant to a content farm?</h3>
+<p>It estimates r_s from reliability-weighted cross-source agreement and gives one weighted ballot to each selected source. A source with a thousand duplicate documents still casts one vote, so volume cannot replace reliability, though shared blind spots can still fool consensus.</p>
+<h3 id="4-when-does-cag-beat-cram-and-when-does-cram-win">4. When does CAG beat CrAM, and when does CrAM win?</h3>
+<p>CAG is the broader choice when sentence-level labels, teacher explanations, and days for fine-tuning exist because its judgment generalizes from content. CrAM wins on deployment speed when the model cannot be retrained, but it needs an upstream c_i and remains narrow outside its calibrated misinformation pattern.</p>
+<h3 id="5-how-do-you-choose-among-ra-rag-cag-and-cram">5. How do you choose among RA-RAG, CAG, and CrAM?</h3>
+<p>Check stable source identity first and choose RA-RAG when it exists. Otherwise choose CAG if labeled data and training runway exist, or CrAM if neither does, while remembering that none of the three solves claim freshness, pluralism, or group exposure by itself.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or formula</th>
+<th>Meaning and claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 stages</td>
+<td>Retrieval, generation, and checking in the trust taxonomy</td>
+</tr>
+<tr>
+<td>2 aspects per stage</td>
+<td>Six total trust aspects</td>
+</tr>
+<tr>
+<td>6 aspects</td>
+<td>Robustness, privacy, fairness, transparency, factuality, and accountability</td>
+</tr>
+<tr>
+<td>2% hallucination rate</td>
+<td>Opening hospital example that covers only a narrow factuality-adjacent measure</td>
+</tr>
+<tr>
+<td>2020 to 2023</td>
+<td>First credibility-laundering example, where an old statistic receives a newer wrapper</td>
+</tr>
+<tr>
+<td>2024 survey</td>
+<td>Evaluation attributed to Zhou et al. on the six-aspect taxonomy</td>
+</tr>
+<tr>
+<td>6 axes scored on 0 to 1</td>
+<td>Radar-chart setup</td>
+</tr>
+<tr>
+<td>60 degrees</td>
+<td>Included angle between equally spaced radar axes</td>
+</tr>
+<tr>
+<td>Model A scores 0.80, 0.30, 0.75, 0.70, 0.85, 0.60</td>
+<td>Spiky privacy-weak profile</td>
+</tr>
+<tr>
+<td>0.24, 0.225, 0.525, 0.595, 0.51, 0.48</td>
+<td>Model A's six consecutive radar-axis products</td>
+</tr>
+<tr>
+<td>2.575</td>
+<td>Sum of Model A's consecutive radar products</td>
+</tr>
+<tr>
+<td>About 1.115</td>
+<td>Model A radar area from 0.5 times 0.866 times 2.575</td>
+</tr>
+<tr>
+<td>Model B score 0.65 on every axis</td>
+<td>Uniformly mediocre comparison</td>
+</tr>
+<tr>
+<td>0.4225</td>
+<td>Each consecutive product for Model B</td>
+</tr>
+<tr>
+<td>2.535</td>
+<td>Sum of Model B's six products</td>
+</tr>
+<tr>
+<td>About 1.098</td>
+<td>Model B radar area</td>
+</tr>
+<tr>
+<td>Within 2%</td>
+<td>Difference in area despite very different failure shapes</td>
+</tr>
+<tr>
+<td>LLaMA-2-13B, GPT-3.5-Turbo, GPT-4</td>
+<td>Three systems compared in the survey account</td>
+</tr>
+<tr>
+<td>9 credible passages plus 1 weak blog</td>
+<td>Opening contamination scenario</td>
+</tr>
+<tr>
+<td>Position 10 of 10</td>
+<td>Weak blog's location in that scenario</td>
+</tr>
+<tr>
+<td>3-year-old blog</td>
+<td>Age in the opening retrieval log</td>
+</tr>
+<tr>
+<td>3 credibility tiers</td>
+<td>High, medium, and low</td>
+</tr>
+<tr>
+<td>6-7 years stale</td>
+<td>Low-credibility outdated-report example</td>
+</tr>
+<tr>
+<td>1 bad document</td>
+<td>Contaminant sufficient for a measurable accuracy drop</td>
+</tr>
+<tr>
+<td>20-30 percentage points</td>
+<td>Reported degradation range from one low-quality document</td>
+</tr>
+<tr>
+<td>k = 5</td>
+<td>Retrieved documents per medical benchmark question</td>
+</tr>
+<tr>
+<td>1,000 questions</td>
+<td>Size of the contamination worked example</td>
+</tr>
+<tr>
+<td>82%</td>
+<td>Clean high- or medium-credibility baseline</td>
+</tr>
+<tr>
+<td>52-62%</td>
+<td>Accuracy range after subtracting the 30- or 20-point degradation</td>
+</tr>
+<tr>
+<td>Roughly 1 in 4 to 1 in 3</td>
+<td>Previously correct questions flipped in the example</td>
+</tr>
+<tr>
+<td>Top 3 of 5</td>
+<td>Naive stricter relevance-filter configuration</td>
+</tr>
+<tr>
+<td>1 extra score per document</td>
+<td>Stated ingestion-time credibility-tag cost</td>
+</tr>
+<tr>
+<td>30% latency cut</td>
+<td>Interview scenario that should not remove an offline credibility score</td>
+</tr>
+<tr>
+<td>r_s from 0 to 1</td>
+<td>RA-RAG reliability range</td>
+</tr>
+<tr>
+<td>Q about 200</td>
+<td>Calibration-query anchor, not a universal fixed size</td>
+</tr>
+<tr>
+<td>S = 1,000</td>
+<td>Sources in the RA-RAG cost example</td>
+</tr>
+<tr>
+<td>K = 4</td>
+<td>Sources retained for weighted voting</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>Year attached to Hwang et al.'s RA-RAG report</td>
+</tr>
+<tr>
+<td>0.95, 0.93, 0.90</td>
+<td>CNN, Mayo Clinic, and Wikipedia reliability values</td>
+</tr>
+<tr>
+<td>0.20</td>
+<td>Conspiracy-blog reliability</td>
+</tr>
+<tr>
+<td>Two additional sources at 0.15</td>
+<td>Values used to create a 3-to-3 raw vote tie</td>
+</tr>
+<tr>
+<td>2.78 versus 0.50</td>
+<td>Reliability-weighted totals for SARS-CoV-2 versus 5G</td>
+</tr>
+<tr>
+<td>k = 5 per source</td>
+<td>Documents retrieved before source selection</td>
+</tr>
+<tr>
+<td>5,000 candidates</td>
+<td>1,000 sources times 5 documents</td>
+</tr>
+<tr>
+<td>20 generator documents</td>
+<td>4 retained sources times 5 documents</td>
+</tr>
+<tr>
+<td>99.6%</td>
+<td>Calculated token reduction from 5,000 to 20 documents</td>
+</tr>
+<tr>
+<td>Roughly 99%</td>
+<td>Paper-level comparison anchor cited by the source</td>
+</tr>
+<tr>
+<td>About 500 tokens per document</td>
+<td>Context-size assumption</td>
+</tr>
+<tr>
+<td>10,000 versus 2.5 million tokens</td>
+<td>Retained context versus consulting all sources</td>
+</tr>
+<tr>
+<td>73.7% versus 63.4%</td>
+<td>RA-RAG versus standard RAG on Natural Questions</td>
+</tr>
+<tr>
+<td>91.3% versus 81.2%</td>
+<td>RA-RAG versus standard RAG on TriviaQA</td>
+</tr>
+<tr>
+<td>Roughly 10 points</td>
+<td>Size of both reported RA-RAG gains</td>
+</tr>
+<tr>
+<td>3 CAG tiers</td>
+<td>High, medium, and low credibility</td>
+</tr>
+<tr>
+<td>2 annotation levels</td>
+<td>Document and sentence</td>
+</tr>
+<tr>
+<td>GPT-3.5 teacher</td>
+<td>Model used to generate CAG explanations</td>
+</tr>
+<tr>
+<td>1901</td>
+<td>Year Wilhelm Rontgen won the first Nobel Prize in Physics in the training example</td>
+</tr>
+<tr>
+<td>50.9%</td>
+<td>CAG accuracy on HotpotQA</td>
+</tr>
+<tr>
+<td>82% relative improvement</td>
+<td>Reported gain over base RAG</td>
+</tr>
+<tr>
+<td>About 28.0%</td>
+<td>Baseline inferred from 50.9 divided by 1.82</td>
+</tr>
+<tr>
+<td>22.9 points</td>
+<td>Absolute difference between 50.9 and the inferred 28.0 baseline</td>
+</tr>
+<tr>
+<td>80% synthetic noise</td>
+<td>CAG robustness condition</td>
+</tr>
+<tr>
+<td>89% versus 77.3%</td>
+<td>CAG versus standard RAG under that noise</td>
+</tr>
+<tr>
+<td>11.7 points</td>
+<td>Noise-robustness gap</td>
+</tr>
+<tr>
+<td>Days versus hours</td>
+<td>CAG setup compared with RA-RAG and CrAM setup</td>
+</tr>
+<tr>
+<td>About 100 examples</td>
+<td>CrAM causal-tracing calibration size</td>
+</tr>
+<tr>
+<td>Top 100-300 heads</td>
+<td>Gullible-head selection range</td>
+</tr>
+<tr>
+<td>c_A = 0.8 and c_B = 0.1</td>
+<td>Credibility scores in the attention example</td>
+</tr>
+<tr>
+<td>30% and 20%</td>
+<td>Initial attention weights on Documents A and B</td>
+</tr>
+<tr>
+<td>60%</td>
+<td>A's initial share of the two documents' attention</td>
+</tr>
+<tr>
+<td>0.24 and 0.02</td>
+<td>Credibility-scaled attention values</td>
+</tr>
+<tr>
+<td>8-to-1 credibility ratio</td>
+<td>Relative document credibility</td>
+</tr>
+<tr>
+<td>1.5-to-1 attention ratio</td>
+<td>Relative initial attention</td>
+</tr>
+<tr>
+<td>12-to-1 scaled ratio</td>
+<td>Product of credibility and attention ratios</td>
+</tr>
+<tr>
+<td>92.3%</td>
+<td>A's share after renormalization</td>
+</tr>
+<tr>
+<td>32 layers times 32 heads</td>
+<td>Plausible model configuration used for the head budget</td>
+</tr>
+<tr>
+<td>1,024 heads</td>
+<td>Total in that configuration</td>
+</tr>
+<tr>
+<td>10-29%</td>
+<td>Share of heads CrAM modifies</td>
+</tr>
+<tr>
+<td>71-90%</td>
+<td>Share of heads left unchanged</td>
+</tr>
+<tr>
+<td>91.3%</td>
+<td>CrAM targeted adversarial-injection accuracy, described as near-Oracle</td>
+</tr>
+<tr>
+<td>33.6%</td>
+<td>CrAM Natural Questions accuracy</td>
+</tr>
+<tr>
+<td>73.7%</td>
+<td>RA-RAG Natural Questions comparison</td>
+</tr>
+<tr>
+<td>2 resource gates</td>
+<td>Stable identity first, then labeled data and fine-tuning runway</td>
+</tr>
+<tr>
+<td>3 marketplace pools</td>
+<td>Example showing a system can use all three methods</td>
+</tr>
+<tr>
+<td>Same-week launch</td>
+<td>Pool 3 deadline that routes to CrAM</td>
+</tr>
+<tr>
+<td>100 times 1,024</td>
+<td>Timed CrAM calibration setup</td>
+</tr>
+<tr>
+<td>102,400 ablation passes</td>
+<td>Product of examples and heads</td>
+</tr>
+<tr>
+<td>50 milliseconds per pass</td>
+<td>Plausible batched forward-pass assumption</td>
+</tr>
+<tr>
+<td>5,120 seconds</td>
+<td>Total compute from 102,400 times 0.05 seconds</td>
+</tr>
+<tr>
+<td>About 85 minutes</td>
+<td>Rounded CrAM calibration time</td>
+</tr>
+<tr>
+<td>Under 1.5 hours</td>
+<td>Plain-language bound on that compute</td>
+</tr>
+<tr>
+<td>Under 2 hours</td>
+<td>CrAM cost-check summary before integration time</td>
+</tr>
+<tr>
+<td>2020 origin, 2023 summary, 2026 retrieval</td>
+<td>Freshness-laundering timeline</td>
+</tr>
+<tr>
+<td>1-year half-life</td>
+<td>Domain-tuned freshness example, not a universal constant</td>
+</tr>
+<tr>
+<td>3 years</td>
+<td>Apparent age from 2026 minus 2023</td>
+</tr>
+<tr>
+<td>6 years</td>
+<td>True age from 2026 minus 2020</td>
+</tr>
+<tr>
+<td>0.125</td>
+<td>Laundered freshness weight, equal to 2 to the power -3</td>
+</tr>
+<tr>
+<td>About 0.0156</td>
+<td>True-origin freshness weight, equal to 2 to the power -6</td>
+</tr>
+<tr>
+<td>1/8 and 1/64</td>
+<td>Exact fractional forms of the two freshness weights</td>
+</tr>
+<tr>
+<td>8-fold</td>
+<td>First freshness overestimate</td>
+</tr>
+<tr>
+<td>2025 second hop</td>
+<td>Additional laundering example</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>Freshness weight after a one-year apparent age</td>
+</tr>
+<tr>
+<td>32-fold</td>
+<td>Second example's overestimate against 0.0156</td>
+</tr>
+<tr>
+<td>18-month re-citation example</td>
+<td>Illustration that repeated new wrappers can keep resetting apparent age</td>
+</tr>
+<tr>
+<td>24 months to 6 months</td>
+<td>Interview example showing threshold tightening does not reveal t_0</td>
+</tr>
+<tr>
+<td>Top 14 candidates</td>
+<td>Redundant dominant cluster in the pluralism setup</td>
+</tr>
+<tr>
+<td>1998</td>
+<td>Carbonell and Goldstein MMR reference</td>
+</tr>
+<tr>
+<td>lambda_1 = 0.3 and lambda_2 = 0.5</td>
+<td>Combined-objective weights in the worked list</td>
+</tr>
+<tr>
+<td>20 candidate documents</td>
+<td>Michael Jordan pool size</td>
+</tr>
+<tr>
+<td>14, 3, 2, and 1</td>
+<td>Basketball, footballer, actor, and researcher counts</td>
+</tr>
+<tr>
+<td>0.90, 0.75, 0.70, and 0.62</td>
+<td>Mean utilities for those four groups</td>
+</tr>
+<tr>
+<td>K = 5</td>
+<td>Result-list size</td>
+</tr>
+<tr>
+<td>4.40</td>
+<td>Pure-credibility utility sum</td>
+</tr>
+<tr>
+<td>1 of 4 or 25%</td>
+<td>Pure-ranking coverage</td>
+</tr>
+<tr>
+<td>0.92 cosine similarity and 0.08 distance</td>
+<td>Redundant basketball cluster</td>
+</tr>
+<tr>
+<td>10 pairs</td>
+<td>Pair count in a five-document list</td>
+</tr>
+<tr>
+<td>3.85</td>
+<td>Combined-list utility sum</td>
+</tr>
+<tr>
+<td>12.5%</td>
+<td>Aggregate-credibility cost of full coverage</td>
+</tr>
+<tr>
+<td>About 12%</td>
+<td>Rounded operating-rule description of the same worked credibility cost</td>
+</tr>
+<tr>
+<td>4 of 4 or 100%</td>
+<td>Combined-list coverage</td>
+</tr>
+<tr>
+<td>1 pair at 0.08 and 9 at about 0.75</td>
+<td>ILAD calculation inputs</td>
+</tr>
+<tr>
+<td>About 0.68</td>
+<td>Combined-list ILAD</td>
+</tr>
+<tr>
+<td>8.5-fold</td>
+<td>ILAD increase from 0.08 to 0.68</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>Santos, Macdonald, and Ounis survey reference</td>
+</tr>
+<tr>
+<td>60% cost for 25-point gain</td>
+<td>Example that signals excessive coverage weight</td>
+</tr>
+<tr>
+<td>95% unambiguous</td>
+<td>Source's example framing for queries that should not pay a coverage tax</td>
+</tr>
+<tr>
+<td>15-20%</td>
+<td>Example cap on acceptable aggregate-credibility loss</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Singh and Joachims LP reference and Biega et al. amortized-fairness reference</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Zehlike et al. FAIR reference</td>
+</tr>
+<tr>
+<td>6 steering policies</td>
+<td>Two graph-building and four in-process frontier policies</td>
+</tr>
+<tr>
+<td>12 documents</td>
+<td>Fair-exposure pool size</td>
+</tr>
+<tr>
+<td>8, 3, and 1</td>
+<td>Wire-service, regional, and independent group sizes</td>
+</tr>
+<tr>
+<td>0.90, 0.75, and 0.60</td>
+<td>Average utilities for Groups A, B, and C</td>
+</tr>
+<tr>
+<td>K = 6</td>
+<td>Exposed rank slots</td>
+</tr>
+<tr>
+<td>1.000, 0.631, 0.500, 0.431, 0.387, 0.356</td>
+<td>Position-bias values for ranks 1 through 6</td>
+</tr>
+<tr>
+<td>3.305</td>
+<td>Total exposure mass</td>
+</tr>
+<tr>
+<td>0.413</td>
+<td>Hard-ranking average exposure for Group A</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Hard-ranking exposure for Groups B and C</td>
+</tr>
+<tr>
+<td>Infinite versus 1.2</td>
+<td>Hard A-to-B exposure ratio versus utility ratio</td>
+</tr>
+<tr>
+<td>10.05t = 3.305</td>
+<td>Disparate-treatment normalization equation</td>
+</tr>
+<tr>
+<td>t = 0.329</td>
+<td>Solved common scale</td>
+</tr>
+<tr>
+<td>a = 0.296, b = 0.247, c = 0.197</td>
+<td>Utility-proportional group exposures</td>
+</tr>
+<tr>
+<td>28%</td>
+<td>Group A exposure reduction from 0.413 to 0.296</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/34_evaluating_the_system.html"><small>Previous</small>Chapter 34. Evaluating the System</a><a href="../chapters/36_provenance_and_adversarial_robustness.html"><small>Next</small>Chapter 36. Provenance and Adversarial Robustness</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

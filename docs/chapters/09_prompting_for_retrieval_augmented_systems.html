@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 9. Prompting for Retrieval-Augmented Systems | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/09_prompting_for_retrieval_augmented_systems.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group" open><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html" aria-current="page">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part III. Prompting and Context Construction</p><h1>Chapter 9. Prompting for Retrieval-Augmented Systems</h1><p class="chapter-meta">43 min estimated reading · Unit 18 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: Explain where prompting ends, where retrieval begins, how reasoning scaffolds change decoding, and why more calls or more passages can reduce answer quality.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A Retrieval-Augmented Generation (RAG) prompt has four cumulative rungs: completion, instruction, In-Context Learning (ICL), and query-time retrieval.</li>
+<li>The key difference between ICL and RAG is binding time. Demonstrations are fixed before the query, while retrieved passages are selected after the query arrives.</li>
+<li>Chain-of-Thought (CoT), self-consistency, Tree of Thoughts, and Graph of Thoughts change decoding. They do not change the weights or the retrieved passages.</li>
+<li>Self-consistency estimates an answer marginal by sampling paths and counting final answers. It reduces variance, but it cannot correct bias from a wrong retrieved context.</li>
+<li>A scaffold is a program the model must execute. Its realized gain is discounted by the probability that every model-executed step works.</li>
+<li>Raising top-k can improve recall and reduce answer accuracy. More passages increase competition for the generator's attention.</li>
+<li>Choose prompt rungs, scaffold depth, and top-k with measured failure partitions, execution reliability, ranker margin, latency, and cost.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Picture an open-book exam with four rungs on a ladder beside the student's desk. On the first rung, the student gets only the question and continues the text from memory. This is completion, which means predicting what text comes next without special directions or external material.</p>
+<p>On the second rung, the examiner adds an instruction. The student now knows to answer instead of continuing the question. The instruction changes behavior, but it does not add a missing policy fact.</p>
+<p>On the third rung, the examiner puts worked examples on the board before seeing the new question. This is In-Context Learning (ICL), which means guiding the current answer with examples while leaving permanent training unchanged. The examples teach answer form, citation style, refusal wording, or a JavaScript Object Notation (JSON) envelope, but they cannot carry every changing fact in a large corpus.</p>
+<p>On the fourth rung, the examiner lets the student find the relevant page after reading the question. This is Retrieval-Augmented Generation (RAG), which means finding evidence after the request and giving it to the answer writer. The page can be fresh, query-specific, deletable, and citable, but the student must still find and use it correctly.</p>
+<p>Now give the student scratch paper. A single reasoning chain is one worked path, while a fan of five paths lets the student solve the problem five ways and count the final answers. A tree adds branching, scoring, pruning, and continuation, while a graph can also merge or revise partial work.</p>
+<p>Each extra move asks the same student to execute another instruction. If every move is 98% reliable, thirty moves succeed together only 54.5% of the time. Too much scaffolding, meaning added scratch-work procedure, turns the exam ladder into a maze.</p>
+<p>The same warning applies to the open book. Five pages may include the right page and few distractors, while forty pages can raise recall, meaning how often the right page is present, and bury the answer among plausible competitors. A better ranker gives the right page a larger score margin, and that margin decides how many pages the student can safely receive.</p>
+<p>The interview lesson is concrete. Do not fix a missing page by rewriting instructions, biased pages by sampling more answers, or weak ranking by buying a longer desk. Climb the right rung, add only executable scratch work, and send only as many pages as the student can reliably distinguish.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term or symbol</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A generator answers with passages selected after the query arrives.</td>
+<td>It binds fresh, query-specific, deletable, and citable evidence at request time.</td>
+</tr>
+<tr>
+<td>Prompt</td>
+<td>The exact structured input sent to the generator.</td>
+<td>Treating it as one opaque string hides which part caused a failure.</td>
+</tr>
+<tr>
+<td>Prompt hierarchy</td>
+<td>Completion, instruction, in-context examples, and retrieval arranged by binding time.</td>
+<td>It routes each defect to the layer that can actually repair it.</td>
+</tr>
+<tr>
+<td>Prompt rung</td>
+<td>One level of that hierarchy.</td>
+<td>The rungs stack rather than replace one another.</td>
+</tr>
+<tr>
+<td>Instruction slot <code>s</code></td>
+<td>Query-independent directions in the served input.</td>
+<td>It controls behavior but cannot supply a missing fact.</td>
+</tr>
+<tr>
+<td>Demonstration block <code>e_1:m</code></td>
+<td>Fixed worked examples placed before the live input.</td>
+<td>It teaches form and mapping while consuming context on every query.</td>
+</tr>
+<tr>
+<td>Retrieved passage block <code>d_1:k</code></td>
+<td>Evidence chosen for the current query.</td>
+<td>Its presence, order, and use determine grounded answer quality.</td>
+</tr>
+<tr>
+<td>Query <code>q</code></td>
+<td>The user's live request.</td>
+<td>It arrives late enough to select request-specific evidence.</td>
+</tr>
+<tr>
+<td>Generator parameters <code>theta</code></td>
+<td>The learned weights that hold behavior and parametric memory.</td>
+<td>Training changes them, while prompting and retrieval do not.</td>
+</tr>
+<tr>
+<td>Conditional probability</td>
+<td>The model's probability of an output given its input.</td>
+<td>All four prompt rungs change what conditions the same prediction.</td>
+</tr>
+<tr>
+<td>Completion</td>
+<td>Base-model continuation from the query alone.</td>
+<td>It explains why an untreated model can continue a question instead of answering it.</td>
+</tr>
+<tr>
+<td>Pre-training</td>
+<td>The original next-token learning run.</td>
+<td>It fixes the earliest binding time for facts stored in weights.</td>
+</tr>
+<tr>
+<td>Base checkpoint</td>
+<td>A model before instruction post-training.</td>
+<td>It can expose an undistorted token distribution but may not follow commands.</td>
+</tr>
+<tr>
+<td>Parametric memory</td>
+<td>Knowledge represented inside model weights.</td>
+<td>It has no source pointer or timestamp and updates only through training.</td>
+</tr>
+<tr>
+<td>Instruction tuning</td>
+<td>Training on instruction-response pairs across tasks.</td>
+<td>It makes an instruction read as a command.</td>
+</tr>
+<tr>
+<td>Instruction-tuned checkpoint</td>
+<td>A model whose weights were trained to follow instructions.</td>
+<td>It is the normal generator foundation for production RAG.</td>
+</tr>
+<tr>
+<td>Preference optimization</td>
+<td>Post-training that favors outputs people or a reward signal prefer.</td>
+<td>The source places it above instruction tuning in the behavior stack.</td>
+</tr>
+<tr>
+<td>Zero-shot</td>
+<td>Answering without demonstrations.</td>
+<td>It preserves context for evidence when examples do not improve form.</td>
+</tr>
+<tr>
+<td>In-Context Learning (ICL)</td>
+<td>Guiding a frozen model with examples in the current prompt.</td>
+<td>It is mechanically similar to RAG but binds examples before the query.</td>
+</tr>
+<tr>
+<td>Few-shot</td>
+<td>Answering with a small demonstration set.</td>
+<td>It trades prompt space and latency for task and format cues.</td>
+</tr>
+<tr>
+<td>Demonstration</td>
+<td>One worked input-output example in the prompt.</td>
+<td>It can fix output form but cannot cover a changing corpus.</td>
+</tr>
+<tr>
+<td>Binding time</td>
+<td>The latest moment when information can enter the system.</td>
+<td>It separates static behavior from fresh query-specific knowledge.</td>
+</tr>
+<tr>
+<td>Capacity</td>
+<td>How much information one storage or prompt path can hold.</td>
+<td>A million-token corpus cannot fit in an 8,192-token window.</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The token capacity available to one model request.</td>
+<td>Instructions, examples, passages, and the query compete inside it.</td>
+</tr>
+<tr>
+<td>Compression factor <code>rho</code></td>
+<td>Whole-corpus tokens divided by tokens retrieved for one query.</td>
+<td>It quantifies the capacity advantage of request-time retrieval.</td>
+</tr>
+<tr>
+<td>Corpus size <code>M</code></td>
+<td>Number of stored facts or documents.</td>
+<td>It sets the full-text burden a fixed demonstration block would face.</td>
+</tr>
+<tr>
+<td>Fact size <code>t_f</code></td>
+<td>Average tokens per fact or document.</td>
+<td>It converts corpus count into token capacity.</td>
+</tr>
+<tr>
+<td>Chunk size <code>t_c</code></td>
+<td>Tokens in one retrieved chunk.</td>
+<td>It converts top-k into prompt cost.</td>
+</tr>
+<tr>
+<td>Update delay <code>tau</code></td>
+<td>Time from a fact change to a served update.</td>
+<td>It measures how long stale facts remain live.</td>
+</tr>
+<tr>
+<td>Change interval <code>Delta</code></td>
+<td>Time between changes to the fact.</td>
+<td>Comparing it with update delay gives the stale fraction.</td>
+</tr>
+<tr>
+<td>Stale fraction</td>
+<td>Share of time the served system reflects the old fact.</td>
+<td>It exposes why a three-day training cycle fails a weekly policy.</td>
+</tr>
+<tr>
+<td>Retriever <code>R(q)</code></td>
+<td>The component that selects passages for query <code>q</code>.</td>
+<td>Its output binds after the query and before generation.</td>
+</tr>
+<tr>
+<td>Top-k</td>
+<td>The highest-ranked <code>k</code> retrieved passages.</td>
+<td>Raising it trades recall against prompt cost and distractor competition.</td>
+</tr>
+<tr>
+<td>Vector database</td>
+<td>One possible store and search implementation for embeddings.</td>
+<td>It is plumbing rather than the definition of RAG.</td>
+</tr>
+<tr>
+<td>JavaScript Object Notation (JSON)</td>
+<td>A machine-readable output format.</td>
+<td>Demonstrations can reduce parse failures when a downstream system requires it.</td>
+</tr>
+<tr>
+<td>Citation</td>
+<td>A pointer from an answer claim to a source.</td>
+<td>Retrieval can provide one, but a pointer still needs support checking.</td>
+</tr>
+<tr>
+<td>Provenance</td>
+<td>Where a claim or passage came from.</td>
+<td>It lets auditors trace an answer to a source.</td>
+</tr>
+<tr>
+<td>Abstention</td>
+<td>Refusing to answer when support is missing.</td>
+<td>It is safer than inventing a claim from weak context.</td>
+</tr>
+<tr>
+<td>Entailment check</td>
+<td>A test of whether a cited span supports a claim.</td>
+<td>It turns traceability from prompt wording into a verifiable control.</td>
+</tr>
+<tr>
+<td>Unsupported-claim metric</td>
+<td>Count or rate of answer claims without evidence.</td>
+<td>It measures the compliance failure directly.</td>
+</tr>
+<tr>
+<td>Prompt token</td>
+<td>One model input unit.</td>
+<td>It is the recurring currency of instructions, examples, and passages.</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing prompt tokens before generation begins.</td>
+<td>More context increases time to first output.</td>
+</tr>
+<tr>
+<td>Floating-point operation (FLOP)</td>
+<td>One arithmetic operation used to price model work.</td>
+<td>The chapter compares prompt and scaffold costs in FLOPs.</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>Accelerator hardware used for model computation.</td>
+<td>GPU time converts FLOPs into latency and money.</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>An evaluation score that requires the predicted answer text to match a reference.</td>
+<td>It supports the RAG-Sequence and closed-book comparison.</td>
+</tr>
+<tr>
+<td>RAG-Sequence</td>
+<td>The cited RAG system that conditions answer generation on retrieved evidence.</td>
+<td>It beats a much larger closed-book model in the source comparison.</td>
+</tr>
+<tr>
+<td>Bidirectional and Auto-Regressive Transformers (BART)</td>
+<td>The generator family used by RAG-Sequence.</td>
+<td>It anchors the smaller retrieved model in that comparison.</td>
+</tr>
+<tr>
+<td>Text-to-Text Transfer Transformer (T5)</td>
+<td>The closed-book model family in the comparison.</td>
+<td>Its 11-billion-parameter result shows that parameters alone did not buy the same accuracy.</td>
+</tr>
+<tr>
+<td>Natural Questions</td>
+<td>The question-answering benchmark used for exact match and retrieval anchors.</td>
+<td>It grounds two quantitative comparisons in the chapter.</td>
+</tr>
+<tr>
+<td>Generative Pre-trained Transformer 3 (GPT-3)</td>
+<td>A cited model family used for ICL and calibration results.</td>
+<td>It anchors the historical prompting evidence.</td>
+</tr>
+<tr>
+<td>FLAN</td>
+<td>The cited instruction-tuning recipe over many tasks.</td>
+<td>It shows that instruction behavior can beat a larger zero-shot model.</td>
+</tr>
+<tr>
+<td>Reasoning scaffold</td>
+<td>A procedure that changes how outputs are sampled and combined.</td>
+<td>It changes decoding, not weights or retrieved passages.</td>
+</tr>
+<tr>
+<td>Decoding</td>
+<td>The procedure that turns model probabilities into an output.</td>
+<td>Chains, fans, trees, and graphs differ mainly here.</td>
+</tr>
+<tr>
+<td>Chain-of-Thought (CoT)</td>
+<td>Generating an explicit reasoning path before the answer.</td>
+<td>It exposes one path but does not marginalize over alternatives.</td>
+</tr>
+<tr>
+<td>Reasoning path <code>z</code></td>
+<td>One generated sequence of intermediate steps.</td>
+<td>Several paths can reach the same answer.</td>
+</tr>
+<tr>
+<td>Answer marginal</td>
+<td>Total probability of an answer summed across all paths that reach it.</td>
+<td>The most probable path can end at a less probable answer.</td>
+</tr>
+<tr>
+<td>Greedy decoding</td>
+<td>Choosing the highest-probability next token at each step.</td>
+<td>It returns one path and can discard answer mass on other paths.</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Sampling several reasoning paths and counting their final answers.</td>
+<td>It estimates the answer marginal without a learned scorer.</td>
+</tr>
+<tr>
+<td>Monte Carlo estimate</td>
+<td>An approximation made from random samples.</td>
+<td>Self-consistency buys lower sampling error with more model calls.</td>
+</tr>
+<tr>
+<td>Sampling temperature</td>
+<td>A control over randomness in generated samples.</td>
+<td>Zero temperature repeats one path and defeats an ensemble.</td>
+</tr>
+<tr>
+<td>Majority vote</td>
+<td>Returning the answer produced by more than half the samples.</td>
+<td>It reduces independent variance but cannot correct shared bias.</td>
+</tr>
+<tr>
+<td>Standard error</td>
+<td>Expected sampling variation in an estimate.</td>
+<td>It tells whether more samples or an evaluation difference are meaningful.</td>
+</tr>
+<tr>
+<td>Variance</td>
+<td>Random spread around an underlying result.</td>
+<td>Voting can reduce it when sample errors differ.</td>
+</tr>
+<tr>
+<td>Bias</td>
+<td>A systematic tendency toward the same wrong answer.</td>
+<td>A wrong passage or order-sensitive judge survives repeated sampling.</td>
+</tr>
+<tr>
+<td>Best-of-N</td>
+<td>Generating <code>N</code> candidates and selecting one with a scorer.</td>
+<td>It differs from self-consistency because it needs a quality model.</td>
+</tr>
+<tr>
+<td>Reward model</td>
+<td>A learned scorer for candidate outputs.</td>
+<td>It adds cost and its own execution error.</td>
+</tr>
+<tr>
+<td>Chain topology</td>
+<td>One serial path from query to answer.</td>
+<td>It gives transparency with one model call.</td>
+</tr>
+<tr>
+<td>Fan topology</td>
+<td>Independent paths followed by a counter.</td>
+<td>Its paths can run in parallel and need no evaluator.</td>
+</tr>
+<tr>
+<td>Tree of Thoughts</td>
+<td>Branch, score, keep, and expand partial solutions.</td>
+<td>It buys exploration only when partial states can be judged reliably.</td>
+</tr>
+<tr>
+<td>Graph of Thoughts</td>
+<td>A reasoning graph that can merge and revise partial thoughts.</td>
+<td>Its extra edges add flexibility and more model-executed stages.</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>The allowed nodes and edges in a reasoning procedure.</td>
+<td>It determines parallelism, reversibility, and evaluator needs.</td>
+</tr>
+<tr>
+<td>Branching factor <code>b</code></td>
+<td>Children generated from each kept tree state.</td>
+<td>It controls call count at every level.</td>
+</tr>
+<tr>
+<td>Tree depth <code>d</code></td>
+<td>Number of serial expansion levels.</td>
+<td>It sets latency rounds and the pruning exponent.</td>
+</tr>
+<tr>
+<td>Kept width <code>k</code></td>
+<td>Children retained after each tree score.</td>
+<td>It trades exploration against irreversible pruning.</td>
+</tr>
+<tr>
+<td>State evaluator</td>
+<td>A scorer for a partial solution.</td>
+<td>A tree is only useful when this scorer beats chance.</td>
+</tr>
+<tr>
+<td>Pruning</td>
+<td>Permanently discarding branches during search.</td>
+<td>A mistaken prune removes the correct path irreversibly.</td>
+</tr>
+<tr>
+<td>Aggregation edge</td>
+<td>An edge that merges two partial thoughts.</td>
+<td>Graph of Thoughts can use it while a tree cannot.</td>
+</tr>
+<tr>
+<td>Refinement edge</td>
+<td>An edge that revises an existing thought.</td>
+<td>It enables self-correction but adds another execution boundary.</td>
+</tr>
+<tr>
+<td>Serial round</td>
+<td>A stage that must finish before the next begins.</td>
+<td>Depth can violate latency even when token totals look affordable.</td>
+</tr>
+<tr>
+<td>Multi-hop question answering</td>
+<td>Answering a question that needs evidence from several passages.</td>
+<td>It motivates reasoning after retrieval succeeds.</td>
+</tr>
+<tr>
+<td>Prefix cache</td>
+<td>Reuse of model states for an unchanged prompt prefix.</td>
+<td>It can make several samples much cheaper.</td>
+</tr>
+<tr>
+<td>Key-value cache (KV cache)</td>
+<td>Stored attention states for earlier tokens.</td>
+<td>Sharing it prevents every branch from rereading the same passages.</td>
+</tr>
+<tr>
+<td>95th-percentile latency (p95)</td>
+<td>Time below which 95% of requests finish.</td>
+<td>It limits the serial depth a production scaffold can use.</td>
+</tr>
+<tr>
+<td>Grade School Math 8K (GSM8K)</td>
+<td>A math word-problem benchmark.</td>
+<td>It anchors the chain-of-thought and self-consistency results.</td>
+</tr>
+<tr>
+<td>Game of 24</td>
+<td>A constraint puzzle with an exact partial-state check.</td>
+<td>It explains why Tree of Thoughts transfers poorly to tasks without an oracle.</td>
+</tr>
+<tr>
+<td>Pathways Language Model (PaLM)</td>
+<td>The model family in the 40-sample self-consistency result.</td>
+<td>It supplies the published arithmetic cross-check.</td>
+</tr>
+<tr>
+<td>Step reliability <code>q_j</code></td>
+<td>Probability that model-executed step <code>j</code> runs correctly.</td>
+<td>These probabilities multiply across a scaffold.</td>
+</tr>
+<tr>
+<td>Execution rate <code>e</code></td>
+<td>Probability that the whole scaffold runs as designed.</td>
+<td>It discounts paper-level design accuracy in deployment.</td>
+</tr>
+<tr>
+<td>Design accuracy <code>p_s</code></td>
+<td>Accuracy if the scaffold executes perfectly.</td>
+<td>It states the proposal's best-case value.</td>
+</tr>
+<tr>
+<td>Misfire accuracy <code>p_d</code></td>
+<td>Accuracy when the scaffold fails to execute.</td>
+<td>It determines how damaging a failed program is.</td>
+</tr>
+<tr>
+<td>Incumbent accuracy <code>A_0</code></td>
+<td>Accuracy of the current simpler system.</td>
+<td>It sets the break-even target for a new scaffold.</td>
+</tr>
+<tr>
+<td>Break-even execution <code>e_star</code></td>
+<td>Minimum execution rate needed to beat the incumbent.</td>
+<td>It converts an architectural proposal into a measurable reliability bar.</td>
+</tr>
+<tr>
+<td>Deterministic aggregator</td>
+<td>Ordinary code such as a counter.</td>
+<td>It adds no model execution probability.</td>
+</tr>
+<tr>
+<td>Reversible decision</td>
+<td>A choice that keeps discarded candidates recoverable.</td>
+<td>Reranking degrades more safely than pruning.</td>
+</tr>
+<tr>
+<td>Branch survival <code>r</code></td>
+<td>Chance that the correct branch survives one pruning level.</td>
+<td>Its power across depth determines whether the tree can recover.</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>A generative model used for stages, scoring, or answers.</td>
+<td>Model-executed orchestration inherits model reliability limits.</td>
+</tr>
+<tr>
+<td>LLM-Blender</td>
+<td>A cited rank-and-fuse system over outputs from several models.</td>
+<td>It illustrates a learned aggregator that can fix bias but adds a stage.</td>
+</tr>
+<tr>
+<td>Learned comparator</td>
+<td>A model that chooses between candidate answers.</td>
+<td>Candidate order can bias its verdict.</td>
+</tr>
+<tr>
+<td>Positional bias</td>
+<td>Preference caused by where content appears in the prompt.</td>
+<td>Swapping candidate order can change a judge's decision.</td>
+</tr>
+<tr>
+<td>Self-review</td>
+<td>Asking the model to inspect and revise its own answer.</td>
+<td>It can raise confidence without raising correctness.</td>
+</tr>
+<tr>
+<td>Model collapse</td>
+<td>Degradation caused by repeatedly learning from model-generated material.</td>
+<td>The source links it to repeated self-confirmation.</td>
+</tr>
+<tr>
+<td>McNemar statistic</td>
+<td>A paired-test signal based on examples where two systems disagree.</td>
+<td>It checks whether a small claimed gain is more than paired noise.</td>
+</tr>
+<tr>
+<td>Recall at k <code>R(k)</code></td>
+<td>Chance that the answer-bearing passage appears among the first <code>k</code>.</td>
+<td>It can rise even when answer accuracy falls.</td>
+</tr>
+<tr>
+<td>Answer-bearing or gold passage</td>
+<td>The passage that contains the required evidence.</td>
+<td>Its presence and use must be measured separately.</td>
+</tr>
+<tr>
+<td>Closed-book accuracy <code>p_0</code></td>
+<td>Accuracy without retrieved passages.</td>
+<td>It is the parametric baseline that distractors can undercut.</td>
+</tr>
+<tr>
+<td>No-gold accuracy <code>m</code></td>
+<td>Accuracy with distractors after removing the gold passage.</td>
+<td>It measures how much wrong context overrides parametric memory.</td>
+</tr>
+<tr>
+<td>Co-occurrence substitution</td>
+<td>Filling an answer from a passage that mentions the right entities but the wrong fact.</td>
+<td>It explains why retrieval misses can be worse than no retrieval.</td>
+</tr>
+<tr>
+<td>Utilization <code>u(k)</code></td>
+<td>Chance that the generator uses the gold passage when it is present.</td>
+<td>It falls as more competitors enter the prompt.</td>
+</tr>
+<tr>
+<td>Ranker margin <code>mu</code></td>
+<td>Gold-passage score lead measured in distractor standard deviations.</td>
+<td>It determines how many passages the generator can safely compare.</td>
+</tr>
+<tr>
+<td>Distractor</td>
+<td>A plausible passage that does not contain the answer.</td>
+<td>Each one can outscore or override the gold evidence.</td>
+</tr>
+<tr>
+<td>Standard normal cumulative distribution <code>Phi</code></td>
+<td>Probability that a standard normal value lies below a threshold.</td>
+<td>It maps ranker margin into one-competitor win probability.</td>
+</tr>
+<tr>
+<td>Dilution penalty <code>beta</code></td>
+<td>Relative utilization loss from one more passage.</td>
+<td>It stays roughly constant while marginal recall shrinks.</td>
+</tr>
+<tr>
+<td>Grounding rate <code>G(k)</code></td>
+<td>Recall multiplied by utilization.</td>
+<td>It measures both finding and using the evidence.</td>
+</tr>
+<tr>
+<td>Non-monotone answer accuracy <code>A(k)</code></td>
+<td>Accuracy that rises, peaks, and then falls with passage count.</td>
+<td>It replaces the false assumption that more context can only help.</td>
+</tr>
+<tr>
+<td>Recall slope <code>c</code></td>
+<td>Log-linear gain in recall as top-k grows.</td>
+<td>It quantifies the shrinking benefit of another passage.</td>
+</tr>
+<tr>
+<td>Optimal passage count <code>k_star</code></td>
+<td>Passage count where recall gain balances dilution.</td>
+<td>It can be derived from recall slope and ranker margin.</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>A fast retriever that scores query and passage representations separately.</td>
+<td>It supplies candidates but can leave a small gold-passage margin.</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A slower joint query-passage scorer.</td>
+<td>It can raise margin enough to support a larger final top-k.</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A second-stage scorer over retrieved candidates.</td>
+<td>It buys separation, not merely a new order.</td>
+</tr>
+<tr>
+<td>Score cliff</td>
+<td>Sharp drop between strong and weak candidate scores.</td>
+<td>It can set a query-specific cutoff instead of fixed top-k.</td>
+</tr>
+<tr>
+<td>Distractor-injection sweep</td>
+<td>Add distractors while holding gold evidence fixed.</td>
+<td>It measures utilization decay and ranker margin.</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>The cited dense retriever with top-20 and top-100 recall anchors.</td>
+<td>Its measurements set the worked recall curve.</td>
+</tr>
+<tr>
+<td>Independent-distractor assumption</td>
+<td>Simplifying assumption that competitor scores are independent.</td>
+<td>Near-duplicate correlation limits the accuracy model.</td>
+</tr>
+<tr>
+<td>Positional decay</td>
+<td>Lower evidence use caused by where a passage sits in a long prompt.</td>
+<td>The worked utilization model omits it and therefore gives an upper bound.</td>
+</tr>
+<tr>
+<td>Conditional retrieval</td>
+<td>Retrieving only when the query needs external evidence.</td>
+<td>It avoids replacing a reliable closed-book answer with weak context.</td>
+</tr>
+<tr>
+<td>High-popularity subject</td>
+<td>A topic the model has likely seen often during training.</td>
+<td>Retrieval can harm these queries when parametric knowledge is already strong.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="91-the-prompt-hierarchy-completion-to-instruction-to-icl-to-rag">9.1 The prompt hierarchy: completion to instruction to ICL to RAG</h3>
+<h4 id="the-four-slot-input">The four-slot input</h4>
+<p>What: Treat the served prompt as a structured input.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mi>s</mi><mo stretchy="false" form="postfix">‖</mo><msub><mi>e</mi><mrow><mn>1</mn><mo>:</mo><mi>m</mi></mrow></msub><mo stretchy="false" form="postfix">‖</mo><msub><mi>d</mi><mrow><mn>1</mn><mo>:</mo><mi>k</mi></mrow></msub><mo stretchy="false" form="postfix">‖</mo><mi>q</mi><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">x = [s \Vert e_{1:m} \Vert d_{1:k} \Vert q], \qquad p_{\theta}(y \mid x)</annotation></semantics></math></p>
+<p>The slots are instruction, demonstrations, retrieved passages, and query.</p>
+<p>Why: A failure belongs to one slot or to the parameters.</p>
+<p>Failure without it: Teams concatenate one opaque prompt and cannot identify which artifact caused a regression.</p>
+<p>Cost and complexity: Version the instruction, demonstration block, retrieval configuration, and checkpoint separately.</p>
+<h4 id="rung-1-completion">Rung 1: completion</h4>
+<p>What: A base checkpoint uses next-token prediction and receives only the query.</p>
+<p>Why: This is the lowest rung and the source of parametric recall.</p>
+<p>Failure without the next rung: The model continues text instead of treating the text as a command. Given <code>hi</code>, a calibrated continuation can be <code>how are you?</code>.</p>
+<p>Cost and complexity: It adds no prompt tokens. Its facts are bound when the checkpoint is trained.</p>
+<h4 id="rung-2-instruction">Rung 2: instruction</h4>
+<p>What: Post-train on instruction-response pairs across a broad task mixture.</p>
+<p>Why: The instruction slot becomes a command rather than text to extend.</p>
+<p>Failure without it: A base model can continue retrieved passages instead of answering from them.</p>
+<p>Cost and complexity: The training cost is paid once in the parameters. The rung adds zero serving tokens through the checkpoint itself.</p>
+<p>Wei et al. (2022) built FLAN over 62 datasets in 12 task clusters.</p>
+<p>Their instruction-tuned 137 billion parameter model beat zero-shot GPT-3 175 billion on 20 of 25 held-out datasets.</p>
+<p>Longpre et al. (2023) scaled the recipe to 1,836 tasks from 473 datasets.</p>
+<p>Ouyang et al. (2022) added preference optimization.</p>
+<h4 id="rung-3-in-context-learning">Rung 3: in-context learning</h4>
+<p>What: Add <code>m</code> worked examples while keeping the model frozen.</p>
+<p>Why: Demonstrations can teach mapping and output form.</p>
+<p>Failure without it: The model can return correct content in an unusable citation style, refusal format, or JSON envelope.</p>
+<p>Cost and complexity: Demonstrations consume prompt tokens on every query. They are selected before the query and remain a deployment constant.</p>
+<p>Brown et al. (2020) made this paradigm a headline result of GPT-3.</p>
+<h4 id="rung-4-retrieval-augmented-generation">Rung 4: retrieval-augmented generation</h4>
+<p>What: Select the top-k passages after the query arrives.</p>
+<p>Why: Retrieval binds facts late enough to provide current, query-specific evidence.</p>
+<p>Failure without it: Instructions and fixed demonstrations cannot supply a missing or newly changed fact.</p>
+<p>Cost and complexity: Retrieval consumes prompt tokens on every request and adds index, ranking, and utilization failure modes.</p>
+<p>Mechanically, rung 4 enters through the same context channel as rung 3.</p>
+<p>The transformer has no native slot type that distinguishes a demonstration from a passage.</p>
+<p>The decisive difference is that the retrieved block is a function of the query.</p>
+<h4 id="capacity">Capacity</h4>
+<p>What: Compare the whole corpus with the small block selected for one query.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mfrac><mrow><mi>M</mi><msub><mi>t</mi><mi>f</mi></msub></mrow><mrow><mi>k</mi><msub><mi>t</mi><mi>c</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">\rho = \frac{M t_f}{k t_c}</annotation></semantics></math></p>
+<p>Why: This shows why fixed demonstrations cannot replace retrieval for corpus facts.</p>
+<p>Failure without it: A team mistakes a capacity shortfall for a prompt-tuning problem.</p>
+<p>Cost and complexity: With 4,000 documents at 250 tokens, the corpus is 1,000,000 tokens.</p>
+<p>Eight chunks at 400 tokens use 3,200 tokens.</p>
+<p>The compression factor is about 313.</p>
+<p>The full corpus equals 122 complete 8,192-token windows.</p>
+<h4 id="binding-latency">Binding latency</h4>
+<p>What: Measure the delay between a fact changing and the served system reflecting it.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">stale fraction</mtext><mo>=</mo><mrow><mi>min</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>,</mo><mfrac><mi>τ</mi><mi mathvariant="normal">Δ</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\text{stale fraction} = \min\left(1, \frac{\tau}{\Delta}\right)</annotation></semantics></math></p>
+<p>Why: Binding time decides which rung can carry a changing fact.</p>
+<p>Failure without it: A fluent stale answer looks fresh because parametric memory has no timestamp and no source.</p>
+<p>Cost and complexity: A three-day training cycle against a weekly change is stale 3/7 of the time, or 43%.</p>
+<p>An index write of about five seconds is stale for about 5/604,800 of the week, or about 8 times 10 to the power of negative 6.</p>
+<h4 id="why-the-growing-system-prompt-loses">Why the growing system prompt loses</h4>
+<p>What: Appending another instruction constrains behavior.</p>
+<p>Why: It can increase refusal when evidence is missing.</p>
+<p>Failure without retrieval: It cannot create a fact absent from both the prompt and the parameters.</p>
+<p>Cost and complexity: A 400-token clause on an 8 billion parameter generator costs 6.4 times 10 to the power of 12 floating-point operations (FLOPs).</p>
+<p>That is about 19 ms of prefill on all 10,000 daily queries, even if the clause addresses only 2% of them.</p>
+<h4 id="the-rungs-stack">The rungs stack</h4>
+<p>What: A production RAG prompt can use all four rungs.</p>
+<p>Why: Each rung owns a different binding time and failure class.</p>
+<p>Failure without stacking: The phrase <code>RAG versus fine-tuning</code> creates a false choice.</p>
+<p>Cost and complexity: Use an instruction-tuned checkpoint, a system instruction, optional demonstrations for form, and retrieved passages.</p>
+<h4 id="worked-policy-assistant">Worked policy assistant</h4>
+<p>The system uses an 8 billion parameter generator and serves 10,000 queries per day. Its window is 8,192 tokens. The corpus has 4,000 policy documents averaging 250 tokens. Serving uses 1.6 times 10 to the power of 10 FLOPs per token at 3.4 times 10 to the power of 14 FLOPs per second. Graphics processing unit (GPU) time costs $2.50 per hour. The question uses 40 tokens.</p>
+<p>Configuration 1 uses a 120-token instruction plus the question. It totals 160 tokens, 2.56 times 10 to the power of 12 FLOPs, and 7.5 ms of prefill.</p>
+<p>Configuration 2 adds four demonstrations of 250 tokens each. The 1,000-token block costs 1.6 times 10 to the power of 13 FLOPs and 47 ms.</p>
+<p>Configuration 3 adds eight retrieved chunks of 400 tokens each. The 3,200-token block costs 5.12 times 10 to the power of 13 FLOPs and 151 ms.</p>
+<p>The complete 4,360-token prompt costs 6.98 times 10 to the power of 13 FLOPs and 205 ms of prefill. At $2.50 per GPU-hour, it costs $1.42 times 10 to the power of negative 4 per query, $0.14 per thousand queries, and $1.42 per day. The retrieval block alone costs $0.10 per thousand queries.</p>
+<p>Lewis et al. (2020) reported 44.5 exact match on Natural Questions for RAG-Sequence. It used BART-large with roughly 400 million parameters and a Wikipedia index. Closed-book T5-11B scored 34.5 with a model 27 times larger. Retrieval bought ten exact-match points that 10.6 billion additional parameters did not buy.</p>
+<h4 id="operational-decisions-from-the-hierarchy">Operational decisions from the hierarchy</h4>
+<ul>
+<li>Route content plus an absent supporting passage to retrieval.</li>
+<li>Route content plus a present supporting passage to generation or ordering.</li>
+<li>Route form failures to instruction or demonstrations.</li>
+<li>Use an instruction-tuned checkpoint for RAG generation.</li>
+<li>Use a base checkpoint only when the undistorted token distribution is the goal, such as likelihood ranking or infilling.</li>
+<li>Start with zero demonstrations.</li>
+<li>Add demonstrations only when measured format gains justify displacing retrieved chunks.</li>
+<li>Two format examples can be worthwhile if they cut a 30% JSON failure rate to near zero.</li>
+<li>Put facts in retrieval and behavior in instructions or demonstrations.</li>
+<li>Move facts into weights only when they change slowly, apply universally, and never need citation or deletion.</li>
+<li>Move facts out of weights when staleness approaches the change interval, erasure is required, or an auditor needs provenance.</li>
+<li>For strict traceability, require cited spans, entailment checks, abstention without support, and an unsupported-claim metric. Enforce evidence for asserted claims rather than claiming that parametric knowledge is unused.</li>
+</ul>
+<h3 id="92-reasoning-scaffolds-cot-self-consistency-tree-of-thoughts-and-graph-of-thoughts">9.2 Reasoning scaffolds: CoT, self-consistency, Tree of Thoughts, and Graph of Thoughts</h3>
+<h4 id="what-a-scaffold-changes">What a scaffold changes</h4>
+<p>What: A scaffold changes the decoding procedure.</p>
+<p>Why: The weights, retrieved passages, and question can stay fixed while the model explores more than one reasoning path.</p>
+<p>Failure without it: A generator can receive both required passages and still fail to combine them for a multi-hop answer.</p>
+<p>Cost and complexity: Price the family in model calls, generated tokens, prefix reuse, and serial rounds.</p>
+<p>In the motivating support assistant, the supporting passage appears in the assembled context on 94% of the evaluation set.</p>
+<p>The hard questions require information from more than one chunk.</p>
+<p>A four-token prompt such as <code>Let's think step by step</code> competes with a thirty-call tree under an 800 ms 95th-percentile latency budget.</p>
+<h4 id="chain-of-thought-as-a-marginal-over-paths">Chain-of-thought as a marginal over paths</h4>
+<p>What: Precede the answer with a reasoning path <code>z</code>.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mi>z</mi></munder><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>∣</mo><mi>z</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p_{\theta}(a \mid x) = \sum_z p_{\theta}(a \mid z, x) p_{\theta}(z \mid x)</annotation></semantics></math></p>
+<p>Why: One answer can be reached by several paths.</p>
+<p>Failure without marginalization: Greedy decoding returns the answer from the most probable single path, not necessarily the most probable answer.</p>
+<p>Cost and complexity: One greedy chain uses one model call.</p>
+<p>Three paths can reach <code>yes, with a $40 cap</code> with probabilities 0.20, 0.18, and 0.15.</p>
+<p>Their answer mass totals 0.53.</p>
+<p>One path can reach <code>no</code> with probability 0.25.</p>
+<p>Greedy decoding returns <code>no</code>, even though the answer marginal favors <code>yes</code>.</p>
+<p>Kojima et al. (2022) used <code>Let's think step by step</code> plus a second answer-extraction call.</p>
+<p>On GSM8K, text-davinci-002 rose from 10.4% to 40.7%.</p>
+<h4 id="self-consistency">Self-consistency</h4>
+<p>What: Sample <code>m</code> paths at nonzero temperature, extract each final answer, and return the most frequent answer.</p>
+<p>Why: Counting provides a Monte Carlo estimate of the answer marginal.</p>
+<p>Failure without independence: A wrong passage induces correlated errors, so five samples can be confidently and unanimously wrong.</p>
+<p>Cost and complexity: The standard error of a proportion decreases with the square root of sample count while the bill grows linearly with sample count.</p>
+<p>At <code>p = 0.53</code> and <code>m = 5</code>, the vote-share standard error is 0.223.</p>
+<p>At <code>m = 40</code>, it is 0.079.</p>
+<p>Self-consistency uses a counter, not a scorer.</p>
+<p>That separates it from best-of-N against a reward model.</p>
+<h4 id="majority-vote-arithmetic">Majority-vote arithmetic</h4>
+<p>What: Under the pessimistic two-answer model, the vote is correct only when more than half of the samples are correct.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">majority correct</mtext><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mo stretchy="false" form="prefix">⌊</mo><mi>m</mi><mi>/</mi><mn>2</mn><mo stretchy="false" form="postfix">⌋</mo><mo>+</mo><mn>1</mn></mrow><mi>m</mi></munderover><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><mi>m</mi><mi>i</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><msup><mi>p</mi><mi>i</mi></msup><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><msup><mo stretchy="false" form="postfix">)</mo><mrow><mi>m</mi><mo>−</mo><mi>i</mi></mrow></msup></mrow><annotation encoding="application/x-tex">P(\text{majority correct}) = \sum_{i=\lfloor m/2 \rfloor + 1}^{m} {m \choose i} p^i (1-p)^{m-i}</annotation></semantics></math></p>
+<p>Why: This gives a concrete break-even before spending inference compute.</p>
+<p>Failure without it: Teams assume more samples always help.</p>
+<p>Cost and complexity: At <code>p = 0.60</code>, majority-of-five scores 0.683.</p>
+<p>Majority-of-nine scores 0.733.</p>
+<p>The first five samples buy 8.3 points over one sample.</p>
+<p>The next four buy 5.0 more points.</p>
+<p>At <code>p = 0.40</code>, majority-of-nine scores 26.7%, below the 40% single-sample accuracy.</p>
+<p>Voting reduces variance and cannot remove bias.</p>
+<h4 id="chain-fan-tree-and-graph">Chain, fan, tree, and graph</h4>
+<p>What: The four topologies allow different edge operations.</p>
+<p>Why: A chain gives transparency, a fan gives repeated exploration, a tree gives branching and pruning, and a graph adds merging and revision.</p>
+<p>Failure without an evaluator: A tree prunes good and bad branches at similar rates while adding serial rounds.</p>
+<p>Cost and complexity: A Tree of Thoughts expands <code>b</code> children, scores states, keeps <code>k</code>, and repeats for <code>d</code> levels.</p>
+<p>Graph of Thoughts permits aggregation and refinement edges that a tree cannot draw.</p>
+<p>Yao et al. (2023) reported GPT-4 on Game of 24 at 4% with CoT.</p>
+<p>Self-consistency over 100 samples scored 9%.</p>
+<p>A breadth-5 tree scored 74%.</p>
+<p>Besta et al. (2024) reported Graph of Thoughts improving sorting quality by 62% over Tree of Thoughts at more than 31% lower cost.</p>
+<p>Game of 24 provides an exact arithmetic state evaluator.</p>
+<p>A half-finished policy answer does not.</p>
+<p>The 70-point gain measures the evaluator as much as the tree.</p>
+<p>Wei et al. (2022) found CoT gain to be an emergent property of scale in their setting.</p>
+<p>Below roughly 100 billion parameters, their models produced fluent but illogical chains and did not beat standard prompting.</p>
+<p>Distillation on reasoning traces moved the threshold downward.</p>
+<p>The remaining failure is unchanged.</p>
+<p>A scaffold the generator cannot execute costs tokens and buys nothing.</p>
+<h4 id="worked-scaffold-costs">Worked scaffold costs</h4>
+<p>The shared input has 120 instruction tokens, eight retrieved chunks of 400 tokens, and a 40-token question. It totals 3,360 input tokens. The reasoning chain plus answer uses 250 tokens. Single-sample accuracy is 0.60 on the multi-hop slice.</p>
+<p>One greedy chain processes 3,610 tokens. It costs 5.78 times 10 to the power of 13 FLOPs, 170 ms of GPU time, and $1.18 times 10 to the power of negative 4 per query.</p>
+<p>Five uncached self-consistency samples process 18,050 tokens. They cost 2.89 times 10 to the power of 14 FLOPs, 849 ms, and $5.90 times 10 to the power of negative 4. Accuracy is 68.3%.</p>
+<p>Five samples with a shared key-value (KV) cache process 4,610 tokens. They cost 7.38 times 10 to the power of 13 FLOPs, 217 ms, and $1.51 times 10 to the power of negative 4. They preserve the same accuracy and are 3.9 times cheaper. The samples can batch, so 217 ms is GPU time rather than wall-clock time.</p>
+<p>A tree with <code>b = 3</code>, <code>d = 3</code>, and <code>k = 2</code> generates 3, then 6, then 6 children. Fifteen generation calls plus fifteen score calls make thirty model calls. Each generation uses 120 state tokens plus 80 generated tokens. Each score uses 120 state tokens plus 5 generated tokens.</p>
+<p>The cached tree adds 4,875 marginal tokens to one 3,360-token prefill. It processes 8,235 tokens, 1.32 times 10 to the power of 14 FLOPs, 388 ms, and $2.69 times 10 to the power of negative 4.</p>
+<p>Without the cache, the tree rereads the passages thirty times. It processes 106,800 tokens, 1.71 times 10 to the power of 15 FLOPs, 5.0 seconds, and $3.49 times 10 to the power of negative 3. It is 13 times the cached tree and 30 times one chain. Its three generate-and-score levels remain serial.</p>
+<p>Wang et al. (2023) reported PaLM-540B on GSM8K at 56.5% with greedy CoT and 74.4% with 40 sampled chains. The two-answer normal approximation predicts 74.9%, within half a point.</p>
+<h4 id="operational-decisions-for-scaffolds">Operational decisions for scaffolds</h4>
+<ul>
+<li>Partition failures before choosing a scaffold.</li>
+<li>Use scaffolds only where the supporting passage is present.</li>
+<li>Start with CoT plus self-consistency at <code>m = 5</code> and a shared prefix cache.</li>
+<li>Raise <code>m</code> toward 20 when three-two splits routinely decide answers.</li>
+<li>Drop to one greedy chain when the task is extraction and all five samples agree on the evaluation set.</li>
+<li>Use sampling temperature around 0.7 for an ensemble and greedy decoding for one answer.</li>
+<li>Temperature zero returns repeated copies of one sample.</li>
+<li>Lower temperature when parseable output rate falls. Raise it when the system is unanimously wrong.</li>
+<li>Reject a tree or graph until its evaluator beats chance.</li>
+<li>Exact checks, Structured Query Language (SQL) parsing, arithmetic checks, and entailment against a cited span can qualify.</li>
+<li>Budget a fan as one parallel round and a depth-<code>d</code> tree as <code>d</code> serial generate-and-score rounds.</li>
+<li>Log the full vote distribution. A three-two split and a five-zero split should not produce the same confidence signal.</li>
+</ul>
+<h3 id="93-when-more-scaffolding-makes-things-worse">9.3 When more scaffolding makes things worse</h3>
+<h4 id="the-execution-discount">The execution discount</h4>
+<p>What: Treat every model-executed stage as an imperfect program step.</p>
+<p>Why: Downstream stages consume upstream outputs, so execution reliability multiplies.</p>
+<p>Failure without this model: Teams add stages as if their gains combined additively.</p>
+<p>Cost and complexity: A decomposer, per-subquestion retriever, verifier, and synthesizer create four rounds and multiple failure boundaries.</p>
+<p>In the source example, that pipeline scores 61.2% on the full multi-hop slice.</p>
+<p>A two-line fan of five scores 68.0% in one round at one sixth of the calls.</p>
+<p>For <code>c</code> model-executed steps, end-to-end execution is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>=</mo><munderover><mo>∏</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>c</mi></munderover><msub><mi>q</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">e = \prod_{j=1}^{c} q_j</annotation></semantics></math></p>
+<p>Realized accuracy mixes the perfectly executed design with its misfire state:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>e</mi><msub><mi>p</mi><mi>s</mi></msub><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>e</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">A = e p_s + (1-e) p_d</annotation></semantics></math></p>
+<p>The break-even execution rate against incumbent accuracy <code>A_0</code> is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mo>⋆</mo></msup><mo>=</mo><mfrac><mrow><msub><mi>A</mi><mn>0</mn></msub><mo>−</mo><msub><mi>p</mi><mi>d</mi></msub></mrow><mrow><msub><mi>p</mi><mi>s</mi></msub><mo>−</mo><msub><mi>p</mi><mi>d</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">e^\star = \frac{A_0-p_d}{p_s-p_d}</annotation></semantics></math></p>
+<p>Use <code>A_0 = 0.683</code>, <code>p_s = 0.85</code>, and <code>p_d = 0.45</code>.</p>
+<p>The break-even execution rate is 0.583.</p>
+<p>A thirty-call tree therefore needs per-call reliability of 0.982.</p>
+<p>At 0.98 per call, the tree executes end to end only 0.545 of the time.</p>
+<p>The design gain is additive, but the execution discount is geometric.</p>
+<h4 id="deterministic-aggregation-and-reversible-decisions">Deterministic aggregation and reversible decisions</h4>
+<p>What: Prefer a counter outside the model and prefer reranking over pruning.</p>
+<p>Why: A counter adds no model execution probability. Reversible stages preserve recovery paths.</p>
+<p>Failure without it: A learned selector adds systematic bias, and irreversible pruning compounds errors across depth.</p>
+<p>Cost and complexity: A chance scorer that keeps 2 of 3 children preserves the correct path through three levels with probability 0.296.</p>
+<p>Jiang et al. (2023) built the large language model (LLM) system LLM-Blender.</p>
+<p>It ranks outputs from eleven open-source models pairwise and sends top candidates to a fusion model.</p>
+<p>Peiyi Wang and colleagues (2023) found that an LLM judge can change its verdict when candidate order is swapped.</p>
+<p>Their fix scores both orders and averages, which doubles comparison calls.</p>
+<p>Self-review can reinforce the model's own answer and raise confidence without improving correctness. The source connects this mechanism to model collapse.</p>
+<h4 id="reliability-audit">Reliability audit</h4>
+<p>A five-sample fan gets all five parseable outputs with probability 0.904 at 98% per-call parseability.</p>
+<p>Exactly four parse with probability 0.092.</p>
+<p>Fewer than four parse with probability 0.004.</p>
+<p>A four-sample vote with random tie-breaking scores 0.648 at <code>p = 0.60</code>.</p>
+<p>The realized fan accuracy is 0.680, only 0.3 points below its ideal 0.683.</p>
+<p>A thirty-call tree at 98% execution and a perfect scorer realizes 0.668.</p>
+<p>It uses six times the calls, takes three serial rounds, and trails the fan by 1.2 points.</p>
+<p>If its evaluator keeps the correct branch 90% of the time, full execution falls to 0.398.</p>
+<p>Realized accuracy falls to 0.609, seven points below the fan.</p>
+<p>The evaluator must keep the correct branch more than 83.5% of the time to break even.</p>
+<p>Measure this on 200 labeled pruning decisions before writing orchestration.</p>
+<p>On Game of 24, a perfect finite search has <code>p_s = 1.0</code> and the self-consistency fallback is 0.09.</p>
+<p>The reported 0.74 tree score implies execution near 0.714.</p>
+<p>Even a free exact evaluator leaves a large execution discount.</p>
+<p>Count model-executed steps as a reliability budget.</p>
+<p>Prefer fewer than roughly ten unless the weakest stage has a measured <code>q_j</code>.</p>
+<p>Log stage validity, correct-branch survival, truncation, and dropped constraints separately from final answer accuracy.</p>
+<p>Ablate downward one stage at a time.</p>
+<p>On 500 questions at accuracy near 0.68, one arm has standard error about 0.021.</p>
+<p>A two-point move is inside that noise band. A selector with 15 net flips among roughly 100 discordant answers has a McNemar statistic of 1.5, below 1.96.</p>
+<h3 id="94-retrieving-more-can-hallucinate-more">9.4 Retrieving more can hallucinate more</h3>
+<h4 id="recall-is-not-answer-accuracy">Recall is not answer accuracy</h4>
+<p>What: Separate passage recall from passage utilization.</p>
+<p>Why: A passage can be present and still lose to a distractor inside the generator.</p>
+<p>Failure without it: Raising top-k from 5 to 40 can raise recall from 72% to 81% and lower answer accuracy by about five points.</p>
+<p>Cost and complexity: More passages increase prompt tokens and multiply selection competition.</p>
+<p>The naive model assumes perfect use of the gold passage and closed-book fallback otherwise.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mtext mathvariant="normal">naive</mtext></msub><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_{\text{naive}}(k) = R(k) + (1-R(k))p_0</annotation></semantics></math></p>
+<p>This expression can only rise with recall.</p>
+<p>Production breaks its two assumptions.</p>
+<p>When the gold passage is absent, the model can ground in a plausible wrong passage instead of returning to parametric memory.</p>
+<p>This co-occurrence substitution gives no-gold accuracy <code>m</code>, with <code>m &lt; p_0</code>.</p>
+<h4 id="utilization-and-margin">Utilization and margin</h4>
+<p>What: Model the generator as selecting the passage with the highest internal relevance score.</p>
+<p>Why: The gold passage must beat every distractor.</p>
+<p>Failure without ranker margin: Added passages dilute use of the gold passage even while recall rises.</p>
+<p>Cost and complexity: If the gold score is <code>mu</code> standard deviations above mean distractor score, utilization is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>μ</mi><msup><mo stretchy="false" form="postfix">)</mo><mrow><mi>k</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">u(k) = \Phi(\mu)^{k-1}</annotation></semantics></math></p>
+<p>The relative penalty per added passage is <code>beta = 1 - Phi(mu)</code>.</p>
+<p>At <code>mu = 2.0</code>, <code>beta = 0.0228</code>.</p>
+<p>At <code>mu = 2.5</code>, <code>beta = 0.0062</code>.</p>
+<p>At <code>mu = 3.0</code>, <code>beta = 0.00135</code>.</p>
+<p>A reranker buys margin, not merely a different order.</p>
+<h4 id="the-non-monotone-accuracy-model">The non-monotone accuracy model</h4>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>m</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>m</mi><mo stretchy="false" form="postfix">)</mo><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mi>u</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A(k) = m + (1-m) R(k) u(k)</annotation></semantics></math></p>
+<p>Grounding rate is <code>G(k) = R(k)u(k)</code>.</p>
+<p>Recall rises with <code>k</code> while utilization falls.</p>
+<p>Karpukhin et al. (2020) reported Dense Passage Retrieval (DPR) accuracy on Natural Questions of 78.4% at top-20 and 85.4% at top-100.</p>
+<p>Over the bracketed interval from 5 through 100, use the log-linear interpolation:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.784</mn><mo>+</mo><mi>c</mi><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>k</mi><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><mi>c</mi><mo>=</mo><mfrac><mrow><mn>0.854</mn><mo>−</mo><mn>0.784</mn></mrow><mrow><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mn>5</mn></mrow></mfrac><mo>=</mo><mn>0.0435</mn></mrow><annotation encoding="application/x-tex">R(k) = 0.784 + c \ln\left(\frac{k}{20}\right), \qquad c = \frac{0.854-0.784}{\ln 5} = 0.0435</annotation></semantics></math></p>
+<p>Marginal recall decays as <code>c/k</code>.</p>
+<p>Marginal dilution stays near constant at <code>beta</code>.</p>
+<p>The optimum solves:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>k</mi><mo>⋆</mo></msup><mi>R</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>k</mi><mo>⋆</mo></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mi>c</mi><mrow><mi>−</mi><mrow><mi>ln</mi><mo>&#8289;</mo></mrow><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>μ</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>≈</mo><mfrac><mi>c</mi><mi>β</mi></mfrac></mrow><annotation encoding="application/x-tex">k^\star R(k^\star) = \frac{c}{-\ln\Phi(\mu)} \approx \frac{c}{\beta}</annotation></semantics></math></p>
+<p>At <code>mu = 3.0</code>, the optimum is about 40.</p>
+<p>At <code>mu = 2.5</code>, the optimum is about 9.</p>
+<p>At <code>mu = 2.0</code>, the fitted optimum is about 3 and lies below the fit range.</p>
+<p>That result means fix the ranker rather than retrieve three.</p>
+<p>Half a standard deviation of margin moves the optimum by more than a factor of four.</p>
+<p>A longer context window does not change the number of competing passages.</p>
+<p>Liu et al. (2023) found that extended-context variants of the same models were no better at using their context and barely moved the accuracy curve.</p>
+<h4 id="worked-retrieval-audit">Worked retrieval audit</h4>
+<p>The chunks use 512 tokens.</p>
+<p>Closed-book accuracy is 0.42.</p>
+<p>Misgrounded accuracy after deleting every gold passage is 0.31.</p>
+<p>Input costs $3 per million tokens.</p>
+<p>With a bi-encoder, <code>k = 5</code>, and <code>mu = 2.5</code>, recall is 0.724 and utilization is 0.975.</p>
+<p>Grounding is 0.706 and answer accuracy is 0.797.</p>
+<p>The 2,560-token prompt costs $0.0077 per query.</p>
+<p>With the same retriever and <code>k = 40</code>, recall rises to 0.814.</p>
+<p>Utilization falls to 0.784.</p>
+<p>Grounding falls to 0.638 and accuracy falls to 0.751.</p>
+<p>The 20,480-token prompt costs $0.0614 per query.</p>
+<p>The input bill rises eightfold while accuracy loses 4.6 points.</p>
+<p>A cross-encoder over top-100 can raise the margin to 3.0 before sending 40 passages.</p>
+<p>Utilization becomes 0.949, grounding becomes 0.772, and accuracy becomes 0.843.</p>
+<p>The passages stay the same. The margin changes.</p>
+<p>Truncating that reranked list to <code>k = 10</code> gives utilization 0.988, grounding 0.745, and accuracy 0.824.</p>
+<p>It uses 5,120 tokens and costs $0.0154.</p>
+<p>The last 1.9 points from 10 to 40 passages cost four times the input bill.</p>
+<p>That is $46,000 per million queries before extra prefill latency for 15,360 tokens.</p>
+<p>At <code>mu = 2.0</code> and <code>k = 100</code>, utilization is 0.102, grounding is 0.088, and accuracy is 0.370.</p>
+<p>The system crosses below its 0.42 closed-book accuracy near <code>k = 73</code>.</p>
+<p>Liu et al. (2023) observed the inversion at 20 documents in multi-document question answering.</p>
+<p>The model here omits positional decay, so treat its optimum as an upper bound. Its independent-distractor assumption is also imperfect. Positive correlation among near duplicates lowers the modeled per-document penalty at large top-k and makes deduplication a substantive intervention.</p>
+<p>Gate releases on answer accuracy, not recall at top-k.</p>
+<p>Measure <code>m</code> by deleting the gold passage from every context.</p>
+<p>Measure dilution by fixing the gold position and injecting distractors.</p>
+<p>Prefer a score cliff over a fixed top-k when scores are calibrated.</p>
+<p>Retrieve conditionally when closed-book answers are reliable.</p>
+<p>Retrieve unconditionally when every answer requires a citation, while accounting for the accuracy trade.</p>
+<p>Mallen et al. (2023) found the unassisted model beating retrieval augmentation on high-popularity subjects.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-91">Figure 9.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart BT
+    C[&quot;1. completion: bound at pre-training, theta_pre, continues q, +0 tokens&quot;]
+    I[&quot;2. instruction: bound at post-training, theta_IT, command, +120 tokens, 5.6 ms&quot;]
+    L[&quot;3. in-context learning: bound at prompt deploy, fixed before q, +1,000 tokens, 47 ms&quot;]
+    R[&quot;4. RAG: bound per request, passages selected after q, +3,200 tokens, 151 ms&quot;]
+    C --&gt; I
+    I --&gt; L
+    L --&gt; R</code></pre></details></figure>
+<p>Figure 9.1: The four rungs are cumulative rather than alternative, and they differ in the one property that decides everything else - how late the information they carry can be bound, from the pre-training corpus up to the request itself - with the price of that lateness paid in prompt tokens on every query.</p>
+<h3 id="figure-92">Figure 9.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    subgraph Chain[&quot;chain - CoT: 1 call&quot;]
+        q1[q] --&gt; c1((step)) --&gt; c2((step)) --&gt; a1[a]
+    end
+    subgraph Fan[&quot;fan - self-consistency: m parallel calls&quot;]
+        q2[q] --&gt; f1((path 1)) --&gt; A1[A]
+        q2 --&gt; f2((path 2)) --&gt; A2[A]
+        q2 --&gt; f3((path 3)) --&gt; B1[B]
+        A1 --&gt; count[count]
+        A2 --&gt; count
+        B1 --&gt; count
+    end
+    subgraph Tree[&quot;tree - Tree of Thoughts: about dkb calls in d serial rounds&quot;]
+        q3[q] --&gt; t1[0.9]
+        q3 --&gt; t2[0.2]
+        q3 --&gt; t3[0.7]
+        t1 --&gt; t11((child))
+        t1 --&gt; t12((child))
+        t3 --&gt; t31((child))
+        t3 --&gt; t32((child))
+        t12 --&gt; a3[a]
+    end
+    subgraph Graph[&quot;graph - Graph of Thoughts: merge and refine&quot;]
+        q4[q] --&gt; g1((thought 1))
+        q4 --&gt; g2((thought 2))
+        g1 --&gt; merge((merge))
+        g2 --&gt; merge
+        merge --&gt; a4[a]
+        merge --&gt; refine((refine))
+        refine --&gt; merge
+    end</code></pre></details></figure>
+<p>Figure 9.2: The four scaffolds differ in one structural property - what an edge is allowed to do - and every cost follows from it: the fan is embarrassingly parallel and needs no scorer, while the tree buys exploration only by adding a serial round per level and a state evaluator at every node.</p>
+<h3 id="figure-93">Figure 9.3</h3>
+<pre class="text"><code>realized accuracy
+90% |                                             tree reaches 85%
+80% |                                        ____/
+70% |---------------- fan of five: 68.3% ---*      break-even q = 0.982
+60% |                              _________/
+50% |             _______________/
+40% |____________/
+     0.90          0.94          0.98        1.00
+              per-call execution reliability q
+
+tree: b = 3, d = 3, 30 model calls
+A = 0.45 + 0.40 q^30</code></pre>
+<p>Figure 9.3: Realized accuracy of a 30-call tree, A = 0.45 + 0.40 q^30, against a fan of five held flat at its 68.3%. The curve is geometric in the call count, so the tree only repays its design accuracy of 85% once per-call execution reliability clears 98.2% - and it is already losing at 98%.</p>
+<h3 id="figure-94">Figure 9.4</h3>
+<pre class="text"><code>answer accuracy A(k)
+90% |
+80% |  mu = 3.0 _________* k = 40 ______
+70% |  mu = 2.5 * k = 9  \_______________
+60% |                      \_______________
+50% |  mu = 2.0 \__________________________
+42% |----------- closed book --------------* k about 73
+40% |                                      \
+     5         10        20        40      100
+             passages sent to generator k, log scale
+
+m = 0.31
+R uses DPR top-20 recall 0.784 and top-100 recall 0.854</code></pre>
+<p>Figure 9.4: Answer accuracy A(k) = m + (1 - m) R(k) Φ(µ)^(k-1) against the number of retrieved passages, at three ranker margins, with m = 0.31 and R anchored on DPR's published top-20 and top-100 recall. Every curve has an interior maximum. Half a standard deviation of margin moves it from k = 9 to k = 40, and at µ = 2.0 the retrieval-augmented system drops below its own closed-book accuracy at about k = 73.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw four stacked boxes labeled completion, instruction, ICL, and RAG.</li>
+<li>Write the binding time beside each box.</li>
+<li>Add the four prompt slots: instruction, demonstrations, retrieved passages, query.</li>
+<li>Draw a fan of five sampled chains with a counter.</li>
+<li>Draw a depth-3 tree with generation and score calls.</li>
+<li>Write <code>e = product of q_j</code> under the tree.</li>
+<li>Draw recall rising with top-k.</li>
+<li>Draw utilization falling with top-k.</li>
+<li>Multiply them into a curve with an interior maximum.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with the four prompt rungs. Completion recalls from weights, instruction sets behavior, examples fix form, and retrieval binds evidence after the query. Then separate retrieval from decoding. A reasoning scaffold only changes how many paths we sample and how we combine them. A fan counts answers, while a tree needs serial scoring and reliable pruning. Its execution probability multiplies across calls, so thirty 98% reliable calls succeed together only 54.5% of the time. Finally, split retrieval quality into recall and utilization. Raising top-k improves recall but adds distractors. Ranker margin decides where answer accuracy peaks.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-is-rag-just-in-context-learning-with-a-vector-database">1. Is RAG just in-context learning with a vector database?</h3>
+<p>Mechanically, both place tokens in the same context channel and leave the generator weights frozen, but binding time is the decisive difference. Demonstrations are fixed before the query, while retrieved passages are selected after it. A vector database is plumbing, not the definition.</p>
+<h3 id="2-will-self-consistency-turn-60-grounded-question-answering-accuracy-into-75">2. Will self-consistency turn 60% grounded question-answering accuracy into 75%?</h3>
+<p>No. Majority-of-five reaches 68.3%, while majority-of-nine reaches 73.3%. Voting can recover probability mass already present across independent paths, but it cannot correct a wrong or missing passage that biases every sample.</p>
+<h3 id="3-when-does-more-scaffolding-make-results-worse">3. When does more scaffolding make results worse?</h3>
+<p>It gets worse when the scaffold adds many model-executed stages, weak evaluators, irreversible pruning, or systematic comparators. Thirty calls at 98% per-call reliability execute together only 54.5% of the time. A chance scorer that keeps 2 of 3 branches preserves the correct path through three levels only 29.6% of the time.</p>
+<h3 id="4-when-does-more-retrieval-make-results-worse">4. When does more retrieval make results worse?</h3>
+<p>It gets worse when marginal recall from another passage is smaller than the utilization loss from another competitor. At ranker margin 2.5, moving from 5 to 40 passages raises recall from 0.724 to 0.814 but lowers answer accuracy from 0.797 to 0.751. Measure distractor sensitivity and no-gold accuracy before raising top-k.</p>
+<h3 id="5-does-a-million-token-window-remove-the-need-for-ranking">5. Does a million-token window remove the need for ranking?</h3>
+<p>No. A larger window removes a token-capacity limit but does not remove competition among passages. Dropping the reranker lowers the gold passage's margin while raising the number of competitors, which you can test by fixing the gold position and sweeping distractor count.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Source number</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Policy corpus</td>
+<td style="text-align: right;">4,000 times 250 = 1,000,000 tokens</td>
+<td>122 full 8,192-token windows</td>
+</tr>
+<tr>
+<td>Retrieval block</td>
+<td style="text-align: right;">8 times 400 = 3,200 tokens</td>
+<td>About 313 times compression</td>
+</tr>
+<tr>
+<td>Prompt stack</td>
+<td style="text-align: right;">4,360 tokens</td>
+<td>205 ms and $0.14 per thousand queries</td>
+</tr>
+<tr>
+<td>Binding latency</td>
+<td style="text-align: right;">3 days versus about 5 seconds</td>
+<td>43% stale versus about 8 times 10 to the power of negative 6</td>
+</tr>
+<tr>
+<td>RAG-Sequence</td>
+<td style="text-align: right;">44.5 exact match</td>
+<td>Ten points above closed-book T5-11B at 34.5</td>
+</tr>
+<tr>
+<td>Majority voting</td>
+<td style="text-align: right;">60% to 68.3% with 5 samples</td>
+<td>73.3% with 9 samples</td>
+</tr>
+<tr>
+<td>Cached fan</td>
+<td style="text-align: right;">4,610 tokens</td>
+<td>3.9 times cheaper than the uncached fan</td>
+</tr>
+<tr>
+<td>Cached tree</td>
+<td style="text-align: right;">30 calls and 3 serial rounds</td>
+<td>8,235 tokens and 388 ms of GPU time</td>
+</tr>
+<tr>
+<td>Tree break-even</td>
+<td style="text-align: right;">98.2% per call</td>
+<td>98% yields only 54.5% end-to-end execution</td>
+</tr>
+<tr>
+<td>Pruning</td>
+<td style="text-align: right;">83.5% required survival</td>
+<td>66.7% is the chance floor when keeping 2 of 3</td>
+</tr>
+<tr>
+<td>DPR anchors</td>
+<td style="text-align: right;">78.4% at top-20 and 85.4% at top-100</td>
+<td>Log-linear recall slope 0.0435</td>
+</tr>
+<tr>
+<td>Ranker margin</td>
+<td style="text-align: right;">2.5 gives top-k about 9</td>
+<td>3.0 gives top-k about 40</td>
+</tr>
+<tr>
+<td>Weak margin</td>
+<td style="text-align: right;">Accuracy 0.370 at top-100</td>
+<td>Below closed-book 0.42 and crossing near 73 passages</td>
+</tr>
+<tr>
+<td>Reranked top-40</td>
+<td style="text-align: right;">Accuracy 0.843</td>
+<td>Bi-encoder top-40 scores 0.751</td>
+</tr>
+<tr>
+<td>Last 1.9 points</td>
+<td style="text-align: right;">$46,000 per million queries</td>
+<td>Four times the input bill before extra prefill latency</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html"><small>Previous</small>Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a><a href="../chapters/10_prompt_sensitivity.html"><small>Next</small>Chapter 10. Prompt Sensitivity</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

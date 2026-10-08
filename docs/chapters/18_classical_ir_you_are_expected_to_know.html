@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 18. Classical IR You Are Expected to Know | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/18_classical_ir_you_are_expected_to_know.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html" aria-current="page">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 18. Classical IR You Are Expected to Know</h1><p class="chapter-meta">55 min estimated reading · Unit 27 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to explain how classical lexical ranking supports a Retrieval-Augmented Generation (RAG) system, where its assumptions fail, and why sparse retrieval still protects rare queries.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Boolean retrieval treats every term as a hard rule. AND can shrink a useful query to zero results, while OR can return a huge unordered set.</li>
+<li>Term Frequency-Inverse Document Frequency (TF-IDF) creates a ranking, but raw term frequency pays forever for repetition and cosine normalization can punish documents that cover more topics.</li>
+<li>Best Match 25 (BM25) caps the reward for repeated terms. Its <code>k1</code> value sets the repetition budget, and its <code>b</code> value controls how strongly document length is charged.</li>
+<li>BM25's rarity weight comes from a probability model. With no relevance judgments, the Robertson-Spärck Jones weight becomes BM25's inverse document frequency formula.</li>
+<li>The probability derivation assumes binary term presence and independent terms. BM25 repairs the first assumption with saturation, but it keeps the independence flaw.</li>
+<li>Sparse retrieval gives a rare identifier its own coordinate and a large rarity weight as soon as it is indexed. A dense pooled vector can dilute that identifier into a small share of the chunk.</li>
+<li>In practice, keep permissions and other correctness rules as strict filters. Rank softer evidence, keep a sparse arm for the long tail, and measure failures by query type.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine one librarian serving a large policy archive.</p>
+<p>A visitor asks whether the retention policy permits deleting customer records after eighteen months. The librarian first follows Boolean retrieval, which means treating each search word as a strict yes-or-no rule. She requires <code>retention AND deletion AND customer AND gdpr</code>. No folder passes every gate.</p>
+<p>She switches to OR, which means accepting a folder that contains any one of the words. Now 1.64 million folders arrive in document-id order. The strict gate starved her, and the loose gate flooded her. Neither gate told her which folder to open first.</p>
+<p>The librarian then gives each folder a partial score. An extended Boolean rule uses a <code>p</code> value as an exchange rate between strong coverage of some terms and weaker coverage of every term. At <code>p = 1</code>, AND and OR collapse to the same average. At very large <code>p</code>, the old strict gates return.</p>
+<p>Next she tries TF-IDF, which means rewarding a word for appearing in a folder and rewarding it more when it is rare across the archive. This gives her an order. It also pays the eleventh copy of a word exactly as much as the first, so a stuffed page can defeat a responsive passage.</p>
+<p>Her cosine normalization, which divides by vector length, creates a second problem. It forgives a folder that repeats the same text because repetition cancels out. It also cuts the score of a broad guideline that contains the answer plus nine other topics to about 32% of the answer section alone.</p>
+<p>The librarian adopts BM25. Its repeated-word reward rises quickly and then approaches a ceiling. The first occurrence is worth one unit at average length, and all later occurrences together can buy at most <code>k1</code> more units.</p>
+<p>BM25 also gives the librarian a length dial called <code>b</code>. At <code>b = 0</code>, she ignores length. At <code>b = 1</code>, she fully charges length. Values between them acknowledge that a long document may be repetitive or may simply cover more useful ground.</p>
+<p>Her audit notebook explains the rarity weight. The Probability Ranking Principle says to rank by the chance of relevance when each folder can be judged alone. A two-by-two table records whether relevant and non-relevant folders contain a query term. With no relevance labels, its log odds ratio becomes BM25's rarity formula.</p>
+<p>The notebook has limits. It treats term presence as binary, assumes terms are independent after relevance is known, and cannot reward a folder for useful words that the query never used. BM25 restores repeated-term evidence, but a later interaction model or cross-encoder must handle phrases and co-occurrence.</p>
+<p>Finally, a visitor asks about <code>ERR_OSSL_EVP_UNSUPPORTED</code>. The sparse catalog gives that exact string one coordinate. Its rarity earns a weight of 11.98. The dense catalog uses a Large Language Model (LLM) encoder that breaks the string into pieces and mean-pools them. Ten pieces inside 180 tokens control only 5.6% of the pooled direction.</p>
+<p>The librarian keeps both catalogs. The dense one helps when visitors paraphrase. The sparse one preserves exact identifiers, fresh terms, and the long tail. She keeps strict policy gates outside both scores because softening access control would change correctness, not ranking.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Information Retrieval (IR)</td>
+<td>Finding and ordering documents for a query</td>
+<td>It supplies the candidate evidence used by RAG</td>
+</tr>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves evidence before generating an answer</td>
+<td>Its answer quality depends on what retrieval places in context</td>
+</tr>
+<tr>
+<td>Boolean retrieval</td>
+<td>A model in which a document either satisfies a logical query or does not</td>
+<td>It enforces hard constraints but produces an unordered set</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>A rule requiring every joined clause</td>
+<td>Each added clause can multiply the result count downward</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>A rule accepting any joined clause</td>
+<td>It restores recall but can return a huge unordered set</td>
+</tr>
+<tr>
+<td>NOT</td>
+<td>A rule excluding documents that contain a term</td>
+<td>It must stay strict when it represents policy or access control</td>
+</tr>
+<tr>
+<td>Vocabulary <code>V</code></td>
+<td>The set of terms known to the index</td>
+<td>Boolean sets and vector coordinates are defined over it</td>
+</tr>
+<tr>
+<td>Corpus size <code>N</code></td>
+<td>The number of indexed documents or chunks</td>
+<td>It scales expected Boolean result counts and every rarity estimate</td>
+</tr>
+<tr>
+<td>Query <code>q</code> and document <code>d</code> or <code>D</code></td>
+<td>The request and one candidate being scored</td>
+<td>Lowercase <code>d</code> and uppercase <code>D</code> name the same document role in different source formulas</td>
+</tr>
+<tr>
+<td>Query term <code>t</code>, coordinate <code>i</code>, and query size <code>n</code></td>
+<td>One term, its position, and the number of query terms</td>
+<td>These indices scope the sums, products, and conjunction arithmetic</td>
+</tr>
+<tr>
+<td>Term set <code>T(d)</code></td>
+<td>The terms contained in document <code>d</code></td>
+<td>A Boolean query retrieves <code>d</code> only when this set satisfies the query</td>
+</tr>
+<tr>
+<td>Inverted index</td>
+<td>A map from each term to the documents containing it</td>
+<td>It makes lexical matching efficient</td>
+</tr>
+<tr>
+<td>Posting list <code>P_t</code></td>
+<td>The sorted document identifiers owned by indexed term <code>t</code></td>
+<td>AND intersects lists, OR unions them, and NOT subtracts them</td>
+</tr>
+<tr>
+<td>Document frequency <code>df_i</code> or <code>n_t</code></td>
+<td>The number of documents containing a term</td>
+<td>It predicts Boolean selectivity and drives rarity weighting</td>
+</tr>
+<tr>
+<td>Feast or famine</td>
+<td>The pattern of AND returning almost nothing and OR returning too much</td>
+<td>It is a structural Boolean failure, not just bad tuning</td>
+</tr>
+<tr>
+<td>Fallback ladder</td>
+<td>Re-running a query after dropping one term at a time</td>
+<td>It costs repeated index passes and creates incomparable result sets</td>
+</tr>
+<tr>
+<td>Extended Boolean model</td>
+<td>A soft version of Boolean retrieval that uses bounded term weights</td>
+<td>It turns a set into a ranking without discarding query structure</td>
+</tr>
+<tr>
+<td>Normalized term weight <code>w_i</code></td>
+<td>A term score bounded from zero to one</td>
+<td>It lets logical operators become graded scores</td>
+</tr>
+<tr>
+<td>Soft scores <code>S_OR(d)</code> and <code>S_AND(d)</code></td>
+<td>The extended Boolean OR and AND scores for document <code>d</code></td>
+<td>They replace hard membership with graded distance from an endpoint</td>
+</tr>
+<tr>
+<td>Sum <code>∑</code> and product <code>∏</code></td>
+<td>Additive and multiplicative aggregation across terms</td>
+<td>A sum forms a score, while a product explains geometric Boolean shrinkage</td>
+</tr>
+<tr>
+<td><code>p</code>-norm</td>
+<td>A family of distance functions controlled by exponent <code>p</code></td>
+<td>It sets how strongly a missing query term is punished</td>
+</tr>
+<tr>
+<td>Ideal corner</td>
+<td>The point where every query-term weight equals one</td>
+<td>Soft AND scores distance from this all-present point</td>
+</tr>
+<tr>
+<td>Coordination-level match</td>
+<td>A score based on the average amount of query coverage</td>
+<td>At <code>p = 1</code>, extended AND and OR both reduce to it</td>
+</tr>
+<tr>
+<td>Fuzzy-set endpoint</td>
+<td>The min and max behavior reached as <code>p</code> becomes very large</td>
+<td>On binary weights it recovers strict Boolean retrieval</td>
+</tr>
+<tr>
+<td>Minimum-should-match</td>
+<td>A threshold on how many optional clauses must match</td>
+<td>It offers a coarse middle ground between AND and OR</td>
+</tr>
+<tr>
+<td>Coordination factor</td>
+<td>The fraction of query clauses a document matches</td>
+<td>Classic Lucene used it as a discrete soft-coverage multiplier</td>
+</tr>
+<tr>
+<td>Vector space model</td>
+<td>One coordinate per vocabulary term for queries and documents</td>
+<td>It creates a total ranking from vector similarity</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>The dot product divided by both vector lengths</td>
+<td>It ranks by angle rather than raw magnitude</td>
+</tr>
+<tr>
+<td>Cosine score <code>sim(q,d)</code></td>
+<td>The angle-based similarity between query <code>q</code> and document <code>d</code></td>
+<td>It supplies the vector model's total order</td>
+</tr>
+<tr>
+<td>Dot product <code>q · d</code></td>
+<td>A sum of matching coordinate products</td>
+<td>Common terms and long documents dominate it without weighting</td>
+</tr>
+<tr>
+<td>Euclidean norm `</td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>Term Frequency (TF) <code>f_(t,d)</code> or <code>f(t,D)</code></td>
+<td>The count of term <code>t</code> inside one document</td>
+<td>Linear TF lets repetition keep buying score</td>
+</tr>
+<tr>
+<td>Inverse Document Frequency (IDF)</td>
+<td>A weight that grows as a term appears in fewer documents</td>
+<td>It makes rare query terms more discriminating</td>
+</tr>
+<tr>
+<td>TF-IDF coordinate</td>
+<td>Term frequency multiplied by inverse document frequency</td>
+<td>It combines within-document evidence with corpus rarity</td>
+</tr>
+<tr>
+<td>Linear term frequency</td>
+<td>A reward proportional to every occurrence count</td>
+<td>The eleventh occurrence is worth exactly as much as the first</td>
+</tr>
+<tr>
+<td>Sublinear term frequency</td>
+<td>The slower reward <code>1 + ln f</code></td>
+<td>It reduces stuffing but has no ceiling</td>
+</tr>
+<tr>
+<td>Cosine normalization</td>
+<td>Division by a document vector's Euclidean length</td>
+<td>It forgives pure repetition but can punish useful breadth</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>Length caused by covering more distinct material</td>
+<td>Full normalization can unfairly demote it</td>
+</tr>
+<tr>
+<td>Verbosity</td>
+<td>Length caused by saying the same thing with more words</td>
+<td>A useful scorer should discount it</td>
+</tr>
+<tr>
+<td>Section variables <code>c_i</code>, <code>m</code>, and <code>α</code></td>
+<td>Section vectors, section count, and a pure repetition multiplier</td>
+<td>They distinguish breadth from repeating the same vector</td>
+</tr>
+<tr>
+<td>Pivoted length normalization</td>
+<td>A length correction tilted around the point where retrieval and relevance curves cross</td>
+<td>It is the direct ancestor of BM25's <code>b</code> control</td>
+</tr>
+<tr>
+<td>Best Match 25 (BM25)</td>
+<td>The twenty-fifth Best Match weighting function from the Okapi experiments</td>
+<td>It combines rarity, TF saturation, and tunable length normalization</td>
+</tr>
+<tr>
+<td>Saturation</td>
+<td>A reward that rises but approaches a fixed ceiling</td>
+<td>It prevents unlimited score purchases through repetition</td>
+</tr>
+<tr>
+<td><code>k1</code></td>
+<td>BM25's budget for all occurrences after the first</td>
+<td>Larger values move the saturation knee outward</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>BM25's interpolation between ignoring and fully charging length</td>
+<td>It expresses the verbosity-versus-scope trade-off</td>
+</tr>
+<tr>
+<td>Average document length <code>avgdl</code></td>
+<td>Mean token count over the indexed collection</td>
+<td>BM25 measures each document length relative to it</td>
+</tr>
+<tr>
+<td>Relative length <code>ell</code> or <code>ℓ</code></td>
+<td>Document length divided by average document length</td>
+<td>It centers the length factor at one</td>
+</tr>
+<tr>
+<td>Document length `</td>
+<td>D</td>
+<td>`</td>
+</tr>
+<tr>
+<td>Effective saturation constant <code>K</code></td>
+<td>The value of <code>k1</code> after length adjustment</td>
+<td>It couples term frequency and document length inside BM25</td>
+</tr>
+<tr>
+<td>Two-Poisson eliteness model</td>
+<td>A model with high and low occurrence rates for a concept</td>
+<td>It motivates a term reward that rises quickly and then flattens</td>
+</tr>
+<tr>
+<td>Dynamic pruning</td>
+<td>Skipping postings that cannot beat the current score threshold</td>
+<td>A bounded per-term score supplies a safe upper bound</td>
+</tr>
+<tr>
+<td>Weak AND (WAND)</td>
+<td>A pruning strategy that uses term-score upper bounds</td>
+<td>Lucene's BM25 form supports efficient block-max WAND skipping</td>
+</tr>
+<tr>
+<td>Probability Ranking Principle (PRP)</td>
+<td>Rank by decreasing probability of relevance</td>
+<td>It is optimal only when each document's usefulness is independent</td>
+</tr>
+<tr>
+<td>Relevance variable <code>R</code></td>
+<td>A binary indicator of whether a document is relevant</td>
+<td>It is the target of the probabilistic derivation</td>
+</tr>
+<tr>
+<td>Probability `Pr(A</td>
+<td>B)<code>and odds</code>O(R</td>
+<td>d,q)`</td>
+</tr>
+<tr>
+<td>Prior odds</td>
+<td>Query-level relevance odds before inspecting a document</td>
+<td>They are constant across documents for one query and can be dropped</td>
+</tr>
+<tr>
+<td>Likelihood ratio</td>
+<td>Document probability under relevance divided by document probability under non-relevance</td>
+<td>It remains after the prior cancels</td>
+</tr>
+<tr>
+<td>Binary incidence vector <code>x</code> and coordinate <code>x_t</code></td>
+<td>Zero-or-one indicators for all terms and for term <code>t</code></td>
+<td>They make whole-document probabilities estimable but discard counts</td>
+</tr>
+<tr>
+<td>Conditional independence</td>
+<td>The assumption that terms occur independently once relevance is known</td>
+<td>It enables factorization but loses phrases and co-occurrence</td>
+</tr>
+<tr>
+<td><code>p_t</code></td>
+<td>Chance that a relevant document contains term <code>t</code></td>
+<td>It forms the numerator odds of the term weight</td>
+</tr>
+<tr>
+<td><code>u_t</code></td>
+<td>Chance that a non-relevant document contains term <code>t</code></td>
+<td>It forms the denominator odds of the term weight</td>
+</tr>
+<tr>
+<td>Relevant counts <code>S</code> and <code>s_t</code></td>
+<td>All judged-relevant documents and the subset containing <code>t</code></td>
+<td>Their small values drive feedback variance</td>
+</tr>
+<tr>
+<td>Off-query cancellation</td>
+<td>Setting <code>p_t = u_t</code> for terms outside the query</td>
+<td>It reduces scoring to query terms that the document contains</td>
+</tr>
+<tr>
+<td>Retrieval Status Value (RSV)</td>
+<td>The sum of per-term probabilistic weights</td>
+<td>It orders documents under the binary independence model</td>
+</tr>
+<tr>
+<td>Robertson-Spärck Jones (RSJ) weight <code>w_t</code></td>
+<td>The log odds ratio for one query term</td>
+<td>Its zero-label limit is BM25's classic IDF</td>
+</tr>
+<tr>
+<td>Two-by-two cells <code>a</code>, <code>b</code>, <code>c</code>, and <code>d</code></td>
+<td>Counts split by relevance and term presence</td>
+<td>Their diagonal odds ratio estimates <code>w_t</code></td>
+</tr>
+<tr>
+<td>Continuity correction</td>
+<td>Adding 0.5 to every contingency cell</td>
+<td>It prevents infinite estimates when a cell is empty</td>
+</tr>
+<tr>
+<td>Relevance feedback</td>
+<td>Updating term weights from judged relevant documents</td>
+<td>Small samples can move weights too violently</td>
+</tr>
+<tr>
+<td>Pseudo-relevance feedback</td>
+<td>Treating the current top results as if they were relevant</td>
+<td>It can feed the ranker's own errors back into its weights</td>
+</tr>
+<tr>
+<td>Maximum spanning tree dependence model</td>
+<td>A pairwise term-dependence structure</td>
+<td>It faces <code>O(V^2)</code> dependencies when even marginal estimates are sparse</td>
+</tr>
+<tr>
+<td>Late interaction</td>
+<td>Comparing query and document token representations after separate encoding</td>
+<td>It models term interactions that BM25 assumes away</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>A scorer that attends jointly to query and document tokens</td>
+<td>It can represent phrases and co-occurrence in a later stage</td>
+</tr>
+<tr>
+<td>Graded relevance</td>
+<td>Labels such as the source's <code>0</code> to <code>4</code> scale</td>
+<td>It changes learning-to-rank, not the binary independence derivation</td>
+</tr>
+<tr>
+<td>Maximum Marginal Relevance (MMR)</td>
+<td>Reranking that trades relevance against redundancy</td>
+<td>It addresses joint utility when several chunks share one context window</td>
+</tr>
+<tr>
+<td>Sparse retrieval</td>
+<td>Vocabulary-space scoring with explicit term coordinates</td>
+<td>Exact rare terms receive direct and immediate weight</td>
+</tr>
+<tr>
+<td>Dense bi-encoder</td>
+<td>A model that compresses a query and a chunk into pooled vectors</td>
+<td>Semantic matching helps paraphrases but can dilute identifiers</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>The cited mean-pooled dense bi-encoder pattern</td>
+<td>It illustrates how a whole chunk becomes one vector</td>
+</tr>
+<tr>
+<td>Byte-pair tokenizer</td>
+<td>A tokenizer that splits unseen strings into reusable pieces</td>
+<td>A rare identifier can lose its intact identity</td>
+</tr>
+<tr>
+<td>Mean pooling</td>
+<td>Averaging token representations into one chunk vector</td>
+<td>A term's influence follows its token share, not its rarity</td>
+</tr>
+<tr>
+<td>Contrastive training</td>
+<td>Learning by separating paired and unpaired examples</td>
+<td>Rare unseen strings have little or no direct supervision</td>
+</tr>
+<tr>
+<td>Long tail</td>
+<td>The many rare terms and query types in a corpus</td>
+<td>A large fraction of distinct types occur once, so aggregate evaluation can hide most vocabulary types</td>
+</tr>
+<tr>
+<td>Zipf's law</td>
+<td>The stated pattern that term frequency falls roughly with reciprocal rank</td>
+<td>It explains why many distinct vocabulary types are rare</td>
+</tr>
+<tr>
+<td>Exact identifier field</td>
+<td>An unanalyzed field that preserves a whole version, code, or identifier</td>
+<td>It keeps full IDF on strings that analyzers might break</td>
+</tr>
+<tr>
+<td>Sparse Lexical and Expansion Model (SPLADE)</td>
+<td>A learned method that scores in vocabulary space</td>
+<td>It recovers part of sparse exactness but keeps a general-text masked language model head</td>
+</tr>
+<tr>
+<td>Masked Language Model (MLM)</td>
+<td>The general-text prediction head inherited by SPLADE</td>
+<td>It limits how fully learned sparse scoring closes the domain-tail gap</td>
+</tr>
+<tr>
+<td>Pooling symbols <code>m</code>, <code>L</code>, and <code>d</code></td>
+<td>Subword count, chunk-token count, and dense-vector dimension</td>
+<td>Here <code>m/L</code> is identifier share, and <code>d</code> is overloaded from the document symbol to a dimension</td>
+</tr>
+<tr>
+<td>Approximate Nearest Neighbor (ANN) search breadth <code>ef</code></td>
+<td>Dense vector work controlled by search breadth and corpus size</td>
+<td>Its cost does not fall just because a query term is rarer</td>
+</tr>
+<tr>
+<td>Reciprocal Rank Fusion (RRF)</td>
+<td>Combining systems through rank positions rather than raw scores</td>
+<td>It avoids mixing corpus-dependent BM25 scores with bounded cosine scores</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain at 10 (nDCG@10)</td>
+<td>A top-ten ranking metric</td>
+<td>It can expose ordering harm that deep recall misses</td>
+</tr>
+<tr>
+<td>Microsoft Machine Reading Comprehension (MS MARCO)</td>
+<td>The cited passage collection and dense-training domain</td>
+<td>Its narrow passage lengths do not transfer a <code>b</code> choice to wide-length wiki pages</td>
+</tr>
+<tr>
+<td>Benchmarking Information Retrieval (BEIR)</td>
+<td>The cited eighteen-dataset zero-shot benchmark</td>
+<td>Its reported results support BM25's out-of-domain strength</td>
+</tr>
+<tr>
+<td>Stock Keeping Unit (SKU)</td>
+<td>An exact product identifier</td>
+<td>It is a query type where sparse retrieval often protects recall</td>
+</tr>
+<tr>
+<td>Portable Document Format (PDF)</td>
+<td>A document format that can create long and uneven chunks</td>
+<td>It appears in the chapter's length-bias interview examples</td>
+</tr>
+<tr>
+<td>Application Programming Interface (API)</td>
+<td>A named software interface and version</td>
+<td>The source's <code>3.12</code> versus <code>3.9</code> example shows how dense pooling can dilute an exact version</td>
+</tr>
+<tr>
+<td>Graphics Processing Unit (GPU)</td>
+<td>Hardware used for dense model computation</td>
+<td>The sparse worked example needs no training data and no GPU</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="181-boolean-and-extended-boolean-models">18.1 Boolean and extended Boolean models</h3>
+<h4 id="boolean-retrieval-defines-a-set">Boolean retrieval defines a set</h4>
+<ul>
+<li>What: A document <code>d</code> contains a term set <code>T(d)</code>, which is a subset of vocabulary <code>V</code>. The system retrieves <code>d</code> exactly when <code>T(d)</code> satisfies Boolean query <code>q</code>.</li>
+<li>Why: The model makes hard requirements exact. Metadata filters, <code>must</code>, <code>must_not</code>, and machine-extracted filters still use this model.</li>
+<li>Failure without ranking: The answer is a set. No returned document is more retrieved than another, so the model has nothing to put first.</li>
+<li>Cost or complexity: Each term owns a sorted posting list. Two-list AND costs <code>O(|P_1| + |P_2|)</code>. OR is a union, and NOT is a difference.</li>
+</ul>
+<h4 id="conjunction-shrinks-geometrically">Conjunction shrinks geometrically</h4>
+<ul>
+<li>What: Under independent term occurrence, an <code>n</code>-term conjunction has expected result size:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">|</mo><mi>r</mi><mi>e</mi><mi>s</mi><mi>u</mi><mi>l</mi><mi>t</mi><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mi>N</mi><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false" form="prefix">(</mo><mi>d</mi><msub><mi>f</mi><mi>i</mi></msub><mi>/</mi><mi>N</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mi>d</mi><msub><mi>f</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><msup><mi>N</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">E[|result|] = N ∏_{i=1}^{n}(df_i/N) = (∏_{i=1}^{n} df_i)/N^{n-1}</annotation></semantics></math></p>
+<ul>
+<li>Why: The formula prices each hard clause before the query runs.</li>
+<li>Failure without soft evidence: Every added word multiplies the set by another factor <code>df_i/N</code>, even though users add words to express more intent. OR adds another slab of the corpus instead.</li>
+<li>Cost or complexity: The set can collapse geometrically in query length. This is the classical feast-or-famine failure.</li>
+</ul>
+<h4 id="a-fallback-ladder-does-not-create-one-ranking">A fallback ladder does not create one ranking</h4>
+<ul>
+<li>What: The ladder runs all terms, drops one if too few results return, and repeats until it finds enough.</li>
+<li>Why: It tries to recover from a zero-result AND without changing the scorer.</li>
+<li>Failure: It guesses which term mattered least. Results from three of four terms have no score comparable to results from all four terms.</li>
+<li>Cost or complexity: It searches among <code>2^n</code> term subsets in principle and pays a fresh index pass per rung. A four-term query can require four sequential intersections.</li>
+</ul>
+<h4 id="extended-boolean-retrieval-softens-the-operator">Extended Boolean retrieval softens the operator</h4>
+<ul>
+<li>What: It replaces membership with weights <code>w_i</code> in <code>[0,1]</code> and replaces connectives with <code>p</code>-norm scores:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>O</mi></msub><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msubsup><mi>w</mi><mi>i</mi><mi>p</mi></msubsup><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>1</mn><mi>/</mi><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">S_OR(d) = ((1/n) ∑_{i=1}^{n} w_i^p)^{1/p}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>A</mi></msub><mi>N</mi><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>w</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>p</mi></msup><msup><mo stretchy="false" form="postfix">)</mo><mrow><mn>1</mn><mi>/</mi><mi>p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">S_AND(d) = 1 - ((1/n) ∑_{i=1}^{n}(1-w_i)^p)^{1/p}</annotation></semantics></math></p>
+<ul>
+<li>Why: Soft AND measures distance from the all-present corner. Soft OR measures distance from the origin.</li>
+<li>Failure without the exponent choice: <code>p</code> sets the exchange rate between broad weak coverage and strong partial coverage. Calling it mere smoothing hides the design decision.</li>
+<li>Cost or complexity: The source bounds <code>p</code> at <code>p &gt;= 1</code>. Salton, Fox, and Wu (1983) report that intermediate values, especially <code>p = 2</code>, beat both endpoints on their test collections.</li>
+</ul>
+<h4 id="the-endpoints-explain-the-model">The endpoints explain the model</h4>
+<ul>
+<li>What: At <code>p = 1</code>, both operators become the arithmetic mean:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>A</mi></msub><mi>N</mi><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>n</mi><mo stretchy="false" form="postfix">)</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><msub><mi>S</mi><mi>O</mi></msub><mi>R</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">S_AND(d) = 1 - (1/n)∑_{i=1}^{n}(1-w_i) = (1/n)∑_{i=1}^{n}w_i = S_OR(d)</annotation></semantics></math></p>
+<ul>
+<li>Why: This shows exactly when Boolean structure stops affecting the score.</li>
+<li>Failure: Shipping <code>p = 1</code> while claiming AND support is incorrect because AND and OR are then identical.</li>
+<li>Cost or complexity: As <code>p -&gt; infinity</code>, <code>S_AND -&gt; min_i w_i</code> and <code>S_OR -&gt; max_i w_i</code>. Binary weights then recover strict Boolean retrieval exactly.</li>
+</ul>
+<h4 id="the-compliance-query-makes-the-cliff-concrete">The compliance query makes the cliff concrete</h4>
+<ul>
+<li>What: Use <code>N = 10^7</code> chunks and document frequencies <code>1.5 × 10^6</code>, <code>1.2 × 10^5</code>, <code>4 × 10^4</code>, and <code>8 × 10^3</code> for customer, deletion, retention, and gdpr.</li>
+<li>Why: Three-term AND gives <code>10^7 × 0.15 × 0.012 × 0.004 = 72</code> chunks. Adding gdpr multiplies by <code>8 × 10^-4 = 1/1,250</code>, giving <code>0.058</code> expected chunks and an empty result in practice.</li>
+<li>Failure: OR gives <code>N[1 - (0.85)(0.988)(0.996)(0.9992)] = 1.64 × 10^6</code> unranked chunks.</li>
+<li>Cost or complexity: Specificity changes the result from <code>1.5 × 10^6</code> to <code>1.8 × 10^4</code> to <code>72</code> to <code>0</code> under AND.</li>
+</ul>
+<h4 id="the-worked-soft-score-exposes-the-exchange-rate">The worked soft score exposes the exchange rate</h4>
+<ul>
+<li>What: Document A has weights <code>(0.9, 0.8, 0.6, 0.0)</code>. Document B has <code>(0.5, 0.5, 0.5, 0.5)</code>.</li>
+<li>Why: At <code>p = 2</code>, the scores are:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>A</mi></msub><mi>N</mi><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mi>A</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mo>√</mo><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>0.01</mn><mo>+</mo><mn>0.04</mn><mo>+</mo><mn>0.16</mn><mo>+</mo><mn>1.00</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn><mo>−</mo><mo>√</mo><mn>0.3025</mn><mo>=</mo><mn>0.45</mn></mrow><annotation encoding="application/x-tex">S_AND(A) = 1 - √((0.01 + 0.04 + 0.16 + 1.00)/4) = 1 - √0.3025 = 0.45</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mi>A</mi></msub><mi>N</mi><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mi>B</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>0.50</mn></mrow><annotation encoding="application/x-tex">S_AND(B) = 0.50</annotation></semantics></math></p>
+<ul>
+<li>Failure: The documents do not change, but A moves from <code>0.575</code> at <code>p = 1</code> to <code>0.45</code> at <code>p = 2</code> to <code>0</code> as <code>p -&gt; infinity</code>.</li>
+<li>Cost or complexity: B remains <code>0.50</code> for every <code>p</code> because all four complements equal <code>0.5</code>.</li>
+</ul>
+<h4 id="soft-scoring-costs-more-postings-work">Soft scoring costs more postings work</h4>
+<ul>
+<li>What: Soft AND scores the union instead of walking only the hard intersection.</li>
+<li>Why: One score scale avoids incomparable fallback rungs.</li>
+<li>Failure without hard-first evaluation: The engine decodes far more postings than a selective AND requires.</li>
+<li>Cost or complexity: The example decodes <code>1.5 × 10^6 + 1.2 × 10^5 + 4 × 10^4 + 8 × 10^3 = 1.67 × 10^6</code> postings. At <code>1</code> nanosecond (ns) each, that is about <code>1.7</code> milliseconds (ms) of single-threaded work, roughly two orders of magnitude above hard AND.</li>
+</ul>
+<h4 id="practical-boolean-decisions">Practical Boolean decisions</h4>
+<ul>
+<li>Put a clause in the filter only when a violating document would be wrong. Permissions, tenant, jurisdiction, and legal hold stay as Boolean pre-filters. A <code>10^-4</code> leak risk across <code>10^6</code> daily queries is <code>100</code> leaks per day. Make permission fields mandatory at ingest, fail closed, widen the candidate pool, and partition by tenant.</li>
+<li>Keep recency, source preference, and topic hints as weights. Fix ranker features before promoting more clauses to hard filters.</li>
+<li>Default minimum-should-match to all but one above two terms. Three of four is <code>75%</code>, matching the stated Solr staircase example <code>2&lt;-1 5&lt;-2 6&lt;90%</code>.</li>
+<li>Use <code>100%</code> for machine-generated identifiers when any missing term is a defect.</li>
+<li>Start a <code>p</code>-norm at <code>p = 2</code>. Raise it for codes, part numbers, and legal citations. Lower it for long conversational queries.</li>
+<li>Bucket zero-result rate by query term count. An aggregate <code>3%</code> can hide <code>40%</code> for five-term queries.</li>
+<li>Cap a machine-generated filter at two hard conjuncts unless fields have low cardinality and mandatory ingest population.</li>
+<li>Diagnose zero-result logs offline with a pure-OR probe. OR results identify an operator failure, while no OR results identify a vocabulary failure. In serving, relax in one scored pass and do not descend a term-dropping ladder.</li>
+<li>Keep negation strict for policy exclusions. Soft NOT turns a guarantee into a preference.</li>
+</ul>
+<h3 id="182-vector-space-model-and-tf-idfs-two-failures">18.2 Vector space model and TF-IDF's two failures</h3>
+<h4 id="vector-space-scoring-creates-an-order">Vector space scoring creates an order</h4>
+<ul>
+<li>What: Salton, Wong, and Yang (1975) represent queries and documents in one coordinate per vocabulary term and score their angle:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>·</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>q</mi><mo stretchy="false" form="prefix">|</mo><msub><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msub><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo><msub><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">sim(q,d) = (q · d)/(||q||_2 ||d||_2)</annotation></semantics></math></p>
+<ul>
+<li>Why: A total order solves Boolean retrieval's missing-first-result problem.</li>
+<li>Failure without careful coordinates: The formula claims only that relevance is monotone in angle. It contains no probability or evidence model by itself.</li>
+<li>Cost or complexity: The source states no separate asymptotic cost for the cosine formula here.</li>
+</ul>
+<h4 id="raw-counts-need-rarity-and-length-corrections">Raw counts need rarity and length corrections</h4>
+<ul>
+<li>What: Spärck Jones (1972) defines <code>idf(t) = ln(N/df(t))</code>, and TF-IDF uses document coordinate <code>f_(t,d) × idf(t)</code>.</li>
+<li>Why: IDF stops common terms from dominating. Cosine division stops larger raw-count vectors from winning only through magnitude.</li>
+<li>Failure: Both corrections point in the right direction but use the wrong shape for mixed-length chunks.</li>
+<li>Cost or complexity: The score needs corpus document frequencies and a document norm.</li>
+</ul>
+<h4 id="failure-one-is-linear-repetition">Failure one is linear repetition</h4>
+<ul>
+<li>What: The unnormalized marginal reward is constant:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∂</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>t</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mi>i</mi><mi>d</mi><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>∂</mi><msub><mi>f</mi><mo stretchy="false" form="prefix">(</mo></msub><mi>t</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>i</mi><mi>d</mi><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">∂(f_(t,d) idf(t))/∂f_(t,d) = idf(t)</annotation></semantics></math></p>
+<ul>
+<li>Why: The derivative shows that the eleventh occurrence earns exactly what the first earned.</li>
+<li>Failure: One repeated term can outbid coverage of all query terms. A document editor can game the scorer.</li>
+<li>Cost or complexity: No extra cost is required to exploit the failure. Repetition alone purchases score.</li>
+</ul>
+<h4 id="failure-two-confuses-scope-with-verbosity">Failure two confuses scope with verbosity</h4>
+<ul>
+<li>What: Pure repetition maps <code>d -&gt; αd</code>, and <code>α</code> cancels from cosine. Distinct extra sections increase the norm without helping the numerator.</li>
+<li>Why: For <code>d = c_1 ⊕ c_2 ⊕ ... ⊕ c_m</code>, disjoint equal-norm sections, and only <code>c_1</code> on topic:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo><msub><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msub><mo>=</mo><mo>√</mo><mo stretchy="false" form="prefix">(</mo><munder><mo>∑</mo><mi>i</mi></munder><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">|</mo><msubsup><mo stretchy="false" form="prefix">|</mo><mn>2</mn><mn>2</mn></msubsup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo>√</mo><mi>m</mi><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="prefix">|</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">|</mo><msub><mo stretchy="false" form="prefix">|</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">||d||_2 = √(∑_i ||c_i||_2^2) = √m ||c_1||_2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>s</mi><mi>i</mi><mi>m</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo>√</mo><mi>m</mi></mrow><annotation encoding="application/x-tex">sim(q,d) = sim(q,c_1)/√m</annotation></semantics></math></p>
+<ul>
+<li>Failure: A ten-section guideline scores <code>1/√10 = 0.32</code> of its answer section alone, a <code>68%</code> cut. A keyword-stuffed page pays nothing for repeated wording.</li>
+<li>Cost or complexity: The fixed <code>1/√m</code> penalty has no control knob.</li>
+</ul>
+<h4 id="log-damping-helps-but-never-caps-repetition">Log damping helps but never caps repetition</h4>
+<ul>
+<li>What: The classical patch replaces <code>f</code> with <code>1 + ln f</code>.</li>
+<li>Why: It slows growth and closes the worked stuffing gap from <code>3.29×</code> to <code>1.09×</code>.</li>
+<li>Failure: It remains unbounded. At <code>f = 1,000</code>, it reopens the gap to <code>2.48×</code>.</li>
+<li>Cost or complexity: The source describes it as one <code>sublinear_tf=True</code> flag in scikit-learn.</li>
+</ul>
+<h4 id="default-tf-idf-still-contains-both-defects">Default TF-IDF still contains both defects</h4>
+<ul>
+<li>What: <code>TfidfVectorizer</code> ships with <code>sublinear_tf=False</code> and <code>norm='l2'</code>.</li>
+<li>Why: This makes the production warning current rather than historical.</li>
+<li>Failure: Default linear TF and unpivoted cosine activate both defects.</li>
+<li>Cost or complexity: <code>smooth_idf = ln((1+N)/(1+df)) + 1</code> changes the IDF floor but fixes neither defect.</li>
+</ul>
+<h4 id="the-clinical-example-prices-stuffing">The clinical example prices stuffing</h4>
+<ul>
+<li>What: Use <code>N = 10^6</code>, with <code>df(insulin) = 10^4</code>, <code>df(dosage) = 10^5</code>, and <code>df(pediatric) = 5 × 10^4</code>.</li>
+<li>Why: The IDFs are <code>ln 100 = 4.61</code>, <code>ln 10 = 2.30</code>, and <code>ln 20 = 3.00</code>.</li>
+<li>Failure: Document A is a <code>1,200</code>-word page that repeats insulin twelve times. Document B is a <code>180</code>-word dosing table with insulin twice, dosage twice, and pediatric once.</li>
+<li>Cost or complexity: Raw unnormalized TF-IDF gives <code>A = 55.3</code> and <code>B = 16.81</code>, so A wins by <code>3.29×</code>.</li>
+</ul>
+<h4 id="sublinear-and-cosine-configurations-still-rank-badly">Sublinear and cosine configurations still rank badly</h4>
+<ul>
+<li>What: With <code>1 + ln f</code>, A scores <code>3.485 × 4.61 = 16.05</code>. B scores <code>1.693 × 4.61 + 1.693 × 2.30 + 3.00 = 14.69</code>.</li>
+<li>Why: This isolates damping from normalization.</li>
+<li>Failure: A still wins by <code>1.09×</code>. At one thousand repetitions A scores <code>7.91 × 4.61 = 36.4</code>, a <code>2.48×</code> lead.</li>
+<li>Cost or complexity: Damping changes a factor but supplies no upper bound.</li>
+</ul>
+<h4 id="cosine-promotes-the-tiny-heading">Cosine promotes the tiny heading</h4>
+<ul>
+<li>What: The query norm is <code>√(4.61^2 + 2.30^2 + 3.00^2) = 5.96</code>. A two-word heading has norm <code>5.15</code> and cosine <code>26.54/(5.15 × 5.96) = 0.865</code>.</li>
+<li>Why: The example shows that shrinking the denominator can win without adding answer evidence.</li>
+<li>Failure: For B, the remaining sixty terms contribute about <code>220</code> to squared norm. Its norm is <code>√(7.80^2 + 3.90^2 + 3.00^2 + 220) = 17.5</code>, and cosine is <code>53.93/(17.5 × 5.96) = 0.517</code>.</li>
+<li>Cost or complexity: The heading wins by <code>1.67×</code>. Putting B inside a ten-section guideline cuts it another <code>68%</code> to <code>0.163</code>.</li>
+</ul>
+<h4 id="bm25-supplies-a-tunable-alternative">BM25 supplies a tunable alternative</h4>
+<ul>
+<li>What: At <code>k1 = 1.2</code> and <code>b = 0.75</code>, a once-occurring term in a document ten times average length gets <code>2.2/[1 + 1.2(0.25 + 7.5)] = 0.214</code> of the average-length score.</li>
+<li>Why: Cosine gives <code>0.316</code>, so both penalties have similar magnitude.</li>
+<li>Failure without <code>b</code>: Cosine's fixed square-root penalty cannot adapt to a corpus.</li>
+<li>Cost or complexity: BM25 can move from <code>0.214</code> to <code>1.00</code> by setting <code>b = 0</code>.</li>
+</ul>
+<h4 id="practical-tf-idf-decisions">Practical TF-IDF decisions</h4>
+<ul>
+<li>Default the sparse arm to BM25. Keep TF-IDF for small in-memory pools when a cross-encoder reranks everything and first-stage order barely survives.</li>
+<li>If TF-IDF must ship, turn on sublinear TF first.</li>
+<li>Merge or remove fragments below roughly <code>50</code> tokens unless short identifiers or glossary entries are the payload.</li>
+<li>Audit the document-length to target-length ratio before tuning. A fixed target can be <code>512</code> tokens while structure-derived chunks still span <code>5×</code> to <code>10×</code>, with the 95th percentile reaching <code>5×</code> the mean.</li>
+<li>Recompute IDF over the corpus actually searched after every large ingest.</li>
+<li>For sparse multi-tenant statistics, prefer global statistics with a floor over noisy per-tenant estimates.</li>
+</ul>
+<h3 id="183-bm25-saturation-and-length-normalization">18.3 BM25 saturation and length normalization</h3>
+<h4 id="bm25-separates-rarity-from-within-document-evidence">BM25 separates rarity from within-document evidence</h4>
+<ul>
+<li>What: <code>BM</code> means Best Match, and <code>25</code> is the experiment serial number. The score is:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>M</mi><mn>25</mn><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>t</mi><mo>∈</mo><mi>q</mi></mrow></munder><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mo stretchy="false" form="prefix">[</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>k</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="prefix">|</mo><mi>D</mi><mo stretchy="false" form="prefix">|</mo><mi>/</mi><mi>a</mi><mi>v</mi><mi>g</mi><mi>d</mi><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">BM25(q,D) = ∑_{t ∈ q} ln(1 + (N-n_t+0.5)/(n_t+0.5)) × [f(t,D)(k_1+1)/(f(t,D)+k_1(1-b+b|D|/avgdl))]</annotation></semantics></math></p>
+<ul>
+<li>Why: The first factor prices corpus rarity. The second factor saturates TF and adjusts length.</li>
+<li>Failure without separation: A ranking bug caused by repetition needs a different fix from one caused by uncharged length.</li>
+<li>Cost or complexity: BM25 adds two free constants, <code>k1 &gt; 0</code> and <code>b</code> in <code>[0,1]</code>.</li>
+</ul>
+<h4 id="k1-is-a-bounded-repetition-budget"><code>k1</code> is a bounded repetition budget</h4>
+<ul>
+<li>What: At average length, the TF factor becomes <code>f(k1+1)/(f+k1)</code>.</li>
+<li>Why: At <code>f = 1</code>, the value is exactly <code>1</code>. As <code>f -&gt; infinity</code>, it approaches <code>k1 + 1</code>.</li>
+<li>Failure without the bound: Any unbounded TF function lets more copies purchase more score.</li>
+<li>Cost or complexity: The full range is <code>[1, k1+1]</code>. Every occurrence after the first shares a total budget of <code>k1</code>.</li>
+</ul>
+<h4 id="the-default-curve-spends-its-budget-early">The default curve spends its budget early</h4>
+<ul>
+<li>What: At <code>k1 = 1.2</code>, the factor is <code>2.2f/(f+1.2)</code>.</li>
+<li>Why: It gives <code>1.000</code>, <code>1.375</code>, <code>1.774</code>, <code>1.964</code>, and <code>2.075</code> at <code>f = 1, 2, 5, 10, 20</code>.</li>
+<li>Failure without saturation: Ten extra occurrences from ten to twenty would keep paying strongly.</li>
+<li>Cost or complexity: The second occurrence buys <code>0.375</code>. Ten to twenty buys <code>0.111</code>. Five occurrences spend <code>64.5%</code> of the later-occurrence budget, and ten spend <code>80%</code>.</li>
+</ul>
+<h4 id="the-two-poisson-argument-gives-the-curve-meaning">The two-Poisson argument gives the curve meaning</h4>
+<ul>
+<li>What: Robertson and Walker (1994) model high and low term-occurrence rates for documents that are elite or not elite for a concept.</li>
+<li>Why: Log odds of eliteness rise sharply with early evidence and flatten after the evidence has convinced the model.</li>
+<li>Failure without this view: Calling <code>k1</code> smoothing hides its meaning as a bounded evidence budget.</li>
+<li>Cost or complexity: BM25 uses a tractable rational approximation with the needed shape.</li>
+</ul>
+<h4 id="log-damping-loses-because-it-remains-purchasable">Log damping loses because it remains purchasable</h4>
+<ul>
+<li>What: <code>1 + log f</code> gives <code>1.00</code>, <code>1.69</code>, <code>2.61</code>, and <code>4.22</code> at <code>f = 1, 2, 5, 25</code>.</li>
+<li>Why: It follows BM25 reasonably on well-behaved documents.</li>
+<li>Failure: At <code>f = 10,000</code>, <code>1 + ln 10,000 = 10.21</code>, about six times the <code>1.69</code> earned by two honest occurrences.</li>
+<li>Cost or complexity: BM25 caps the same page below <code>2.2</code>. Bounded term scores also support safe dynamic-pruning upper bounds.</li>
+</ul>
+<h4 id="b-interpolates-between-verbosity-and-scope"><code>b</code> interpolates between verbosity and scope</h4>
+<ul>
+<li>What: Let <code>ell = |D|/avgdl</code>. Then:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mi>e</mi><mi>l</mi><mi>l</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">K = k_1(1-b+b ell)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>0</mn><mo>=</mo><mo>&gt;</mo><mi>K</mi><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">b=0 =&gt; K=k_1</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>=</mo><mn>1</mn><mo>=</mo><mo>&gt;</mo><mi>K</mi><mo>=</mo><msub><mi>k</mi><mn>1</mn></msub><mi>e</mi><mi>l</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">b=1 =&gt; K=k_1 ell</annotation></semantics></math></p>
+<ul>
+<li>Why: The index cannot know whether length came from repetition or useful scope.</li>
+<li>Failure without interpolation: Ignoring length overpays verbosity. Full division overpunishes comprehensive documents.</li>
+<li>Cost or complexity: The discount sits inside the saturation denominator, so it is softer than direct division.</li>
+</ul>
+<h4 id="the-twice-average-example-shows-the-soft-discount">The twice-average example shows the soft discount</h4>
+<ul>
+<li>What: Set <code>k1 = 1.2</code>, <code>b = 0.75</code>, <code>ell = 2</code>, and <code>f = 1</code>.</li>
+<li>Why: <code>K = 1.2(0.25 + 1.5) = 2.1</code>, so the TF factor is <code>2.2/3.1 = 0.710</code>.</li>
+<li>Failure without the soft form: Direct division by <code>ell</code> would leave <code>0.500</code>.</li>
+<li>Cost or complexity: BM25 applies a <code>29%</code> discount where straight division applies <code>50%</code>.</li>
+</ul>
+<h4 id="the-idf-guard-avoids-negative-rarity-weights">The IDF guard avoids negative rarity weights</h4>
+<ul>
+<li>What: The raw RSJ form without <code>1 +</code> becomes negative when a term appears in more than half the corpus.</li>
+<li>Why: Lucene's guarded <code>ln(1 + ...)</code> keeps the contribution non-negative.</li>
+<li>Failure: A term in <code>70%</code> of chunks could otherwise lower a document's score when present.</li>
+<li>Cost or complexity: The guard changes the sign behavior for common terms while barely changing rare-term weights.</li>
+</ul>
+<h4 id="the-release-note-example-separates-the-two-constants">The release-note example separates the two constants</h4>
+<ul>
+<li>What: A <code>3,000</code>-token runbook sits at rank <code>1</code>, while the <code>120</code>-token release note naming the fix sits at rank <code>40</code>. Use <code>N = 1,000,000</code>, <code>avgdl = 300</code>, and query-term document frequencies <code>400,000</code>, <code>250,000</code>, and <code>5,000</code> for kubernetes, pod, and eviction.</li>
+<li>Why: Lucene IDF gives <code>0.916</code>, <code>1.386</code>, and <code>5.298</code>. Release note A has length <code>120</code> and counts <code>(1,1,2)</code>. Runbook B has length <code>3,000</code> and counts <code>(12,30,25)</code>.</li>
+<li>Failure: Raw TF times IDF gives <code>A = 12.90</code> and <code>B = 185.0</code>, so B wins by <code>14×</code>. Dividing by relative length gives <code>32.2</code> and <code>18.5</code>, so A wins by <code>1.7×</code>.</li>
+<li>Cost or complexity: The normalizer alone reverses the ranking.</li>
+</ul>
+<h4 id="bm25-brings-both-candidates-into-the-pool">BM25 brings both candidates into the pool</h4>
+<ul>
+<li>What: At <code>k1 = 1.2</code> and <code>b = 0.75</code>, <code>K_A = 0.66</code> and <code>K_B = 9.30</code>.</li>
+<li>Why: A's term contributions are <code>8.764 + 1.837 + 1.214 = 11.82</code>.</li>
+<li>Failure avoided: B's contributions are <code>8.496 + 2.328 + 1.136 = 11.96</code>. Both plausible documents remain available to a reranker.</li>
+<li>Cost or complexity: They finish <code>1.2%</code> apart rather than <code>14×</code> or <code>1.7×</code> apart.</li>
+</ul>
+<h4 id="sweeping-b-identifies-ownership-of-the-bug">Sweeping <code>b</code> identifies ownership of the bug</h4>
+<ul>
+<li>What: At <code>b = 0</code>, A scores <code>9.59</code> and B scores <code>15.89</code>. At <code>b = 1</code>, A scores <code>12.82</code> and B scores <code>11.06</code>.</li>
+<li>Why: One constant moves the pair across the decision boundary.</li>
+<li>Failure without a sweep: Borrowing a benchmark default can hide corpus-specific length spread.</li>
+<li>Cost or complexity: The runbook wins by <code>1.66×</code> at one endpoint. The note wins by <code>1.16×</code> at the other.</li>
+</ul>
+<h4 id="score-bounds-provide-sanity-checks-and-pruning">Score bounds provide sanity checks and pruning</h4>
+<ul>
+<li>What: No term can contribute more than <code>(k1+1) IDF</code>. For eviction, that is <code>2.2 × 5.298 = 11.66</code>.</li>
+<li>Why: A earns <code>8.764</code>, or <code>75%</code> of the maximum, with two occurrences. B earns <code>8.496</code>, or <code>73%</code>, with twenty-five.</li>
+<li>Failure without the check: A formula or implementation error can silently exceed the model's own ceiling.</li>
+<li>Cost or complexity: Twenty-three extra occurrences leave B two percentage points below A's share of the ceiling. Since Lucene 8, omitting <code>(k1+1)</code> scales totals to <code>5.371</code> and <code>5.436</code> but keeps the same order and <code>1.2%</code> gap.</li>
+</ul>
+<h4 id="practical-bm25-decisions">Practical BM25 decisions</h4>
+<ul>
+<li>Start at <code>k1 = 1.2</code> and <code>b = 0.75</code>. Tune <code>b</code> first when document lengths vary widely.</li>
+<li>In the worked pair, sweeping <code>b</code> moves the relative margin by about <code>1.9×</code> across its range.</li>
+<li>Raise <code>k1</code> toward <code>2.0</code> only when large term counts carry genuine depth evidence.</li>
+<li>Measure the ratio of the 95th to 5th percentile of document length. Below about <code>3×</code>, <code>b</code> is nearly inert. Above <code>10×</code>, it deserves a sweep.</li>
+<li>Chunk before tuning. Fixed-size chunks compress the length spread, while heading, section, and table chunks preserve it.</li>
+<li>Use collection-global <code>avgdl</code>, <code>N</code>, and <code>n_t</code> before comparing across shards.</li>
+<li>Prefer one shard below a few million chunks. Use <code>dfs_query_then_fetch</code> for multiple shards when the extra round trip is acceptable.</li>
+<li>Recompute <code>avgdl</code> on re-index, not on every write.</li>
+<li>Avoid absolute BM25 score thresholds. Use rank-based fusion when mixing retrievers.</li>
+</ul>
+<h3 id="184-probabilistic-models-and-the-binary-independence-assumption">18.4 Probabilistic models and the binary independence assumption</h3>
+<h4 id="the-probability-ranking-principle-starts-the-derivation">The Probability Ranking Principle starts the derivation</h4>
+<ul>
+<li>What: Robertson (1977) ranks by decreasing <code>Pr(R=1 | d,q)</code> when each document's usefulness can be judged independently.</li>
+<li>Why: Any monotone transform preserves the order, so odds are convenient:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo>=</mo><mn>0</mn><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">O(R|d,q) = Pr(R=1|d,q)/Pr(R=0|d,q)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">[</mo><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="prefix">|</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo>=</mo><mn>0</mn><mo stretchy="false" form="prefix">|</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo>×</mo><mo stretchy="false" form="prefix">[</mo><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">O(R|d,q) = [Pr(R=1|q)/Pr(R=0|q)] × [Pr(d|R=1,q)/Pr(d|R=0,q)]</annotation></semantics></math></p>
+<ul>
+<li>Failure without the premise: A RAG context window reads chunks jointly. Redundant chunks have lower marginal value than their independent ranks suggest.</li>
+<li>Cost or complexity: The prior odds are constant for one query, so ranking drops them at no serving cost.</li>
+</ul>
+<h4 id="binary-independence-makes-document-likelihood-estimable">Binary independence makes document likelihood estimable</h4>
+<ul>
+<li>What: Replace each document with incidence vector <code>x = (x_1,...,x_V)</code>, where each <code>x_t</code> is zero or one. Assume terms are independent given relevance.</li>
+<li>Why: With <code>p_t = Pr(x_t=1 | R=1)</code> and <code>u_t = Pr(x_t=1 | R=0)</code>, the likelihood ratio factorizes:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∏</mo><mrow><mi>t</mi><mo>:</mo><msub><mi>x</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn></mrow></munder><mo stretchy="false" form="prefix">(</mo><msub><mi>p</mi><mi>t</mi></msub><mi>/</mi><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>×</mo><munder><mo>∏</mo><mrow><mi>t</mi><mo>:</mo><msub><mi>x</mi><mi>t</mi></msub><mo>=</mo><mn>0</mn></mrow></munder><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Pr(x|R=1)/Pr(x|R=0) = ∏_{t:x_t=1}(p_t/u_t) × ∏_{t:x_t=0}((1-p_t)/(1-u_t))</annotation></semantics></math></p>
+<ul>
+<li>Failure: Binary incidence discards term frequency. Conditional independence discards phrases and co-occurrence.</li>
+<li>Cost or complexity: The assumptions replace an unestimable whole-document distribution with per-term estimates.</li>
+</ul>
+<h4 id="off-query-terms-collapse-into-a-constant">Off-query terms collapse into a constant</h4>
+<ul>
+<li>What: Assume <code>p_t = u_t</code> for every term outside query <code>q</code>, then multiply and divide by the absent-term factors for query terms.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>P</mi><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="prefix">|</mo><mi>R</mi><mo>=</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∏</mo><mrow><mi>t</mi><mo>∈</mo><mi>q</mi><mo>∩</mo><mi>d</mi></mrow></munder><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">[</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo><mo>×</mo><munder><mo>∏</mo><mrow><mi>t</mi><mo>∈</mo><mi>q</mi></mrow></munder><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Pr(x|R=1)/Pr(x|R=0) = ∏_{t ∈ q ∩ d}([p_t(1-u_t)]/[u_t(1-p_t)]) × ∏_{t ∈ q}((1-p_t)/(1-u_t))</annotation></semantics></math></p>
+<ul>
+<li>Why: The document-dependent score becomes a sum only over <code>t</code> in <code>q ∩ d</code>.</li>
+<li>Failure: A sparse score can never credit a document for useful material that the query did not mention.</li>
+<li>Cost or complexity: The cancellation is nearly free and makes sparse scoring practical.</li>
+</ul>
+<h4 id="the-rsj-weight-is-a-log-odds-ratio">The RSJ weight is a log odds ratio</h4>
+<ul>
+<li>What: After taking a natural logarithm and dropping the query constant:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>S</mi><mi>V</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>t</mi><mo>∈</mo><mi>q</mi><mo>∩</mo><mi>d</mi></mrow></munder><msub><mi>w</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">RSV(d) = ∑_{t ∈ q ∩ d} w_t</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">[</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><msub><mi>u</mi><mi>t</mi></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_t = ln([p_t(1-u_t)]/[u_t(1-p_t)])</annotation></semantics></math></p>
+<ul>
+<li>Why: Each term weight compares its odds in relevant documents against its odds in non-relevant documents.</li>
+<li>Failure without smoothing: Empty contingency cells make the estimate infinite.</li>
+<li>Cost or complexity: One two-by-two table per query term supplies the estimate.</li>
+</ul>
+<h4 id="the-contingency-table-yields-the-full-estimator">The contingency table yields the full estimator</h4>
+<ul>
+<li>What: Over <code>N</code> documents, let <code>S</code> be judged relevant, <code>n_t</code> contain term <code>t</code>, and <code>s_t</code> be both relevant and containing <code>t</code>.</li>
+<li>Why: The four cells are <code>a=s_t</code>, <code>b=S-s_t</code>, <code>c=n_t-s_t</code>, and <code>d=N-S-n_t+s_t</code>.</li>
+<li>Failure without correction: Any zero cell breaks the odds ratio.</li>
+<li>Cost or complexity: Add <code>0.5</code> to all four cells:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><mi>S</mi><mo>−</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><msub><mi>s</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mi>S</mi><mo>−</mo><msub><mi>s</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>t</mi></msub><mo>−</mo><msub><mi>s</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_t = ln([(s_t+0.5)(N-S-n_t+s_t+0.5)]/[(S-s_t+0.5)(n_t-s_t+0.5)])</annotation></semantics></math></p>
+<h4 id="zero-judgments-produce-bm25s-classic-idf">Zero judgments produce BM25's classic IDF</h4>
+<ul>
+<li>What: Set <code>S = 0</code>. Both relevant-row cells floor to <code>0.5</code> and cancel.</li>
+<li>Why: The result is:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_t = ln((N-n_t+0.5)/(n_t+0.5))</annotation></semantics></math></p>
+<ul>
+<li>Failure of the heuristic story: Calling IDF a tuning trick loses its connection to relevance evidence.</li>
+<li>Cost or complexity: The formula is the maximal-ignorance limit of the RSJ estimator. Nothing was tuned.</li>
+</ul>
+<h4 id="small-relevance-sets-can-increase-variance">Small relevance sets can increase variance</h4>
+<ul>
+<li>What: Estimating <code>p_t</code> from human labels or the current top results replaces the zero-information value.</li>
+<li>Why: In principle, feedback can learn which query terms indicate relevance.</li>
+<li>Failure: <code>S-s_t+0.5</code> is a small denominator inside a logarithm. Pseudo-feedback can reinforce the current ranker's errors.</li>
+<li>Cost or complexity: In the worked example, changing one of twenty judgments moves one weight by <code>1.149</code> nats.</li>
+</ul>
+<h4 id="bm25-repairs-two-assumptions-and-leaves-one">BM25 repairs two assumptions and leaves one</h4>
+<ul>
+<li>What: The two-Poisson approximation restores graded TF through saturation. BM25 length normalization repairs another missing factor.</li>
+<li>Why: A second occurrence can count while a tenth barely changes the evidence.</li>
+<li>Failure: BM25 still assumes term independence. It cannot directly model phrases or co-occurrence.</li>
+<li>Cost or complexity: A pairwise maximum spanning tree needs <code>O(V^2)</code> dependencies. Late interaction and cross-encoders change representation instead.</li>
+</ul>
+<h4 id="binary-representation-is-not-binary-relevance">Binary representation is not binary relevance</h4>
+<ul>
+<li>What: The derivation uses a binary relevance split and a binary document representation.</li>
+<li>Why: The document representation is the assumption BM25's TF factor repairs.</li>
+<li>Failure: Confusing the two makes graded <code>0</code> to <code>4</code> relevance labels appear to change this derivation when they instead reshape learning-to-rank.</li>
+<li>Cost or complexity: The source gives no extra scoring cost for graded labels here.</li>
+</ul>
+<h4 id="the-irish-sea-example-shows-feedback-inversion">The Irish Sea example shows feedback inversion</h4>
+<ul>
+<li>What: Use <code>N = 1,000,000</code> and query <code>irish sea ferry</code>, with document frequencies <code>8,000</code>, <code>120,000</code>, and <code>40,000</code>.</li>
+<li>Why: With <code>S = 0</code>, weights are <code>4.820</code>, <code>1.992</code>, and <code>3.178</code> nats.</li>
+<li>Failure of rarity alone: Document A with irish and sea scores <code>6.812</code>. Document B with sea and ferry scores <code>5.170</code>, so A leads by <code>1.642</code> nats.</li>
+<li>Cost or complexity: The rare term decides the initial order.</li>
+</ul>
+<h4 id="twenty-judgments-reverse-the-order">Twenty judgments reverse the order</h4>
+<ul>
+<li>What: Set <code>S = 20</code>, with <code>s_irish = 8</code>, <code>s_sea = 14</code>, and <code>s_ferry = 20</code>.</li>
+<li>Why: The full estimator gives <code>w_ferry = ln 984.5 = 6.892</code>, <code>w_irish = ln 84.40 = 4.436</code>, and <code>w_sea = ln 16.36 = 2.795</code>.</li>
+<li>Failure avoided: A now scores <code>7.231</code>, while B scores <code>9.687</code>. B leads by <code>2.456</code> nats.</li>
+<li>Cost or complexity: Ferry more than doubles from <code>3.178</code> to <code>6.892</code>, while irish slips from <code>4.820</code> to <code>4.436</code>.</li>
+</ul>
+<h4 id="one-changed-judgment-exposes-instability">One changed judgment exposes instability</h4>
+<ul>
+<li>What: Keep <code>S = 20</code> but change <code>s_ferry</code> from <code>20</code> to <code>19</code>.</li>
+<li>Why: <code>w_ferry = ln 312.1 = 5.743</code>.</li>
+<li>Failure: One label moves the weight by <code>6.892 - 5.743 = 1.149</code> nats and cuts B's lead from <code>2.456</code> to <code>1.307</code>.</li>
+<li>Cost or complexity: That movement is <code>41%</code> of the <code>2.828</code>-nat gap between the common and rare query-term IDFs.</li>
+</ul>
+<h4 id="the-guarded-production-form-agrees-on-rare-terms">The guarded production form agrees on rare terms</h4>
+<ul>
+<li>What: At <code>n_t = 600,000</code>, raw RSJ gives <code>ln(400,000.5/600,000.5) = -0.405</code>.</li>
+<li>Why: Lucene adds <code>1</code> inside the logarithm to prevent negative term contributions.</li>
+<li>Failure: Without the guard, omitting a common query term can increase rank.</li>
+<li>Cost or complexity: For irish, guarded and raw weights are <code>4.828</code> and <code>4.820</code>, a <code>0.008</code> or <code>0.17%</code> difference.</li>
+</ul>
+<h4 id="practical-probabilistic-decisions">Practical probabilistic decisions</h4>
+<ul>
+<li>Default to <code>S = 0</code> and pure IDF. Do not replace term weights from tiny feedback sets.</li>
+<li>Consider RSJ feedback for a stable head query only when human judgments reach the low hundreds. The source also requires at least <code>S &gt;= 50</code> before any override when no second stage fits.</li>
+<li>Spend labels on evaluation and cross-encoder training when a later stage fits the budget.</li>
+<li>Use guarded <code>ln(1 + ...)</code> IDF except when reproducing a classic published result.</li>
+<li>Handle term interactions downstream. For dominant multi-word entities, index the whole phrase as one term.</li>
+<li>Never compare raw BM25 scores across queries. The derivation drops factors that are constant only within one query.</li>
+<li>Use rank-based fusion unless held-out data supports per-query normalization.</li>
+</ul>
+<h3 id="185-why-sparse-still-wins-on-the-long-tail">18.5 Why sparse still wins on the long tail</h3>
+<h4 id="sparse-rarity-grows-as-document-frequency-falls">Sparse rarity grows as document frequency falls</h4>
+<ul>
+<li>What: Lucene's rarity factor is:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>t</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mi>N</mi><mo>−</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>t</mi></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">IDF(t) = ln(1 + (N-n_t+0.5)/(n_t+0.5))</annotation></semantics></math></p>
+<ul>
+<li>Why: With <code>N = 2,000,000</code>, a term in <code>400,000</code> chunks gets <code>ln 5 = 1.61</code>. A term in <code>12</code> chunks gets <code>ln 160,000 = 11.98</code>.</li>
+<li>Failure without rarity: A rare exact string cannot outrank several common topical terms by itself.</li>
+<li>Cost or complexity: The rare term gets <code>7.4×</code> more weight per occurrence without training.</li>
+</ul>
+<h4 id="dense-pooling-dilutes-an-unseen-identifier">Dense pooling dilutes an unseen identifier</h4>
+<ul>
+<li>What: A DPR-style bi-encoder breaks <code>ERR_OSSL_EVP_UNSUPPORTED</code> into pieces such as ERR, underscore, UNS, and ED, then mean-pools a whole chunk into one vector.</li>
+<li>Why: Those pieces occur in thousands of unrelated strings. Contrastive training saw the intact string rarely or never, so its location is extrapolated from generic pieces.</li>
+<li>Failure: Ten subword pieces in a <code>180</code>-token chunk control <code>10/180 = 5.6%</code> of the pooled direction whether the string is diagnostic or boilerplate.</li>
+<li>Cost or complexity: The example dense vector has dimension <code>d = 768</code>. Pooling has no <code>n_t</code> rarity factor and does not control whether the runbook lands at rank <code>12</code> or rank <code>340</code>.</li>
+</ul>
+<h4 id="fine-tuning-cannot-manufacture-tail-supervision">Fine-tuning cannot manufacture tail supervision</h4>
+<ul>
+<li>What: Domain fine-tuning supplies examples in proportion to how often a term appears.</li>
+<li>Why: It can improve common domain language, but under the stated Zipf argument the missing-supervision problem spans about half the vocabulary at once.</li>
+<li>Failure: Tail terms have few or no query-document pairs. Every release also creates new identifiers that were absent from training.</li>
+<li>Cost or complexity: The encoder remains one training cycle behind, while an inverted index becomes current when a document commits.</li>
+</ul>
+<h4 id="learned-sparse-retrieval-recovers-only-part-of-the-gap">Learned sparse retrieval recovers only part of the gap</h4>
+<ul>
+<li>What: SPLADE scores in vocabulary space instead of one pooled latent space.</li>
+<li>Why: Vocabulary coordinates preserve more lexical specificity.</li>
+<li>Failure: It still inherits an MLM head trained on general text.</li>
+<li>Cost or complexity: The source states no concrete cost for SPLADE in this section.</li>
+</ul>
+<h4 id="sparse-and-dense-have-symmetric-strengths">Sparse and dense have symmetric strengths</h4>
+<ul>
+<li>What: Sparse wins on rare exact strings because rarity increases weight. Dense wins on paraphrase and vocabulary mismatch because it pools learned representations.</li>
+<li>Why: The two mechanisms fail for opposite reasons.</li>
+<li>Failure without both views: Calling sparse a generic fallback hides which query population it protects.</li>
+<li>Cost or complexity: Evaluation must separate head queries from high-IDF tail queries.</li>
+</ul>
+<h4 id="the-error-string-worked-example-fixes-the-scale">The error-string worked example fixes the scale</h4>
+<ul>
+<li>What: The corpus has <code>2,000,000</code> chunks averaging <code>180</code> tokens. The dense system returns <code>3</code> generic chunks and leaves the exact runbook at rank <code>340</code>. The error string appears in <code>12</code> chunks, while upgrading, node, and 18 each appear in about <code>400,000</code>.</li>
+<li>Why: At average length and one occurrence, BM25's TF factor is <code>1 × 2.2/(1+1.2) = 1.0</code>, so the rare term contributes its full <code>11.98</code> IDF.</li>
+<li>Failure avoided: A topical chunk matching all three common terms twice gets <code>3 × 1.61 × 1.375 = 6.64</code>.</li>
+<li>Cost or complexity: The runbook wins by <code>1.8×</code> at rank one with no training data and no GPU.</li>
+</ul>
+<h4 id="sparse-storage-is-small-beside-the-stated-dense-index">Sparse storage is small beside the stated dense index</h4>
+<ul>
+<li>What: At <code>110</code> distinct indexed terms per chunk and <code>4</code> bytes per posting, sparse storage is <code>2 × 10^6 × 110 × 4 = 8.8 × 10^8</code> bytes, or <code>0.88</code> gigabytes (GB).</li>
+<li>Why: A float32 dense index is <code>2 × 10^6 × 768 × 4 = 6.14 GB</code>.</li>
+<li>Failure of cost-only removal: Decommissioning sparse saves less storage than the raw index sizes suggest.</li>
+<li>Cost or complexity: Keeping sparse adds <code>0.88/6.14 = 14%</code> over the dense footprint.</li>
+</ul>
+<h4 id="rare-sparse-lookup-becomes-cheaper">Rare sparse lookup becomes cheaper</h4>
+<ul>
+<li>What: The error string's posting list has only <code>12</code> entries.</li>
+<li>Why: Sparse query work follows posting-list length.</li>
+<li>Failure of dense-only cost intuition: ANN cost follows search breadth <code>ef</code> and corpus size regardless of term rarity.</li>
+<li>Cost or complexity: The rarer the exact term, the cheaper this sparse lookup becomes.</li>
+</ul>
+<h4 id="the-public-collection-sanity-check-preserves-the-gap">The public-collection sanity check preserves the gap</h4>
+<ul>
+<li>What: The cited MS MARCO passage corpus has <code>8.8 million</code> passages of about <code>55</code> words and about <code>45</code> distinct terms per passage.</li>
+<li>Why: Sparse storage is <code>8.8 × 10^6 × 45 × 4 = 1.6 GB</code>.</li>
+<li>Failure of raw dense storage: A float32 <code>768</code>-dimension index is <code>8.8 × 10^6 × 768 × 4 = 27 GB</code>.</li>
+<li>Cost or complexity: The source describes the difference as the same one-to-two-orders-of-magnitude gap.</li>
+</ul>
+<h4 id="the-reported-zero-shot-result-matches-the-mechanism">The reported zero-shot result matches the mechanism</h4>
+<ul>
+<li>What: Thakur et al. (2021) report BM25 as the strongest zero-shot baseline across BEIR's eighteen datasets.</li>
+<li>Why: It beats MS MARCO-trained dense retrievers on the majority once they leave their training domain.</li>
+<li>Failure limit: This supports out-of-domain robustness. It does not claim sparse wins on paraphrases.</li>
+<li>Cost or complexity: The source states no serving-cost comparison for this benchmark result.</li>
+</ul>
+<h4 id="practical-sparse-long-tail-decisions">Practical sparse long-tail decisions</h4>
+<ul>
+<li>Keep a BM25 arm after the dense retriever ships. Remove it only after the real query-term IDF distribution shows no meaningful tail.</li>
+<li>Stratify retrieval evaluation by maximum query-term IDF. Logged frequency is a coarser substitute.</li>
+<li>Preserve versions, codes, and identifiers in an unanalyzed exact field beside the normalized field.</li>
+<li>Normalize heavy optical character recognition or typo noise before indexing because each corruption can receive maximal IDF.</li>
+<li>Fuse sparse and dense ranks with RRF by default. Raw BM25 scores are corpus-dependent, while cosine lies in <code>[-1,1]</code>.</li>
+<li>Treat sparse retrieval as the freshness path and encoder fine-tuning as a batch process.</li>
+<li>If two systems are operationally unacceptable, test learned sparse retrieval on the existing vector infrastructure before removing vocabulary-space scoring.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-181">Figure 18.1</h3>
+<pre class="text"><code>(a) Boolean result cliff
+
+terms joined by AND       documents returned
+customer                  1.5 x 10^6
++ deletion                1.8 x 10^4
++ retention               72
++ gdpr                     0
+
+OR of all four            1.64 x 10^6, unranked
+
+(b) Two-term documents scoring 0.5 under extended Boolean AND
+
+w2
+1.0 |\                 p = 1 straight line
+    | \
+    |  )                p = 2 circular arc from ideal corner
+0.5 |--o........ B = (0.5, 0.5), score 0.5 for every p
+    |   `--..
+0.1 |          * A = (1.0, 0.1)
+    +---------------- w1
+    0      0.5     1.0
+
+p -&gt; infinity forms the right-angled min boundary.
+A beats B at p = 1, loses at p = 2, and scores 0.1 as p -&gt; infinity.
+The two documents tie at p approximately 1.18.</code></pre>
+<p>Figure 18.1: Boolean AND fails by arithmetic, and the exponent p is what buys the failure back. In (a) each added conjunct multiplies the expected result count by df_i/N, so a query that gets more specific returns 1.5 × 10^6, then 1.8 × 10^4, then 72, then nothing - while the OR alternative returns 1.64 × 10^6 documents with no order at all. In (b) each curve is the set of two-term documents scoring exactly 0.5 under the extended Boolean AND: document B scores 0.5 at every p, while A, which is perfect on one term and nearly absent on the other, beats B at p = 1, loses to it at p = 2, and is scored 0.1 as p → ∞. The two tie at p ≈ 1.18.</p>
+<h3 id="figure-182">Figure 18.2</h3>
+<pre class="text"><code>A. Failure one: repetition never stops paying
+
+weight
+  ^                 raw f, linear and unbounded
+4 |                /
+3 |       1 + ln f . . . . . . . .
+2 |--------------------------- k1 + 1 = 2.2
+  |      BM25 saturation, k1 = 1.2
+1 |   __/................................
+  +--------------------------------------&gt; f
+      1          4          8          12
+
+B. Failure two: the penalty lands on the wrong document
+
+cosine score
+1.00 |-------------------------------- length from repetition: no penalty
+     |
+     |\
+     | `---___
+0.32 |        `----------------------- length from new material: 1/sqrt(m)
+     +--------------------------------&gt; m
+       1          4          7       10</code></pre>
+<p>Figure 18.2: TF-IDF's term weight grows without bound in f while BM25's saturates at k1 + 1, and TF-IDF's cosine normalization charges a 1/√m penalty for covering m topics while charging nothing at all for saying the same thing m times over.</p>
+<h3 id="figure-183">Figure 18.3</h3>
+<pre class="text"><code>A. Saturation in f at average document length
+
+tf component
+2.2 |-------------------------------- ceiling k1 + 1 = 2.2
+    |                        * 2.075 at f = 20
+2.0 |              * 1.964 at f = 10
+    |       * 1.375 at f = 2
+1.0 |   * 1.000 at f = 1
+    +--------------------------------&gt; f
+        1       5       10      15      20
+
+raw tf and 1 + log f both continue upward without a ceiling.
+First occurrence = 1.
+All later occurrences together are worth at most k1 = 1.2.
+
+B. Length discount at f = 1
+
+tf component
+2.0 |\       divide by ell
+    | \      b = 1, length fully charged
+    |  \__   b = 0.75, default
+1.0 |---*-------------------------------- b = 0, length ignored
+    |    `---___
+    +------------------------------------&gt; ell = |D|/avgdl
+         1       2       3       4
+
+All four curves agree when |D| = avgdl.
+BM25&#39;s b-controlled curves are gentler than direct division.</code></pre>
+<p>Figure 18.3: BM25 replaces TF-IDF's two unbounded behaviors with bounded ones: repetition buys at most k1 beyond the first occurrence, so no amount of stuffing crosses the ceiling (A), and length is discounted along a curve that b interpolates between ignoring length entirely and charging for it fully, always more gently than division (B).</p>
+<h3 id="figure-184">Figure 18.4</h3>
+<h4 id="panel-a-one-two-by-two-table-per-query-term">Panel A: one two-by-two table per query term</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">Contains <code>t</code></th>
+<th style="text-align: right;">Lacks <code>t</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relevant, <code>S</code></td>
+<td style="text-align: right;"><code>a = s_t</code></td>
+<td style="text-align: right;"><code>b = S - s_t</code></td>
+</tr>
+<tr>
+<td>Non-relevant, <code>N - S</code></td>
+<td style="text-align: right;"><code>c = n_t - s_t</code></td>
+<td style="text-align: right;"><code>d = N - S - n_t + s_t</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mi>t</mi></msub><mo>=</mo><mi>l</mi><mi>n</mi><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mi>a</mi><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mi>/</mi><mo stretchy="false" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mi>c</mi><mo>+</mo><mn>0.5</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_t = ln([(a+0.5)(d+0.5)]/[(b+0.5)(c+0.5)])</annotation></semantics></math></p>
+<p>The weight is the main diagonal over the anti-diagonal, with every cell smoothed by <code>0.5</code>. At <code>S = 0</code>, <code>a</code> and <code>b</code> both floor at <code>0.5</code> and cancel. The result is <code>ln((N-n_t+0.5)/(n_t+0.5))</code>.</p>
+<h4 id="panel-b-what-each-assumption-buys-and-costs">Panel B: what each assumption buys and costs</h4>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    A1[&quot;1. Ranking principle: rank by probability of relevance&quot;] --&gt; A2[&quot;2. Binary representation: replace the document with zero-one term indicators&quot;]
+    A2 --&gt; A3[&quot;3. Conditional independence: factor term probabilities given relevance&quot;]
+    A3 --&gt; A4[&quot;4. Off-query terms cancel: score only query terms found in the document&quot;]
+    A4 --&gt; A5[&quot;5. No relevance data: set S to zero and obtain BM25 IDF&quot;]</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Assumption</th>
+<th>What it buys</th>
+<th>What it costs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ranking principle</td>
+<td>An optimal order when documents are useful independently</td>
+<td>A jointly read RAG context needs a useful set, not only independent ranks</td>
+</tr>
+<tr>
+<td>Binary representation</td>
+<td>An estimable document model</td>
+<td>It discards term frequency, which BM25 restores with saturation</td>
+</tr>
+<tr>
+<td>Conditional independence</td>
+<td>A product of per-term probabilities</td>
+<td>It discards phrases and co-occurrence</td>
+</tr>
+<tr>
+<td>Off-query cancellation</td>
+<td>A sum over <code>q ∩ d</code></td>
+<td>Sparse scoring cannot reward material absent from the query</td>
+</tr>
+<tr>
+<td>No relevance data</td>
+<td>Exact BM25 classic IDF</td>
+<td>The weight expresses ignorance rather than tuning</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 18.4: Five assumptions turn an optimality principle into a table lookup: the last one is why BM25's IDF has the shape it does, while the first two are what every retriever built after BM25 spends its effort repairing.</p>
+<h3 id="figure-185">Figure 18.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    subgraph S[&quot;Sparse: one coordinate per vocabulary term&quot;]
+        E[&quot;ERR_OSSL_... | n_t = 12&quot;] --&gt; EW[&quot;IDF = 11.98&quot;]
+        U[&quot;upgrading | n_t = 4 x 10^5&quot;] --&gt; UW[&quot;IDF = 1.61&quot;]
+    end
+    subgraph D[&quot;Dense: one pooled vector per chunk&quot;]
+        T[&quot;180 token positions with 10 identifier pieces&quot;] --&gt; M[&quot;mean-pool&quot;]
+        M --&gt; V[&quot;one vector | d = 768 | identifier share = 10/180 = 5.6%&quot;]
+    end</code></pre></details></figure>
+<p>Figure 18.5: Sparse retrieval gives the rare error string its own coordinate and a weight that grows as the string gets rarer. Dense retrieval averages its ten subword pieces into 5.6% of one pooled vector, where rarity buys nothing at all.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one query box with four terms.</li>
+<li>Split it into an AND lane and an OR lane.</li>
+<li>Write <code>1.5M -&gt; 18K -&gt; 72 -&gt; 0</code> under AND and <code>1.64M, unranked</code> under OR.</li>
+<li>Draw a soft-scoring dial labeled <code>p</code>, with <code>mean</code> at <code>1</code> and <code>min or max</code> at the far endpoint.</li>
+<li>Draw a TF-IDF curve that rises without a ceiling and a BM25 curve that approaches <code>k1 + 1</code>.</li>
+<li>Add a length dial from <code>b = 0</code> to <code>b = 1</code>.</li>
+<li>Draw a two-by-two relevance table and an arrow to IDF at <code>S = 0</code>.</li>
+<li>Finish with a rare identifier. Give sparse retrieval its own weighted coordinate and show dense retrieval pooling ten pieces into 5.6% of a vector.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Retrieval is a librarian balancing rules and evidence. Boolean filters enforce requirements, but AND can shrink results to zero and OR returns an unordered pile. TF-IDF adds ranking, yet it pays every repeated word equally and penalizes broad documents through cosine normalization. BM25 fixes both shapes. Its term-frequency reward saturates, and its b parameter controls how strongly length counts. Its IDF comes from a probabilistic log odds table when no relevance judgments exist. Sparse indexing preserves rare identifiers immediately, while dense pooling can dilute them. In practice, keep hard policy filters strict and combine sparse and dense retrieval.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-can-boolean-retrieval-not-simply-and-more-terms-until-the-answer-becomes-precise">1. Why can Boolean retrieval not simply AND more terms until the answer becomes precise?</h3>
+<p>Each added term multiplies expected results by another <code>df_i/N</code>, so precision-seeking query length can drive the set to zero. OR avoids the zero but returns an unordered set close to the commonest posting list, so ranking is the missing mechanism.</p>
+<h3 id="2-what-exactly-does-bm25-fix-relative-to-tf-idf-and-when-might-tf-idf-still-be-acceptable">2. What exactly does BM25 fix relative to TF-IDF, and when might TF-IDF still be acceptable?</h3>
+<p>TF-IDF pays linearly for repeated terms and uses one cosine norm that cannot separate verbosity from scope. BM25 adds a ceiling through <code>k1</code> and a tunable length interpolation through <code>b</code>. Plain or sublinear TF-IDF can remain acceptable for a small, nearly uniform in-memory pool when a cross-encoder reranks everything.</p>
+<h3 id="3-a-40-page-onboarding-pdf-beats-a-two-sentence-exact-faq-under-bm25-which-constant-do-you-turn">3. A 40-page onboarding PDF beats a two-sentence exact FAQ under BM25. Which constant do you turn?</h3>
+<p>First inspect per-term contributions. Raise <code>b</code> if length is undercharged, but lower <code>k1</code> if repetition is overpaid. Raising <code>b</code> can demote legitimately comprehensive sources, so test the change by length decile rather than turning a constant from the symptom alone.</p>
+<h3 id="4-what-probabilistic-assumptions-produce-bm25s-idf-and-why-not-use-a-small-feedback-set-to-improve-it">4. What probabilistic assumptions produce BM25's IDF, and why not use a small feedback set to improve it?</h3>
+<p>Rank by relevance odds, replace documents with binary term indicators, assume conditional term independence, cancel off-query terms, and set <code>S = 0</code>. The RSJ log odds ratio then becomes classic IDF. With only twenty judgments, one changed label moved a term by <code>1.149</code> nats, so small feedback can add more variance than signal.</p>
+<h3 id="5-a-6-gb-dense-index-reaches-92-recall-overall-but-61-on-sku-queries-why-keep-sparse-retrieval">5. A 6 GB dense index reaches 92% recall overall but 61% on SKU queries. Why keep sparse retrieval?</h3>
+<p>Aggregate recall can hide high-IDF failures on versions, error strings, and product identifiers. Sparse retrieval gives those terms explicit coordinates and immediate rarity weights, while mean pooling may dilute them. Remove the sparse arm only after IDF-stratified evaluation shows that the real query distribution has no meaningful tail and the operational savings outweigh exact-term and freshness losses.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or setting</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean corpus</td>
+<td><code>N = 10^7</code>. The four document frequencies are <code>1.5 × 10^6</code>, <code>1.2 × 10^5</code>, <code>4 × 10^4</code>, and <code>8 × 10^3</code></td>
+</tr>
+<tr>
+<td>Boolean cliff</td>
+<td>AND returns <code>1.5 × 10^6 -&gt; 1.8 × 10^4 -&gt; 72 -&gt; 0</code>. The last expected count is <code>0.058</code> after a <code>1/1,250</code> cut. OR returns <code>1.64 × 10^6</code></td>
+</tr>
+<tr>
+<td>Extended Boolean endpoints</td>
+<td><code>p &gt;= 1</code>. At <code>p = 1</code>, AND and OR become the mean. At <code>p = 2</code>, A scores <code>0.45</code>. At the infinite endpoint, AND is min and OR is max</td>
+</tr>
+<tr>
+<td>Four-term soft example</td>
+<td>A is <code>(0.9,0.8,0.6,0.0)</code> and scores <code>0.575</code>, <code>0.45</code>, then <code>0</code>. B is <code>(0.5,0.5,0.5,0.5)</code> and always scores <code>0.50</code></td>
+</tr>
+<tr>
+<td>Figure 18.1 pair</td>
+<td>A is <code>(1.0,0.1)</code>, B is <code>(0.5,0.5)</code>, and they tie at <code>p ≈ 1.18</code></td>
+</tr>
+<tr>
+<td>Boolean serving cost</td>
+<td>Soft scoring decodes <code>1.67 × 10^6</code> postings. At <code>1 ns</code> each, that is about <code>1.7 ms</code> and roughly two orders of magnitude above hard AND</td>
+</tr>
+<tr>
+<td>Boolean controls</td>
+<td>Three of four terms is <code>75%</code>. The Solr example is <code>2&lt;-1 5&lt;-2 6&lt;90%</code>. A <code>30%</code> tail zero-result problem needs an offline OR probe. An overall <code>3%</code> can hide <code>40%</code> at five terms. The hard-filter cap is <code>2</code>. A <code>10^-4</code> soft-filter leak rate over <code>10^6</code> daily queries means <code>100</code> leaks per day</td>
+</tr>
+<tr>
+<td>Clinical TF-IDF corpus</td>
+<td><code>N = 10^6</code>. Document frequencies are <code>10^4</code>, <code>10^5</code>, and <code>5 × 10^4</code>. IDFs are <code>4.61</code>, <code>2.30</code>, and <code>3.00</code>. The compared documents are <code>1,200</code> and <code>180</code> words</td>
+</tr>
+<tr>
+<td>Stuffing scores</td>
+<td>Twelve insulin occurrences give raw totals <code>55.3</code> versus <code>16.81</code>, a <code>3.29×</code> lead. Sublinear totals are <code>16.05</code> versus <code>14.69</code>, a <code>1.09×</code> lead. At <code>1,000</code> copies the lead is <code>2.48×</code></td>
+</tr>
+<tr>
+<td>Cosine heading example</td>
+<td>Query norm is <code>5.96</code>. The heading scores <code>0.865</code>, the table <code>0.517</code>, and the lead is <code>1.67×</code>. Sixty terms averaging <code>1.9</code> add about <code>220</code> to squared norm</td>
+</tr>
+<tr>
+<td>Scope and fragment controls</td>
+<td>Ten sections impose <code>1/√10 = 0.32</code>, a <code>68%</code> cut. The nested-table score is <code>0.163</code>. The fragment floor is roughly <code>50</code> tokens. A fixed target can be <code>512</code> while structure-derived chunks span <code>5×</code> to <code>10×</code></td>
+</tr>
+<tr>
+<td>BM25 defaults and curve</td>
+<td><code>k1 = 1.2</code>, <code>b = 0.75</code>, and the ceiling is <code>2.2</code>. TF factors at <code>f = 1,2,5,10,20</code> are <code>1.000</code>, <code>1.375</code>, <code>1.774</code>, <code>1.964</code>, and <code>2.075</code></td>
+</tr>
+<tr>
+<td>Saturation budget</td>
+<td>The second occurrence buys <code>0.375</code>. Ten to twenty buys <code>0.111</code>. Five and ten occurrences spend <code>64.5%</code> and <code>80%</code> of the later-occurrence budget</td>
+</tr>
+<tr>
+<td>Log alternative</td>
+<td>Values at <code>f = 1,2,5,25</code> are <code>1.00</code>, <code>1.69</code>, <code>2.61</code>, and <code>4.22</code>. At <code>f = 10,000</code>, the value is <code>10.21</code></td>
+</tr>
+<tr>
+<td>Twice-average length</td>
+<td>BM25 leaves <code>0.710</code>, a <code>29%</code> discount. Direct division leaves <code>0.500</code>, a <code>50%</code> discount</td>
+</tr>
+<tr>
+<td>Release-note corpus</td>
+<td><code>N = 1,000,000</code>, <code>avgdl = 300</code>. Document frequencies are <code>400,000</code>, <code>250,000</code>, and <code>5,000</code>, with IDFs <code>0.916</code>, <code>1.386</code>, and <code>5.298</code></td>
+</tr>
+<tr>
+<td>Release note and runbook</td>
+<td>Lengths are <code>120</code> and <code>3,000</code>. Counts are <code>(1,1,2)</code> and <code>(12,30,25)</code>. Raw totals are <code>12.90</code> and <code>185.0</code>, a <code>14×</code> runbook lead. Directly divided totals are <code>32.2</code> and <code>18.5</code>, a <code>1.7×</code> note lead</td>
+</tr>
+<tr>
+<td>BM25 near-tie</td>
+<td><code>K_A = 0.66</code>, <code>K_B = 9.30</code>. Totals are <code>11.82</code> and <code>11.96</code>, only <code>1.2%</code> apart</td>
+</tr>
+<tr>
+<td>Length sweep</td>
+<td>At <code>b = 0</code>, scores are <code>9.59</code> and <code>15.89</code>, a <code>1.66×</code> runbook lead. At <code>b = 1</code>, they are <code>12.82</code> and <code>11.06</code>, a <code>1.16×</code> note lead</td>
+</tr>
+<tr>
+<td>BM25 bound check</td>
+<td>Maximum eviction contribution is <code>11.66</code>. A and B earn <code>75%</code> and <code>73%</code>. Lucene-style scaled totals are <code>5.371</code> and <code>5.436</code></td>
+</tr>
+<tr>
+<td>Tuning ranges</td>
+<td>Reported <code>k1</code> range is <code>1.2</code> to <code>2.0</code>. Below about <code>3×</code> length spread, <code>b</code> is nearly inert. Above <code>10×</code>, it deserves a sweep. The wiki spans <code>50</code> to <code>20,000</code> tokens, or <code>400×</code>. Borrowed settings <code>k1 = 0.9</code>, <code>b = 0.4</code>, and <code>+2</code> recall@1000 do not settle top-10 quality</td>
+</tr>
+<tr>
+<td>Probabilistic constants</td>
+<td><code>S = 0</code> gives classic IDF. Every table cell gets <code>0.5</code>. A full pairwise term model needs <code>O(V^2)</code> dependencies</td>
+</tr>
+<tr>
+<td>Irish Sea initial state</td>
+<td><code>N = 1,000,000</code>. Document frequencies are <code>8,000</code>, <code>120,000</code>, and <code>40,000</code>. Weights are <code>4.820</code>, <code>1.992</code>, and <code>3.178</code>. RSV totals are <code>6.812</code> and <code>5.170</code>, a <code>1.642</code>-nat lead</td>
+</tr>
+<tr>
+<td>Twenty judgments</td>
+<td><code>S = 20</code> with term counts <code>8</code>, <code>14</code>, and <code>20</code> gives weights <code>4.436</code>, <code>2.795</code>, and <code>6.892</code>. RSV totals become <code>7.231</code> and <code>9.687</code>, a <code>2.456</code>-nat reversal</td>
+</tr>
+<tr>
+<td>One-label sensitivity</td>
+<td>At <code>s_ferry = 19</code>, the weight is <code>5.743</code>. It moves <code>1.149</code> nats, or <code>41%</code> of a <code>2.828</code>-nat gap, and leaves a <code>1.307</code>-nat lead</td>
+</tr>
+<tr>
+<td>Guarded IDF check</td>
+<td>Raw weight at <code>n_t = 600,000</code> is <code>-0.405</code>. Guarded and raw Irish weights are <code>4.828</code> and <code>4.820</code>, a <code>0.008</code> or <code>0.17%</code> difference</td>
+</tr>
+<tr>
+<td>Feedback thresholds</td>
+<td>Require at least <code>50</code> judgments before an override when no second stage fits. Prefer the low hundreds per query. <code>500</code> judgments over <code>50</code> queries leave only <code>10</code> each</td>
+</tr>
+<tr>
+<td>Joint context</td>
+<td>Redundancy matters more at <code>k = 5</code> than at <code>k = 50</code></td>
+</tr>
+<tr>
+<td>Long-tail rarity</td>
+<td><code>N = 2,000,000</code>. Frequencies <code>400,000</code> and <code>12</code> produce IDFs <code>1.61</code> and <code>11.98</code>, a <code>7.4×</code> advantage</td>
+</tr>
+<tr>
+<td>Dense dilution</td>
+<td>Ten pieces inside <code>180</code> tokens receive <code>5.6%</code> of a pooled vector with <code>d = 768</code>. Pooling does not control whether the runbook lands at rank <code>12</code> or rank <code>340</code></td>
+</tr>
+<tr>
+<td>Sparse win</td>
+<td>The common-term TF factor is <code>1.375</code>, and three common terms score <code>6.64</code>. The rare string scores <code>11.98</code>, a <code>1.8×</code> lead</td>
+</tr>
+<tr>
+<td>Internal footprint</td>
+<td><code>110</code> terms per chunk at <code>4</code> bytes per posting give <code>0.88 GB</code>. The dense index is <code>6.14 GB</code>. Sparse adds <code>14%</code>, and the rare lookup walks <code>12</code> postings</td>
+</tr>
+<tr>
+<td>Public footprint</td>
+<td><code>8.8 million</code> MS MARCO passages average about <code>55</code> words and <code>45</code> distinct terms. Sparse is <code>1.6 GB</code>, while float32 dense is <code>27 GB</code></td>
+</tr>
+<tr>
+<td>Reported quality and interview metrics</td>
+<td>BEIR has <code>18</code> cited datasets. The opening dense swap gains <code>4</code> recall@50 points overall but returns <code>3</code> generic chunks and leaves the exact runbook at rank <code>340</code>, versus BM25 rank <code>1</code>. The interview example has <code>92%</code> overall recall and <code>61%</code> on SKU queries. Another trap contrasts API versions <code>3.12</code> and <code>3.9</code></td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/17_operating_a_vector_store.html"><small>Previous</small>Chapter 17. Operating a Vector Store</a><a href="../chapters/19_learning_to_rank.html"><small>Next</small>Chapter 19. Learning to Rank</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

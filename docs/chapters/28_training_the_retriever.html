@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 28. Training the Retriever | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/28_training_the_retriever.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group" open><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html" aria-current="page">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VIII. Training the RAG System</p><h1>Chapter 28. Training the Retriever</h1><p class="chapter-meta">46 min estimated reading · Unit 37 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>Purpose: decide which Retrieval-Augmented Generation (RAG) component to train, connect generator utility to a discrete retriever, and price the index work that retriever updates create.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Expose two parameter sets before choosing a training plan. Freeze or train the retriever, and independently freeze or train the generator.</li>
+<li>Run the oracle-context ablation first. A large gain with the gold passage points to retrieval. A flat result points to generation.</li>
+<li>Fusion-in-Decoder (FiD) removes the passage-count square from encoder attention. FiD-Light then reduces decoder key/value (KV) traffic without truncating the passage.</li>
+<li>Hard top-k blocks answer-loss gradients. Marginalization, REINFORCE, and Gumbel relaxation are the three routes around that discrete boundary.</li>
+<li>REPLUG uses a frozen black-box large language model (LLM) application programming interface (API) by mixing one next-token distribution per passage. Its bill grows with every generated token.</li>
+<li>Language model (LM) supervision aligns the retriever with the frozen generator's within-query passage preference. It can reorder only the passages already retrieved.</li>
+<li>Retriever training changes the document embeddings. A refresh schedule must respect builder capacity, measured staleness, and a final full re-encode. Retrieval-Augmented Language Model Pre-training (REALM) puts retrieval inside masked pre-training. Its signal is elegant, but the worked configuration costs 33 times closed-book pre-training.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a library with a catalog clerk and a reader. The clerk is the retriever. The reader is the generator. The catalog cards are the stored document vectors. The first management question is not how hard both people should work. It is which person is failing. Give the reader the correct book directly. If the answer improves, the clerk failed to bring the evidence. If the answer stays wrong, the reader failed to use evidence already on the desk. The library has four staffing plans. Both people can stay fixed. Only the clerk can train. Only the reader can train. Both can train together. Moving the reader to training is expensive because the reader is large. Moving the clerk to training looks cheap until the catalog cards become stale. The checkout gate creates another problem. It hands over exactly the top k books. Small score changes do nothing until two books swap rank. An answer-level correction cannot pass smoothly through that gate. One remedy lets every candidate book cast a weighted vote. Another adds Gumbel noise, keeps a real book in the forward pass, and uses a soft surrogate in the backward pass. FiD changes the reading room. The reader examines each book at a separate desk, then combines the notes in one decoder. FiD-Light keeps only a trained summary from each desk for decoder access. REPLUG is the plan for a reader hired through a locked service window. The library cannot alter that reader. It sends one book through each window, collects one next-token distribution per book, and mixes the votes by catalog score. Language-model supervision lets the reader grade the clerk. The reader reports how likely the gold answer is under each retrieved book. The clerk moves probability mass toward the books that help this reader and away from those that hurt it. That feedback still cannot reward a book the clerk never brought. The lesson can rerank the cart, but it cannot discover a book outside the cart. Every change to the document-side clerk also rewrites the meaning of the catalog. A builder must snapshot the clerk, regenerate every card, and publish the new catalog later. REALM turns the library into an apprenticeship. During pre-training, the reader predicts a masked token, and each retrieved block earns credit only when it beats the retrieved-set average. The apprenticeship teaches reader and clerk together. It also closes every lesson through the whole catalog, so the catalog rebuild becomes part of the training bill.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source term</th>
+<th>Plain-language decode</th>
+<th>Interview consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieval-Augmented Generation</td>
+<td>Separate retrieval failure from generation failure before training.</td>
+</tr>
+<tr>
+<td>Retriever weights, phi</td>
+<td>Parameters that score and select passages</td>
+<td>They receive no answer-loss gradient through hard top-k by default.</td>
+</tr>
+<tr>
+<td>Generator weights, theta</td>
+<td>Parameters that produce the answer</td>
+<td>They can train directly from answer loss when weights are available.</td>
+</tr>
+<tr>
+<td>Datastore, D</td>
+<td>The corpus of N chunks</td>
+<td>Document-side retriever updates make every stored vector stale.</td>
+</tr>
+<tr>
+<td>Query and evidence symbols x, q, y, c_i, p_i, and d_i</td>
+<td>Query, answer, retrieved chunk, passage, or document according to the section</td>
+<td>They keep each objective tied to the object it scores.</td>
+</tr>
+<tr>
+<td>Parameter symbols phi, theta, and eta</td>
+<td>Retriever, generator, and trainable retriever parameters</td>
+<td>Theta means generator weights in section 28.1 and encoder version in section 28.6.</td>
+</tr>
+<tr>
+<td>Encoder functions E, E_Q, E_P, Emb_q, and Emb_d</td>
+<td>Generic, query-side, and document-side representation functions</td>
+<td>Only a changed document-side function invalidates stored vectors unless the encoder is tied.</td>
+</tr>
+<tr>
+<td>Shape symbols N, k, n, d, l, and m</td>
+<td>Corpus size, retrieved count, passage length, hidden width, layer count, and decoder-visible states</td>
+<td>They expose which costs grow with the corpus, passage count, or decoder context.</td>
+</tr>
+<tr>
+<td>Compute symbols P_r, P_g, T_c, C, C_r, and C_s</td>
+<td>Retriever parameters, generator parameters, chunk tokens, throughput, refresh cost, and step cost</td>
+<td>Their ratios price training and refresh before a run starts.</td>
+</tr>
+<tr>
+<td>Symbol B</td>
+<td>Bytes per parameter in section 28.2 and batch size in section 28.7</td>
+<td>Its meaning changes between the FiD cache and REALM examples.</td>
+</tr>
+<tr>
+<td>Symbol L</td>
+<td>Answer length in FiD, loss in the differentiability sections, and chunk length in refresh or REALM</td>
+<td>The section scope prevents three different quantities from being conflated.</td>
+</tr>
+<tr>
+<td>Symbol z</td>
+<td>FiD-Light kept-state count, Gumbel selection vector, or latent REALM block</td>
+<td>It is deliberately overloaded across sections and must be decoded locally.</td>
+</tr>
+<tr>
+<td>Candidate sets D prime, Z, and Z_k</td>
+<td>REPLUG top-k passages, the REALM block corpus, and REALM's retrieved support</td>
+<td>Both learning objectives normalize only over a retrieved subset.</td>
+</tr>
+<tr>
+<td>Sequence symbols y_t, y_before_t, and d circle x</td>
+<td>Current output token, decoded prefix, and a document prepended to a query</td>
+<td>They define REPLUG's repeated next-token mixture.</td>
+</tr>
+<tr>
+<td>Gumbel symbols u_i, g_i, y_i, and delta_ij</td>
+<td>Uniform draw, Gumbel noise, relaxed weight, and identity indicator in section 28.3</td>
+<td>They define the reparameterized sample and its Jacobian.</td>
+</tr>
+<tr>
+<td>Distillation symbols u_i, ell_i, beta, and gamma</td>
+<td>LM utility, log probability ratio, LM temperature, and retriever temperature in section 28.5</td>
+<td>These quantities define the teacher, student, KL loss, and gradient.</td>
+</tr>
+<tr>
+<td>Timeline symbols theta_0, theta_t, theta_jK, K_min, and rho</td>
+<td>Stored-vector version, current version, builder snapshot, minimum interval, and relative builder throughput</td>
+<td>They make asynchronous staleness and capacity explicit.</td>
+</tr>
+<tr>
+<td>Top k</td>
+<td>The selected passage set</td>
+<td>It is a discrete support and a hard ceiling on downstream evidence.</td>
+</tr>
+<tr>
+<td>Oracle-context ablation</td>
+<td>Give the generator the gold passage directly</td>
+<td>A gain points right in the quadrant grid. A flat result points down.</td>
+</tr>
+<tr>
+<td>Quadrant I</td>
+<td>Freeze retriever and generator</td>
+<td>Use prompting, chunking, k, reranking, and layout.</td>
+</tr>
+<tr>
+<td>Quadrant II</td>
+<td>Train retriever and freeze generator</td>
+<td>Use generator likelihood as supervision and budget re-encoding.</td>
+</tr>
+<tr>
+<td>Quadrant III</td>
+<td>Freeze retriever and train generator</td>
+<td>FiD, FiD-Light, and Retrieval-Augmented Fine-Tuning (RAFT) fit here.</td>
+</tr>
+<tr>
+<td>Quadrant IV</td>
+<td>Train both</td>
+<td>Pay both training bills, refresh the index, and own generator gradients.</td>
+</tr>
+<tr>
+<td>Query-side fine-tuning</td>
+<td>Train only the query encoder</td>
+<td>Reshape query projection without changing stored document vectors.</td>
+</tr>
+<tr>
+<td>Document-side fine-tuning</td>
+<td>Train the passage encoder</td>
+<td>Fix document geometry, but invalidate the index.</td>
+</tr>
+<tr>
+<td>Tied encoder</td>
+<td>One encoder serves queries and passages</td>
+<td>Contriever has no document tower that can stay fixed independently.</td>
+</tr>
+<tr>
+<td>FiD</td>
+<td>Encode each query-passage pair separately, then fuse in one decoder</td>
+<td>Preserve all passages while dividing encoder attention by k.</td>
+</tr>
+<tr>
+<td>FiD-Light</td>
+<td>Expose only the first z trained encoder states per passage to the decoder</td>
+<td>Reduce decoder KV traffic while the encoder still reads every token.</td>
+</tr>
+<tr>
+<td>Decoder-visible states, m</td>
+<td>The total states offered to decoder cross-attention</td>
+<td>For FiD-Light, m equals k times z.</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>Decoder cross-attention keys and values</td>
+<td>It creates a sequential memory-bandwidth bill per generated token.</td>
+</tr>
+<tr>
+<td>Marginalization</td>
+<td>Mix output distributions from separate passage-conditioned passes</td>
+<td>RAG-Sequence and REPLUG use it. It is exact but costs k generator passes and cannot fuse facts across passes.</td>
+</tr>
+<tr>
+<td>Hard top-k</td>
+<td>Return row indices for the k highest scores</td>
+<td>Its Jacobian is zero almost everywhere and undefined at ties.</td>
+</tr>
+<tr>
+<td>Selection vector, z</td>
+<td>A binary vector with k selected entries</td>
+<td>The generator sees real passages, but gradients stop at selection.</td>
+</tr>
+<tr>
+<td>REINFORCE</td>
+<td>A score-function gradient estimator</td>
+<td>It is unbiased and uses one pass, but one scalar reward drives all candidates.</td>
+</tr>
+<tr>
+<td>Standard Gumbel noise</td>
+<td>Noise sampled from transformed uniform draws</td>
+<td>Perturb-and-argmax becomes an exact softmax sample.</td>
+</tr>
+<tr>
+<td>Gumbel-Softmax</td>
+<td>Replace noisy argmax with a temperature softmax</td>
+<td>It is also the Concrete distribution. It gives a nonzero per-candidate Jacobian.</td>
+</tr>
+<tr>
+<td>Gumbel-top-k</td>
+<td>Take the k largest noisy scores</td>
+<td>It samples k documents without replacement from the softmax.</td>
+</tr>
+<tr>
+<td>Straight-through estimator</td>
+<td>Use hard selection forward and soft weights backward</td>
+<td>It gives real text to the generator at the price of gradient bias.</td>
+</tr>
+<tr>
+<td>Temperature, tau</td>
+<td>Sharpness of the Gumbel relaxation or REPLUG weights</td>
+<td>Lower values sharpen choices and can collapse or destabilize gradients.</td>
+</tr>
+<tr>
+<td>REPLUG</td>
+<td>Run a frozen LLM once per document and mix next-token distributions</td>
+<td>It needs probabilities, not weights or gradients.</td>
+</tr>
+<tr>
+<td>Retrieval weight, lambda</td>
+<td>Softmax-normalized retriever score over the top k</td>
+<td>It explicitly bounds each passage's token-level influence.</td>
+</tr>
+<tr>
+<td>LM-supervised retrieval</td>
+<td>Use generator answer likelihood as the retriever's teacher</td>
+<td>It targets what helps the deployed generator, not human relevance alone.</td>
+</tr>
+<tr>
+<td>Utility, u</td>
+<td>Gold-answer log-likelihood under one passage</td>
+<td>Normalize it within a query because raw values depend on answer length.</td>
+</tr>
+<tr>
+<td>LM preference, QLM</td>
+<td>Softmax over utilities with temperature beta</td>
+<td>It is the teacher distribution on the retrieved set.</td>
+</tr>
+<tr>
+<td>Retriever distribution, PR</td>
+<td>Softmax over retriever scores with temperature gamma</td>
+<td>It is the student distribution on the same top-k support.</td>
+</tr>
+<tr>
+<td>Kullback-Leibler divergence, KL</td>
+<td>Distribution mismatch from PR to QLM</td>
+<td>This direction suppresses harmful high-mass passages strongly.</td>
+</tr>
+<tr>
+<td>Top-k blind spot</td>
+<td>Zero support outside the retrieved candidates</td>
+<td>LM supervision cannot teach the retriever to find a passage it never surfaced.</td>
+</tr>
+<tr>
+<td>Hard-negative mining</td>
+<td>Refresh difficult negative examples</td>
+<td>Pair it with LM supervision because LM supervision mainly reorders.</td>
+</tr>
+<tr>
+<td>Index version</td>
+<td>The encoder weights that produced stored vectors</td>
+<td>Query and document vectors become inconsistent when versions diverge.</td>
+</tr>
+<tr>
+<td>Negative stagnation</td>
+<td>Old candidates become easy under the current model</td>
+<td>Loss can keep falling while recall stops improving.</td>
+</tr>
+<tr>
+<td>Refresh cost, Cr</td>
+<td>Floating-point operations (FLOPs) for one corpus re-encode</td>
+<td>Compare it with the cost of one training step before choosing cadence.</td>
+</tr>
+<tr>
+<td>Step cost, Cs</td>
+<td>FLOPs for one current training step</td>
+<td>Adding an LLM teacher can make refresh cheaper in relative terms.</td>
+</tr>
+<tr>
+<td>Refresh interval, K</td>
+<td>Steps between builder snapshots</td>
+<td>Capacity sets a lower bound. Staleness sets an upper bound.</td>
+</tr>
+<tr>
+<td>Builder ratio, rho</td>
+<td>Builder throughput relative to trainer throughput</td>
+<td>It determines whether an asynchronous builder can keep up.</td>
+</tr>
+<tr>
+<td>Asynchronous refresh</td>
+<td>Build beside the trainer and publish one interval later</td>
+<td>It bounds staleness between K and 2K steps. It does not remove staleness.</td>
+</tr>
+<tr>
+<td>Flat training search</td>
+<td>Exact graphics processing unit (GPU) search over current vectors</td>
+<td>It can remove graph rebuilding from the training critical path.</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW)</td>
+<td>Approximate-nearest-neighbor graph structure</td>
+<td>Its graph build is far cheaper in FLOPs than corpus encoding here.</td>
+</tr>
+<tr>
+<td>Maximum inner product search (MIPS)</td>
+<td>Search by bi-encoder inner product</td>
+<td>REALM rebuilds this index asynchronously.</td>
+</tr>
+<tr>
+<td>REALM</td>
+<td>Retrieval inside masked language-model pre-training</td>
+<td>The masked-token probability trains the retriever without relevance labels.</td>
+</tr>
+<tr>
+<td>Salient span masking</td>
+<td>Mask entities, dates, numbers, or domain identifiers</td>
+<td>It makes retrieved evidence affect the masked-token likelihood.</td>
+</tr>
+<tr>
+<td>Inverse Cloze Task (ICT)</td>
+<td>A retriever warm start named in the source</td>
+<td>It avoids the zero-signal cold start from uniformly useless retrieval.</td>
+</tr>
+<tr>
+<td>RETRO</td>
+<td>Retrieval inside pre-training with a frozen retriever</td>
+<td>It gives up document-retriever updates to scale the database.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="281-four-quadrants-freeze-or-train--retriever-or-generator">28.1 Four quadrants: freeze or train × retriever or generator</h3>
+<h4 id="what">What</h4>
+<p>Expose both parameter sets. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo>=</mo><msub><mo>RET</mo><mi>ϕ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>y</mi><mo>=</mo><msub><mo>GEN</mo><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>c</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">c_1,\ldots,c_k = \mathop{\text{RET}}_{\phi}(x,D), \qquad y = \mathop{\text{GEN}}_{\theta}(x,c_1,\ldots,c_k)</annotation></semantics></math> The retriever scores N chunks and returns k. The generator consumes that evidence. Each parameter set can be frozen or trainable. Run the oracle-context ablation on current failures. Put the gold passage directly in the generator context and rescore.</p>
+<ul>
+<li>Accuracy jumps: the evidence was not arriving. Train or repair retrieval.</li>
+<li>Accuracy stays flat: the generator saw evidence but failed to use it. Train or repair generation.</li>
+<li>If recall at k is 0.6, generator training cannot lift end-to-end accuracy above 0.6 on those queries.</li>
+</ul>
+<h4 id="why">Why</h4>
+<p>The four choices carry different signals and obligations.</p>
+<ul>
+<li>Quadrant I has zero gradient steps.</li>
+<li>Quadrant II uses generator likelihood or another retriever objective and owes a full re-encode when the document tower moves.</li>
+<li>Quadrant III uses answer loss and leaves the index fixed.</li>
+<li>Quadrant IV couples both models, both bills, a refresh schedule, and generator ownership.</li>
+</ul>
+<p>Query-side-only training is the half-step. It changes query projection without invalidating stored document vectors. It cannot fix document-side vocabulary mismatch.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>A reflexive generator fine-tune wastes the schedule when the gold passage never reaches top k. Hard top-k also blocks answer-loss gradients to the retriever. Joint loss syntax alone does not train phi. Joint optimization loses when the generator is a hosted interface, when the corpus changes, or when the next generator version would force full retraining. For generator training, the source defaults to parameter-efficient fine-tuning (PEFT), especially Low-Rank Adaptation (LoRA), unless the base model cannot produce the target format.</p>
+<h4 id="cost-and-complexity">Cost and complexity</h4>
+<p>The source uses Bidirectional Encoder Representations from Transformers base (BERT-base) for the retriever and an 8 billion parameter generator. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>r</mi></msub><mo>=</mo><mn>1.1</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>P</mi><mi>g</mi></msub><mo>=</mo><mn>8</mn><mo>×</mo><msup><mn>10</mn><mn>9</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><mfrac><msub><mi>P</mi><mi>g</mi></msub><msub><mi>P</mi><mi>r</mi></msub></mfrac><mo>=</mo><mn>72.7</mn></mrow><annotation encoding="application/x-tex">P_r = 1.1 \times 10^8, \qquad P_g = 8 \times 10^9, \qquad \frac{P_g}{P_r} = 72.7</annotation></semantics></math> For ten million 256-token chunks at 3.4 times 10 to the 14 FLOPs per second: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>1.1</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>256</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><msup><mn>10</mn><mn>7</mn></msup><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>1</mn><mo>,</mo><mn>656</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">s</mtext><mo>=</mo><mn>27.6</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">minutes</mtext></mrow><annotation encoding="application/x-tex">\frac{2(1.1\times10^8)(256)(10^7)}{3.4\times10^{14}} = 1{,}656\ \text{s} = 27.6\ \text{minutes}</annotation></semantics></math> One contrastive step on 9,216 tokens costs: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>6</mn><mo stretchy="false" form="prefix">(</mo><mn>1.1</mn><mo>×</mo><msup><mn>10</mn><mn>8</mn></msup><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>9</mn><mo>,</mo><mn>216</mn><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>3.4</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup></mrow></mfrac><mo>=</mo><mn>1.79</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>2</mn></mrow></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">s</mtext><mo>=</mo><mn>17.9</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext></mrow><annotation encoding="application/x-tex">\frac{6(1.1\times10^8)(9{,}216)}{3.4\times10^{14}} = 1.79\times10^{-2}\ \text{s} = 17.9\ \text{ms}</annotation></semantics></math> One refresh therefore costs 9.3 times 10 to the 4 retriever steps. The worked training set has 50,000 question-answer pairs, five passages per example, 1,344 tokens per example, and three generator epochs.</p>
+<ul>
+<li>Quadrant III costs 2.6 hours per epoch and 7.9 hours total.</li>
+<li>Quadrant II uses 10,000 steps and refreshes every 1,000. Gradient work is 179 seconds. Refresh work is 16,565 seconds. Total time is 16,744 seconds, with 98.9 percent in re-encoding.</li>
+<li>Quadrant IV costs 12.6 hours and holds optimizer state for both models.</li>
+<li>Parameter-count budgeting predicts three minutes for Quadrant II. Actual time is 4.65 hours, a 94 times miss.</li>
+<li>At K equal to 500, refresh work is 186 times gradient work.</li>
+<li>At 100,000 chunks, the same re-encode takes 16.6 seconds.</li>
+<li>Five percent weekly turnover over ten million chunks means encoding 500,000 new chunks takes 83 seconds when phi is frozen. A retriever model update raises the operation to 27.6 minutes, a 20 times jump.</li>
+</ul>
+<h3 id="282-fusion-in-decoder-and-fid-light">28.2 Fusion-in-Decoder and FiD-Light</h3>
+<h4 id="what-1">What</h4>
+<p>Let q be the query. Let k passages each contain n tokens. Let encoder width be d and layer count be l. Naive concatenation encodes one sequence of length kn. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">naive attention per layer</mtext><mo>≈</mo><mn>4</mn><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mi>n</mi><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>d</mi></mrow><annotation encoding="application/x-tex">\text{naive attention per layer} \approx 4(kn)^2d</annotation></semantics></math> FiD separately encodes every query-passage pair. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>i</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>n</mi><mo>×</mo><mi>d</mi></mrow></msup><mo>,</mo><mspace width="2.0em"></mspace><mi>H</mi><mo>=</mo><mo stretchy="false" form="prefix">[</mo><msub><mi>H</mi><mn>1</mn></msub><mo>,</mo><mi>…</mi><mo>,</mo><msub><mi>H</mi><mi>k</mi></msub><mo stretchy="false" form="postfix">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mi>k</mi><mi>n</mi><mo>×</mo><mi>d</mi></mrow></msup></mrow><annotation encoding="application/x-tex">H_i \in \mathbb{R}^{n\times d}, \qquad H = [H_1,\ldots,H_k] \in \mathbb{R}^{kn\times d}</annotation></semantics></math> The decoder cross-attends to all kn states once. Encoder attention becomes: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">FiD attention per layer</mtext><mo>≈</mo><mi>k</mi><mo stretchy="false" form="prefix">(</mo><mn>4</mn><msup><mi>n</mi><mn>2</mn></msup><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\text{FiD attention per layer} \approx k(4n^2d)</annotation></semantics></math> The ratio is exactly k. FiD-Light passes only the first z trained states from each encoder output to the decoder. The decoder sees kz states, but each bidirectional encoder still reads all n passage tokens.</p>
+<h4 id="why-1">Why</h4>
+<p>FiD relocates cross-passage evidence combination from a quadratic encoder to linear decoder cross-attention. FiD-Light targets the cost FiD leaves in the decoder. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">KV cache bytes</mtext><mo>=</mo><mn>2</mn><mi>B</mi><mi>k</mi><mi>n</mi><mi>d</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\text{KV cache bytes} = 2B k n d l</annotation></semantics></math> The factor 2 counts keys and values. This memory traffic repeats for every decoded token.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>Concatenation makes passage count quadratic in encoder attention. Marginalization runs one decoder pass per passage. No single pass sees two passages, so an answer needing a fact from passage 3 and passage 7 is structurally unreachable. FiD-Light does not support post hoc output truncation of a FiD checkpoint. The leading states carry a learned summary only when training enforced that constraint. Cutting k can destroy real multi-passage capability when the gain is not merely recall.</p>
+<h4 id="cost-and-complexity-1">Cost and complexity</h4>
+<p>For k equal to 40, n equal to 256, d equal to 1,024, and 24 layers:</p>
+<ul>
+<li>Concatenated attention costs 4.30 times 10 to the 11 FLOPs per layer and 10.3 trillion FLOPs (TFLOP) over 24 layers.</li>
+<li>FiD attention costs 0.26 TFLOP.</li>
+<li>Text-to-Text Transfer Transformer large (T5-large) uses d equal to 1,024, feed-forward width 4,096, 24 encoder layers, and 24 decoder layers.</li>
+<li>Each encoder layer has 12.58 million derived parameters, or 302 million total.</li>
+<li>Each decoder layer has 16.78 million derived parameters, or 403 million total.</li>
+<li>The derived 771 million total matches the published 770 million after including the 32.9 million embedding table on input and output sides.</li>
+</ul>
+<p>With Brain Floating Point 16 (bf16) at 2 bytes, 3.35 TB per second bandwidth, and 3.4 times 10 to the 14 FLOPs per second:</p>
+<ul>
+<li>One concatenated encoder costs 16.5 TFLOP and 48.5 ms.</li>
+<li>FiD costs 6.45 TFLOP and 19.0 ms.</li>
+<li>FiD decoder weights consume 0.81 GB per token step.</li>
+<li>Its cross-attention cache is 1.01 GB.</li>
+<li>Total traffic is 1.82 GB and 0.54 ms per decoded token.</li>
+<li>The cache is 55 percent of bytes read.</li>
+</ul>
+<p>With FiD-Light z equal to 8:</p>
+<ul>
+<li>Decoder-visible states fall from 10,240 to 320.</li>
+<li>The cache falls to 0.031 GB.</li>
+<li>Total traffic is 0.84 GB and 0.25 ms per token.</li>
+<li>Decode is 2.2 times faster. The 19.0 ms encoder pass is unchanged. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">FiD latency</mtext><mo>=</mo><mn>19.0</mn><mo>+</mo><mn>0.54</mn><mi>L</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext><mo>,</mo><mspace width="2.0em"></mspace><mtext mathvariant="normal">FiD-Light latency</mtext><mo>=</mo><mn>19.0</mn><mo>+</mo><mn>0.25</mn><mi>L</mi><mspace width="0.222em"></mspace><mtext mathvariant="normal">ms</mtext></mrow><annotation encoding="application/x-tex">\text{FiD latency} = 19.0 + 0.54L\ \text{ms}, \qquad \text{FiD-Light latency} = 19.0 + 0.25L\ \text{ms}</annotation></semantics></math></li>
+<li>At L equal to 3, the result is 20.6 ms against 19.8 ms, a 4 percent saving.</li>
+<li>At L equal to 256, the result is 157.5 ms against 83.0 ms, a 1.9 times speedup.</li>
+<li>Independent encoding is the default once k exceeds roughly five.</li>
+<li>Turn on FiD-Light when answers are long or decoder-visible states exceed about 8,200 and the cache overtakes decoder weights.</li>
+<li>Set z from a total state budget. Latency depends on m equal to kz.</li>
+<li>At k equal to 5, encoder time falls to 2.4 ms and cache size to 0.13 GB.</li>
+<li>Source pointing adds a passage identifier to the answer and supplies provenance.</li>
+</ul>
+<h3 id="283-relevance-is-discrete-gumbel-noise-and-the-differentiability-fix">28.3 Relevance is discrete: Gumbel noise and the differentiability fix</h3>
+<h4 id="what-2">What</h4>
+<p>The retriever produces scores and a binary selection vector. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub><mo>=</mo><msub><mi>E</mi><mi>η</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>⊤</mi></msup><mi>E</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>z</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><msup><mo stretchy="false" form="postfix">}</mo><mi>N</mi></msup><mo>,</mo><mspace width="2.0em"></mspace><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>z</mi><mi>i</mi></msub><mo>=</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">s_i = E_{\eta}(q)^\top E(d_i), \qquad z \in \{0,1\}^N, \qquad \sum_i z_i = k</annotation></semantics></math> The generator loss is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mi>−</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>θ</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>q</mi><mo>,</mo><mo stretchy="false" form="prefix">{</mo><msub><mi>d</mi><mi>i</mi></msub><mo>:</mo><msub><mi>z</mi><mi>i</mi></msub><mo>=</mo><mn>1</mn><mo stretchy="false" form="postfix">}</mo><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\mathcal{L} = -\log p_{\theta}\left(y\mid q,\{d_i:z_i=1\}\right)</annotation></semantics></math> The desired chain contains the broken factor: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mi>ℒ</mi></mrow><mrow><mi>∂</mi><mi>η</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mi>∂</mi><mi>ℒ</mi></mrow><mrow><mi>∂</mi><mi>z</mi></mrow></mfrac><mfrac><mrow><mi>∂</mi><mi>z</mi></mrow><mrow><mi>∂</mi><mi>s</mi></mrow></mfrac><mfrac><mrow><mi>∂</mi><mi>s</mi></mrow><mrow><mi>∂</mi><mi>η</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{\partial \mathcal{L}}{\partial \eta} = \frac{\partial \mathcal{L}}{\partial z} \frac{\partial z}{\partial s} \frac{\partial s}{\partial \eta}</annotation></semantics></math> Hard top-k makes the middle Jacobian zero almost everywhere and undefined at score ties. Three routes remain.</p>
+<ol type="1">
+<li>Marginalize passage-conditioned output distributions, as RAG-Sequence and REPLUG do.</li>
+<li>Use the REINFORCE score-function estimator.</li>
+<li>Reparameterize selection with Gumbel noise and a soft or straight-through relaxation. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>p</mi><mi>η</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo>∣</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mi>θ</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>q</mi><mo>,</mo><msub><mi>d</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p(y\mid q)=\sum_i p_{\eta}(d_i\mid q)p_{\theta}(y\mid q,d_i)</annotation></semantics></math> The REINFORCE estimator is: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>∇</mi><mi>η</mi></msub><mi>𝔼</mi><mo stretchy="false" form="prefix">[</mo><mi>R</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><mi>𝔼</mi><mrow><mo stretchy="true" form="prefix">[</mo><mo stretchy="false" form="prefix">(</mo><mi>R</mi><mo>−</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>∇</mi><mi>η</mi></msub><mi>log</mi><msub><mi>p</mi><mi>η</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\nabla_{\eta}\mathbb{E}[R] = \mathbb{E}\left[(R-b)\nabla_{\eta}\log p_{\eta}(z)\right]</annotation></semantics></math> For a categorical sample:</li>
+</ol>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>p</mi><mi>η</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>∂</mi><msub><mi>s</mi><mi>i</mi></msub></mrow></mfrac><mo>=</mo><mn>𝟙</mn><mo stretchy="false" form="prefix">[</mo><mi>i</mi><mo>=</mo><mi>z</mi><mo stretchy="false" form="postfix">]</mo><mo>−</mo><msub><mi>p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\frac{\partial\log p_{\eta}(z)}{\partial s_i} = \mathbb{1}[i=z]-p_i</annotation></semantics></math> Draw standard Gumbel noise from uniforms.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>i</mi></msub><mo>∼</mo><mo>Uniform</mo><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>g</mi><mi>i</mi></msub><mo>=</mo><mi>−</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>u</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">u_i \sim \mathop{\text{Uniform}}(0,1), \qquad g_i = -\log(-\log u_i)</annotation></semantics></math> Its cumulative distribution is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><msup><mi>e</mi><mrow><mi>−</mi><mi>g</mi></mrow></msup><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">F(g)=\exp(-e^{-g})</annotation></semantics></math> The maximum of shifted Gumbels remains Gumbel.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><munder><mi>max</mi><mi>j</mi></munder><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo>+</mo><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>≤</mo><mi>t</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><msub><mi>s</mi><mi>j</mi></msub></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\Pr\left[\max_j(s_j+g_j)\le t\right] = \exp\left(-e^{-t}\sum_j e^{s_j}\right)</annotation></semantics></math> Therefore:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi>Pr</mi><mo>&#8289;</mo></mrow><mrow><mo stretchy="true" form="prefix">[</mo><munder><mo>arg max</mo><mi>j</mi></munder><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo>+</mo><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>i</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mfrac><msup><mi>e</mi><msub><mi>s</mi><mi>i</mi></msub></msup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><msub><mi>s</mi><mi>j</mi></msub></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\Pr\left[\mathop{\text{arg max}}\limits_j(s_j+g_j)=i\right] = \frac{e^{s_i}}{\sum_j e^{s_j}}</annotation></semantics></math> The temperature relaxation and its Jacobian are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo>+</mo><msub><mi>g</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>τ</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mi>j</mi></munder><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>j</mi></msub><mo>+</mo><msub><mi>g</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>τ</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mfrac><mrow><mi>∂</mi><msub><mi>y</mi><mi>i</mi></msub></mrow><mrow><mi>∂</mi><msub><mi>s</mi><mi>j</mi></msub></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mi>τ</mi></mfrac><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>δ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>−</mo><msub><mi>y</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y_i = \frac{\exp((s_i+g_i)/\tau)} {\sum_j\exp((s_j+g_j)/\tau)}, \qquad \frac{\partial y_i}{\partial s_j} = \frac{1}{\tau}y_i(\delta_{ij}-y_j)</annotation></semantics></math> Gumbel-top-k samples k documents without replacement. Straight-through Gumbel uses hard real text forward and substitutes the soft y in backward.</p>
+<h4 id="why-2">Why</h4>
+<p>Gumbel noise moves randomness into an external source that does not depend on retriever parameters. The soft relaxation gives a full per-candidate derivative. REINFORCE gives one scalar reward for the sampled choice. For a 30-token answer at 2.0 nats per token, that REINFORCE scalar is near 60 and varies across examples. Straight-through preserves the serving input. A weighted blend of passage embeddings is not a passage.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Hard top-1 always selects the same passage until a rank crossing. Other candidates receive zero generator feedback. Plain soft passage blends create a train-serve mismatch. Starting with a very small temperature produces nearly zero gradients on typical draws and huge gradients near ties. Gaussian perturbations produce the Thurstone probit model. For more than two candidates, its categorical choice probabilities have no closed form. It is not an exact softmax sampler.</p>
+<h4 id="cost-and-complexity-2">Cost and complexity</h4>
+<p>The five-logit example is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>2.0</mn><mo>,</mo><mn>1.5</mn><mo>,</mo><mn>0.5</mn><mo>,</mo><mn>0.0</mn><mo>,</mo><mi>−</mi><mn>1.0</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mo>softmax</mo><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.496</mn><mo>,</mo><mn>0.301</mn><mo>,</mo><mn>0.111</mn><mo>,</mo><mn>0.067</mn><mo>,</mo><mn>0.025</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s=(2.0,1.5,0.5,0.0,-1.0), \qquad \mathop{\text{softmax}}(s) =(0.496,0.301,0.111,0.067,0.025)</annotation></semantics></math> The Gumbel draw uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.42</mn><mo>,</mo><mn>0.91</mn><mo>,</mo><mn>0.77</mn><mo>,</mo><mn>0.15</mn><mo>,</mo><mn>0.63</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>g</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.142</mn><mo>,</mo><mn>2.361</mn><mo>,</mo><mn>1.342</mn><mo>,</mo><mi>−</mi><mn>0.640</mn><mo>,</mo><mn>0.772</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>s</mi><mo>+</mo><mi>g</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>2.142</mn><mo>,</mo><mn>3.861</mn><mo>,</mo><mn>1.842</mn><mo>,</mo><mi>−</mi><mn>0.640</mn><mo>,</mo><mi>−</mi><mn>0.228</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">u=(0.42,0.91,0.77,0.15,0.63), \qquad g=(0.142,2.361,1.342,-0.640,0.772), \qquad s+g=(2.142,3.861,1.842,-0.640,-0.228)</annotation></semantics></math> The draw selects passage 2. Gumbel-top-2 selects passages 2 and 1. At tau equal to 1:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.134</mn><mo>,</mo><mn>0.746</mn><mo>,</mo><mn>0.099</mn><mo>,</mo><mn>0.008</mn><mo>,</mo><mn>0.013</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y=(0.134,0.746,0.099,0.008,0.013)</annotation></semantics></math> The selected Jacobian entry is 0.189. At tau equal to 0.1, the first weight is 3.4 times 10 to the -8 and the typical Jacobian is 3.4 times 10 to the -7. The typical gradient is 5.6 times 10 to the 5 smaller than at tau equal to 1. At a near tie, the same expression reaches 2.5. This seven-order spread motivates annealing from 1.0 downward. Because the difference of two independent standard Gumbels is Logistic, a 90 percent Bradley-Terry pairwise preference requires:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>0.9</mn><mi>/</mi><mn>0.1</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mn>9</mn><mo>=</mo><mn>2.197</mn></mrow><annotation encoding="application/x-tex">\Delta=\log(0.9/0.1)=\log 9=2.197</annotation></semantics></math> The current 0.5 margin gives 0.622 preference, so training must add 1.697 logits. With k equal to 8, 200-token passages, a 50-token query, and a 30-token answer:</p>
+<ul>
+<li>Marginalization processes 2,000 prompt tokens and eight decoder passes.</li>
+<li>Straight-through top-1 processes 250 prompt tokens and one pass.</li>
+<li>The compute reduction is 8 times and the gradient is biased.</li>
+</ul>
+<p>Use marginalization by default when generator weights are available and k is at most 8. Use straight-through Gumbel when k is large or the choice is a hard commitment. Track score entropy every few hundred steps. Entropy near zero means noise has stopped mattering. Entropy near log N means the retriever does not discriminate. If top-1 softmax mass already exceeds 0.9, ask whether relaxation is still useful.</p>
+<h3 id="284-replug-black-box-llm-ensembled-output-distributions">28.4 REPLUG: black-box LLM, ensembled output distributions</h3>
+<h4 id="what-3">What</h4>
+<p>REPLUG scores each document with a frozen dual encoder, keeps top k, and normalizes the scores.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mrow><mi>cos</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>E</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>E</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s(d,x)=\cos(E(d),E(x))</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>τ</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><msup><mi>d</mi><mo>′</mo></msup><mo>∈</mo><msup><mi>D</mi><mo>′</mo></msup></mrow></munder><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><msup><mi>d</mi><mo>′</mo></msup><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>τ</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">\lambda(d,x)= \frac{\exp(s(d,x)/\tau)} {\sum_{d&#39;\in D&#39;}\exp(s(d&#39;,x)/\tau)}</annotation></semantics></math> The frozen LLM runs once per document. REPLUG mixes next-token distributions.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>t</mi></msub><mo>∣</mo><mi>x</mi><mo>,</mo><msub><mi>y</mi><mrow><mn>1</mn><mo>:</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>d</mi><mo>∈</mo><msup><mi>D</mi><mo>′</mo></msup></mrow></munder><mi>λ</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>y</mi><mi>t</mi></msub><mo>∣</mo><mi>d</mi><mo>∘</mo><mi>x</mi><mo>,</mo><msub><mi>y</mi><mrow><mn>1</mn><mo>:</mo><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p(y_t\mid x,y_{1:t-1}) = \sum_{d\in D&#39;}\lambda(d,x) p_{\mathrm{LM}}(y_t\mid d\circ x,y_{1:t-1})</annotation></semantics></math> Take the argmax token, append it, and repeat.</p>
+<h4 id="why-3">Why</h4>
+<p>The interface needs only next-token probabilities. It does not need weights, hidden states, or gradients. Each pass sees one document, so context per pass falls from query plus k documents to query plus one document. Each source contribution is the explicit product of its retrieval weight and token probability. REPLUG is the black-box alternative when FiD cannot modify decoder cross-attention.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>Concatenation discards explicit retriever weights at the prompt boundary and lets position compete with relevance. At tau equal to 1, narrow cosine scores make the mixture nearly uniform. A frozen reader cannot learn to ignore misleading context. The mixture rewards agreement. Nine wrong passages can outvote one correct passage. REPLUG never drops a document during an answer. Every retrieved chunk votes on every generated token with the same lambda.</p>
+<h4 id="cost-and-complexity-3">Cost and complexity</h4>
+<p>For scores 0.82, 0.79, and eight scores at 0.70:</p>
+<ul>
+<li>At tau equal to 1, the gold weight is 0.110. Each low-scoring passage gets 0.098.</li>
+<li>At tau equal to 0.05, the weights are 0.440 for gold, 0.241 for the distractor, and 0.040 for each remaining passage.</li>
+<li>If gold assigns 0.85 to the correct token and the rest assign 0.10, the mixture assigns 0.183 at tau equal to 1 and 0.430 at tau equal to 0.05.</li>
+<li>Top-1 conditioning assigns 0.85.</li>
+<li>If nine non-gold passages assign 0.90 to one wrong token, the wrong token gets 0.504 against 0.430 for the correct token.</li>
+<li>Flipping that vote needs gold weight above 0.514, which requires tau below roughly 0.04. The mixture then approaches retriever top-1.</li>
+</ul>
+<p>The metered example uses ten 128-token chunks, a 100-token question and instruction, a 64-token answer, 3 dollars per million input tokens, and 15 dollars per million output tokens.</p>
+<ul>
+<li>Concatenation uses 1,380 prefill tokens and costs 0.00510 dollars per query.</li>
+<li>In-process REPLUG prefills 2,280 tokens, 1.65 times concatenation, and performs 640 decode passes.</li>
+<li>Batching can hide wall time while compute rises tenfold.</li>
+<li>An endpoint without persistent KV cache receives 166,080 input tokens and costs 0.508 dollars per query.</li>
+<li>That endpoint bill is just under 100 times concatenation.</li>
+<li>Prefix caching can return the input bill near the in-process case.</li>
+</ul>
+<p>Reported results are 6.3 percent improvement for Generative Pre-trained Transformer 3 (GPT-3) 175B language modeling and 5.1 percent for Codex five-shot Massive Multitask Language Understanding (MMLU). The economics depend on output length. Ten passages over a 500-token answer mean 5,000 forward passes for the same scale of gain. Tune tau before k. The source defaults to enough concentration for the top document to hold at least one third of mass, near tau equal to 0.05 for these dense-retriever cosines. Use token-level ensembling for outputs under about 50 tokens. Above that, use lambda to select one document and generate once. Verify that the endpoint returns usable log-probabilities. A text-only endpoint cannot implement the mixture. A truncated top-m probability list mixes only a renormalized vocabulary fragment.</p>
+<h3 id="285-lm-supervised-retrieval-kl-between-retriever-and-lm-preference">28.5 LM-supervised retrieval: KL between retriever and LM preference</h3>
+<h4 id="what-4">What</h4>
+<p>For query x, gold answer y, and retrieved passage i, ask the frozen generator for:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>u</mi><mi>i</mi></msub><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><msub><mi>P</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><msub><mi>d</mi><mi>i</mi></msub><mo>⊕</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">u_i=\log P_{\mathrm{LM}}(y\mid d_i\oplus x)</annotation></semantics></math> Normalize utility over the retrieved set with LM temperature beta.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo>∣</mo><mi>x</mi><mo>,</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>u</mi><mi>i</mi></msub><mi>/</mi><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>u</mi><mi>j</mi></msub><mi>/</mi><mi>β</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">Q_{\mathrm{LM}}(d_i\mid x,y) = \frac{\exp(u_i/\beta)} {\sum_{j=1}^{k}\exp(u_j/\beta)}</annotation></semantics></math> Normalize retriever scores on the same support with temperature gamma.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>R</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>i</mi></msub><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>γ</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>k</mi></munderover><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mi>s</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>d</mi><mi>j</mi></msub><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>γ</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">P_R(d_i\mid x) = \frac{\exp(s(d_i,x)/\gamma)} {\sum_{j=1}^{k}\exp(s(d_j,x)/\gamma)}</annotation></semantics></math> Train only the retriever by minimizing:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><mo>KL</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>P</mi><mi>R</mi></msub><mo stretchy="false" form="postfix">‖</mo><msub><mi>Q</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\mathcal{L} = \mathop{\text{KL}}(P_R\Vert Q_{\mathrm{LM}})</annotation></semantics></math> Let:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ℓ</mi><mi>i</mi></msub><mo>=</mo><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>P</mi><mi>i</mi></msub><mi>/</mi><msub><mi>Q</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\ell_i=\log(P_i/Q_i)</annotation></semantics></math> Then:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mi>ℒ</mi></mrow><mrow><mi>∂</mi><msub><mi>z</mi><mi>j</mi></msub></mrow></mfrac><mo>=</mo><msub><mi>P</mi><mi>j</mi></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>ℓ</mi><mi>j</mi></msub><mo>−</mo><mi>ℒ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\frac{\partial\mathcal{L}}{\partial z_j} = P_j(\ell_j-\mathcal{L})</annotation></semantics></math> The updates sum to zero.</p>
+<h4 id="why-4">Why</h4>
+<p>Human labels estimate passage relevance. The deployed pipeline needs passages that raise this generator's probability of the gold answer. Raw answer log-likelihoods are not comparable across queries because answer lengths differ. Within-query softmax keeps only relative preference. The generator acts as a consumer-teacher through k frozen forward passes. It can be a log-probability API.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>Human relevance can reward a lexicalization the generator misreads, a topical distractor, or a correct passage that adds nothing beyond parametric knowledge. Pointwise regression on raw utility learns answer length as much as passage quality. Both distributions live only on retrieved top k. This assumes that set carries essentially all probability mass. A passage outside top k gets exactly zero. Every gradient is scaled by current retriever mass. The KL direction demotes a harmful high-mass passage more strongly than it promotes a useful low-mass passage. This method can reorder what the retriever found. It cannot teach discovery from outside the support.</p>
+<h4 id="cost-and-complexity-4">Cost and complexity</h4>
+<p>The worked example uses k equal to 4, gamma equal to 0.1, and cosine scores:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.82</mn><mo>,</mo><mn>0.79</mn><mo>,</mo><mn>0.71</mn><mo>,</mo><mn>0.68</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>z</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>8.2</mn><mo>,</mo><mn>7.9</mn><mo>,</mo><mn>7.1</mn><mo>,</mo><mn>6.8</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>P</mi><mi>R</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.431</mn><mo>,</mo><mn>0.319</mn><mo>,</mo><mn>0.143</mn><mo>,</mo><mn>0.106</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s=(0.82,0.79,0.71,0.68), \qquad z=(8.2,7.9,7.1,6.8), \qquad P_R=(0.431,0.319,0.143,0.106)</annotation></semantics></math> The frozen generator returns:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>2.30</mn><mo>,</mo><mi>−</mi><mn>1.20</mn><mo>,</mo><mi>−</mi><mn>0.92</mn><mo>,</mo><mi>−</mi><mn>3.00</mn><mo stretchy="false" form="postfix">)</mo><mspace width="0.222em"></mspace><mtext mathvariant="normal">nats</mtext></mrow><annotation encoding="application/x-tex">u=(-2.30,-1.20,-0.92,-3.00)\ \text{nats}</annotation></semantics></math> At beta equal to 1:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.118</mn><mo>,</mo><mn>0.354</mn><mo>,</mo><mn>0.469</mn><mo>,</mo><mn>0.059</mn><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>ℒ</mi><mo>=</mo><mn>0.418</mn><mspace width="0.222em"></mspace><mtext mathvariant="normal">nats</mtext></mrow><annotation encoding="application/x-tex">Q_{\mathrm{LM}}=(0.118,0.354,0.469,0.059), \qquad \mathcal{L}=0.418\ \text{nats}</annotation></semantics></math> The negative gradients used as score updates are:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>−</mi><mn>0.378</mn><mo>,</mo><mi>+</mi><mn>0.167</mn><mo>,</mo><mi>+</mi><mn>0.230</mn><mo>,</mo><mi>−</mi><mn>0.019</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(-0.378,+0.167,+0.230,-0.019)</annotation></semantics></math> They sum to zero. The largest move demotes passage 1. Passage 3 receives the largest promotion. At beta equal to 0.5:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Q</mi><mrow><mi mathvariant="normal">L</mi><mi mathvariant="normal">M</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.038</mn><mo>,</mo><mn>0.346</mn><mo>,</mo><mn>0.606</mn><mo>,</mo><mn>0.009</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">Q_{\mathrm{LM}}=(0.038,0.346,0.606,0.009)</annotation></semantics></math> The divergence rises to 1.067 nats, 2.6 times the prior value. Passage 4's update magnitude rises from 0.019 to 0.144, a factor of 7.6. Treat beta like a second learning rate. Start at 1. Lower it only when answers have a fixed short form and the generator ordering is trusted. A batch of 64 queries with k equal to 20 needs 1,280 generator passes and 327,680 tokens.</p>
+<ul>
+<li>A frozen 7B generator costs 4.6 times 10 to the 15 FLOPs.</li>
+<li>A 110 million parameter contrastive bi-encoder batch costs 4.5 times 10 to the 13 FLOPs including backward.</li>
+<li>LM supervision costs roughly 100 times more per step.</li>
+</ul>
+<p>Use it as a short fine-tune over a pretrained retriever. The source examples are the LM-supervised REPLUG variant over Contriever and Retrieval-Augmented Dual Instruction Tuning (RA-DIT) over an existing dense retriever. Choose k for the distractors that need demotion. Default to serving top k or 20, whichever is larger. Pair misses with hard-negative mining. For several generators, keep a shared label-supervised document tower and index. Fork only the query encoder per generator, or move model-specific adaptation into a reranker.</p>
+<h3 id="286-index-refresh-during-training">28.6 Index refresh during training</h3>
+<h4 id="what-5">What</h4>
+<p>A dense retriever scores:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>E</mi><mi>Q</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>θ</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>⊤</mi></msup><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo>,</mo><mi>θ</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s(q,p)=E_Q(q,\theta)^\top E_P(p,\theta)</annotation></semantics></math> The index stores passage embeddings evaluated at one theta version. After an encoder update, current queries can be compared with stale document vectors. The old index also returns an old candidate set. Refresh the corpus every K steps. Let Cr be one full re-encode, Cs one training step, and rho builder throughput relative to trainer throughput.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>r</mi></msub><mo>=</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>P</mi><mi>L</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C_r=N(2PL)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>s</mi></msub><mo>=</mo><mn>1</mn><mo>,</mo><mn>280</mn><mo stretchy="false" form="prefix">(</mo><mn>6</mn><mi>P</mi><mi>L</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">C_s=1{,}280(6PL)</annotation></semantics></math> For the source constants:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>r</mi></msub><mo>=</mo><mn>5.632</mn><mo>×</mo><msup><mn>10</mn><mn>17</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>C</mi><mi>s</mi></msub><mo>=</mo><mn>2.163</mn><mo>×</mo><msup><mn>10</mn><mn>14</mn></msup><mo>,</mo><mspace width="2.0em"></mspace><mfrac><msub><mi>C</mi><mi>r</mi></msub><msub><mi>C</mi><mi>s</mi></msub></mfrac><mo>=</mo><mn>2</mn><mo>,</mo><mn>604</mn></mrow><annotation encoding="application/x-tex">C_r=5.632\times10^{17}, \qquad C_s=2.163\times10^{14}, \qquad \frac{C_r}{C_s}=2{,}604</annotation></semantics></math> Builder capacity requires:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>≥</mo><msub><mi>K</mi><mi>min</mi></msub><mo>=</mo><mfrac><msub><mi>C</mi><mi>r</mi></msub><mrow><mi>ρ</mi><msub><mi>C</mi><mi>s</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">K\ge K_{\min}=\frac{C_r}{\rho C_s}</annotation></semantics></math> Inline refresh has compute multiplier:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mfrac><msub><mi>C</mi><mi>r</mi></msub><mrow><mi>K</mi><msub><mi>C</mi><mi>s</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">1+\frac{C_r}{KC_s}</annotation></semantics></math> An asynchronous builder snapshots at step jK and publishes at step jK plus K. The live index remains between K and 2K steps behind.</p>
+<h4 id="why-5">Why</h4>
+<p>Score inconsistency compares a current query representation with obsolete document geometry. Stale candidates weaken the hard negatives. Approximate Nearest Neighbor Negative Contrastive Estimation (ANCE) calls this negative stagnation. The loss can keep falling because the negatives get easier while held-out recall stays flat.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>A tied Contriever encoder cannot move only on the query side. Any update invalidates document vectors. Refreshing only after training means the entire run used obsolete candidates. Partial refresh favors yesterday's most retrieved documents and calcifies ranking. Skipping the final re-encode ships final query weights against an index up to 2K steps behind.</p>
+<h4 id="cost-and-complexity-5">Cost and complexity</h4>
+<p>The base calculation uses ten million chunks, width 768, BERT-base, length 256, batch 64, and k equal to 20.</p>
+<ul>
+<li>One refresh equals 2,604 bare contrastive steps.</li>
+<li>HNSW rebuilding costs 6.4 times 10 to the 10 distance evaluations and 9.83 times 10 to the 13 FLOPs.</li>
+<li>The graph build is 5,730 times lower in FLOPs than corpus encoding.</li>
+<li>Training-time refresh is primarily an encoder problem.</li>
+</ul>
+<p>The 25,000-step example uses eight A100 accelerators at 312 TFLOP per second each and 40 percent model FLOP utilization.</p>
+<ul>
+<li>Sustained throughput is 9.98 times 10 to the 14 FLOPs per second.</li>
+<li>One step is 0.217 seconds.</li>
+<li>One full re-encode is 564 seconds, or 9.4 minutes.</li>
+<li>Refresh-free training is 5,425 seconds, or 1.51 hours.</li>
+<li>Refresh every step makes the run 164 days.</li>
+<li>Inline K equal to 500 gives multiplier 6.21, 9.4 hours total, and 84 percent of GPU-hours in encoding.</li>
+<li>Its staleness bound is 1,000 steps.</li>
+<li>With an equal-throughput asynchronous builder, minimum K is 2,604.</li>
+<li>Hardware doubles while trainer wall time stays fixed.</li>
+<li>Staleness reaches 5,208 steps, or 21 percent of the run.</li>
+</ul>
+<p>Flat GPU search over ten million 768-dimensional 16-bit floating-point (fp16) vectors needs 15.4 GB.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>64</mn><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mi>d</mi><mi>N</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>9.83</mn><mo>×</mo><msup><mn>10</mn><mn>11</mn></msup><mspace width="0.222em"></mspace><mtext mathvariant="normal">FLOPs</mtext></mrow><annotation encoding="application/x-tex">64(2dN)=9.83\times10^{11}\ \text{FLOPs}</annotation></semantics></math> That search costs 0.45 percent of Cs. Add a frozen 7B teacher and Cs rises to 5.59 times 10 to the 15 FLOPs.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><msub><mi>C</mi><mi>r</mi></msub><msub><mi>C</mi><mi>s</mi></msub></mfrac><mo>=</mo><mn>101</mn></mrow><annotation encoding="application/x-tex">\frac{C_r}{C_s}=101</annotation></semantics></math> A 500-step inline cadence then costs:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mfrac><mn>101</mn><mn>500</mn></mfrac><mo>=</mo><mn>1.20</mn></mrow><annotation encoding="application/x-tex">1+\frac{101}{500}=1.20</annotation></semantics></math> The teacher makes refresh 26 times cheaper in relative terms. A staleness probe re-encodes 100,000 chunks and checks 1,000 queries.</p>
+<ul>
+<li>It costs 5.632 times 10 to the 15 FLOPs, or 26 steps.</li>
+<li>That is 1.0 percent of a 2,604-step interval.</li>
+<li>The source proposes a top-k overlap floor of 0.8.</li>
+</ul>
+<p>REALM's 500-step cadence would need builder ratio at least 5.2 under the bare-step constants. Use inline refresh when Cr divided by Cs falls below about 100. The source says these constants also cover a training datastore below 400,000 chunks. Train with flat exact search where it fits. Build the approximate index once at the end. Always perform one final full re-encode.</p>
+<h3 id="287-realm-and-retrieval-inside-pre-training">28.7 REALM and retrieval inside pre-training</h3>
+<h4 id="what-6">What</h4>
+<p>REALM treats a retrieved block as a latent variable in masked-token prediction.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>z</mi><mo>∈</mo><msub><mi>Z</mi><mi>k</mi></msub></mrow></munder><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>z</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><msup><mi>z</mi><mo>′</mo></msup><mo>∈</mo><msub><mi>Z</mi><mi>k</mi></msub></mrow></munder><mrow><mi>exp</mi><mo>&#8289;</mo></mrow><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><msup><mi>z</mi><mo>′</mo></msup><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>,</mo><mspace width="2.0em"></mspace><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mo>Emb</mo><mi>q</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>x</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>⊤</mi></msup><msub><mo>Emb</mo><mi>d</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">p(y\mid x) = \sum_{z\in Z_k}p(y\mid z,x)p(z\mid x), \qquad p(z\mid x) = \frac{\exp f(x,z)} {\sum_{z&#39;\in Z_k}\exp f(x,z&#39;)}, \qquad f(x,z)=\mathop{\text{Emb}}_q(x)^\top\mathop{\text{Emb}}_d(z)</annotation></semantics></math> The retriever-score gradient is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>∂</mi><mrow><mi>log</mi><mo>&#8289;</mo></mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>∂</mi><mi>f</mi><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>z</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>z</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo><mrow><mo stretchy="true" form="prefix">[</mo><mfrac><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>z</mi><mo>,</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>y</mi><mo>∣</mo><mi>x</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\frac{\partial\log p(y\mid x)}{\partial f(x,z)} = p(z\mid x) \left[ \frac{p(y\mid z,x)}{p(y\mid x)}-1 \right]</annotation></semantics></math> A block receives a positive update exactly when it makes the masked token more likely than the retrieved-set marginal. The coefficients sum to zero. The top-k supplies its own negatives.</p>
+<h4 id="why-6">Why</h4>
+<p>No relevance labels enter the objective. The masked-token likelihood teaches both retriever encoders. Salient span masking creates signal. Named entities, dates, and numbers are more likely than locally predictable tokens to require retrieved evidence. The source's figure masks the state in "Mount Rainier is in the state of [MASK]".</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>If all retrieved blocks are equally useless, each bracket becomes zero. A random retriever can cold-start with no signal. Masking a locally predictable token also makes the bracket collapse. Uniform random masking is therefore one of the most damaging reported REALM ablations. Moving the document encoder invalidates all block vectors. REALM rebuilds its MIPS index asynchronously every 500 steps and accepts staleness. The objective teaches "helps predict this masked token," not general human relevance. It can silently mismatch counter-argument retrieval or claim verification.</p>
+<h4 id="cost-and-complexity-6">Cost and complexity</h4>
+<p>The figure uses three blocks.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Block</th>
+<th style="text-align: right;">Retriever mass</th>
+<th style="text-align: right;">Masked-token probability</th>
+<th style="text-align: right;">Gradient coefficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rainier geography</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">+0.41</td>
+</tr>
+<tr>
+<td>Cascade Range</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">-0.23</td>
+</tr>
+<tr>
+<td>Rainier etymology</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">-0.18</td>
+</tr>
+</tbody>
+</table></div>
+<p>The marginal masked-token probability is 0.34. The coefficients sum to zero. The worked run uses two 110 million parameter encoders, 13.3 million blocks of 288 tokens, masked inputs of 288 tokens, k equal to 8, batch 512, 200,000 steps, refresh every 500 steps, and 10 to the 14 FLOPs per second.</p>
+<ul>
+<li>Closed-book pre-training costs 1.90 times 10 to the 11 FLOPs per example.</li>
+<li>Retrieval processes 4,608 tokens per example and costs 3.04 times 10 to the 12 FLOPs, a 16 times increase before refresh.</li>
+<li>A full corpus re-encode covers 3.83 times 10 to the 9 tokens and costs 8.43 times 10 to the 17 FLOPs.</li>
+<li>One re-encode takes 2.3 hours on the stated accelerator.</li>
+<li>The trainer uses 7.79 times 10 to the 17 FLOPs in a 500-step window.</li>
+<li>Refresh is 1.08 times the training work and 52 percent of total compute.</li>
+<li>Total per window is 1.62 times 10 to the 18 FLOPs, against 4.87 times 10 to the 16 closed-book.</li>
+<li>Retrieval inside pre-training costs 33 times closed-book pre-training.</li>
+<li>Across 400 windows, the run costs 1,800 device-hours against 54.</li>
+<li>On 64 accelerators, this is about 28 hours against under one.</li>
+</ul>
+<p>The reported REALM result is 40.4 exact match on Natural Questions Open (NQ-Open) with roughly 330 million parameters. The closed-book T5-11B baseline scores 34.5 and is about 33 times larger. RETRO freezes the retriever, uses a 2 trillion token database, and reports performance comparable to GPT-3 on the Pile with 25 times fewer parameters. That database is 522 times this corpus. Refreshing every 500 steps would cost 565 times trainer compute per window and roughly half a million device-hours across the run. Default to attaching retrieval after pre-training. RAFT-style distractor training can usually approximate the robustness for a few GPU-days. Deviate when the knowledge is absent from public checkpoints and the pre-training run is owned. Warm-start with ICT or an existing Contriever or Dense Passage Retrieval (DPR) checkpoint. Train both encoders while corpus rebuilds remain minutes. Freeze the document encoder when one full re-encode approaches the compute between refreshes, near 10 to the 10 corpus tokens in the source arithmetic.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-281">Figure 28.1</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th></th>
+<th>Retriever frozen</th>
+<th>Retriever trained</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generator frozen</td>
+<td>I. Prompt-only RAG. Off-the-shelf embedder plus hosted generator. Levers are chunk size, k, reranking, and prompt layout. Gradient steps are 0.</td>
+<td>II. Train the retriever. REPLUG and LM-supervised retrieval. Signal is generator likelihood of the gold answer. Obligation is full re-encode.</td>
+</tr>
+<tr>
+<td>Generator trained</td>
+<td>III. Train the generator. FiD, FiD-Light, and RAFT. Signal is backpropagated answer loss. The index never moves.</td>
+<td>IV. Joint. REALM and Atlas. Signal is coupled. Obligations are both bills, refresh, and owning theta.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Below the frozen-retriever column: index built once. The corpus grows on its own schedule. Below the trained-retriever column: crossing this boundary re-encodes all N vectors. It costs 9.3 times 10 to the 4 gradient steps, or 27.6 minutes at N equal to 10 to the 7.</p>
+<blockquote>
+<p>Figure 28.1: The costly boundary in the grid is vertical, not horizontal: moving down trains more parameters, but moving right invalidates every vector already in the datastore and forces a full re-encode that dwarfs the gradient step which caused it.</p>
+</blockquote>
+<h3 id="figure-282">Figure 28.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph A[&quot;(a) Fusion-in-Decoder: n = 256 encoder vectors per passage&quot;]
+    A1[&quot;query + passage 1&quot;] --&gt; AE1[&quot;encoder&quot;]
+    A2[&quot;query + passage 2&quot;] --&gt; AE2[&quot;encoder&quot;]
+    A40[&quot;query + passage 40&quot;] --&gt; AE40[&quot;encoder&quot;]
+    AE1 --&gt; AS1[&quot;256 states&quot;]
+    AE2 --&gt; AS2[&quot;256 states&quot;]
+    AE40 --&gt; AS40[&quot;256 states&quot;]
+    AS1 --&gt; AD[&quot;decoder cross-attention over m states&quot;]
+    AS2 --&gt; AD
+    AS40 --&gt; AD
+  end
+  subgraph B[&quot;(b) FiD-Light: first z = 8 vectors kept&quot;]
+    B1[&quot;query + passage 1&quot;] --&gt; BE1[&quot;encoder reads 256&quot;]
+    B2[&quot;query + passage 2&quot;] --&gt; BE2[&quot;encoder reads 256&quot;]
+    B40[&quot;query + passage 40&quot;] --&gt; BE40[&quot;encoder reads 256&quot;]
+    BE1 --&gt; BS1[&quot;8 kept states&quot;]
+    BE2 --&gt; BS2[&quot;8 kept states&quot;]
+    BE40 --&gt; BS40[&quot;8 kept states&quot;]
+    BS1 --&gt; BD[&quot;decoder cross-attention over m states&quot;]
+    BS2 --&gt; BD
+    BS40 --&gt; BD
+  end</code></pre></details></figure>
+<p>FiD has m equal to 40 times 256, or 10,240 states, a 1.01 GB cache, and 0.54 ms bandwidth per token. FiD-Light has m equal to 40 times 8, or 320 states, a 0.031 GB cache, and 0.25 ms bandwidth per token. The encoder pass is unchanged.</p>
+<blockquote>
+<p>Figure 28.2: Fusion-in-Decoder confines the quadratic attention term inside each passage and pays for the passage count once, in the decoder's cross-attention. FiD-Light shrinks that decoder-side cost by a factor of n/z without touching the encoder, which is why its end-to-end benefit scales with how many tokens you generate.</p>
+</blockquote>
+<h3 id="figure-283">Figure 28.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph H[&quot;1. Hard top-k&quot;]
+    H1[&quot;scores s1 through sN&quot;] --&gt; H2[&quot;hard top-k&quot;] --&gt; H3[&quot;k passages&quot;] --&gt; H4[&quot;generator&quot;] --&gt; H5[&quot;loss&quot;]
+    H5 -. backward stops because selection derivative is zero .-&gt; H2
+  end
+  subgraph G[&quot;2. Gumbel-Softmax&quot;]
+    GN[&quot;uniform draws transformed to Gumbel noise&quot;] -.-&gt; G2[&quot;add noise, then softmax at tau&quot;]
+    G1[&quot;scores s1 through sN&quot;] --&gt; G2 --&gt; G3[&quot;weights y, a blend&quot;] --&gt; G4[&quot;generator&quot;] --&gt; G5[&quot;loss&quot;]
+    G5 -. soft Jacobian flows .-&gt; G1
+  end
+  subgraph ST[&quot;3. Straight-through Gumbel top-k&quot;]
+    SN[&quot;Gumbel noise&quot;] -.-&gt; S2[&quot;add noise, then hard top-k&quot;]
+    S1[&quot;scores s1 through sN&quot;] --&gt; S2 --&gt; S3[&quot;k real passages&quot;] --&gt; S4[&quot;generator&quot;] --&gt; S5[&quot;loss&quot;]
+    S5 -. backward substitutes soft y for hard z .-&gt; S1
+  end</code></pre></details></figure>
+<blockquote>
+<p>Figure 28.3: Only the operator in the second column changes. The Gumbel noise enters as an external source (dashed) that carries no gradient, and straight-through recovers row 1's forward pass while keeping row 2's backward pass.</p>
+</blockquote>
+<h3 id="figure-284">Figure 28.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  Q[&quot;query x plus decoded prefix&quot;] --&gt; R[&quot;frozen retriever scores documents, keeps top k, and assigns lambda&quot;]
+  R --&gt; D1[&quot;document 1 and lambda 1&quot;]
+  R --&gt; D2[&quot;document 2 and lambda 2&quot;]
+  R --&gt; DK[&quot;document k and lambda k&quot;]
+  D1 --&gt; L1[&quot;frozen LLM pass 1&quot;]
+  D2 --&gt; L2[&quot;frozen LLM pass 2&quot;]
+  DK --&gt; LK[&quot;frozen LLM pass k&quot;]
+  L1 --&gt; P1[&quot;next-token distribution 1&quot;]
+  L2 --&gt; P2[&quot;next-token distribution 2&quot;]
+  LK --&gt; PK[&quot;next-token distribution k&quot;]
+  P1 --&gt; M[&quot;lambda-weighted vocabulary mixture&quot;]
+  P2 --&gt; M
+  PK --&gt; M
+  M --&gt; A[&quot;argmax token, append, repeat&quot;]
+  A -. k passes for the next token .-&gt; Q</code></pre></details></figure>
+<p>Naive RAG fuses at one concatenated prompt. REPLUG fuses at the vocabulary distribution.</p>
+<blockquote>
+<p>Figure 28.4: Each retrieved document reaches the answer through its own forward pass and its own softmax weight, so a document's influence on the generated token is bounded by its retrieval score rather than by where attention happens to land in a concatenated prompt.</p>
+</blockquote>
+<h3 id="figure-285">Figure 28.5</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Passage</th>
+<th style="text-align: right;">Retriever PR</th>
+<th style="text-align: right;">LM preference QLM</th>
+<th style="text-align: right;">Score update</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>d1</td>
+<td style="text-align: right;">0.431</td>
+<td style="text-align: right;">0.118</td>
+<td style="text-align: right;">-0.38</td>
+</tr>
+<tr>
+<td>d2</td>
+<td style="text-align: right;">0.319</td>
+<td style="text-align: right;">0.354</td>
+<td style="text-align: right;">+0.17</td>
+</tr>
+<tr>
+<td>d3</td>
+<td style="text-align: right;">0.143</td>
+<td style="text-align: right;">0.469</td>
+<td style="text-align: right;">+0.23</td>
+</tr>
+<tr>
+<td>d4</td>
+<td style="text-align: right;">0.106</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">-0.02</td>
+</tr>
+<tr>
+<td>d5 and below</td>
+<td style="text-align: right;">Outside top k</td>
+<td style="text-align: right;">Outside top k</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table></div>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  Q[&quot;query x and gold y&quot;] --&gt; E[&quot;trainable retriever E&quot;]
+  E --&gt; T[&quot;top-k passages&quot;]
+  T --&gt; PR[&quot;retriever distribution PR from scores and gamma&quot;]
+  T --&gt; LM[&quot;frozen LM, k parallel passes&quot;]
+  LM --&gt; QLM[&quot;LM preference QLM from utilities and beta&quot;]
+  PR --&gt; KL[&quot;KL from PR to QLM&quot;]
+  QLM --&gt; KL
+  KL -. differentiate retriever only .-&gt; E
+  E -. reencode index every K steps if document encoder moves .-&gt; E</code></pre></details></figure>
+<blockquote>
+<p>Figure 28.5: LM supervision moves probability mass between retrieved passages rather than assigning labels to them. In (a) the retriever's favorite d1 is pushed down hardest (-0.38) because the frozen generator answers worst from it, while d3 - the passage the generator actually answers best from - is pulled up by +0.23. d4 moves by -0.02 because the update on every passage is scaled by the mass PR already gave it, and d5 and below, outside the top k, are in neither distribution and receive exactly zero. The updates sum to zero. In (b) only the retriever is differentiated: the language model appears solely as k parallel forward passes returning ui = log PLM (y | di ⊕ x), which is why the method runs against a log-probability API.</p>
+</blockquote>
+<h3 id="figure-286">Figure 28.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  T0[&quot;step 0, trainer uses current weights&quot;] --&gt; TK[&quot;step K&quot;] --&gt; T2K[&quot;step 2K&quot;] --&gt; T3K[&quot;step 3K&quot;] --&gt; T4K[&quot;step 4K&quot;]
+  T0 -. snapshot .-&gt; B0[&quot;builder encodes theta 0&quot;]
+  TK -. snapshot .-&gt; BK[&quot;builder encodes theta K&quot;]
+  T2K -. snapshot .-&gt; B2K[&quot;builder encodes theta 2K&quot;]
+  IM1[&quot;0 to K: live index I(theta -K)&quot;] --&gt; I0[&quot;K to 2K: live index I(theta 0)&quot;] --&gt; IK[&quot;2K to 3K: live index I(theta K)&quot;] --&gt; I2K[&quot;3K to 4K: live index I(theta 2K)&quot;]
+  B0 --&gt; I0
+  BK --&gt; IK
+  B2K --&gt; I2K</code></pre></details></figure>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">Refresh interval K</th>
+<th style="text-align: right;">Inline compute multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">6.21 times</td>
+</tr>
+<tr>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">3.604 times</td>
+</tr>
+<tr>
+<td style="text-align: right;">2,604</td>
+<td style="text-align: right;">2.00 times</td>
+</tr>
+<tr>
+<td style="text-align: right;">10,000</td>
+<td style="text-align: right;">1.2604 times</td>
+</tr>
+<tr>
+<td style="text-align: right;">100,000</td>
+<td style="text-align: right;">1.02604 times</td>
+</tr>
+</tbody>
+</table></div>
+<p>At equal builder throughput, Kmin is 2,604. Live-index staleness rises from K to just below 2K within each interval.</p>
+<blockquote>
+<p>Figure 28.6: The refresh interval is bounded from below by builder capacity and from above by the staleness you will tolerate. In (a) the builder snapshots θjK and publishes one interval later, so the index in use is always between K and 2K steps behind the weights being trained - asynchronous refresh bounds staleness rather than removing it. In (b) the curve is the compute multiplier for refreshing in line, 1+Cr /(KCs ) with Cr /Cs = 2,604. Left of the dashed line an equal-throughput asynchronous builder cannot keep up, so you are either paying the curve or falling further behind every interval.</p>
+</blockquote>
+<h3 id="figure-287">Figure 28.7</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  X[&quot;masked input: Mount Rainier is in the state of [MASK], target y&quot;] --&gt; S[&quot;score every block with query and document encoders, then softmax over top k&quot;]
+  S --&gt; Z1[&quot;Rainier geography: retrieval 0.50, token 0.62, coefficient +0.41&quot;]
+  S --&gt; Z2[&quot;Cascade Range: retrieval 0.30, token 0.08, coefficient -0.23&quot;]
+  S --&gt; Z3[&quot;Rainier etymology: retrieval 0.20, token 0.03, coefficient -0.18&quot;]
+  Z1 --&gt; M[&quot;marginal masked-token probability 0.34&quot;]
+  Z2 --&gt; M
+  Z3 --&gt; M
+  M --&gt; C[&quot;comparative coefficients sum to zero&quot;]
+  C --&gt; U[&quot;update both query and document encoders&quot;]
+  U --&gt; R[&quot;all 13.3 million block vectors are stale, rebuild MIPS index&quot;]
+  R -. new index returns to scoring .-&gt; S</code></pre></details></figure>
+<blockquote>
+<p>Figure 28.7: The retriever's only teacher is the masked-token probability: a block is pushed up exactly when it beats the marginal, the coefficients sum to zero so the signal is purely comparative, and the dashed return path is the index the training step just invalidated.</p>
+</blockquote>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw two boxes called retriever phi and generator theta.</li>
+<li>Put a hard top-k gate between them.</li>
+<li>Make a two-by-two freeze and train matrix.</li>
+<li>Draw the oracle-context arrow directly into the generator.</li>
+<li>Under top-k, draw three exits: marginalization, REINFORCE, and Gumbel.</li>
+<li>Add FiD as separate passage encoders feeding one decoder.</li>
+<li>Add REPLUG as k frozen LLM branches feeding one token mixture.</li>
+<li>Add PR and QLM distributions meeting at KL.</li>
+<li>Draw a separate index builder with snapshot, encode, publish, and a K-to-2K staleness band.</li>
+<li>Close with the REALM loop from masked token to both encoders and back through index rebuild.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start by separating retriever and generator parameters, then use the gold-passage ablation to choose a quadrant. Hard top-k blocks answer gradients, so retriever learning needs marginalization, REINFORCE, Gumbel relaxation, or generator-derived supervision. FiD trains the reader while preserving cross-passage fusion. REPLUG handles a frozen API by mixing k next-token distributions, but pays k passes per token. LM supervision matches retriever mass to generator preference only inside top k. If document weights move, every stored vector gets a version, so refresh capacity and staleness set K. REALM closes this loop during masked pre-training, at a 33-fold worked cost.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="probe-1-our-rag-assistant-is-wrong-should-we-fine-tune-the-llm">Probe 1: "Our RAG assistant is wrong. Should we fine-tune the LLM?"</h3>
+<p>Answer: Run the oracle-context ablation before choosing a freeze-train quadrant. A gold-context gain points to retrieval, while a flat result points to generation. Use query-only retriever tuning to avoid rebuilds when possible, or use FiD for multi-passage reader training and expect FiD-Light to save only 4 percent at three output tokens but 1.9 times at 256.</p>
+<h3 id="probe-2-why-did-joint-training-move-the-generator-but-not-the-retriever">Probe 2: "Why did joint training move the generator but not the retriever?"</h3>
+<p>Answer: Hard top-k is piecewise constant, so its Jacobian is zero almost everywhere. The three exits are exact k-pass marginalization, unbiased but high-variance REINFORCE, and a dense Gumbel relaxation with straight-through hard text. Gumbel perturb-and-argmax is exact, while bias comes from finite tau and straight-through substitution, so anneal from 1.0 instead of starting at 0.1.</p>
+<h3 id="probe-3-the-generator-is-a-black-box-api-how-do-we-use-ten-passages">Probe 3: "The generator is a black-box API. How do we use ten passages?"</h3>
+<p>Answer: Use REPLUG only when the endpoint exposes next-token probabilities, then mix one frozen LLM distribution per passage with normalized retriever weights. Tune tau before k and price every generated token, since the uncached 64-token example costs 0.508 dollars instead of 0.00510 dollars. If weights become available, prefer FiD's one decoder pass unless explicit per-source contribution is a requirement.</p>
+<h3 id="probe-4-recall-improved-answer-accuracy-did-not-and-the-index-is-old-what-do-you-train">Probe 4: "Recall improved, answer accuracy did not, and the index is old. What do you train?"</h3>
+<p>Answer: Build QLM from frozen-generator answer likelihoods and minimize KL from PR to QLM, while stating that current PR scales the gradient and support outside top k stays at zero. Pair this mainly demotive signal with hard negatives and version every document index. Choose K between the builder-capacity floor from Cr divided by rho Cs and the measured-overlap ceiling, accept K-to-2K asynchronous staleness, and complete a final full re-encode.</p>
+<h3 id="probe-5-realm-uses-no-relevance-labels-what-trains-its-retriever-and-why-not-scale-it-to-two-trillion-tokens">Probe 5: "REALM uses no relevance labels. What trains its retriever, and why not scale it to two trillion tokens?"</h3>
+<p>Answer: REALM rewards a block only when its masked-token probability beats the retrieved-set marginal, and the zero-sum coefficients give no signal when top k is uniformly useless. Warm-start the retriever, mask salient spans, and rebuild MIPS because both encoders move. The 13.3 million block run costs 33 times closed-book training with 52 percent in refresh, while a 522 times larger corpus makes refresh about 565 times trainer work and motivates RETRO's frozen retriever.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Exact source values and interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening case</td>
+<td>71 percent accuracy, 85 percent target, 8 weeks, 4 accelerators, 10 million chunks, and only 2 points gained after 6 weeks without stage attribution</td>
+</tr>
+<tr>
+<td>Model sizes</td>
+<td>110 million retriever parameters, 8 billion generator parameters, ratio 72.7</td>
+</tr>
+<tr>
+<td>Basic refresh</td>
+<td>1,656 seconds or 27.6 minutes, 17.9 ms per retriever step, 93,000-step ratio</td>
+</tr>
+<tr>
+<td>Quadrant runs</td>
+<td>50,000 pairs, 5 passages, 1,344 tokens, 3 generator epochs, 10,000 retriever steps, K equal to 1,000, generator 7.9 hours, retriever 4.65 hours, 98.9 percent refresh share, 94 times estimate miss, joint 12.6 hours</td>
+</tr>
+<tr>
+<td>Corpus-scale contrast</td>
+<td>100,000-chunk refresh 16.6 seconds, five percent weekly update 83 seconds, model update 27.6 minutes</td>
+</tr>
+<tr>
+<td>FiD shape</td>
+<td>40 passages, 256 tokens per passage, 10,240 concatenated states, and a 3-word opening answer</td>
+</tr>
+<tr>
+<td>FiD attention</td>
+<td>Concatenated 10.3 TFLOP, independent FiD 0.26 TFLOP</td>
+</tr>
+<tr>
+<td>FiD encoder time</td>
+<td>Concatenated 48.5 ms, FiD 19.0 ms</td>
+</tr>
+<tr>
+<td>FiD decoder traffic</td>
+<td>1.01 GB KV cache, 1.82 GB total, 0.54 ms per token</td>
+</tr>
+<tr>
+<td>FiD-Light</td>
+<td>z equal to 8, 320 states, 0.031 GB cache, 0.25 ms per token, 2.2 times faster decode</td>
+</tr>
+<tr>
+<td>FiD-Light by answer length</td>
+<td>L equal to 3 saves 4 percent, L equal to 256 gains 1.9 times</td>
+</tr>
+<tr>
+<td>FiD cache crossover</td>
+<td>About 8,200 decoder-visible states</td>
+</tr>
+<tr>
+<td>Gumbel base and Jacobians</td>
+<td>Exponential-logit sum 14.887, top mass 0.496, other mass 0.504, tau 1 Jacobian 0.189, tau 0.1 typical Jacobian 0.00000034</td>
+</tr>
+<tr>
+<td>Gumbel variance</td>
+<td>Typical gradient shrinks 560,000 times, near-tie Jacobian reaches 2.5</td>
+</tr>
+<tr>
+<td>Pairwise calibration</td>
+<td>A 90 percent preference needs 2.197 logits</td>
+</tr>
+<tr>
+<td>Gumbel compute</td>
+<td>k equal to 8 marginalization uses 2,000 prompt tokens and 8 passes, while top-1 uses 250 tokens and 1 pass, an 8 times reduction</td>
+</tr>
+<tr>
+<td>REPLUG weights</td>
+<td>Gold mass is 0.110 at tau 1 and 0.440 at tau 0.05</td>
+</tr>
+<tr>
+<td>REPLUG correct-token mass</td>
+<td>0.183 at tau 1 and 0.430 at tau 0.05</td>
+</tr>
+<tr>
+<td>REPLUG wrong majority</td>
+<td>Wrong token 0.504, reversal needs gold above 0.514 and tau below roughly 0.04</td>
+</tr>
+<tr>
+<td>REPLUG bills</td>
+<td>Concatenation 0.00510 dollars, endpoint input 166,080 tokens or 0.4982 dollars, endpoint output 0.0096 dollars, total 0.508 dollars, just under 100 times</td>
+</tr>
+<tr>
+<td>REPLUG reported gains</td>
+<td>GPT-3 language modeling 6.3 percent, Codex five-shot MMLU 5.1 percent</td>
+</tr>
+<tr>
+<td>LM-supervised PR</td>
+<td>Opening fine-tune uses 40,000 labeled pairs over 6 weeks and raises recall@5 by 4 points with exact match flat. Worked PR is 0.431, 0.319, 0.143, 0.106</td>
+</tr>
+<tr>
+<td>LM-supervised QLM and KL</td>
+<td>At beta 1, QLM is 0.118, 0.354, 0.469, 0.059 and KL is 0.418 nats</td>
+</tr>
+<tr>
+<td>LM-supervised updates</td>
+<td>-0.378, +0.167, +0.230, -0.019, summing to zero</td>
+</tr>
+<tr>
+<td>Lower-beta target</td>
+<td>At beta 0.5, QLM is 0.038, 0.346, 0.606, 0.009 and KL is 1.067 nats, 2.6 times higher</td>
+</tr>
+<tr>
+<td>Lower-beta d4 effect</td>
+<td>Update magnitude increases 7.6 times</td>
+</tr>
+<tr>
+<td>LM-supervision cost</td>
+<td>Batch 64 at k equal to 20 gives 1,280 passes and 327,680 tokens, costing 4.6 times 10 to the 15 FLOPs against 4.5 times 10 to the 13, or roughly 100 times a contrastive step</td>
+</tr>
+<tr>
+<td>Bare refresh economics</td>
+<td>Opening in-batch accuracy exceeds 90 percent while recall@20 stalls at step 3,000, query weights reach step 40,000, and document vectors predate step 1. Cr divided by Cs is 2,604 steps, while HNSW graph FLOPs are 5,730 times lower</td>
+</tr>
+<tr>
+<td>Refresh extremes</td>
+<td>25,000 steps on 8 A100s at 312 TFLOP per second and 40 percent model FLOP utilization (MFU) give 0.217 seconds per step and 564 seconds per refresh, a 1.51-hour refresh-free run, or 164 days with refresh every step</td>
+</tr>
+<tr>
+<td>Inline K 500</td>
+<td>6.21 times multiplier, 9.4 hours, 84 percent encoding share</td>
+</tr>
+<tr>
+<td>Asynchronous builder</td>
+<td>Minimum K 2,604, maximum staleness 5,208 steps or 21 percent of the run</td>
+</tr>
+<tr>
+<td>Flat search</td>
+<td>15.4 GB of vectors, 0.45 percent of Cs</td>
+</tr>
+<tr>
+<td>Teacher-adjusted refresh</td>
+<td>Ratio 101 steps, K 500 inline multiplier 1.20</td>
+</tr>
+<tr>
+<td>Staleness trigger</td>
+<td>Probe costs 26 steps, proposed top-k overlap floor 0.8</td>
+</tr>
+<tr>
+<td>REALM setup</td>
+<td>Opening system uses a frozen 70B generator. Worked run uses two 110 million parameter encoders, 13.3 million blocks, 288-token inputs, k equal to 8, batch 512, 200,000 steps, and refresh every 500 steps</td>
+</tr>
+<tr>
+<td>REALM reader cost</td>
+<td>1.90 times 10 to the 11 closed-book FLOPs against 3.04 times 10 to the 12 retrieval FLOPs per example, or 16 times before refresh</td>
+</tr>
+<tr>
+<td>REALM total cost</td>
+<td>Refresh is 52 percent, total is 33 times closed-book</td>
+</tr>
+<tr>
+<td>REALM device-hours</td>
+<td>1,800 with retrieval, 54 closed-book</td>
+</tr>
+<tr>
+<td>REALM result</td>
+<td>40.4 NQ-Open exact match, versus 34.5 for T5-11B at about 33 times the parameters</td>
+</tr>
+<tr>
+<td>RETRO scale</td>
+<td>2 trillion tokens, 522 times the REALM worked corpus</td>
+</tr>
+<tr>
+<td>RETRO refresh counterfactual</td>
+<td>565 times trainer compute per window</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/27_fine_tuning_the_generator.html"><small>Previous</small>Chapter 27. Fine-tuning the Generator</a><a href="../chapters/29_bootstrapping_training_data.html"><small>Next</small>Chapter 29. Bootstrapping Training Data</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

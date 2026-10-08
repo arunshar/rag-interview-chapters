@@ -1,0 +1,1410 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 39. Multimodal RAG | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/39_multimodal_rag.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group" open><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html" aria-current="page">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part XII. Scaling, Advanced Variants, and Design Drills</p><h1>Chapter 39. Multimodal RAG</h1><p class="chapter-meta">53 min estimated reading · Unit 48 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how Retrieval-Augmented Generation (RAG) systems index, retrieve, fuse, generate from, attribute, and evaluate text, images, tables, audio, and video.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Multimodal indexing has three generations. Captions are cheap and lossy, shared embeddings remove the caption bottleneck, and page-as-image indexes preserve layout at a large storage cost.</li>
+<li>One vector per page is cheap but forgets local detail. Patch and token vectors preserve detail but require a cheap first-stage shortlist before late interaction.</li>
+<li>Contrastive Language-Image Pre-training (CLIP) learns whole-image and whole-caption agreement. It does not supervise entity position, demographic fairness, or composition.</li>
+<li>Every modality and source collection needs its own admission threshold because score distributions are not comparable.</li>
+<li>Raising top-k cannot fix a pooled vector that confuses a detailed crop with a same-scene distractor. A multimodal reranker must inspect local content.</li>
+<li>Score fusion is cheap and blind to cross-modal agreement. Attention fusion sees agreement at quadratic cost. Unified fusion moves work and information loss to ingestion.</li>
+<li>Video needs shot-level key frames and an explicit time representation. Non-text evidence needs localization before verification. A benchmark measures multimodal RAG only when retrieval over a real corpus is in the loop and search, synthesis, and modality contribution are evaluated separately.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a museum archive that stores reports, photographs, diagrams, recordings, and films. The archivist is the retriever. The curator is the large language model (LLM). The catalog is the index. A visitor's question is the query.</p>
+<p>The first cataloger writes one caption for every non-text object. This is fast, but the caption may say "rising chart" and omit the axis value the visitor asks for. Once omitted, that detail does not exist in the catalog.</p>
+<p>The second cataloger gives text and images compatible catalog codes. A visitor can now search a photograph with words without translating the photograph into a caption. One code still summarizes the whole object, so fine print can disappear.</p>
+<p>The third cataloger stores a code for every tile on a page. Exact cells, labels, and spatial relationships survive. The archive bill grows because one page now owns hundreds or about a thousand codes instead of one.</p>
+<p>The archivist also learns that catalog codes have habits. A whole-image model often remembers the first named object, inherits skew from old captions, and confuses "mug left of laptop" with the reverse. A specialist checks multi-object and spatial questions after the cheap search.</p>
+<p>Each gallery uses a different measuring stick. A score that is strong for text may be impossible for an image model to reach. The archivist sets separate admission bars for text, images, video, and each distinct collection.</p>
+<p>Some visitors ask about a tiny inscription inside a broad courtyard photograph. The global catalog code captures courtyard gist and dilutes the inscription. The archivist retrieves a short list, then a conservator examines all local tiles and restores the correct order.</p>
+<p>The curator must combine evidence across galleries. Adding normalized scores is cheap but cannot tell whether a diagram agrees with a manual. Letting all tokens and image patches attend to each other catches agreement, but the compute grows with the square of the combined sequence.</p>
+<p>Films add time. The archive stores one key frame per shot rather than every near-duplicate frame. For questions such as "what happened before approval," it rotates event codes by time so ordering changes similarity instead of living in a disconnected timestamp column.</p>
+<p>The curator's citation must point to the exact evidence. An image needs a bounding box, a video needs a time span, and a table needs a cell range. The archive first localizes the region, then verifies the claim against that region.</p>
+<p>Finally, the museum tests itself. A fake test hands the curator one image and asks a question. A real archive test makes the archivist search many mixed documents before the curator answers. The task shape, not the word RAG on the test label, decides what the score proves.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multimodal RAG</td>
+<td>Retrieval and generation over more than text</td>
+<td>The representation choice determines what can ever be found</td>
+</tr>
+<tr>
+<td>Modality</td>
+<td>A data type such as text, image, table, audio, video, or geolocation</td>
+<td>Each modality has different encoders, scores, and evidence regions</td>
+</tr>
+<tr>
+<td>Generation 1.0, extract-and-caption</td>
+<td>Convert non-text content into prose, then index that prose</td>
+<td>It reuses text infrastructure but permanently drops unmentioned detail</td>
+</tr>
+<tr>
+<td>Optical character recognition (OCR)</td>
+<td>Conversion of pixels into machine-readable text</td>
+<td>It helps text pipelines but can lose layout and visual structure</td>
+</tr>
+<tr>
+<td>Vision-language model (VLM)</td>
+<td>A model that reads images and language</td>
+<td>Generation 1.0 uses it to caption non-text content</td>
+</tr>
+<tr>
+<td>Generation 2.0, shared embedding space</td>
+<td>Encode text and images directly into compatible vectors</td>
+<td>It removes natural-language captioning as an information bottleneck</td>
+</tr>
+<tr>
+<td>Contrastive Language-Image Pre-training (CLIP)</td>
+<td>A joint image and text encoder trained on paired examples</td>
+<td>It is the reference shared-space encoder and source of several biases</td>
+</tr>
+<tr>
+<td>Generation 3.0, document-as-image</td>
+<td>Encode a full rasterized page without extracting regions first</td>
+<td>It preserves layout and exact visual detail at high storage cost</td>
+</tr>
+<tr>
+<td>ColPali</td>
+<td>A page-image retriever with patch embeddings and late interaction</td>
+<td>It is the reference Generation 3.0 design</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td>A text retriever that keeps token vectors for late interaction</td>
+<td>It supplies the structural analogy for patch-level page retrieval</td>
+</tr>
+<tr>
+<td>Caption bottleneck</td>
+<td>Loss caused by forcing rich content through one prose summary</td>
+<td>A reranker cannot recover a fact the caption omitted</td>
+</tr>
+<tr>
+<td>Mean pooling</td>
+<td>Averaging local vectors into one global vector</td>
+<td>It lowers cost and dilutes localized detail</td>
+</tr>
+<tr>
+<td>Patch embedding</td>
+<td>A vector for one image tile</td>
+<td>Patch vectors preserve local page information</td>
+</tr>
+<tr>
+<td>Multi-vector index</td>
+<td>An index storing many vectors per document</td>
+<td>It improves granularity and increases memory and comparisons</td>
+</tr>
+<tr>
+<td>Late interaction</td>
+<td>Query-time matching between query tokens and document patches or tokens</td>
+<td>It recovers fine detail after cheap first-stage retrieval</td>
+</tr>
+<tr>
+<td>Pivot language</td>
+<td>One language used as an intermediate translation target</td>
+<td>It is the multilingual analogue of a caption bottleneck</td>
+</tr>
+<tr>
+<td>LaBSE</td>
+<td>The named shared multilingual embedding model</td>
+<td>It illustrates retrieval without translating through English</td>
+</tr>
+<tr>
+<td>32-bit floating point (fp32)</td>
+<td>Four-byte storage per numeric dimension</td>
+<td>The Generation 1.0 and 3.0 storage examples use it</td>
+</tr>
+<tr>
+<td>16-bit floating point (fp16)</td>
+<td>Two-byte storage per numeric dimension</td>
+<td>The encoder comparison uses it to price storage</td>
+</tr>
+<tr>
+<td>Joint encoding</td>
+<td>One shared training space and usually one vector per item</td>
+<td>It makes retrieval cheap and caps local resolution</td>
+</tr>
+<tr>
+<td>Decoupled-and-aligned encoding</td>
+<td>Separate patch and token encoders followed by alignment</td>
+<td>It preserves local detail and moves cost to query comparisons</td>
+</tr>
+<tr>
+<td>Global average pooling</td>
+<td>A global summary built by averaging local features</td>
+<td>Fine print can vanish even when the page is retrieved</td>
+</tr>
+<tr>
+<td>Class token</td>
+<td>One learned summary token used by some vision backbones</td>
+<td>It creates the same one-vector bottleneck as pooling</td>
+</tr>
+<tr>
+<td>AlignMamba</td>
+<td>The named architecture using local and global cross-modal alignment</td>
+<td>It illustrates two-scale alignment after separate encoding</td>
+</tr>
+<tr>
+<td>Approximate nearest neighbor (ANN) search</td>
+<td>Fast retrieval of nearby vectors</td>
+<td>A pooled first stage narrows the corpus before expensive matching</td>
+</tr>
+<tr>
+<td>Residual compression</td>
+<td>Storage of compact differences from shared vector structure</td>
+<td>ColBERTv2 uses it to reduce multi-vector index size</td>
+</tr>
+<tr>
+<td>Product quantization</td>
+<td>Compression of vectors into compact codebook references</td>
+<td>It cuts storage without first reducing patch resolution</td>
+</tr>
+<tr>
+<td>Contrastive learning</td>
+<td>Training matched pairs close and mismatched pairs apart</td>
+<td>CLIP's supervision stops at whole-image and whole-caption agreement</td>
+</tr>
+<tr>
+<td>L2 normalization</td>
+<td>Scaling a vector to unit length</td>
+<td>It makes dot products behave as cosine similarity</td>
+</tr>
+<tr>
+<td>Temperature τ</td>
+<td>A learned scale applied to contrastive similarities</td>
+<td>It controls how sharply CLIP separates pairs</td>
+</tr>
+<tr>
+<td>InfoNCE</td>
+<td>The contrastive objective used in both retrieval directions</td>
+<td>It supervises diagonal batch pairs and treats off-diagonal pairs as negatives</td>
+</tr>
+<tr>
+<td>Position bias</td>
+<td>Overweighting the entity named first in a caption</td>
+<td>Multi-entity retrieval can favor caption order over the query</td>
+</tr>
+<tr>
+<td>Demographic bias</td>
+<td>Unequal behavior associated with protected attributes</td>
+<td>Scraped image-caption correlations can skew retrieval and classification</td>
+</tr>
+<tr>
+<td>Gist-only bias</td>
+<td>Capturing broad topic while missing word order and binding</td>
+<td>Spatial and compositional queries need a second stage</td>
+</tr>
+<tr>
+<td>ARO benchmark</td>
+<td>The cited test of attributes, relations, and order</td>
+<td>It exposes CLIP's weak compositional sensitivity</td>
+</tr>
+<tr>
+<td>Entity-aware reranking</td>
+<td>Rescoring named objects or local patches separately</td>
+<td>It corrects whole-vector bias only where queries need it</td>
+</tr>
+<tr>
+<td>Per-modality threshold</td>
+<td>A separate admission cutoff θ_m for each data type</td>
+<td>One global threshold can disable images and leak text noise at once</td>
+</tr>
+<tr>
+<td>Per-collection threshold</td>
+<td>A cutoff indexed by modality and source collection</td>
+<td>Caption quality and collection size change score distributions</td>
+</tr>
+<tr>
+<td>Modality gap</td>
+<td>Geometric separation between modality populations</td>
+<td>Raw cosine values are not universally comparable</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>A text dense-retrieval encoder used for comparison</td>
+<td>Its score distribution need not match CLIP's</td>
+</tr>
+<tr>
+<td>Sentence-BERT (SBERT)</td>
+<td>A sentence embedding model used on the text axis</td>
+<td>Figure 39.4 contrasts its scores with CLIP image scores</td>
+</tr>
+<tr>
+<td>Quality floor</td>
+<td>A threshold below which the system shows nothing</td>
+<td>The best bad result can be worse than an empty modality slot</td>
+</tr>
+<tr>
+<td>Indicator function</td>
+<td>A function returning 1 when a condition holds and 0 otherwise</td>
+<td>It expresses modality admission compactly</td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>Choosing a threshold from labeled score distributions</td>
+<td>It is offline work, not model retraining</td>
+</tr>
+<tr>
+<td>Multi-granularity noise correspondence</td>
+<td>Confusion caused by comparing a part-level query with whole-unit vectors</td>
+<td>It separates ranking failure from retrieval coverage failure</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Independent query and candidate encoders compared by one score</td>
+<td>It retrieves cheaply and cannot jointly inspect local structure</td>
+</tr>
+<tr>
+<td>Cosine margin</td>
+<td>Difference between candidate similarity scores</td>
+<td>A margin inside the measured noise floor is unstable</td>
+</tr>
+<tr>
+<td>Multimodal large language model (MLLM)</td>
+<td>A generator or reranker that jointly reads language and visual input</td>
+<td>It can inspect patches that pooling averaged away</td>
+</tr>
+<tr>
+<td>Pointwise reranker</td>
+<td>A model scoring each query-candidate pair separately</td>
+<td>It needs labeled pairs and can serve cheaply after training</td>
+</tr>
+<tr>
+<td>Listwise reranker</td>
+<td>A model ranking several candidates in one context</td>
+<td>Prompting enables a zero-shot first implementation</td>
+</tr>
+<tr>
+<td>DELG</td>
+<td>The cited landmark method using global retrieval then local verification</td>
+<td>It shows the same two-stage principle predates multimodal RAG</td>
+</tr>
+<tr>
+<td>Fusion</td>
+<td>Reconciliation of evidence from different modalities</td>
+<td>Different modality encoders were not trained to emit comparable evidence</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>A lexical text retrieval score</td>
+<td>Its unbounded scale cannot be added raw to CLIP cosine</td>
+</tr>
+<tr>
+<td>Automatic speech recognition (ASR)</td>
+<td>Speech-to-text processing</td>
+<td>Video retrieval may combine transcript and visual signals</td>
+</tr>
+<tr>
+<td>Score fusion</td>
+<td>Combination of normalized scalar modality scores</td>
+<td>It costs O(1) per candidate and cannot test cross-modal agreement</td>
+</tr>
+<tr>
+<td>Attention fusion</td>
+<td>Joint attention over tokens and patches</td>
+<td>It detects agreement at O(N^2) sequence cost</td>
+</tr>
+<tr>
+<td>Self-attention</td>
+<td>Interaction within one modality</td>
+<td>It connects text-to-text or patch-to-patch content</td>
+</tr>
+<tr>
+<td>Cross-attention</td>
+<td>Interaction across modalities</td>
+<td>It checks whether image and text evidence agree</td>
+</tr>
+<tr>
+<td>Retrieval attention</td>
+<td>Interaction between the query and candidates</td>
+<td>It answers relevance rather than cross-modal consistency</td>
+</tr>
+<tr>
+<td>Unified or projection fusion</td>
+<td>Conversion of modalities into one representation before query-time fusion</td>
+<td>It moves expense and information loss to ingestion</td>
+</tr>
+<tr>
+<td>Multilayer perceptron (MLP)</td>
+<td>A feed-forward network used after projection</td>
+<td>It cheaply fuses standardized representations</td>
+</tr>
+<tr>
+<td>Vision Transformer (ViT)</td>
+<td>An image encoder operating on patches</td>
+<td>Its patch count drives attention cost and detail dilution</td>
+</tr>
+<tr>
+<td>Classification (CLS) token</td>
+<td>A ViT summary token</td>
+<td>It adds one token to the image sequence in the cost example</td>
+</tr>
+<tr>
+<td>Key frame</td>
+<td>A representative frame at a scene boundary</td>
+<td>One key frame per shot removes near-duplicate video vectors</td>
+</tr>
+<tr>
+<td>Shot</td>
+<td>One continuous take bounded by cuts</td>
+<td>It is the default video retrieval unit</td>
+</tr>
+<tr>
+<td>Scene</td>
+<td>A higher narrative or procedural unit made from shots</td>
+<td>It supports coarser retrieval for broad queries</td>
+</tr>
+<tr>
+<td>Moving Picture Experts Group (MPEG) codec</td>
+<td>A video compression family using reference frames and deltas</td>
+<td>It supplies the key-frame analogy for retrieval</td>
+</tr>
+<tr>
+<td>H.264</td>
+<td>A video codec with inter-frame compression</td>
+<td>It illustrates why nearby frames are redundant</td>
+</tr>
+<tr>
+<td>Order invariance</td>
+<td>A representation that is unchanged when event order swaps</td>
+<td>Mean pooling cannot answer before or after questions</td>
+</tr>
+<tr>
+<td>Rotary Position Embedding (RoPE)</td>
+<td>Rotation of vectors by position-dependent angles</td>
+<td>Applied to time, it makes elapsed offset affect similarity</td>
+</tr>
+<tr>
+<td>Rotation frequency ω</td>
+<td>The angle rate used to encode time</td>
+<td>A bad period can alias distant events</td>
+</tr>
+<tr>
+<td>Correlation</td>
+<td>Events that tend to co-occur</td>
+<td>A pooled vector can preserve this relation</td>
+</tr>
+<tr>
+<td>Causality or sequence</td>
+<td>Events whose order changes the answer</td>
+<td>A rotated representation is needed for relative-time queries</td>
+</tr>
+<tr>
+<td>Attributable to Identified Sources (AIS)</td>
+<td>A text attribution test based on interpretable claims and source support</td>
+<td>Non-text evidence needs an added localization gate</td>
+</tr>
+<tr>
+<td>Portable Document Format (PDF)</td>
+<td>A fixed-layout document format named in the benchmark comparison</td>
+<td>Page length and mixed content make corpus shape part of benchmark fit</td>
+</tr>
+<tr>
+<td>Question answering (QA)</td>
+<td>Producing an answer to a supplied question</td>
+<td>A QA set tests retrieval only when the system must first search a corpus</td>
+</tr>
+<tr>
+<td>Localization gate</td>
+<td>Identification of the exact source region behind a claim</td>
+<td>It turns a broad citation into checkable evidence</td>
+</tr>
+<tr>
+<td>Verification gate</td>
+<td>A modality-specific test that the localized region supports the claim</td>
+<td>Localization alone can be confidently wrong</td>
+</tr>
+<tr>
+<td>Bounding box</td>
+<td>A rectangular image region</td>
+<td>It localizes visual evidence</td>
+</tr>
+<tr>
+<td>Timestamp span</td>
+<td>A start and end time in audio or video</td>
+<td>It localizes temporal evidence</td>
+</tr>
+<tr>
+<td>Cell range</td>
+<td>A set of table cells</td>
+<td>It localizes structured evidence</td>
+</tr>
+<tr>
+<td>MMed-RAG</td>
+<td>The cited clinical system retrieving chest X-rays</td>
+<td>It shows localized medical claims are a production shape, not a hypothetical</td>
+</tr>
+<tr>
+<td>Multimodal-in, text-out</td>
+<td>A model that reads mixed input and emits only text</td>
+<td>Its localization is an attention or prompting byproduct</td>
+</tr>
+<tr>
+<td>InstructBLIP</td>
+<td>The cited multimodal-in, text-out model</td>
+<td>It represents indirect localization</td>
+</tr>
+<tr>
+<td>Querying Transformer (Q-Former)</td>
+<td>Learnable queries extracting visual features for an LLM</td>
+<td>Its attention can suggest a region without guaranteeing it</td>
+</tr>
+<tr>
+<td>BLIP-2</td>
+<td>The cited architecture introducing the Q-Former</td>
+<td>It supplies the visual-to-language bridge</td>
+</tr>
+<tr>
+<td>Multimodal-in, multimodal-out</td>
+<td>A model that emits evidence media as well as text</td>
+<td>It can make a crop or clip a first-class output</td>
+</tr>
+<tr>
+<td>NExT-GPT</td>
+<td>The cited multimodal-in, multimodal-out model</td>
+<td>It raises localization quality and training and serving cost</td>
+</tr>
+<tr>
+<td>Chain- or tree-of-retrieval</td>
+<td>Decomposition of a complex claim into smaller grounded subclaims</td>
+<td>It replaces one uncheckable claim with several verifiable steps</td>
+</tr>
+<tr>
+<td>Visual question answering (VQA)</td>
+<td>Answering a question about a provided image</td>
+<td>It does not test retrieval when the image is handed to the model</td>
+</tr>
+<tr>
+<td>Benchmark task shape</td>
+<td>The actual inputs and required pipeline stages in an evaluation</td>
+<td>It determines which capability a score can support</td>
+</tr>
+<tr>
+<td>Top-k recall</td>
+<td>Fraction of examples whose evidence appears in retrieved top-k</td>
+<td>It evaluates search separately from generation</td>
+</tr>
+<tr>
+<td>Exact match and F1</td>
+<td>Answer metrics based on exact equality or token overlap</td>
+<td>They measure generation after retrieval</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank (MRR)</td>
+<td>An aggregate score based on the first relevant result's rank</td>
+<td>It can look healthy while demographic parity fails</td>
+</tr>
+<tr>
+<td>ROUGE-L</td>
+<td>A longest-common-subsequence answer metric</td>
+<td>It is another synthesis metric named by the chapter</td>
+</tr>
+<tr>
+<td>Ablation by modality removal</td>
+<td>Re-evaluation after withholding one modality</td>
+<td>It measures the marginal value of fusion</td>
+</tr>
+<tr>
+<td>Multiple-choice question (MCQ)</td>
+<td>A question with fixed answer choices</td>
+<td>MRAG-Bench uses this VQA-descended shape</td>
+</tr>
+<tr>
+<td>Multimodal question answering (MMQA)</td>
+<td>Question answering over multiple data types</td>
+<td>M2RAG includes it as one component task</td>
+</tr>
+<tr>
+<td>Standard error of a difference</td>
+<td>Sampling uncertainty for two reported proportions</td>
+<td>It provides a conservative score-delta filter</td>
+</tr>
+<tr>
+<td>McNemar's test</td>
+<td>A paired test for matched binary outcomes</td>
+<td>It is more appropriate when systems answer the same questions</td>
+</tr>
+<tr>
+<td>Noise floor</td>
+<td>The score difference not distinguishable from sampling variation</td>
+<td>A delta inside it should not be sold as a real win</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="391-three-generations-and-the-multilingual-analogy">39.1 Three generations, and the multilingual analogy</h3>
+<h4 id="what-it-is">What it is</h4>
+<p>Generation 1.0 runs every chart, photograph, or scanned form through OCR or a VLM, then embeds the resulting caption. It adds no new index type and produces a human-readable audit trail. Generation 2.0 uses a jointly trained multimodal encoder such as CLIP to place images and text in one space. It removes the language intermediate but still parses pages into text, table, and chart regions. Its two encoder outputs are typically merged by mean pooling. Generation 3.0 encodes a full page screenshot directly. ColPali produces roughly a thousand patch vectors per page and uses ColBERT-style late interaction.</p>
+<h4 id="why-it-exists">Why it exists</h4>
+<p>The generations move the lossy step progressively farther from the document. Generation 1.0 is analogous to translating all languages through English. Generation 2.0 matches LaBSE's shared multilingual space, where Vietnamese queries and German documents meet without a pivot language. Generation 3.0 has a textual analogue in the cited DeepSeek OCR-compression work, which encodes text as pixels rather than first extracting tokens.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>A caption such as "a chart showing an upward trend" can omit an axis labeled "EBITDA, $M" and every exact value. No downstream reranker can recover absent index content. Generation 1.0 therefore loses on financial tables, diagrams, forms, cells, numbers, and spatial relations. Generation 3.0 avoids that loss but turns infrastructure cost into the limiting failure.</p>
+<h4 id="cost-complexity-and-decisions">Cost, complexity, and decisions</h4>
+<p>The opening case has 200-page quarterly filings and asks for the year-over-year change in operating margin. The worked corpus has 10,000 financial-filing pages and about two charts or tables per page. At $0.0005 per caption, 20,000 caption calls cost about $10 once. One 1,536-dimensional fp32 vector per page costs 10,000 x 1,536 x 4 = 61.4 MB. Generation 2.0 keeps the same 61.4 MB shape and avoids the $10 caption pass. Generation 3.0 stores about 1,030 patch vectors at 128 dimensions per page. One page costs 1,030 x 128 x 4 = 527,360 bytes, about 527 KB. Ten thousand pages cost about 5.27 GB. The ratio 5.27 GB / 61.4 MB is about 86 times. This is the same multi-vector storage trade first established for text late interaction. Default to Generation 2.0 for general production. Use Generation 1.0 for natural photography or when readable captions are an explicit requirement. Use Generation 3.0 only where layout and exact values are retrieval targets. Price the multiplier at projected scale. It is manageable at 10,000 pages and prohibitive at 100 million. Segment mixed corpora. A filing that is 95% prose and 5% dense tables should route only table-heavy pages to the patch index.</p>
+<h3 id="392-encoding-joint-vs-decoupled-and-aligned">39.2 Encoding: joint vs decoupled-and-aligned</h3>
+<h4 id="what-it-is-1">What it is</h4>
+<p>A joint encoder maps each image and text input into one shared d-dimensional vector. In the chapter's notation, f_img(image) and f_txt(caption) both lie in R^d. CLIP commonly emits a 512- or 768-dimensional global vector and supports one dot product per candidate. Its symmetric batch objective has N positive diagonal pairs and N^2 - N off-diagonal negatives. A decoupled design keeps image patches and text tokens separate, then aligns them locally and globally. ColPali rasterizes pages and skips OCR, preserving axis labels, cell alignment, and margin marks. AlignMamba is the cited local-global alignment example.</p>
+<h4 id="why-it-exists-1">Why it exists</h4>
+<p>The motivating corpus contains 200-page annual reports, dense tables, bar charts, and footnotes in 8-point type. The failed query asks for the year-over-year change in the Q3 gross-margin table on page 47 even though that page was retrieved. One vector is efficient for a coherent photograph with one dominant subject. A dense page with 40 rows contains many independently retrievable facts that global pooling was never trained to preserve. Patch and token vectors let a query match the relevant local unit. Late interaction purchases detail with many comparisons at query time.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>Caption-then-embed hard-limits recall to what the caption mentions. A larger joint model does not remove the one-vector architecture ceiling. Late interaction against the full corpus costs O(corpus x patches) and stops scaling beyond a few thousand documents. Reducing patch resolution first destroys the granularity the decoupled architecture was chosen to preserve.</p>
+<h4 id="cost-complexity-and-decisions-1">Cost, complexity, and decisions</h4>
+<p>The example stores 10,000 pages in fp16. Joint encoding uses one 768-dimensional vector per page. The index is 10,000 x 768 x 2 = 15,360,000 bytes, about 15.4 MB. Decoupled encoding uses a 32 x 32 grid, 1,024 patches, and 128 dimensions per patch. The index is 10,000 x 1,024 x 128 x 2 = 2,621,440,000 bytes, about 2.62 GB. The storage multiplier is about 171 times. First mean-pool each page to one vector and retrieve a shortlist of a few hundred candidates. Run patch late interaction only on that shortlist. ColBERTv2's cited residual compression cuts a ColBERT-style index by roughly 6 to 10 times without materially hurting rank quality. Use residual or product quantization before shrinking the patch grid. Default to joint encoding for product photos, scenes, and portraits. Use decoupled encoding for charts, tables, forms, slide decks, and compliance documents needing exact localization. OCR-then-embed remains cheaper and sufficient for plain prose with no valuable layout. When legal requires exact traceability but the chief financial officer (CFO) wants the index memory bill cut in half, keep patch detail for compliance documents, quantize it, and route non-traceability content to joint encoding instead of applying one encoder everywhere.</p>
+<h3 id="393-clips-three-biases">39.3 CLIP's three biases</h3>
+<h4 id="what-it-is-2">What it is</h4>
+<p>CLIP trains on N paired images I_i and captions T_i. The encoders produce L2-normalized vectors v_i = f_img(I_i) and u_i = f_txt(T_i). Every pair receives a temperature-scaled score:</p>
+<pre class="text"><code>S_ij = (v_i dot u_j) / tau</code></pre>
+<p>The N x N matrix has N true pairs on its diagonal and N^2 - N negatives elsewhere, however semantically close an off-diagonal pair may be. The symmetric InfoNCE objective is:</p>
+<pre class="text"><code>Loss = (1 / 2N) sum_i [
+  -log(exp(S_ii) / sum_j exp(S_ij))
+  -log(exp(S_ii) / sum_j exp(S_ji))
+]</code></pre>
+<p>The two terms cover image-to-text and text-to-image retrieval.</p>
+<h4 id="why-it-exists-2">Why it exists</h4>
+<p>The objective makes CLIP a strong zero-shot classifier because matching a whole image to class captions only needs global comparisons. It never assigns credit from a word to a region or from one caption noun to one object. Position bias follows because web captions tend to name the most salient entity first. Demographic bias follows because no term enforces invariance to race, gender, or other protected attributes. Gist-only bias follows because pooling does not reliably preserve word order or attribute binding.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>The cited audit reports offensive and stereotype-laden classification errors at different rates by race and skewed occupation results. The opening support-tool examples are a crowded classroom losing to an unrelated panel, an "engineer" search skewing gender, and a fluent caption describing the wrong object. The ARO result shows CLIP scoring a shuffled caption almost like the correct one. "The mug is left of the laptop" can land near its reversed relation. Fine-tuning one bias set preserves the pooled objective, can relocate the pattern, and creates a diverged encoder that needs repeated auditing. The durable correction belongs downstream through probes, curated captions, parity checks, and entity-aware reranking.</p>
+<h4 id="cost-complexity-and-decisions-2">Cost, complexity, and decisions</h4>
+<p>The illustrative image contains 15 students and one wall-mounted monitor. The comparison photo is an unrelated close-up monitor. The chapter explicitly labels the cosine values as constructed and illustrative, within the 0.15 to 0.35 range typical of true pairs. For the query "our meeting room setup," the classroom scores 0.17 and the close-up scores 0.33. The wrong photo wins by 0.33 - 0.17 = 0.16. Keep CLIP for top-k = 20, then probe entities or patches separately. The classroom recovers to roughly 0.29 on the monitor entity and returns to top-1. The aggregate claim remains limited. ViT-L/14@336px reaches 76.2% zero-shot top-1 on ImageNet and is competitive with a supervised ResNet-50. Audit entity swaps and caption reorderings before launch. Use a second stage for multiple entities or spatial relations, but skip it for single-entity gist queries. Measure retrieval-hit-rate parity with paired protected-class probes when the corpus contains people. Own ingestion captions when possible. Use the largest CLIP variant the latency service-level objective (SLO) allows, but do not expect scale to add missing local supervision. When a heavier reranker would double p99 latency, route only structurally compositional queries to it.</p>
+<h3 id="394-per-modality-thresholds">39.4 Per-modality thresholds</h3>
+<h4 id="what-it-is-3">What it is</h4>
+<p>The opening search surface fans one query across four pools: text, image, video, and geolocation. Let m identify a modality, D_m its collection, E_q and E_d the query and document embeddings, and s their similarity. Admit a modality only when its best item clears its own cutoff:</p>
+<pre class="text"><code>admit(m) = indicator[max over d in D_m of s(E_q, E_d) &gt;= theta_m]</code></pre>
+<p>The survey's more precise notation is theta_(m,D_i), indexed by modality and source collection.</p>
+<h4 id="why-it-exists-3">Why it exists</h4>
+<p>A quality floor lets a sparse modality return nothing rather than show the best bad result. CLIP image-text scores, DPR text scores, and SBERT scores occupy different distributions. The cited modality-gap result shows image and text populations remain geometrically separated in CLIP-style spaces. Collection size and annotation density differ by orders of magnitude across text, image, video, and geolocation. The source gives a collection two orders of magnitude smaller as the concrete tail-shift case. One numeric similarity level cannot represent the same precision and recall trade-off everywhere.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>A global text-tuned threshold can sit above every genuine image score and silently disable image retrieval. Lowering that global value enough for images can leak text noise. Raw scores must not form one cross-modality ranking after admission. A 0.28 image match and a 0.75 text match are not comparable on their raw scales. A video threshold from a well-captioned YouTube corpus does not transfer to a sparse internal surveillance archive.</p>
+<h4 id="cost-complexity-and-decisions-3">Cost, complexity, and decisions</h4>
+<p>The chapter's distributions are illustrative constants, not measured CLIP data. Text relevant scores follow N(0.75, 0.05^2) and text noise follows N(0.35, 0.10^2). Image relevant scores follow N(0.30, 0.03^2) and image noise follows N(0.18, 0.04^2). At global theta = 0.50, image recall is effectively 0 because z = 6.67. Text recall is essentially 100% because z = -5, while text-noise leakage is 6.68% at z = 1.5. Set theta_image = 0.25 and theta_text = 0.60. Image recall becomes about 95.2% at z = -1.67, with 4.01% noise leakage at z = 1.75. Text recall becomes about 99.87% at z = -3, while leakage falls to about 0.62% at z = 2.5. Calibration takes a few offline hours per modality rather than retraining. Default to one held-out calibration per modality and collection. If labels are missing, borrow only from a structurally similar encoder and spot-check precision, or use a conservative high-precision cutoff until labels arrive. In the chapter's five-modality interview case, only two modalities have labeled sets. Apply those fallbacks to the other three rather than copying the global text cutoff. Allow empty modality results and render an explicit fallback when product design requires a slot. Compose admitted modalities in separate presentation slots. Recalibrate after every encoder swap.</p>
+<h3 id="395-multi-granularity-noise-correspondence-and-reranking">39.5 Multi-granularity noise correspondence and reranking</h3>
+<h4 id="what-it-is-4">What it is</h4>
+<p>Multi-granularity noise correspondence appears when a query targets one local detail but a retriever compares whole-unit summaries. The opening museum query asks what the inscription above the west door says. A ViT-B/32 over a 224 x 224 image creates R = (224/32)^2 = 49 patches. Let g be a unit gist direction present in every patch and s an orthogonal unit detail direction present in one patch. The correct pooled candidate is g + s/R, the distractor is g, and the query is q = g + s. Their similarities are:</p>
+<pre class="text"><code>cos(q, g + s/R) = (1 + 1/R) / (sqrt(2) x sqrt(1 + 1/R^2)) = 0.7215
+cos(q, g)       = 1 / sqrt(2)                                  = 0.7071
+margin          = 0.0144</code></pre>
+<p>The displayed expression evaluates to about 0.7214 with a 0.0143 margin. The chapter prints 0.7215 and 0.0144, a roughly 0.0001 rounding discrepancy that does not change the noise-floor argument. The locally confined detail contributes only 1/R, about 2% of its patch weight.</p>
+<h4 id="why-it-exists-4">Why it exists</h4>
+<p>Image, video, and audio information density varies across regions and time. Pooling preserves globally repeated gist and divides a local feature by R. Crop boundaries, Joint Photographic Experts Group (JPEG) compression, and ANN quantization can each perturb cosine by a percent or more. A 0.0144 raw edge therefore sits inside ordinary system noise. An MLLM reranker jointly reads the query and full candidate content, like a cross-encoder for text.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>Raising k improves coverage but does not change the weak ranking function. More same-scene distractors increase the chance that noise flips the order. A wider hidden dimension does not remove the 1/R pooling factor. The figure's noise-perturbed order puts the courtyard at 0.723 above the correct crop at 0.716. A reranker fed the same pooled representation reproduces the loss instead of fixing it.</p>
+<h4 id="cost-complexity-and-decisions-4">Cost, complexity, and decisions</h4>
+<p>The worked cluster has eight photos, one correct crop and seven same-gist distractors. Treating top-1 as uniform gives 1/8 = 12.5%. A listwise reranker receives top-k = 8, about 170 tokens per image, 30 query tokens, and about 20 output tokens. Input is 8 x 170 + 30 = 1,390 tokens. At the stated vendor-unspecified prices of $2.50 per million input tokens and $10 per million output tokens, the call costs about $0.0037. That estimate is representative, not a vendor promise. A pointwise alternative uses eight independent passes of about 200 tokens each and needs labeled pairs plus a training run. Prompt listwise first when labels are absent. Fine-tune a smaller dedicated pointwise model when volume and logged judgments justify fixed training cost. Send full-resolution images or a high-resolution retrieved crop to the second stage. Use first-stage k near cluster size, roughly 10 to 20, after diagnosing coverage versus order. Route by the measured rank-1 to rank-2 margin and skip reranking when the gap exceeds the corpus noise floor. The cited DELG pattern validates global retrieval followed by local geometric verification for landmarks. For a 150 ms p99 limit, 50 candidates, a self-hosted 7B model, and no hosted application programming interface, threshold to a single-digit ambiguous cluster or use a smaller parallel pointwise model.</p>
+<h3 id="396-fusion-score-attention-unified">39.6 Fusion: score, attention, unified</h3>
+<h4 id="what-it-is-5">What it is</h4>
+<p>Score fusion combines normalized scalar evidence, for example:</p>
+<pre class="text"><code>s(d) = alpha x normalized_text_score(d) + (1 - alpha) x normalized_image_score(d)</code></pre>
+<p>It costs O(1) per candidate and never compares modalities with each other. Attention fusion concatenates text tokens, image patches, and other modality units. Self-attention acts within a modality, cross-attention across modalities, and retrieval attention between query and candidates. Unified fusion projects or reformats modalities once, such as captioning an image or overlaying text, then uses an ordinary MLP.</p>
+<h4 id="why-it-exists-5">Why it exists</h4>
+<p>BM25 text scores, CLIP cosine, and video confidence from ASR plus object detection were not trained to agree numerically. The opening case combines a product-manual hit with a wiring-diagram score for "why won't the belt engage." Fusion has no direct single-modality analogue because it reconciles heterogeneous representations rather than two scores describing the same kind of relevance. Score fusion is cheap but blind to whether a diagram actually depicts the part named in text. Attention fusion detects agreement and contradiction at quadratic sequence cost. Unified fusion moves most work to ingestion and pays with whatever detail the standardization omits.</p>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<p>Adding raw BM25 and CLIP values elects the modality with the larger dynamic range. Fixing one fusion architecture for every query either overpays or discards detail. Captioning loses label-, region-, count-, and cell-specific evidence. Raw attention over every candidate makes O(N^2) the system bottleneck. Combining retrieval attention and cross-modal agreement in one unexamined block makes failures hard to diagnose.</p>
+<h4 id="cost-complexity-and-decisions-5">Cost, complexity, and decisions</h4>
+<p>The baseline text plus query length is n_text = 200 tokens, with attention proportional to 200^2 = 40,000. A ViT-L/14 processes 224 x 224 pixels as 16 x 16 = 256 patches plus one CLS token, so n_image = 257. Raw fusion has N = 200 + 257 = 457 and N^2 = 208,849. The ratio 208,849 / 40,000 is about 5.2 times. Adding another diagram or four key frames contributes 4 x 257 = 1,028 more tokens. For N = 1,485, the ratio 1,485^2 / 200^2 is about 55.1 times. A typical caption has 15 to 25 tokens. The example uses 20. Text plus one caption gives N = 220 and a 1.21-times cost ratio. The chapter states that text, one caption, and four frame captions produce about a 2.9-times ratio rather than 55.1. Its displayed expression, (200 + 20 + 4 x 20)^2 / 200^2, evaluates to 2.25, so 2.9 is a source arithmetic inconsistency rather than a derived result. The chapter therefore describes a repeated 5 to 55-times economic advantage for captioning at ingestion. Default to score fusion when adding a modality to mature retrievers. Normalize per modality before combining. Caption at ingestion for broad content questions and route detail-specific questions to raw attention. Keep retrieval relevance and cross-modal agreement as distinguishable computations. Pre-filter with score fusion before attention unless k is already in single digits.</p>
+<h3 id="397-the-time-dimension-key-frames-hierarchy-causality">39.7 The time dimension: key frames, hierarchy, causality</h3>
+<h4 id="what-it-is-6">What it is</h4>
+<p>Video consists of frames, shots, scenes, and a full recording. At 24 frames per second, one hour contains 86,400 raw frames, mostly near-duplicates inside each shot. Scene-cut detection creates one shot per continuous take and indexes the key frame. Edited video gets this hierarchy from cuts. Raw meeting audio or an unedited security feed does not. Mean pooling is order-invariant because pooling {v1, v2} equals pooling {v2, v1}. RoPE-style time encoding rotates event embedding e at time t by theta = omega x t. Relative similarity then carries theta_2 - theta_1 = omega x (t_2 - t_1).</p>
+<h4 id="why-it-exists-6">Why it exists</h4>
+<p>Key frames remove vectors that add size, ANN cost, and clutter without new retrievable information. The hierarchy supports scene-level broad questions and shot-level moment questions. Rotation lets the same nearest-neighbor score answer "before," "after," and relative-time queries. The source examples include a manager's budget approval, a support call asking what changed before an error, and a technical video asking for the connector that comes loose at 31 minutes. It costs one matrix multiplication after the modality embedding already exists. Pooled and rotated forms serve different needs. Pooled vectors preserve co-occurrence, while rotated vectors preserve order.</p>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<p>Per-frame indexing buries real matches under thousands of near-duplicates. Timestamp metadata applied after semantic retrieval uses two disconnected passes. A topically right but temporally wrong item can win before filtering. A pooled vector cannot recover discarded order through later reranking. A global rotation period can wrap and alias events when a setting tuned to one video is reused across months. Forcing causal separation onto every correlated event can destroy useful co-occurrence information.</p>
+<h4 id="cost-complexity-and-decisions-6">Cost, complexity, and decisions</h4>
+<p>The example video lasts 60 minutes, or 3,600 seconds, at 24 frames per second. It contains 86,400 frames. At 768 dimensions and fp32, per-frame storage is 86,400 x 768 x 4 = 265,420,800 bytes, about 265 MB. A cut every four seconds produces 3,600/4 = 900 shots. Shot storage is 900 x 768 x 4 = 2,764,800 bytes, about 2.76 MB. The ratio is exactly 96 because 24 frames per second x 4 seconds per shot = 96. At 15 ms per embedding, frame encoding costs 1,296 seconds, or 21.6 minutes, while shot encoding costs 13.5 seconds. Set one turn over the video's 3,600 seconds, so omega = 2pi/3,600. A 240-second gap rotates by (2pi/3,600) x 240 ≈ 0.419 radians, about 24 degrees. The MPEG-1 analogy provides a sanity check. Full reference frames appear at key points and intervening change is redundant. Default to one key-frame embedding per shot. Keep raw frames addressable beneath a shot for forensic or frame-exact work. Add rotation only when the workload asks about order. Set omega to the corpus's natural time span. Store both pooled and rotated vectors when budget allows. Keep rotation for procedural or safety-critical material when budget forces a choice.</p>
+<h3 id="398-generation-and-non-textual-attribution">39.8 Generation and non-textual attribution</h3>
+<h4 id="what-it-is-7">What it is</h4>
+<p>A document-level image, video, audio, or table citation may be real and still be impossible to verify. The opening clinical example cites a 2,000 x 2,000 chest X-ray for a right-lower-lobe opacity without marking the relevant lung region. AIS assumes a source a reader can quote. That assumption fails for a 45-minute video or a spreadsheet with 40,000 rows. Non-text attribution first localizes region r inside source d, then verifies claim c against r. For images r is a bounding box, for video or audio a timestamp span, and for tables a cell range. Verification can use visual entailment, OCR plus cell lookup, or transcript plus text entailment.</p>
+<h4 id="why-it-exists-7">Why it exists</h4>
+<p>Captioning the source and checking the caption repeats the retrieval bottleneck. A generic caption can support a proxy statement while never consulting the pixels needed for the specific claim. MMed-RAG shows that localized claims from retrieved chest X-rays already occur in production-shaped research systems. If no region is found, retain only a weak document-level citation. If a region is found but verification fails, the claim is not attributable. Only a localized and verified region earns full attribution.</p>
+<h4 id="failure-without-it-7">Failure without it</h4>
+<p>Multimodal-in, text-out models such as InstructBLIP use a Q-Former from BLIP-2 and emit text only. Cross-attention weights or prompted coordinates provide indirect localization that was not their training objective. Treating that byproduct as a verdict can confidently point to the wrong region. Multimodal-in, multimodal-out systems such as NExT-GPT can emit a crop or clip directly, but require a larger training and serving surface. Complex claims spanning regions remain hard for either architecture.</p>
+<h4 id="cost-complexity-and-decisions-7">Cost, complexity, and decisions</h4>
+<p>Chain- or tree-of-retrieval decomposition splits a complex claim into sequential subclaims and re-grounds each one. The worked lecture recording lasts 45 minutes, or 2,700 seconds. The claim is localized to 31:02 through 31:17, a 15-second span. Verification cost falls by 2,700/15 = 180 times. A 60-word quotation read at 250 words per minute takes 60/250 x 60 ≈ 14 seconds. The 15-second localized clip therefore matches the order of ordinary text-citation review. Default to region or timestamp attribution when a source exceeds what a reader can skim in seconds. The interview case cites a 40-page PDF for "Q3 churn was 4.2%," which is too broad to verify efficiently. A minute-plus video, multi-page report, or large spreadsheet needs localization. A single page, short clip, or small table may not. Treat localization as a hypothesis and always run the verification gate. Use text-out systems for internal provenance when attention-based grounding is enough. Use multimodal-out systems when the product must render the crop or jump to the timestamp. Log localization confidence and verification score separately. For the chapter's 2% wrong-region medical example, route low-confidence cases to radiologist review and decompose errors by finding type and region size rather than blocking every citation or shipping silently.</p>
+<h3 id="399-benchmarks-and-what-they-actually-measure">39.9 Benchmarks and what they actually measure</h3>
+<h4 id="what-it-is-8">What it is</h4>
+<p>The opening failure adds table extraction and reranking, then validates them with a benchmark that hands over one image and one question. A RAG benchmark item is (q, C, y), with corpus size |C| &gt;&gt; k. The system retrieves R(q, C), then generates:</p>
+<pre class="text"><code>y_hat = G(q, R(q, C))</code></pre>
+<p>A VQA item has |C| = 1 because the correct image is supplied directly. Two systems can tie on that shape while having different retrieval quality because retrieval is absent.</p>
+<h4 id="why-it-exists-8">Why it exists</h4>
+<p>Use a three-part benchmark checklist. First, require search over a corpus meaningfully larger than the answer set. Second, report retrieval and generation separately through top-k recall plus exact match, F1, or ROUGE-L. Third, remove each modality in turn to measure fusion's marginal contribution. REAL-MM-RAG finds fusion degrading on long documents because models ignore visual and tabular evidence without specific prompting. VLR-Bench, also called VRAG-Bench in some sources, finds multimodal context helping low-resource languages. UniDoc-Bench reports multimodal RAG as more accurate and cheaper than text-only retrieval by avoiding OCR loss. M2RAG finds performance falling when either modality is removed.</p>
+<h4 id="failure-without-it-8">Failure without it</h4>
+<p>MRAG-Bench is close to classic single-image VQA and cannot validate long-document table retrieval. M2RAG has the largest raw corpus but its four tasks often isolate captioning, MMQA, fact verification, and image reranking rather than the whole loop. Leaderboard name recognition cannot reveal those structural limits. A blended score cannot identify whether search or synthesis improved. A delta below sampling noise should not support a launch or publication claim.</p>
+<h4 id="cost-complexity-and-decisions-8">Cost, complexity, and decisions</h4>
+<p>MRAG-Bench reports roughly 66% to 80% accuracy over just above 1,000 MCQs. The source says its best model, GPT-4o, lands roughly at human level depending on question type. The worked approximation uses p = 0.73 and n = 1,000. For independent samples:</p>
+<pre class="text"><code>SE_diff = sqrt(2 x p x (1 - p) / n)
+        = sqrt(2 x 0.73 x 0.27 / 1,000) = sqrt(0.000394)
+        ≈ 1.99%</code></pre>
+<p>At 95% confidence with z = 1.96, the conservative floor is 1.96 x 1.99% ≈ 3.9 percentage points. For UniDoc-Bench n = 1,600, SE is about 1.57% and the floor is about 3.1 points. A 60% larger set yields only about a 21% tighter floor because uncertainty scales as 1/sqrt(n). For a 2-point floor:</p>
+<pre class="text"><code>n = 2 x p x (1 - p) x (z / margin)^2
+  = 2 x 0.1971 x (1.96 / 0.02)^2
+  ≈ 3,786 questions</code></pre>
+<p>That is about 3.8 times the rounded MRAG-Bench set. The reported human image gain is +33.16%, about 33.16/3.9 = 8.5 times the conservative floor. A claimed 1.5-point gain lies inside that floor. The independent-samples calculation is a conservative upper bound, not the final publication test. Systems usually answer the same items, so use McNemar's paired test before publishing. Match benchmark corpus shape to production before citing a score.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-391">Figure 39.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    P1[&quot;Page&quot;] --&gt; C1[&quot;OCR and VLM caption&quot;] --&gt; V1[&quot;Text vector, one per page&quot;]
+    P2[&quot;Page&quot;] --&gt; C2[&quot;Multimodal encoder&quot;] --&gt; V2[&quot;Shared-space vector&quot;]
+    P3[&quot;Page&quot;] --&gt; C3[&quot;Vision encoder over whole page&quot;] --&gt; V3[&quot;Patch multi-vector index&quot;]
+    G1[&quot;Generation 1.0 extract-and-caption&quot;] -. lossy caption bottleneck .-&gt; C1
+    G2[&quot;Generation 2.0 shared embedding space&quot;] -. direct encoding .-&gt; C2
+    G3[&quot;Generation 3.0 document-as-image&quot;] -. largest index .-&gt; V3
+    style C1 stroke-dasharray: 5 5
+    style V3 stroke-width:4px</code></pre></details></figure>
+<p><strong>Figure 39.1:</strong> Each generation moves the lossy step further from the document: Generation 1.0 forces every non-text element through a captioning bottleneck (dashed), Generation 3.0 removes the bottleneck entirely at the cost of a far larger index (heavy border).</p>
+<h3 id="figure-392">Figure 39.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    I1[&quot;Image&quot;] --&gt; J[&quot;Joint encoder&quot;]
+    T1[&quot;Text&quot;] --&gt; J
+    J --&gt; O[&quot;One vector per page&quot;]
+    I2[&quot;Image&quot;] --&gt; VE[&quot;Vision encoder&quot;] --&gt; P[&quot;Patch vectors&quot;]
+    T2[&quot;Text&quot;] --&gt; TE[&quot;Text encoder&quot;] --&gt; T[&quot;Token vectors&quot;]
+    P -. local and global comparison .-&gt; A[&quot;Alignment&quot;]
+    T -. local and global comparison .-&gt; A</code></pre></details></figure>
+<p><strong>Figure 39.2:</strong> A joint encoder collapses a page to one vector and pays for it in lost detail. A decoupled-and-aligned encoder keeps a vector per patch and per token and pays for it in comparisons at query time.</p>
+<h3 id="figure-393">Figure 39.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Image and caption score</th>
+<th>T1</th>
+<th>T2</th>
+<th>T3</th>
+<th>T4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I1</td>
+<td><strong>S11 supervised</strong></td>
+<td>S12 negative</td>
+<td>S13 negative</td>
+<td>S14 negative</td>
+</tr>
+<tr>
+<td>I2</td>
+<td>S21 negative</td>
+<td><strong>S22 supervised</strong></td>
+<td>S23 negative</td>
+<td>S24 negative</td>
+</tr>
+<tr>
+<td>I3</td>
+<td>S31 negative</td>
+<td>S32 negative</td>
+<td><strong>S33 supervised</strong></td>
+<td>S34 negative</td>
+</tr>
+<tr>
+<td>I4</td>
+<td>S41 negative</td>
+<td>S42 negative</td>
+<td>S43 negative</td>
+<td><strong>S44 supervised</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 39.3:</strong> CLIP's contrastive loss supervises only the shaded diagonal - whether a whole caption matches a whole image - leaving every within-caption and within-image credit assignment unconstrained, which is the shared root of all three biases.</p>
+<h3 id="figure-394">Figure 39.4</h3>
+<pre class="text"><code>                         theta_global = 0.50
+                                |
+Text, SBERT     0   o  o  o  o  |  o |  * ** **     1.0
+                                      theta_text = 0.60
+
+Image, CLIP     0     o o o * **|                   1.0
+                          |
+                    theta_image = 0.25
+
+* genuine match     o noise</code></pre>
+<p><strong>Figure 39.4:</strong> A single global threshold zeroes out every CLIP image match (open and filled circles alike sit left of θglobal) while still leaking one borderline text match through. Separate, modality-calibrated thresholds recover the image matches and catch the leak. Filled circles are genuine matches, open circles are noise.</p>
+<h3 id="figure-395">Figure 39.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    I[&quot;Candidate image with R = 49 patches&quot;] --&gt;|mean pool| P[&quot;Pooled embedding, one patch carries queried detail&quot;]
+    P --&gt; D[&quot;Detail diluted to 1/R, about 2% of patch weight&quot;]
+    B1[&quot;Bi-encoder rank 1: zoomed-out courtyard, cosine 0.723&quot;]
+    B2[&quot;Bi-encoder rank 2: correct inscription crop, cosine 0.716&quot;]
+    R1[&quot;After MLLM reranking rank 1: correct inscription crop&quot;]
+    R2[&quot;After MLLM reranking rank 2: zoomed-out courtyard&quot;]
+    B1 --&gt; R2
+    B2 --&gt; R1</code></pre></details></figure>
+<p><strong>Figure 39.5:</strong> A pooled vector gives the correct, detail-matching candidate only a 0.014 raw-cosine edge over a same-scene distractor - inside typical encoder noise - so the bi-encoder's order flips. A reranker that reads all 49 patches jointly, not the pooled average, recovers the correct order.</p>
+<h3 id="figure-396">Figure 39.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    TS[&quot;Text score&quot;] --&gt; S[&quot;Normalized weighted sum&quot;]
+    IS[&quot;Image score&quot;] --&gt; S
+    S --&gt; SO[&quot;Score fusion: O(1), independent evidence only&quot;]
+    TT[&quot;Text tokens, n = 200&quot;] --&gt; A[&quot;Self, cross, and retrieval attention&quot;]
+    IP[&quot;Image patches, n = 257&quot;] --&gt; A
+    A --&gt; AO[&quot;Attention fusion: O(N^2), joint representation&quot;]
+    IM[&quot;Image&quot;] --&gt; C[&quot;Caption or overlay once&quot;] --&gt; R[&quot;Shared text-like representation&quot;] --&gt; M[&quot;MLP unified fusion&quot;]</code></pre></details></figure>
+<p><strong>Figure 39.6:</strong> The three fusion families trade compute for cross-modal sensitivity in opposite directions: score fusion is cheapest and blindest, attention fusion is most expensive and most sensitive, and unified fusion moves the expense to ingestion - which is why production systems route between them by query complexity rather than fixing one architecture.</p>
+<h3 id="figure-397">Figure 39.7</h3>
+<pre class="text"><code>key frame    dashed frames    cut    key frame    dashed frames    cut    key frame
+ [frame]   [frame] [frame]     |      [frame]   [frame] [frame]     |      [frame]
+    |                                  |                                  |
+ shot 1: e1, t = 0 s              shot 2: e2, t = 4 s              shot 3: e3, t = 9 s
+
+Frames between cuts merge into one shot embedding.
+
+Time as rotation, not pooling:
+
+             .--------.
+          .-&#39;      e2  &#39;-.
+         /         /       \
+        |         / theta    |
+        |        o------ e1   |
+         \                  /
+          &#39;----------------&#39;
+
+theta = omega x delta_t, so e1 dot e2 carries elapsed time.</code></pre>
+<p><strong>Figure 39.7:</strong> Video collapses to one embedding per shot at each key frame (top), and event time is folded into similarity itself by rotating the embedding by an angle proportional to elapsed time rather than pooling frames into an order-blind average (bottom).</p>
+<h3 id="figure-398">Figure 39.8</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    C[&quot;Generated claim c and non-textual source d&quot;] --&gt; L[&quot;Localization gate: identify region r inside d&quot;]
+    L --&gt;|no region| W[&quot;No region found: cite d only, weak&quot;]
+    L --&gt;|region found| V[&quot;Verification gate: does r support c?&quot;]
+    V --&gt;|fail| N[&quot;Not attributable&quot;]
+    V --&gt;|pass| A[&quot;Attributed to region r of d&quot;]</code></pre></details></figure>
+<p><strong>Figure 39.8:</strong> Non-textual attribution adds a localization gate before verification: a claim is only checked against the specific region of the source it depends on, never against the source as a whole.</p>
+<h3 id="table-391">Table 39.1</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Benchmark</th>
+<th>Corpus</th>
+<th>Size</th>
+<th>Task focus</th>
+<th>RAG-tested?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MRAG-Bench</td>
+<td>Images</td>
+<td>16,000 images / 1,000+ MCQs</td>
+<td>Visual-centric QA</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>REAL-MM-RAG</td>
+<td>Reports, decks</td>
+<td>153 documents, 50 to 100+ pages</td>
+<td>Table retrieval, long-document QA</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>VLR-Bench</td>
+<td>Images + text, multilingual</td>
+<td>100,000+ samples</td>
+<td>Open-ended retrieval + VQA</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>UniDoc-Bench</td>
+<td>PDFs with text, images, and tables</td>
+<td>70,000 pages / 1,600 QA pairs</td>
+<td>Factual retrieval, reasoning</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>M2RAG</td>
+<td>Images + text</td>
+<td>380,000 images / 540,000 text samples</td>
+<td>Captioning, MMQA, fact verification, reranking</td>
+<td>Mixed</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Table 39.1:</strong> Corpus size alone does not indicate whether a benchmark exercises retrieval: M2RAG's corpus dwarfs the others, but its four component tasks (Mixed) mostly test one pipeline stage at a time rather than the full retrieve-fuse-generate loop, and MRAG-Bench's Partial reflects its single-image, VQA-descended item shape.</p>
+<h3 id="figure-399">Figure 39.9</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    I[&quot;Image and question&quot;] -. no corpus, given directly .-&gt; M[&quot;Model&quot;] --&gt; A[&quot;Answer&quot;]
+    Q[&quot;Query&quot;] --&gt; C[&quot;Multi-document, multimodal corpus&quot;] --&gt; R[&quot;Retrieve and fuse&quot;] --&gt; O[&quot;Answer and attribution&quot;]</code></pre></details></figure>
+<p><strong>Figure 39.9:</strong> A VQA-shaped benchmark skips the corpus entirely (dashed box). A RAG-shaped benchmark forces search over a multi-document, multi-modal corpus (heavy box) before generation - the structural difference a benchmark's name does not reveal.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw three index lanes: caption to one text vector, shared encoder to one vector, and whole-page encoder to patch vectors.</li>
+<li>Split encoding into one global vector versus patch and token vectors with late alignment.</li>
+<li>Draw CLIP's N x N score matrix and shade only the diagonal.</li>
+<li>Draw separate text and image score axes with theta_text and theta_image.</li>
+<li>Draw 49 image patches collapsing into one pooled vector, then a local-content reranker reversing two candidates.</li>
+<li>Draw score, attention, and unified fusion side by side with O(1), O(N^2), and ingestion-cost labels.</li>
+<li>Draw video key frames separated by cuts, then two event vectors separated by a time angle.</li>
+<li>Draw localization before verification, with bounding-box, timestamp, and cell-range examples.</li>
+<li>Finish with VQA receiving one image and RAG searching a multi-document corpus.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Multimodal RAG starts with representation. Captions are cheap but lose unmentioned detail, shared encoders remove that bottleneck, and patch indexes preserve layout at high cost. Global vectors also inherit CLIP's whole-pair biases and dilute local evidence, so we calibrate thresholds per modality and rerank ambiguous clusters with full-resolution content. Fusion then trades cheap independent scores against expensive cross-modal attention. Video adds shot hierarchy and order-aware time encoding. Generated claims need region localization before verification. Finally, evaluation must include real corpus search, separate retrieval and generation metrics, and modality-removal ablations, or the benchmark is only visual question answering.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-not-caption-every-non-text-item-and-keep-the-existing-text-stack">1. Why not caption every non-text item and keep the existing text stack?</h3>
+<p>Captioning is a fixed-vocabulary compression. It works for broad natural photographs and audit trails, but an omitted axis value, cell, or spatial relation becomes permanently unretrievable, so use shared embeddings or patch indexes where exact detail is the target.</p>
+<h3 id="2-why-can-a-strong-clip-retriever-still-fail-multi-object-queries">2. Why can a strong CLIP retriever still fail multi-object queries?</h3>
+<p>Its InfoNCE loss supervises whole-image and whole-caption pairs, not word-region credit assignment, demographic invariance, or composition. Keep its cheap recall, audit those blind spots, and route multi-entity or spatial queries to an entity-aware local reranker.</p>
+<h3 id="3-should-one-similarity-threshold-and-one-fusion-architecture-serve-every-modality">3. Should one similarity threshold and one fusion architecture serve every modality?</h3>
+<p>No. Score populations differ by modality and collection, while score, attention, and unified fusion place cost and information loss in different locations. Calibrate admission separately, then route detail-specific questions to raw attention and broader questions to cheaper score or unified fusion.</p>
+<h3 id="4-what-changes-when-the-corpus-includes-video-and-non-text-citations">4. What changes when the corpus includes video and non-text citations?</h3>
+<p>Index one key frame per shot and add rotation only when event order matters. For attribution, identify the exact frame span, image region, or table cells first, then verify the claim against that region rather than trusting a document-level citation.</p>
+<h3 id="5-when-does-a-multimodal-benchmark-fail-to-support-a-rag-claim">5. When does a multimodal benchmark fail to support a RAG claim?</h3>
+<p>It fails when the correct image is handed to the model, retrieval and generation are blended into one score, or modality removal is absent. Match corpus shape to production and compare score deltas against an appropriate uncertainty test before claiming a gain.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number or threshold</th>
+<th>Source context</th>
+<th>Meaning or claim limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 generations</td>
+<td>Index architecture</td>
+<td>Caption, shared space, and document-as-image</td>
+</tr>
+<tr>
+<td>200 pages and operating-margin query</td>
+<td>Generation 1.0 opening case</td>
+<td>Quarterly filings whose chart axis value can vanish from a caption</td>
+</tr>
+<tr>
+<td>About 1,000 or 1,030 patches/page</td>
+<td>ColPali-style index</td>
+<td>Approximate page-level multi-vector count</td>
+</tr>
+<tr>
+<td>10,000 pages and 2 elements/page</td>
+<td>Generation example</td>
+<td>20,000 caption calls</td>
+</tr>
+<tr>
+<td>$0.0005/caption and about $10</td>
+<td>Generation 1.0</td>
+<td>One-time stated caption cost</td>
+</tr>
+<tr>
+<td>1,536 dimensions and 4 bytes</td>
+<td>Single-vector fp32</td>
+<td>Inputs to the 61.4 MB calculation</td>
+</tr>
+<tr>
+<td>61.4 MB</td>
+<td>Generations 1.0 and 2.0</td>
+<td>Storage for 10,000 single-vector pages</td>
+</tr>
+<tr>
+<td>128 dimensions and 527,360 bytes/page</td>
+<td>Generation 3.0</td>
+<td>Patch-vector shape and per-page storage</td>
+</tr>
+<tr>
+<td>About 5.27 GB and 86 times</td>
+<td>Generation 3.0</td>
+<td>Storage over 10,000 pages and multiplier</td>
+</tr>
+<tr>
+<td>100 million pages</td>
+<td>Scale warning</td>
+<td>Example where an 86-times multiplier becomes prohibitive</td>
+</tr>
+<tr>
+<td>95% prose and 5% tables</td>
+<td>Segmented corpus</td>
+<td>Example motivating mixed index generations</td>
+</tr>
+<tr>
+<td>512 or 768 dimensions</td>
+<td>CLIP-style joint encoder</td>
+<td>Typical one-vector page width stated in the chapter</td>
+</tr>
+<tr>
+<td>40 rows</td>
+<td>Dense-page example</td>
+<td>Local facts competing inside one global vector</td>
+</tr>
+<tr>
+<td>200 pages, 8-point footnotes, Q3, page 47</td>
+<td>Encoder opening case</td>
+<td>Retrieved page can still lose a gross-margin table fact in one global vector</td>
+</tr>
+<tr>
+<td>10,000 pages, fp16, 2 bytes</td>
+<td>Encoding example</td>
+<td>Shared storage assumptions</td>
+</tr>
+<tr>
+<td>Memory cut in half</td>
+<td>Staff encoder trade-off</td>
+<td>Exact traceability and index cost pull in opposite directions</td>
+</tr>
+<tr>
+<td>15,360,000 bytes or 15.4 MB</td>
+<td>Joint encoding</td>
+<td>One 768-dimensional vector per page</td>
+</tr>
+<tr>
+<td>32 x 32 = 1,024 patches</td>
+<td>Decoupled encoding</td>
+<td>Page tiling</td>
+</tr>
+<tr>
+<td>128 dimensions and 2.62 GB</td>
+<td>Decoupled encoding</td>
+<td>Patch width and total storage</td>
+</tr>
+<tr>
+<td>About 171 times</td>
+<td>Encoder trade-off</td>
+<td>Decoupled versus joint storage</td>
+</tr>
+<tr>
+<td>A few hundred candidates</td>
+<td>Two-stage retrieval</td>
+<td>Shortlist before late interaction</td>
+</tr>
+<tr>
+<td>6 to 10 times</td>
+<td>ColBERTv2</td>
+<td>Reported residual-compression reduction</td>
+</tr>
+<tr>
+<td>A few thousand documents</td>
+<td>Full late interaction</td>
+<td>Approximate scale beyond which the chapter says it fails</td>
+</tr>
+<tr>
+<td>N true and N^2 - N negative pairs</td>
+<td>CLIP objective</td>
+<td>Diagonal supervision and off-diagonal negatives</td>
+</tr>
+<tr>
+<td>2020 to 2025</td>
+<td>Cited chronology</td>
+<td>Named retrieval, compression, bias, alignment, attribution, and survey work spans these years</td>
+</tr>
+<tr>
+<td>15 students and 1 monitor</td>
+<td>Bias example</td>
+<td>Multi-entity classroom image</td>
+</tr>
+<tr>
+<td>0.15 to 0.35</td>
+<td>CLIP illustration</td>
+<td>Explicitly constructed typical true-pair range</td>
+</tr>
+<tr>
+<td>0.17, 0.33, and 0.16</td>
+<td>Raw CLIP ranking</td>
+<td>Classroom, close-up, and wrong-photo margin</td>
+</tr>
+<tr>
+<td>top-k = 20 and about 0.29</td>
+<td>Entity-aware rerank</td>
+<td>Candidate depth and recovered classroom score</td>
+</tr>
+<tr>
+<td>76.2% top-1</td>
+<td>ViT-L/14@336px</td>
+<td>Zero-shot ImageNet result, not evidence that biases vanish</td>
+</tr>
+<tr>
+<td>p99 latency doubles</td>
+<td>Compositional-query trade-off</td>
+<td>Route only the structurally compositional slice to the heavier reranker</td>
+</tr>
+<tr>
+<td>theta_global = 0.50</td>
+<td>Threshold example</td>
+<td>Global cutoff that disables images</td>
+</tr>
+<tr>
+<td>N(0.75, 0.05^2) and N(0.35, 0.10^2)</td>
+<td>Text distributions</td>
+<td>Illustrative relevant and irrelevant scores</td>
+</tr>
+<tr>
+<td>N(0.30, 0.03^2) and N(0.18, 0.04^2)</td>
+<td>Image distributions</td>
+<td>Illustrative relevant and irrelevant scores</td>
+</tr>
+<tr>
+<td>z = 6.67 and effectively 0%</td>
+<td>Global image threshold</td>
+<td>Relevant image survival</td>
+</tr>
+<tr>
+<td>z = -5 and about 100%</td>
+<td>Global text threshold</td>
+<td>Relevant text recall</td>
+</tr>
+<tr>
+<td>z = 1.5 and 6.68%</td>
+<td>Global text threshold</td>
+<td>Irrelevant text leakage</td>
+</tr>
+<tr>
+<td>theta_image = 0.25</td>
+<td>Image calibration</td>
+<td>Separate image cutoff</td>
+</tr>
+<tr>
+<td>z = -1.67 and 95.2%</td>
+<td>Image calibration</td>
+<td>Relevant image recall</td>
+</tr>
+<tr>
+<td>z = 1.75 and 4.01%</td>
+<td>Image calibration</td>
+<td>Image noise leakage</td>
+</tr>
+<tr>
+<td>theta_text = 0.60</td>
+<td>Text calibration</td>
+<td>Separate text cutoff</td>
+</tr>
+<tr>
+<td>z = -3 and 99.87%</td>
+<td>Text calibration</td>
+<td>Relevant text recall</td>
+</tr>
+<tr>
+<td>z = 2.5 and 0.62%</td>
+<td>Text calibration</td>
+<td>Text noise leakage</td>
+</tr>
+<tr>
+<td>A few hours/modality</td>
+<td>Threshold calibration</td>
+<td>Offline work, not retraining</td>
+</tr>
+<tr>
+<td>4 opening pools, then 5 modalities with labels for 2</td>
+<td>Threshold cases</td>
+<td>Calibrate four pools, then borrow carefully or bias high precision for three unlabeled modalities</td>
+</tr>
+<tr>
+<td>2 orders of magnitude smaller</td>
+<td>Collection-size example</td>
+<td>A thinner tail shifts the precision and recall trade-off</td>
+</tr>
+<tr>
+<td>224 x 224, 32 x 32, and R = 49</td>
+<td>ViT-B/32</td>
+<td>Image size, patch size, and patch count</td>
+</tr>
+<tr>
+<td>1/R about 2%</td>
+<td>Detail dilution</td>
+<td>Local feature's pooled contribution</td>
+</tr>
+<tr>
+<td>0.7215, 0.7071, and 0.0144 printed</td>
+<td>Granularity derivation</td>
+<td>Expression gives about 0.7214 and 0.0143, leaving the claim unchanged</td>
+</tr>
+<tr>
+<td>0.723 and 0.716</td>
+<td>Noise-perturbed order</td>
+<td>Distractor above correct crop in Figure 39.5</td>
+</tr>
+<tr>
+<td>8 images and 1/8 = 12.5%</td>
+<td>Reranking cluster</td>
+<td>Uniform top-1 baseline</td>
+</tr>
+<tr>
+<td>170 tokens/image, 30 query, 20 output</td>
+<td>Listwise reranker</td>
+<td>Token assumptions</td>
+</tr>
+<tr>
+<td>1,390 input tokens</td>
+<td>Listwise reranker</td>
+<td>8 x 170 + 30</td>
+</tr>
+<tr>
+<td>$2.50/M input and $10/M output</td>
+<td>Reranker pricing</td>
+<td>Vendor-unspecified representative rates</td>
+</tr>
+<tr>
+<td>About $0.0037/query</td>
+<td>Listwise reranker</td>
+<td>Stated eight-candidate cost</td>
+</tr>
+<tr>
+<td>8 passes and about 200 tokens/pass</td>
+<td>Pointwise reranker</td>
+<td>Similar token volume with training cost</td>
+</tr>
+<tr>
+<td>k about 10 to 20</td>
+<td>Production reranking</td>
+<td>Recommended cluster-scale depth</td>
+</tr>
+<tr>
+<td>150 ms p99, 50 candidates, 7B</td>
+<td>Staff trade-off</td>
+<td>Self-hosted reranker constraint</td>
+</tr>
+<tr>
+<td>O(1)</td>
+<td>Score fusion</td>
+<td>Per-candidate combination cost</td>
+</tr>
+<tr>
+<td>O(N^2)</td>
+<td>Attention fusion</td>
+<td>Concatenated sequence cost</td>
+</tr>
+<tr>
+<td>200 tokens and 40,000</td>
+<td>Text-only attention</td>
+<td>n and n^2 baseline</td>
+</tr>
+<tr>
+<td>224/14 = 16, 256 patches, 1 CLS</td>
+<td>ViT-L/14</td>
+<td>Image token construction</td>
+</tr>
+<tr>
+<td>257 image tokens</td>
+<td>Attention fusion</td>
+<td>Patches plus CLS token</td>
+</tr>
+<tr>
+<td>N = 457 and 208,849</td>
+<td>One raw diagram</td>
+<td>Combined length and N^2</td>
+</tr>
+<tr>
+<td>About 5.2 times</td>
+<td>One raw diagram</td>
+<td>Cost relative to text only</td>
+</tr>
+<tr>
+<td>4 key frames, 1,028 tokens, N = 1,485</td>
+<td>Video fusion</td>
+<td>Added raw visual sequence</td>
+</tr>
+<tr>
+<td>About 55.1 times</td>
+<td>Video fusion</td>
+<td>Cost relative to text only</td>
+</tr>
+<tr>
+<td>15 to 25 tokens, using 20</td>
+<td>Unified fusion</td>
+<td>Caption length</td>
+</tr>
+<tr>
+<td>N = 220 and 1.21 times</td>
+<td>One caption</td>
+<td>Cost relative to text only</td>
+</tr>
+<tr>
+<td>Source states about 2.9 times, expression gives 2.25 times</td>
+<td>Captioned video case</td>
+<td>Preserve the printed claim and its arithmetic inconsistency</td>
+</tr>
+<tr>
+<td>24 frames/s and 86,400 frames/hour</td>
+<td>Video indexing</td>
+<td>Raw frame volume</td>
+</tr>
+<tr>
+<td>60 min or 3,600 s</td>
+<td>Video example</td>
+<td>Product-demo duration</td>
+</tr>
+<tr>
+<td>31 min</td>
+<td>Technical-video query</td>
+<td>Example requiring the time axis to participate in similarity</td>
+</tr>
+<tr>
+<td>768 dimensions and 265,420,800 bytes</td>
+<td>Per-frame video</td>
+<td>About 265 MB</td>
+</tr>
+<tr>
+<td>4 s/shot and 900 shots</td>
+<td>Key-frame video</td>
+<td>Scene-cut assumption and count</td>
+</tr>
+<tr>
+<td>2,764,800 bytes or 2.76 MB</td>
+<td>Shot index</td>
+<td>Key-frame storage</td>
+</tr>
+<tr>
+<td>96 times</td>
+<td>Video reduction</td>
+<td>24 frames/s x 4 s/shot</td>
+</tr>
+<tr>
+<td>15 ms/frame</td>
+<td>Ingestion example</td>
+<td>Encoding-time assumption</td>
+</tr>
+<tr>
+<td>1,296 s or 21.6 min</td>
+<td>Frame ingestion</td>
+<td>Per-hour video compute</td>
+</tr>
+<tr>
+<td>13.5 s</td>
+<td>Shot ingestion</td>
+<td>Per-hour video compute</td>
+</tr>
+<tr>
+<td>omega = 2pi/3,600</td>
+<td>Time rotation</td>
+<td>One full turn per video</td>
+</tr>
+<tr>
+<td>240 s, 0.419 rad, about 24 degrees</td>
+<td>Time rotation</td>
+<td>Four-minute event gap</td>
+</tr>
+<tr>
+<td>2,000 x 2,000 pixels</td>
+<td>Clinical example</td>
+<td>Chest X-ray size</td>
+</tr>
+<tr>
+<td>45 min and 40,000 rows</td>
+<td>Attribution limits</td>
+<td>Sources too large for document-level checking</td>
+</tr>
+<tr>
+<td>31:02 to 31:17, 15 s</td>
+<td>Localized lecture evidence</td>
+<td>Exact video span</td>
+</tr>
+<tr>
+<td>2,700 s and 180 times</td>
+<td>Attribution verification</td>
+<td>Full video and reduction</td>
+</tr>
+<tr>
+<td>60 words, 250 words/min, about 14 s</td>
+<td>Text citation</td>
+<td>Comparison verification cost</td>
+</tr>
+<tr>
+<td>40 pages and 4.2%</td>
+<td>Interview citation example</td>
+<td>Report size and churn claim</td>
+</tr>
+<tr>
+<td>About 2%</td>
+<td>Medical localization</td>
+<td>Wrong-region tail requiring confidence routing</td>
+</tr>
+<tr>
+<td>3 benchmark checks</td>
+<td>Evaluation</td>
+<td>Corpus search, separate metrics, modality ablation</td>
+</tr>
+<tr>
+<td>5 compared benchmarks</td>
+<td>Evaluation table</td>
+<td>MRAG, REAL-MM-RAG, VLR, UniDoc, M2RAG</td>
+</tr>
+<tr>
+<td>16,000 images and 1,000+ MCQs</td>
+<td>MRAG-Bench</td>
+<td>Partial RAG coverage</td>
+</tr>
+<tr>
+<td>153 documents and 50 to 100+ pages</td>
+<td>REAL-MM-RAG</td>
+<td>Long reports and decks</td>
+</tr>
+<tr>
+<td>100,000+ samples</td>
+<td>VLR-Bench</td>
+<td>Multilingual image and text corpus</td>
+</tr>
+<tr>
+<td>70,000 pages and 1,600 QA pairs</td>
+<td>UniDoc-Bench</td>
+<td>Long-document evaluation</td>
+</tr>
+<tr>
+<td>380,000 images and 540,000 text samples</td>
+<td>M2RAG</td>
+<td>Largest raw corpus in the comparison</td>
+</tr>
+<tr>
+<td>4 component tasks</td>
+<td>M2RAG</td>
+<td>Captioning, MMQA, fact verification, reranking</td>
+</tr>
+<tr>
+<td>66% to 80%</td>
+<td>MRAG-Bench</td>
+<td>Reported range by question type</td>
+</tr>
+<tr>
+<td>p = 0.73 and n = 1,000</td>
+<td>Noise-floor approximation</td>
+<td>Rounded midpoint and sample size</td>
+</tr>
+<tr>
+<td>SE about 1.99%</td>
+<td>MRAG-Bench</td>
+<td>Conservative independent-samples uncertainty</td>
+</tr>
+<tr>
+<td>z = 1.96 and 95%</td>
+<td>Noise-floor threshold</td>
+<td>Confidence multiplier and level</td>
+</tr>
+<tr>
+<td>About 3.9 points</td>
+<td>MRAG-Bench</td>
+<td>Conservative unpaired floor</td>
+</tr>
+<tr>
+<td>n = 1,600, SE 1.57%, floor 3.1 points</td>
+<td>UniDoc-Bench</td>
+<td>Larger-set comparison</td>
+</tr>
+<tr>
+<td>60% larger and 21% tighter</td>
+<td>Sample-size trade-off</td>
+<td>Consequence of 1/sqrt(n) scaling</td>
+</tr>
+<tr>
+<td>2-point floor and about 3,786 questions</td>
+<td>Labeling cost</td>
+<td>Required sample size under the approximation</td>
+</tr>
+<tr>
+<td>About 3.8 times</td>
+<td>Labeling cost</td>
+<td>Relative to rounded MRAG-Bench size</td>
+</tr>
+<tr>
+<td>+33.16% and about 8.5 times</td>
+<td>Human image benefit</td>
+<td>Headline effect and noise-floor ratio</td>
+</tr>
+<tr>
+<td>1.5 points</td>
+<td>Vendor comparison</td>
+<td>Example improvement inside the unpaired floor</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/38_distributed_and_federated_rag.html"><small>Previous</small>Chapter 38. Distributed and Federated RAG</a><a href="../chapters/40_graph_rag.html"><small>Next</small>Chapter 40. Graph RAG</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

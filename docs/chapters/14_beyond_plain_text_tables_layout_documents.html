@@ -1,0 +1,1297 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 14. Beyond Plain Text - Tables, Layout, Documents | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/14_beyond_plain_text_tables_layout_documents.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group" open><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html" aria-current="page">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part IV. Representing What You Retrieve</p><h1>Chapter 14. Beyond Plain Text - Tables, Layout, Documents</h1><p class="chapter-meta">57 min estimated reading · Unit 23 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains why table cells and document blocks lose meaning when they are flattened, how table and layout encoders restore structure, and which costs, invariance limits, metrics, and layout priors matter in a Retrieval-Augmented Generation (RAG) interview.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A table stores meaning in the triple of row key, column header, and cell value. A fixed text cut can separate those parts while leaving a chunk that looks healthy.</li>
+<li>Detect tables before splitting. Keep a fitting table atomic. For an oversized table, split only between rows and repeat the header in every fragment.</li>
+<li>TAPAS repairs row-major flattening with additive column, row, and rank lookups. Its absolute row and column fields also make equivalent renderings look different.</li>
+<li>TableFormer removes global, row, and column position IDs. It keeps within-cell order and adds 13 structural relation biases to attention.</li>
+<li>Accuracy alone can hide order sensitivity. Variation percentage (VP) counts paired answer flips and stays visible when correct-to-wrong and wrong-to-correct flips cancel.</li>
+<li>Clean extraction is not correct reading order. Sorting blocks instead of lines raises the coherent span in the worked two-column page from 11 tokens to 495.</li>
+<li>Layout rules are corpus assumptions. Reading direction, full-height gutters, relative type size, emphasis rarity, and the rendered table's key column must be tested on each domain.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a warehouse that receives crates of financial reports, manuals, forms, and tables. The search system is the shipping desk. It must find the right package and send enough contents to an answer station.</p>
+<p>A prose paragraph arrives as one labeled crate. Its words carry most of its meaning. A table arrives differently. The header is the crate manifest, the first column is the pallet label, and each numeric cell is one loose item. If a clerk cuts the shipment after a fixed number of tokens, the manifest can stay upstairs while most pallets move downstairs.</p>
+<p>The downstairs pallets still look orderly. Every row has aligned numbers and a region code. Yet the number 38.2 no longer says whether it is revenue, gross margin, operating expense, or net income. The shipping desk matches the query words to the upstairs manifest and sends the labeled crate without the requested row.</p>
+<p>The first repair is operational. The receiving clerk marks each table before the cutting line. Small tables stay whole. Tall tables split only between rows, and every pallet receives a copied manifest. This costs more labels and more packages, but every number remains self-describing.</p>
+<p>The warehouse then installs a table scanner. TAPAS reads each item with token, sequence position, segment, column, row, and numeric rank fields. The scanner understands the grid, but it also stamps absolute aisle and shelf numbers onto the items. Moving an unchanged pallet to another aisle changes its representation.</p>
+<p>TableFormer changes the stamps. It removes global aisle and shelf numbers. It records relations such as same row, same column, and header-to-cell. A harmless pallet swap leaves those relations unchanged. The warehouse now measures paired answer flips, because aggregate accuracy can stay flat while many individual shipments change.</p>
+<p>Documents create a second kind of warehouse error. A two-column page is two vertical racks. A line-level clerk alternates one shelf from the left rack and one from the right. Every word remains legible, yet each outgoing box mixes unrelated specifications. A block-level clerk empties one rack before moving to the next.</p>
+<p>For long documents, the warehouse uses two floors of supervision. A lower encoder reads inside each block. A higher encoder reads block summaries, block types, order, adjacency, and image slots. The hierarchy makes block structure representable and reduces the attention pairs in the worked example by 39.6 times.</p>
+<p>The final lesson is that warehouse geometry is not universal. English reports, Arabic contracts, vertical Japanese manuals, journals, slide decks, and spanning figures require different routing rules. A good system writes those priors down, tests them on held-out domains, and keeps relational invariance in the encoder while keeping rendering conventions in the parser.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves source material before a model answers</td>
+<td>Ingestion decides whether the needed structure survives long enough to be retrieved</td>
+</tr>
+<tr>
+<td>Semi-structured data</td>
+<td>Prose and tables interleaved in one source</td>
+<td>Meaning can live in position even when the extracted text looks normal</td>
+</tr>
+<tr>
+<td>Structured data</td>
+<td>Rows or triples governed by an explicit schema</td>
+<td>Exact predicates, joins, and aggregation are available without similarity ranking</td>
+</tr>
+<tr>
+<td>Unstructured data</td>
+<td>Prose, transcripts, or tickets whose meaning lives mainly in tokens</td>
+<td>Standard chunkers and embedding models are designed around this case</td>
+</tr>
+<tr>
+<td>Large Language Model (LLM)-generated data</td>
+<td>Synthetic questions, summaries, or propositions written for retrieval</td>
+<td>It provides query-like wording but moves provenance responsibility to the system owner</td>
+</tr>
+<tr>
+<td>Asia-Pacific (APAC), Americas (AMER), and Europe, Middle East, and Africa (EMEA)</td>
+<td>The three region labels printed in the worked table</td>
+<td>They identify rows but do not identify the meaning of each numeric cell</td>
+</tr>
+<tr>
+<td>Third quarter 2025 (Q3-25)</td>
+<td>The period label used in the worked table</td>
+<td>It is query vocabulary that can remain with the header while a value is cut away</td>
+</tr>
+<tr>
+<td>Gross margin (GM%), operating expense (Opex), and net income (NI)</td>
+<td>Abbreviated metric headers in the worked table</td>
+<td>They give the numeric cells their column meaning</td>
+</tr>
+<tr>
+<td>Table region</td>
+<td>A two-dimensional page area identified as a table before linearization</td>
+<td>It must be protected before a generic text splitter runs</td>
+</tr>
+<tr>
+<td>Row key</td>
+<td>The cell that identifies a row, usually in the first rendered column</td>
+<td>A value needs its row key and column header to be interpretable</td>
+</tr>
+<tr>
+<td>Column header</td>
+<td>The label that names an attribute</td>
+<td>Numeric cell text is weak retrieval material without this label</td>
+</tr>
+<tr>
+<td>Row-major serialization</td>
+<td>Printing the header, then every row from left to right</td>
+<td>It places same-column cells far apart in the token sequence</td>
+</tr>
+<tr>
+<td>Orphan row</td>
+<td>A row separated from the header that gives its values meaning</td>
+<td>Orphan rows can be fluent, retrievable, and semantically unusable</td>
+</tr>
+<tr>
+<td>Atomic table</td>
+<td>A table kept as one retrieval unit</td>
+<td>It avoids header severance when the table fits the budget</td>
+</tr>
+<tr>
+<td>Header repetition</td>
+<td>Copying column labels into every row group or row serialization</td>
+<td>It makes each table fragment self-describing</td>
+</tr>
+<tr>
+<td>Retrieval surrogate</td>
+<td>A short row-level or table-level description used for search</td>
+<td>It decouples what the system embeds from the larger payload it injects</td>
+</tr>
+<tr>
+<td>Table payload</td>
+<td>The original table region returned after a surrogate matches</td>
+<td>It preserves full context for comparison questions at a prefill cost</td>
+</tr>
+<tr>
+<td>Lookup question</td>
+<td>A query that names one row and one column</td>
+<td>A header-repeated row can answer it</td>
+</tr>
+<tr>
+<td>Aggregation question</td>
+<td>A query about a whole column, such as highest, total, or count</td>
+<td>No single row chunk can answer it by construction</td>
+</tr>
+<tr>
+<td>Structured Query Language (SQL)</td>
+<td>A language for exact operations over structured tables</td>
+<td>It is the route for compound selection and aggregation when a schema is worth maintaining</td>
+</tr>
+<tr>
+<td>Best Matching 25 (BM25)</td>
+<td>A sparse term-matching ranker</td>
+<td>It can rank the header chunk first because the query vocabulary occurs there</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>A method label printed in the TAPAS illustration</td>
+<td>It is one cell value in the exact source figure, not a new architecture introduced by this chapter</td>
+</tr>
+<tr>
+<td>WordPiece</td>
+<td>The subword token unit used in the stated table-encoder examples</td>
+<td>Cell length in WordPiece tokens determines the row budget</td>
+</tr>
+<tr>
+<td>Bidirectional Encoder Representations from Transformers (BERT)</td>
+<td>The base encoder architecture used by TAPAS</td>
+<td>Its learned position table has 512 rows in the stated base configuration</td>
+</tr>
+<tr>
+<td>TAPAS</td>
+<td>A table model that keeps the BERT transformer unchanged and adds table fields at input</td>
+<td>It restores grid coordinates and numeric order with little parameter cost</td>
+</tr>
+<tr>
+<td>Token identifier (ID)</td>
+<td>The lookup key for a token's lexical identity</td>
+<td>It stays unchanged under a row permutation</td>
+</tr>
+<tr>
+<td>Position ID</td>
+<td>The token's absolute place in the flattened sequence</td>
+<td>It changes when the printed row or column order changes</td>
+</tr>
+<tr>
+<td>Segment ID</td>
+<td>The field separating query tokens from table tokens</td>
+<td>TAPAS uses segment 0 for the query and the other segment for the table</td>
+</tr>
+<tr>
+<td>Column ID</td>
+<td>The absolute printed column assigned to a table token</td>
+<td>It restores coordinates but introduces column-order sensitivity</td>
+</tr>
+<tr>
+<td>Row ID</td>
+<td>The absolute printed row assigned to a table token</td>
+<td>It changes every token vector in swapped rows</td>
+</tr>
+<tr>
+<td>Rank ID</td>
+<td>The sorted position of a numeric or date cell within its column</td>
+<td>It gives the model an explicit comparison feature and survives row permutation</td>
+</tr>
+<tr>
+<td>Additive input embedding</td>
+<td>A sum of learned lookup vectors before the first transformer layer</td>
+<td>TAPAS changes representation rather than transformer capacity</td>
+</tr>
+<tr>
+<td>Silent truncation</td>
+<td>Dropping tokens beyond the encoder window without making the remaining sequence invalid</td>
+<td>A maximum can be computed over 19 visible rows when the source had 20</td>
+</tr>
+<tr>
+<td>Verbalization</td>
+<td>Rewriting cells as prose such as header is value</td>
+<td>It avoids a custom encoder but repeats structure as costly content</td>
+</tr>
+<tr>
+<td>Weak supervision</td>
+<td>Training from final answers instead of explicit logical forms</td>
+<td>TAPAS learns cell selection and one aggregation operator from answer-level signals</td>
+</tr>
+<tr>
+<td>Cell-selection head</td>
+<td>The output that chooses a set of cells</td>
+<td>It does not express an arbitrary multi-step query plan</td>
+</tr>
+<tr>
+<td>Sequential Question Answering (SQA), TabFact, and F1</td>
+<td>A table question-answering benchmark, a table fact-verification benchmark, and the metric-column label in one source example</td>
+<td>SQA provides the 55.1 to 67.2 comparison, while SQA and TabFact receive permutation tests</td>
+</tr>
+<tr>
+<td>Relational invariance</td>
+<td>The requirement that equivalent row or non-key column permutations preserve the answer</td>
+<td>It separates data meaning from rendering order</td>
+</tr>
+<tr>
+<td>Permutation orbit</td>
+<td>All row and column orders that denote the same relation</td>
+<td>Its factorial size makes finite augmentation a weak guarantee</td>
+</tr>
+<tr>
+<td>TableFormer</td>
+<td>A table encoder that moves structure from absolute IDs into relation-aware attention bias</td>
+<td>It builds exact row and column order symmetry into the architecture</td>
+</tr>
+<tr>
+<td>Within-cell position</td>
+<td>Token order that resets at each cell boundary</td>
+<td>It preserves real word order such as Palo Alto</td>
+</tr>
+<tr>
+<td>Structural relation</td>
+<td>A pair type such as same cell, same row, same column, or header-to-cell</td>
+<td>It survives harmless row and column permutations</td>
+</tr>
+<tr>
+<td>Attention bias</td>
+<td>A learned scalar added to an attention logit for a relation type</td>
+<td>It encodes structure with very few parameters</td>
+</tr>
+<tr>
+<td>Variation percentage (VP)</td>
+<td>The share of paired queries whose answer flips after a label-preserving perturbation</td>
+<td>It exposes instability that aggregate accuracy cancels</td>
+</tr>
+<tr>
+<td>Marginal accuracy</td>
+<td>Accuracy measured separately on original and perturbed sets</td>
+<td>Equal totals do not imply the same questions were answered correctly</td>
+</tr>
+<tr>
+<td>Conditional invariance</td>
+<td>Invariance that holds only when the same cells survive serialization</td>
+<td>Truncation can reintroduce order sensitivity even in TableFormer</td>
+</tr>
+<tr>
+<td>Optical character recognition (OCR)</td>
+<td>Conversion of a scanned page into text</td>
+<td>High character confidence does not validate reading order</td>
+</tr>
+<tr>
+<td>Raster order</td>
+<td>Sorting page lines by vertical position and then horizontal position</td>
+<td>It interleaves two columns with overlapping line heights</td>
+</tr>
+<tr>
+<td>Reading order</td>
+<td>The sequence in which document blocks should be consumed</td>
+<td>Correct tokens in the wrong order produce useless chunks</td>
+</tr>
+<tr>
+<td>Layout block</td>
+<td>A typed page region such as header, paragraph, list, table, figure, or image</td>
+<td>Block identity gives a representation level for document structure</td>
+</tr>
+<tr>
+<td>Bounding box</td>
+<td>The coordinates surrounding a page block</td>
+<td>It supports ordering, citation, and layout features</td>
+</tr>
+<tr>
+<td>Block adjacency</td>
+<td>The relation between neighboring blocks independent of their token lengths</td>
+<td>A flat sequence makes this relation drift with block size</td>
+</tr>
+<tr>
+<td>Layout-Aware Multimodal Pre-training (LAMPreT)</td>
+<td>A two-level document encoder with text and image blocks</td>
+<td>It models semantics inside blocks and relations among blocks</td>
+</tr>
+<tr>
+<td>Convolutional neural network (CNN) encoder</td>
+<td>The image encoder feeding image blocks into the upper sequence</td>
+<td>It gives non-text blocks a slot beside text blocks</td>
+</tr>
+<tr>
+<td>Masked language modeling</td>
+<td>Predicting hidden tokens from their context</td>
+<td>Alone, it can ignore the upper layout level and solve each block locally</td>
+</tr>
+<tr>
+<td>Image-text matching</td>
+<td>Detecting an image swapped from another document</td>
+<td>It is one of the two low-level LAMPreT objectives</td>
+</tr>
+<tr>
+<td>Block-ordering prediction</td>
+<td>Detecting whether two block summaries were swapped</td>
+<td>It directly punishes layout blindness</td>
+</tr>
+<tr>
+<td>Image fitting</td>
+<td>Selecting the correct candidate for a masked image block</td>
+<td>It tests cross-modal block association</td>
+</tr>
+<tr>
+<td>Block filling</td>
+<td>Selecting the correct candidate for a masked text block</td>
+<td>It tests document-level text block association</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank (MRR)</td>
+<td>A rank metric that rewards an earlier correct result</td>
+<td>The stated LAMPreT evaluation uses it for block-level tasks</td>
+</tr>
+<tr>
+<td>recall@5 and recall@10</td>
+<td>Whether the correct item appears among the first 5 or 10 results</td>
+<td>The source uses recall@5 for block evaluation and recall@10 for layout transfer</td>
+</tr>
+<tr>
+<td>LayoutLM</td>
+<td>A flat encoder that adds normalized two-dimensional box coordinates</td>
+<td>It fits single-page geometry but does not create a block sequence</td>
+</tr>
+<tr>
+<td>Two-level hierarchy</td>
+<td>A content encoder inside blocks and a layout encoder across block summaries</td>
+<td>It makes multi-page structure fit a stock 512-position encoder</td>
+</tr>
+<tr>
+<td>Layout prior</td>
+<td>An assumed map from geometry or typography to meaning</td>
+<td>Every linearizer supplies one in code or learned weights</td>
+</tr>
+<tr>
+<td>Manhattan layout</td>
+<td>Axis-aligned blocks separated by coherent whitespace</td>
+<td>Recursive X-Y cut works when its full-height valleys exist</td>
+</tr>
+<tr>
+<td>Recursive X-Y cut</td>
+<td>Alternating projection cuts at the widest zero-ink valley</td>
+<td>It discovers columns before ordering their blocks</td>
+</tr>
+<tr>
+<td>Full-height gutter</td>
+<td>A vertical whitespace band with zero ink across all lines in a region</td>
+<td>It separates columns when ordinary word spaces disappear under projection</td>
+</tr>
+<tr>
+<td>Non-Manhattan layout</td>
+<td>A page with spanning elements or geometry that breaks full-height valleys</td>
+<td>X-Y cut can fail and force a bad fallback order</td>
+</tr>
+<tr>
+<td>Page-relative type ratio</td>
+<td>A block's size divided by the character-weighted modal size on the page</td>
+<td>It transfers across journals, slides, and contracts better than an absolute point threshold</td>
+</tr>
+<tr>
+<td>Emphasis rarity gate</td>
+<td>Treating bold as meaningful only while bold text is rare</td>
+<td>Bold cannot mark a useful minority when most of the page is bold</td>
+</tr>
+<tr>
+<td>Leftmost-key prior</td>
+<td>The convention that the first rendered column identifies each row</td>
+<td>It belongs in linearization and chunk metadata, not relational index embeddings</td>
+</tr>
+<tr>
+<td>Script-aware sort</td>
+<td>Choosing block order from writing direction</td>
+<td>Left-to-right, right-to-left, and vertical scripts require different order functions</td>
+</tr>
+<tr>
+<td>Held-out domain</td>
+<td>A document category absent from parser training or rule tuning</td>
+<td>It reveals learned or coded layout priors that do not transfer</td>
+</tr>
+<tr>
+<td>Table symbols T, R, C, h_c, and t_r,c</td>
+<td>The table, row count, column count, column-c header, and cell at row r and column c</td>
+<td>They define the row-key, header, and value triple, while R! C! counts equivalent row and column permutations</td>
+</tr>
+<tr>
+<td>Overloaded symbols L, o, w, n, and Delta(r)</td>
+<td>L is chunk size, cell length, or layer count where locally defined. The others are overlap, tokens per cell, row or sequence count, and header distance</td>
+<td>They expose fit, orphaning, and compute only when their local definitions stay explicit</td>
+</tr>
+<tr>
+<td>TAPAS symbols Q, W, d, i, r, c, k, and Rmax</td>
+<td>Query length, window, vector width, sequence position, row ID, column ID, rank ID, and maximum fitting rows</td>
+<td>They price fit and separate content-derived fields from printed-order fields. In retrieval cost, k instead counts returned chunks</td>
+</tr>
+<tr>
+<td>E_tok, E_pos, E_seg, E_col, E_row, and E_rank</td>
+<td>Learned token, position, segment, column, row, and rank lookup tables</td>
+<td>Their sum is the complete stated TAPAS input intervention</td>
+</tr>
+<tr>
+<td>W_Q, W_K, d_h, alpha_ij, phi(i,j), b_phi(i,j), and pi</td>
+<td>Query and key projections, head width, an attention logit, a structural pair type, its learned bias, and a row permutation</td>
+<td>They show how TableFormer moves table structure from token vectors into permutation-stable attention</td>
+</tr>
+<tr>
+<td>p and q</td>
+<td>Correct-to-wrong and wrong-to-correct flip fractions</td>
+<td>Their difference is accuracy change, while their sum is variation percentage</td>
+</tr>
+<tr>
+<td>B, n, and T in the hierarchy</td>
+<td>Block count, average tokens per block, and total tokens</td>
+<td>They compare flat attention T squared with hierarchical attention Bn squared plus B squared</td>
+</tr>
+<tr>
+<td>L_j and lambda_j</td>
+<td>One pre-training loss and its weight</td>
+<td>Weights only become interpretable after the component losses share a range</td>
+</tr>
+<tr>
+<td>x, y, x0, y0, x1, and y1</td>
+<td>Block sort coordinates and bounding-box corners</td>
+<td>They encode page geometry but do not by themselves define reading order</td>
+</tr>
+<tr>
+<td>s, s0, and p in typography</td>
+<td>A block's type size, the page's character-weighted modal size, and the bold-token fraction</td>
+<td>They make heading and emphasis rules relative to the page</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="141-semi-structured-data-and-why-splitting-a-table-corrupts-it">14.1 Semi-structured data and why splitting a table corrupts it</h3>
+<h4 id="a-cell-needs-three-coordinates">A cell needs three coordinates</h4>
+<ul>
+<li><strong>What:</strong> A value is interpreted with its row key, column header, and cell value.</li>
+<li><strong>Why:</strong> Only the cell value is adjacent to itself in row-major text.</li>
+<li><strong>Failure without it:</strong> A retrieved value can be assigned the wrong column label.</li>
+<li><strong>Cost and complexity:</strong> Preserving the triple requires table detection, row-aware splitting, and repeated labels.</li>
+</ul>
+<p>Let a table have C columns, R data rows, header cells h1 through hC, and value tr,c in row r and column c. The required semantic unit is the triple (tr,1, hc, tr,c). If each serialized cell costs w tokens, the value sits near w(rC + c). Its header sits near wc. The distance is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>w</mi><mi>r</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\Delta(r) = wrC</annotation></semantics></math></p>
+<p>The distance grows linearly with r. It is unbounded as the table becomes taller.</p>
+<h4 id="fixed-splitting-creates-orphan-rows">Fixed splitting creates orphan rows</h4>
+<ul>
+<li><strong>What:</strong> A splitter uses chunk size L and overlap o on the one-dimensional serialization.</li>
+<li><strong>Why:</strong> The header appears once, before every data row.</li>
+<li><strong>Failure without it:</strong> Only the first chunk contains both labels and values.</li>
+<li><strong>Cost and complexity:</strong> Increasing overlap repeats nearby rows but does not carry a distant header forward.</li>
+</ul>
+<p>The rows sharing the first chunk with the header number:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">⌊</mo><mfrac><mrow><mi>L</mi><mo>−</mo><mi>w</mi><mi>C</mi></mrow><mrow><mi>w</mi><mi>C</mi></mrow></mfrac><mo stretchy="true" form="postfix">⌋</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">⌊</mo><mfrac><mi>L</mi><mrow><mi>w</mi><mi>C</mi></mrow></mfrac><mo stretchy="true" form="postfix">⌋</mo></mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n = \left\lfloor \frac{L - wC}{wC} \right\rfloor = \left\lfloor \frac{L}{wC} \right\rfloor - 1</annotation></semantics></math></p>
+<p>The retained fraction is n/R, so the orphan rate approaches 1 as R grows. For L = 512, o = 64, C = 6, and w = 5, one row costs 30 tokens and the first chunk keeps 16 rows with the header. A 120-row table retains 16/120 = 13.3% and orphans 104 rows, or 86.7%. The header ends at token 30, chunk two starts at token 449, and the 64-token overlap carries about 2.1 rows but not the header.</p>
+<h4 id="retrieval-fails-before-generation">Retrieval fails before generation</h4>
+<ul>
+<li><strong>What:</strong> The query uses header vocabulary such as gross margin and third quarter 2025.</li>
+<li><strong>Why:</strong> Those words occur in the header chunk, while the Europe, Middle East, and Africa (EMEA) row occurs later.</li>
+<li><strong>Failure without it:</strong> BM25 ranks the labels without the answer. The row chunk shares only the row key.</li>
+<li><strong>Cost and complexity:</strong> A larger embedding model cannot reconstruct deleted labels.</li>
+</ul>
+<p>The opening prose calls 38.2% the APAC number, while Figure 14.1 labels APAC as 41.7 and EMEA as 38.2. The source is internally inconsistent on this assignment, so this chapter does not reconcile it. Keeping the whole table also has two limits. The stated BERT-family table encoders accept 512 positions and truncate silently, while one vector for R near-identical rows can retrieve the table but cannot rank inside it. An 8,000-token embedder shifts a precision problem into generator prefill. Semantic splitting does not find a dip between highly self-similar rows.</p>
+<h4 id="parse-before-splitting">Parse before splitting</h4>
+<ul>
+<li><strong>What:</strong> Detect table regions while the document is still two-dimensional.</li>
+<li><strong>Why:</strong> A downstream token stream no longer carries the region boundary.</li>
+<li><strong>Failure without it:</strong> The table can be cut before the system knows it is a table.</li>
+<li><strong>Cost and complexity:</strong> Header repetition raises tokens and vector count.</li>
+</ul>
+<p>Keep a fitting table atomic. For an oversized table, split only between rows and repeat the header in each fragment. This reduces header distance from wrC to order wC. The result is independent of r.</p>
+<h4 id="worked-table-configurations">Worked table configurations</h4>
+<p>The table has R = 120, C = 6, and w = 5. One row costs 30 tokens. The header plus data costs 30 x 121 = 3,630 tokens.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>What happens</th>
+<th>Cost and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recursive character split</td>
+<td>L = 512, o = 64, stride 448, 8 chunks</td>
+<td>16 rows keep labels. 104 rows are orphaned. Orphan rate is 86.7%</td>
+</tr>
+<tr>
+<td>Header repeated per row</td>
+<td>A cell grows from 5 to 7 tokens. A row grows from 30 to 42</td>
+<td>120 x 42 = 5,040 tokens. This is 39% more. It uses 10 chunks, 1.39x embedding tokens, 1.25x vectors, and 0 orphan rows</td>
+</tr>
+<tr>
+<td>80-token table surrogate plus payload</td>
+<td>One vector indexes the summary and the 3,630-token table stays attached</td>
+<td>Retrieving 5 tables prefills 18,150 tokens. Ten row results prefill 420 tokens. Whole-table prefill is 43x larger</td>
+</tr>
+</tbody>
+</table></div>
+<p>The 43x whole-table cost buys comparison and ranking across rows, because highest margin is a property of a column that a single retrieved row cannot answer. At about 4 characters per token, 3,630 tokens is about 14,500 characters. Direct cell counting gives about 13,100 characters, so the estimates agree within 10%. The 3,630-token table is 7.1 times the 512-position limit. The table-native encoders assume the selected table already fits and do not make the ingestion decision.</p>
+<h4 id="operating-decisions">Operating decisions</h4>
+<ul>
+<li>Detect tables before the text splitter. Measure pipe, tab, and decimal-alignment density on a sample before assuming the corpus has almost no tables.</li>
+<li>Repeat headers in oversized table fragments and accept the stated 39% token increase.</li>
+<li>Index row surrogates for lookup traffic.</li>
+<li>Index table surrogates for comparison traffic and return the table payload.</li>
+<li>Route highest, total, year-over-year, and count questions to SQL when recurring shapes justify a maintained schema.</li>
+<li>Leave heterogeneous one-off layouts in retrieval when schema induction costs more than it returns.</li>
+<li>Stratify retrieval evaluation by whether the gold answer lives in a table.</li>
+</ul>
+<h3 id="142-table-encoding-tapas-and-its-positional-assumptions">14.2 Table encoding: TAPAS and its positional assumptions</h3>
+<h4 id="the-one-dimensional-input-problem">The one-dimensional input problem</h4>
+<ul>
+<li><strong>What:</strong> A table has rows and columns, while a transformer receives one token sequence.</li>
+<li><strong>Why:</strong> Row-major flattening creates misleading token distances.</li>
+<li><strong>Failure without it:</strong> Same-row but unrelated cells look near. Same-column cells look far.</li>
+<li><strong>Cost and complexity:</strong> A structural encoder adds input lookups and a parser that supplies their IDs.</li>
+</ul>
+<p>For token wi at position i and segment si, BERT uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>h</mi><mi>i</mi><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><msub><mi>E</mi><mrow><mi>t</mi><mi>o</mi><mi>k</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>s</mi><mi>e</mi><mi>g</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h_i^{(0)} = E_{tok}(w_i) + E_{pos}(i) + E_{seg}(s_i)</annotation></semantics></math></p>
+<p>Each lookup returns dimension d = 768 in the stated BERT-base configuration. The learned position table has 512 rows. The limit is a lookup-table size, not a formula. After a query of Q tokens and two special tokens, a cell in row r and column c begins at:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo>,</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>Q</mi><mo>+</mo><mn>2</mn><mo>+</mo><mi>C</mi><mi>L</mi><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mi>C</mi><mo>+</mo><mi>c</mi><mo stretchy="false" form="postfix">)</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">i(r,c) = Q + 2 + CL + (rC + c)L</annotation></semantics></math></p>
+<p>The product CL is the header-row length. Side-by-side cells are L tokens apart. Same-column cells are CL tokens apart. At C = 8 and L = 3, those distances are 3 and 24.</p>
+<h4 id="tapas-adds-table-fields-at-the-input">TAPAS adds table fields at the input</h4>
+<ul>
+<li><strong>What:</strong> TAPAS sums column, row, and rank lookups into the BERT input.</li>
+<li><strong>Why:</strong> The fields restore grid coordinates and explicit numeric order.</li>
+<li><strong>Failure without it:</strong> The base position signal points toward printed neighbors instead of shared attributes.</li>
+<li><strong>Cost and complexity:</strong> Three 256-entry tables add 589,824 parameters in the worked setup.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>h</mi><mi>i</mi><mrow><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo stretchy="false" form="postfix">)</mo></mrow></msubsup><mo>=</mo><msub><mi>E</mi><mrow><mi>t</mi><mi>o</mi><mi>k</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>s</mi><mi>e</mi><mi>g</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>s</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>c</mi><mi>o</mi><mi>l</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>c</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>r</mi><mi>o</mi><mi>w</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>r</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>+</mo><msub><mi>E</mi><mrow><mi>r</mi><mi>a</mi><mi>n</mi><mi>k</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">h_i^{(0)} = E_{tok}(w_i) + E_{pos}(i) + E_{seg}(s_i) + E_{col}(c_i) + E_{row}(r_i) + E_{rank}(k_i)</annotation></semantics></math></p>
+<p>The query occupies segment 0 and carries zeros in all three table fields. The header uses row ID 0, while column and row IDs come from the printed grid. For numeric or date columns, rank ID comes from sorting cell values. Other columns use rank ID 0. Rank exists because a query such as highest operating margin needs comparison, including 0.42 versus 0.31 across 20 attention hops in the stated example.</p>
+<h4 id="positional-assumptions">Positional assumptions</h4>
+<ul>
+<li><strong>What:</strong> Token, segment, and rank fields are content-derived or content-stable. Position, column, and row fields depend on rendering.</li>
+<li><strong>Why:</strong> A relation can remain unchanged when rows or non-key columns move.</li>
+<li><strong>Failure without it:</strong> Equivalent tables can produce different first-layer vectors and answers.</li>
+<li><strong>Cost and complexity:</strong> Canonicalization can reduce parser churn but does not make the encoder invariant.</li>
+</ul>
+<p>Under a row permutation, token IDs, segment IDs, and rank IDs stay fixed because value order does not depend on printed row. Absolute position and row IDs change, while column IDs change under column permutation. The representation therefore mixes data properties with rendering properties. This is not purely a defect because rendered tables often use column one as the entity key, but the mechanism cannot distinguish a meaningful key-column move from a harmless metric-column swap.</p>
+<h4 id="window-and-verbalization-arithmetic">Window and verbalization arithmetic</h4>
+<p>The worked table has R = 20, C = 8, L = 3, Q = 12, d = 768, 110 million parameters, and 512 positions. The opening failure says a user asks about 8 segments while truncation leaves 6 visible. Structural length is 12 + 2 + 24 + 480 = 518 tokens. In general, Rmax = (W - Q - 2 - CL)/(CL), and solving 14 + 24 + 24R &lt;= 512 gives R &lt;= 474/24 = 19.75, so only 19 complete rows fit. Verbalization uses 3 header tokens, 1 is token, 3 value tokens, and 1 comma per cell. Each row uses 3 + 8 x 8 = 67 tokens, so 20 rows use 1,340 table tokens and 1,354 tokens with query and specials. The continuous budget is (512 - 14)/67 = 7.4 rows, so only 7 complete rows fit. Against 504 structural table tokens, verbalization costs 2.66x the tokens and (1,354/518)^2 = 6.8x the attention for the same 160 cells.</p>
+<h4 id="parameter-and-result-accounting">Parameter and result accounting</h4>
+<p>Three 256 by 768 tables add:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>×</mo><mn>256</mn><mo>×</mo><mn>768</mn><mo>=</mo><mn>589</mn><mo>,</mo><mn>824</mn><mo>≈</mo><mn>0.59</mn><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> million</mtext></mrow></mrow><annotation encoding="application/x-tex">3 \times 256 \times 768 = 589{,}824 \approx 0.59\text{ million}</annotation></semantics></math></p>
+<p>That is one 768 by 768 matrix and 0.54% of a 110 million-parameter encoder. The source reports the SQA benchmark rising from 55.1 to 67.2, a 12.1-point absolute gain. The architecture stays BERT while replacing a semantic-parsing pipeline. The result supports a representation fix, not a capacity fix. Holding the key column fixed still leaves 20! x 7! = 2.43 x 10^18 x 5,040, or about 1.2 x 10^22 equivalent inputs. The model saw one parser-emitted ordering. The objective does not tie the rest to the same answer.</p>
+<h4 id="tapas-claim-limits">TAPAS claim limits</h4>
+<p>TAPAS is not a query engine. It predicts a set of cells and at most one operator from none, count, sum, or average. It is trained by weak supervision from final answers, not logical forms. Average margin across segments whose revenue grew requires two operations. The head cannot express that plan. Route compound numeric questions to SQL. Numeric parsing is also a gate. The source states that one failed parse can collapse the rank field to 0 for the column. Its examples are one <code>n/a</code> or one <code>1,204</code> with a thousands separator. Normalize values at ingest and monitor column parse rates.</p>
+<h4 id="operating-decisions-1">Operating decisions</h4>
+<ul>
+<li>Compute the row budget before selecting the encoder.</li>
+<li>Reject rather than silently truncate.</li>
+<li>Shard by row group only with the header replicated.</li>
+<li>Route cross-shard comparisons and aggregates elsewhere.</li>
+<li>Prefer verbalization for few small tables when maintaining a serializer is cheaper than maintaining a model. The source calls it the right choice on a 5-row table and for open-ended reasoning with a long-context instruction-tuned model.</li>
+<li>Prefer structural encoding above roughly 10 rows in the stated cost comparison.</li>
+<li>Freeze canonical column order and parser version beside the index.</li>
+<li>Run row permutation tests on label-preserving tables.</li>
+<li>Do not permute chronological ledgers, ranked leaderboards, or other order-bearing tables.</li>
+</ul>
+<h3 id="143-row-and-column-order-bias-and-tableformers-fix">14.3 Row and column order bias and TableFormer's fix</h3>
+<h4 id="put-exact-symmetries-in-the-architecture">Put exact symmetries in the architecture</h4>
+<ul>
+<li><strong>What:</strong> A relation is a set of tuples over named attributes.</li>
+<li><strong>Why:</strong> It has R! C! renderings when row and column order carry no label information.</li>
+<li><strong>Failure without it:</strong> The model can learn an incidental printed order.</li>
+<li><strong>Cost and complexity:</strong> Exact architectural bias replaces an impossibly large augmentation orbit.</li>
+</ul>
+<p>A 10-row, 5-column table has 10! x 5! = 435,456,000 equivalent serializations. Five augmented permutations cover 5/3,628,800 = 1.4 x 10^-6 of the row orbit alone. Sampling five points does not guarantee symmetry over 4.35 x 10^8 inputs.</p>
+<h4 id="why-tapas-changes-after-a-swap">Why TAPAS changes after a swap</h4>
+<ul>
+<li><strong>What:</strong> Row and column embeddings appear inside every token vector.</li>
+<li><strong>Why:</strong> The first attention logit is computed from those vectors.</li>
+<li><strong>Failure without it:</strong> Swapping rows changes every logit that touches their tokens at layer 1.</li>
+<li><strong>Cost and complexity:</strong> The perturbation can compound through the remaining 11 layers.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>W</mi><mi>Q</mi></msub><msub><mi>e</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><mo stretchy="false" form="prefix">(</mo><msub><mi>W</mi><mi>K</mi></msub><msub><mi>e</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><msqrt><msub><mi>d</mi><mi>h</mi></msub></msqrt></mfrac></mrow><annotation encoding="application/x-tex">\alpha_{ij} = \frac{(W_Q e_i)^T(W_K e_j)}{\sqrt{d_h}}</annotation></semantics></math></p>
+<p>Changing ri changes ei. That changes alpha for every affected pair. No architecture rule forces the change to zero. No stated pre-training objective penalizes it.</p>
+<h4 id="tableformer-moves-structure-into-attention">TableFormer moves structure into attention</h4>
+<ul>
+<li><strong>What:</strong> TableFormer deletes global position, row, and column IDs.</li>
+<li><strong>Why:</strong> Absolute IDs encode rendering order as meaning.</li>
+<li><strong>Failure without it:</strong> A harmless permutation rewrites token vectors.</li>
+<li><strong>Cost and complexity:</strong> It adds one learned relation scalar to each attention logit.</li>
+</ul>
+<p>Position resets inside each cell. Word order within a cell remains real. The structural pair function maps each token pair to 1 of 13 relations. The source names same cell, same row, same column, cell-to-header, header-to-cell, mirrored question-table relations, and a residual class.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>α</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>W</mi><mi>Q</mi></msub><msub><mi>e</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><mo stretchy="false" form="prefix">(</mo><msub><mi>W</mi><mi>K</mi></msub><msub><mi>e</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><msqrt><msub><mi>d</mi><mi>h</mi></msub></msqrt></mfrac><mo>+</mo><msub><mi>b</mi><mrow><mi>ϕ</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">\alpha_{ij} = \frac{(W_Q e_i)^T(W_K e_j)}{\sqrt{d_h}} + b_{\phi(i,j)}</annotation></semantics></math></p>
+<p>For row permutation pi:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo stretchy="false" form="prefix">(</mo><mi>π</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mi>π</mi><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>ϕ</mi><mo stretchy="false" form="prefix">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\phi(\pi(i),\pi(j)) = \phi(i,j)</annotation></semantics></math></p>
+<p>The attention matrix is permuted with the table. It is not rewritten by the table. This construction follows the same cheap relative-bias pattern as T5, with structural relation types replacing distance buckets. It preserves within-cell order, so Palo Alto does not become Alto Palo.</p>
+<h4 id="parameter-and-compute-cost">Parameter and compute cost</h4>
+<p>TAPAS row and column tables use 2 x 256 x 768 = 393,216 parameters. TableFormer deletes them. The replacement uses 13 x 12 = 156 scalars when shared across layers. It uses 13 x 12 x 12 = 1,872 scalars when each of 12 layers learns its own. The larger figure is 0.48% of the deleted parameter count. At n = 512, 12 heads, and 12 layers, the bias adds 3.77 x 10^7 additions per example. The count is n^2HL = 262,144 x 144 = 3.77 x 10^7. The stated attention work is 4n^2dL = 9.66 x 10^9 floating-point operations (FLOPs). The relation additions are 0.39% of attention compute. Against the stated full BERT-base forward pass of 2 x 110 x 10^6 x 512 = 1.13 x 10^11 FLOPs, they are 0.03%. T5-base uses 32 buckets across 12 heads, or 384 learned scalars. The source uses this as a scale check for the 156 shared TableFormer scalars.</p>
+<h4 id="variation-percentage-sees-canceled-flips">Variation percentage sees canceled flips</h4>
+<ul>
+<li><strong>What:</strong> Let p be correct-to-wrong flips and q be wrong-to-correct flips.</li>
+<li><strong>Why:</strong> Accuracy change is q - p, while VP is p + q.</li>
+<li><strong>Failure without it:</strong> Equal flip counts cancel in aggregate accuracy.</li>
+<li><strong>Cost and complexity:</strong> VP needs paired predictions on original and label-preserving perturbations.</li>
+</ul>
+<p>The source evaluates TableFormer on SQA for table question answering and TabFact for table-based fact verification, plus row and column perturbations of both. At 60.0% accuracy on both sets, p can equal q. The constraints are p &lt;= 0.600 and q &lt;= 0.400. VP can therefore reach 2 x 0.400 = 80% while accuracy change is zero. The source reports TableFormer holding VP under 1% where TAPAS degrades.</p>
+<h4 id="worked-regression">Worked regression</h4>
+<p>The evaluation contains 1,000 questions over 200 filing tables. The original serialization answers 600 correctly, or 60.0%. After row permutation, 140 flip correct-to-wrong and 138 flip wrong-to-correct. The new correct count is 600 - 140 + 138 = 598, or 59.8%. The dashboard sees a 0.2-point drop. VP is (140 + 138)/1,000 = 27.8%. Only 722 of 1,000 answers are stable. At sub-1% VP, TableFormer flips at most 10 of the 1,000 in this framing.</p>
+<h4 id="invariance-claim-limit">Invariance claim limit</h4>
+<p>The guarantee assumes the same cells survive serialization. The flattened input still truncates at 512 tokens. Cell inclusion can depend on the printed order when the table overruns the window. That mechanism explains residual VP under 1% instead of exact zero in the stated result. Absolute position can still carry legitimate rendering clues. A 2-row header partly signals its role by appearing on top, and moving Method beside F1 can make a human-readable table harder to parse. For fitting tables, invariance is architectural. For oversized tables, ingestion and sharding remain responsible.</p>
+<h4 id="operating-decisions-2">Operating decisions</h4>
+<ul>
+<li>Canonicalize row and column order in the parser before changing the encoder. Sorting rows by the key and pinning columns removes parser churn for the cost of a comparator.</li>
+<li>Keep order when order is data, including chronology and ranking.</li>
+<li>Report VP beside accuracy on structured-input evaluations. Permuting the existing set doubles it at zero labeling cost.</li>
+<li>Permute within order-free groups for partially ordered tables.</li>
+<li>Use architecture for exact symmetries and augmentation for formatting, whitespace, and casing changes.</li>
+<li>Repeat the header in every row block. A 60-row table that truncates becomes order-sensitive again.</li>
+<li>Route aggregates that cross row blocks to SQL.</li>
+<li>Read a table paper for its perturbation result as well as its headline accuracy.</li>
+</ul>
+<h3 id="144-document-layout-blocks-reading-order-and-hierarchical-pre-training">14.4 Document layout: blocks, reading order, and hierarchical pre-training</h3>
+<h4 id="extraction-and-order-are-separate">Extraction and order are separate</h4>
+<ul>
+<li><strong>What:</strong> OCR or a parser can return every character correctly and still linearize the page wrongly. The opening parser reports 0.99 confidence across the page.</li>
+<li><strong>Why:</strong> Two-column lines share vertical bands.</li>
+<li><strong>Failure without it:</strong> Sorting each line by vertical then horizontal position alternates unrelated columns.</li>
+<li><strong>Cost and complexity:</strong> Sorting blocks changes one key but requires trustworthy block boundaries.</li>
+</ul>
+<p>The worked page has 2 columns, 45 lines per column, and 11 tokens per line. It contains 2 x 45 x 11 = 990 tokens. Line sorting produces one coherent line at a time, or 11 tokens. Block sorting produces one 45-line column, or 495 coherent tokens. That is a 45x improvement without model training.</p>
+<h4 id="what-the-parser-must-preserve">What the parser must preserve</h4>
+<ul>
+<li><strong>What:</strong> Each block carries a bounding box, type, content, text properties, and image status.</li>
+<li><strong>Why:</strong> Header, paragraph, list, table, figure, and image roles are different.</li>
+<li><strong>Failure without it:</strong> The same words cannot reveal whether they govern later content.</li>
+<li><strong>Cost and complexity:</strong> Block IDs, types, page numbers, boxes, and text properties add metadata and parser work.</li>
+</ul>
+<p>Correct order is necessary but not sufficient. A flat token stream cannot express block membership and block type directly. The source contrasts <code>Discontinued models</code> as a header governing 300 tokens with the same words as a table cell governing nothing. It also measures block adjacency in tokens. Blocks 3 and 4 remain neighbors whether block 3 contains 12 or 800 tokens. The flat distance changes with block length anyway.</p>
+<p>For scans, the source uses Optical Character Recognition (OCR). For born-digital Portable Document Format (PDF) and HyperText Markup Language (HTML), it uses a structure parser. Each block can carry font size, bold, italic, and underline properties, plus image status.</p>
+<h4 id="lampret-uses-two-encoder-levels">LAMPreT uses two encoder levels</h4>
+<ul>
+<li><strong>What:</strong> A lower transformer reads within blocks. A higher transformer reads block summaries.</li>
+<li><strong>Why:</strong> Block order, type, adjacency, and image position need their own sequence.</li>
+<li><strong>Failure without it:</strong> Long documents overrun the flat window and non-text blocks lack explicit slots.</li>
+<li><strong>Cost and complexity:</strong> The system needs block parsing, two encoders, image encoding, and five objectives.</li>
+</ul>
+<p>Each token embedding sums WordPiece, block index, block content type, modality, and text features. A classification (CLS) token marks each block start. The lower transformer's classification output represents that block. The upper transformer receives the block outputs in layout order, so a header representation can attach to the paragraphs it governs instead of whichever text lands within 512 tokens. Images pass through a CNN encoder and occupy upper-level block slots. For B = 40 blocks averaging n = 60 tokens, total T = 2,400. Flat attention uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>T</mi><mn>2</mn></msup><mo>=</mo><mn>5.76</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup></mrow><annotation encoding="application/x-tex">T^2 = 5.76 \times 10^6</annotation></semantics></math></p>
+<p>The hierarchy uses:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><msup><mi>n</mi><mn>2</mn></msup><mo>+</mo><msup><mi>B</mi><mn>2</mn></msup><mo>=</mo><mn>40</mn><mo>×</mo><msup><mn>60</mn><mn>2</mn></msup><mo>+</mo><msup><mn>40</mn><mn>2</mn></msup><mo>=</mo><mn>145</mn><mo>,</mo><mn>600</mn><mo>=</mo><mn>1.456</mn><mo>×</mo><msup><mn>10</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">Bn^2 + B^2 = 40 \times 60^2 + 40^2 = 145{,}600 = 1.456 \times 10^5</annotation></semantics></math></p>
+<p>The two terms are 144,000 and 1,600. The reduction is 39.6x. The compute optimum from minimizing T^2/B + B^2 is about B = 142. The actual 40 blocks are semantic units chosen by the document. They are not a tuning knob. Both levels fit a 512-position table. The flat 2,400-token section is 4.7x over it.</p>
+<h4 id="five-pre-training-objectives">Five pre-training objectives</h4>
+<ul>
+<li><strong>What:</strong> Two objectives operate within content and three operate on the block sequence.</li>
+<li><strong>Why:</strong> Layout is learned only when a layout-blind model is punished.</li>
+<li><strong>Failure without it:</strong> Masked language modeling can solve one block at a time and ignore the upper encoder.</li>
+<li><strong>Cost and complexity:</strong> Five component losses require normalization, hypotheses, weights, and ablations.</li>
+</ul>
+<p>The low-level objectives are masked language modeling and image-text matching. Image-text matching swaps some images with images from other documents. The high-level objectives are block-ordering prediction, image fitting, and block filling. Block-ordering prediction swaps two blocks and asks whether the order is original. Image fitting masks an image block and selects the best candidate. Block filling applies the same construction to a text block. A within-block-only model scores at chance on all three high-level tasks. The total loss is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℒ</mi><mo>=</mo><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>λ</mi><mi>j</mi></msub><msub><mi>ℒ</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\mathcal{L} = \sum_j \lambda_j \mathcal{L}_j</annotation></semantics></math></p>
+<p>The source leaves every lambda tunable. Weights are not comparable unless component losses share a range. A weight of 0.1 on a loss in [0, 10] can outweigh a weight of 1.0 on a loss in [0, 0.5]. Normalize first. Set weights from a corpus hypothesis. Then sweep and ablate.</p>
+<h4 id="layoutlm-trade-off-and-claim-limit">LayoutLM trade-off and claim limit</h4>
+<ul>
+<li><strong>What:</strong> LayoutLM adds normalized box coordinates (x0, y0, x1, y1) to a flat token input.</li>
+<li><strong>Why:</strong> Absolute page geometry is useful for fitting single-page forms and receipts.</li>
+<li><strong>Failure without it:</strong> Coordinates do not create an explicit block order or image slot.</li>
+<li><strong>Cost and complexity:</strong> Flat two-dimensional positions are simpler for fitting pages. Hierarchy is more complex but supports blocks and images across longer documents.</li>
+</ul>
+<p>LayoutLM is the stated strong choice when the document fits 512 tokens and position such as bottom-right matters. It adds normalized box embeddings to a flat BERT checkpoint and pre-trains with masked language modeling. It loses on multi-block and multi-page documents for two mechanical reasons. Coordinates do not state which block precedes which. A flat token sequence has no explicit position for a non-text block. LAMPreT's evaluation uses MRR and recall@5 for text block filling and image suggestion. Its text-task performance is comparable to LayoutLM. It is better at associating the correct image with a masked image block. The claim is block-level and cross-modal association, not better text infilling.</p>
+<h4 id="datasheet-cost-example">Datasheet cost example</h4>
+<p>The corpus contains 40,000 pages at 990 tokens each, or 3.96 x 10^7 tokens. At 512 tokens with no overlap, it yields 77,344 chunks. At d = 768 in 32-bit floating point (fp32), vectors use 238 megabytes (MB). The generator has 7 billion parameters and receives k = 5 chunks. Raster-order extraction makes about 50% of each chunk distractor when electrical ratings and mechanical dimensions alternate across columns. Across 2,560 context tokens, 1,280 are noise. At the stated A100 sustained rate of 1.5 x 10^14 bfloat16 FLOPs per second, about half its 312 x 10^12 peak, wasted prefill is 119 milliseconds. Block sorting leaves at most 17 foreign tokens in a 512-token chunk, or 3.3%. Across the context, that is 85 distractor tokens and 7.9 milliseconds of wasted prefill. One sort key recovers 111 milliseconds per query. A parser at 0.4 seconds per page costs 16,000 core-seconds, or 4.4 core-hours. Across 16 workers, that is 17 minutes once at ingest. At 0.111 seconds saved per query, payback arrives after about 144,000 queries. This comparison is conservative because ingest spends central processing unit (CPU) seconds while serving saves accelerator seconds. At 10 queries per second (QPS), that is about four hours of traffic. The source warns that parser speed can vary by an order of magnitude. Measure it on the actual parser.</p>
+<h4 id="operating-decisions-3">Operating decisions</h4>
+<ul>
+<li>Sort blocks, not lines or tokens.</li>
+<li>Preserve the parser's internal order inside each block.</li>
+<li>Prepend the governing header chain to a chunk before buying a layout-aware model.</li>
+<li>Use the hierarchy when text must bind to images or multi-page block relations.</li>
+<li>Persist block ID, block type, page number, and bounding box beside each chunk. This costs a few dozen bytes per chunk beside 238 MB of vectors and avoids another 4.4 core-hours of parsing.</li>
+<li>Normalize all objective losses before setting their weights. A source hypothesis can weight masked language modeling low for image-dominated pages and high for text-dense filings.</li>
+<li>Evaluate layout with answer flips after block perturbation, not accuracy delta alone. When no stable order exists, such as on loose forms or slide decks, perturb block type labels instead.</li>
+<li>Use flat box positions for fitting single-page documents.</li>
+<li>Use hierarchy above 512 tokens or when cross-modal block association matters.</li>
+</ul>
+<h3 id="145-layout-priors-you-should-be-able-to-name">14.5 Layout priors you should be able to name</h3>
+<h4 id="a-sort-key-is-a-bundle-of-assumptions">A sort key is a bundle of assumptions</h4>
+<ul>
+<li><strong>What:</strong> Sorting blocks by (y, x) means downward first and rightward within a band. The opening transfer case moves recall@10 from 0.83 on Securities and Exchange Commission filings to 0.31 on Osaka maintenance manuals while OCR, bounding boxes, and embedding weights remain unchanged.</li>
+<li><strong>Why:</strong> It matches one common left-to-right Manhattan layout.</li>
+<li><strong>Failure without it:</strong> It interleaves columns or reverses scripts whose reading direction differs.</li>
+<li><strong>Cost and complexity:</strong> The system must classify columns, script, and region structure before sorting.</li>
+</ul>
+<p>The naive sort asserts four priors.</p>
+<ol type="1">
+<li>Reading moves downward.</li>
+<li>Reading moves rightward within a band.</li>
+<li>Blocks are rectangular.</li>
+<li>One global order exists.</li>
+</ol>
+<p>With five blocks in each of two columns, the correct order has nine adjacent pairs. The alternating sort preserves zero of nine.</p>
+<h4 id="recursive-x-y-cut">Recursive X-Y cut</h4>
+<ul>
+<li><strong>What:</strong> Project ink onto one axis, cut at the widest zero valley, then recurse with the axis swapped.</li>
+<li><strong>Why:</strong> A full-height gutter remains empty when ordinary word spaces fill under projection.</li>
+<li><strong>Failure without it:</strong> A spanning element erases the valley and the fallback can interleave columns.</li>
+<li><strong>Cost and complexity:</strong> One projection per region plus thresholds tied to body size.</li>
+</ul>
+<p>United States Letter is 612 points wide in the worked example. One-inch margins leave 468 points of text. An 18-point gutter leaves two columns of (468 - 18)/2 = 225 points. The page is 792 points high. Margins leave 648 points. At 12-point leading, the region has 54 lines. Body text is 10 points. Interword spaces are about 2.5 points in the source's approximation. Those small spaces occur at different x coordinates and fill under projection. The 18-point gutter has zero ink at the same x across all 54 lines. A one-body-em threshold clears the gutter. A spanning figure destroys the full-height valley. The fallback then emits column 1, column 2, column 1, column 2 with zero correct adjacencies in the illustrated case. One X projection per page can test for a full-height valley wider than one body em before the fallback runs.</p>
+<h4 id="reading-order-depends-on-script-and-genre">Reading order depends on script and genre</h4>
+<p>Left-to-right documents use (y, x). Hebrew and Arabic use (y, -x). Vertical Japanese and traditional Chinese use (-x, y). Newspapers require a choice between reading down a column and reading across the page. When column edges do not align, the blocks may not form columns. Mixed-script pages require region segmentation and an order per region.</p>
+<h4 id="typography-must-be-relative">Typography must be relative</h4>
+<ul>
+<li><strong>What:</strong> Size and weight mean something only against the rest of the page.</li>
+<li><strong>Why:</strong> Journals, slides, and contracts use different absolute point sizes.</li>
+<li><strong>Failure without it:</strong> A 14-point threshold misses contract headings and labels every token in a 24-point slide body.</li>
+<li><strong>Cost and complexity:</strong> A character-weighted size histogram and emphasis-rate calculation are required per page.</li>
+</ul>
+<p>Let s0 be the character-weighted modal size. Mark a heading when s/s0 &gt;= 1.10. The interview transfer case moves a heading detector from 95% on the original PDF corpus to 40% after slide-deck uploads. The absolute point-size rule is the bug. On 500 tokens, bold fraction p = 0.03 selects 15 tokens. Against 12 true heading tokens, the precision ceiling is 12/15 = 0.80. At p = 0.6, bold selects 300 tokens. The precision ceiling is 12/300 = 0.04. Bold is useful only while bold is rare.</p>
+<h4 id="worked-mixed-corpus">Worked mixed corpus</h4>
+<p>The corpus has 20,000 documents. Journals are 60%. They use 10-point body, 12-point subheads, 14-point section heads, and 18-point titles. Slides are 25%. They use 24-point body and 32-point headings. Contracts are 15%. They use 11-point body and 11-point bold headings.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Journals</th>
+<th>Slides</th>
+<th>Contracts</th>
+<th style="text-align: right;">Weighted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute s &gt;= 14 points</td>
+<td>Finds title and 4 section heads out of 17, recall 5/17 = 0.294</td>
+<td>Recall 1.0, but 1 title among 7 blocks gives precision 1/7 = 0.14</td>
+<td>Recall 0</td>
+<td style="text-align: right;">Weighted heading recall 0.426</td>
+</tr>
+<tr>
+<td>Relative s/s0 &gt;= 1.10 plus bold fraction below 0.15</td>
+<td>Ratios 1.2, 1.4, and 1.8 all pass. Recall 17/17 = 1.0</td>
+<td>32/24 = 1.333 passes while body 1.0 does not. Recall and precision are 1.0</td>
+<td>12 bold heading tokens among 450 give 0.027, so the rarity gate passes</td>
+<td style="text-align: right;">Weighted recall 1.0</td>
+</tr>
+</tbody>
+</table></div>
+<p>The page histogram processes 20,000 x 12 x 2,400 = 5.76 x 10^8 character records. At the stated 10^7 dictionary increments per second, it costs 58 seconds once. The 1.10 threshold is not tuned in the example. The cited type-scale mappings are 1.125 for a major second, 1.2 for a minor third, 1.25 for a major third, and 1.333 for a perfect fourth. A threshold between 1.0 and 1.125 separates one standard step from body text. The example excludes the 1.067 minor-second step on purpose. The source says a 6.7% difference is not a heading cue a human reads. For OCR point estimates with several percent error, the source recommends 1.20 and more reliance on weight, capitalization, and position.</p>
+<h4 id="rendering-priors-and-encoder-invariance-coexist">Rendering priors and encoder invariance coexist</h4>
+<ul>
+<li><strong>What:</strong> The rendered leftmost column often acts as the key, while the underlying relation remains column-order invariant.</li>
+<li><strong>Why:</strong> Rendering and relation are different objects.</li>
+<li><strong>Failure without it:</strong> Putting the leftmost-key rule into the encoder confuses typography with data semantics.</li>
+<li><strong>Cost and complexity:</strong> The parser keeps the key in each chunk. The encoder keeps role relations without absolute index embeddings.</li>
+</ul>
+<p>TableFormer drops row and column indices but keeps header-to-cell and same-column roles. The linearizer keeps the key cell and required header rows in every fragment. Arabic or other right-to-left rendering can invert the rendered-key convention without requiring an encoder change.</p>
+<h4 id="learned-priors-also-have-domains">Learned priors also have domains</h4>
+<p>LayoutLM was pre-trained on scanned English business documents from the Illinois Institute of Technology Complex Document Information Processing (IIT-CDIP) corpus. PubLayNet was built by matching Portable Document Format (PDF) text against PubMed Central Extensible Markup Language (XML). It covers scientific articles. DocLayNet was created because single-domain layout corpora do not transfer. Its authors annotated 11 layout classes across 6 document categories. A coded prior can fail loudly on a held-out domain. A learned prior can fail silently when the training domain is hidden from system tests.</p>
+<h4 id="operating-decisions-4">Operating decisions</h4>
+<ul>
+<li>Use page-relative size ratios instead of absolute point thresholds.</li>
+<li>Detect columns before applying a block sort.</li>
+<li>Audit a parser-provided reading-order field on 50 held-out pages. The source says most commercial parsers already emit one.</li>
+<li>Record script at ingest and select the order function from it.</li>
+<li>Carry the key cell and every required header row into table fragments.</li>
+<li>Preserve both header rows when the header spans two rows.</li>
+<li>Treat multi-column spanning cells as genuinely ambiguous unless structure is retained.</li>
+<li>Gate emphasis rules on the page's own emphasis rate. In single-weight documents, fall back to numbering patterns such as 1. or Article 3.</li>
+<li>Re-test every prior on a document category absent from development.</li>
+<li>Use the optometrist test as a diagnostic. Features visible when words are unreadable are layout signals that plain text extraction discards.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="table-141">Table 14.1</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Example</th>
+<th>Retrieval gets free</th>
+<th>What it costs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structured</td>
+<td>SQL rows, knowledge graph triples</td>
+<td>Exact predicates, joins, aggregation. Ranking is almost unnecessary</td>
+<td>The schema is yours to design and migrate forever</td>
+</tr>
+<tr>
+<td>Semi-structured</td>
+<td>Filings, wikis, manuals with prose interleaved with tables</td>
+<td>Coverage with no schema work</td>
+<td>Cell meaning is positional, so splitting corrupts it and cell text is weak similarity-search material</td>
+</tr>
+<tr>
+<td>Unstructured</td>
+<td>Prose, transcripts, tickets</td>
+<td>Everything a chunker assumes, including sentences, redundancy, and distributional signal</td>
+<td>No exact predicates. You rank, you do not query</td>
+</tr>
+<tr>
+<td>LLM-generated</td>
+<td>Synthetic question and answer pairs, summaries, propositions</td>
+<td>A retrieval surface written in the query's own vocabulary</td>
+<td>Provenance becomes yours to defend, and the errors are fluent</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Table 14.1: Semi-structured data is the only one of the four types in which meaning is carried by position rather than by tokens, which is why it is the only one a text splitter can corrupt without producing anything that looks broken.</strong></p>
+<h3 id="figure-141">Figure 14.1</h3>
+<h4 id="a-row-major-serialization-cut-every-l-tokens">A. Row-major serialization, cut every L tokens</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Seg</th>
+<th>Qtr</th>
+<th style="text-align: right;">Rev</th>
+<th style="text-align: right;">GM%</th>
+<th style="text-align: right;">Opex</th>
+<th style="text-align: right;">NI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header</td>
+<td>header</td>
+<td style="text-align: right;">header</td>
+<td style="text-align: right;">header</td>
+<td style="text-align: right;">header</td>
+<td style="text-align: right;">header</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+<td style="text-align: right;">...</td>
+</tr>
+<tr>
+<td>cut</td>
+<td>cut</td>
+<td style="text-align: right;">cut</td>
+<td style="text-align: right;">cut</td>
+<td style="text-align: right;">cut</td>
+<td style="text-align: right;">cut</td>
+</tr>
+<tr>
+<td>EMEA</td>
+<td>Q3-25</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">38.2</td>
+<td style="text-align: right;">190.1</td>
+<td style="text-align: right;">71.4</td>
+</tr>
+</tbody>
+</table></div>
+<p>Above the cut, the header and 16 of 120 rows carry every query term and 13.3% of the data.</p>
+<p>Below the cut, 86.7% of rows are bare numbers. The path from 38.2 to GM% is Delta(r) = wrC tokens and the cut severs it.</p>
+<h4 id="b-row-wise-serialization-header-repeated">B. Row-wise serialization, header repeated</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Self-describing row</th>
+<th>Position relative to cut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seg:APAC Qtr:Q3-25 GM%:41.7 ...</td>
+<td>above</td>
+</tr>
+<tr>
+<td>Seg:EMEA Qtr:Q3-25 GM%:38.2 ...</td>
+<td>above</td>
+</tr>
+<tr>
+<td>cut</td>
+<td>cut</td>
+</tr>
+<tr>
+<td>Seg:AMER Qtr:Q3-25 GM%:35.9 ...</td>
+<td>below</td>
+</tr>
+</tbody>
+</table></div>
+<p>Header distance is now order wC. The cut position no longer removes labels. Serialized tokens rise 39%.</p>
+<p><strong>Figure 14.1: A fixed-length cut severs the header from every row beneath it: the top chunk holds the column names and 16 of 120 rows, and the remaining 104 rows become unlabeled numbers. Repeating the header inside each row makes every fragment self-describing and makes the cut position stop mattering.</strong></p>
+<h3 id="figure-142">Figure 14.2</h3>
+<h4 id="a-rendered-table">A. Rendered table</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">MRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BM25</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">0.31</td>
+</tr>
+<tr>
+<td>DPR</td>
+<td style="text-align: right;">2020</td>
+<td style="text-align: right;">0.42</td>
+</tr>
+</tbody>
+</table></div>
+<p>Same-row distance is L = 1. Same-column distance is CL = 3.</p>
+<h4 id="b-row-major-input-fields">B. Row-major input fields</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th style="text-align: right;">Method</th>
+<th style="text-align: right;">Year</th>
+<th style="text-align: right;">MRR</th>
+<th style="text-align: right;">BM25</th>
+<th style="text-align: right;">1994</th>
+<th style="text-align: right;">0.31</th>
+<th style="text-align: right;">DPR</th>
+<th style="text-align: right;">2020</th>
+<th style="text-align: right;">0.42</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position ID</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td>column ID</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td>row ID</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>rank ID</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Position, column, and row IDs come from printed order. Rank IDs come from sorted values.</p>
+<p><strong>Figure 14.2: TAPAS flattens the table row-major, which puts same-column cells CL tokens apart and unrelated same-row cells only L apart, then repairs the lost geometry with three additive lookups. Only the rank is derived from the cell values. the position, column, and row IDs are read off the printed order, so permuting rows hands the model a different input for the same data. The query occupies segment 0 and carries zeros in all three table fields.</strong></p>
+<h3 id="figure-143">Figure 14.3</h3>
+<h4 id="a-tapas-before-and-after-a-row-swap">A. TAPAS before and after a row swap</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">r</th>
+<th>c = 1</th>
+<th style="text-align: right;">c = 2</th>
+<th style="text-align: right;">c = 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>Method</td>
+<td style="text-align: right;">Recall</td>
+<td style="text-align: right;">Latency</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>BM25</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>ColBERT</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">44</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th style="text-align: right;">r after swap</th>
+<th>c = 1</th>
+<th style="text-align: right;">c = 2</th>
+<th style="text-align: right;">c = 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>Method</td>
+<td style="text-align: right;">Recall</td>
+<td style="text-align: right;">Latency</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>ColBERT</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>BM25</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">12</td>
+</tr>
+</tbody>
+</table></div>
+<p>The boxed conceptual row moves from r = 2 to r = 1. Every row-dependent token vector changes.</p>
+<h4 id="b-tableformer-relations">B. TableFormer relations</h4>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  h[&quot;Recall header&quot;] --&gt;|&quot;column header to cell&quot;| b[&quot;BM25 0.71&quot;]
+  h --&gt;|&quot;column header to cell&quot;| c[&quot;ColBERT 0.86&quot;]
+  b ---|&quot;same column&quot;| c
+  bm[&quot;BM25&quot;] -.-|&quot;same row&quot;| b
+  cm[&quot;ColBERT&quot;] -.-|&quot;same row&quot;| c
+  note[&quot;13 relation types in all&quot;]</code></pre></details></figure>
+<p>The relation edges survive the swap. Attention is permuted with the table.</p>
+<p><strong>Figure 14.3: TAPAS binds a cell to an absolute row index, so swapping two rows rewrites every token vector in them. TableFormer binds it to a relation type, which the swap leaves fixed.</strong></p>
+<h3 id="figure-144">Figure 14.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+  subgraph lines[&quot;A. Sort lines by vertical then horizontal position&quot;]
+    direction LR
+    l1[&quot;left line 1&quot;] --&gt; r1[&quot;right line 1&quot;] --&gt; l2[&quot;left line 2&quot;] --&gt; r2[&quot;right line 2&quot;] --&gt; more[&quot;continue alternating&quot;]
+    more --&gt; run11[&quot;longest coherent run: 11 tokens&quot;]
+  end
+  subgraph blocks[&quot;B. Sort blocks by vertical then horizontal position&quot;]
+    direction LR
+    b1[&quot;block 1: full left column&quot;] --&gt; b2[&quot;block 2: full right column&quot;]
+    b2 --&gt; run495[&quot;longest coherent run: 495 tokens&quot;]
+  end
+  subgraph hierarchy[&quot;C. Two encoder levels&quot;]
+    direction TB
+    c1[&quot;content encoder block 1&quot;] --&gt; cls1[&quot;CLS 1&quot;]
+    c2[&quot;content encoder block 2&quot;] --&gt; cls2[&quot;CLS 2&quot;]
+    c3[&quot;content encoder block 3&quot;] --&gt; cls3[&quot;CLS 3&quot;]
+    c4[&quot;content encoder block 4&quot;] --&gt; cls4[&quot;CLS 4&quot;]
+    cls1 --&gt; layout[&quot;layout encoder over block sequence&quot;]
+    cls2 --&gt; layout
+    cls3 --&gt; layout
+    cls4 --&gt; layout
+    cls2 &lt;-.-&gt;|&quot;block-ordering prediction swaps 2 and 3&quot;| cls3
+  end
+  run11 ~~~ b1 ~~~ c1</code></pre></details></figure>
+<p>Token embedding equals WordPiece plus block index, block type, modality, and text features.</p>
+<p><strong>Figure 14.4: Reading order is decided at the block level, not the token level: sorting lines rather than blocks cuts the longest coherent span on a two-column page from 495 tokens to 11, while a two-level encoder gives block order, block type, and block adjacency a representation level at which they can be predicted.</strong></p>
+<h3 id="figure-145">Figure 14.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+  subgraph manhattan[&quot;A. Manhattan layout&quot;]
+    direction TB
+    m1[&quot;1 full-width header&quot;] --&gt; split1[&quot;horizontal cut below block 1&quot;]
+    split1 --&gt; gutter[&quot;18-point gutter has zero ink on all 54 lines&quot;]
+    gutter --&gt; m2[&quot;2 left column&quot;]
+    gutter --&gt; m4[&quot;4 right column&quot;]
+    m2 --&gt; m3[&quot;3 left column&quot;]
+    m4 --&gt; m5[&quot;5 right column&quot;]
+    m3 --&gt; m6[&quot;6 spanning footer&quot;]
+    m5 --&gt; m6
+    m6 --&gt; ok[&quot;cut succeeds, order correct&quot;]
+  end
+  subgraph nonmanhattan[&quot;B. Non-Manhattan layout&quot;]
+    direction TB
+    ntop[&quot;full-width top block&quot;] --&gt; n1[&quot;1 upper left&quot;]
+    ntop --&gt; n2[&quot;2 upper right&quot;]
+    n1 --&gt; span[&quot;spanning figure crosses gutter&quot;]
+    n2 --&gt; span
+    span --&gt; n4[&quot;4 lower left&quot;]
+    span --&gt; n5[&quot;5 lower right&quot;]
+    n4 --&gt; fail[&quot;no full-height valley, cut fails&quot;]
+    n5 --&gt; fail
+    fail --&gt; fallback[&quot;vertical then horizontal fallback interleaves columns&quot;]
+    fallback --&gt; zero[&quot;zero correct adjacencies&quot;]
+  end
+  m1 ~~~ n1</code></pre></details></figure>
+<p><strong>Figure 14.5: Recursive X-Y cut recovers reading order only while whitespace runs the full height of the region, because the gutter is the one gap no intra-column word space can fill in across 54 lines. A single element straddling it erases the valley, the cut fails, and the (y, x) fallback emits column 1, column 2, column 1, column 2 - zero correct adjacencies.</strong></p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a table with one header row and many data rows.</li>
+<li>Draw a fixed cut below the header. Circle one orphan value.</li>
+<li>Connect that value to its row key and column header. Label the path Delta(r) = wrC.</li>
+<li>Redraw the rows with labels repeated. Mark orphan rate 0 and token cost plus 39%.</li>
+<li>Draw TAPAS as six input fields. Circle position, row, and column as order-dependent.</li>
+<li>Draw a row swap. Replace absolute IDs with TableFormer's same-row, same-column, and header-to-cell edges.</li>
+<li>Write accuracy change q - p beside VP p + q.</li>
+<li>Draw two page columns. Show line sorting as an alternating stripe and block sorting as two solid spans.</li>
+<li>Stack a content encoder below a layout encoder. Add the five pre-training objectives.</li>
+<li>Finish with a full-height gutter, a spanning figure, and script-dependent sort keys.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Tables and pages are not plain token streams. I detect table and block structure before splitting. For a tall table, I split only between rows and repeat the header, so every value keeps its row key and column label. TAPAS adds row, column, and rank fields, but absolute indices create order bias. TableFormer moves structure into relation-aware attention, which survives harmless permutations. For documents, I sort blocks, not lines, and use hierarchy when block relations or images matter. I test reading-order, truncation, and permutation failures explicitly, because clean extracted text can still be structurally wrong.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-does-a-good-text-pipeline-fail-on-table-numbers">1. Why does a good text pipeline fail on table numbers?</h3>
+<p>The likely failure is table splitting, because query words stay in the header while the answer row lands elsewhere. Inspect one retrieved chunk, then detect tables before splitting, cut only between rows, and repeat the header if labels and values are separated. For a 200-page filing with 60 tables, index prose normally, keep fitting tables atomic, use row-atomic fallback for large tables, and restore headers on continuation pages.</p>
+<h3 id="2-does-adding-row-and-column-embeddings-solve-table-structure">2. Does adding row and column embeddings solve table structure?</h3>
+<p>It restores grid coordinates, but it also encodes printed order. TAPAS adds column, row, and rank fields while leaving BERT unchanged, so rank survives a row swap while absolute position and row IDs do not. For a 40-row by 12-column table with L = 3, one row costs 36 tokens and the stated budget is 12.8 rows, so shard with repeated headers and route cross-shard aggregates to SQL.</p>
+<h3 id="3-a-row-permutation-moves-accuracy-from-600-to-598-is-the-model-robust">3. A row permutation moves accuracy from 60.0% to 59.8%. Is the model robust?</h3>
+<p>No, because accuracy compares marginals and opposite answer flips can cancel. Temperature 0 does not help because the inputs changed, and the worked 0.2-point change hides 278 flips among 1,000 questions, or VP 27.8%, while the zero-delta bound reaches 80%. If the relation bias truly blocks fused export, compare that measured instability against 5x augmentation, which covers only 1.4 x 10^-6 of the 10-row orbit and costs 5x the training compute.</p>
+<h3 id="4-should-i-choose-layoutlm-or-a-two-level-layout-encoder">4. Should I choose LayoutLM or a two-level layout encoder?</h3>
+<p>Use flat box coordinates for a fitting single-page form where absolute geometry is the signal, and use hierarchy above 512 tokens or when block adjacency and image slots matter. The stated LAMPreT result is comparable text block filling and better image association, not better text infilling. In the 40,000-page-per-day, 10 QPS, 300-millisecond scenario, combine page-image retrieval with block extraction and rank fusion because the image leg bypasses reading order but gives up lexical exact match on part numbers and error codes plus span citation.</p>
+<h3 id="5-why-not-hard-code-geometry-and-typography">5. Why not hard-code geometry and typography?</h3>
+<p>Vertical-then-horizontal sorting assumes downward reading, rightward movement within a band, rectangular blocks, and one global order. It preserves zero of nine adjacencies in the five-block-per-column example, while an absolute 14-point heading rule underlies the stated transfer from 95% to 40% after slide uploads. Detect columns and script first, use the page-relative s/s0 &gt;= 1.10 rule with rarity-gated bold, and test every prior on held-out domains.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Exact value</th>
+<th>Meaning or limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table geometry and retention</td>
+<td>Delta(r) = wrC, n = floor(L/(wC)) - 1</td>
+<td>Header distance grows with row index, while retained rows do not grow with R</td>
+</tr>
+<tr>
+<td>Opening split</td>
+<td>L = 512, o = 64, C = 6, w = 5, row = 30 tokens</td>
+<td>16 of 120 rows retain labels, 13.3% retained, 104 orphaned, 86.7% orphan rate</td>
+</tr>
+<tr>
+<td>Overlap and original size</td>
+<td>Header ends at 30, chunk two starts at 449, overlap carries 2.1 rows, table is 30 x 121 = 3,630 tokens</td>
+<td>The header is not repeated. The table is 7.1x BERT's 512 positions and makes 8 chunks at stride 448</td>
+</tr>
+<tr>
+<td>Header repetition</td>
+<td>5 to 7 tokens per cell, 30 to 42 per row, 5,040 tokens, 12 rows per chunk, 10 chunks</td>
+<td>39% token inflation, 1.39x embedding tokens, 1.25x vectors, 0 orphan rows</td>
+</tr>
+<tr>
+<td>Surrogate and payload</td>
+<td>80-token surrogate, 1 vector, 5 x 3,630 = 18,150 payload tokens versus 420 row tokens</td>
+<td>Whole-table prefill is 43x. Character estimates of 14,500 and 13,100 agree within 10%</td>
+</tr>
+<tr>
+<td>BERT and flattening</td>
+<td>d = 768, 512 positions, same-row distance L, same-column distance CL</td>
+<td>At C = 8 and L = 3, distances are 3 and 24. TAPAS adds column, row, and rank, with zeros for query table fields</td>
+</tr>
+<tr>
+<td>TAPAS window</td>
+<td>R = 20, C = 8, L = 3, Q = 12, 518 structural tokens, R &lt;= 474/24 = 19.75</td>
+<td>19 rows fit and row 20 truncates silently. The opening asks about 8 segments while only 6 remain visible. At 40 rows, 12 columns, and L = 3, one row is 36 tokens and only 12 fit because the budget is 12.8</td>
+</tr>
+<tr>
+<td>Verbalization</td>
+<td>67 tokens per row, 1,340 table tokens, 1,354 total versus 518, budget 7.4 rows</td>
+<td>Only 7 rows fit. Inflation is 2.66x and attention is 6.8x</td>
+</tr>
+<tr>
+<td>TAPAS scale and result</td>
+<td>3 tables of 256 by 768 give 589,824 parameters, one 768 by 768 matrix, about 0.59 million and 0.54% of 110 million, SQA 55.1 to 67.2</td>
+<td>The gain is 12.1 points. The orbit is 20! x 7! = 2.43 x 10^18 x 5,040, or about 1.2 x 10^22 inputs, and the head emits one cell set with none, count, sum, or average</td>
+</tr>
+<tr>
+<td>Numeric parse gate</td>
+<td>One <code>n/a</code> or <code>1,204</code> can set rank to 0 for a column</td>
+<td>Normalize numeric values and monitor parse rate before using rank IDs</td>
+</tr>
+<tr>
+<td>Permutation orbit</td>
+<td>10! x 5! = 435,456,000, five samples cover 1.4 x 10^-6 of the row orbit</td>
+<td>Augmentation does not guarantee exact symmetry and spends 5x training compute in the stated platform trade-off</td>
+</tr>
+<tr>
+<td>TableFormer parameters</td>
+<td>13 relations, 393,216 row and column parameters deleted, 156 shared or 1,872 per-layer scalars added</td>
+<td>The larger replacement is 0.48% of the deleted parameters</td>
+</tr>
+<tr>
+<td>TableFormer compute</td>
+<td>262,144 x 144 = 3.77 x 10^7 additions, 4n^2dL = 9.66 x 10^9 attention FLOPs, 2 x 110 x 10^6 x 512 = 1.13 x 10^11 full-forward FLOPs</td>
+<td>Bias is 0.39% of attention and 0.03% of the full estimate. T5's 32 x 12 = 384 scalars provide the scale check</td>
+</tr>
+<tr>
+<td>VP limit and report</td>
+<td>VP can reach 80% at 60% accuracy on both sets. TableFormer reports VP under 1%</td>
+<td>Marginal accuracy can remain unchanged. Residual flips follow window overflow in the source</td>
+</tr>
+<tr>
+<td>Worked regression</td>
+<td>600/1,000 = 60.0%, then 598/1,000 = 59.8%, with 140 down flips and 138 up flips</td>
+<td>VP is 27.8%, 278 answers flip, and 722 remain stable</td>
+</tr>
+<tr>
+<td>Reading order</td>
+<td>2 x 45 x 11 = 990 tokens, coherent span 11 versus 495</td>
+<td>Block sorting improves coherent span 45x</td>
+</tr>
+<tr>
+<td>Hierarchy</td>
+<td>B = 40, n = 60, T = 2,400, flat 5.76 x 10^6 pairs, hierarchical 144,000 + 1,600 = 1.456 x 10^5</td>
+<td>Flat input is 4.7x over 512. Hierarchy reduces pairs 39.6x and has a compute optimum near B = 142</td>
+</tr>
+<tr>
+<td>Objectives and loss</td>
+<td>5 objectives, weight 0.1 on [0, 10] versus 1.0 on [0, 0.5]</td>
+<td>Two objectives are low-level and three are high-level. Normalize before comparing weights</td>
+</tr>
+<tr>
+<td>Datasheet corpus</td>
+<td>40,000 x 990 = 3.96 x 10^7 tokens, 77,344 chunks, 238 MB at d = 768 fp32</td>
+<td>A chunk holds about 47 alternating line fragments. Raster order sends 1,280 distractor tokens, adds 1.79 x 10^13 prefill FLOPs, and wastes 119 milliseconds at 1.5 x 10^14 bfloat16 FLOPs per second, about half the stated 312 x 10^12 peak</td>
+</tr>
+<tr>
+<td>Block-sort economics</td>
+<td>85 foreign tokens, 3.3%, 7.9 milliseconds wasted, 111 milliseconds recovered</td>
+<td>Parser cost is 0.4 seconds per page, 16,000 core-seconds, 4.4 core-hours, or 17 minutes on 16 workers. Metadata is a few dozen bytes per chunk. Payback is 144,000 queries or about four hours at 10 QPS</td>
+</tr>
+<tr>
+<td>Page-image trade-off</td>
+<td>40,000 pages per day, 10 QPS, 300-millisecond budget</td>
+<td>Image retrieval bypasses reading order but gives up lexical exact match and span citation unless a block leg remains</td>
+</tr>
+<tr>
+<td>Layout assumptions</td>
+<td>4 priors, 0 of 9 adjacencies preserved with five blocks per column</td>
+<td>The priors are down, right, rectangles, and one global order</td>
+</tr>
+<tr>
+<td>X-Y geometry</td>
+<td>Page 612 by 792 points, text 468 by 648, gutter 18, columns 225, 54 lines at 12-point leading</td>
+<td>Body is 10 points and word spaces are about 2.5 points. Only the gutter stays empty through all lines</td>
+</tr>
+<tr>
+<td>Typography and emphasis</td>
+<td>Heading detection 95% to 40%, p = 0.03 gives precision ceiling 0.80, p = 0.6 gives 0.04</td>
+<td>The transfer exposes an absolute-size bug. Both emphasis cases assume 12 true heading tokens among 500</td>
+</tr>
+<tr>
+<td>Mixed corpus result</td>
+<td>20,000 documents, 60% journals, 25% slides, 15% contracts</td>
+<td>Absolute s &gt;= 14 gives weighted recall 0.426. Relative s/s0 &gt;= 1.10 with bold fraction below 0.15 gives 1.0</td>
+</tr>
+<tr>
+<td>Mixed corpus detail</td>
+<td>Journal 5/17 = 0.294 versus 17/17 = 1.0, slide precision 1/7 = 0.14 versus 1.0, contract bold 12/450 = 0.027</td>
+<td>Histogram work is 5.76 x 10^8 records and 58 seconds at 10^7 increments per second</td>
+</tr>
+<tr>
+<td>Type and transfer checks</td>
+<td>Major second 1.125, minor third 1.2, major third 1.25, perfect fourth 1.333, excluded minor second 1.067 or 6.7%, 50-page parser audit</td>
+<td>DocLayNet covers 11 classes across 6 categories to expose single-domain transfer limits</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/13_chunking_and_granularity.html"><small>Previous</small>Chapter 13. Chunking and Granularity</a><a href="../chapters/15_approximate_nearest_neighbor_search.html"><small>Next</small>Chapter 15. Approximate Nearest Neighbor Search</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

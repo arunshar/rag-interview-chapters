@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>00.07. Notation and Symbols | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/00_07_notation_and_symbols.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group" open><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html" aria-current="page">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Front matter</p><h1>00.07. Notation and Symbols</h1><p class="chapter-meta">18 min estimated reading · Unit 7 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This unit standardizes the symbols, abbreviations, overloads, and measurement conventions used throughout the retrieval-augmented generation (RAG) book.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>The semi-parametric frame separates knowledge in generator parameters <code>θ</code> from knowledge in the retrievable datastore <code>D</code> .</li>
+<li>The main flow is <code>x</code> to <code>q</code> to a retrieval gate, a ranked retrieval result, <code>k</code> contexts, and generated answer <code>y</code> .</li>
+<li>Retrieval and ranking notation covers relevance, rank, term statistics, encoders, token lengths, loss, and temperature.</li>
+<li>Index notation names vector count, dimension, graph degree, search breadth, product quantization, and recall targets.</li>
+<li>Evaluation and training notation distinguishes ranking quality, chunking quality, retrieval distributions, generator supervision, and low-rank factors.</li>
+<li>Multimodal, graph, latency, and cost symbols connect retrieval choices to modality thresholds, graph size, stage timing, and query price.</li>
+<li>Several conventional symbols are overloaded. The source keeps them and requires context to identify the intended meaning.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a library service with a practiced librarian, live shelves, and a checkout counter. The librarian's learned habits are <code>θ</code> . The shelves are datastore <code>D</code> , and separate rooms are <code>D_1, ..., D_m</code> . A visitor speaks input <code>x</code> . The librarian transforms it into query <code>q = Φ(x)</code> . Gate <code>g(x)</code> decides whether anyone visits the shelves.</p>
+<p>When retrieval runs, <code>RET(x, D)</code> searches and ranks the shelves. It first brings back <code>k′</code> candidates. Reranking narrows them to <code>k</code> contexts, <code>c_1, ..., c_k</code> . Generator <code>GEN_θ</code> reads those contexts and writes answer <code>y</code> , one token <code>y_t</code> at a time.</p>
+<p>The library has several control panels. Retrieval scores and ranks items. The vector index controls how broadly the shelves are searched. Evaluation checks ranked results and chunk boundaries. Training aligns the retriever's distribution with the generator's preference. Multimodal admission rules and graph grounding decide which rooms and relationships can join the search.</p>
+<p>The checkout counter records each stage latency <code>t_i</code> and query cost <code>C_q</code> . Some labels repeat across panels. The label <code>d</code> can mean a document at the search desk or a dimension at the index panel. The label only becomes safe when its panel and first-use definition are visible.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The Semi-Parametric Frame: <code>θ</code></td>
+<td>Generator parameters, the parametric component</td>
+<td>Knowledge stored in weights.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>D</code></td>
+<td>Datastore, the non-parametric component</td>
+<td>Retrievable at test time.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>D_1, ..., D_m</code></td>
+<td>Individual stores composing <code>D</code></td>
+<td>Source selection ranges over these stores.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>x</code></td>
+<td>User input</td>
+<td>What the user actually typed.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>q = Φ(x)</code></td>
+<td>Query issued to the retriever</td>
+<td><code>Φ</code> is the query transformation.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>g(x) ∈ {0, 1}</code></td>
+<td>Retrieval gate</td>
+<td>Decision one is whether to retrieve.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>RET(x, D)</code></td>
+<td>Retriever</td>
+<td>Returns a ranked list.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>GEN_θ</code></td>
+<td>Generator</td>
+<td>The language model.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>c_1, ..., c_k</code></td>
+<td>Retrieved contexts passed to the generator</td>
+<td>These are the contexts retained after truncation.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>y</code></td>
+<td>Generated answer</td>
+<td><code>y_t</code> is its t-th token.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>k</code></td>
+<td>Number of contexts passed to <code>GEN</code></td>
+<td>The top-k cutoff.</td>
+</tr>
+<tr>
+<td>The Semi-Parametric Frame: <code>k′</code></td>
+<td>Retrieval depth before reranking</td>
+<td><code>k′ ≥ k</code>. Truncation is decision five.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>d</code></td>
+<td>A document or chunk</td>
+<td>Context disambiguates it from dimension.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>s(q, d)</code></td>
+<td>Relevance score of <code>d</code> for <code>q</code></td>
+<td>No additional convention is stated.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>rank(d)</code></td>
+<td>Position of <code>d</code> in a ranked list</td>
+<td>Positions are 1-indexed.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>f</code></td>
+<td>Term frequency in a document</td>
+<td>Used by BM25.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>k_1, b</code></td>
+<td>BM25 saturation and length-normalization parameters</td>
+<td>Typically <code>k_1 ≈ 1.2</code> and <code>b ≈ 0.75</code>.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>avgdl</code></td>
+<td>Average document length in the collection</td>
+<td>Used by BM25.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>E_Q(·), E_P(·)</code></td>
+<td>Query and passage encoders</td>
+<td>Dense passage retrieval (DPR) convention. Bi-encoder.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>L_q, L_p</code></td>
+<td>Query and passage length in tokens</td>
+<td>Drives encoder floating-point operations (FLOPs).</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>MaxSim</code></td>
+<td>Late-interaction operator</td>
+<td>ColBERT.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>ℒ</code></td>
+<td>Training loss</td>
+<td>No additional convention is stated.</td>
+</tr>
+<tr>
+<td>Retrieval and Ranking: <code>τ</code></td>
+<td>Softmax temperature</td>
+<td>Sharpens or flattens a score distribution.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>N</code></td>
+<td>Number of vectors in the index</td>
+<td>Context distinguishes it from model parameter count.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>d</code></td>
+<td>Embedding dimensionality</td>
+<td>Examples are 768 and 1,536.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>M</code></td>
+<td>Hierarchical navigable small world (HNSW) out-degree per node above layer 0</td>
+<td>Build parameter. Storage is <code>8M</code> bytes per vector.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>M_0</code></td>
+<td>HNSW out-degree at layer 0</td>
+<td><code>M_0 = 2M</code> by convention.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>ef</code></td>
+<td>HNSW search-time candidate list size</td>
+<td>Recall and latency knob per query.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>n_probe</code></td>
+<td>Number of inverted file (IVF) cells searched per query</td>
+<td>Recall and latency knob per query.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>m</code></td>
+<td>Number of product quantization (PQ) sub-quantizers, or subvectors</td>
+<td>Each subvector has dimension <code>d / m</code>.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>k</code></td>
+<td>Centroids per sub-quantizer</td>
+<td>Code space is <code>k^m</code>. Storage is <code>k · d</code>.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>b</code></td>
+<td>Code length in bits</td>
+<td><code>k = 2^b</code>.</td>
+</tr>
+<tr>
+<td>Indexing and Vector Search: <code>R@k</code></td>
+<td>Recall at k</td>
+<td>The index's quality target.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>MRR</code></td>
+<td>Mean reciprocal rank</td>
+<td>One relevant item is assumed.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>DCG, nDCG@k</code></td>
+<td>Discounted cumulative gain and normalized discounted cumulative gain at k</td>
+<td>Used with graded relevance.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>P@k, R@k</code></td>
+<td>Precision and recall at k</td>
+<td>Set metrics. They are order-insensitive.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>P_k, WindowDiff</code></td>
+<td>Text-segmentation error metrics</td>
+<td>Used to evaluate a chunker.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>IoU</code></td>
+<td>Intersection over union of chunk spans</td>
+<td>Used to evaluate a chunker.</td>
+</tr>
+<tr>
+<td>Evaluation: <code>F_1</code></td>
+<td>Harmonic mean of precision and recall</td>
+<td>Macro-averaged for judge agreement.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>D′</code></td>
+<td>Retrieved subset used for a training step</td>
+<td>Normalization is over <code>D′</code>, not <code>D</code>.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>λ(d, x)</code></td>
+<td>Normalized retrieval weight in an output ensemble</td>
+<td>REPLUG.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>P_R(d ∣ x)</code></td>
+<td>Retriever's distribution over the top k</td>
+<td>Defined over the same k as the generator preference.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>Q_LM(d ∣ x, y)</code></td>
+<td>Generator's preference distribution over the same k</td>
+<td>The supervision signal.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>γ, β</code></td>
+<td>Retriever and generator softmax temperatures</td>
+<td>Language model (LM)-supervised retrieval.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>KL(P ∥ Q)</code></td>
+<td>Kullback-Leibler divergence</td>
+<td>The loss aligning the two distributions.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>r</code></td>
+<td>Low-rank adaptation (LoRA) rank</td>
+<td><code>W + BA</code> with <code>B ∈ ℝ^(n × r)</code>.</td>
+</tr>
+<tr>
+<td>Training the RAG System: <code>A, B</code></td>
+<td>LoRA low-rank factors</td>
+<td>The low-rank factors in <code>W + BA</code>.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>E_q, E_d</code></td>
+<td>Query and document embeddings in a shared space</td>
+<td>Modality-agnostic.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>θ_m</code></td>
+<td>Admission threshold for modality <code>m</code></td>
+<td>Per-modality, never global.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>S_ij</code></td>
+<td>Contrastive similarity matrix</td>
+<td>Contrastive Language-Image Pre-training (CLIP). <code>N</code> true pairs lie on the diagonal.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>𝒢 = (V, E)</code></td>
+<td>Knowledge graph, its entities, and its edges</td>
+<td><code>V</code> is the entity set. <code>E</code> is the edge set.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>∣V∣, ∣E∣</code></td>
+<td>Entity and edge counts</td>
+<td>Drives construction and storage cost.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>Q̂ = ω(Q, 𝒢)</code></td>
+<td>Query grounded against the graph schema</td>
+<td><code>ω</code> is the grounding operator.</td>
+</tr>
+<tr>
+<td>Multimodal and Graph Retrieval: <code>h</code></td>
+<td>Traversal depth in hops</td>
+<td>No additional convention is stated.</td>
+</tr>
+<tr>
+<td>Latency and Cost: <code>t_i</code></td>
+<td>Latency of pipeline stage <code>i</code></td>
+<td>Stages are embed, search, rerank, prefill, and decode.</td>
+</tr>
+<tr>
+<td>Latency and Cost: <code>C_q</code></td>
+<td>Cost of one query in dollars</td>
+<td><code>C_q = (P / 3,600,000) ∑_i t_i</code>.</td>
+</tr>
+<tr>
+<td>Latency and Cost: <code>B</code></td>
+<td>Serving batch size</td>
+<td>No additional convention is stated.</td>
+</tr>
+<tr>
+<td>Latency and Cost: <code>s</code></td>
+<td>Number of tokens in a context or an answer</td>
+<td>Context disambiguates its use.</td>
+</tr>
+<tr>
+<td>Latency and Cost: <code>L</code></td>
+<td>Number of transformer layers</td>
+<td>Context distinguishes it from training loss <code>ℒ</code>.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>d</code></td>
+<td>Meaning A is a document or chunk in retrieval</td>
+<td>Meaning B is embedding or hidden dimensionality in indexing and systems.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>k</code></td>
+<td>Meaning A is the number of retrieved contexts</td>
+<td>Meaning B is centroids per sub-quantizer in product quantization.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>m</code></td>
+<td>Meaning A is the number of product quantization sub-quantizers</td>
+<td>Meaning B is the number of datastore sources or a modality index.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>M</code></td>
+<td>Meaning A is HNSW out-degree</td>
+<td>It never means product quantization. Product quantization uses <code>m</code>.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>b</code></td>
+<td>Meaning A is the BM25 length-normalization parameter</td>
+<td>Meaning B is code length in bits or bytes per parameter.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>N</code></td>
+<td>Meaning A is the number of vectors in the index</td>
+<td>Meaning B is model parameter count in FLOPs arithmetic.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>P</code></td>
+<td>Meaning A is model parameter count in encoder FLOPs arithmetic</td>
+<td>Meaning B is instance price per hour in cost arithmetic.</td>
+</tr>
+<tr>
+<td>Symbols That Carry More Than One Meaning: <code>𝒢</code></td>
+<td>Meaning A is the knowledge graph</td>
+<td>Meaning B is the graph's schema alone in source section 40.3.</td>
+</tr>
+<tr>
+<td>Conventions: <code>log</code></td>
+<td>Logarithm</td>
+<td>Base 2 unless the base is written.</td>
+</tr>
+<tr>
+<td>Conventions: <code>GB</code></td>
+<td>Gigabyte in storage arithmetic</td>
+<td>Decimal units. <code>1 GB = 10^9 bytes</code> unless a quoted source uses binary units, which the text states at the point of use.</td>
+</tr>
+<tr>
+<td>Conventions: <code>t_i</code></td>
+<td>Latency</td>
+<td>Measured in milliseconds unless otherwise labeled.</td>
+</tr>
+<tr>
+<td>Conventions: <code>throughput</code></td>
+<td>Query throughput</td>
+<td>Measured in queries per second unless otherwise labeled.</td>
+</tr>
+<tr>
+<td>Conventions: <code>C_q</code></td>
+<td>Query cost</td>
+<td>Measured in United States (US) dollars per query unless otherwise labeled.</td>
+</tr>
+<tr>
+<td>Conventions: <code>vector</code></td>
+<td>Vector orientation</td>
+<td>Vectors are column vectors.</td>
+</tr>
+<tr>
+<td>Conventions: <code>⊤</code></td>
+<td>Transpose marker</td>
+<td><code>⊤</code> denotes transpose.</td>
+</tr>
+<tr>
+<td>Conventions: <code>1,000</code></td>
+<td>Number formatting pattern</td>
+<td>Thousands separators appear in numbers of four digits or more.</td>
+</tr>
+<tr>
+<td>Conventions: <code>d = 768, P = 110M</code></td>
+<td>Recurring default configuration</td>
+<td>Dimension 768 and Bidirectional Encoder Representations from Transformers base (BERT-base) parameter count 110M support comparison across chapters.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="the-semi-parametric-frame">The Semi-Parametric Frame</h3>
+<ul>
+<li>What: <code>θ</code> names the generator's parametric knowledge. <code>D</code> names test-time retrievable knowledge. The remaining symbols trace input, query transformation, gating, retrieval, context selection, and generation.</li>
+<li>Why: The frame keeps weight-based knowledge separate from datastore knowledge and makes each pipeline decision visible.</li>
+<li>Failure without it: A reader could confuse what the user typed with the retriever query, or confuse pre-reranking depth <code>k′</code> with the final top-k cutoff.</li>
+<li>Stated cost: No explicit cost formula appears in this section.</li>
+</ul>
+<h3 id="retrieval-and-ranking">Retrieval and Ranking</h3>
+<ul>
+<li>What: This notation defines documents, relevance scores, rank positions, BM25 statistics, encoders, token lengths, late interaction, training loss, and softmax temperature.</li>
+<li>Why: It gives one vocabulary for lexical ranking, encoded retrieval, training, and score calibration.</li>
+<li>Failure without it: Rank could lose its 1-indexed convention, <code>d</code> could be mistaken for dimension, or <code>τ</code> could be mistaken for a score instead of a temperature.</li>
+<li>Stated cost: Query length <code>L_q</code> and passage length <code>L_p</code> drive encoder floating-point operations.</li>
+</ul>
+<h3 id="indexing-and-vector-search">Indexing and Vector Search</h3>
+<ul>
+<li>What: <code>N</code> and <code>d</code> size the vector collection. <code>M</code> , <code>M_0</code> , and <code>ef</code> describe HNSW search. <code>n_probe</code> describes IVF search. <code>m</code> , <code>k</code> , and <code>b</code> describe PQ.</li>
+<li>Why: The notation separates build parameters, per-query search knobs, compression structure, and the recall target.</li>
+<li>Failure without it: <code>M</code> could be confused with product quantization <code>m</code> , or a recall and latency knob could be treated as a fixed build setting.</li>
+<li>Stated cost: The source gives <code>8M</code> bytes per vector, <code>M_0 = 2M</code> , subvector dimension <code>d / m</code> , code space <code>k^m</code> , storage <code>k · d</code> , and <code>k = 2^b</code> . It identifies <code>ef</code> and <code>n_probe</code> as recall and latency knobs.</li>
+</ul>
+<h3 id="evaluation">Evaluation</h3>
+<ul>
+<li>What: The metrics cover ranked retrieval, graded relevance, set quality at k, text segmentation, chunk-span overlap, and judge agreement.</li>
+<li>Why: They keep ranking quality separate from chunking quality and state each metric's assumption or averaging rule.</li>
+<li>Failure without it: A reader could apply an order-insensitive set metric as if it captured rank order, or miss that mean reciprocal rank assumes one relevant item here.</li>
+<li>Stated cost: No evaluation cost is stated.</li>
+</ul>
+<h3 id="training-the-rag-system">Training the RAG System</h3>
+<ul>
+<li>What: <code>D′</code> is the retrieved training subset. <code>λ</code> , <code>P_R</code> , and <code>Q_LM</code> define retrieval weighting and aligned distributions. <code>γ</code> and <code>β</code> set temperatures. <code>KL(P ∥ Q)</code> aligns the distributions. <code>r</code> , <code>A</code> , and <code>B</code> define LoRA.</li>
+<li>Why: The notation makes the normalization set, supervision signal, alignment loss, and low-rank update explicit.</li>
+<li>Failure without it: Normalization could incorrectly use all of <code>D</code> , or the retriever distribution could be confused with the generator's preference distribution. The source requires normalization over <code>D′</code> .</li>
+<li>Stated cost: No explicit training cost formula appears in this section.</li>
+</ul>
+<h3 id="multimodal-and-graph-retrieval">Multimodal and Graph Retrieval</h3>
+<ul>
+<li>What: Shared embeddings connect query and document modalities. <code>θ_m</code> controls admission by modality. <code>S_ij</code> represents contrastive similarity. <code>𝒢</code> , <code>Q̂</code> , <code>ω</code> , and <code>h</code> describe graph grounding and traversal.</li>
+<li>Why: These symbols keep shared-space retrieval, per-modality admission, graph structure, schema grounding, and hop depth distinct.</li>
+<li>Failure without it: One global admission threshold could replace required per-modality thresholds, or the full graph could be confused with its schema.</li>
+<li>Stated cost: Entity count <code>∣V∣</code> and edge count <code>∣E∣</code> drive graph construction and storage cost.</li>
+</ul>
+<h3 id="latency-and-cost">Latency and Cost</h3>
+<ul>
+<li>What: <code>t_i</code> measures the latency of embed, search, rerank, prefill, and decode stages. <code>C_q</code> measures query cost. <code>B</code> , <code>s</code> , and <code>L</code> name batch size, token count, and transformer layers.</li>
+<li>Why: Stage-level timing supports one consistent query-cost calculation.</li>
+<li>Failure without it: Model parameter count <code>P</code> could be used where the formula requires hourly instance price, or stage latency units could be mixed.</li>
+<li>Stated cost: <code>C_q = (P / 3,600,000) ∑_i t_i</code> , with latency in milliseconds and <code>P</code> as instance price per hour.</li>
+</ul>
+<h3 id="symbols-that-carry-more-than-one-meaning">Symbols That Carry More Than One Meaning</h3>
+<ul>
+<li>What: The source explicitly overloads <code>d</code> , <code>k</code> , <code>m</code> , <code>M</code> , <code>b</code> , <code>N</code> , <code>P</code> , and <code>𝒢</code> .</li>
+<li>Why: These symbols remain consistent with their separate retrieval, representation-learning, and systems literatures.</li>
+<li>Failure without it: A familiar symbol could silently acquire the wrong meaning and corrupt a formula or design explanation.</li>
+<li>Stated cost: No cost is assigned to the convention. Each section states the active meaning at first use.</li>
+</ul>
+<h3 id="conventions">Conventions</h3>
+<ul>
+<li>What: The source fixes logarithm bases, storage units, latency, throughput, currency, vector orientation, transpose notation, number formatting, and a recurring default configuration.</li>
+<li>Why: Examples remain comparable across chapters without repeating their setup.</li>
+<li>Failure without it: Decimal and binary storage could be mixed, latency and throughput units could drift, or recurring examples could appear to use different model sizes.</li>
+<li>Stated cost: Cost is in US dollars per query unless otherwise labeled. Storage uses decimal units unless a quoted source uses binary units, which the text states at the point of use.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest lists zero figures and zero captioned tables for physical PDF pages 28-31. No diagram redraw is required.</p>
+<p>The source contains seven unnumbered notation tables and one unnumbered overload table. The exhaustive Decoder table preserves every row from those layouts. The prose conventions block is preserved in both the Decoder table and Core mechanics.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw input <code>x</code> at the far left.</li>
+<li>Add transformation <code>Φ</code> to form query <code>q</code> , then add gate <code>g(x)</code> .</li>
+<li>Draw datastore <code>D</code> as a box containing <code>D_1</code> through <code>D_m</code> .</li>
+<li>Draw <code>RET(x, D)</code> , a ranked list of <code>k′</code> items, reranking, and the final <code>k</code> contexts.</li>
+<li>Draw <code>GEN_θ</code> , then answer <code>y</code> and token <code>y_t</code> .</li>
+<li>Add small score, index, evaluation, and training panels below the main path.</li>
+<li>Add stage latencies <code>t_i</code> , cost <code>C_q</code> , and context labels beside overloaded symbols.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with input x and transform it into query q with Phi. The gate g decides whether retrieval runs. If it does, RET searches datastore D, which may contain D one through D m. Draw k prime results before reranking, then narrow them to k contexts c one through c k. Feed those contexts to GEN theta and produce answer y token by token as y sub t. Under the pipeline, add score, index, evaluation, and training boxes. Finish with stage latencies t sub i and query cost C sub q. Every overloaded symbol gets its meaning from its box.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-does-the-notation-keep-overloaded-symbols-instead-of-inventing-new-ones">1. Why does the notation keep overloaded symbols instead of inventing new ones?</h3>
+<p>Each symbol is conventional in its own literature. The source preserves those conventions and requires the active meaning to be stated at first use.</p>
+<h3 id="2-are-k-and-k-interchangeable">2. Are <code>k′</code> and <code>k</code> interchangeable?</h3>
+<p>No. <code>k′</code> is retrieval depth before reranking, while <code>k</code> is the number of contexts passed to the generator. The source requires <code>k′ ≥ k</code> and calls truncation decision five.</p>
+<h3 id="3-what-is-the-difference-between-d-and-d">3. What is the difference between <code>D</code> and <code>D′</code>?</h3>
+<p><code>D</code> is the datastore. <code>D′</code> is the retrieved subset used for one training step. Training normalization is over <code>D′</code> , not all of <code>D</code> .</p>
+<h3 id="4-can-m-denote-product-quantization">4. Can <code>M</code> denote product quantization?</h3>
+<p>No. <code>M</code> denotes HNSW out-degree. Product quantization uses lowercase <code>m</code> for the number of sub-quantizers.</p>
+<h3 id="5-what-does-p-mean-in-cost-arithmetic">5. What does <code>P</code> mean in cost arithmetic?</h3>
+<p>In <code>C_q = (P / 3,600,000) ∑_i t_i</code> , <code>P</code> is instance price per hour. In encoder FLOPs arithmetic, <code>P</code> instead means model parameter count.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Source value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contributing literatures</td>
+<td><code>3</code></td>
+<td>Information retrieval, representation learning, and systems supply the conventional notation.</td>
+</tr>
+<tr>
+<td>Primary notation categories</td>
+<td><code>7</code></td>
+<td>Semi-parametric frame, retrieval and ranking, indexing and vector search, evaluation, training, multimodal and graph retrieval, and latency and cost.</td>
+</tr>
+<tr>
+<td>Explicitly overloaded symbols</td>
+<td><code>8</code></td>
+<td><code>d</code>, <code>k</code>, <code>m</code>, <code>M</code>, <code>b</code>, <code>N</code>, <code>P</code>, and <code>𝒢</code>.</td>
+</tr>
+<tr>
+<td>Retrieval gate outputs</td>
+<td><code>0</code> or <code>1</code></td>
+<td>Do not retrieve or retrieve.</td>
+</tr>
+<tr>
+<td>Retrieval gate decision</td>
+<td><code>1</code></td>
+<td>The source calls retrieve-or-not decision one.</td>
+</tr>
+<tr>
+<td>Truncation decision</td>
+<td><code>5</code></td>
+<td>The source calls truncating <code>k′</code> to <code>k</code> decision five.</td>
+</tr>
+<tr>
+<td>Rank origin</td>
+<td><code>1</code></td>
+<td>Ranked positions are 1-indexed.</td>
+</tr>
+<tr>
+<td>Typical BM25 <code>k_1</code></td>
+<td><code>≈ 1.2</code></td>
+<td>Saturation parameter.</td>
+</tr>
+<tr>
+<td>Typical BM25 <code>b</code></td>
+<td><code>≈ 0.75</code></td>
+<td>Length-normalization parameter.</td>
+</tr>
+<tr>
+<td>Example embedding dimensions</td>
+<td><code>768</code>, <code>1,536</code></td>
+<td>Examples for index dimensionality <code>d</code>.</td>
+</tr>
+<tr>
+<td>HNSW storage term</td>
+<td><code>8M</code> bytes per vector</td>
+<td>Eight times <code>M</code> bytes per vector.</td>
+</tr>
+<tr>
+<td>Layer 0 degree convention</td>
+<td><code>M_0 = 2M</code></td>
+<td>Layer 0 has twice the stated upper-layer out-degree.</td>
+</tr>
+<tr>
+<td>Product quantization relation</td>
+<td><code>k = 2^b</code></td>
+<td><code>b</code> bits select <code>k</code> centroids per sub-quantizer.</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank assumption</td>
+<td><code>1</code> relevant item</td>
+<td>The evaluation definition assumes one relevant item.</td>
+</tr>
+<tr>
+<td>Contrastive diagonal</td>
+<td><code>N</code> true pairs</td>
+<td>CLIP places the true pairs on the diagonal of <code>S_ij</code>.</td>
+</tr>
+<tr>
+<td>Latency stages</td>
+<td><code>5</code></td>
+<td>Embed, search, rerank, prefill, and decode contribute stage latencies.</td>
+</tr>
+<tr>
+<td>Cost denominator</td>
+<td><code>3,600,000</code></td>
+<td>Used with millisecond stage latencies and hourly instance price.</td>
+</tr>
+<tr>
+<td>Graph-schema overload pointer</td>
+<td>Section <code>40.3</code></td>
+<td><code>𝒢</code> means the graph schema alone at this source pointer.</td>
+</tr>
+<tr>
+<td>Default logarithm base</td>
+<td><code>2</code></td>
+<td>Applies unless another base is written.</td>
+</tr>
+<tr>
+<td>Decimal gigabyte</td>
+<td><code>1 GB = 10^9 bytes</code></td>
+<td>Binary units apply only when a quoted source states them at the point of use.</td>
+</tr>
+<tr>
+<td>Thousands-separator threshold</td>
+<td><code>4</code> digits</td>
+<td>All numbers with four digits or more use separators.</td>
+</tr>
+<tr>
+<td>Recurring default dimension</td>
+<td><code>768</code></td>
+<td>Used for comparison across chapters.</td>
+</tr>
+<tr>
+<td>Recurring BERT-base parameter count</td>
+<td><code>110M</code></td>
+<td>Used for comparison across chapters.</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/00_06_for_practicing_engineers.html"><small>Previous</small>00.06. For Practicing Engineers</a><a href="../chapters/00_08_acknowledgments.html"><small>Next</small>00.08. Acknowledgments</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

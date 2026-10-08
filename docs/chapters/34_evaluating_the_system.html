@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 34. Evaluating the System | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/34_evaluating_the_system.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group" open><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html" aria-current="page">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part X. Evaluation</p><h1>Chapter 34. Evaluating the System</h1><p class="chapter-meta">49 min estimated reading · Unit 43 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter is for diagnosing, validating, and stress-testing a Retrieval-Augmented Generation (RAG) system before a launch decision.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li><p>A final answer score cannot identify whether retrieval, augmentation, or generation caused a failure. Measure each stage boundary.</p></li>
+<li><p>Run macro, micro, and mezzo analysis in that order. The whole-set score opens the investigation, examples suggest a cause, and a defined slice tests that cause.</p></li>
+<li><p>A useful ablation turns one component off while everything else stays fixed. It checks easy target cases, hard target cases, and a control bucket that should not move.</p></li>
+<li><p>To learn whether cited evidence mattered, remove one cited passage, regenerate, and rescore. Positive, near-zero, and negative changes mean load-bearing, decorative, and harmful evidence.</p></li>
+<li><p>Evaluate behavior across repeated runs. Track stage latency, answer agreement, and resistance to planted instructions in retrieved documents.</p></li>
+<li><p>Audit a benchmark before trusting its headline. Check training-data contamination, synthetic-set artifacts, and whether the task actually exercises retrieval.</p></li>
+<li><p>Keep claim limits visible. Approximate significance checks, learned judges, leave-one-out tests, and public benchmarks each have blind spots.</p></li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine that you inspect a restaurant kitchen that prepares one meal from a diner's order.</p>
+<p>The pantry runner acts as the retriever. The runner finds candidate ingredients for the order.</p>
+<p>The sous-chef acts as augmentation, which means sorting, removing duplicates, and arranging the ingredients that the chef will actually see.</p>
+<p>The head chef acts as the large language model (LLM). The chef reads the prepared tray and produces the final dish.</p>
+<p>A diner can dislike the dish even when the pantry runner found the right ingredient. The sous-chef may have buried it, or the chef may have misused it.</p>
+<p>One satisfaction score at the dining-room door is end-to-end accuracy, which means the final result across the whole kitchen. That score says whether dinner worked, but it cannot tell the inspector which worker caused the failure.</p>
+<p>The inspector therefore places a measurement tap, which is a direct checkpoint, after the pantry, after the prep table, and after cooking. Pantry recall asks whether the needed ingredient was found. Context relevance asks whether the right ingredient reached the chef. Faithfulness asks whether the chef stayed with the ingredients on the tray.</p>
+<p>The inspector first reads the restaurant's whole-night average. That is macro analysis, or one score over every order.</p>
+<p>Next, the inspector opens a small set of tickets with the biggest gains and losses. That is micro analysis, or close reading of individual cases to form a hypothesis.</p>
+<p>Then the inspector groups all similar tickets, such as multi-course orders, and recomputes the average for that group. That is mezzo analysis, or a whole-set metric rerun on one coherent slice to test the hypothesis.</p>
+<p>Suppose the kitchen adds a calculator for bills. The inspector runs an ablation, which means disabling only that tool while keeping everything else fixed.</p>
+<p>Easy arithmetic orders check the ceiling. Hard arithmetic orders should show the largest gain. Food questions that never use numbers form the control bucket, which should not move at all.</p>
+<p>The same logic tests evidence. A citation is like an ingredient receipt attached to the dish.</p>
+<p>The inspector removes one cited ingredient at a time and asks the kitchen to cook again. A large quality drop marks a load-bearing ingredient. No measurable change marks a decorative receipt. Better food after removal marks a harmful ingredient.</p>
+<p>The inspector also watches the live dinner rush. Stage percentiles describe how slow the pantry, prep table, and stove become in their tails, which are their worst ordinary delays.</p>
+<p>The inspector repeats the same order to measure self-consistency, which means how often the kitchen gives an equivalent answer. The inspector also plants a hostile note inside a pantry package to measure indirect prompt injection, which means an instruction hidden in retrieved evidence.</p>
+<p>Finally, the inspector audits the practice kitchen. Memorized recipes are contamination. Artificially easy orders are synthetic artifacts. A test that hands the chef the exact ingredient is visual question answering, not retrieval, because the pantry runner never had to search.</p>
+<p>The launch decision now rests on a full inspection. The inspector knows whether the meal worked, where it failed, why a component helped, whether evidence mattered, how the kitchen behaves under load, and whether the practice test deserved trust.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that finds external evidence and gives it to a generator</td>
+<td>Evaluation must separate search, context preparation, and answer writing</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>Finding candidate passages or items for a query</td>
+<td>A bad answer may begin with missing evidence</td>
+</tr>
+<tr>
+<td>Vector store</td>
+<td>A store that searches numerical representations of content</td>
+<td>It supplies candidates to the retrieval stage</td>
+</tr>
+<tr>
+<td>Approximate Nearest Neighbor (ANN) search</td>
+<td>A fast search for vectors that are close to the query vector</td>
+<td>It can trade exactness and determinism for speed</td>
+</tr>
+<tr>
+<td>Augmentation</td>
+<td>Reranking, deduplicating, and assembling retrieved content</td>
+<td>It can discard evidence that retrieval found</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Reordering retrieved candidates with a second scorer</td>
+<td>It changes which evidence reaches the generator</td>
+</tr>
+<tr>
+<td>Deduplication</td>
+<td>Removing repeated candidates</td>
+<td>It changes context composition and available evidence</td>
+</tr>
+<tr>
+<td>Context assembly</td>
+<td>Building the final prompt context from candidates</td>
+<td>Stage metrics must use this actual context, not an oracle context</td>
+</tr>
+<tr>
+<td>Generation</td>
+<td>Writing an answer from the query and assembled context</td>
+<td>It can misread good evidence or ignore it</td>
+</tr>
+<tr>
+<td>Large Language Model (LLM)</td>
+<td>The model that judges or generates language in the examples</td>
+<td>It can add parametric knowledge, judge noise, and sampling variance</td>
+</tr>
+<tr>
+<td>End-to-end accuracy</td>
+<td>The fraction of final answers graded correct</td>
+<td>It is a launch summary, not a stage diagnosis</td>
+</tr>
+<tr>
+<td>Gold answer</td>
+<td>A reference answer used for grading</td>
+<td>It anchors final correctness measurements</td>
+</tr>
+<tr>
+<td>Gold evidence</td>
+<td>The reference passage or source needed for an answer</td>
+<td>It lets the evaluator label retrieval hits and misses</td>
+</tr>
+<tr>
+<td>Evaluation tap</td>
+<td>A measurement placed at a stage boundary</td>
+<td>It preserves information that a final aggregate destroys</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>Whether relevant evidence appears within the top k retrieved items</td>
+<td>It measures retrieval before later stages alter the candidates</td>
+</tr>
+<tr>
+<td>Context relevance</td>
+<td>Whether the assembled context contains useful material for the query</td>
+<td>It exposes augmentation failures</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether the answer stays supported by the context it actually received</td>
+<td>It exposes generation that goes beyond evidence</td>
+</tr>
+<tr>
+<td>Hit rate h</td>
+<td>The fraction of queries whose needed evidence reaches the generator</td>
+<td>It measures evidence delivery, not just candidate retrieval</td>
+</tr>
+<tr>
+<td>c1</td>
+<td>Generator accuracy when needed evidence arrives</td>
+<td>A drop points toward generation given adequate evidence</td>
+</tr>
+<tr>
+<td>c0</td>
+<td>Generator accuracy when needed evidence does not arrive</td>
+<td>A large value can expose parametric leakage or an easy evaluation set</td>
+</tr>
+<tr>
+<td>Parametric knowledge</td>
+<td>Information stored in model weights</td>
+<td>It can let a model answer despite retrieval failure</td>
+</tr>
+<tr>
+<td>Oracle context</td>
+<td>Ideal evidence supplied directly for an isolated test</td>
+<td>It can make generation look cleaner than the shipped pipeline</td>
+</tr>
+<tr>
+<td>Corrective Retrieval Augmented Generation (CRAG) evaluator</td>
+<td>A learned classifier that labels retrieval quality at scale</td>
+<td>It adds its own drift and out-of-distribution risk</td>
+</tr>
+<tr>
+<td>Out-of-distribution risk</td>
+<td>Failure when production inputs differ from training inputs</td>
+<td>A learned evaluation component is not a neutral instrument</td>
+</tr>
+<tr>
+<td>Macro analysis</td>
+<td>One statistic over the whole evaluation set</td>
+<td>It answers whether the system is ahead on average</td>
+</tr>
+<tr>
+<td>Micro analysis</td>
+<td>Close reading of a small number of individual outputs</td>
+<td>It generates hypotheses about what changed</td>
+</tr>
+<tr>
+<td>Mezzo analysis</td>
+<td>A macro statistic rerun on a coherent subset</td>
+<td>It tests whether a micro pattern generalizes</td>
+</tr>
+<tr>
+<td>Per-query score</td>
+<td>A score assigned to one query and answer</td>
+<td>It supports ranking examples by their changes</td>
+</tr>
+<tr>
+<td>Slice</td>
+<td>A defined subset that shares an actionable property</td>
+<td>It reveals gains and losses hidden by the average</td>
+</tr>
+<tr>
+<td>Precision</td>
+<td>The share of predicted positives that are correct</td>
+<td>It is one part of a classification summary</td>
+</tr>
+<tr>
+<td>Recall</td>
+<td>The share of actual positives that the system finds</td>
+<td>It is one part of a classification summary</td>
+</tr>
+<tr>
+<td>F1 score</td>
+<td>The harmonic mean of precision and recall</td>
+<td>It can summarize performance but still hide slice behavior</td>
+</tr>
+<tr>
+<td>Confusion matrix</td>
+<td>Counts of prediction outcomes by actual and predicted class</td>
+<td>It supports precision, recall, and F1 analysis</td>
+</tr>
+<tr>
+<td>Bilingual Evaluation Understudy (BLEU)</td>
+<td>A reference-overlap score</td>
+<td>It is another possible macro statistic</td>
+</tr>
+<tr>
+<td>Recall-Oriented Understudy for Gisting Evaluation (ROUGE)</td>
+<td>A reference-overlap score with recall-oriented variants</td>
+<td>It is another possible macro statistic</td>
+</tr>
+<tr>
+<td>LLM-as-judge</td>
+<td>A language model that scores an answer</td>
+<td>It scales evaluation but can be noisy or miscalibrated</td>
+</tr>
+<tr>
+<td>Multi-hop query</td>
+<td>A query that needs several supporting passages or reasoning steps</td>
+<td>The reranker example improves sharply on this slice</td>
+</tr>
+<tr>
+<td>Single-hop query</td>
+<td>A query that needs one supporting fact</td>
+<td>The reranker example shows a small possible regression here</td>
+</tr>
+<tr>
+<td>Weighted average</td>
+<td>A combined score in which larger slices count more</td>
+<td>It explains how opposite slice movements collapse into one macro score</td>
+</tr>
+<tr>
+<td>Standard error (SE)</td>
+<td>A rough estimate of sampling variation</td>
+<td>It helps separate large slice effects from noise</td>
+</tr>
+<tr>
+<td>Bernoulli approximation</td>
+<td>Treating each result as an independent pass or fail</td>
+<td>It gives a quick significance filter with explicit limits</td>
+</tr>
+<tr>
+<td>Paired bootstrap</td>
+<td>A resampling test that compares systems on matched cases</td>
+<td>It is the stronger check when an effect sits near the line</td>
+</tr>
+<tr>
+<td>Router</td>
+<td>A component that sends different query types to different paths</td>
+<td>It can preserve a slice-specific gain if query type is reliable</td>
+</tr>
+<tr>
+<td>Ablation</td>
+<td>Disabling one component while holding everything else fixed</td>
+<td>It tests whether that component caused a change</td>
+</tr>
+<tr>
+<td>Trivial-target bucket</td>
+<td>Easy cases inside a component's intended remit</td>
+<td>It checks for regressions and ceiling effects</td>
+</tr>
+<tr>
+<td>Hard-target bucket</td>
+<td>Difficult cases the component was designed to help</td>
+<td>The intended effect should concentrate here</td>
+</tr>
+<tr>
+<td>Control bucket</td>
+<td>Cases the component should never affect</td>
+<td>Movement exposes noise, leakage, or a confound</td>
+</tr>
+<tr>
+<td>Ceiling effect</td>
+<td>A small measured gain because the baseline is already near perfect</td>
+<td>It explains a compressed easy-case delta</td>
+</tr>
+<tr>
+<td>Confound</td>
+<td>An unintended change that can explain the measured effect</td>
+<td>It invalidates a causal claim about the named component</td>
+</tr>
+<tr>
+<td>Matched-complexity placebo</td>
+<td>A control input with the same shape but without the claimed information</td>
+<td>It tests the mechanism rather than extra processing alone</td>
+</tr>
+<tr>
+<td>Pseudo-instruction chunking</td>
+<td>Chunking guided by an LLM-generated document summary</td>
+<td>The chapter uses placebos to isolate the summary's information</td>
+</tr>
+<tr>
+<td>Retrieval-conditioned generator</td>
+<td>A generator that receives evidence before writing</td>
+<td>Evidence removal can intervene on its actual input</td>
+</tr>
+<tr>
+<td>During-generation attribution</td>
+<td>Citing evidence while producing the answer</td>
+<td>It connects citations to the conditioned generation process</td>
+</tr>
+<tr>
+<td>Post-hoc citation search</td>
+<td>Finding citations after answer text is fixed</td>
+<td>It cannot show which evidence the generator needed</td>
+</tr>
+<tr>
+<td>Cited-evidence set C</td>
+<td>The passages that the answer cites</td>
+<td>Leave-one-out operates on this set, not the whole candidate pool</td>
+</tr>
+<tr>
+<td>Baseline quality Q0</td>
+<td>The answer score with all cited evidence present</td>
+<td>It anchors every evidence-removal delta</td>
+</tr>
+<tr>
+<td>Leave-one-out quality Q-i</td>
+<td>The score after removing cited passage i and regenerating</td>
+<td>It measures the effect of that intervention</td>
+</tr>
+<tr>
+<td>Evidence delta Delta_i</td>
+<td>Q0 minus Q-i</td>
+<td>Its sign and size classify the citation's role</td>
+</tr>
+<tr>
+<td>Load-bearing evidence</td>
+<td>Evidence whose removal causes a real quality drop</td>
+<td>The answer depends on it</td>
+</tr>
+<tr>
+<td>Decorative evidence</td>
+<td>Evidence whose removal stays inside the noise floor</td>
+<td>It looks relevant but was not individually necessary</td>
+</tr>
+<tr>
+<td>Harmful evidence</td>
+<td>Evidence whose removal improves quality</td>
+<td>It points to a source-credibility problem</td>
+</tr>
+<tr>
+<td>Entailment</td>
+<td>A relation in which a passage could support a claim</td>
+<td>It does not prove that the generator used the passage</td>
+</tr>
+<tr>
+<td>Noise floor sigma</td>
+<td>Baseline variation across repeated generations or judge calls</td>
+<td>It sets a data-driven decorative threshold</td>
+</tr>
+<tr>
+<td>Shapley values</td>
+<td>A feature-importance idea that accounts for combinations</td>
+<td>It exposes the redundancy blind spot of leave-one-out</td>
+</tr>
+<tr>
+<td>Atomic fact</td>
+<td>One checkable statement inside an answer</td>
+<td>Atomic-fact scoring gives the evidence example a quality measure</td>
+</tr>
+<tr>
+<td>Fine-grained Atomic Evaluation of Factual Precision (FActScore)</td>
+<td>Atomic-fact precision for generated text</td>
+<td>It is one possible quality judge Q</td>
+</tr>
+<tr>
+<td>Retrieval-Augmented Generation Assessment (RAGAS)</td>
+<td>A framework with a faithfulness measure</td>
+<td>It is another possible quality judge Q</td>
+</tr>
+<tr>
+<td>System-level property</td>
+<td>Behavior that emerges across stages or repeated runs</td>
+<td>Single query-answer grading does not capture it</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Time spent serving a request</td>
+<td>A correct system can still be unusably slow</td>
+</tr>
+<tr>
+<td>p50</td>
+<td>The median of a latency distribution</td>
+<td>It describes a typical request</td>
+</tr>
+<tr>
+<td>p95 and p99</td>
+<td>High latency percentiles</td>
+<td>They expose the slow tail hidden by the median</td>
+</tr>
+<tr>
+<td>Tail risk</td>
+<td>The chance that at least one stage becomes unusually slow</td>
+<td>It compounds across sequential stages</td>
+</tr>
+<tr>
+<td>Time-to-first-token</td>
+<td>Time until a streaming generator emits its first token</td>
+<td>It matches the user's initial wait in a streaming interface</td>
+</tr>
+<tr>
+<td>Service-Level Agreement (SLA)</td>
+<td>A stated performance commitment</td>
+<td>Its metric must match the interface and downstream use</td>
+</tr>
+<tr>
+<td>Self-consistency</td>
+<td>Agreement across repeated calls with the same query</td>
+<td>It measures variance, not correctness</td>
+</tr>
+<tr>
+<td>Semantic-equivalence cluster</td>
+<td>A group of answers judged to mean the same thing</td>
+<td>It supports the repeated-run agreement score</td>
+</tr>
+<tr>
+<td>Sampling temperature</td>
+<td>A setting that controls decoding randomness</td>
+<td>Nonzero temperature can change answers across runs</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW) index</td>
+<td>A graph index used for ANN search</td>
+<td>Parallel traversal can add retrieval nondeterminism</td>
+</tr>
+<tr>
+<td>Retrieval nondeterminism</td>
+<td>Different retrieved results for the same query</td>
+<td>It changes context before generation begins</td>
+</tr>
+<tr>
+<td>Upsert</td>
+<td>Adding or updating an item in a live index</td>
+<td>It can change top-k results between repeated calls</td>
+</tr>
+<tr>
+<td>Robustness</td>
+<td>Failure behavior under inputs designed to break the system</td>
+<td>Normal held-out accuracy does not measure it</td>
+</tr>
+<tr>
+<td>Direct jailbreak</td>
+<td>A hostile instruction in the user's query</td>
+<td>It attacks the model through the query</td>
+</tr>
+<tr>
+<td>Indirect prompt injection</td>
+<td>A hostile instruction hidden in a retrieved document</td>
+<td>It attacks through the corpus and is specific to retrieval</td>
+</tr>
+<tr>
+<td>Red-team set</td>
+<td>A standing collection of adversarial cases</td>
+<td>It makes robustness a repeatable metric</td>
+</tr>
+<tr>
+<td>Injection-success rate</td>
+<td>The share of runs that follow a planted instruction</td>
+<td>It quantifies indirect prompt-injection failure</td>
+</tr>
+<tr>
+<td>Benchmark hygiene</td>
+<td>Checks that a benchmark measures the claimed system</td>
+<td>A reproducible score can still be irrelevant</td>
+</tr>
+<tr>
+<td>Contamination</td>
+<td>Overlap between evaluation content and model training data</td>
+<td>It can distort the apparent benefit of retrieval</td>
+</tr>
+<tr>
+<td>Closed-book baseline</td>
+<td>A generator answering without retrieval</td>
+<td>Contamination can make this baseline unfairly strong</td>
+</tr>
+<tr>
+<td>n-gram overlap</td>
+<td>Matching sequences of n tokens across corpora</td>
+<td>The chapter cites a 13-gram contamination check</td>
+</tr>
+<tr>
+<td>Synthetic evaluation set</td>
+<td>Questions or documents generated by an LLM</td>
+<td>Construction artifacts can make a method look better than it is</td>
+</tr>
+<tr>
+<td>Lexical-overlap control</td>
+<td>A keyword-style baseline used on synthetic items</td>
+<td>It tests whether surface wording explains the result</td>
+</tr>
+<tr>
+<td>Model collapse</td>
+<td>Distribution degradation from repeated training on a model's own outputs</td>
+<td>It marks the extreme risk of overusing self-generated data</td>
+</tr>
+<tr>
+<td>Visual Question Answering (VQA)</td>
+<td>Answering from an image already supplied to the model</td>
+<td>It does not test search over a corpus</td>
+</tr>
+<tr>
+<td>Multimodal RAG</td>
+<td>Retrieval and generation over text, images, or both</td>
+<td>Its benchmark must exercise retrieval before reading</td>
+</tr>
+<tr>
+<td>Multimodal Retrieval-Augmented Generation Benchmark (MRAG-Bench)</td>
+<td>The cited vision-centric benchmark used for an external scale check</td>
+<td>Its population and modality-removal results do not replace a production ablation</td>
+</tr>
+<tr>
+<td>Information Retrieval (IR) benchmark</td>
+<td>A test focused on finding relevant items</td>
+<td>A recycled task may not measure full multimodal RAG</td>
+</tr>
+<tr>
+<td>Modality-removal ablation</td>
+<td>Removing text or images and measuring the score drop</td>
+<td>It checks whether fusion actually contributes</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>A score that requires the output to match a reference exactly</td>
+<td>It supplies the benchmark worked example's headline accuracy</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>A dense retriever used in the cited retrieval comparison</td>
+<td>Its published top-20 result anchors a sanity check</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain (nDCG)</td>
+<td>A ranking metric that rewards relevant items near the top</td>
+<td>It appears in the reranker interview probe</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="341-rag-is-not-end-to-end-attributing-failure-to-a-stage">34.1 RAG is not end-to-end: attributing failure to a stage</h3>
+<h4 id="what-the-aggregate-hides">What the aggregate hides</h4>
+<ul>
+<li><p><strong>What:</strong> Treat retrieval, augmentation, and generation as composed black boxes with separate inputs and failure modes.</p></li>
+<li><p><strong>Why:</strong> The final answer can fail because retrieval found the wrong material, augmentation buried good material, or generation misread adequate context.</p></li>
+<li><p><strong>Failure without it:</strong> A team may swap the embedding model when generation broke. The next evaluation then wastes a sprint and leaves the score unchanged.</p></li>
+<li><p><strong>Cost or complexity:</strong> Direct attribution needs per-query evidence labels and at least two stage taps. Add a third tap when augmentation reranks, deduplicates, compresses, or truncates evidence.</p></li>
+</ul>
+<p>Let h be the fraction of queries for which needed evidence reaches the generator. Let c1 be generator accuracy conditioned on a hit. Let c0 be generator accuracy conditioned on a miss. The final accuracy is <code>A = h c1 + (1 - h)c0</code>. One value of A cannot recover three unknowns. An unbounded family of h, c1, and c0 triples can yield the same A. Addition destroys stage identity. Measure recall after retrieval. Measure context relevance after augmentation. Measure faithfulness against the actual assembled context after generation. Keep end-to-end accuracy as a fourth number. Do not replace the other three with it.</p>
+<h4 id="worked-example">Worked example</h4>
+<p>The example uses 400 held-out runbook queries with gold runbook identifiers and gold answers. It is illustrative, although the chapter calls it typical of a mature internal evaluation set. The gold runbook appears in the top 10 passages for 340 queries. Therefore <code>h = 340 / 400 = 0.85</code>. Among those 340 hits, 255 answers are correct. Therefore <code>c1 = 255 / 340 approximately 0.75</code>. The remaining 60 queries are misses. Nine answers are still correct from related evidence, parametric knowledge, or luck. Therefore <code>c0 = 9 / 60 = 0.15</code>. The final score is <code>(255 + 9) / 400 = 264 / 400 = 0.66</code>. A second system also scores 0.66. It has 260 hits, so <code>h = 0.65</code>. It gets 252 of those hits correct, so <code>c1 approximately 0.97</code>. It gets 12 of 140 misses correct, so <code>c0 approximately 0.086</code>. The first system has the higher hit rate but weaker generation given a hit. The second system has weaker retrieval but stronger generation given a hit. Equal dashboards imply opposite fixes.</p>
+<h4 id="sanity-case-and-claim-limit">Sanity case and claim limit</h4>
+<p>Karpukhin et al. (2020) report 78.4% top-20 retrieval accuracy for DPR on open-domain Natural Questions. The chapter says 85% at depth 10 is not suspicious for a narrow internal runbook corpus. That corpus is orders of magnitude smaller and less lexically ambiguous than open-domain Wikipedia question answering. This comparison is a directional sanity check, not proof that the internal evaluator is correct.</p>
+<h4 id="practical-decisions">Practical decisions</h4>
+<ul>
+<li><p>Instrument post-retrieval and post-generation on every run.</p></li>
+<li><p>Add post-augmentation measurement as soon as the pipeline changes retrieved content before generation.</p></li>
+<li><p>Label whether gold evidence reached the generator, not merely whether it appeared somewhere in a longer candidate list.</p></li>
+<li><p>Treat a c0 well above a few percent as a finding to investigate. It often means the set is answerable from parametric knowledge, but confirm that explanation.</p></li>
+<li><p>Recompute h, c1, and c0 on the same slice whenever end-to-end accuracy moves. A four-point drop is still only a symptom until this split identifies the stage.</p></li>
+<li><p>Fix the stage whose own metric moved. If both move after one deploy, roll back one stage at a time.</p></li>
+<li><p>If retrieval reports 92% recall and generation reports 95% faithfulness on gold context while end-to-end correctness is 58%, rerun faithfulness on the actual assembled context. A gap there identifies augmentation loss that both isolated tests missed.</p></li>
+<li><p>Validate any learned retrieval evaluator or routing classifier on its own held-out set.</p></li>
+</ul>
+<h3 id="342-macro-micro-mezzo-analysis">34.2 Macro, micro, mezzo analysis</h3>
+<h4 id="the-three-analysis-levels">The three analysis levels</h4>
+<ul>
+<li><p><strong>What:</strong> Macro reports the whole-set statistic. Micro reads individual outputs. Mezzo reruns the statistic on a coherent subset.</p></li>
+<li><p><strong>Why:</strong> Macro says whether the system is ahead. Micro says where to look. Mezzo tests whether the observed pattern generalizes.</p></li>
+<li><p><strong>Failure without it:</strong> A small aggregate gain can hide a large win on one slice and a regression on another. Extreme examples alone can also create a false conclusion.</p></li>
+<li><p><strong>Cost or complexity:</strong> Macro is cheap. Micro requires reading about 10-30 outputs in each chosen direction. Mezzo requires tagging the full set and recomputing slice metrics.</p></li>
+</ul>
+<p>Let the evaluation set contain N queries. Let s_i lie from 0 to 1 for query i. Macro can report mean score, precision, recall, F1, BLEU, ROUGE, or an LLM-judge average. Micro should usually inspect the largest positive and negative per-query score swings. Mezzo can slice by source corpus, generation-length tercile, hop count, chunk length, or retrieval confidence. If slices j have weights w_j and means s_bar_j, then <code>s_bar = sum_j w_j s_bar_j</code>. The sum discards slice identity. Run macro first because launch review needs the headline. Run micro second to form a mechanism hypothesis. Run mezzo third to test that hypothesis on a defined population. Do not estimate general behavior from the extreme examples selected for micro inspection.</p>
+<h4 id="worked-example-1">Worked example</h4>
+<p>The full set has 1,200 queries. A dense retriever is the baseline. A cross-encoder reranker is the candidate system. Macro F1 moves from 0.776 to 0.79. That is a gain of 1.4 points. Micro inspection pulls 20 queries. Ten are the most improved and ten are the most regressed. Eight of the ten improved queries need two or more supporting passages. Seven of the ten regressed queries are single-hop fact lookups. The suspected mechanism is that the reranker helps multi-hop evidence but can promote a topically similar wrong passage on simple lookups. Mezzo tags 240 multi-hop queries, which are 20% of the set. It also tags 960 single-hop queries, which are 80%. Multi-hop F1 moves from 0.68 to 0.83. That is a gain of 15 points. Single-hop F1 moves from 0.80 to 0.78. That is a loss of 2 points. The candidate weighted score is <code>0.2(0.83) + 0.8(0.78) = 0.79</code>. The baseline weighted score is <code>0.2(0.68) + 0.8(0.80) = 0.776</code>. The arithmetic exactly reconciles the macro values.</p>
+<h4 id="significance-filter-and-claim-limit">Significance filter and claim limit</h4>
+<p>The chapter uses <code>SE = sqrt(p_bar(1 - p_bar) / n)</code> as a back-of-envelope filter. For multi-hop, <code>p_bar approximately 0.755</code> and <code>n = 240</code>. The standard error is about 2.8 points. The 15-point swing is about 5.4 standard errors from zero. The chapter treats that effect as unambiguously real. For single-hop, <code>p_bar approximately 0.79</code> and <code>n = 960</code>. The standard error is about 1.3 points. The 2-point regression is about 1.5 standard errors from zero. The chapter treats that result as inside conventional noise. F1 and LLM-judge scores are not exactly independent Bernoulli trials. Use this formula only to separate obviously large effects from obvious noise. Use a proper paired bootstrap when a result sits close to the line.</p>
+<h4 id="practical-decisions-1">Practical decisions</h4>
+<ul>
+<li><p>Use macro as a gate, never as the diagnosis.</p></li>
+<li><p>Pull 10-30 largest score changes in each direction for micro analysis.</p></li>
+<li><p>If the automated judge may be miscalibrated, add a random sample to test whether steering only surfaces judge noise.</p></li>
+<li><p>Define mezzo slices along axes the pipeline can act on.</p></li>
+<li><p>Compute uncertainty before trusting a slice delta. Under a deadline, the example supports shipping the clear multi-hop win with a single-hop monitor and a pre-committed rollback trigger because the small loss remains unconfirmed.</p></li>
+<li><p>Consider a router when one reliable query class improves and another regresses.</p></li>
+<li><p>Do not route when the slices cannot be classified reliably at query time.</p></li>
+</ul>
+<h3 id="343-ablation-design-and-sanity-cases">34.3 Ablation design and sanity cases</h3>
+<h4 id="the-ablation-matrix">The ablation matrix</h4>
+<ul>
+<li><p><strong>What:</strong> Remove or disable exactly one component while fixing all other inputs and settings.</p></li>
+<li><p><strong>Why:</strong> A controlled removal tests whether the component caused the measured change.</p></li>
+<li><p><strong>Failure without it:</strong> A whole-set before-and-after score cannot distinguish the designed mechanism, an unrelated side effect, and sampling noise.</p></li>
+<li><p><strong>Cost or complexity:</strong> Run both component states over at least three case buckets. Size each bucket so its noise floor is below the effect that matters.</p></li>
+</ul>
+<p>The opening whole-set example moves answer accuracy from 71% to 74%. A calculator that serves roughly one query in five can produce a large target-slice gain that appears as only a few aggregate points. Use an easy bucket inside the component's remit. It checks for regression and shows a ceiling effect when the baseline already works. Use a hard bucket inside the remit. The designed effect should concentrate there. Use a control bucket outside the remit. Write down a prediction of zero delta before the run. The control bucket is the load-bearing cell. If it moves, the harness may be noisy or the component may touch cases it should not reach. Other confounds include a shared prompt edit and a reallocated latency budget.</p>
+<h4 id="noise-calculation">Noise calculation</h4>
+<p>For n independent pass or fail trials with pass rate p, use <code>SE = sqrt(p(1 - p) / n)</code>. Variance is largest at <code>p = 0.5</code>. At <code>n = 100</code>, <code>SE = sqrt(0.5 x 0.5 / 100) = sqrt(0.0025) = 0.05</code>. That is five percentage points. A rough 95% band is about two standard errors. That is roughly ten points at this sample size. A control swing under about ten points is not yet distinguishable from sampling noise. A larger control swing is a confound worth investigating. In the interview probe, a 15-point target gain and a 4-point control move at n = 100 put the control inside the rough ten-point noise band.</p>
+<h4 id="matched-placebos">Matched placebos</h4>
+<p>A bare component-off comparison asks only whether more processing helps. A matched-complexity placebo asks whether the claimed information causes the gain. For pseudo-instruction chunking, replace the real document summary with a random other document's summary, a random sentence, or an average sentence embedding. All placebos have the shape of the extra signal but lack the claimed content. The chapter reports that all three underperform the genuine pseudo-instruction condition. This supports the summary-content mechanism rather than extra processing alone.</p>
+<h4 id="worked-example-2">Worked example</h4>
+<p>The calculator example uses three constructed buckets of 100 held-out queries each. No published benchmark reports this exact ablation. Easy contains single-step arithmetic such as <code>12 x 11</code>. Hard contains multi-step word problems. Control contains factual retrieval questions without numbers. Without the calculator, scores are 96% on Easy, 41% on Hard, and 57% on Control. With the calculator, scores are 98% on Easy, 83% on Hard, and 58% on Control. Easy gains 2 points under a ceiling effect. Hard gains 42 points, which is the designed effect. Control gains 1 point, which sits well inside the rough ten-point band. The nearly flat control makes the hard-bucket gain trustworthy.</p>
+<h4 id="external-sanity-case-and-claim-limit">External sanity case and claim limit</h4>
+<p>MRAG-Bench reports a human gain of 33.16 points when images are added to a text-only question. The cited GPT-4o result gains much less from the same images. Its overall accuracy still lies in a similar 66%-80% range across question types. The chapter compares the tens-of-points scale to the 42-point hard-bucket gain. This is a scale sanity check across different populations, not a claim that the two mechanisms are equivalent. A separate decision case compares a published gain above 33 points with a 4-point production gain and a flat control. The gap suggests a different query mix, so the next test is a mezzo slice restricted to image-dependent traffic.</p>
+<h4 id="practical-decisions-2">Practical decisions</h4>
+<ul>
+<li><p>Default to easy target, hard target, and control buckets.</p></li>
+<li><p>Use a whole-set ablation only as an early smoke test.</p></li>
+<li><p>Pre-register the control prediction for any component intended to ship.</p></li>
+<li><p>Choose n before seeing results.</p></li>
+<li><p>Report a wider interval when rare cases cannot supply the desired n.</p></li>
+<li><p>Prefer matched-complexity placebos when claiming a specific mechanism.</p></li>
+<li><p>Rerun the control whenever shared prompts, routers, or latency budgets change.</p></li>
+</ul>
+<h3 id="344-the-remove-the-evidence-ablation">34.4 The remove-the-evidence ablation</h3>
+<h4 id="necessity-versus-support">Necessity versus support</h4>
+<ul>
+<li><p><strong>What:</strong> Remove one cited passage, regenerate the answer, and compare quality with the all-evidence baseline.</p></li>
+<li><p><strong>Why:</strong> An entailment judge can say a passage could support fixed text. Only an input intervention tests whether the generator needed it.</p></li>
+<li><p><strong>Failure without it:</strong> Several citations can all pass attribution while only one does work. A harmful source can also hide behind an on-topic citation.</p></li>
+<li><p><strong>Cost or complexity:</strong> For n cited passages, one baseline plus n ablations costs n + 1 generations per example.</p></li>
+</ul>
+<p>Let the query be q. Let cited evidence be <code>C = {e1, ..., en}</code>. Let <code>y0 = Generate(q, C)</code>. Let <code>Q0 = Q(y0)</code> for one fixed answer-quality judge Q. For each i, remove e_i and regenerate. Let <code>y-i = Generate(q, C without e_i)</code>. Let <code>Q-i = Q(y-i)</code>. Define <code>Delta_i = Q0 - Q-i</code>. A large positive Delta_i marks load-bearing evidence. A Delta_i inside the resampled noise floor marks decorative evidence. A negative Delta_i marks harmful evidence. Do not merge negative and near-zero values. The chapter notes that an attribution judge discussed earlier gives about one wrong verdict in five even on its intended question. The deeper limitation remains even with a perfect judge. Entailment is non-exclusive. Two passages can each support the same claim while either one alone is sufficient.</p>
+<h4 id="leave-one-out-blind-spot">Leave-one-out blind spot</h4>
+<p>Two passages can be jointly sufficient but individually redundant. Removing either alone can yield <code>Delta approximately 0</code> for both. Removing both together may collapse quality. Testing every subset fixes the blind spot. That cost grows exponentially with n. Leave-one-out is the practical default because cited sets are small, not because the blind spot disappears.</p>
+<h4 id="worked-example-3">Worked example</h4>
+<p>The question asks when insulin was discovered and by whom. Evidence e1 is the Nobel Prize history page with the year and both names. Evidence e2 explains what insulin treats but contains no date. Evidence e3 corroborates the year and adds where the discovery was announced. Evidence e4 is an uncredentialed forum post with a different, wrong year. The judge uses FActScore-style atomic-fact precision against the subject's Wikipedia article. Each answer has 10 atomic facts. With all four passages, 9 of 10 facts hold. Therefore <code>Q0 = 0.90</code>. Removing e1 leaves 5 of 10 facts correct. Therefore <code>Q-1 = 0.50</code> and <code>Delta_1 = 0.40</code>. Evidence e1 is load-bearing. Removing e2 changes nothing. Therefore <code>Q-2 = 0.90</code> and <code>Delta_2 = 0.00</code>. Evidence e2 is decorative. Removing e3 leaves 8 of 10 facts correct. Therefore <code>Q-3 = 0.80</code> and <code>Delta_3 = 0.10</code>. Evidence e3 is load-bearing for a smaller, unique detail. Removing e4 yields 10 of 10 facts correct. Therefore <code>Q-4 = 1.00</code> and <code>Delta_4 = -0.10</code>. Evidence e4 is harmful.</p>
+<h4 id="cost-and-noise-check">Cost and noise check</h4>
+<p>The audit set has 300 questions. Each answer cites an average of 4 passages. The run needs 300 baseline generations. It also needs <code>300 x 4 = 1,200</code> ablation generations. The total is 1,500 calls. That is a <code>4 + 1 = 5x</code> multiplier over a generation-only evaluation. The chapter compares this scale with a 3,500-call FActScore audit batch. It treats both as overnight jobs rather than live gates. Five baseline samples at temperature 0.7 give <code>sigma approximately 0.03</code>. The decorative band is <code>about 2 sigma approximately 0.06</code>. Delta_2 at 0.00 is decorative. Delta_3 at 0.10 and Delta_4 at -0.10 exceed the band. Their signs survive the stated noise check.</p>
+<h4 id="practical-decisions-3">Practical decisions</h4>
+<ul>
+<li><p>Regenerate on every leave-one-out pass.</p></li>
+<li><p>Do not merely rescore the fixed baseline answer against less context.</p></li>
+<li><p>If generation cost is binding, use a smaller calibrated model for ablation passes and keep the full model for baseline generation.</p></li>
+<li><p>Set the decorative threshold from repeated baseline variance.</p></li>
+<li><p>Use exactly zero only with a deterministic judge such as exact match or a rule-based check.</p></li>
+<li><p>Ablate cited evidence, not the full top-k pool, when testing generator reliance.</p></li>
+<li><p>Use a retrieval-level ablation when the target is the retriever or reranker.</p></li>
+<li><p>Route a repeatably negative delta to source-credibility review.</p></li>
+<li><p>Run the test periodically offline.</p></li>
+<li><p>Consider a per-query gate only for small medical, legal, or financial templates with low citation counts.</p></li>
+</ul>
+<h3 id="345-system-level-properties-latency-self-consistency-robustness">34.5 System-level properties: latency, self-consistency, robustness</h3>
+<h4 id="why-single-answer-scores-are-insufficient">Why single-answer scores are insufficient</h4>
+<ul>
+<li><p><strong>What:</strong> Evaluate latency, repeated-run agreement, and adversarial behavior across many calls.</p></li>
+<li><p><strong>Why:</strong> Faithfulness, context relevance, and correctness describe one query-answer pair. Production is a live sequence of repeated stages.</p></li>
+<li><p><strong>Failure without it:</strong> A system can be accurate on held-out examples yet slow, inconsistent, or vulnerable to instructions hidden in retrieved documents.</p></li>
+<li><p><strong>Cost or complexity:</strong> Instrument every stage, repeat fixed queries N times, and maintain a standing adversarial corpus.</p></li>
+</ul>
+<p>The representative stage chain is embed, search, fuse, rerank, context assembly, prefill, and decode. Each stage has its own latency distribution. Each call can also receive different evidence or decoding outcomes.</p>
+<h4 id="latency-and-tail-compounding">Latency and tail compounding</h4>
+<p>For sequential stages with independent slow-event probabilities p_i, use <code>P(any stage slow) = 1 - product_i(1 - p_i)</code>. Four stages with <code>p_i = 0.01</code> yield <code>1 - 0.99^4 approximately 3.94%</code>. That is about 1 in 25 requests, not 1 in 100. A fifth stage pushes the exposure past 4.9%. The independence assumption belongs to this calculation. When every stage percentile moves together, shared infrastructure such as graphics processing unit contention, a noisy neighbor, or a network hop is a better first suspect. Track p95 and p99 for each stage. For streaming interfaces, write the SLA against time-to-first-token. For agentic pipelines that require the complete answer before acting, budget full completion time. For asynchronous or batch jobs, watch throughput and queue depth instead of a user's per-call tail.</p>
+<h4 id="latency-worked-example">Latency worked example</h4>
+<p>The support bot indexes <code>N = 5 x 10^6</code> chunks at <code>d = 768</code> dimensions behind HNSW. Query embedding has p50 15 ms and p99 40 ms. ANN search has p50 20 ms and p99 90 ms. The cross-encoder reranks <code>k = 50</code> candidates at p50 25 ms and p99 70 ms. Prefill uses 1,600 context tokens at p50 530 ms and p99 900 ms. The median time-to-first-token estimate is <code>15 + 20 + 25 + 530 = 590 ms</code>. The naive p99 sum is <code>40 + 90 + 70 + 900 = 1,100 ms</code>. The chapter calls that sum an upper bound on the tail. Nielsen's cited thresholds say an interface feels instantaneous below 0.1 seconds. They say it keeps a user's flow of thought below about 1 second. Attention drifts beyond that. The 590 ms median is inside the flow threshold. The 1,100 ms tail estimate has crossed it. The comparison explains why a healthy median can coexist with recurring slow-user complaints. A separate latency probe gives a 400 ms median against a 1-second SLA and still asks for per-stage p95 and p99 before dismissing slow-user reports. A security probe adds 180 ms for document scanning while product holds time-to-first-token fixed. Measure the injection-rate reduction, scan lower-trust sources selectively, or move scanning to ingestion when the evidence supports it.</p>
+<h4 id="self-consistency">Self-consistency</h4>
+<p>Run the same query N times. Cluster semantically equivalent answers. Let c_j count answers in cluster j. Define the self-consistency score (SC) as <code>SC = max_j c_j / N</code>. Wang et al. (2022) use self-consistency as a decoding method that samples reasoning paths and takes a majority vote. This chapter inverts the use. It measures disagreement itself because a live user sees one run, not the majority. A closed-book model varies with sampling temperature. RAG adds retrieval nondeterminism. Multithreaded HNSW traversal, a load-balanced ANN replica pool, or a live-index upsert can change top-k results. Changed retrieval changes context before decoding begins. Correctness and consistency are orthogonal. A system can agree with itself and remain wrong every time. When an answer flakes, rerun against a pinned index snapshot at temperature 0. If disagreement disappears, investigate retrieval or decoding nondeterminism before changing prompts or ranking logic. Skip the canary only when temperature is 0 and the index is a frozen, versioned snapshot.</p>
+<h4 id="robustness">Robustness</h4>
+<p>A direct jailbreak arrives in the user's query. An indirect prompt injection arrives inside a document that later gets retrieved. Once evidence and instructions share one context window, the generator has no structural way to tell them apart. Build a standing red-team set of queries paired with documents carrying planted instructions. Report the fraction of runs that follow the planted instruction instead of the user's request. Run the set on every retriever or prompt change. Use a periodic cadence only for a closed, fully curated corpus with no third-party or user-submitted content.</p>
+<h3 id="346-benchmark-hygiene-contamination-synthetic-sets-vqa-in-rag-clothing">34.6 Benchmark hygiene: contamination, synthetic sets, VQA-in-RAG-clothing</h3>
+<h4 id="the-three-gates">The three gates</h4>
+<ul>
+<li><p><strong>What:</strong> Check contamination, synthetic construction, and task format before treating a benchmark score as evidence.</p></li>
+<li><p><strong>Why:</strong> A real and reproducible score may measure memorization, construction artifacts, or answer reading without retrieval.</p></li>
+<li><p><strong>Failure without it:</strong> A leaderboard can support a launch even when the retriever was never tested.</p></li>
+<li><p><strong>Cost or complexity:</strong> Run overlap checks, simple controls on synthetic slices, candidate-pool inspection, modality removal, and a small internal held-out slice.</p></li>
+</ul>
+<p>The opening probe reports 84% accuracy, five points above the replaced system, but the number has not cleared any gate. Gate 1 asks whether benchmark sources overlap the generator's pre-training data. Public web corpora, especially Wikipedia-based sets, can overlap general model training data. If the model answers with retrieval off, a closed-book comparison understates or distorts retrieval value. Brown et al. (2020) ran a 13-gram overlap check for Generative Pre-trained Transformer 3 (GPT-3) evaluation sets. They reported clean scores beside standard scores because contamination can move results by several points in either direction. Gate 2 asks how synthetic questions or documents were generated. Synthetic data is not automatically invalid. It can be useful when it approximates deployment and a preliminary model must work to solve it. It fails when construction leaves an exploitable signature. A corpus built by concatenating unrelated documents creates sharp topic boundaries. A semantic chunker can exploit those boundaries but lose most of the advantage on real documents where topics drift gradually. A cited interview case makes this concrete. A synthetic set shows a 12-point recall gain for semantic chunking while production shows no difference. Shumailov et al. (2023) call the extreme repeated-training failure model collapse. Using the same model family to write and grade a benchmark is a milder version of that concern. Gate 3 asks whether the inference-time corpus is larger than the answer's source. VQA supplies the one needed image. RAG requires finding the right item among thousands or millions of candidates before reading it. A system that never searches cannot fail at search. Some tasks with RAG labels are VQA with a retrieval step bolted on or older IR benchmarks reused under a new name. Statistical significance does not repair any gate. It says a difference is unlikely to be noise. It does not say the benchmark measured retrieval, generation, or the shipped task.</p>
+<h4 id="worked-example-4">Worked example</h4>
+<p>The example begins with 10,000 image-question pairs from Wikipedia figures and captions. The pipeline scores 82% exact match. The closed-book baseline scores 76%. The apparent retrieval lift is 6 points. The contamination check finds 1,800 overlapping items, or 18%. The closed-book baseline scores 91% on those 1,800 contaminated items. It scores 71% on the clean 8,200. The decontaminated retrieval lift is <code>82% - 71% = 11 points</code>. That is nearly twice the reported 6-point lift. The example next identifies 3,000 LLM-generated questions without a consistency filter. A keyword baseline is routed over that slice. If it scores within a few points of the full pipeline, the slice rewards lexical overlap rather than semantic retrieval.</p>
+<p>On the 7,000 human-written questions, the same keyword baseline trails by more than 15 points.</p>
+<p>The example then finds 2,500 items that supply the target image directly.</p>
+<p>Those items do not exercise retrieval.</p>
+<p>After the three checks, roughly 4,700 items remain contamination-clean, non-synthetic, and retrieval-gated.</p>
+<p>The chapter calls that reduced set the score worth defending.</p>
+<p>The word roughly is important because the source does not assert that every excluded group is disjoint.</p>
+<h4 id="sanity-case-and-claim-limit-1">Sanity case and claim limit</h4>
+<p>MRAG-Bench reports that humans gain 33.16 points from image access.</p>
+<p>Its strongest evaluated model, GPT-4o, reaches roughly human parity.</p>
+<p>Its score lies in the 66%-80% range depending on question type.</p>
+<p>An unaudited homemade benchmark at 82% should trigger the three gates.</p>
+<p>It does not by itself prove a state-of-the-art system.</p>
+<h4 id="practical-decisions-4">Practical decisions</h4>
+<ul>
+<li><p>Run contamination checks before trusting closed-book versus RAG comparisons.</p></li>
+<li><p>If RAG beats a closed-book baseline by only 2 points despite 92% recall@10, test contamination before blaming retrieval.</p></li>
+<li><p>The chapter says an n-gram or substring pass can take an afternoon and can change the measured lift by a factor of two in its example.</p></li>
+<li><p>For time-sensitive facts after the model's training cutoff, prefer a temporal slice as the clean control.</p></li>
+<li><p>Treat an LLM-generated set as provisional until it survives a lexical-overlap baseline.</p></li>
+<li><p>Give more provisional trust to filtered synthetic data that matches a real target distribution, as in the cited Promptagator approach.</p></li>
+<li><p>Confirm that the candidate corpus is larger than the target source before calling a multimodal task RAG.</p></li>
+<li><p>Candidate-pool size or explicit retrieval recall is useful evidence that retrieval was exercised.</p></li>
+<li><p>Report modality-removal ablations beside the headline score.</p></li>
+<li><p>If removing text or images does not lower the score, fusion may not be doing useful work.</p></li>
+<li><p>Keep a small hand-curated slice of real traffic for the final launch decision.</p></li>
+<li><p>If traffic is too sparse for a reliable internal slice, treat the launch as provisional and lean harder on the three gates.</p></li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-341">Figure 34.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    U[&quot;User query&quot;] --&gt; R[&quot;Retrieval: vector store and ANN search&quot;]
+    R --&gt; A[&quot;Augmentation: rerank and assemble context&quot;]
+    A --&gt; G[&quot;Generation: LLM reads context and answers&quot;]
+    G --&gt; O[&quot;Answer returned to user&quot;]
+    R -. &quot;tap recall@k&quot; .-&gt; TR[&quot;Retrieval measurement&quot;]
+    A -. &quot;tap context relevance&quot; .-&gt; TA[&quot;Augmentation measurement&quot;]
+    G -. &quot;tap faithfulness against actual context&quot; .-&gt; TG[&quot;Generation measurement&quot;]
+    O -. &quot;one scalar entangles all stages&quot; .-&gt; E[&quot;End-to-end accuracy&quot;]</code></pre></details></figure>
+<p><strong>Figure 34.1:</strong> Each stage boundary is a place to take a direct measurement. The end-to-end score at the bottom of the bracket sums all of them into one number that cannot be un-summed after the fact.</p>
+<h3 id="figure-342">Figure 34.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    M1[&quot;1. Macro: whole test set, N = 1,200, F1 0.776 to 0.79, +1.4 points&quot;]
+    M2[&quot;2. Micro: read 10-30 individual outputs, gains cluster on multi-hop&quot;]
+    M3[&quot;3. Mezzo: rerun the macro statistic per defined slice&quot;]
+    H[&quot;Multi-hop, n = 240, 0.68 to 0.83&quot;]
+    S[&quot;Single-hop, n = 960, 0.80 to 0.78&quot;]
+    M1 --&gt;|read the largest swings| M2
+    M2 --&gt;|confirm on a defined slice| M3
+    M3 --&gt; H
+    M3 --&gt; S</code></pre></details></figure>
+<p><strong>Figure 34.2:</strong> Macro alone cannot tell you that a 1.4-point aggregate gain is really a +15-point win on one slice and a -2-point loss on another - only mezzo, run after micro generates the hypothesis, can.</p>
+<h3 id="figure-343">Figure 34.3</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Case bucket</th>
+<th style="text-align: right;">Baseline off</th>
+<th style="text-align: right;">Component on</th>
+<th>Intended visual pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Easy, near ceiling</td>
+<td style="text-align: right;">High</td>
+<td style="text-align: right;">High</td>
+<td>Small compressed gap</td>
+</tr>
+<tr>
+<td>Hard, designed target</td>
+<td style="text-align: right;">Lower</td>
+<td style="text-align: right;">Much higher</td>
+<td>Large delta</td>
+</tr>
+<tr>
+<td>Control, should not move</td>
+<td style="text-align: right;">Similar</td>
+<td style="text-align: right;">Similar</td>
+<td>Delta approximately 0</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 34.3:</strong> A well-designed ablation buckets cases by relationship to the mechanism: the gap concentrates in the bucket the component was built for, compresses under a ceiling effect on easy cases, and must stay near zero on the control bucket the component should never touch.</p>
+<h3 id="figure-344">Figure 34.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    B[&quot;Baseline evidence: e1, e2, e3, e4&quot;] --&gt; G0[&quot;Generator&quot;] --&gt; Q0[&quot;Q0 = 0.90&quot;]
+    B --&gt; M1[&quot;Remove e1: e2, e3, e4&quot;] --&gt; G1[&quot;Generator&quot;] --&gt; Q1[&quot;Q-1 = 0.50, Delta 0.40, load-bearing&quot;]
+    B --&gt; M2[&quot;Remove e2: e1, e3, e4&quot;] --&gt; G2[&quot;Generator&quot;] --&gt; Q2[&quot;Q-2 = 0.90, Delta 0.00, decorative&quot;]
+    B --&gt; M3[&quot;Remove e3: e1, e2, e4&quot;] --&gt; G3[&quot;Generator&quot;] --&gt; Q3[&quot;Q-3 = 0.80, Delta 0.10, load-bearing&quot;]
+    B --&gt; M4[&quot;Remove e4: e1, e2, e3&quot;] --&gt; G4[&quot;Generator&quot;] --&gt; Q4[&quot;Q-4 = 1.00, Delta -0.10, harmful&quot;]</code></pre></details></figure>
+<p><strong>Figure 34.4:</strong> Removing one cited passage at a time and regenerating turns a fixed set of "attributable" citations into four distinct verdicts - load-bearing, decorative, and harmful - that a static entailment check cannot tell apart.</p>
+<h3 id="figure-345">Figure 34.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    E[&quot;1. Query embed, p50 15 ms, p99 40 ms&quot;]
+    A[&quot;2. ANN search, N = 5 x 10^6, p50 20 ms, p99 90 ms&quot;]
+    R[&quot;3. Cross-encoder rerank, k = 50, p50 25 ms, p99 70 ms&quot;]
+    P[&quot;4. Prefill context, 1,600 tokens, p50 530 ms, p99 900 ms&quot;]
+    F[&quot;First token streams, median sum 590 ms, naive p99 sum 1,100 ms&quot;]
+    E --&gt; A --&gt; R --&gt; P --&gt; F</code></pre></details></figure>
+<p><strong>Figure 34.5:</strong> Time-to-first-token sums the stage medians, but end-to-end tail risk compounds across every stage in the chain.</p>
+<h3 id="figure-346">Figure 34.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    S[&quot;Reported benchmark score&quot;] --&gt; G1[&quot;Gate 1: corpus intersects pre-training data&quot;]
+    G1 --&gt; G2[&quot;Gate 2: test set is LLM-generated&quot;]
+    G2 --&gt; G3[&quot;Gate 3: corpus is larger than one item&quot;]
+    G3 --&gt; T[&quot;Score is evidence about your pipeline&quot;]
+    G1 -.-&gt; F1[&quot;Fails silently: closed-book baseline already knows the answer&quot;]
+    G2 -.-&gt; F2[&quot;Fails silently: construction artifacts reward benchmark exploitation&quot;]
+    G3 -.-&gt; F3[&quot;Fails silently: target item ships in the prompt, so this is VQA&quot;]</code></pre></details></figure>
+<p><strong>Figure 34.6:</strong> A reported RAG benchmark score earns trust only after clearing three gates - contamination, synthetic-set artifacts, and task format - and each one can fail without moving the headline number.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li><p>Draw four boxes down the left: query, retrieval, augmentation, and generation.</p></li>
+<li><p>Add an answer box below generation.</p></li>
+<li><p>Put a metric tap beside retrieval for recall@k.</p></li>
+<li><p>Put a tap beside augmentation for context relevance.</p></li>
+<li><p>Put a tap beside generation for faithfulness against actual context.</p></li>
+<li><p>Put one bracket around the pipeline and label its bottom end-to-end accuracy.</p></li>
+<li><p>Draw three analysis boxes to the right: macro, micro, and mezzo.</p></li>
+<li><p>Connect macro to micro with "inspect largest swings."</p></li>
+<li><p>Connect micro to mezzo with "test a defined slice."</p></li>
+<li><p>Draw a two-state ablation grid with Easy, Hard, and Control columns.</p></li>
+<li><p>Circle the Control column and write "predicted delta = 0."</p></li>
+<li><p>Draw one evidence set branching into leave-one-out regenerations.</p></li>
+<li><p>Label the outcomes load-bearing, decorative, and harmful.</p></li>
+<li><p>Add a final checklist with latency tails, repeated-run agreement, injection success, and the three benchmark gates.</p></li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>A RAG score is the last light on a long circuit, so I never diagnose from it alone. I tap retrieval, augmentation, and generation separately. Then I use macro to see the whole result, micro to inspect the biggest changes, and mezzo to test the pattern on a defined slice. For causality, I ablate one component across easy, hard, and control cases. For citations, I remove each passage and regenerate. Before launch, I also measure stage tails, repeated-answer agreement, injection success, and benchmark hygiene. That tells me what failed, why it changed, and whether the score deserves trust.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-two-systems-both-score-66-end-to-end-are-they-equally-good">1. Two systems both score 66% end-to-end. Are they equally good?</h3>
+<p>No. Decompose accuracy into hit rate h, correctness given a hit c1, and correctness despite a miss c0, then measure the stage boundaries on the same slice. The chapter's two 66% systems have opposite bottlenecks, so one needs generation work and the other needs retrieval work.</p>
+<h3 id="2-a-reranker-gains-14-f1-points-on-1200-queries-what-analysis-comes-next">2. A reranker gains 1.4 F1 points on 1,200 queries. What analysis comes next?</h3>
+<p>Run micro analysis on the largest gains and losses to form a hypothesis, then run mezzo analysis on a defined slice to test it. The example's macro gain hides a 15-point multi-hop win and a 2-point single-hop loss, and the stated standard-error check says only the first is clearly outside noise.</p>
+<h3 id="3-how-do-you-prove-a-component-or-a-citation-actually-caused-an-improvement">3. How do you prove a component or a citation actually caused an improvement?</h3>
+<p>For the component, compare off and on across easy target, hard target, and pre-registered control buckets, with matched-complexity placebos when possible. For a citation, remove it, regenerate, and compare quality against a resampled noise floor because static entailment tests support, not necessity.</p>
+<h3 id="4-correctness-is-green-what-can-still-block-launch">4. Correctness is green. What can still block launch?</h3>
+<p>Stage-level p95 and p99 can reveal tail latency, repeated calls can reveal retrieval or decoding inconsistency, and a planted-document corpus can reveal indirect prompt injection. Correctness and consistency are separate, and a shared shift across every latency stage points first to infrastructure.</p>
+<h3 id="5-a-multimodal-rag-benchmark-reports-84-accuracy-do-you-ship">5. A multimodal RAG benchmark reports 84% accuracy. Do you ship?</h3>
+<p>Not from that number. First check overlap with pre-training data, test synthetic slices with a lexical baseline, and confirm that inference requires search over multiple candidates rather than receiving the target image directly. Keep the final decision tied to a small hand-curated traffic slice when one is available.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number or calculation</th>
+<th>Meaning and limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source figures</td>
+<td style="text-align: right;">6</td>
+<td>Every source figure is recreated above</td>
+</tr>
+<tr>
+<td>Source tables</td>
+<td style="text-align: right;">0</td>
+<td>The source unit contains no numbered tables</td>
+</tr>
+<tr>
+<td>Attribution example size</td>
+<td style="text-align: right;">400 queries</td>
+<td>Illustrative internal runbook evaluation</td>
+</tr>
+<tr>
+<td>Regression probe</td>
+<td style="text-align: right;">4-point end-to-end drop</td>
+<td>Requires h, c1, and c0 before attribution</td>
+</tr>
+<tr>
+<td>Isolated-stage paradox</td>
+<td style="text-align: right;">92% recall, 95% gold-context faithfulness, 58% end-to-end</td>
+<td>Re-score faithfulness on actual assembled context</td>
+</tr>
+<tr>
+<td>System 1 hit rate</td>
+<td style="text-align: right;">340 / 400 = 0.85</td>
+<td>Needed evidence reaches the generator</td>
+</tr>
+<tr>
+<td>System 1 correctness on hits</td>
+<td style="text-align: right;">255 / 340 approximately 0.75</td>
+<td>Points to generation as its weaker stage</td>
+</tr>
+<tr>
+<td>System 1 correctness on misses</td>
+<td style="text-align: right;">9 / 60 = 0.15</td>
+<td>May reflect related evidence, parametric knowledge, or luck</td>
+</tr>
+<tr>
+<td>System 1 end-to-end accuracy</td>
+<td style="text-align: right;">264 / 400 = 0.66</td>
+<td>Same aggregate as a different stage split</td>
+</tr>
+<tr>
+<td>System 2 hit rate</td>
+<td style="text-align: right;">260 / 400 = 0.65</td>
+<td>Retrieval is its weaker stage</td>
+</tr>
+<tr>
+<td>System 2 correctness on hits</td>
+<td style="text-align: right;">252 / 260 approximately 0.97</td>
+<td>Strong generation given a hit</td>
+</tr>
+<tr>
+<td>System 2 correctness on misses</td>
+<td style="text-align: right;">12 / 140 approximately 0.086</td>
+<td>Residual correct answers after misses</td>
+</tr>
+<tr>
+<td>DPR sanity reference</td>
+<td style="text-align: right;">78.4% top-20</td>
+<td>Open-domain Natural Questions result cited from Karpukhin et al. (2020)</td>
+</tr>
+<tr>
+<td>Macro example size</td>
+<td style="text-align: right;">1,200 queries</td>
+<td>Full reranker evaluation set</td>
+</tr>
+<tr>
+<td>Macro F1 change</td>
+<td style="text-align: right;">0.776 to 0.79</td>
+<td>Aggregate gain of 1.4 points</td>
+</tr>
+<tr>
+<td>Micro inspection</td>
+<td style="text-align: right;">20 queries</td>
+<td>Ten largest gains and ten largest losses</td>
+</tr>
+<tr>
+<td>Micro pattern</td>
+<td style="text-align: right;">8 of 10 and 7 of 10</td>
+<td>Improved cases cluster on multi-hop and regressed cases on single-hop</td>
+</tr>
+<tr>
+<td>Multi-hop slice</td>
+<td style="text-align: right;">240 queries, 20%</td>
+<td>F1 rises from 0.68 to 0.83, a 15-point gain</td>
+</tr>
+<tr>
+<td>Single-hop slice</td>
+<td style="text-align: right;">960 queries, 80%</td>
+<td>F1 falls from 0.80 to 0.78, a 2-point loss</td>
+</tr>
+<tr>
+<td>Reweighted candidate</td>
+<td style="text-align: right;">0.2(0.83) + 0.8(0.78) = 0.79</td>
+<td>Reconciles the candidate macro score</td>
+</tr>
+<tr>
+<td>Reweighted baseline</td>
+<td style="text-align: right;">0.2(0.68) + 0.8(0.80) = 0.776</td>
+<td>Reconciles the baseline macro score</td>
+</tr>
+<tr>
+<td>Multi-hop uncertainty</td>
+<td style="text-align: right;">SE approximately 2.8 points</td>
+<td>The 15-point effect is about 5.4 standard errors out</td>
+</tr>
+<tr>
+<td>Single-hop uncertainty</td>
+<td style="text-align: right;">SE approximately 1.3 points</td>
+<td>The 2-point loss is about 1.5 standard errors out</td>
+</tr>
+<tr>
+<td>Micro range</td>
+<td style="text-align: right;">10-30 outputs per direction</td>
+<td>Default metric-steered inspection range</td>
+</tr>
+<tr>
+<td>Opening ablation headline</td>
+<td style="text-align: right;">71% to 74% accuracy</td>
+<td>Whole-set movement does not identify the mechanism</td>
+</tr>
+<tr>
+<td>Narrow calculator remit</td>
+<td style="text-align: right;">Roughly 1 query in 5</td>
+<td>A large target gain dilutes in the aggregate</td>
+</tr>
+<tr>
+<td>Narrow target-slice illustration</td>
+<td style="text-align: right;">40% to 85% on roughly 1 query in 5</td>
+<td>A 45-point slice gain can look like only a few aggregate points</td>
+</tr>
+<tr>
+<td>Reranker ablation probe</td>
+<td style="text-align: right;">+3 nDCG points</td>
+<td>Requires target, easy, and control buckets</td>
+</tr>
+<tr>
+<td>Target and control probe</td>
+<td style="text-align: right;">+15 and +4 points at n = 100</td>
+<td>The control move remains inside the rough ten-point band</td>
+</tr>
+<tr>
+<td>Ablation bucket size</td>
+<td style="text-align: right;">n = 100</td>
+<td>Used for the illustrative calculator experiment</td>
+</tr>
+<tr>
+<td>Worst-case SE at n = 100</td>
+<td style="text-align: right;">sqrt(0.5 x 0.5 / 100) = 0.05</td>
+<td>Five-point standard error under the Bernoulli approximation</td>
+</tr>
+<tr>
+<td>Rough 95% band</td>
+<td style="text-align: right;">About 10 points</td>
+<td>About two standard errors at n = 100</td>
+</tr>
+<tr>
+<td>Figure 34.3 ceiling</td>
+<td style="text-align: right;">100%</td>
+<td>The easy bucket compresses against the top of the accuracy axis</td>
+</tr>
+<tr>
+<td>Calculator baseline</td>
+<td style="text-align: right;">96%, 41%, 57%</td>
+<td>Easy, Hard, and Control without the tool</td>
+</tr>
+<tr>
+<td>Calculator on</td>
+<td style="text-align: right;">98%, 83%, 58%</td>
+<td>Easy, Hard, and Control with the tool</td>
+</tr>
+<tr>
+<td>Calculator deltas</td>
+<td style="text-align: right;">+2, +42, +1 points</td>
+<td>Ceiling, designed effect, and flat control</td>
+</tr>
+<tr>
+<td>Published versus production probe</td>
+<td style="text-align: right;">Above 33 points versus 4 points</td>
+<td>Suggests a query-mix difference to test with mezzo analysis</td>
+</tr>
+<tr>
+<td>MRAG-Bench human image gain</td>
+<td style="text-align: right;">33.16 points</td>
+<td>External scale sanity check, not the same population</td>
+</tr>
+<tr>
+<td>GPT-4o range</td>
+<td style="text-align: right;">66%-80%</td>
+<td>Overall accuracy varies by question type in the cited comparison</td>
+</tr>
+<tr>
+<td>Attribution-judge error reference</td>
+<td style="text-align: right;">1 wrong verdict in 5</td>
+<td>Cited earlier-section rate on the judge's intended question</td>
+</tr>
+<tr>
+<td>Evidence baseline</td>
+<td style="text-align: right;">9 / 10 = 0.90</td>
+<td>Atomic-fact precision with all four passages</td>
+</tr>
+<tr>
+<td>Remove e1</td>
+<td style="text-align: right;">5 / 10 = 0.50, Delta 0.40</td>
+<td>Load-bearing</td>
+</tr>
+<tr>
+<td>Remove e2</td>
+<td style="text-align: right;">9 / 10 = 0.90, Delta 0.00</td>
+<td>Decorative</td>
+</tr>
+<tr>
+<td>Remove e3</td>
+<td style="text-align: right;">8 / 10 = 0.80, Delta 0.10</td>
+<td>Load-bearing for one unique fact</td>
+</tr>
+<tr>
+<td>Remove e4</td>
+<td style="text-align: right;">10 / 10 = 1.00, Delta -0.10</td>
+<td>Harmful</td>
+</tr>
+<tr>
+<td>Evidence audit size</td>
+<td style="text-align: right;">300 questions</td>
+<td>Held-out offline audit</td>
+</tr>
+<tr>
+<td>Average citations</td>
+<td style="text-align: right;">4</td>
+<td>One baseline plus four leave-one-out generations</td>
+</tr>
+<tr>
+<td>Evidence audit calls</td>
+<td style="text-align: right;">300 + 1,200 = 1,500</td>
+<td>A 5x multiplier over generation only</td>
+</tr>
+<tr>
+<td>FActScore comparison</td>
+<td style="text-align: right;">3,500 calls</td>
+<td>Same order of magnitude as the cited audit batch</td>
+</tr>
+<tr>
+<td>Baseline resamples</td>
+<td style="text-align: right;">5 at temperature 0.7</td>
+<td>Used to estimate the evidence noise floor</td>
+</tr>
+<tr>
+<td>Evidence noise floor</td>
+<td style="text-align: right;">sigma approximately 0.03</td>
+<td>Repeated-run baseline variation</td>
+</tr>
+<tr>
+<td>Decorative band</td>
+<td style="text-align: right;">about 2 sigma approximately 0.06</td>
+<td>Effects inside the band count as decorative</td>
+</tr>
+<tr>
+<td>Tail event per stage</td>
+<td style="text-align: right;">1%</td>
+<td>Assumed independent in the compounding example</td>
+</tr>
+<tr>
+<td>Four-stage tail</td>
+<td style="text-align: right;">1 - 0.99^4 approximately 3.94%</td>
+<td>About 1 in 25 requests, not 1 in 100</td>
+</tr>
+<tr>
+<td>Five-stage tail</td>
+<td style="text-align: right;">More than 4.9%</td>
+<td>Adding a sequential stage adds another tail opportunity</td>
+</tr>
+<tr>
+<td>Index scale</td>
+<td style="text-align: right;">5 x 10^6 chunks at d = 768</td>
+<td>Representative support-bot setup</td>
+</tr>
+<tr>
+<td>Embedding latency</td>
+<td style="text-align: right;">p50 15 ms, p99 40 ms</td>
+<td>First measured stage</td>
+</tr>
+<tr>
+<td>ANN latency</td>
+<td style="text-align: right;">p50 20 ms, p99 90 ms</td>
+<td>Search stage</td>
+</tr>
+<tr>
+<td>Rerank latency</td>
+<td style="text-align: right;">k = 50, p50 25 ms, p99 70 ms</td>
+<td>Cross-encoder stage</td>
+</tr>
+<tr>
+<td>Prefill latency</td>
+<td style="text-align: right;">1,600 tokens, p50 530 ms, p99 900 ms</td>
+<td>Dominant representative stage</td>
+</tr>
+<tr>
+<td>Median time-to-first-token</td>
+<td style="text-align: right;">590 ms</td>
+<td>Sum of stage medians</td>
+</tr>
+<tr>
+<td>Naive p99 sum</td>
+<td style="text-align: right;">1,100 ms</td>
+<td>Stated upper-bound estimate</td>
+</tr>
+<tr>
+<td>Interaction thresholds</td>
+<td style="text-align: right;">0.1 seconds and about 1 second</td>
+<td>Cited instantaneous and flow-of-thought thresholds</td>
+</tr>
+<tr>
+<td>Latency interview probe</td>
+<td style="text-align: right;">400 ms median versus 1-second SLA</td>
+<td>Still requires per-stage p95 and p99</td>
+</tr>
+<tr>
+<td>Security scan probe</td>
+<td style="text-align: right;">180 ms added</td>
+<td>Weigh measured injection reduction and off-path scanning</td>
+</tr>
+<tr>
+<td>Benchmark size</td>
+<td style="text-align: right;">10,000 pairs</td>
+<td>Wikipedia image-question example</td>
+</tr>
+<tr>
+<td>Opening benchmark probe</td>
+<td style="text-align: right;">84%, 5 points ahead</td>
+<td>Not launch evidence before the three gates</td>
+</tr>
+<tr>
+<td>Headline benchmark</td>
+<td style="text-align: right;">82% versus 76%</td>
+<td>Apparent 6-point retrieval lift</td>
+</tr>
+<tr>
+<td>Contamination probe</td>
+<td style="text-align: right;">2-point RAG lift with 92% recall@10</td>
+<td>Test baseline memorization before blaming retrieval</td>
+</tr>
+<tr>
+<td>Contaminated slice</td>
+<td style="text-align: right;">1,800 items, 18%</td>
+<td>Closed-book score is 91% there</td>
+</tr>
+<tr>
+<td>Clean slice</td>
+<td style="text-align: right;">8,200 items</td>
+<td>Closed-book score is 71% there</td>
+</tr>
+<tr>
+<td>Clean retrieval lift</td>
+<td style="text-align: right;">82% - 71% = 11 points</td>
+<td>Nearly twice the contaminated headline lift</td>
+</tr>
+<tr>
+<td>Synthetic slice</td>
+<td style="text-align: right;">3,000 questions</td>
+<td>Generated without a consistency filter</td>
+</tr>
+<tr>
+<td>Synthetic chunking mismatch</td>
+<td style="text-align: right;">+12 recall points versus no production difference</td>
+<td>Construction artifacts can create the apparent gain</td>
+</tr>
+<tr>
+<td>Human-written slice</td>
+<td style="text-align: right;">7,000 questions</td>
+<td>Keyword baseline trails by more than 15 points</td>
+</tr>
+<tr>
+<td>Non-retrieval items</td>
+<td style="text-align: right;">2,500</td>
+<td>Target image ships directly in the prompt</td>
+</tr>
+<tr>
+<td>Defensible remainder</td>
+<td style="text-align: right;">Roughly 4,700</td>
+<td>Clean, non-synthetic, and retrieval-gated under the example's checks</td>
+</tr>
+<tr>
+<td>Contamination method</td>
+<td style="text-align: right;">13-gram overlap</td>
+<td>Method cited from Brown et al. (2020)</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/33_evaluating_generation.html"><small>Previous</small>Chapter 33. Evaluating Generation</a><a href="../chapters/35_source_credibility.html"><small>Next</small>Chapter 35. Source Credibility</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

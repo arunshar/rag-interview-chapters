@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 30. Lost in the Middle | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/30_lost_in_the_middle.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group" open><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html" aria-current="page">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part IX. Generation and Context Assembly</p><h1>Chapter 30. Lost in the Middle</h1><p class="chapter-meta">50 min estimated reading · Unit 39 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to diagnose and mitigate position-dependent failures in Retrieval-Augmented Generation (RAG) systems.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>A large language model (LLM) can receive the correct chunk and still miss it. Accuracy often follows a U-curve, with strong use of the beginning and end but weak use of the middle.</li>
+<li>The trough can fall below the closed-book baseline. Retrieval can replace a correct parametric answer with a wrong context-driven answer.</li>
+<li>A longer accepted context window does not automatically flatten the U. Robustness tracks the sequence lengths and attention patterns used in training.</li>
+<li>Primacy and recency have different learned causes. The fixed system-message position supports primacy, while local next-token prediction supports recency.</li>
+<li>Prompting can help moderately. Outside-in reordering and ranked-list truncation act more directly by controlling where evidence lands.</li>
+<li>Rotary Position Embedding (RoPE) rescaling and attention calibration can change attention at inference time, but they require access to model internals.</li>
+<li>IN2 position-rotated training and DIFF Transformer attack the problem during training or in the architecture. They cost more and cannot serve as simple wrappers around every existing checkpoint.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine a judge working with a very long evidence table. The retriever is the court clerk. The clerk fetches evidence cards for a case. The reranker sorts those cards by expected importance. The assembled prompt is the final table that the judge actually sees.</p>
+<p>The gold chunk is the one card that contains the decisive fact. Finding that card is not enough. The clerk must also place it where the judge reliably notices it.</p>
+<p>This judge has a peculiar reading habit. Cards at the near end of the table get strong attention. Cards at the far end also get strong attention. Cards across the broad middle are easy to overlook. If we plot success against card position, the line looks like a U. The near end is the primacy zone. The far end is the recency zone. The middle is the trough.</p>
+<p>The judge sometimes knows a common fact from memory before any cards arrive. That is the closed-book answer. If the decisive card sits in the trough, distracting cards can pull the judge away from a correct remembered answer. The full evidence table can then perform worse than an empty table.</p>
+<p>Buying a longer table does not cure the habit. It adds more places to put cards. It does not prove that the judge trained to inspect every new place well. It can also make the inspection bill much larger.</p>
+<p>Part of the habit came from training. At school, the most authoritative instruction always sat in the first seat. The next prediction usually depended most on nearby words. The judge therefore learned one reason to favor the start and another reason to favor the end.</p>
+<p>The clerk has several same-day workarounds. The clerk can add an instruction that says to inspect the middle. The clerk can place the best cards at both ends of the table. The clerk can also stop adding low-value cards once both safe ends are full.</p>
+<p>If the court controls the judge's reading machinery, it can adjust the position ruler or subtract the judge's usual end-favoring prior. Those changes work inside attention during the reading pass. They are unavailable when the court can only send text through a closed service.</p>
+<p>If the court owns training, it can rotate the decisive card through many seats. That teaches the judge that importance and position are separate. It can also train a judge with two attention maps whose shared positional habit cancels when one map is subtracted from the other.</p>
+<p>The final lesson is operational. Do not grade the clerk only on whether the decisive card entered the room. Plot the judge's accuracy by the card's final position. Then test each intervention against that same position-controlled curve.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system that retrieves external text and gives it to a generator</td>
+<td>Retrieval can help only if the generator uses the retrieved evidence</td>
+</tr>
+<tr>
+<td>Large language model (LLM)</td>
+<td>The generator that reads the prompt and produces the answer</td>
+<td>Its use of context varies by position</td>
+</tr>
+<tr>
+<td>Retriever</td>
+<td>The component that fetches candidate documents or chunks</td>
+<td>It controls recall but not final prompt placement</td>
+</tr>
+<tr>
+<td>Chunk</td>
+<td>A bounded piece of a retrieved document</td>
+<td>Each chunk occupies a position in the model's context</td>
+</tr>
+<tr>
+<td>Gold chunk or gold document</td>
+<td>The one retrieved item that contains the answer</td>
+<td>The experiments move this item while holding its relevance fixed</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>The token capacity a model accepts in one request</td>
+<td>Capacity does not guarantee equal comprehension at every position</td>
+</tr>
+<tr>
+<td>Assembled prompt</td>
+<td>The exact instruction, query, and chunk sequence sent to the model</td>
+<td>Downstream assembly can change the reranker's intended order</td>
+</tr>
+<tr>
+<td>Reranker</td>
+<td>A model or rule that sorts retrieved candidates by relevance</td>
+<td>Its rank confidence should guide placement and truncation</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>A candidate's place in the relevance ordering</td>
+<td>Rank and final prompt position can differ after reordering</td>
+</tr>
+<tr>
+<td>Top-k retrieval</td>
+<td>Returning the first k ranked candidates</td>
+<td>Larger k raises recall but can enlarge the positional trough</td>
+</tr>
+<tr>
+<td>Recall@k</td>
+<td>Whether the gold item appears anywhere among the first k candidates</td>
+<td>It ignores where the gold item lands</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain (NDCG)</td>
+<td>A retrieval metric that rewards useful ranking</td>
+<td>It still does not measure whether the generator reads a position well</td>
+</tr>
+<tr>
+<td>End-to-end accuracy</td>
+<td>Correctness of the final generated answer</td>
+<td>This is the quantity positional bias can lower</td>
+</tr>
+<tr>
+<td>Serial position effect</td>
+<td>Better use of list items near the beginning and end than in the middle</td>
+<td>It produces the chapter's central U-shaped accuracy curve</td>
+</tr>
+<tr>
+<td>U-curve</td>
+<td>Accuracy that is high at both ends and low in the middle</td>
+<td>It shows that position effects are not a monotonic falloff</td>
+</tr>
+<tr>
+<td>Primacy</td>
+<td>Strong use of information near the beginning</td>
+<td>The first safe zone should hold high-value evidence</td>
+</tr>
+<tr>
+<td>Recency</td>
+<td>Strong use of information near the end</td>
+<td>The second safe zone should not be wasted on the worst candidate</td>
+</tr>
+<tr>
+<td>Trough</td>
+<td>The weak middle region of the U</td>
+<td>Evidence there can perform below the closed-book baseline</td>
+</tr>
+<tr>
+<td>Position-controlled probe</td>
+<td>An evaluation that moves the same gold item across positions</td>
+<td>It isolates position from retrieval relevance and task difficulty</td>
+</tr>
+<tr>
+<td>Multi-document question answering (QA)</td>
+<td>Answering from a list in which one document contains the answer</td>
+<td>It tests the effect in a realistic retrieval setting</td>
+</tr>
+<tr>
+<td>Natural Questions (NQ) label</td>
+<td>The source's label for the underlying question set in the closed-book comparison</td>
+<td>It identifies the benchmark slice behind the roughly 56 percent result</td>
+</tr>
+<tr>
+<td>Synthetic key-value retrieval</td>
+<td>Looking up a named random key in a long set of pairs</td>
+<td>It removes semantics and reasoning as confounds</td>
+</tr>
+<tr>
+<td>JavaScript Object Notation (JSON)</td>
+<td>The fixed-format object used for the synthetic key-value pairs</td>
+<td>Its regular entries make token density easy to check</td>
+</tr>
+<tr>
+<td>Base model</td>
+<td>A model trained for language prediction without instruction alignment</td>
+<td>Its U shows that the system-message account is incomplete</td>
+</tr>
+<tr>
+<td>Instruction-tuned model</td>
+<td>A model further trained to follow prompts</td>
+<td>Its fixed chat template can strengthen primacy</td>
+</tr>
+<tr>
+<td>Decoder-only model</td>
+<td>A model that generates from left to right using causal attention</td>
+<td>The reported evaluation found the U consistently in this class</td>
+</tr>
+<tr>
+<td>Encoder-decoder model</td>
+<td>A model that first encodes input bidirectionally, then generates</td>
+<td>It is robust only through lengths represented in training</td>
+</tr>
+<tr>
+<td>Closed-book generation</td>
+<td>Answering with no retrieved context</td>
+<td>It provides the no-retrieval baseline A0</td>
+</tr>
+<tr>
+<td>Parametric knowledge</td>
+<td>Facts already stored in model weights</td>
+<td>Retrieval can displace a correct parametric answer</td>
+</tr>
+<tr>
+<td>A0</td>
+<td>Accuracy with no retrieval</td>
+<td>It is the floor that retrieval can cross below</td>
+</tr>
+<tr>
+<td>A(p)</td>
+<td>Accuracy when the gold item is at position p</td>
+<td>It makes the position effect explicit</td>
+</tr>
+<tr>
+<td>Delta, Δ(p)</td>
+<td>Retrieval value at position p, computed as A(p) - A0</td>
+<td>A negative value means retrieval is worse than closed-book</td>
+</tr>
+<tr>
+<td>p and n</td>
+<td>Gold-item position p and the document-list or sequence length n</td>
+<td>They locate the answer and define the context over which position changes</td>
+</tr>
+<tr>
+<td>k</td>
+<td>Retrieval depth, reranked rank, or token-distance index, as identified in each formula</td>
+<td>Its local meaning determines whether the chapter is changing list width, candidate order, or predictive distance</td>
+</tr>
+<tr>
+<td>Ā and Ā(k)</td>
+<td>Expected accuracy overall or at truncation depth k</td>
+<td>They combine position probabilities with zone-specific accuracy</td>
+</tr>
+<tr>
+<td>P(gold in zone)</td>
+<td>Probability that the gold item occupies a named zone or is excluded</td>
+<td>These weights turn a position curve into expected pipeline accuracy</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>The pass that processes the supplied context before generation</td>
+<td>Long-context attention cost and calibration occur here</td>
+</tr>
+<tr>
+<td>Attention</td>
+<td>The mechanism that assigns weight to tokens or chunks</td>
+<td>Its positional prior can overpower content relevance</td>
+</tr>
+<tr>
+<td>Attention logit</td>
+<td>A raw score before normalization</td>
+<td>Calibration subtracts estimated positional bias here</td>
+</tr>
+<tr>
+<td>Softmax</td>
+<td>The normalization that converts logits into attention shares</td>
+<td>Bias subtraction before softmax changes the resulting mass</td>
+</tr>
+<tr>
+<td>Attention mass</td>
+<td>The normalized share assigned to an item</td>
+<td>The worked example tracks gold attention before and after calibration</td>
+</tr>
+<tr>
+<td>Positional bias or positional prior</td>
+<td>Attention preference caused by location rather than content</td>
+<td>It creates end-favoring behavior that can be measured and corrected</td>
+</tr>
+<tr>
+<td>Training-time sequence length</td>
+<td>The input length represented during training</td>
+<td>It predicts positional robustness better than accepted window size</td>
+</tr>
+<tr>
+<td>Accepted context window</td>
+<td>The longest prompt a checkpoint allows at inference</td>
+<td>It is an admission limit, not proof of effective use</td>
+</tr>
+<tr>
+<td>Self-attention</td>
+<td>Attention in which tokens compare against other tokens in the sequence</td>
+<td>Standard prefill cost grows quadratically with sequence length</td>
+</tr>
+<tr>
+<td>Attention head</td>
+<td>One independently parameterized attention pathway inside a layer</td>
+<td>MS-PoE scores and rescales heads separately</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>A count of arithmetic work</td>
+<td>The book uses it to compare long-context prefill cost</td>
+</tr>
+<tr>
+<td>Sparse or windowed attention</td>
+<td>Attention that does not compare every token with every other token</td>
+<td>Its cost can be lower than the standard quadratic curve, but that does not prove positional robustness</td>
+</tr>
+<tr>
+<td>Query-aware contextualization</td>
+<td>Repeating the query before and after the document list</td>
+<td>It helps the synthetic lookup task more than multi-document QA</td>
+</tr>
+<tr>
+<td>Task drift</td>
+<td>Producing the wrong kind of output rather than only a wrong value</td>
+<td>LongChat generated retrieval code instead of the requested value</td>
+</tr>
+<tr>
+<td>System message</td>
+<td>The high-leverage instruction fixed at the start of a chat template</td>
+<td>Its consistent position supplies a strong primacy signal</td>
+</tr>
+<tr>
+<td>Supervised fine-tuning (SFT)</td>
+<td>Training on prompt and answer examples</td>
+<td>Its fixed template reinforces position 0</td>
+</tr>
+<tr>
+<td>Alignment</td>
+<td>Training that shapes instruction-following behavior</td>
+<td>It shares the fixed-position system-message effect</td>
+</tr>
+<tr>
+<td>Next-token objective</td>
+<td>Predicting the next token from preceding tokens</td>
+<td>Nearby context usually carries the strongest predictive signal</td>
+</tr>
+<tr>
+<td>Next-token locality</td>
+<td>The falloff in predictive signal with token distance</td>
+<td>It supplies the recency-side training pressure</td>
+</tr>
+<tr>
+<td>Harmonic decay</td>
+<td>The illustrative weight rule w(k) proportional to 1/k</td>
+<td>It quantifies how much predictive signal can concentrate nearby</td>
+</tr>
+<tr>
+<td>Attention with Linear Biases (ALiBi)</td>
+<td>The source-named attention bias that subtracts a distance term from logits</td>
+<td>Its design independently supports the locality account</td>
+</tr>
+<tr>
+<td>m x abs(i - j)</td>
+<td>The distance-scaled term that ALiBi subtracts from an attention logit</td>
+<td>It makes the locality preference explicit</td>
+</tr>
+<tr>
+<td>Position encoding</td>
+<td>The mechanism that represents token locations</td>
+<td>Its math can add positional effects, but training also matters</td>
+</tr>
+<tr>
+<td>Rotary Position Embedding (RoPE)</td>
+<td>A position method that rotates paired query and key dimensions</td>
+<td>Its distance-dependent envelope can reduce the attention budget for some locations</td>
+</tr>
+<tr>
+<td>Query and key vectors</td>
+<td>Representations whose dot product helps set attention</td>
+<td>RoPE changes their relationship as relative position grows</td>
+</tr>
+<tr>
+<td>Decay envelope</td>
+<td>A distance-dependent bound on a rotated query-key dot product</td>
+<td>It supplies a mechanism for position-dependent raw attention</td>
+</tr>
+<tr>
+<td>MS-PoE</td>
+<td>The source-named inference method that rescales positions per head</td>
+<td>It compresses effective distances for position-sensitive heads</td>
+</tr>
+<tr>
+<td>Position-awareness score</td>
+<td>A measure of how much a head changes with relative position</td>
+<td>MS-PoE uses it to decide which heads to rescale</td>
+</tr>
+<tr>
+<td>Adaptive scaling ratio</td>
+<td>A per-head factor applied to effective position indices</td>
+<td>It avoids changing heads that already aggregate over long ranges</td>
+</tr>
+<tr>
+<td>Attention calibration</td>
+<td>Estimating and subtracting average positional bias</td>
+<td>It aims to leave content-driven attention</td>
+</tr>
+<tr>
+<td>Open-weight model</td>
+<td>A model whose internals can be modified in the serving stack</td>
+<td>Model-level inference wrappers require this access</td>
+</tr>
+<tr>
+<td>Closed Application Programming Interface (API)</td>
+<td>A service that exposes requests and outputs but not attention internals</td>
+<td>It blocks RoPE rescaling and logit calibration</td>
+</tr>
+<tr>
+<td>Inference-time wrapper</td>
+<td>A change around an existing checkpoint during serving</td>
+<td>It avoids retraining but needs the right internal hooks</td>
+</tr>
+<tr>
+<td>Faithfulness</td>
+<td>Whether generated text reflects the supplied source</td>
+<td>Wan et al. measured its decline for middle-position content</td>
+</tr>
+<tr>
+<td>Hierarchical merging</td>
+<td>Combining chunks through a multi-stage summary structure</td>
+<td>The reported study found this could hurt faithfulness</td>
+</tr>
+<tr>
+<td>Incremental summarization</td>
+<td>Repeatedly updating a running summary as more text arrives</td>
+<td>The reported study also found this could hurt faithfulness</td>
+</tr>
+<tr>
+<td>Outside-in reordering</td>
+<td>Alternating top-ranked items into the start and end positions</td>
+<td>It fills both safe zones with trusted evidence</td>
+</tr>
+<tr>
+<td>LongContextReorder</td>
+<td>The source-named transform that realizes outside-in placement</td>
+<td>It is an example implementation of the reordering rule</td>
+</tr>
+<tr>
+<td>Ranked-list truncation</td>
+<td>Sending only a prefix or selected subset of candidates</td>
+<td>It can prevent a trough from forming</td>
+</tr>
+<tr>
+<td>Score cliff</td>
+<td>A sharp drop in the reranker's relevance scores</td>
+<td>Liu et al.'s practical rule truncates at this drop</td>
+</tr>
+<tr>
+<td>Gold-rank distribution and geometric decay</td>
+<td>Probabilities assigned to the rank where the answer appears, with the illustrative top ranks halving</td>
+<td>This distribution determines how much reordering or truncation changes expected accuracy</td>
+</tr>
+<tr>
+<td>Safe-zone width</td>
+<td>The combined primacy and recency capacity</td>
+<td>It gives a default cap when no score cliff appears</td>
+</tr>
+<tr>
+<td>d1 through dn</td>
+<td>Candidates ordered from highest to lowest reranker relevance</td>
+<td>Outside-in placement maps this order onto both safe ends</td>
+</tr>
+<tr>
+<td>wp and wr</td>
+<td>Widths of the primacy and recency zones</td>
+<td>Their sum defines the derived truncation depth</td>
+</tr>
+<tr>
+<td>Aprimacy, Atrough, and Arecency</td>
+<td>Accuracy associated with each positional zone</td>
+<td>Their ordering determines the value of deeper retrieval</td>
+</tr>
+<tr>
+<td>Amiss</td>
+<td>Accuracy when the gold item is excluded</td>
+<td>It decides whether exclusion is safer than trough placement</td>
+</tr>
+<tr>
+<td>k*</td>
+<td>The derived optimal truncation depth wp + wr</td>
+<td>It is optimal only under the chapter's stated accuracy ordering</td>
+</tr>
+<tr>
+<td>Confidence-gated router</td>
+<td>A component that decides whether to retrieve for a query</td>
+<td>It can protect strong parametric answers but needs reliable confidence</td>
+</tr>
+<tr>
+<td>Uncertainty estimate</td>
+<td>A score for how confident the model is in an unaided answer</td>
+<td>An unreliable estimate can make retrieval routing expensive and unsafe</td>
+</tr>
+<tr>
+<td>IN2 training</td>
+<td>The source-named position-rotated fine-tuning method</td>
+<td>It breaks the correlation between importance and position</td>
+</tr>
+<tr>
+<td>Position-rotated fine-tuning</td>
+<td>Moving answer evidence through many context locations during training</td>
+<td>It supplies gradient signal at positions natural data under-trains</td>
+</tr>
+<tr>
+<td>Gradient signal and position-content correlation</td>
+<td>Training feedback and the learned link between location and importance</td>
+<td>IN2 changes where that feedback appears so importance need not track position</td>
+</tr>
+<tr>
+<td>FILM-7B</td>
+<td>The Mistral-7B model produced by the reported IN2 training</td>
+<td>It is the chapter's training-data example</td>
+</tr>
+<tr>
+<td>DIFF Transformer</td>
+<td>The source-named architecture with differential attention</td>
+<td>It changes the attention arithmetic rather than the data</td>
+</tr>
+<tr>
+<td>Continued pre-training</td>
+<td>An additional training cycle before task-specific fine-tuning</td>
+<td>It is one route required to adopt a new differential-attention architecture</td>
+</tr>
+<tr>
+<td>Differential attention</td>
+<td>Subtracting one learned attention map from another</td>
+<td>A shared positional pattern can cancel while content signal survives</td>
+</tr>
+<tr>
+<td>A1 and A2</td>
+<td>Two independently parameterized attention maps over the same sequence</td>
+<td>Their difference is the DIFF Transformer core</td>
+</tr>
+<tr>
+<td>Lambda, λ</td>
+<td>A learned scale on the second attention map</td>
+<td>It controls how much of A2 is subtracted</td>
+</tr>
+<tr>
+<td>Value matrix V</td>
+<td>The representations weighted by the final attention map</td>
+<td>DIFF Transformer applies the difference map to V</td>
+</tr>
+<tr>
+<td>Q1, K1, Q2, K2, and d</td>
+<td>Two query-key projection pairs and the dimension term used in their attention scaling</td>
+<td>They produce the two maps that differential attention subtracts</td>
+</tr>
+<tr>
+<td>ℓ and s</td>
+<td>Conversation length and system-message length, with s much smaller than ℓ</td>
+<td>Their occupancy difference explains why position 0 receives unusually consistent supervision</td>
+</tr>
+<tr>
+<td>x at t, t - 1, and t - 2</td>
+<td>A predicted token and its nearest preceding tokens</td>
+<td>They express the local signal behind recency</td>
+</tr>
+<tr>
+<td>w(k), H(n), and γ</td>
+<td>Illustrative distance weight, harmonic sum, and the constant approximated as 0.58</td>
+<td>They quantify how much predictive signal can collect near the generation point</td>
+</tr>
+<tr>
+<td>Ltrain</td>
+<td>The longest sequence length represented in training</td>
+<td>Inputs beyond it can recover the U even when the accepted window is larger</td>
+</tr>
+<tr>
+<td>O(n²d)</td>
+<td>Standard self-attention work for sequence length n and fixed width d</td>
+<td>It makes long-context prefill cost grow quadratically in n</td>
+</tr>
+<tr>
+<td>c(p), b(p), and z(p)</td>
+<td>Content score, positional-bias score, and their combined logit at position p</td>
+<td>Calibration tries to remove b(p) so z(p) reflects content</td>
+</tr>
+<tr>
+<td>floor and choose operations</td>
+<td>Counting non-overlapping answer placements and unordered pairs of placements</td>
+<td>They yield 266 single positions and 35,245 two-position combinations</td>
+</tr>
+<tr>
+<td>Two-segment IN2 variant</td>
+<td>Rotating two evidence pieces independently</td>
+<td>It forces integration across arbitrary position pairs</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="301-the-u-curve-and-the-serial-position-effect">30.1 The U-curve and the serial position effect</h3>
+<h4 id="what">What</h4>
+<ul>
+<li>Liu et al. (2023) moved one gold chunk through a retrieved list while keeping its content and relevance fixed.</li>
+<li>The first task used an instruction, a query, and multiple documents with exactly one answer-bearing document.</li>
+<li>The second task used random JSON key-value pairs and asked for one named value.</li>
+<li>The synthetic task removed reasoning and paraphrase as explanations for the result.</li>
+<li>Accuracy was highest near the start, nearly as high near the end, and lower throughout the middle.</li>
+<li>Base models and instruction-tuned models showed the pattern.</li>
+<li>The reported decoder-only models showed it consistently. The source states that this was the only architecture in production use at scale.</li>
+</ul>
+<h4 id="why">Why</h4>
+<ul>
+<li>The two tasks separate a positional effect from a task-specific difficulty effect.</li>
+<li>The human serial position effect supplies a useful shape analogy.</li>
+<li>Human primacy comes from rehearsal into longer-term memory.</li>
+<li>Human recency comes from items remaining in working memory.</li>
+<li>The chapter does not claim that the human and transformer mechanisms are the same.</li>
+<li>The practical metric is accuracy by final prompt position, not retrieval success alone.</li>
+</ul>
+<h4 id="failure-without-it">Failure without it</h4>
+<ul>
+<li>Recall@k and NDCG can improve while downstream accuracy stays flat or falls.</li>
+<li>A team may tune embeddings or reranking even though the gold chunk was already retrieved.</li>
+<li>A chunk at rank 8 of 20 can sit near the worst part of the curve despite outranking 12 candidates.</li>
+<li>A missing chunk indicates truncation or context assembly failure.</li>
+<li>A present but ignored middle chunk indicates a positional use failure.</li>
+</ul>
+<h4 id="stated-cost-and-complexity">Stated cost and complexity</h4>
+<ul>
+<li>The position-controlled evaluation reruns the same query with the gold chunk at each location.</li>
+<li>The synthetic probe is cheaper and cleaner than starting with a full multi-document QA rerun.</li>
+<li>The book says a very small list, roughly k at most 3, can keep every position inside the primacy zone by construction.</li>
+<li>Stakeholder reporting should include trough depth and width, not only the existence of a U.</li>
+</ul>
+<h4 id="experiments-and-arithmetic">Experiments and arithmetic</h4>
+<ul>
+<li>The key-value settings were 75 pairs at about 4k tokens, 140 pairs at about 8k tokens, and 300 pairs at about 16k tokens.</li>
+<li>Token cost per pair was 4,000/75 = 53.3, 8,000/140 = 57.1, and 16,000/300 = 53.3.</li>
+<li>The three estimates agree within 7 percent.</li>
+<li>For 300 pairs, pair 150 begins around token offset 150 x 53.3 = 8,000.</li>
+<li>The approximate context sizes correspond to 4,096, 8,192, and 16,384 tokens.</li>
+<li>The source frames these as ordinary production context tiers at the time of the study.</li>
+</ul>
+<h3 id="302-worse-than-closed-book">30.2 Worse than closed-book</h3>
+<h4 id="what-1">What</h4>
+<ul>
+<li>Let A0 be accuracy with no retrieved context.</li>
+<li>Let A(p) be accuracy with the gold document at position p.</li>
+<li>Define retrieval value as Δ(p) = A(p) - A0.</li>
+<li>The comforting hypothesis is Δ(p) at least 0 everywhere.</li>
+<li>Liu et al. instead measured Δ(p) below 0 for positions in the trough.</li>
+<li>The correct document was present, yet retrieval-augmented accuracy fell below no-retrieval accuracy.</li>
+</ul>
+<h4 id="why-1">Why</h4>
+<ul>
+<li>A U that stays above A0 only motivates better placement.</li>
+<li>A U that crosses below A0 creates downside risk from retrieval itself.</li>
+<li>Common, well-established facts are especially exposed because the model may already know the right answer.</li>
+<li>The source examples are capital cities and chemical symbols.</li>
+<li>A prompt that tells the model to use search results can make attended distractors override parametric knowledge.</li>
+<li>Attention during prefill is a finite, contested resource rather than a free skim.</li>
+</ul>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<ul>
+<li>An always-retrieve policy can silently make a high-confidence query class worse.</li>
+<li>A team can mistake a position failure for a retrieval miss.</li>
+<li>Aggregate gains can hide a net-negative subpopulation.</li>
+<li>Comparing only with ground truth misses whether retrieval displaced a correct closed-book answer.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-1">Stated cost and complexity</h4>
+<ul>
+<li>Expected accuracy must be weighted by the pipeline's actual gold-position distribution.</li>
+<li>A confidence-gated router needs reliable uncertainty estimates.</li>
+<li>The source calls that estimation an unsolved and expensive problem.</li>
+<li>With one engineer-month, the chapter recommends testing truncation and front placement before building routing infrastructure.</li>
+<li>A no-retrieval path does not help domains the base model could not know, such as private enterprise data or future values.</li>
+</ul>
+<h4 id="formula-and-worked-example">Formula and worked example</h4>
+<ul>
+<li>The illustrative 20-document list uses 2 primacy slots, 16 trough slots, and 2 recency slots.</li>
+<li>Zone accuracies are 70 percent, 50 percent, and 65 percent.</li>
+<li>A0 is 60 percent.</li>
+<li>Under uniform placement:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo>=</mo><mfrac><mrow><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>16</mn><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>2</mn><mo stretchy="false" form="prefix">(</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo></mrow><mn>20</mn></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn><mo>,</mo><mn>070</mn></mrow><mn>20</mn></mfrac><mo>=</mo><mn>53.5</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A} = \frac{2(70) + 16(50) + 2(65)}{20} = \frac{1{,}070}{20} = 53.5\%</annotation></semantics></math></p>
+<ul>
+<li>The net change is 53.5 percent - 60 percent = -6.5 points.</li>
+<li>The trough is 10 points below A0 even though both edge zones beat A0.</li>
+<li>These round values are illustrative, not reproduced measurements from the paper.</li>
+<li>The reported qualitative comparison uses GPT-3.5-Turbo on an NQ-based question set.</li>
+<li>Its closed-book accuracy is roughly 56 percent.</li>
+<li>Middle-third positions fall below that line, while positions 1 and 20 clear it.</li>
+</ul>
+<h4 id="decisions-and-limits">Decisions and limits</h4>
+<ul>
+<li>Measure Δ(p) on each query slice before assuming retrieval is a strict upgrade.</li>
+<li>Keep a closed-book comparison for high-confidence parametric queries.</li>
+<li>Diff the RAG and closed-book answers during failure analysis.</li>
+<li>If truncation cannot lift the worst position above A0, the router becomes more justified.</li>
+</ul>
+<h3 id="303-longer-context-windows-do-not-help">30.3 Longer context windows do not help</h3>
+<h4 id="what-2">What</h4>
+<ul>
+<li>Liu et al. compared standard-context and extended-context checkpoints from the same model family.</li>
+<li>They tested 75, 140, and 300 key-value pairs at about 4k, 8k, and 16k tokens.</li>
+<li>The standard and extended checkpoints traced essentially the same U at every size.</li>
+<li>Models already near ceiling stayed near ceiling.</li>
+<li>Models with position trouble retained it as the accepted window grew.</li>
+</ul>
+<h4 id="why-2">Why</h4>
+<ul>
+<li>Encoder-decoder models were more robust only through sequence lengths represented in training.</li>
+<li>The U returned when evaluation exceeded their training-time sequence length.</li>
+<li>Accepted window size says which tokens may enter.</li>
+<li>Training length and learned attention patterns determine how well positions are used.</li>
+<li>Query-aware contextualization repeats the query before and after the documents.</li>
+<li>It substantially improved synthetic key-value lookup but barely moved multi-document QA.</li>
+</ul>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<ul>
+<li>A larger window can add more places for evidence to hide.</li>
+<li>It can preserve the same trough while increasing compute.</li>
+<li>More context can supply more information and more opportunities for confusion.</li>
+<li>LongChat showed a qualitative failure at the 140-pair setting.</li>
+<li>With the answer at the start, it generated code to retrieve the key rather than returning the value.</li>
+<li>This was task drift at a position otherwise expected to be safe.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-2">Stated cost and complexity</h4>
+<ul>
+<li>Standard self-attention prefill cost scales as O(n²d) for sequence length n and fixed width d.</li>
+<li>The exact figure caption says "Tripling," but the worked arithmetic compares 4k with 16k as a 4 times length increase:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false" form="prefix">(</mo><mn>16</mn><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mrow><mi mathvariant="normal">F</mi><mi mathvariant="normal">L</mi><mi mathvariant="normal">O</mi><mi mathvariant="normal">P</mi><mi mathvariant="normal">s</mi></mrow><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mi>k</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mrow><mn>16</mn><mo>,</mo><mn>000</mn></mrow><mrow><mn>4</mn><mo>,</mo><mn>000</mn></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>=</mo><msup><mn>4</mn><mn>2</mn></msup><mo>=</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">\frac{\mathrm{FLOPs}(16k)}{\mathrm{FLOPs}(4k)} = \left(\frac{16{,}000}{4{,}000}\right)^2 = 4^2 = 16</annotation></semantics></math></p>
+<ul>
+<li>A 4 times longer context therefore creates a 16 times larger attention bill in this comparison.</li>
+<li>Architectures with sparse or windowed attention can have a different cost curve.</li>
+<li>A different cost curve does not itself prove a flatter positional curve.</li>
+</ul>
+<h4 id="training-length-threshold">Training-length threshold</h4>
+<ul>
+<li>The chapter gives an illustrative encoder-decoder checkpoint trained to Ltrain = 2,048 tokens.</li>
+<li>It is placed behind an 8k accepted context window.</li>
+<li>The 4k, 8k, and 16k test settings all exceed Ltrain.</li>
+<li>The chapter therefore expects the U to reappear in all three settings.</li>
+</ul>
+<h4 id="decisions-and-limits-1">Decisions and limits</h4>
+<ul>
+<li>Probe the candidate checkpoint by position before a model migration.</li>
+<li>Ask whether context extension included continued training at the longer length.</li>
+<li>Do not infer effective 128k use from a 128k admission limit alone.</li>
+<li>Try reranking and truncation first when one sprint and a fixed latency budget constrain the choice.</li>
+<li>Inspect outputs qualitatively so a wrong output type does not disappear inside aggregate accuracy.</li>
+</ul>
+<h3 id="304-where-the-bias-comes-from">30.4 Where the bias comes from</h3>
+<h4 id="what-3">What</h4>
+<ul>
+<li>The chapter separates primacy and recency into two learned effects.</li>
+<li>Primacy is linked to the system message's fixed location during SFT and alignment.</li>
+<li>Recency is linked to locality in the next-token pre-training objective.</li>
+<li>A single positional-encoding explanation is incomplete.</li>
+<li>Encoder-decoder models reproduce the U beyond their trained length even without the same RoPE geometry.</li>
+</ul>
+<h4 id="why-primacy-appears">Why primacy appears</h4>
+<ul>
+<li>In a fixed chat template, the system message occupies position 0 in essentially every example.</li>
+<li>If the message length is s and conversation length is ℓ with s ≪ ℓ, positions 0 through s have a stable role.</li>
+<li>The system message shapes the loss on the assistant tokens that follow it.</li>
+<li>Mid-context positions vary in occupancy and semantic role.</li>
+<li>The model therefore receives a consistent high-leverage association at the start but an aliased signal elsewhere.</li>
+</ul>
+<h4 id="why-recency-appears">Why recency appears</h4>
+<ul>
+<li>For target token xt, nearby tokens such as xt-1 and xt-2 usually carry more predictive signal than distant tokens.</li>
+<li>This pressure exists before chat templates or instruction alignment.</li>
+<li>It explains why recency also appears in base models.</li>
+<li>Press et al. (2021) used the ALiBi term m × abs(i - j), subtracted from attention logits, to encode locality for extrapolation.</li>
+<li>The source treats that independent design choice as corroboration, not as proof of the whole U.</li>
+</ul>
+<h4 id="claim-limit-for-base-models">Claim limit for base models</h4>
+<ul>
+<li>Base and instruction-tuned models both show the U.</li>
+<li>A system-message explanation cannot by itself explain primacy in a base model.</li>
+<li>The chapter gives a likely, not complete, resolution.</li>
+<li>Natural documents often front-load titles, abstracts, and topic sentences.</li>
+<li>This pre-training prior may combine with the later system-message prior in aligned models.</li>
+<li>The source calls the system-message account the best available explanation in the surveyed literature, not a complete explanation.</li>
+</ul>
+<h4 id="worked-arithmetic">Worked arithmetic</h4>
+<ul>
+<li>The illustrative SFT corpus has conversation length uniform from 500 to 4,000 tokens.</li>
+<li>Position 0 holds the system message in 100 percent of examples.</li>
+<li>Offset 2,000 is occupied only when ℓ is at least 2,000:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mi>ℓ</mi><mo>≥</mo><mn>2</mn><mo>,</mo><mn>000</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mrow><mn>4</mn><mo>,</mo><mn>000</mn><mo>−</mo><mn>2</mn><mo>,</mo><mn>000</mn></mrow><mrow><mn>4</mn><mo>,</mo><mn>000</mn><mo>−</mo><mn>500</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>2</mn><mo>,</mo><mn>000</mn></mrow><mrow><mn>3</mn><mo>,</mo><mn>500</mn></mrow></mfrac><mo>≈</mo><mn>57.1</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">P(\ell \ge 2{,}000) = \frac{4{,}000 - 2{,}000}{4{,}000 - 500} = \frac{2{,}000}{3{,}500} \approx 57.1\%</annotation></semantics></math></p>
+<ul>
+<li>Its raw positional consistency is about 43 points below position 0.</li>
+<li>The illustrative locality model uses w(k) proportional to 1/k over 2,048 tokens.</li>
+<li>H(2,048) = ln(2,048) + γ is approximately 7.62 + 0.58 = 8.20.</li>
+<li>H(64) = ln(64) + γ is approximately 4.16 + 0.58 = 4.74.</li>
+<li>The nearest 64 tokens are about 3 percent of the window.</li>
+<li>Their cumulative share is H(64)/H(2,048) = 4.74/8.20, or about 57.8 percent.</li>
+<li>This harmonic model is explicitly illustrative.</li>
+</ul>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<ul>
+<li>Saying only that attention decays with distance explains at most part of the curve.</li>
+<li>Rotating evidence positions can target recency while leaving a fixed position-0 system-message signal intact.</li>
+<li>Reordering at inference changes placement but does not remove the learned pre-training prior.</li>
+<li>Treating the U as one cause can produce a fix that addresses only one side.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-3">Stated cost and complexity</h4>
+<ul>
+<li>Restating the query near the end is cheap.</li>
+<li>It helps the synthetic key-value task more than multi-document QA.</li>
+<li>A vendor recipe can suggest the likely cause, but a position-controlled probe remains stronger evidence.</li>
+<li>The chapter allows a blunt k of 2 or 3 when the measured trough is shallow enough that precise attribution adds no practical value.</li>
+</ul>
+<h3 id="305-mitigation-by-prompting-and-reordering">30.5 Mitigation by prompting and reordering</h3>
+<h4 id="what-4">What</h4>
+<ul>
+<li>Wan et al. (2024) studied long-form summarization faithfulness by source position.</li>
+<li>Faithfulness declined when relevant content sat in the middle.</li>
+<li>A system instruction to attend to the middle was moderately effective.</li>
+<li>Hierarchical chunk merging and incremental updating of a running summary hurt faithfulness relative to doing nothing.</li>
+<li>The chapter treats the instruction as partial evidence, not a complete fix.</li>
+</ul>
+<h4 id="outside-in-reordering">Outside-in reordering</h4>
+<ul>
+<li>Let d1, d2, through dn be candidates in descending relevance order.</li>
+<li>Naive order puts d1 first and dn last.</li>
+<li>That gives d1 primacy but gives the least relevant candidate recency.</li>
+<li>The outside-in rule maps d1 to position 1, d2 to position n, d3 to position 2, and d4 to position n - 1.</li>
+<li>The pattern continues until low-ranked items fill the middle.</li>
+<li>LangChain's LongContextReorder is the source-named example transform that implements this kind of placement.</li>
+<li>Liu et al. directly recommend placing the most relevant chunk near the start.</li>
+<li>Filling both ends generalizes that advice.</li>
+</ul>
+<h4 id="why-3">Why</h4>
+<ul>
+<li>Reordering exploits the measured U instead of asking the model to unlearn it at inference.</li>
+<li>With 2 primacy slots and 2 recency slots, the top 4 candidates occupy safe zones.</li>
+<li>The least trusted candidates absorb the trough.</li>
+<li>Reordering follows reranking and composes with truncation.</li>
+</ul>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<ul>
+<li>Strict descending order buries candidates 2 and 3 while placing the worst candidate at the end.</li>
+<li>A prompt-only instruction can remain too weak for load-bearing use.</li>
+<li>Elaborate summarization structures can add engineering effort while lowering faithfulness.</li>
+<li>Reordering cannot repair a reranker whose top candidates are wrong.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-4">Stated cost and complexity</h4>
+<ul>
+<li>The prompt intervention costs one line of the system template.</li>
+<li>Reordering requires no weight update.</li>
+<li>The outside-in transform is a deterministic post-reranking operation.</li>
+<li>When n is at most 3 under the chapter's running zone assumption, every item already lies in primacy.</li>
+<li>For n greater than 4, both safe zones can matter.</li>
+</ul>
+<h4 id="worked-arithmetic-1">Worked arithmetic</h4>
+<ul>
+<li>The illustrative gold-rank distribution assigns 50 percent to rank 1.</li>
+<li>It assigns 25 percent to rank 2, 12.5 percent to rank 3, and 6.25 percent to rank 4.</li>
+<li>Ranks 5 through 20 share the remaining 6.25 percent.</li>
+<li>Naive order places ranks 1 and 2 in primacy.</li>
+<li>Ranks 19 and 20 contribute effectively no recency probability in the rounded example.</li>
+<li>With zone accuracies 70, 50, and 65:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>A</mi><mo accent="true">‾</mo></mover><mrow><mi>n</mi><mi>a</mi><mi>i</mi><mi>v</mi><mi>e</mi></mrow></msub><mo>≈</mo><mo stretchy="false" form="prefix">(</mo><mn>0.50</mn><mo>+</mo><mn>0.25</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.125</mn><mo>+</mo><mn>0.0625</mn><mo>+</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mn>0</mn><mo stretchy="false" form="prefix">(</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>65.0</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A}_{naive} \approx (0.50 + 0.25)(70) + (0.125 + 0.0625 + 0.0625)(50) + 0(65) = 65.0\%</annotation></semantics></math></p>
+<ul>
+<li>Reordering places ranks 1 and 3 in primacy, ranks 2 and 4 in recency, and the tail in the trough:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover><mi>A</mi><mo accent="true">‾</mo></mover><mrow><mi>r</mi><mi>e</mi><mi>o</mi><mi>r</mi><mi>d</mi><mi>e</mi><mi>r</mi><mi>e</mi><mi>d</mi></mrow></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.50</mn><mo>+</mo><mn>0.125</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.25</mn><mo>+</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mn>67.2</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A}_{reordered} = (0.50 + 0.125)(70) + (0.25 + 0.0625)(65) + (0.0625)(50) \approx 67.2\%</annotation></semantics></math></p>
+<ul>
+<li>Reordering gains about 2.2 points over naive descending order.</li>
+<li>Sorting and placing relevant candidates already gained 11.5 points over the 53.5 percent uniform baseline.</li>
+<li>Both arrangements exceed the illustrative closed-book A0 of 60 percent.</li>
+</ul>
+<h4 id="decisions-and-limits-2">Decisions and limits</h4>
+<ul>
+<li>Use reordering after a fixed reranker so its effect can be measured cleanly.</li>
+<li>Send the second-best candidate to the far end, not the worst.</li>
+<li>Test the middle-attention instruction cheaply, but prefer structural placement when context assembly is controllable.</li>
+<li>Combine reordering with truncation.</li>
+<li>Rerun the position-controlled probe after either change.</li>
+</ul>
+<h3 id="306-ranked-list-truncation">30.6 Ranked-list truncation</h3>
+<h4 id="what-5">What</h4>
+<ul>
+<li>Recall@k cannot decrease as k grows.</li>
+<li>Downstream answer accuracy can decrease because adding candidates changes every candidate's final zone.</li>
+<li>A list of length k has primacy width wp, recency width wr, and trough width max(0, k - wp - wr).</li>
+<li>The running example uses wp = 2 and wr = 2.</li>
+<li>It uses Aprimacy = 70 percent, Atrough = 50 percent, Arecency = 65 percent, and A0 = 60 percent.</li>
+<li>Amiss is accuracy when the gold document is excluded.</li>
+<li>The example takes Amiss approximately equal to A0.</li>
+</ul>
+<h4 id="expected-accuracy-rule">Expected-accuracy rule</h4>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">y</mi></mrow><mo stretchy="false" form="postfix">)</mo><msub><mi>A</mi><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">y</mi></mrow></msub><mo>+</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">h</mi></mrow><mo stretchy="false" form="postfix">)</mo><msub><mi>A</mi><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">h</mi></mrow></msub><mo>+</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">y</mi></mrow><mo stretchy="false" form="postfix">)</mo><msub><mi>A</mi><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">y</mi></mrow></msub><mo>+</mo><mi>P</mi><mo stretchy="false" form="prefix">(</mo><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">d</mi><mspace width="0.222em"></mspace><mi mathvariant="normal">e</mi><mi mathvariant="normal">x</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">d</mi></mrow><mo stretchy="false" form="postfix">)</mo><msub><mi>A</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">s</mi><mi mathvariant="normal">s</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\bar{A}(k) = P(\mathrm{gold\ in\ primacy})A_{\mathrm{primacy}} + P(\mathrm{gold\ in\ trough})A_{\mathrm{trough}} + P(\mathrm{gold\ in\ recency})A_{\mathrm{recency}} + P(\mathrm{gold\ excluded})A_{\mathrm{miss}}</annotation></semantics></math></p>
+<ul>
+<li>Once k grows past wp + wr, a former recency item moves into the trough.</li>
+<li>The new candidate also enters through the trough.</li>
+<li>Under Aprimacy greater than Arecency greater than Amiss greater than Atrough, both moves reduce expected value.</li>
+<li>The derived optimum is k* = wp + wr.</li>
+<li>With 2 slots at each end, k* = 4.</li>
+</ul>
+<h4 id="practical-score-cliff-rule">Practical score-cliff rule</h4>
+<ul>
+<li>Liu et al. recommend watching the reranker's score curve.</li>
+<li>If scores drop sharply after rank 2, send the top 2 and stop.</li>
+<li>Tail candidates are both unlikely to contain the answer and risky in the trough.</li>
+<li>If scores decay smoothly, use measured zone widths and Amiss rather than guessing.</li>
+</ul>
+<h4 id="failure-without-it-5">Failure without it</h4>
+<ul>
+<li>Filling the entire accepted context enlarges the trough.</li>
+<li>Ranks that were safe at k = 4 become middle ranks at k = 6.</li>
+<li>Higher recall can coexist with lower generation accuracy.</li>
+<li>A fixed k inherited from an older reranker can remain wrong after the rank distribution changes.</li>
+</ul>
+<h4 id="claim-limit">Claim limit</h4>
+<ul>
+<li>The k* rule depends on Amiss being above Atrough.</li>
+<li>A system that hard-fails, returns empty output, or hallucinates freely when evidence is absent can have Amiss below Atrough.</li>
+<li>In that case, deeper retrieval can be worthwhile even inside the trough.</li>
+<li>The chapter says to measure Amiss rather than assume it equals A0.</li>
+</ul>
+<h4 id="worked-arithmetic-2">Worked arithmetic</h4>
+<ul>
+<li>At k = 2, ranks 1 and 2 occupy primacy and all lower ranks are excluded:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo stretchy="false" form="prefix">(</mo><mn>2</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.50</mn><mo>+</mo><mn>0.25</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.125</mn><mo>+</mo><mn>0.0625</mn><mo>+</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>60</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>67.5</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A}(2) = (0.50 + 0.25)(70) + (0.125 + 0.0625 + 0.0625)(60) = 67.5\%</annotation></semantics></math></p>
+<ul>
+<li>At k = 4, ranks 1 and 2 occupy primacy while ranks 3 and 4 occupy recency:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo stretchy="false" form="prefix">(</mo><mn>4</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.75</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.125</mn><mo>+</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.0625</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>60</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>68.4</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A}(4) = (0.75)(70) + (0.125 + 0.0625)(65) + (0.0625)(60) = 68.4\%</annotation></semantics></math></p>
+<ul>
+<li>At k = 6, ranks 3 and 4 move into the trough.</li>
+<li>Ranks 5 and 6 take recency and each carries roughly 0.39 percent of the tail probability:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover><mi>A</mi><mo accent="true">‾</mo></mover><mo stretchy="false" form="prefix">(</mo><mn>6</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>0.75</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>70</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.1875</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>50</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.0078</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>65</mn><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>0.0547</mn><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="prefix">(</mo><mn>60</mn><mo stretchy="false" form="postfix">)</mo><mo>≈</mo><mn>65.7</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">\bar{A}(6) = (0.75)(70) + (0.1875)(50) + (0.0078)(65) + (0.0547)(60) \approx 65.7\%</annotation></semantics></math></p>
+<ul>
+<li>k = 4 beats k = 2 and k = 20 in the running example.</li>
+<li>k = 6 already erases most of the gain.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-5">Stated cost and complexity</h4>
+<ul>
+<li>At 200 tokens per chunk, k = 4 sends 800 tokens.</li>
+<li>k = 20 sends 4,000 tokens.</li>
+<li>This is a 5 times reduction in context tokens.</li>
+<li>Under quadratic attention, the attention component falls by (4,000/800)² = 25 times.</li>
+<li>Cost and accuracy therefore point in the same direction for this example.</li>
+<li>For a low-query-volume internal tool, cost can be secondary while accuracy still determines k.</li>
+</ul>
+<h3 id="307-positional-encoding-and-attention-calibration">30.7 Positional encoding and attention calibration</h3>
+<h4 id="what-rope-contributes">What RoPE contributes</h4>
+<ul>
+<li>RoPE rotates paired query and key dimensions by an angle tied to token index.</li>
+<li>The source names LLaMA and Mistral as examples that use it.</li>
+<li>Su et al. (2021) showed a distance-dependent decay envelope on the rotated query-key dot-product bound.</li>
+<li>The envelope depends on relative distance before content similarity is considered.</li>
+<li>The source frames keys near the start or end as favored anchors and a middle key as starting with a smaller raw attention budget.</li>
+<li>It does not replace the training-distribution account from section 30.4.</li>
+</ul>
+<h4 id="ms-poe">MS-PoE</h4>
+<ul>
+<li>MS-PoE, from the first paper titled "Found in the Middle," computes a per-head position-awareness score during prefill.</li>
+<li>The score measures sensitivity to relative position while content is held fixed.</li>
+<li>High-scoring local heads receive an adaptive position-index compression.</li>
+<li>The compression brings middle keys closer in effective relative distance.</li>
+<li>Low-scoring long-range heads remain unchanged.</li>
+<li>The method needs no fine-tuning and adds no parameters.</li>
+<li>The source describes it as applied once per model at inference time.</li>
+<li>It applies as an inference-time wrapper to a model whose internals are accessible.</li>
+</ul>
+<h4 id="attention-calibration">Attention calibration</h4>
+<ul>
+<li>A second "Found in the Middle" paper from Google Cloud AI Research, Hsieh et al. (2024), measured a U-shaped raw attention distribution.</li>
+<li>Their method estimates the average positional shift while holding content roughly fixed across many queries.</li>
+<li>It subtracts that estimated bias from raw attention logits before softmax.</li>
+<li>The intended remainder is content-driven attention.</li>
+</ul>
+<h4 id="failure-without-it-6">Failure without it</h4>
+<ul>
+<li>A genuinely relevant middle chunk can receive less total mass than two weak edge distractors.</li>
+<li>One global position rescale can harm heads that already aggregate over long ranges.</li>
+<li>A closed API exposes neither effective position indices nor raw attention logits.</li>
+<li>Reordering and truncation remain available behind a closed API. They can stack with calibration when internal access exists.</li>
+</ul>
+<h4 id="caveats-and-stated-cost">Caveats and stated cost</h4>
+<ul>
+<li>Bias may not separate cleanly from content.</li>
+<li>The calibration authors call the interactions intricate and dynamic.</li>
+<li>Calibration adds inference-time compute.</li>
+<li>Calibration does not explain why the bias exists.</li>
+<li>Some tasks should preserve recency.</li>
+<li>Dialogue is the chapter's example because the latest turn may deserve the highest weight.</li>
+<li>Validate any wrapper on a held-out position-controlled probe for the exact model family.</li>
+</ul>
+<h4 id="worked-arithmetic-3">Worked arithmetic</h4>
+<ul>
+<li>Three chunks sit at positions 1, 11, and 20 in a 20-slot context.</li>
+<li>The gold middle chunk has content c = 3.0 and positional bias b = 0.</li>
+<li>Each edge distractor has c = 1.0 and b = 1.5.</li>
+<li>With z(p) = c(p) + b(p), the raw logits are 2.5, 3.0, and 2.5.</li>
+<li>Their exponentials are about 12.18, 20.09, and 12.18.</li>
+<li>The sum is 44.45.</li>
+<li>Gold attention is 20.09/44.45, or about 45.2 percent.</li>
+<li>The two distractors receive 54.8 percent together.</li>
+<li>After subtracting b(p), the logits are 1.0, 3.0, and 1.0.</li>
+<li>Their exponentials are about 2.72, 20.09, and 2.72.</li>
+<li>The new sum is 25.53.</li>
+<li>Gold attention becomes 20.09/25.53, or about 78.7 percent.</li>
+<li>The swing is 33.5 points with no weight update.</li>
+<li>The calibrated logits exactly equal the assumed content logits.</li>
+<li>If position and content are not separable, that equality and the method's premise can fail.</li>
+</ul>
+<h3 id="308-training-and-architecture-fixes">30.8 Training and architecture fixes</h3>
+<h4 id="in2-training">IN2 training</h4>
+<ul>
+<li>An et al. (2024) propose position-rotated fine-tuning in "Make Your LLM Fully Utilize the Context."</li>
+<li>Natural long-context data can keep position correlated with importance.</li>
+<li>Documents front-load predictive content.</li>
+<li>Chat templates keep the system message at position 0.</li>
+<li>More data with the same skew can reinforce the skew.</li>
+<li>IN2 places a roughly 120-token answer segment at positions sampled across contexts from 4K to 32K tokens.</li>
+<li>A question can be answered only from that rotated segment.</li>
+<li>Every example supplies a gradient signal at the sampled evidence position.</li>
+<li>A second variant splits evidence across two independently rotated segments.</li>
+<li>The authors fine-tuned Mistral-7B and named the result FILM-7B.</li>
+<li>FILM-7B is reported comparable to GPT-4-Turbo on long-context tasks.</li>
+</ul>
+<h4 id="diff-transformer">DIFF Transformer</h4>
+<ul>
+<li>Ye et al. (2024) replace standard softmax attention with differential attention.</li>
+<li>Each head splits its query and key projections into two independent groups.</li>
+<li>The groups produce A1 and A2 over the same positions.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>Q</mi><mn>1</mn></msub><msubsup><mi>K</mi><mn>1</mn><mi>⊤</mi></msubsup><mo stretchy="false" form="postfix">)</mo><mi>/</mi><msqrt><mi>d</mi></msqrt><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A_1 = \mathrm{softmax}((Q_1K_1^\top)/\sqrt{d})</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>2</mn></msub><mo>=</mo><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">f</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow><mo stretchy="false" form="prefix">(</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>Q</mi><mn>2</mn></msub><msubsup><mi>K</mi><mn>2</mn><mi>⊤</mi></msubsup><mo stretchy="false" form="postfix">)</mo><mi>/</mi><msqrt><mi>d</mi></msqrt><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">A_2 = \mathrm{softmax}((Q_2K_2^\top)/\sqrt{d})</annotation></semantics></math></p>
+<ul>
+<li>The head output is (A1 - λA2)V.</li>
+<li>λ is learned.</li>
+<li>A positional pattern shared by both maps can cancel in the subtraction.</li>
+<li>Content-specific signal that differs across the maps can survive.</li>
+<li>The source prints the broken cross-reference <code>sec-04</code> in this explanation. The surrounding argument points to section 30.4.</li>
+<li>The mechanism is present at every layer from the first forward pass.</li>
+<li>It cannot be retrofitted onto a checkpoint whose heads do not produce two maps.</li>
+</ul>
+<h4 id="why-these-fixes-have-a-higher-ceiling">Why these fixes have a higher ceiling</h4>
+<ul>
+<li>IN2 changes where training signal appears.</li>
+<li>DIFF Transformer changes the attention computation.</li>
+<li>Inference wrappers correct the output of a learned checkpoint.</li>
+<li>Training and architecture changes can alter what the model learns.</li>
+<li>IN2 and DIFF Transformer are orthogonal and can be combined in principle.</li>
+</ul>
+<h4 id="failure-without-it-7">Failure without it</h4>
+<ul>
+<li>Fine-tuning on more unrotated long documents preserves the position-content correlation.</li>
+<li>Sampling only a few fixed positions leaves most of the context under-supervised.</li>
+<li>Rotating evidence alone can leave the fixed system-message primacy signal intact.</li>
+<li>Treating DIFF Transformer as a configuration switch ignores its required parameterization.</li>
+</ul>
+<h4 id="worked-arithmetic-4">Worked arithmetic</h4>
+<ul>
+<li>A 32,000-token context and 120-token segment provide floor(32,000/120) = 266 non-overlapping positions.</li>
+<li>Uniform rotation puts the answer at any one position in about 1/266 = 0.38 percent of examples.</li>
+<li>Two independently chosen positions provide:</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac linethickness="0"><mn>266</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><mn>266</mn><mo>×</mo><mn>265</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>35</mn><mo>,</mo><mn>245</mn></mrow><annotation encoding="application/x-tex">\binom{266}{2} = \frac{266 \times 265}{2} = 35{,}245</annotation></semantics></math></p>
+<ul>
+<li>Ordinary SFT puts the system message at position 0 in 100 percent of the illustrative examples.</li>
+<li>Offset 2,000 is occupied in about 57.1 percent of the earlier illustrative corpus.</li>
+<li>IN2's roughly 0.38 percent occupancy is described as two orders of magnitude flatter.</li>
+</ul>
+<h4 id="stated-cost-and-complexity-6">Stated cost and complexity</h4>
+<ul>
+<li>IN2 requires a training run for the production checkpoint.</li>
+<li>Rotate across the full context, not only a handful of positions.</li>
+<li>Production telemetry can justify denser sampling where evidence often lands.</li>
+<li>Vary system-message salience or position if primacy also needs correction.</li>
+<li>DIFF Transformer belongs in a new architecture or continued pre-training cycle.</li>
+<li>The interview scenario gives a six-week deadline for an IN2-style fine-tune.</li>
+<li>It contrasts that with a multi-month DIFF Transformer commitment from scratch or continued pre-training.</li>
+<li>Validate both with the same per-position probe used to establish the U.</li>
+</ul>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-301">Figure 30.1</h3>
+<pre class="text"><code>answer accuracy
+high | LLL\\                               /LLL   L = LLM, solid
+     |  hhh\\                           /hhh     h = human recall, dashed
+     |      \\LLL\\                 /LLL/
+low  |           \\___LLL___/
+     + start -------- middle -------- end
+       primacy         trough         recency
+       position of relevant chunk</code></pre>
+<p>Figure 30.1: The serial position effect measured in humans (dashed) and the same U measured in an LLM reading a retrieved context (solid, after Liu et al., 2023): accuracy is highest when the correct chunk sits at the start or end of the context and lowest when it sits in the middle, regardless of whether the chunk is actually relevant.</p>
+<h3 id="figure-302">Figure 30.2</h3>
+<pre class="text"><code>accuracy
+high | A(p)\\                         /A(p)
+A0   | - - - \\ - closed-book - - / - - -
+low  |          \\______/
+     + 1 ---------- 10 ---------- 20
+       Delta(p) &lt; 0 through the trough
+       gold-document position in a 20-document context</code></pre>
+<p>Figure 30.2: The U-curve is not bounded below by the closed-book baseline: for gold-document positions in the trough, retrieval-augmented accuracy A(p) falls under the no-retrieval accuracy A0, after Liu et al. (2023).</p>
+<h3 id="figure-303">Figure 30.3</h3>
+<pre class="text"><code>retrieval accuracy
+high | 4k \\                         / 4k
+     | 8k  \\                       /  8k
+     | 16k  \\______middle________/  16k
+     + start ---------------------- end
+       position of relevant key-value pair</code></pre>
+<p>Figure 30.3: Tripling the context window from 4k to 16k tokens does not flatten the trough - the same U reappears at every scale, after Liu et al. (2023), because the effect tracks trained sequence length and attention pattern, not the number of tokens the window admits.</p>
+<h3 id="figure-304">Figure 30.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+  subgraph PRE[&quot;Pre-training: next-token objective&quot;]
+    T6[&quot;t-6&quot;]
+    T5[&quot;t-5&quot;]
+    T4[&quot;t-4&quot;]
+    T3[&quot;t-3&quot;]
+    T2[&quot;t-2&quot;]
+    T1[&quot;t-1&quot;]
+    T[&quot;t&quot;]
+    T6 -.-&gt;|weak long-range pull| T
+    T5 -.-&gt; T
+    T4 -.-&gt; T
+    T3 --&gt; T
+    T2 --&gt; T
+    T1 ==&gt;|strong local pull| T
+  end
+  subgraph ALIGN[&quot;Supervised fine-tuning and alignment: three examples&quot;]
+    S1[&quot;SYS at position 0&quot;] --&gt; C1[&quot;mid-position content varies&quot;]
+    S2[&quot;SYS at position 0&quot;] --&gt; C2[&quot;mid-position content varies&quot;]
+    S3[&quot;SYS at position 0&quot;] --&gt; C3[&quot;mid-position content varies&quot;]
+  end
+  T ~~~ S1</code></pre></details></figure>
+<p>Figure 30.4: Primacy and recency are learned at different points in training: next-token pre-training concentrates predictive signal on nearby preceding tokens (top), while SFT and alignment fix the system message at position 0 in every example (bottom), so only that position accumulates a consistent, high-leverage training signal.</p>
+<h3 id="figure-305">Figure 30.5</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Layout</th>
+<th style="text-align: right;">Position 1</th>
+<th style="text-align: right;">Position 2</th>
+<th style="text-align: right;">Position 3</th>
+<th style="text-align: right;">Position 4</th>
+<th style="text-align: right;">Position 5</th>
+<th style="text-align: right;">Position 6</th>
+<th style="text-align: right;">Position 7</th>
+<th style="text-align: right;">Position 8</th>
+<th style="text-align: right;">Position 9</th>
+<th style="text-align: right;">Position 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive relevance rank</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td>Outside-in relevance rank</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>Zone</td>
+<td style="text-align: right;">primacy</td>
+<td style="text-align: right;">primacy</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">trough</td>
+<td style="text-align: right;">recency</td>
+<td style="text-align: right;">recency</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 30.5: Sorting by relevance rank already gives the top candidate primacy, but wastes the recency zone on the least relevant chunk and buries the second- and third-best candidates in the trough. Filling both safe zones from the outside in instead concentrates the reranker's confidence exactly where the U-curve rewards it.</p>
+<h3 id="figure-306">Figure 30.6</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Truncation depth</th>
+<th>Position 1</th>
+<th>Position 2</th>
+<th>Position 3</th>
+<th>Position 4</th>
+<th>Position 5</th>
+<th>Position 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k = 4</td>
+<td>rank 1, primacy</td>
+<td>rank 2, primacy</td>
+<td>rank 3, recency</td>
+<td>rank 4, recency</td>
+<td>not sent</td>
+<td>not sent</td>
+</tr>
+<tr>
+<td>k = 6</td>
+<td>rank 1, primacy</td>
+<td>rank 2, primacy</td>
+<td>rank 3, trough</td>
+<td>rank 4, trough</td>
+<td>rank 5, recency</td>
+<td>rank 6, recency</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 30.6: Extending the retrieved list past the safe-zone width does not add new safe positions - it pushes ranks that were safely in the recency zone at k = 4 into a newly created trough at k = 6.</p>
+<h3 id="figure-307">Figure 30.7</h3>
+<pre class="text"><code>attention weight
+high | raw \\                     / raw
+     |      \\___           ___/
+     | calibrated ___/\\* /\\___
+low  + start ------ gold ------ end
+                      chunk
+     solid raw positional prior, dashed calibrated content signal</code></pre>
+<p>Figure 30.7: Raw attention already favors both ends of the context before content is considered. Subtracting the estimated positional bias lets the genuinely relevant chunk in the middle dominate instead of being swamped by the prior.</p>
+<h3 id="figure-308">Figure 30.8</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+  H[&quot;hidden state h&quot;]
+  H --&gt; QK1[&quot;Q1 and K1&quot;]
+  H --&gt; QK2[&quot;Q2 and K2&quot;]
+  QK1 --&gt; A1[&quot;softmax to A1, including positional prior&quot;]
+  QK2 --&gt; A2[&quot;softmax to A2, including positional prior&quot;]
+  A1 --&gt; SUB[&quot;A1 - lambda A2&quot;]
+  A2 --&gt;|&quot;scaled by lambda and subtracted&quot;| SUB
+  SUB --&gt; OUT[&quot;(A1 - lambda A2)V, positional prior canceled&quot;]</code></pre></details></figure>
+<p>Figure 30.8: Differential attention computes two independently parameterized attention maps over the same positions and subtracts them, so a positional prior shared by both maps cancels while content-specific signal, present in one map more than the other, survives.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw a horizontal context bar from start to middle to end.</li>
+<li>Draw a U-shaped accuracy curve above it.</li>
+<li>Label the ends primacy and recency, and label the center trough.</li>
+<li>Add a flat A0 closed-book line that crosses above the trough.</li>
+<li>Draw retrieved ranks flowing through a reranker.</li>
+<li>Place ranks 1 and 3 at the start, then ranks 2 and 4 at the end.</li>
+<li>Mark k* = wp + wr and cross out candidates beyond the safe-zone width.</li>
+<li>Add two branches for model access: inference calibration, then IN2 or differential attention when training is owned.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Lost in the middle means the model can receive correct evidence and still miss it because attention depends on position. Accuracy forms a U: strong at the beginning and end, weak in the middle, sometimes below the no-retrieval baseline. A larger window does not automatically help because trained sequence use matters. I rerank, place top candidates at both ends, and truncate before a trough grows. With model access, I rescale positions or calibrate attention. With a training budget, I rotate evidence positions or use differential attention. I validate each fix by plotting accuracy against gold-chunk position.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-does-the-u-curve-establish-a-position-effect-rather-than-a-harder-middle-benchmark-artifact">1. Why does the U-curve establish a position effect rather than a harder-middle benchmark artifact?</h3>
+<p>Liu et al. reproduced it in both multi-document QA and semantics-free key-value lookup while moving the same gold item through the list. The synthetic control removes reasoning and paraphrase, so agreement across both tasks isolates position more strongly than either task alone.</p>
+<h3 id="2-how-can-rag-be-worse-than-closed-book-and-when-would-you-avoid-a-no-retrieval-path">2. How can RAG be worse than closed-book, and when would you avoid a no-retrieval path?</h3>
+<p>The trough can make A(p) lower than A0 because finite attention favors distractors and a context-use instruction can displace correct parametric knowledge. Keep a closed-book option for high-confidence known facts, but not for private or future information the base model could not know.</p>
+<h3 id="3-why-does-a-longer-context-window-fail-to-solve-the-problem">3. Why does a longer context window fail to solve the problem?</h3>
+<p>Accepted length is capacity, while positional robustness tracks training length and learned attention patterns. The 4k, 8k, and 16k probes retained the U, and moving from 4k to 16k costs 16 times the standard attention FLOPs without a measured flattening.</p>
+<h3 id="4-what-mechanism-and-serving-fixes-would-you-propose-before-retraining">4. What mechanism and serving fixes would you propose before retraining?</h3>
+<p>Primacy is linked to fixed position-0 supervision, recency to next-token locality, and RoPE adds a distance-dependent attention envelope. First reorder high ranks to both ends and truncate at a score cliff or safe-zone width, then consider per-head MS-PoE or attention calibration only when model internals are accessible and recency is not a desired task signal.</p>
+<h3 id="5-how-do-in2-and-diff-transformer-differ-and-which-fits-a-six-week-deadline">5. How do IN2 and DIFF Transformer differ, and which fits a six-week deadline?</h3>
+<p>IN2 changes training data by rotating evidence positions, while DIFF Transformer changes each head to subtract two learned attention maps. The source's deadline scenario favors IN2 on the current architecture because DIFF Transformer cannot be retrofitted and belongs to a longer new-model or continued-pre-training cycle.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Number or range</th>
+<th>Status in the chapter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human analogy</td>
+<td>10 list items</td>
+<td>Illustrative</td>
+<td>Simple setup for the serial position effect</td>
+</tr>
+<tr>
+<td>Initial pipeline</td>
+<td>20 chunks</td>
+<td>Illustrative scenario</td>
+<td>A correct chunk can still be ignored after assembly</td>
+</tr>
+<tr>
+<td>Position examples</td>
+<td>rank 1, rank 8 of 20, ranks 6 through 14 of 20</td>
+<td>Diagnostic examples</td>
+<td>Assembly can move a strong retrieval into the trough</td>
+</tr>
+<tr>
+<td>Retrieval-depth debate</td>
+<td>k = 5 versus k = 20</td>
+<td>Interview scenario</td>
+<td>Recall can rise while final accuracy falls</td>
+</tr>
+<tr>
+<td>Synthetic probe sizes</td>
+<td>75, 140, 300 pairs</td>
+<td>Reported experimental settings</td>
+<td>Three lookup scales</td>
+</tr>
+<tr>
+<td>Synthetic token sizes</td>
+<td>about 4k, 8k, 16k</td>
+<td>Reported experimental settings</td>
+<td>Context lengths for those pair counts</td>
+</tr>
+<tr>
+<td>Tokens per pair</td>
+<td>53.3, 57.1, 53.3</td>
+<td>Derived</td>
+<td>Pair density agrees within 7 percent</td>
+</tr>
+<tr>
+<td>Long synthetic midpoint</td>
+<td>pair 150, about token 8,000</td>
+<td>Derived</td>
+<td>Literal center of the 300-pair, 16k setting</td>
+</tr>
+<tr>
+<td>Power-of-two tiers</td>
+<td>4,096, 8,192, 16,384</td>
+<td>Study-era comparison</td>
+<td>Approximate production tiers cited by the source</td>
+</tr>
+<tr>
+<td>Small-list exception</td>
+<td>k at most 3</td>
+<td>Chapter heuristic</td>
+<td>Every position is treated as primacy in this assumption</td>
+</tr>
+<tr>
+<td>Uniform 20-slot zones</td>
+<td>2, 16, 2</td>
+<td>Illustrative</td>
+<td>Primacy, trough, and recency widths</td>
+</tr>
+<tr>
+<td>Uniform zone accuracy</td>
+<td>70, 50, 65 percent</td>
+<td>Illustrative</td>
+<td>Primacy, trough, and recency accuracy</td>
+</tr>
+<tr>
+<td>Closed-book A0</td>
+<td>60 percent</td>
+<td>Illustrative</td>
+<td>Comparison floor for worked examples</td>
+</tr>
+<tr>
+<td>Uniform expected RAG</td>
+<td>53.5 percent</td>
+<td>Derived from illustrative values</td>
+<td>Retrieval loses 6.5 points against A0</td>
+</tr>
+<tr>
+<td>Trough gap</td>
+<td>10 points below A0</td>
+<td>Illustrative</td>
+<td>Middle placement can be net negative</td>
+</tr>
+<tr>
+<td>Rollout and engineering scenarios</td>
+<td>3 weeks, 1 engineer-month</td>
+<td>Interview framing</td>
+<td>Time pressure favors direct truncation tests before routing</td>
+</tr>
+<tr>
+<td>GPT-3.5-Turbo baseline</td>
+<td>roughly 56 percent</td>
+<td>Reported qualitative comparison</td>
+<td>Closed-book result on the NQ-based set</td>
+</tr>
+<tr>
+<td>Best edge positions</td>
+<td>1 and 20</td>
+<td>Reported qualitative comparison</td>
+<td>Both clear the roughly 56 percent line</td>
+</tr>
+<tr>
+<td>Migration comparison</td>
+<td>4k to 16k</td>
+<td>Reported scale comparison</td>
+<td>The caption says tripling, while the worked arithmetic is a 4 times increase</td>
+</tr>
+<tr>
+<td>Standard attention cost</td>
+<td>16 times</td>
+<td>Derived</td>
+<td>Quadratic FLOPs increase from 4k to 16k</td>
+</tr>
+<tr>
+<td>Training-length example</td>
+<td>Ltrain = 2,048, accepted window 8k</td>
+<td>Illustrative</td>
+<td>All 4k, 8k, and 16k probes exceed training length</td>
+</tr>
+<tr>
+<td>LongChat failure</td>
+<td>140 pairs, answer at start</td>
+<td>Reported qualitative failure</td>
+<td>It generated code rather than the value</td>
+</tr>
+<tr>
+<td>Vendor probe example</td>
+<td>128k</td>
+<td>Interview scenario</td>
+<td>Accepted length still needs position testing</td>
+</tr>
+<tr>
+<td>SFT length range</td>
+<td>500 to 4,000 tokens</td>
+<td>Illustrative</td>
+<td>Uniform conversation-length model</td>
+</tr>
+<tr>
+<td>Mid-context offset</td>
+<td>2,000 tokens</td>
+<td>Illustrative</td>
+<td>Occupied in about 57.1 percent of examples</td>
+</tr>
+<tr>
+<td>Position-0 occupancy</td>
+<td>100 percent</td>
+<td>Illustrative</td>
+<td>Fixed system-message role</td>
+</tr>
+<tr>
+<td>Positional consistency gap</td>
+<td>about 43 points</td>
+<td>Derived</td>
+<td>Offset 2,000 versus position 0</td>
+</tr>
+<tr>
+<td>Harmonic window</td>
+<td>2,048 tokens</td>
+<td>Illustrative</td>
+<td>Locality calculation base</td>
+</tr>
+<tr>
+<td>Nearest-token band</td>
+<td>64 tokens, about 3 percent</td>
+<td>Illustrative</td>
+<td>Holds about 57.8 percent of harmonic weight</td>
+</tr>
+<tr>
+<td>Harmonic sums</td>
+<td>8.20 and 4.74</td>
+<td>Derived</td>
+<td>H(2,048) and H(64)</td>
+</tr>
+<tr>
+<td>Training schematic</td>
+<td>3 SFT examples</td>
+<td>Figure structure</td>
+<td>Every example fixes SYS at position 0</td>
+</tr>
+<tr>
+<td>Gold-rank probabilities</td>
+<td>50, 25, 12.5, 6.25 percent</td>
+<td>Illustrative</td>
+<td>Ranks 1 through 4</td>
+</tr>
+<tr>
+<td>Tail probability</td>
+<td>6.25 percent</td>
+<td>Illustrative</td>
+<td>Shared by ranks 5 through 20</td>
+</tr>
+<tr>
+<td>Reordering schematic</td>
+<td>10 context positions</td>
+<td>Figure structure</td>
+<td>Outside-in rank order is 1, 3, 5, 7, 9, 10, 8, 6, 4, 2</td>
+</tr>
+<tr>
+<td>Naive versus reordered</td>
+<td>65.0 versus about 67.2 percent</td>
+<td>Derived</td>
+<td>Outside-in placement gains about 2.2 points</td>
+</tr>
+<tr>
+<td>Rank sorting gain</td>
+<td>11.5 points</td>
+<td>Derived</td>
+<td>Naive rank order versus 53.5 percent uniform placement</td>
+</tr>
+<tr>
+<td>Safe-zone optimum</td>
+<td>k* = 4</td>
+<td>Derived under stated ordering</td>
+<td>wp = 2 plus wr = 2</td>
+</tr>
+<tr>
+<td>Score-cliff scenarios</td>
+<td>10 candidates, cliff after rank 2</td>
+<td>Interview heuristic</td>
+<td>Truncate to the top 2 under a clear score drop</td>
+</tr>
+<tr>
+<td>Truncation comparison</td>
+<td>67.5, 68.4, 65.7 percent</td>
+<td>Derived</td>
+<td>Results at k = 2, 4, and 6</td>
+</tr>
+<tr>
+<td>Tail ranks in recency at k = 6</td>
+<td>about 0.39 percent each</td>
+<td>Illustrative</td>
+<td>Probability on ranks 5 and 6</td>
+</tr>
+<tr>
+<td>Chunk budget</td>
+<td>200 tokens each</td>
+<td>Illustrative</td>
+<td>k = 4 sends 800 and k = 20 sends 4,000 tokens</td>
+</tr>
+<tr>
+<td>Truncation savings</td>
+<td>5 times fewer tokens, 25 times less attention work</td>
+<td>Derived</td>
+<td>4,000 versus 800 tokens under quadratic attention</td>
+</tr>
+<tr>
+<td>Calibration positions</td>
+<td>1, 11, 20 of 20</td>
+<td>Illustrative</td>
+<td>Two edge distractors and one middle gold chunk</td>
+</tr>
+<tr>
+<td>Imperfect-rank scenario</td>
+<td>relevant rank 10 of 20, top 3 retained</td>
+<td>Section setup</td>
+<td>Truncation can exclude a late gold chunk</td>
+</tr>
+<tr>
+<td>Content and bias logits</td>
+<td>gold 3.0 plus 0, edges 1.0 plus 1.5</td>
+<td>Illustrative</td>
+<td>Raw logits become 3.0 and 2.5</td>
+</tr>
+<tr>
+<td>Raw exponentials and sum</td>
+<td>20.09, 12.18, 12.18, sum 44.45</td>
+<td>Derived</td>
+<td>Softmax inputs before calibration</td>
+</tr>
+<tr>
+<td>Raw attention split</td>
+<td>45.2 versus 54.8 percent</td>
+<td>Derived</td>
+<td>Gold versus combined distractors</td>
+</tr>
+<tr>
+<td>Calibrated exponentials and sum</td>
+<td>20.09, 2.72, 2.72, sum 25.53</td>
+<td>Derived</td>
+<td>Position terms removed</td>
+</tr>
+<tr>
+<td>Calibrated gold mass</td>
+<td>78.7 percent</td>
+<td>Derived</td>
+<td>A 33.5-point gain with no weight update</td>
+</tr>
+<tr>
+<td>MS-PoE update cost</td>
+<td>0 fine-tuning steps, 0 added parameters, once per model</td>
+<td>Reported method properties</td>
+<td>It is a plug-and-play inference intervention when internals are accessible</td>
+</tr>
+<tr>
+<td>IN2 context and segment</td>
+<td>4K to 32K, roughly 120 tokens</td>
+<td>Reported method scale</td>
+<td>Rotated evidence length and context span</td>
+</tr>
+<tr>
+<td>Buried evidence example</td>
+<td>token 18,000 of 32,000</td>
+<td>Method motivation</td>
+<td>Natural data does not ensure equal signal there</td>
+</tr>
+<tr>
+<td>Non-overlapping IN2 positions</td>
+<td>266</td>
+<td>Derived</td>
+<td>floor(32,000/120)</td>
+</tr>
+<tr>
+<td>Per-position occupancy</td>
+<td>about 0.38 percent</td>
+<td>Derived</td>
+<td>1/266 under uniform rotation</td>
+</tr>
+<tr>
+<td>Two-position combinations</td>
+<td>35,245</td>
+<td>Derived</td>
+<td>266 choose 2</td>
+</tr>
+<tr>
+<td>Training models</td>
+<td>Mistral-7B, FILM-7B, GPT-4-Turbo</td>
+<td>Reported comparison</td>
+<td>FILM-7B is reported comparable on long-context tasks</td>
+</tr>
+<tr>
+<td>Deadline comparison</td>
+<td>6 weeks versus multiple months</td>
+<td>Interview scenario</td>
+<td>IN2 fine-tune versus a DIFF Transformer cycle</td>
+</tr>
+<tr>
+<td>Study dates</td>
+<td>2021, 2023, 2024</td>
+<td>Source attributions</td>
+<td>Su and Press, Liu, then Wan, An, Hsieh, and Ye</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/29_bootstrapping_training_data.html"><small>Previous</small>Chapter 29. Bootstrapping Training Data</a><a href="../chapters/31_attribution_and_citation.html"><small>Next</small>Chapter 31. Attribution and Citation</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

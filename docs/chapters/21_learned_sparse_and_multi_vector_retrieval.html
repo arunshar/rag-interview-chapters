@@ -1,0 +1,2012 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 21. Learned Sparse and Multi-Vector Retrieval | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/21_learned_sparse_and_multi_vector_retrieval.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group" open><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html" aria-current="page">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VI. Retrieval and Ranking</p><h1>Chapter 21. Learned Sparse and Multi-Vector Retrieval</h1><p class="chapter-meta">62 min estimated reading · Unit 30 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter prepares you to explain how learned lexical weights, token-level matching, compression, pruning, and rank fusion trade retrieval quality against index size and latency.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>Best Matching 25 (BM25) and the Sparse Lexical and Expansion Model (SPLADE) use the same sparse dot-product shape. SPLADE replaces hand-written term weights with a masked language model that can weight terms absent from the text.</li>
+<li>Rectified Linear Unit (ReLU) creates exact zeros for an inverted index. The log transform limits very large weights, but a separate training objective must control how often vocabulary dimensions remain active.</li>
+<li>Floating-point operation count regularization, called FLOPS regularization in the source, balances traffic across vocabulary dimensions. Plain L1 regularization can hit the same nonzero count yet cost 56 times more per query.</li>
+<li>Bidirectional Encoder Representations from Transformers (BERT) supports Contextualized Late Interaction over BERT (ColBERT), which keeps one vector per token. MaxSim lets every query token take its strongest document-token match after both encoders finish.</li>
+<li>ColBERT's ablations rank the important choices. Keeping token-level vectors matters most, max matters next, and masked-token query augmentation matters least.</li>
+<li>ColBERTv2 compresses each token vector into a centroid identifier plus a two-bit residual. PLAID reuses those centroids to prune before decompression, which attacks the memory traffic that dominates late interaction.</li>
+<li>Reciprocal Rank Fusion (RRF) merges lexical and dense result lists without calibrating incompatible scores. It is a strong day-one default, but a tuned convex combination can win after in-domain labels become available.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine one large library with a librarian named Mira. The old card catalog uses BM25, a literal-word clerk that files a book only under words printed in it. A patron asks for "laptop won't charge," while the manual says "AC adapter fails to supply power." Mira owns the right manual, but the catalog cannot connect the two phrasings.</p>
+<p>Mira upgrades each catalog card with SPLADE. SPLADE is a learned sparse clerk that predicts useful vocabulary labels, including labels absent from the page. The manual can now receive a positive "charge" label even if that word never appears. Mira still uses the same inverted catalog. She has changed the weights written on the cards, not the shelves or the lookup rule.</p>
+<p>The upgrade creates too many cards. ReLU, a gate that rejects every negative prediction, gives Mira exact blanks she need not file. The log transform, a cap on repeated confidence, stops one loud term from overwhelming a card. Yet neither step prevents popular labels from filling enormous drawers. FLOPS regularization acts as Mira's load balancer. It pushes hardest against drawers that are already crowded.</p>
+<p>Some questions need more than vocabulary labels. Mira then uses ColBERT, a reference method that keeps a small note for every query token and every document token. Each query note scans the document notes and keeps its best match. MaxSim is this best-match rule. The interaction happens late, after Mira has prepared every document note offline, so she preserves detail without rereading every document through a joint model.</p>
+<p>Mira tests what she can remove. Replacing all token notes with one summary card loses the most. Averaging every possible match instead of keeping the strongest loses less. Removing the extra masked query notes loses the least. The test says the detailed notes earn the system's quality, while the clever combining rule earns a smaller share.</p>
+<p>The token notes occupy too much shelf space. ColBERTv2 lets Mira store a shared prototype card, called a centroid, plus a tiny correction, called a residual. PLAID then uses the prototype twice. It first finds and ranks likely books using cheap centroid identifiers. It opens and reconstructs the full residual notes only for the final survivors.</p>
+<p>Mira still keeps the literal catalog beside the semantic catalog. Part numbers favor the literal list, while paraphrases favor the semantic list. Their raw scores use incompatible units, so she does not add them. RRF gives each rank a reciprocal vote and rewards books found by both lists. The rank constant decides whether agreement deep in the lists can beat one catalog's favorite.</p>
+<p>The full lesson stays inside this library. Learn better catalog labels, balance crowded drawers, retain token notes when detail pays, compress shared patterns, postpone expensive reconstruction, and fuse distinct catalogs only with a rule whose exchange rate you can explain.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A system retrieves external text before a generator answers</td>
+<td>Retrieval quality determines what evidence reaches the generator</td>
+</tr>
+<tr>
+<td>Sparse retrieval</td>
+<td>Retrieval with mostly zero vocabulary coordinates</td>
+<td>An inverted index can skip every zero coordinate</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>A lexical ranker with hand-written term-frequency and inverse-frequency weights</td>
+<td>It is fast and exact, but literal support creates vocabulary gaps</td>
+</tr>
+<tr>
+<td>Inverted index</td>
+<td>A map from each term to documents carrying that term</td>
+<td>It evaluates sparse dot products without scanning every document</td>
+</tr>
+<tr>
+<td>Posting</td>
+<td>One term, document identifier, and weight entry</td>
+<td>Posting count sets index size and contributes to query work</td>
+</tr>
+<tr>
+<td>Posting list</td>
+<td>All postings for one vocabulary dimension</td>
+<td>Each active query dimension opens one such list</td>
+</tr>
+<tr>
+<td>Vocabulary gap</td>
+<td>A mismatch between query words and relevant document words</td>
+<td>It explains failures such as "charge" versus "supply power"</td>
+</tr>
+<tr>
+<td>WordPiece vocabulary <code>V</code> and size `</td>
+<td>V</td>
+<td>`</td>
+</tr>
+<tr>
+<td>Exact match</td>
+<td>Evidence that the same literal token occurs on both sides</td>
+<td>It remains valuable for part numbers, versions, and error codes</td>
+</tr>
+<tr>
+<td>Sparse score <code>s(q,d)</code> and weights <code>w_j^q</code>, <code>w_j^d</code></td>
+<td>A sum of query-document weight products over shared active dimensions</td>
+<td>BM25 and SPLADE keep this same scoring shape</td>
+</tr>
+<tr>
+<td>Term weight</td>
+<td>The importance assigned to one vocabulary entry</td>
+<td>Learned weights can represent context and absent terms</td>
+</tr>
+<tr>
+<td>Term support</td>
+<td>The set of dimensions with nonzero weight</td>
+<td>Support determines which postings exist</td>
+</tr>
+<tr>
+<td>Inverse document frequency (IDF)</td>
+<td>A larger weight for a rarer corpus term</td>
+<td>BM25 uses it to value discriminative query terms</td>
+</tr>
+<tr>
+<td>docT5query</td>
+<td>Discrete document expansion by generated likely queries</td>
+<td>It improves BM25 without changing scoring code, but it cannot train end to end through ranking</td>
+</tr>
+<tr>
+<td>Sequence-to-sequence model</td>
+<td>A model that generates one token sequence from another</td>
+<td>docT5query uses it to append synthetic queries</td>
+</tr>
+<tr>
+<td>Implicit expansion</td>
+<td>Positive weights on terms absent from the original text</td>
+<td>SPLADE closes vocabulary gaps without generating strings</td>
+</tr>
+<tr>
+<td>Masked language model (MLM) head</td>
+<td>A head that scores every vocabulary token at every position</td>
+<td>SPLADE reuses it as a term-importance predictor</td>
+</tr>
+<tr>
+<td>BERT-base</td>
+<td>The 110-million-parameter encoder used in the worked examples</td>
+<td>Its 768-dimensional hidden states and cost anchor the comparisons</td>
+</tr>
+<tr>
+<td>Contextual state <code>h_i</code>, term embedding <code>E_j</code>, and logit <code>w_ij</code></td>
+<td>A token state, vocabulary embedding, and their predicted term score</td>
+<td>They distinguish senses and create the full SPLADE weight grid</td>
+</tr>
+<tr>
+<td>Tied input embedding</td>
+<td>The vocabulary embedding reused by the output head</td>
+<td>It maps contextual states back onto vocabulary dimensions</td>
+</tr>
+<tr>
+<td>Gaussian Error Linear Unit (GELU)</td>
+<td>The nonlinearity inside the MLM transform block</td>
+<td>It is part of the unchanged pre-training head SPLADE reuses</td>
+</tr>
+<tr>
+<td>Layer normalization (LayerNorm)</td>
+<td>A normalization step inside the MLM transform block</td>
+<td>It is part of the per-position vocabulary scorer</td>
+</tr>
+<tr>
+<td>ReLU</td>
+<td>A function that maps negative logits to exact zero</td>
+<td>Exact zeros remove posting entries and their cost</td>
+</tr>
+<tr>
+<td>Log saturation</td>
+<td>Applying log(1 + value) to positive weights</td>
+<td>It reduces dominance by repeated high logits</td>
+</tr>
+<tr>
+<td>Sum pooling</td>
+<td>Adding one term's contribution across token positions</td>
+<td>It returns one sparse document weight per vocabulary entry</td>
+</tr>
+<tr>
+<td>Max pooling</td>
+<td>Keeping the strongest position for each vocabulary term</td>
+<td>It improved one Microsoft Machine Reading Comprehension (MS MARCO) result, but the source says the gain is not universal</td>
+</tr>
+<tr>
+<td>Nonzero</td>
+<td>A vocabulary coordinate that survives sparsification</td>
+<td>Nonzeros create postings and query traversals</td>
+</tr>
+<tr>
+<td>In-batch negative</td>
+<td>Another example in the training batch used as a negative</td>
+<td>SPLADE v1 combines these with one BM25 hard negative</td>
+</tr>
+<tr>
+<td>Hard negative</td>
+<td>A high-ranked but irrelevant passage used for training</td>
+<td>It teaches the model distinctions that random negatives miss</td>
+</tr>
+<tr>
+<td>Cross-encoder teacher</td>
+<td>A joint query-document model that supplies training scores</td>
+<td>Distillation from it produced a larger gain than tuning sparsity alone</td>
+</tr>
+<tr>
+<td>Distillation</td>
+<td>Training a smaller or restricted model to match teacher scores</td>
+<td>It raises retrieval quality without changing the serving architecture</td>
+</tr>
+<tr>
+<td>Dense vector</td>
+<td>A representation whose dimensions are generally all stored</td>
+<td>It offers semantic matching but has different index economics</td>
+</tr>
+<tr>
+<td>Float32</td>
+<td>A four-byte floating-point value</td>
+<td>It sets the dense-vector storage arithmetic</td>
+</tr>
+<tr>
+<td>Float16</td>
+<td>A two-byte floating-point value</td>
+<td>Original ColBERT token vectors use it in the worked examples</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>A rough count of numerical operations</td>
+<td>It compares architectures, but it can badly overstate latency gains</td>
+</tr>
+<tr>
+<td>Multiply-accumulate (MAC)</td>
+<td>One multiply followed by an addition</td>
+<td>Posting traversal and MaxSim work are priced in MACs</td>
+</tr>
+<tr>
+<td>L0 count</td>
+<td>The number of nonzero coordinates</td>
+<td>It is the desired sparsity quantity but has zero gradient almost everywhere</td>
+</tr>
+<tr>
+<td>L1 penalty</td>
+<td>The sum of absolute weights</td>
+<td>It controls average nonzeros but ignores posting-list popularity</td>
+</tr>
+<tr>
+<td>Least Absolute Shrinkage and Selection Operator (LASSO)</td>
+<td>A standard use of the L1 relaxation</td>
+<td>It motivates L1 without making L1 a retrieval-cost model</td>
+</tr>
+<tr>
+<td>Activation probabilities <code>p_j</code> and <code>q_j</code></td>
+<td>Fractions of documents and queries activating dimension <code>j</code></td>
+<td>Their product predicts posting-list traversal cost</td>
+</tr>
+<tr>
+<td>Nonzero budgets <code>ubar_d</code>, <code>ubar_q</code> and work <code>C</code></td>
+<td>Average document and query support plus expected MAC count</td>
+<td>They separate index size from query cost</td>
+</tr>
+<tr>
+<td>Zipfian profile</td>
+<td>A highly skewed frequency pattern proportional to 1 divided by rank</td>
+<td>It crowds a few vocabulary dimensions and raises retrieval work</td>
+</tr>
+<tr>
+<td>Harmonic number</td>
+<td>The sum of reciprocal ranks up to the vocabulary size</td>
+<td>It yields the source's effective-support estimate for a Zipfian profile</td>
+</tr>
+<tr>
+<td>Participation ratio <code>m_eff</code></td>
+<td>The effective number of dimensions carrying activation mass</td>
+<td>It separates equally sparse models with very different query cost</td>
+</tr>
+<tr>
+<td>Effective support</td>
+<td>The participation-ratio interpretation of vocabulary use</td>
+<td>Larger effective support means shorter lists at the same nonzero budget</td>
+</tr>
+<tr>
+<td>FLOPS penalty <code>loss_FLOPS</code>, batch mean <code>abar_j</code>, and batch size <code>B</code></td>
+<td>A squared mean-activation penalty over one training batch</td>
+<td>Its gradient grows with load and couples documents across the batch</td>
+</tr>
+<tr>
+<td>Ranking objective <code>L_rank</code> and weights <code>lambda_q</code>, <code>lambda_d</code></td>
+<td>Relevance loss plus separate query and document penalties</td>
+<td>Two constraints receive two tunable exchange rates</td>
+</tr>
+<tr>
+<td>Ranking loss</td>
+<td>The objective that rewards relevant passages over negatives</td>
+<td>It must establish useful dimensions before strong sparsity pressure begins</td>
+</tr>
+<tr>
+<td>Quadratic warm-up</td>
+<td>A schedule that raises a regularization weight gradually</td>
+<td>It prevents the absorbing all-zero solution at training start</td>
+</tr>
+<tr>
+<td>Weak AND (WAND)</td>
+<td>A dynamic-pruning algorithm for top-k retrieval</td>
+<td>BM25 benefits more because its score distributions support useful bounds</td>
+</tr>
+<tr>
+<td>BlockMax-WAND</td>
+<td>A block-level form of dynamic pruning</td>
+<td>Learned sparse scores can weaken its skipping power</td>
+</tr>
+<tr>
+<td>Impact-ordered evaluation</td>
+<td>Scoring higher-impact postings before lower-impact ones</td>
+<td>The source names it as an alternative when learned weights hurt WAND pruning</td>
+</tr>
+<tr>
+<td>Service-level objective (SLO)</td>
+<td>A promised latency or reliability target</td>
+<td>Query and document penalties should respect distinct operational limits</td>
+</tr>
+<tr>
+<td>p95 and p99 latency</td>
+<td>The 95th and 99th percentile response times</td>
+<td>Tail latency reveals costs that averages can hide</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Separate query and document encoders with one vector per side</td>
+<td>It allows document precomputation but pools away token detail</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>One joint encoder over the query-document pair</td>
+<td>It retains all-to-all interaction but cannot precompute document states</td>
+</tr>
+<tr>
+<td>Dense Passage Retrieval (DPR)</td>
+<td>A single-vector dense retriever used in the storage comparison</td>
+<td>Its 3,072-byte passage vector is the bi-encoder baseline</td>
+</tr>
+<tr>
+<td>ColBERT counts <code>N_q</code>, <code>n_d</code>, width <code>m</code>, and token vectors <code>E_qi</code>, <code>E_dj</code></td>
+<td>Query rows, document rows, projected width, and their embeddings</td>
+<td>They set MaxSim arithmetic and per-passage storage</td>
+</tr>
+<tr>
+<td>Late interaction</td>
+<td>Cross-side scoring after both encoders have finished</td>
+<td>It makes document token vectors reusable across queries</td>
+</tr>
+<tr>
+<td>L2 normalization</td>
+<td>Scaling a vector to unit Euclidean length</td>
+<td>It makes token dot products comparable similarities</td>
+</tr>
+<tr>
+<td>Classification token [CLS]</td>
+<td>A single encoder position used as a pooled summary</td>
+<td>Collapsing to it measures the loss from representation granularity</td>
+</tr>
+<tr>
+<td>Mask token [MASK]</td>
+<td>A pre-training placeholder that BERT predicts from context</td>
+<td>ColBERT uses padded mask rows as query augmentation</td>
+</tr>
+<tr>
+<td>MaxSim score <code>S(q,d)</code></td>
+<td>Sum over query tokens of each token's best document-token similarity</td>
+<td>It preserves localized evidence and supports pruning</td>
+</tr>
+<tr>
+<td>Approximate nearest-neighbor (ANN) search</td>
+<td>Fast search for vectors near a query vector</td>
+<td>ColBERT can issue one search per query token to build candidates</td>
+</tr>
+<tr>
+<td>Inverted file index with product quantization (IVF-PQ)</td>
+<td>A partitioned compressed vector index</td>
+<td>Original end-to-end ColBERT used it for candidate generation</td>
+</tr>
+<tr>
+<td>Recall@1000</td>
+<td>Fraction of relevant passages found in the first 1,000 results</td>
+<td>It exposes a first-stage ceiling that reranking cannot exceed</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank at 10 (MRR@10)</td>
+<td>A ranking metric focused on the first relevant result within ten</td>
+<td>The chapter uses it for SPLADE, ColBERT, and ablation comparisons</td>
+</tr>
+<tr>
+<td>Ablation</td>
+<td>A controlled component deletion with training and evaluation fixed</td>
+<td>It measures that component's contribution, not another architecture's ceiling</td>
+</tr>
+<tr>
+<td>Representation granularity</td>
+<td>Whether a passage keeps one vector or one vector per token</td>
+<td>It caused the largest ColBERT ablation drop</td>
+</tr>
+<tr>
+<td>Query augmentation</td>
+<td>Adding extra query-side rows beyond literal tokens</td>
+<td>ColBERT obtains it from contextualized [MASK] positions</td>
+</tr>
+<tr>
+<td>Approximate Nearest Neighbor Negative Contrastive Estimation (ANCE)</td>
+<td>A later single-vector training system named in the source</td>
+<td>Its result limits what the ColBERT [CLS] ablation proves</td>
+</tr>
+<tr>
+<td>K-means</td>
+<td>Clustering vectors around learned centers</td>
+<td>ColBERTv2 uses it to build the centroid codebook</td>
+</tr>
+<tr>
+<td>Centroid table <code>C</code>, assignment <code>t(v)</code>, embedding <code>v</code>, and residual <code>r</code></td>
+<td>A shared prototype, its selected row, the token vector, and their difference</td>
+<td>They factor token identity from contextual detail</td>
+</tr>
+<tr>
+<td>Codebook size `</td>
+<td>C</td>
+<td><code>, embedding count </code>n_emb<code>, and residual width </code>b`</td>
+</tr>
+<tr>
+<td>Residual <code>r = v - C_t(v)</code></td>
+<td>The difference between an embedding and its assigned centroid</td>
+<td>It contains within-cluster context that can tolerate very low bit width</td>
+</tr>
+<tr>
+<td>Residual quantization</td>
+<td>Low-bit coding of that centroid-relative difference</td>
+<td>It compresses without discarding the between-cluster identity</td>
+</tr>
+<tr>
+<td>Quantile bucket edges</td>
+<td>Thresholds chosen from the residual distribution</td>
+<td>They define the one-bit or two-bit residual codes</td>
+</tr>
+<tr>
+<td>Inverted File with Asymmetric Distance Computation (IVFADC)</td>
+<td>A residual-coding argument previously used for passage vectors</td>
+<td>ColBERTv2 applies the same logic to token vectors</td>
+</tr>
+<tr>
+<td>PLAID</td>
+<td>The centroid-first late-interaction retrieval funnel</td>
+<td>It prunes with cheap identifiers before exact residual scoring</td>
+</tr>
+<tr>
+<td>Candidate generation</td>
+<td>Finding passages attached to top query centroids</td>
+<td>It builds a union without reading residuals</td>
+</tr>
+<tr>
+<td>Centroid pruning</td>
+<td>Removing centroids too dissimilar to every query token</td>
+<td>It shrinks later stages before they read more bytes</td>
+</tr>
+<tr>
+<td>Centroid interaction</td>
+<td>Approximate MaxSim over centroid identifiers</td>
+<td>It keeps only ndocs and then ndocs divided by four</td>
+</tr>
+<tr>
+<td>Ragged gather</td>
+<td>Loading variable numbers of token vectors per passage</td>
+<td>Reshape and padding make it a major runtime cost</td>
+</tr>
+<tr>
+<td>Lookup table</td>
+<td>Precomputed values used during decompression or scoring</td>
+<td>PLAID uses them to accelerate central processing unit execution</td>
+</tr>
+<tr>
+<td>Central processing unit (CPU)</td>
+<td>A general-purpose processor</td>
+<td>PLAID reports a larger speedup there than on a GPU</td>
+</tr>
+<tr>
+<td>Graphics processing unit (GPU)</td>
+<td>A highly parallel processor</td>
+<td>Parallelism already hides some padding waste there</td>
+</tr>
+<tr>
+<td>Peripheral Component Interconnect Express (PCIe)</td>
+<td>The host-to-accelerator data path named in the serving discussion</td>
+<td>Crossing it makes byte traffic more important than arithmetic</td>
+</tr>
+<tr>
+<td>MiniLM</td>
+<td>The 22-million-parameter cross-encoder teacher in ColBERTv2</td>
+<td>It supplies soft scores for denoised distillation</td>
+</tr>
+<tr>
+<td>Kullback-Leibler (KL) divergence</td>
+<td>A loss that matches two score distributions</td>
+<td>ColBERTv2 uses it over 64-way tuples</td>
+</tr>
+<tr>
+<td>Denoised distillation</td>
+<td>Teacher training that reduces noisy binary-label effects</td>
+<td>The source credits it, not compression, for ColBERTv2's quality gain</td>
+</tr>
+<tr>
+<td>Normalized Discounted Cumulative Gain at 10 (nDCG@10)</td>
+<td>A top-ten ranking-quality metric</td>
+<td>The hybrid example starts from a four-point aggregate gain</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>A bounded dense-vector similarity in the range [-1, 1]</td>
+<td>Its units cannot be added directly to BM25 scores</td>
+</tr>
+<tr>
+<td>Min-max normalization</td>
+<td>Rescaling observed list scores to [0, 1]</td>
+<td>Pool-dependent extremes make the same raw score move with list depth</td>
+</tr>
+<tr>
+<td>Convex combination</td>
+<td>A weighted sum whose nonnegative weights total one</td>
+<td>It can outperform RRF after sound normalization and in-domain tuning</td>
+</tr>
+<tr>
+<td>Fusion weight alpha</td>
+<td>The sparse-list share in a two-list convex combination</td>
+<td>Different values yield different orders and require labels to choose</td>
+</tr>
+<tr>
+<td>Rank</td>
+<td>A document's position inside one result list</td>
+<td>RRF uses it instead of raw score magnitude</td>
+</tr>
+<tr>
+<td>RRF score <code>RRF(d)</code> and ranks <code>r_l(d)</code></td>
+<td>A sum of reciprocal rank weights across lists</td>
+<td>It needs no cross-retriever score calibration</td>
+</tr>
+<tr>
+<td>Rank constant <code>k</code>, list count <code>L</code>, and depth <code>m</code></td>
+<td>Denominator offset, number of lists, and candidates per list</td>
+<td>Together they set the exchange rate between head rank and agreement</td>
+</tr>
+<tr>
+<td>Raw list score <code>s_l(d)</code> and fusion weight <code>alpha</code></td>
+<td>One retriever's score and the sparse share in a convex combination</td>
+<td>Their units and calibration determine whether score fusion is defensible</td>
+</tr>
+<tr>
+<td>Weighted RRF</td>
+<td>RRF with a measured weight for each list</td>
+<td>It can reflect slice-specific retriever strength</td>
+</tr>
+<tr>
+<td>Hierarchical fusion</td>
+<td>Fuse correlated lists first, then fuse signal families</td>
+<td>It prevents one family from receiving duplicate votes</td>
+</tr>
+<tr>
+<td>RAG-Fusion</td>
+<td>RRF across lists from generated paraphrases of one query</td>
+<td>Correlated agreement can amplify a shared near-miss</td>
+</tr>
+<tr>
+<td>Calibration</td>
+<td>Mapping scores to meaningful comparable confidence</td>
+<td>RRF deliberately avoids it and must not be treated as confidence</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="211-splade-mlm-predicted-term-importance-and-implicit-expansion">21.1 SPLADE: MLM-predicted term importance and implicit expansion</h3>
+<h4 id="the-shared-sparse-scoring-form">The shared sparse scoring form</h4>
+<ul>
+<li>What: Let V be the WordPiece vocabulary with size 30,522. Let w_j^q and w_j^d be the query and document weights on vocabulary entry j.</li>
+<li>Why: BM25 and SPLADE can both use an inverted index because they score only shared nonzero dimensions.</li>
+<li>Failure without it: A dense materialization would destroy the storage advantage of exact zeros.</li>
+<li>Cost: The index touches postings only where both factors are nonzero.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>V</mi><mo stretchy="false" form="prefix">|</mo></mrow></msubsup><msubsup><mi>w</mi><mi>j</mi><mi>q</mi></msubsup><msubsup><mi>w</mi><mi>j</mi><mi>d</mi></msubsup></mrow><annotation encoding="application/x-tex">s(q,d) = Σ_{j=1}^{|V|} w_j^q w_j^d</annotation></semantics></math></p>
+<p>BM25 instantiates the weights with hand-written functions. Here f_{j,d} is the raw term count, k_1 and b are BM25 constants, document length is |d|, and avgdl is average document length.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>w</mi><mi>j</mi><mi>d</mi></msubsup><mo>=</mo><msub><mi>f</mi><mrow><mi>j</mi><mo>,</mo><mi>d</mi></mrow></msub><mo stretchy="false" form="prefix">(</mo><msub><mi>k</mi><mn>1</mn></msub><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>f</mi><mrow><mi>j</mi><mo>,</mo><mi>d</mi></mrow></msub><mo>+</mo><msub><mi>k</mi><mn>1</mn></msub><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>b</mi><mo>+</mo><mi>b</mi><mo stretchy="false" form="prefix">|</mo><mi>d</mi><mo stretchy="false" form="prefix">|</mo><mi>/</mi><mi>a</mi><mi>v</mi><mi>g</mi><mi>d</mi><mi>l</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_j^d = f_{j,d}(k_1 + 1) / (f_{j,d} + k_1(1 - b + b|d|/avgdl))</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>w</mi><mi>j</mi><mi>q</mi></msubsup><mo>=</mo><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>j</mi><mo stretchy="false" form="postfix">)</mo><mi>I</mi><mo stretchy="false" form="prefix">[</mo><mi>j</mi><mo>∈</mo><mi>q</mi><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">w_j^q = IDF(j) I[j ∈ q]</annotation></semantics></math></p>
+<ul>
+<li>What: BM25 sets the document weight to zero when f_{j,d} is zero.</li>
+<li>Why: Literal support makes its posting lists compact and exact.</li>
+<li>Failure without a learned repair: The relevant passage can use "AC adapter" while the query uses "charge." BM25 also cannot use context to separate river bank from mortgage bank.</li>
+<li>Cost: The chapter's opening production example serves BM25 in 40 ms at p99, but 12% of audited queries return nothing acceptable to the reranker.</li>
+</ul>
+<h4 id="discrete-expansion-versus-direct-vocabulary-weighting">Discrete expansion versus direct vocabulary weighting</h4>
+<ul>
+<li><p>What: docT5query generates 40 queries that a passage might answer, appends them, and indexes the resulting text with BM25.</p></li>
+<li><p>Why: It widens lexical support without changing the serving scorer.</p></li>
+<li><p>Failure: Decoding temperature becomes a retrieval hyperparameter. Ranking gradients cannot pass through discrete generation. BM25 later treats generated and original terms as ordinary counts.</p></li>
+<li><p>Cost and result: Nogueira and Lin report MRR@10 of 0.277 on MS MARCO passage development data, versus 0.184 for BM25.</p></li>
+<li><p>What: SPLADE predicts a weight for every vocabulary entry directly from every contextual token position.</p></li>
+<li><p>Why: The MLM head already scores all vocabulary entries, including absent terms. It needs no generated string.</p></li>
+<li><p>Failure without the full-vocabulary head: The model cannot assign "water" to a passage that contains "sea" but never contains "water."</p></li>
+<li><p>Cost: For sequence length n = 128 and vocabulary size 30,522, the dense signed logit matrix holds 3,906,816 values before sparsification.</p></li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>t</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>f</mi><mi>o</mi><mi>r</mi><mi>m</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>h</mi><mi>i</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><msub><mi>E</mi><mi>j</mi></msub><mo>+</mo><msub><mi>b</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">w_{ij} = transform(h_i)^T E_j + b_j</annotation></semantics></math></p>
+<p>The hidden state h_i has 768 dimensions. E_j is the tied input embedding. The transform is the dense, GELU, and LayerNorm block from pre-training.</p>
+<h4 id="exact-zeros-saturation-and-pooling">Exact zeros, saturation, and pooling</h4>
+<ul>
+<li>What: ReLU maps negative logits to exact zero. The log transform saturates positive values. Summation over positions produces one vocabulary weight.</li>
+<li>Why: Exact zero removes a posting. Saturation prevents repeated confident predictions from flattening the rest of the vector.</li>
+<li>Failure: ReLU alone can leave thousands of positive dimensions. Raw summation lets one repeated high logit dominate.</li>
+<li>Cost: The output stays sparse at serving time even though indexing computes the full vocabulary head.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>w</mi><mi>j</mi><mi>d</mi></msubsup><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>+</mo><mi>R</mi><mi>e</mi><mi>L</mi><mi>U</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w_j^d = Σ_{i=1}^{n} log(1 + ReLU(w_{ij}))</annotation></semantics></math></p>
+<p>The saturation example keeps all source arithmetic. Five logits of 12 sum to 60. Five logits of 1 sum to 5. The raw ratio is 12. After saturation, 5 ln(13) = 12.83 and 5 ln(2) = 3.47. The ratio falls to 3.7.</p>
+<p>Summation discards word order only after contextual encoding. The model is contextual inside and bag-of-words outside. Max pooling raised SPLADE v2 from 0.322 to 0.340 MRR@10 on this benchmark, but the source limits the claim. The result did not reproduce everywhere, so max versus sum remains a measured hyperparameter.</p>
+<h4 id="training-and-interpretability">Training and interpretability</h4>
+<ul>
+<li>What: SPLADE v1 uses in-batch negatives and one BM25-retrieved hard negative per query.</li>
+<li>Why: The ranking loss trains expansion weights end to end.</li>
+<li>Failure: ReLU does not by itself control how many positive dimensions survive.</li>
+<li>Cost and result: SPLADE v1 reaches 0.322 MRR@10. Distilled v2 reaches 0.368, versus 0.184 for BM25 and 0.277 for docT5query.</li>
+</ul>
+<p>The sparse dimensions remain readable words. An operator can inspect a document's top-weighted terms. The source recommends auditing the top 20 dimensions for a few hundred documents and blocking problematic brand or negation-flipped expansions when needed.</p>
+<h4 id="worked-index-economics">Worked index economics</h4>
+<p>Use N = 8,841,823 passages, vocabulary size 30,522, 40 distinct BM25 terms per passage, and 8 bytes per posting. Each posting has a 4-byte document identifier and a 4-byte weight.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Index arithmetic</th>
+<th>Query arithmetic</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BM25</td>
+<td>8.84 x 10^6 x 40 = 3.54 x 10^8 postings</td>
+<td>8 x 1.16 x 10^4 = 9.27 x 10^4 MACs</td>
+<td>2.83 GB</td>
+</tr>
+<tr>
+<td>Unregularized SPLADE at 30% positive</td>
+<td>8.84 x 10^6 x 9,157 = 8.10 x 10^10 postings</td>
+<td>100 x 2.65 x 10^6 = 2.65 x 10^8 MACs</td>
+<td>648 GB and 2,900x BM25 query work</td>
+</tr>
+<tr>
+<td>SPLADE at 160 nonzeros</td>
+<td>8.84 x 10^6 x 160 = 1.41 x 10^9 postings</td>
+<td>100 x 4.64 x 10^4 = 4.64 x 10^6 MACs</td>
+<td>11.3 GB and 50x BM25 query work</td>
+</tr>
+</tbody>
+</table></div>
+<p>At 160 pairs, one document needs 1,280 bytes. A 768-dimensional float32 dense vector needs 3,072 bytes. Across the corpus, learned sparse storage is 11.3 GB versus 27.2 GB for the flat dense index, so sparse is 2.4 times smaller. The MLM head costs 2 x 128 x 768 x 30,522 = 6.00 x 10^9 FLOPs per indexed passage. The BERT-base encoder costs 2 x 1.10 x 10^8 x 128 = 2.82 x 10^10 FLOPs. The head adds 21%. The source therefore places the main sparsity bill in memory and query time, not indexing throughput. At 500 million chunks, the source's staff example gives 1.54 TB for 768-dimensional float32 dense vectors, 160 GB for BM25 at 40 terms, and 640 GB for SPLADE at 160 nonzeros. SPLADE remains one exact-match-capable index. The reversal condition is measured p99. If aggressive query expansion breaks the latency budget and stronger query regularization loses more recall than two cheap indexes, BM25 plus a small dense index can win.</p>
+<p>Practical choices follow from the same arithmetic. Budget nonzeros per document, with four times the BM25 average as a starting point. Regularize the query side harder when latency binds. Use a real inverted index rather than a dense vector store. A densely materialized 30,522-dimensional float32 vector would occupy 122 kB per document and 1,080 GB for this corpus. SPLADE-doc removes the query encoder and query expansion when query-side latency dominates. docT5query remains useful when a managed search product accepts text but not learned posting weights.</p>
+<h3 id="212-flops-regularization-making-sparsity-a-trainable-objective">21.2 FLOPS regularization: making sparsity a trainable objective</h3>
+<h4 id="model-the-work-the-index-performs">Model the work the index performs</h4>
+<ul>
+<li>What: Let p_j be the fraction of documents activating dimension j. Let q_j be the fraction of logged queries activating it. Posting list j contains Np_j entries.</li>
+<li>Why: A query opens that list with probability q_j, so expected exhaustive cost uses a product of the two activation profiles.</li>
+<li>Failure: Counting only document nonzeros cannot distinguish one flat profile from one crowded profile.</li>
+<li>Cost: Expected MACs per query are the following.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>N</mi><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>V</mi><mo stretchy="false" form="prefix">|</mo></mrow></msubsup><msub><mi>q</mi><mi>j</mi></msub><msub><mi>p</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">C = N Σ_{j=1}^{|V|} q_j p_j</annotation></semantics></math></p>
+<p>The desired L0 count cannot serve directly as a loss. It is piecewise constant, so its gradient is zero almost everywhere. L1 is the tightest convex relaxation and does control the average document count because E[||w^d||_0] = Σ_j p_j = ubar_d. It remains blind to the products in C.</p>
+<p>Assume the query profile follows the corpus profile.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>q</mi><mi>j</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>q</mi></msub><mi>/</mi><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>d</mi></msub><mo stretchy="false" form="postfix">)</mo><msub><mi>p</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">q_j = (ubar_q / ubar_d)p_j</annotation></semantics></math></p>
+<p>Then expected cost and effective support become:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>N</mi><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>q</mi></msub><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>d</mi></msub><mi>/</mi><msub><mi>m</mi><mi>e</mi></msub><mi>f</mi><mi>f</mi></mrow><annotation encoding="application/x-tex">C = N ubar_q ubar_d / m_eff</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>m</mi><mi>e</mi></msub><mi>f</mi><mi>f</mi><mo>=</mo><mo stretchy="false" form="prefix">(</mo><msub><mi mathvariant="normal">Σ</mi><mi>j</mi></msub><msub><mi>p</mi><mi>j</mi></msub><msup><mo stretchy="false" form="postfix">)</mo><mn>2</mn></msup><mi>/</mi><msub><mi mathvariant="normal">Σ</mi><mi>j</mi></msub><msubsup><mi>p</mi><mi>j</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">m_eff = (Σ_j p_j)^2 / Σ_j p_j^2</annotation></semantics></math></p>
+<p>Cauchy-Schwarz gives 1 &lt;= m_eff &lt;= 30,522. The upper bound needs perfectly equal popularity. Two models with the same 160 nonzeros can therefore differ in cost by as much as the vocabulary size under this model.</p>
+<h4 id="why-a-zipfian-profile-is-expensive">Why a Zipfian profile is expensive</h4>
+<ul>
+<li>What: The unregularized term profile follows p_j proportional to 1/j.</li>
+<li>Why: Natural language naturally concentrates mass in common dimensions.</li>
+<li>Failure: L1 applies equal pressure and permits that crowded profile.</li>
+<li>Cost: H_30,522 = ln(30,522) + gamma = 10.33 + 0.58 = 10.90. The squared reciprocal sum approaches pi^2/6 = 1.645. Therefore m_eff = 10.90^2 / 1.645 = 118.9 / 1.645 = 72.</li>
+</ul>
+<h4 id="flops-as-load-balancing">FLOPS as load balancing</h4>
+<p>For a training batch of B documents, define the mean activation and penalty as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>j</mi></msub><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mi>/</mi><mi>B</mi><mo stretchy="false" form="postfix">)</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>b</mi><mo>=</mo><mn>1</mn></mrow><mi>B</mi></msubsup><msubsup><mi>w</mi><mi>j</mi><mrow><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow></msubsup></mrow><annotation encoding="application/x-tex">abar_j = (1/B) Σ_{b=1}^{B} w_j^{(b)}</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>s</mi><msub><mi>s</mi><mi>F</mi></msub><mi>L</mi><mi>O</mi><mi>P</mi><mi>S</mi><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mo stretchy="false" form="prefix">|</mo><mi>V</mi><mo stretchy="false" form="prefix">|</mo></mrow></msubsup><mi>a</mi><mi>b</mi><mi>a</mi><msubsup><mi>r</mi><mi>j</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">loss_FLOPS = Σ_{j=1}^{|V|} abar_j^2</annotation></semantics></math></p>
+<ul>
+<li>What: The batch mean stands in for activation probability, and its square penalizes crowding.</li>
+<li>Why: The batch couples documents. A document pays more for a dimension its batchmates already use.</li>
+<li>Failure: A per-document norm removes the cross-document coupling. Plain L1 gives every dimension the same pressure.</li>
+<li>Cost: The FLOPS gradient on one weight is 2abar_j/B. The L1 gradient is 1/B. A dimension at 2.0 receives 40 times the FLOPS pressure of one at 0.05, while L1 treats them equally.</li>
+</ul>
+<p>At fixed document nonzero budget, loss_FLOPS = ubar_d^2/m_eff. Minimizing it maximizes effective support. The source therefore calls FLOPS a load balancer over vocabulary, not merely a sparsifier.</p>
+<h4 id="separate-query-and-document-penalties">Separate query and document penalties</h4>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><msub><mi>L</mi><mi>r</mi></msub><mi>a</mi><mi>n</mi><mi>k</mi><mo>+</mo><mi>l</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>d</mi><msub><mi>a</mi><mi>q</mi></msub><mi>l</mi><mi>o</mi><mi>s</mi><msub><mi>s</mi><mi>F</mi></msub><mi>L</mi><mi>O</mi><mi>P</mi><mi>S</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mi>l</mi><mi>a</mi><mi>m</mi><mi>b</mi><mi>d</mi><msub><mi>a</mi><mi>d</mi></msub><mi>l</mi><mi>o</mi><mi>s</mi><msub><mi>s</mi><mi>F</mi></msub><mi>L</mi><mi>O</mi><mi>P</mi><mi>S</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">L = L_rank + lambda_q loss_FLOPS(q) + lambda_d loss_FLOPS(d)</annotation></semantics></math></p>
+<ul>
+<li>What: Query and document sides receive different regularization weights.</li>
+<li>Why: Document nonzeros cost disk and latency. Query nonzeros cost latency only. The two sides buy different recall.</li>
+<li>Failure: One lambda forces one exchange rate onto two different constraints.</li>
+<li>Cost: The source recommends lambda_q greater than lambda_d by roughly one order of magnitude as a default, then tuning to measured budgets.</li>
+</ul>
+<p>The all-zero vector minimizes the penalty. ReLU makes a fully negative unit absorbing because no gradient returns through it. Formal and colleagues use a quadratic warm-up over the opening training phase. The practical recommendation is the first 10% to 15% of steps, followed by a constant weight. Starting at full lambda can kill every output permanently.</p>
+<h4 id="worked-cost-profiles">Worked cost profiles</h4>
+<p>Use N = 8,841,823, document nonzeros ubar_d = 160, and query nonzeros ubar_q = 30.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>q</mi></msub><mi>u</mi><mi>b</mi><mi>a</mi><msub><mi>r</mi><mi>d</mi></msub><mo>=</mo><mn>8</mn><mo>,</mo><mn>841</mn><mo>,</mo><mn>823</mn><mi>x</mi><mn>30</mn><mi>x</mi><mn>160</mn><mo>=</mo><mn>4.24</mn><mi>x</mi><msup><mn>10</mn><mn>10</mn></msup></mrow><annotation encoding="application/x-tex">N ubar_q ubar_d = 8,841,823 x 30 x 160 = 4.24 x 10^{10}</annotation></semantics></math></p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th style="text-align: right;">Effective support</th>
+<th style="text-align: right;">Query cost</th>
+<th style="text-align: right;">Index size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 with a Zipfian profile</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">5.9 x 10^8 MACs</td>
+<td style="text-align: right;">11.3 GB</td>
+</tr>
+<tr>
+<td>FLOPS-balanced profile</td>
+<td style="text-align: right;">4,000</td>
+<td style="text-align: right;">1.06 x 10^7 MACs</td>
+<td style="text-align: right;">11.3 GB</td>
+</tr>
+<tr>
+<td>Raise query pressure until only 8 query nonzeros remain</td>
+<td style="text-align: right;">4,000</td>
+<td style="text-align: right;">2.83 x 10^6 MACs</td>
+<td style="text-align: right;">unchanged</td>
+</tr>
+</tbody>
+</table></div>
+<p>The first two have identical average nonzeros and differ by 56 times in query work. Cutting queries from 30 to 8 gives another 3.75 times reduction without changing the index.</p>
+<p>The FLOPS-balanced configuration still costs 114 times the source's BM25 posting-count estimate of 9.27 x 10^4 MACs. The L1 version costs 6,400 times BM25 and lies outside the range reported for shipped systems. This comparison has a claim limit. The posting-count model is pessimistic for BM25 because WAND and BlockMax-WAND skip postings that cannot reach top k. Mackenzie, Trotman, and Lin report that learned sparse weights weaken the score distributions those bounds rely on. Dynamic pruning may therefore help SPLADE less and renew interest in impact-ordered, score-at-a-time evaluation.</p>
+<p>Practical measurement should pair average nonzeros with m_eff. The source suggests estimating it from 100,000 indexed vectors. Tune toward an interpretable target such as 160 nonzeros and m_eff at least 4,000. A 500-million-chunk index at 160 nonzeros occupies 640 GB. Prefer training-time FLOPS pressure to top-k truncation because truncation preserves popularity skew. Recompute m_eff after domain shift because p_j belongs to the deployed corpus.</p>
+<h3 id="213-colbert-and-late-interaction">21.3 ColBERT and late interaction</h3>
+<h4 id="locate-the-architectural-gap">Locate the architectural gap</h4>
+<ul>
+<li>What: A bi-encoder maps each side to one 768-dimensional vector and scores their dot product. A cross-encoder jointly encodes the concatenated pair and reads a score from [CLS].</li>
+<li>Why: The bi-encoder precomputes documents. The cross-encoder preserves all query-document attention.</li>
+<li>Failure: Mean pooling weights "the" like "retrieval." [CLS] still compresses a passage into one vector. The cross-encoder cannot reuse document states.</li>
+<li>Cost and result: At depth 1,000, the source gives 34.7 MRR@10 and 10,700 ms per query for a BERT-base cross-encoder.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>b</mi></msub><mi>i</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>e</mi><mi>t</mi><mi>a</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><msup><mo stretchy="false" form="postfix">)</mo><mi>T</mi></msup><mi>e</mi><mi>t</mi><mi>a</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">s_bi(q,d) = eta(q)^T eta(d)</annotation></semantics></math></p>
+<h4 id="keep-token-vectors-and-interact-late">Keep token vectors and interact late</h4>
+<ul>
+<li>What: ColBERT independently encodes query and document tokens, projects every output to m = 128, and L2-normalizes it. Documents retain all n_d vectors. Queries pad to N_q = 32 with [MASK] tokens.</li>
+<li>Why: The document representation stays query-independent and precomputable. Token distinctions survive.</li>
+<li>Failure: Early pooling irreversibly discards local evidence.</li>
+<li>Cost: Storage grows with token count instead of passage count alone.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo>,</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>N</mi><mi>q</mi></msub></msubsup><mi>m</mi><mi>a</mi><msub><mi>x</mi><mrow><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>,</mo><msub><mi>n</mi><mi>d</mi></msub></mrow></msub><mo stretchy="false" form="prefix">(</mo><msubsup><mi>E</mi><mrow><mi>q</mi><mi>i</mi></mrow><mi>T</mi></msubsup><msub><mi>E</mi><mrow><mi>d</mi><mi>j</mi></mrow></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">S(q,d) = Σ_{i=1}^{N_q} max_{j=1,...,n_d}(E_{qi}^T E_{dj})</annotation></semantics></math></p>
+<p>MaxSim asks whether each query token finds evidence anywhere in the document. Replace max with mean in a 68-token passage where one similarity is 0.95 and 67 are 0.10:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mn>0.95</mn><mo>+</mo><mn>67</mn><mi>x</mi><mn>0.10</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mn>68</mn><mo>=</mo><mn>7.65</mn><mi>/</mi><mn>68</mn><mo>=</mo><mn>0.1125</mn></mrow><annotation encoding="application/x-tex">(0.95 + 67 x 0.10) / 68 = 7.65 / 68 = 0.1125</annotation></semantics></math></p>
+<p>A passage with no match sits at 0.10. Max preserves a 9.5-times evidence separation. Mean leaves only a 12.5% lift. The dilution worsens as the document grows.</p>
+<h4 id="end-to-end-candidate-generation">End-to-end candidate generation</h4>
+<ul>
+<li>What: Issue one ANN search per query token, union the touched passages, then run exact MaxSim on that union.</li>
+<li>Why: A high MaxSim score requires some token-level near neighbors, so the score supports token-driven pruning.</li>
+<li>Failure: Reranking BM25's top 1,000 inherits BM25's recall ceiling.</li>
+<li>Cost and result: End-to-end ColBERT over IVF-PQ reports Recall@1000 of 96.8%. BM25 reranking remains at 81.4%, exactly BM25's Recall@1000.</li>
+</ul>
+<h4 id="worked-architecture-costs">Worked architecture costs</h4>
+<p>Use 8.8 million passages, average document length 68, query length 32, projection size 128, two bytes per token dimension, BERT-base with 110 million parameters, and rerank depth 1,000.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th style="text-align: right;">Online arithmetic</th>
+<th style="text-align: right;">Stored bytes per passage</th>
+<th>Reported behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cross-encoder</td>
+<td style="text-align: right;">97 trillion FLOPs</td>
+<td style="text-align: right;">0 precomputable</td>
+<td>10,700 ms and 34.7 MRR@10</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td style="text-align: right;">7.6 x 10^9 FLOPs</td>
+<td style="text-align: right;">17,408</td>
+<td>61 ms at depth 1,000</td>
+</tr>
+<tr>
+<td>Single-vector bi-encoder</td>
+<td style="text-align: right;">about 7.0 x 10^9 FLOPs</td>
+<td style="text-align: right;">3,072 for DPR</td>
+<td>dot-product scoring under 1 ms</td>
+</tr>
+</tbody>
+</table></div>
+<p>The ColBERT query encoder costs 2 x 110 x 10^6 x 32 = 7.04 x 10^9 FLOPs. MaxSim costs 1,000 x 32 x 68 x 128 x 2 = 5.57 x 10^8 FLOPs. Total cost is 7.6 x 10^9. MaxSim is 7.3% of the 7.61-billion operation bill, while the query encoder is 93%.</p>
+<p>The cross-encoder ratio is 97 x 10^12 / 7.0 x 10^9 = 13,857, reported as 13,900 times. Measured latency improves only 10,700 / 61 = 175 times. FLOPs overstate the win by 79 times. Query encoding and interaction take 13 of 61 ms. Gathering, stacking, and transferring embeddings take the remaining 48 ms. The source therefore calls multi-vector retrieval memory-movement-bound.</p>
+<p>ColBERT stores 68 x 128 x 2 = 17,408 bytes per passage. DPR stores 768 x 4 = 3,072 bytes. The ratio is 5.67. Collection totals are 143 GiB versus 25.2 GiB.</p>
+<p>Chunk size now has a direct storage cost. A single-vector index stores one vector whether a chunk contains 100 or 500 tokens. A multi-vector index doubles in size when token count doubles. The source recommends dimension reduction before abandoning late interaction. Moving from 128 dimensions at four bytes to 24 dimensions at two bytes takes the reported footprint from 286 GiB to 27 GiB. MRR@10 moves from 34.9 to 33.9. The larger index uses 10.6 times the storage for a 2.9% quality gain.</p>
+<p>End-to-end retrieval removes the first-stage ceiling but takes 458 ms, versus 61 ms for reranking. A hard budget under 100 ms can justify reranking an existing BM25 index. The source treats a corpus below roughly one million chunks as a case where a 5.7-times multiplier may still be affordable.</p>
+<h3 id="214-the-three-ablations-that-show-what-makes-colbert-work">21.4 The three ablations that show what makes ColBERT work</h3>
+<h4 id="read-controlled-deletions-correctly">Read controlled deletions correctly</h4>
+<p>All variants rerank BM25's top 1,000 on MS MARCO passage development data. Full ColBERT scores 0.349 MRR@10.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Controlled deletion</th>
+<th style="text-align: right;">MRR@10</th>
+<th style="text-align: right;">Absolute drop</th>
+<th style="text-align: right;">Relative drop</th>
+<th>What it isolates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collapse token vectors to one [CLS] vector</td>
+<td style="text-align: right;">0.285</td>
+<td style="text-align: right;">0.064</td>
+<td style="text-align: right;">18.3%</td>
+<td>Representation granularity</td>
+</tr>
+<tr>
+<td>Replace row maximum with row mean</td>
+<td style="text-align: right;">0.331</td>
+<td style="text-align: right;">0.018</td>
+<td style="text-align: right;">5.2%</td>
+<td>Aggregator choice</td>
+</tr>
+<tr>
+<td>Remove [MASK] query augmentation</td>
+<td style="text-align: right;">0.343</td>
+<td style="text-align: right;">0.006</td>
+<td style="text-align: right;">1.7%</td>
+<td>Expansion capacity</td>
+</tr>
+</tbody>
+</table></div>
+<p>BM25 itself scores 0.187. Full ColBERT buys 0.349 - 0.187 = 0.162 above that floor. The [CLS] variant buys 0.285 - 0.187 = 0.098. It therefore surrenders 1 - 0.098/0.162 = 39.5% of the headroom for which the architecture was bought.</p>
+<p>Granularity's relative drop is 18.3/5.2 = 3.5 times the aggregator's. The source's conclusion is narrow and operational. Keeping token vectors matters more than making the pooled scorer clever. Once pooling removes a distinction, no downstream scorer can recover it.</p>
+<p>Mean instead of max saves no storage and no FLOPs because it reads the same grid. It spends 0.018 MRR@10 only as evidence. The maximum asks whether evidence appears somewhere. The mean asks whether the passage is about that token on average.</p>
+<p>The [MASK] slots run through BERT rather than becoming zeros. Pre-training lets each position form a contextual guess about a plausible query term. Removing them causes the smallest measured drop. In late interaction, another query term adds one row with n_d x m MACs per candidate. It needs no document re-encode and no second retrieval round. Appended rows can represent text rewrites, synonyms, a centroid of query token vectors, or term-table vectors. The same operation can expand documents.</p>
+<h4 id="price-each-deletion">Price each deletion</h4>
+<p>The full baseline occupies 143 GiB and costs 7.6 x 10^9 query FLOPs under the same constants as Section 21.3.</p>
+<ul>
+<li>[CLS] storage lever: One 128-dimensional vector at two bytes occupies 256 bytes per passage and 2.1 GiB total. It frees 140.9 GiB for 6.4 MRR@10 points, or 22.0 GiB per point.</li>
+<li>Dimension lever: Reducing 128 dimensions to 24 frees 116 GiB for one MRR@10 point. It returns 116/22.0 = 5.3 times more storage per point than token collapse.</li>
+<li>Mean lever: It loses 1.8 MRR@10 points and saves zero storage and zero FLOPs.</li>
+<li>Augmentation lever: For an eight-token query, encoding costs 1.76 x 10^9 FLOPs and MaxSim costs 1.39 x 10^8. Total 1.9 x 10^9 is four times lower than 7.6 x 10^9.</li>
+</ul>
+<p>The wall-clock limit matters. Only 13 of 61 ms belongs to encoding and interaction. A four-times cut saves at most 9.8 ms, moving 61 ms to 51 ms. That is a 16% latency gain for a 1.7% quality loss. The fixed 32-token shape also supports one batched kernel instead of a ragged loop.</p>
+<p>Appending one precomputed query vector costs 68 x 128 x 2 = 17,408 FLOPs per candidate. At depth 1,000 that is 1.74 x 10^7 FLOPs, only 0.23% of the query budget.</p>
+<p>The ablation does not prove that all single-vector retrieval is 18.3% worse. It freezes ColBERT's training recipe. ANCE later reports 0.330 MRR@10 with one vector per passage and hard-negative training at one sixty-eighth of the token-storage footprint. The source explicitly calls the broader claim a common misreading. When an index must fit 30 GiB, the source's senior example chooses the 128-to-24 dimension cut and lands at 27 GiB for one MRR@10 point. A bi-encoder becomes attractive if its own Recall@k lands within one or two points of the multi-vector index. Short corpora such as titles, log lines, and product names can also narrow the difference between pooled and token-level representations.</p>
+<h3 id="215-making-multi-vector-affordable-colbertv2-and-plaid">21.5 Making multi-vector affordable: ColBERTv2 and PLAID</h3>
+<h4 id="factor-shared-identity-from-contextual-detail">Factor shared identity from contextual detail</h4>
+<p>MS MARCO has 8.8 million passages averaging 68 tokens, for 5.984 x 10^8 token embeddings. Each original embedding has 128 float16 dimensions and occupies 256 bytes.</p>
+<ul>
+<li>What: Run k-means, store a codebook C, represent each token vector by its nearest centroid plus a residual, and quantize only the residual.</li>
+<li>Why: Embeddings for the same token cluster tightly. The centroid stores between-cluster identity once, while the residual stores within-cluster context.</li>
+<li>Failure: Direct two-bit quantization asks four levels per axis to cover the full embedding spread and can erase identity.</li>
+<li>Cost: Two-bit residuals need four levels per dimension over only the smaller within-cluster range.</li>
+</ul>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><msub><mi>C</mi><mrow><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub><mo>+</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">v = C_{t(v)} + r</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mi>v</mi><mo>−</mo><msub><mi>C</mi><mrow><mi>t</mi><mo stretchy="false" form="prefix">(</mo><mi>v</mi><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">r = v - C_{t(v)}</annotation></semantics></math></p>
+<p>With 2^18 = 262,144 centroids, the exact centroid identifier needs 18 bits and is stored in four bytes. A two-bit residual needs 128 x 2 / 8 = 32 bytes. Total storage is 36 bytes rather than 256, a 7.1-times reduction. The codebook costs 262,144 x 128 x 2 = 64 MiB, only 0.3% of the compressed index.</p>
+<p>Residual compression applies the IVFADC argument to token vectors. The source limits its claim. Compression is quality-neutral by design in the reported comparison, but stale centroids under domain drift can inflate residuals and cause broad quality loss.</p>
+<h4 id="reuse-centroids-in-the-plaid-funnel">Reuse centroids in the PLAID funnel</h4>
+<ol type="1">
+<li>Candidate generation scores 32 query vectors against every centroid in one matrix multiplication. It probes the top few centroids per token and unions their passage lists. It reads the 64 MiB codebook but no residuals.</li>
+<li>Centroid pruning removes centroids whose maximum query similarity falls below a threshold.</li>
+<li>Centroid interaction runs approximate MaxSim over four-byte centroid identifiers. It retains the top ndocs and then ndocs divided by four.</li>
+<li>Residual decompression reconstructs and exactly scores only the final survivors.</li>
+</ol>
+<p>Off-the-shelf IVF-PQ is the losing alternative in the source's comparison. Its compact product-quantization codes remain opaque until reconstruction, so pruning still pays decompression. PLAID uses one centroid table as coarse quantizer, residual anchor, and ranking proxy.</p>
+<h4 id="worked-storage-and-traffic">Worked storage and traffic</h4>
+<p>Use 2^18 centroids, two bits per residual dimension, 32 query tokens, 68 document tokens, two centroid probes per query token, and ndocs = 256. Then ndocs/4 = 64 passages reach exact scoring.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Arithmetic</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uncompressed float16</td>
+<td>5.984 x 10^8 x 256 bytes</td>
+<td style="text-align: right;">143 GiB</td>
+</tr>
+<tr>
+<td>Centroid plus two-bit residual</td>
+<td>5.984 x 10^8 x 36 bytes</td>
+<td style="text-align: right;">20.1 GiB plus 64 MiB</td>
+</tr>
+<tr>
+<td>Ordinary decompression after candidate generation</td>
+<td>146,112 x 68 x 36 bytes</td>
+<td style="text-align: right;">341 MiB per query</td>
+</tr>
+<tr>
+<td>PLAID centroid interaction plus final decompression</td>
+<td>37.9 MiB plus 153 KiB</td>
+<td style="text-align: right;">38.1 MiB per query</td>
+</tr>
+</tbody>
+</table></div>
+<p>Residual compression frees 143 - 20.1 = 123 GiB with no reported quality cost. Dimension reduction frees 116 GiB and costs one MRR@10 point.</p>
+<p>The average centroid list holds 5.984 x 10^8 / 2^18 = 2,283 embeddings. Two probes for each of 32 query tokens touch at most 64 x 2,283 = 146,112 candidate embeddings or passages, 1.7% of the corpus, before any residual read.</p>
+<p>Decompressing that candidate set costs 146,112 x 68 x 36 = 3.577 x 10^8 bytes, or 341 MiB. Reading only four-byte identifiers costs 37.9 MiB. Exact decompression of 64 passages costs 64 x 68 x 36 = 156,672 bytes, or 153 KiB. Total PLAID traffic is 38.1 MiB. The 341/38.1 ratio is 9.0, exactly the 36/4 payload-to-identifier ratio before extra pruning effects.</p>
+<p>The 20.1 GiB footprint is 7.1 times below 143 GiB and lies inside the reported six-to-ten-times ColBERTv2 range. PLAID reports up to seven-times lower GPU latency and 45-times lower CPU latency. Format alone explains nine times less traffic. Centroid pruning reduces the candidate base further. Hand-written C++ CPU kernels and precomputed decompression tables attack ragged reshape and padding, which explains why CPU improvement can exceed GPU improvement.</p>
+<h4 id="quality-bit-width-and-codebook-limits">Quality, bit width, and codebook limits</h4>
+<p>Do not credit compression with ColBERTv2's quality gain. The source reports 36.0 to 39.7 MRR@10 on MS MARCO development data. It attributes the gain to denoised distillation from a 22-million-parameter MiniLM cross-encoder with a KL-divergence loss over 64-way tuples. One-bit residuals need 4 + 16 = 20 bytes per embedding and 11.1 GiB total. Dropping the second bit saves 9.0 GiB but halves residual precision. The source defaults to two bits unless measured out-of-domain behavior justifies one bit.</p>
+<p>At 2^18 centroids, the query-centroid scan costs 32 x 262,144 x 128 x 2 = 2.15 GFLOPs. That is 31% of the 7.04-GFLOP query encoder. At 2^20 centroids, the scan costs 8.59 GFLOPs and exceeds the encoder. A larger corpus can still justify more centroids when lists otherwise grow beyond a few thousand embeddings. Instrument stage recall. Compare gold-passage survival after centroid interaction with exhaustive MaxSim over the same candidate set before reducing ndocs or tightening thresholds. End-to-end MRR@10 alone cannot identify which funnel stage discarded a passage.</p>
+<h3 id="216-hybrid-retrieval-and-reciprocal-rank-fusion">21.6 Hybrid retrieval and Reciprocal Rank Fusion</h3>
+<h4 id="why-raw-score-fusion-fails">Why raw score fusion fails</h4>
+<ul>
+<li>What: A hybrid system keeps lexical and dense retrievers because the two fail differently.</li>
+<li>Why: Dense retrieval catches paraphrases. BM25 catches rare literal strings such as part numbers, firmware versions, and error codes.</li>
+<li>Failure: BM25 scores are unbounded and depend on corpus statistics. Cosine similarities stay within [-1, 1]. Adding them elects one unit system rather than blending evidence.</li>
+<li>Cost: The source's deployment story gains four aggregate nDCG@10 points after moving to dense retrieval but creates exact-string support failures.</li>
+</ul>
+<p>Per-query min-max normalization maps each list to [0, 1], then applies a convex combination.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mi>a</mi><mi>l</mi><mi>p</mi><mi>h</mi><mi>a</mi><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>h</mi><mi>a</mi><msub><mi>t</mi><mi>s</mi></msub><mi>p</mi><mi>a</mi><mi>r</mi><mi>s</mi><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>a</mi><mi>l</mi><mi>p</mi><mi>h</mi><mi>a</mi><mo stretchy="false" form="postfix">)</mo><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><mi>e</mi><mi>h</mi><mi>a</mi><msub><mi>t</mi><mi>d</mi></msub><mi>e</mi><mi>n</mi><mi>s</mi><mi>e</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">score(d) = alpha scorehat_sparse(d) + (1 - alpha) scorehat_dense(d)</annotation></semantics></math></p>
+<p>The same BM25 score 18.2 becomes (18.2 - 6.1)/25.3 = 0.478 in a top-100 window [6.1, 31.4]. It becomes (18.2 - 12.4)/19.0 = 0.305 in a top-10 window [12.4, 31.4]. Changing depth moves the normalized score by 36%. Min-max also forces every list winner to 1.0, whether the winning margin is 0.2 or a factor of three.</p>
+<p>Naive rank summation has the opposite flaw. It values the gap from rank 61 to 62 like the gap from rank 1 to 2.</p>
+<h4 id="rrf-and-the-meaning-of-k">RRF and the meaning of k</h4>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mi>R</mi><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>e</mi><mi>l</mi><mi>l</mi><mo>=</mo><mn>1</mn></mrow><mi>L</mi></msubsup><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><msub><mi>r</mi><mi>e</mi></msub><mi>l</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">RRF(d) = Σ_{ell=1}^{L} 1 / (k + r_ell(d))</annotation></semantics></math></p>
+<p>Omit the term when a document is absent from a list. The relative weight inside one list is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo stretchy="false" form="prefix">(</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mi>w</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">w(r) / w(1) = (k + 1) / (k + r)</annotation></semantics></math></p>
+<p>This ratio equals one half at r = k + 2. The source interprets k as the exchange rate between rank and agreement, not as harmless smoothing.</p>
+<p>A document at rank r in all L lists beats one list's rank-one document when:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mi>r</mi><mo stretchy="false" form="postfix">)</mo><mo>&gt;</mo><mn>1</mn><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">L/(k + r) &gt; 1/(k + 1)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&lt;</mo><mi>L</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo><mo>−</mo><mi>k</mi></mrow><annotation encoding="application/x-tex">r &lt; L(k + 1) - k</annotation></semantics></math></p>
+<p>For L = 2 and k = 60, the crossover is rank 62. Agreement through rank 61 beats a solo top hit, while rank 62 ties it. For k = 0, the crossover is rank 2 and only unanimous first place qualifies. For L = 3 and k = 60, the crossover is rank 123.</p>
+<p>For list depth m = 100 and k = 60, one list's weight span is (k + m)/(k + 1) = 160/61 = 2.6. That is comparable to the factor of two supplied by agreement across two lists. At k = 0, the span is 100 and agreement becomes secondary. At k = 5, the crossover is rank 7 and the span is 105/6 = 17.5.</p>
+<h4 id="worked-fusion-example">Worked fusion example</h4>
+<p>Use two lists of depth 100. Document dA is BM25 rank 1 only. Document dB is dense rank 1 only. Document dC appears at ranks 4 and 3. Document dD appears at ranks 9 and 7.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Fusion choice</th>
+<th style="text-align: right;">dA</th>
+<th style="text-align: right;">dB</th>
+<th style="text-align: right;">dC</th>
+<th style="text-align: right;">dD</th>
+<th>Final order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RRF at k = 60</td>
+<td style="text-align: right;">0.016393</td>
+<td style="text-align: right;">0.016393</td>
+<td style="text-align: right;">0.031498</td>
+<td style="text-align: right;">0.029418</td>
+<td>dC, dD, dA, dB</td>
+</tr>
+<tr>
+<td>RRF at k = 0</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">0.583</td>
+<td style="text-align: right;">0.254</td>
+<td>dA, dB, dC, dD</td>
+</tr>
+<tr>
+<td>Min-max, alpha = 0.5</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.500</td>
+<td style="text-align: right;">0.675</td>
+<td style="text-align: right;">0.484</td>
+<td>dC, dA and dB, dD</td>
+</tr>
+<tr>
+<td>Min-max, alpha = 0.7</td>
+<td style="text-align: right;">0.700</td>
+<td style="text-align: right;">0.300</td>
+<td style="text-align: right;">0.596</td>
+<td style="text-align: right;">0.393</td>
+<td>dA, dC, dD, dB</td>
+</tr>
+</tbody>
+</table></div>
+<p>At k = 60, dC = 1/64 + 1/63 = 0.015625 + 0.015873 = 0.031498. dD = 1/69 + 1/67 = 0.014493 + 0.014925 = 0.029418. Each solo rank-one document receives 1/61 = 0.016393.</p>
+<p>At k = 0, dC = 1/4 + 1/3 = 0.583. dD = 1/9 + 1/7 = 0.254. The solo winners each receive 1.</p>
+<p>The min-max example uses BM25 window [6.1, 31.4] and dense window [0.52, 0.83]. Sparse normalized scores are 1.000, 0.478, and 0.257 for dA, dC, and dD. Dense normalized scores are 1.000, 0.871, and 0.710 for dB, dC, and dD. Absent documents receive zero.</p>
+<h4 id="cost-and-limits-of-rank-fusion">Cost and limits of rank fusion</h4>
+<p>Fusion over L lists at depth m costs Lm reciprocal additions plus a sort of at most Lm candidates. With two lists of 100, that is 200 reciprocal additions and a sort over at most 200 entries. Run a 15-ms inverted-index query and an 8-ms ANN query concurrently. Wall time is max(15, 8) = 15 ms rather than 23 ms serially. Hybrid retrieval costs another index and query path, not necessarily more wall-clock latency.</p>
+<p>Cormack and colleagues used k = 60 without tuning. The source says 60 remains a common shipped default with list windows around 50 to 100. Configure k with m. At k = 60, increasing depth from 100 to 1,000 mainly enlarges a downstream rerank pool because new documents below the rank-62 crossover do little to the fused head. RRF's advantage is label-free deployment, not superior accuracy. Bruch and colleagues report that a convex combination with theoretical score bounds can outperform RRF after tuning on a small in-domain set. They also report that RRF is more sensitive to k and list depth than its parameter-free reputation suggests. The source recommends moving after a few hundred labeled in-domain queries.</p>
+<p>RRF discards confidence margins. A BM25 winner at 31.4 versus 12.1 contributes the same 1/61 as a winner ahead by 0.2. For L = 2, k = 60, and m = 100, possible fused scores lie in [1/160, 2/61], a fixed 5.2-times range. Never threshold or log RRF as confidence.</p>
+<p>Weighted RRF uses a measured list weight:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mi>e</mi><msub><mi>d</mi><mi>R</mi></msub><mi>R</mi><mi>F</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>e</mi><mi>l</mi><mi>l</mi><mo>=</mo><mn>1</mn></mrow><mi>L</mi></msubsup><mi>w</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><msub><mi>t</mi><mi>e</mi></msub><mi>l</mi><mi>l</mi><mi>/</mi><mo stretchy="false" form="prefix">(</mo><mi>k</mi><mo>+</mo><msub><mi>r</mi><mi>e</mi></msub><mi>l</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><mi>d</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">weighted_RRF(d) = Σ_{ell=1}^{L} weight_ell / (k + r_ell(d))</annotation></semantics></math></p>
+<p>Choose weights from slice-level recall on rare-term and paraphrase queries, not aggregate nDCG. Correlated lists also need care. Adding SPLADE beside BM25 and one dense list gives the lexical family two votes. With three lists and k = 60, the crossover moves to 123. Hierarchical fusion can first combine BM25 and SPLADE, then give that family one vote against dense retrieval. RAG-Fusion applies the same formula to lists from generated paraphrases. Those lists are correlated. Agreement can reflect overlapping rewrites rather than independent evidence. If the datastore lacks the fact, every list can agree on the same near-miss and pass confidently wrong context to the generator.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-211">Figure 21.1</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    T[&quot;Tokens: the, irish, sea, divides, ...&quot;] --&gt; B[&quot;BERT encoder: contextual h_i in R^768&quot;]
+    B --&gt; M[&quot;MLM head scores every vocabulary entry at every position&quot;]
+    M --&gt; G[&quot;Dense signed grid: 128 x 30,522 = 3,906,816 logits&quot;]
+    G --&gt; R[&quot;ReLU creates exact zeros&quot;]
+    R --&gt; L[&quot;log(1 + value) saturates survivors&quot;]
+    L --&gt; S[&quot;Sum over token positions&quot;]
+    S --&gt; D[&quot;Sparse document vector over the vocabulary&quot;]
+    D --&gt; P[&quot;Present terms: irish, sea&quot;]
+    D --&gt; E[&quot;Implicit expansions: water, channel, britain&quot;]
+    D --&gt; Z[&quot;All remaining dimensions equal zero: no posting and no cost&quot;]</code></pre></details></figure>
+<p>Figure 21.1: Expansion in SPLADE is a side effect of the pre-training head, not a generation step: the MLM head already scores all 30,522 vocabulary entries at every position, so terms absent from the passage can receive positive weight, and ReLU is what turns the remaining |V | dimensions into free zeros an inverted index can skip. Bar lengths are schematic.</p>
+<h3 id="figure-212">Figure 21.2</h3>
+<pre class="text"><code>(a) Penalty gradient
+
+gradient
+  ^                                      FLOPS: 2 a_bar_j / B
+  |                                  /
+  |-------------------------------/  L1: 1 / B
+  |                            /
+  +-------------------------------------------------&gt; dimension load a_bar_j
+
+L1 gives every dimension the same downward pressure.
+FLOPS pressure rises with the load already on the dimension.
+
+(b) Same average nonzero count, different activation profiles
+
+L1, 160 nonzeros                         FLOPS, 160 nonzeros
+p_j                                     p_j
+|#                                      |########
+|##                                     |########
+|###                                    |########
+|#######                                |########
++-------------&gt; vocabulary j            +-------------&gt; vocabulary j
+
+sum p_j = 160                           sum p_j = 160
+m_eff = 72                              m_eff = 4,000
+C = 5.9 x 10^8 MACs                    C = 1.06 x 10^7 MACs</code></pre>
+<p>Figure 21.2: The two penalties are indistinguishable by average nonzero count and differ by 56× in query cost: L1's constant gradient lets the learned profile settle into the Zipfian shape natural language already has, while FLOPS's load-proportional gradient spreads the same total mass across far more of the vocabulary. Bar heights are schematic. The cost figures are computed in the worked example below.</p>
+<h3 id="figure-213">Figure 21.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    subgraph A[&quot;a. Cross-encoder: all-to-all interaction&quot;]
+        AQ[&quot;Query tokens&quot;] --&gt; AJ[&quot;Joint encoder over query and document tokens&quot;]
+        AD[&quot;Document tokens&quot;] --&gt; AJ
+        AJ --&gt; AS[&quot;Score&quot;]
+        AS --&gt; AC[&quot;97 T FLOPs per query, 0 bytes precomputable, 10,700 ms&quot;]
+    end
+    subgraph B[&quot;b. Late interaction: ColBERT MaxSim&quot;]
+        BQ[&quot;Query tokens&quot;] --&gt; BQE[&quot;Query encoder&quot;]
+        BD[&quot;Document tokens&quot;] --&gt; BDE[&quot;Document encoder, precomputed offline&quot;]
+        BQE --&gt; BG[&quot;Token similarity grid, row maxima shaded&quot;]
+        BDE --&gt; BG
+        BG --&gt; BS[&quot;Score&quot;]
+        BS --&gt; BC[&quot;7 B FLOPs per query, 17,408 bytes per passage, 61 ms&quot;]
+    end
+    subgraph C[&quot;c. Single-vector bi-encoder: pooled first&quot;]
+        CQ[&quot;Query tokens&quot;] --&gt; CQE[&quot;Query encoder&quot;]
+        CD[&quot;Document tokens&quot;] --&gt; CDE[&quot;Document encoder, precomputed offline&quot;]
+        CQE --&gt; CP[&quot;One vector each&quot;]
+        CDE --&gt; CP
+        CP --&gt; CS[&quot;Score&quot;]
+        CS --&gt; CC[&quot;7 B FLOPs per query, 3,072 bytes per passage, under 1 ms scoring&quot;]
+    end</code></pre></details></figure>
+<p>Figure 21.3: Late interaction sits between the two ends and inherits the cost profile of the cheap one: ColBERT and a bi-encoder both spend about 7 B FLOPs per query because the query encoder dominates both, and they differ by 5.7× in bytes per passage. Figures are for MS MARCO at rerank depth 1,000 and are derived in the worked example. Circles are query tokens, squares document tokens.</p>
+<h3 id="figure-214">Figure 21.4</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Panel</th>
+<th>Rows and columns</th>
+<th>Cells that enter the score</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a. Full ColBERT</td>
+<td>Query-token rows by document-token columns</td>
+<td>One maximum cell from each row, then sum</td>
+<td>0.349 MRR@10</td>
+</tr>
+<tr>
+<td>b. [CLS] pooled pair</td>
+<td>The token grid is discarded</td>
+<td>One pooled-vector dot product</td>
+<td>0.285 MRR@10, -18.3%</td>
+</tr>
+<tr>
+<td>c. Mean instead of max</td>
+<td>Same full token grid</td>
+<td>Every cell contributes 1/n_d to its row mean</td>
+<td>0.331 MRR@10, -5.2%</td>
+</tr>
+<tr>
+<td>d. No query augmentation</td>
+<td>Only real query-token rows remain</td>
+<td>Row maxima from real tokens only</td>
+<td>0.343 MRR@10, -1.7%</td>
+</tr>
+</tbody>
+</table></div>
+<p>Figure 21.4: Representation granularity dominates the aggregator, which dominates query expansion: collapsing to a single vector costs 18.3% of MRR@10, mean-for-max costs 5.2%, and removing the [MASK] rows costs 1.7%. Rows are query tokens, columns document tokens. Shaded cells enter the score.</p>
+<h3 id="figure-215">Figure 21.5</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    subgraph A[&quot;a. One token embedding before and after residual compression&quot;]
+        U[&quot;ColBERT: 128 float16 dimensions = 256 bytes&quot;] --&gt; C[&quot;ColBERTv2: 4-byte centroid identifier + 32-byte two-bit residual = 36 bytes&quot;]
+        C --&gt; X[&quot;7.1x smaller&quot;]
+    end
+    subgraph B[&quot;b. PLAID funnel and allowed reads&quot;]
+        P[&quot;8.8 million passages&quot;] --&gt; G[&quot;Candidate generation: codebook only, 64 MiB, no residuals&quot;]
+        G --&gt; N[&quot;At most 146,112 candidates&quot;]
+        N --&gt; I[&quot;Centroid interaction: identifiers only, 4 bytes per embedding, 37.9 MiB&quot;]
+        I --&gt; S[&quot;64 passages&quot;]
+        S --&gt; R[&quot;Residual decompression: 36 bytes per embedding, 153 KiB&quot;]
+        R --&gt; T[&quot;Top 10&quot;]
+    end</code></pre></details></figure>
+<p>Figure 21.5: Compression and pruning share one artifact. The centroid table shrinks each embedding from 256 to 36 bytes, and then, reused as a ranking proxy, keeps all but 64 of the candidate passages from ever being decompressed - 38.1 MiB of query-time traffic instead of 341 MiB. Counts are for the worked example: 2^18 centroids, two probes per query token, ndocs = 256.</p>
+<h3 id="figure-216">Figure 21.6</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>BM25 list</th>
+<th>Dense list</th>
+<th>RRF fused at k = 60</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rank 1: dA</td>
+<td>rank 1: dB</td>
+<td>1. dC = 1/64 + 1/63 = 0.0315</td>
+</tr>
+<tr>
+<td>rank 4: dC</td>
+<td>rank 3: dC</td>
+<td>2. dD = 1/69 + 1/67 = 0.0294</td>
+</tr>
+<tr>
+<td>rank 9: dD</td>
+<td>rank 7: dD</td>
+<td>3. dA = 1/61 = 0.0164</td>
+</tr>
+<tr>
+<td>absent: dB</td>
+<td>absent: dA</td>
+<td>4. dB = 1/61 = 0.0164</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="text"><code>One list&#39;s vote relative to its own rank-one vote
+
+1.0 |*\                 k = 60
+    |  \____
+0.5 |-------\.........................*  rank 62
+    |         \_______________________
+    |*\___  k = 0
+0.0 +----+----------------------------+-------&gt; rank r
+         1                            62      100
+
+At k = 60, two lists at rank 62 tie one list at rank 1.
+At k = 0, one vote at rank 62 is worth 1/62 of rank 1.</code></pre>
+<p>Figure 21.6: Reciprocal weighting makes agreement across lists commensurate with rank inside a list. At k = 60 a list's vote at rank 62 is worth exactly half its vote at rank 1, so two lists agreeing at rank 62 tie one list's top hit. At k = 0 the same vote is worth 1/62 and only rank matters. This is why the fused list in panel (a) is led by the documents both retrievers found, not by either retriever's favorite.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one query box and one document box on the left.</li>
+<li>Draw a shared inverted-index score at the top. Label BM25 as literal weights and SPLADE as learned vocabulary weights.</li>
+<li>Draw many vocabulary bars. Cross out negative logits with ReLU and label the survivors as postings.</li>
+<li>Draw a second profile with crowded bars and a flatter profile. Label L1 on the crowded side and FLOPS on the balanced side.</li>
+<li>Draw a query-token by document-token grid. Circle one maximum in each query row and sum the circles as MaxSim.</li>
+<li>Draw one centroid identifier plus a small residual beside each token vector.</li>
+<li>Draw the PLAID funnel from centroid candidates to 64 exact survivors.</li>
+<li>Draw BM25 and dense ranked lists entering the RRF equation. Mark k as the agreement exchange rate.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>SPLADE keeps an inverted index but lets a language model assign weights to words that never appeared in the document. ReLU makes exact zeros, while FLOPS regularization spreads activity so popular posting lists do not dominate cost. ColBERT keeps one vector per token and delays interaction until MaxSim, so documents stay precomputable without losing local evidence. Its main bill is memory traffic. ColBERTv2 stores a centroid plus a tiny residual, and PLAID prunes on centroids before decompression. Finally, RRF merges lexical and dense rankings by reciprocal rank when their raw scores cannot be compared directly.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-why-can-two-splade-models-with-160-nonzeros-have-a-56x-query-cost-gap">1. Why can two SPLADE models with 160 nonzeros have a 56x query-cost gap?</h3>
+<p>Average nonzeros constrain a sum of activation probabilities, while retrieval work depends on products of query and document activation profiles. L1 can preserve a Zipfian crowd around a few long posting lists, while FLOPS uses a squared batch mean to spread load and raise effective support.</p>
+<h3 id="2-what-is-late-about-colbert-and-when-would-you-not-use-it">2. What is late about ColBERT, and when would you not use it?</h3>
+<p>No query-document operation occurs until both encoders have produced token vectors, so document vectors are precomputable. Do not use it by default when the first-stage Recall@k is already high enough for a cross-encoder reranker, when token-scaled storage breaks the budget, or when compression cannot recover that budget without losing the needed recall.</p>
+<h3 id="3-what-do-the-three-colbert-ablations-actually-prove">3. What do the three ColBERT ablations actually prove?</h3>
+<p>They show that [CLS] collapse costs 18.3% relative MRR@10, mean-for-max costs 5.2%, and removing [MASK] augmentation costs 1.7% under one fixed training recipe. They do not prove a universal 18.3% gap between multi-vector and well-trained single-vector retrieval because ANCE later reaches 0.330 with a different negative-training recipe.</p>
+<h3 id="4-why-does-colbertv2-use-a-centroid-plus-residual-and-why-does-plaid-keep-the-centroid-stage">4. Why does ColBERTv2 use a centroid plus residual, and why does PLAID keep the centroid stage?</h3>
+<p>The centroid preserves between-cluster token identity exactly, so two-bit levels cover only the narrower within-cluster residual range. PLAID also ranks with centroid identifiers, which reduces query traffic from 341 MiB to 38.1 MiB before exact scoring. Remove that stage only if measured stage recall loss is worth the latency increase.</p>
+<h3 id="5-when-does-rrf-lose-to-score-fusion-and-what-happens-when-you-add-splade-to-bm25-plus-dense-retrieval">5. When does RRF lose to score fusion, and what happens when you add SPLADE to BM25 plus dense retrieval?</h3>
+<p>RRF wins as a label-free, calibration-free default, but a convex combination with theoretical score bounds can win after in-domain tuning. Adding SPLADE creates two correlated lexical votes, so hierarchical fusion can prevent the lexical family from overwhelming paraphrase queries.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number</th>
+<th>Meaning or limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opening BM25 service</td>
+<td style="text-align: right;">40 ms p99</td>
+<td>Existing lexical service latency</td>
+</tr>
+<tr>
+<td>Opening failure audit</td>
+<td style="text-align: right;">12%</td>
+<td>Queries with no reranker-acceptable result</td>
+</tr>
+<tr>
+<td>SPLADE latency incident</td>
+<td style="text-align: right;">Recall@1000 up four points, 15 ms to 900 ms</td>
+<td>Hypothetical regression when query terms expand from 8 to 100</td>
+</tr>
+<tr>
+<td>WordPiece vocabulary</td>
+<td style="text-align: right;">30,522</td>
+<td>SPLADE output dimensions</td>
+</tr>
+<tr>
+<td>BERT hidden width</td>
+<td style="text-align: right;">768</td>
+<td>Contextual state size</td>
+</tr>
+<tr>
+<td>Example sequence length</td>
+<td style="text-align: right;">128</td>
+<td>Positions scored by the MLM head</td>
+</tr>
+<tr>
+<td>Dense SPLADE logit grid</td>
+<td style="text-align: right;">3,906,816</td>
+<td>128 x 30,522 logits</td>
+</tr>
+<tr>
+<td>docT5query expansion</td>
+<td style="text-align: right;">40 queries per passage</td>
+<td>Discrete appended queries</td>
+</tr>
+<tr>
+<td>BM25 MRR@10</td>
+<td style="text-align: right;">0.184</td>
+<td>Baseline in the SPLADE comparison</td>
+</tr>
+<tr>
+<td>docT5query MRR@10</td>
+<td style="text-align: right;">0.277</td>
+<td>Expansion baseline</td>
+</tr>
+<tr>
+<td>SPLADE v1 MRR@10</td>
+<td style="text-align: right;">0.322</td>
+<td>In-batch negatives plus one BM25 hard negative</td>
+</tr>
+<tr>
+<td>SPLADE v2 max-pool MRR@10</td>
+<td style="text-align: right;">0.340</td>
+<td>Empirical benchmark gain that did not reproduce everywhere</td>
+</tr>
+<tr>
+<td>Distilled SPLADE v2 MRR@10</td>
+<td style="text-align: right;">0.368</td>
+<td>Cross-encoder distillation result</td>
+</tr>
+<tr>
+<td>Saturation example</td>
+<td style="text-align: right;">60 versus 5</td>
+<td>Raw sums from five logits of 12 and five of 1</td>
+</tr>
+<tr>
+<td>Saturated sums</td>
+<td style="text-align: right;">12.83 versus 3.47</td>
+<td>Five ln(13) versus five ln(2)</td>
+</tr>
+<tr>
+<td>Saturated ratio</td>
+<td style="text-align: right;">3.7</td>
+<td>Reduced from raw ratio 12</td>
+</tr>
+<tr>
+<td>MS MARCO passages</td>
+<td style="text-align: right;">8,841,823</td>
+<td>Sparse worked-example corpus size</td>
+</tr>
+<tr>
+<td>BM25 terms per passage</td>
+<td style="text-align: right;">40</td>
+<td>Sparse baseline</td>
+</tr>
+<tr>
+<td>Posting size</td>
+<td style="text-align: right;">8 bytes</td>
+<td>Four-byte document identifier plus four-byte weight</td>
+</tr>
+<tr>
+<td>BM25 postings</td>
+<td style="text-align: right;">3.54 x 10^8</td>
+<td>2.83-GB index</td>
+</tr>
+<tr>
+<td>BM25 average list</td>
+<td style="text-align: right;">1.16 x 10^4</td>
+<td>Posting entries per vocabulary dimension</td>
+</tr>
+<tr>
+<td>BM25 query work</td>
+<td style="text-align: right;">9.27 x 10^4 MACs</td>
+<td>Eight-term query estimate</td>
+</tr>
+<tr>
+<td>Unregularized positive share</td>
+<td style="text-align: right;">30%</td>
+<td>9,157 nonzeros per SPLADE passage</td>
+</tr>
+<tr>
+<td>Unregularized postings</td>
+<td style="text-align: right;">8.10 x 10^10</td>
+<td>648-GB index</td>
+</tr>
+<tr>
+<td>Unregularized average list</td>
+<td style="text-align: right;">2.65 x 10^6</td>
+<td>Entries per vocabulary dimension</td>
+</tr>
+<tr>
+<td>Unregularized query work</td>
+<td style="text-align: right;">2.65 x 10^8 MACs</td>
+<td>100-term expanded query</td>
+</tr>
+<tr>
+<td>Unregularized multiplier</td>
+<td style="text-align: right;">2,900x</td>
+<td>Query work versus BM25</td>
+</tr>
+<tr>
+<td>Regularized SPLADE nonzeros</td>
+<td style="text-align: right;">160</td>
+<td>Four times BM25's 40</td>
+</tr>
+<tr>
+<td>Regularized SPLADE postings</td>
+<td style="text-align: right;">1.41 x 10^9</td>
+<td>11.3-GB index</td>
+</tr>
+<tr>
+<td>Regularized average list</td>
+<td style="text-align: right;">4.64 x 10^4</td>
+<td>Posting entries</td>
+</tr>
+<tr>
+<td>Regularized query work</td>
+<td style="text-align: right;">4.64 x 10^6 MACs</td>
+<td>50 times BM25</td>
+</tr>
+<tr>
+<td>Sparse bytes per document</td>
+<td style="text-align: right;">1,280</td>
+<td>160 eight-byte pairs</td>
+</tr>
+<tr>
+<td>Dense bytes per document</td>
+<td style="text-align: right;">3,072</td>
+<td>768 float32 dimensions</td>
+</tr>
+<tr>
+<td>Flat dense collection</td>
+<td style="text-align: right;">27.2 GB</td>
+<td>Versus 11.3 GB learned sparse</td>
+</tr>
+<tr>
+<td>Sparse storage advantage</td>
+<td style="text-align: right;">2.4x</td>
+<td>11.3 GB versus 27.2 GB</td>
+</tr>
+<tr>
+<td>MLM-head indexing cost</td>
+<td style="text-align: right;">6.00 x 10^9 FLOPs</td>
+<td>Per passage</td>
+</tr>
+<tr>
+<td>BERT-base indexing cost</td>
+<td style="text-align: right;">2.82 x 10^10 FLOPs</td>
+<td>Per passage</td>
+</tr>
+<tr>
+<td>MLM-head overhead</td>
+<td style="text-align: right;">21%</td>
+<td>Extra indexing work</td>
+</tr>
+<tr>
+<td>Dense SPLADE materialization</td>
+<td style="text-align: right;">122 kB per document</td>
+<td>1,080 GB for the corpus</td>
+</tr>
+<tr>
+<td>Audit depth</td>
+<td style="text-align: right;">Top 20 dimensions</td>
+<td>Recommended expansion inspection</td>
+</tr>
+<tr>
+<td>Large-corpus example</td>
+<td style="text-align: right;">500 million chunks</td>
+<td>Staff-level sizing case</td>
+</tr>
+<tr>
+<td>Large dense index</td>
+<td style="text-align: right;">1.54 TB</td>
+<td>768-dimensional float32</td>
+</tr>
+<tr>
+<td>Large BM25 index</td>
+<td style="text-align: right;">160 GB</td>
+<td>40 terms per passage</td>
+</tr>
+<tr>
+<td>Large SPLADE index</td>
+<td style="text-align: right;">640 GB</td>
+<td>160 nonzeros per passage</td>
+</tr>
+<tr>
+<td>Zipf harmonic terms</td>
+<td style="text-align: right;">10.33 + 0.58 = 10.90</td>
+<td>ln vocabulary plus gamma</td>
+</tr>
+<tr>
+<td>Squared reciprocal limit</td>
+<td style="text-align: right;">1.645</td>
+<td>pi squared divided by six</td>
+</tr>
+<tr>
+<td>Zipf effective support</td>
+<td style="text-align: right;">72</td>
+<td>118.9 divided by 1.645</td>
+</tr>
+<tr>
+<td>FLOPS pressure example</td>
+<td style="text-align: right;">40x</td>
+<td>Load 2.0 versus 0.05</td>
+</tr>
+<tr>
+<td>FLOPS worked query nonzeros</td>
+<td style="text-align: right;">30</td>
+<td>Before query-side reduction</td>
+</tr>
+<tr>
+<td>FLOPS cost numerator</td>
+<td style="text-align: right;">4.24 x 10^10</td>
+<td>N x 30 x 160</td>
+</tr>
+<tr>
+<td>L1 query cost</td>
+<td style="text-align: right;">5.9 x 10^8 MACs</td>
+<td>Effective support 72</td>
+</tr>
+<tr>
+<td>Balanced effective support</td>
+<td style="text-align: right;">4,000</td>
+<td>FLOPS configuration</td>
+</tr>
+<tr>
+<td>Balanced query cost</td>
+<td style="text-align: right;">1.06 x 10^7 MACs</td>
+<td>56 times below L1</td>
+</tr>
+<tr>
+<td>Literal query nonzeros</td>
+<td style="text-align: right;">8</td>
+<td>Query-side reduction target</td>
+</tr>
+<tr>
+<td>Reduced query cost</td>
+<td style="text-align: right;">2.83 x 10^6 MACs</td>
+<td>Another 3.75-times gain</td>
+</tr>
+<tr>
+<td>Balanced versus BM25</td>
+<td style="text-align: right;">114x</td>
+<td>Posting-count work estimate</td>
+</tr>
+<tr>
+<td>L1 versus BM25</td>
+<td style="text-align: right;">6,400x</td>
+<td>Outside shipped range described in the source</td>
+</tr>
+<tr>
+<td>Profile sample</td>
+<td style="text-align: right;">100,000 vectors</td>
+<td>Suggested effective-support estimate</td>
+</tr>
+<tr>
+<td>Lambda warm-up</td>
+<td style="text-align: right;">First 10% to 15% of steps</td>
+<td>Quadratic schedule recommendation</td>
+</tr>
+<tr>
+<td>Lambda ratio default</td>
+<td style="text-align: right;">About one order of magnitude</td>
+<td>Query pressure above document pressure</td>
+</tr>
+<tr>
+<td>FLOPS warning run</td>
+<td style="text-align: right;">158 versus target 160, then p99 at 40x budget</td>
+<td>Same count can hide the wrong activation profile</td>
+</tr>
+<tr>
+<td>Same-count checkpoint example</td>
+<td style="text-align: right;">160 nonzeros, 40 ms versus 2 s</td>
+<td>Effective support separates the two models</td>
+</tr>
+<tr>
+<td>Cross-encoder depth</td>
+<td style="text-align: right;">1,000</td>
+<td>MS MARCO rerank comparison</td>
+</tr>
+<tr>
+<td>Cross-encoder quality</td>
+<td style="text-align: right;">34.7 MRR@10</td>
+<td>Reported BERT-base result</td>
+</tr>
+<tr>
+<td>Cross-encoder latency</td>
+<td style="text-align: right;">10,700 ms</td>
+<td>Single V100 query time</td>
+</tr>
+<tr>
+<td>Cross-encoder work</td>
+<td style="text-align: right;">97 trillion FLOPs</td>
+<td>No precomputable document work</td>
+</tr>
+<tr>
+<td>ColBERT query tokens</td>
+<td style="text-align: right;">32</td>
+<td>Fixed padded length</td>
+</tr>
+<tr>
+<td>ColBERT projection</td>
+<td style="text-align: right;">128 dimensions</td>
+<td>Token embedding width</td>
+</tr>
+<tr>
+<td>Average document tokens</td>
+<td style="text-align: right;">68</td>
+<td>MS MARCO passage average</td>
+</tr>
+<tr>
+<td>ColBERT query encoder</td>
+<td style="text-align: right;">7.04 x 10^9 FLOPs</td>
+<td>2 x 110 million x 32</td>
+</tr>
+<tr>
+<td>ColBERT MaxSim</td>
+<td style="text-align: right;">5.57 x 10^8 FLOPs</td>
+<td>Depth 1,000 grid work</td>
+</tr>
+<tr>
+<td>ColBERT total</td>
+<td style="text-align: right;">7.6 x 10^9 FLOPs</td>
+<td>Query plus MaxSim</td>
+</tr>
+<tr>
+<td>MaxSim share</td>
+<td style="text-align: right;">7.3%</td>
+<td>Query encoder takes 93%</td>
+</tr>
+<tr>
+<td>FLOP ratio</td>
+<td style="text-align: right;">13,857, reported 13,900x</td>
+<td>Cross-encoder versus ColBERT</td>
+</tr>
+<tr>
+<td>Measured latency ratio</td>
+<td style="text-align: right;">175x</td>
+<td>10,700 divided by 61</td>
+</tr>
+<tr>
+<td>FLOP overstatement</td>
+<td style="text-align: right;">79x</td>
+<td>13,900 versus 175</td>
+</tr>
+<tr>
+<td>ColBERT latency</td>
+<td style="text-align: right;">61 ms</td>
+<td>Depth-1,000 reranking</td>
+</tr>
+<tr>
+<td>Compute portion</td>
+<td style="text-align: right;">13 ms</td>
+<td>Encoding plus interaction</td>
+</tr>
+<tr>
+<td>Data-movement portion</td>
+<td style="text-align: right;">48 ms</td>
+<td>Gather, stack, and transfer</td>
+</tr>
+<tr>
+<td>ColBERT bytes per passage</td>
+<td style="text-align: right;">17,408</td>
+<td>68 x 128 x two bytes</td>
+</tr>
+<tr>
+<td>DPR bytes per passage</td>
+<td style="text-align: right;">3,072</td>
+<td>768 float32 dimensions</td>
+</tr>
+<tr>
+<td>Passage storage ratio</td>
+<td style="text-align: right;">5.67x</td>
+<td>ColBERT versus DPR</td>
+</tr>
+<tr>
+<td>ColBERT collection</td>
+<td style="text-align: right;">143 GiB</td>
+<td>8.8 million passages</td>
+</tr>
+<tr>
+<td>DPR collection</td>
+<td style="text-align: right;">25.2 GiB</td>
+<td>Same corpus</td>
+</tr>
+<tr>
+<td>End-to-end recall</td>
+<td style="text-align: right;">96.8% Recall@1000</td>
+<td>ColBERT ANN route</td>
+</tr>
+<tr>
+<td>BM25 ceiling</td>
+<td style="text-align: right;">81.4% Recall@1000</td>
+<td>Same for BM25 and its reranker</td>
+</tr>
+<tr>
+<td>End-to-end latency</td>
+<td style="text-align: right;">458 ms</td>
+<td>Versus 61 ms reranking</td>
+</tr>
+<tr>
+<td>Local-evidence example</td>
+<td style="text-align: right;">0.95 versus 0.10, mean 0.1125</td>
+<td>Max keeps 9.5x separation while mean leaves a 12.5% lift</td>
+</tr>
+<tr>
+<td>Dimension footprint range</td>
+<td style="text-align: right;">286 GiB to 27 GiB</td>
+<td>128 float32 dimensions to 24 float16 dimensions</td>
+</tr>
+<tr>
+<td>Dimension quality range</td>
+<td style="text-align: right;">34.9 to 33.9 MRR@10</td>
+<td>One-point loss</td>
+</tr>
+<tr>
+<td>Dimension storage ratio</td>
+<td style="text-align: right;">10.6x</td>
+<td>For 2.9% quality</td>
+</tr>
+<tr>
+<td>Small-corpus heuristic</td>
+<td style="text-align: right;">Roughly one million chunks</td>
+<td>Case where 5.7x may stay affordable</td>
+</tr>
+<tr>
+<td>Full ColBERT ablation score</td>
+<td style="text-align: right;">0.349 MRR@10</td>
+<td>Fixed-recipe baseline</td>
+</tr>
+<tr>
+<td>[CLS] ablation</td>
+<td style="text-align: right;">0.285, -18.3%</td>
+<td>0.064 absolute drop</td>
+</tr>
+<tr>
+<td>Mean ablation</td>
+<td style="text-align: right;">0.331, -5.2%</td>
+<td>0.018 absolute drop</td>
+</tr>
+<tr>
+<td>No-augmentation ablation</td>
+<td style="text-align: right;">0.343, -1.7%</td>
+<td>0.006 absolute drop</td>
+</tr>
+<tr>
+<td>BM25 ablation floor</td>
+<td style="text-align: right;">0.187 MRR@10</td>
+<td>First-stage baseline in that table</td>
+</tr>
+<tr>
+<td>Full headroom</td>
+<td style="text-align: right;">0.162</td>
+<td>0.349 minus 0.187</td>
+</tr>
+<tr>
+<td>[CLS] headroom</td>
+<td style="text-align: right;">0.098</td>
+<td>0.285 minus 0.187</td>
+</tr>
+<tr>
+<td>Headroom surrendered</td>
+<td style="text-align: right;">39.5%</td>
+<td>One minus 0.098 divided by 0.162</td>
+</tr>
+<tr>
+<td>Granularity ratio</td>
+<td style="text-align: right;">3.5x</td>
+<td>18.3 divided by 5.2</td>
+</tr>
+<tr>
+<td>[CLS] total footprint</td>
+<td style="text-align: right;">2.1 GiB</td>
+<td>256 bytes per passage</td>
+</tr>
+<tr>
+<td>[CLS] storage freed</td>
+<td style="text-align: right;">140.9 GiB</td>
+<td>For 6.4 MRR@10 points</td>
+</tr>
+<tr>
+<td>[CLS] rate</td>
+<td style="text-align: right;">22.0 GiB per point</td>
+<td>Storage returned per quality point</td>
+</tr>
+<tr>
+<td>Dimension rate</td>
+<td style="text-align: right;">116 GiB per point</td>
+<td>5.3 times better than token collapse</td>
+</tr>
+<tr>
+<td>Eight-token no-mask encode</td>
+<td style="text-align: right;">1.76 x 10^9 FLOPs</td>
+<td>Short query encoder cost</td>
+</tr>
+<tr>
+<td>Eight-token MaxSim</td>
+<td style="text-align: right;">1.39 x 10^8 FLOPs</td>
+<td>Depth-1,000 interaction</td>
+</tr>
+<tr>
+<td>No-mask total</td>
+<td style="text-align: right;">1.9 x 10^9 FLOPs</td>
+<td>Four times below full query</td>
+</tr>
+<tr>
+<td>Maximum latency saving</td>
+<td style="text-align: right;">9.8 ms</td>
+<td>61 ms to 51 ms</td>
+</tr>
+<tr>
+<td>Wall-clock gain</td>
+<td style="text-align: right;">16%</td>
+<td>For 1.7% quality loss</td>
+</tr>
+<tr>
+<td>Added query vector</td>
+<td style="text-align: right;">17,408 FLOPs per candidate</td>
+<td>1.74 x 10^7 at depth 1,000</td>
+</tr>
+<tr>
+<td>Expansion cost share</td>
+<td style="text-align: right;">0.23%</td>
+<td>Of query budget</td>
+</tr>
+<tr>
+<td>ANCE result</td>
+<td style="text-align: right;">0.330 MRR@10</td>
+<td>Single-vector claim limit</td>
+</tr>
+<tr>
+<td>[CLS] versus DPR footprint</td>
+<td style="text-align: right;">12x</td>
+<td>25.2 GiB divided by 2.1 GiB, matching 3,072 divided by 256</td>
+</tr>
+<tr>
+<td>Senior storage budget</td>
+<td style="text-align: right;">30 GiB</td>
+<td>Dimension cut lands at 27 GiB</td>
+</tr>
+<tr>
+<td>Token embeddings</td>
+<td style="text-align: right;">5.984 x 10^8</td>
+<td>8.8 million x 68</td>
+</tr>
+<tr>
+<td>Original token embedding</td>
+<td style="text-align: right;">256 bytes</td>
+<td>128 float16 dimensions</td>
+</tr>
+<tr>
+<td>Centroid count</td>
+<td style="text-align: right;">2^18 = 262,144</td>
+<td>ColBERTv2 worked setting</td>
+</tr>
+<tr>
+<td>Centroid identifier</td>
+<td style="text-align: right;">18 bits, stored as 4 bytes</td>
+<td>Exact cluster identity</td>
+</tr>
+<tr>
+<td>Two-bit residual</td>
+<td style="text-align: right;">32 bytes</td>
+<td>128 x two bits</td>
+</tr>
+<tr>
+<td>Compressed embedding</td>
+<td style="text-align: right;">36 bytes</td>
+<td>Four-byte identifier plus residual</td>
+</tr>
+<tr>
+<td>Compression ratio</td>
+<td style="text-align: right;">7.1x</td>
+<td>256 divided by 36</td>
+</tr>
+<tr>
+<td>Codebook</td>
+<td style="text-align: right;">64 MiB</td>
+<td>0.3% of compressed index</td>
+</tr>
+<tr>
+<td>Compressed collection</td>
+<td style="text-align: right;">20.1 GiB</td>
+<td>Plus the codebook</td>
+</tr>
+<tr>
+<td>Reported footprint band</td>
+<td style="text-align: right;">6x to 10x</td>
+<td>ColBERTv2 reduction range</td>
+</tr>
+<tr>
+<td>Centroid probes</td>
+<td style="text-align: right;">Two per query token</td>
+<td>64 probes for 32 tokens</td>
+</tr>
+<tr>
+<td>Average centroid list</td>
+<td style="text-align: right;">2,283 embeddings</td>
+<td>5.984 x 10^8 divided by 2^18</td>
+</tr>
+<tr>
+<td>Maximum candidates</td>
+<td style="text-align: right;">146,112</td>
+<td>1.7% of the corpus</td>
+</tr>
+<tr>
+<td>PLAID ndocs</td>
+<td style="text-align: right;">256</td>
+<td>Final exact set is 64</td>
+</tr>
+<tr>
+<td>Ordinary candidate traffic</td>
+<td style="text-align: right;">341 MiB</td>
+<td>Full residual decompression</td>
+</tr>
+<tr>
+<td>Centroid interaction traffic</td>
+<td style="text-align: right;">37.9 MiB</td>
+<td>Four-byte identifiers</td>
+</tr>
+<tr>
+<td>Final exact traffic</td>
+<td style="text-align: right;">153 KiB</td>
+<td>156,672 bytes</td>
+</tr>
+<tr>
+<td>PLAID total traffic</td>
+<td style="text-align: right;">38.1 MiB</td>
+<td>Nine times below 341 MiB</td>
+</tr>
+<tr>
+<td>Reported GPU speedup</td>
+<td style="text-align: right;">Up to 7x</td>
+<td>PLAID latency</td>
+</tr>
+<tr>
+<td>Reported CPU speedup</td>
+<td style="text-align: right;">Up to 45x</td>
+<td>PLAID latency</td>
+</tr>
+<tr>
+<td>ColBERT quality</td>
+<td style="text-align: right;">36.0 MRR@10</td>
+<td>Before v2 distillation gain</td>
+</tr>
+<tr>
+<td>ColBERTv2 quality</td>
+<td style="text-align: right;">39.7 MRR@10</td>
+<td>Denoised distillation result</td>
+</tr>
+<tr>
+<td>MiniLM teacher</td>
+<td style="text-align: right;">22 million parameters</td>
+<td>Cross-encoder teacher</td>
+</tr>
+<tr>
+<td>Distillation tuple</td>
+<td style="text-align: right;">64-way</td>
+<td>KL loss over soft scores</td>
+</tr>
+<tr>
+<td>One-bit embedding</td>
+<td style="text-align: right;">20 bytes</td>
+<td>Four-byte identifier plus 16-byte residual</td>
+</tr>
+<tr>
+<td>One-bit collection</td>
+<td style="text-align: right;">11.1 GiB</td>
+<td>Saves 9.0 GiB versus two bits</td>
+</tr>
+<tr>
+<td>2^18 centroid scan</td>
+<td style="text-align: right;">2.15 GFLOPs</td>
+<td>31% of query-encoder work</td>
+</tr>
+<tr>
+<td>2^20 centroid scan</td>
+<td style="text-align: right;">8.59 GFLOPs</td>
+<td>Exceeds the 7.04-GFLOP encoder</td>
+</tr>
+<tr>
+<td>Hybrid quality story</td>
+<td style="text-align: right;">Four nDCG@10 points</td>
+<td>Aggregate gain with exact-string regressions</td>
+</tr>
+<tr>
+<td>Cosine bounds</td>
+<td style="text-align: right;">-1 to 1</td>
+<td>Incompatible with unbounded BM25 units</td>
+</tr>
+<tr>
+<td>Min-max depth shift</td>
+<td style="text-align: right;">0.478 to 0.305</td>
+<td>36% change for the same score 18.2</td>
+</tr>
+<tr>
+<td>Min-max windows</td>
+<td style="text-align: right;">[6.1, 31.4] and [12.4, 31.4]</td>
+<td>Depth 100 versus depth 10</td>
+</tr>
+<tr>
+<td>RRF default k</td>
+<td style="text-align: right;">60</td>
+<td>Label-free starting point</td>
+</tr>
+<tr>
+<td>Two-list crossover</td>
+<td style="text-align: right;">Rank 62</td>
+<td>At k = 60</td>
+</tr>
+<tr>
+<td>k = 0 crossover</td>
+<td style="text-align: right;">Rank 2</td>
+<td>Only unanimous first place qualifies</td>
+</tr>
+<tr>
+<td>Three-list crossover</td>
+<td style="text-align: right;">Rank 123</td>
+<td>At k = 60</td>
+</tr>
+<tr>
+<td>Weight span</td>
+<td style="text-align: right;">160/61 = 2.6x</td>
+<td>k = 60 and depth 100</td>
+</tr>
+<tr>
+<td>k = 5 span</td>
+<td style="text-align: right;">105/6 = 17.5x</td>
+<td>Agreement fades below rank 7</td>
+</tr>
+<tr>
+<td>Worked RRF dC</td>
+<td style="text-align: right;">0.031498</td>
+<td>Ranks 4 and 3 at k = 60</td>
+</tr>
+<tr>
+<td>Worked RRF dD</td>
+<td style="text-align: right;">0.029418</td>
+<td>Ranks 9 and 7 at k = 60</td>
+</tr>
+<tr>
+<td>Worked solo hit</td>
+<td style="text-align: right;">0.016393</td>
+<td>Rank 1 in one list at k = 60</td>
+</tr>
+<tr>
+<td>Worked k = 0 dC</td>
+<td style="text-align: right;">0.583</td>
+<td>One fourth plus one third</td>
+</tr>
+<tr>
+<td>Worked k = 0 dD</td>
+<td style="text-align: right;">0.254</td>
+<td>One ninth plus one seventh</td>
+</tr>
+<tr>
+<td>Convex alpha values</td>
+<td style="text-align: right;">0.5 and 0.7</td>
+<td>Produce different worked orders</td>
+</tr>
+<tr>
+<td>Fusion work</td>
+<td style="text-align: right;">200 reciprocal additions</td>
+<td>Two lists at depth 100</td>
+</tr>
+<tr>
+<td>Concurrent retrieval</td>
+<td style="text-align: right;">15 ms</td>
+<td>Maximum of 15-ms sparse and 8-ms dense paths</td>
+</tr>
+<tr>
+<td>Serial retrieval</td>
+<td style="text-align: right;">23 ms</td>
+<td>Sum of the same paths</td>
+</tr>
+<tr>
+<td>Typical list windows</td>
+<td style="text-align: right;">50 to 100</td>
+<td>Regime paired with k = 60</td>
+</tr>
+<tr>
+<td>Deeper-list example</td>
+<td style="text-align: right;">100 to 1,000</td>
+<td>Mainly expands a downstream rerank pool</td>
+</tr>
+<tr>
+<td>Labeled tuning point</td>
+<td style="text-align: right;">A few hundred queries</td>
+<td>When convex score fusion becomes viable</td>
+</tr>
+<tr>
+<td>RRF score band</td>
+<td style="text-align: right;">1/160 to 2/61</td>
+<td>L = 2, k = 60, m = 100</td>
+</tr>
+<tr>
+<td>RRF dynamic range</td>
+<td style="text-align: right;">5.2x</td>
+<td>Fixed across query and corpus</td>
+</tr>
+<tr>
+<td>Invalid confidence threshold</td>
+<td style="text-align: right;">RRF score above 0.02</td>
+<td>This cuts on list membership, not relevance</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/20_dense_retrieval.html"><small>Previous</small>Chapter 20. Dense Retrieval</a><a href="../chapters/22_reranking.html"><small>Next</small>Chapter 22. Reranking</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

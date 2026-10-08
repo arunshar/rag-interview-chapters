@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 25. Routing and Adaptive Retrieval | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/25_routing_and_adaptive_retrieval.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group" open><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html" aria-current="page">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part VII. Query Understanding and Control Flow</p><h1>Chapter 25. Routing and Adaptive Retrieval</h1><p class="chapter-meta">67 min estimated reading · Unit 34 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how a Retrieval-Augmented Generation (RAG) system decides when to retrieve, where to look, which operation to run, and how to fail safely on unfamiliar queries.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li><p>Retrieval should fire only when it is more likely to help than hurt. The maximum accuracy gain over always retrieving equals the share of questions that the closed-book model gets right and retrieval gets wrong.</p></li>
+<li><p>A useful gate separates questions retrieval spoils from questions retrieval saves. Easy versus hard is the wrong dividing line.</p></li>
+<li><p>Unified Active Retrieval (UAR) checks four different facts in order: external intent, need for world knowledge, time sensitivity, and whether the model already knows a stable answer.</p></li>
+<li><p>Source routing chooses which stores to query. It prevents prohibited calls, repeated evidence, incompatible scores, and compounded tail latency, but it creates silent recall risk when it skips the right store.</p></li>
+<li><p>A descriptive classifier says what a query is like. A prescriptive router says what the system should do, such as answer directly, retrieve once, rewrite, or decompose.</p></li>
+<li><p>Query stratification asks what the corpus must supply: one fact, several facts, a written procedure, or an unwritten policy inferred from prior cases.</p></li>
+<li><p>Adaptive-RAG learns routes from silver labels. It runs every available policy offline and keeps the cheapest policy that produced the correct answer. Every learned router is weak out of distribution. Confidence measures distance from a decision boundary, so a separate distance-to-training-data gate must send unfamiliar inputs to the safer branch.</p></li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Imagine one large library with a service desk, several archive rooms, and a clerk who can sometimes answer from memory. A patron asks a question. The first choice is whether to send a records runner into the archives at all. The runner can help when the clerk lacks a fact. The runner can also return an old or distracting page that makes a correct remembered answer worse. The chief librarian therefore studies two piles. One pile contains questions the runner rescued. The other contains questions the runner spoiled. The useful gate learns the difference between those piles. It does not merely separate easy questions from hard ones. The librarian next checks four cards. The first card asks whether the patron wants outside knowledge at all. A request to reformat a note does not need a records runner. The second card asks whether the answer needs facts beyond the text already on the desk. The third asks whether the fact can become stale. The fourth asks whether this clerk already knows the stable fact. Freshness comes before memory because a clerk can confidently remember last year's office holder. If retrieval is needed, the chief librarian chooses where to send the runner. Broadcasting sends runners to every room. That can violate a regional rule, call an expensive partner desk, or bring back four photocopies of one stale memo. Four copies look like four witnesses even though they come from one author. Routing opens only likely rooms, merges their result ranks, and groups copies by lineage before counting agreement. The chief librarian must then choose an operation. A descriptive tag such as "needs outside knowledge" does not say whether to search once, rewrite an unclear request, or split a compound request into several searches. A prescriptive route names the operation itself. The librarian also sorts requests by what the archive must provide. Level 1 needs one written fact. Level 2 needs several facts combined. Level 3 needs a whole written procedure. Level 4 needs examples of past decisions because nobody wrote the policy down. Each level needs different archive machinery. The library trains its dispatcher without asking people to guess hop counts. For each question with a known answer, it tries the cheap desk answer, one archive trip, and a multi-trip investigation. It labels the question with the cheapest route that worked. That label is called silver because execution produced it automatically. The final danger is a patron from a new field using unfamiliar language. The dispatcher can sound very confident while sending that patron to the wrong room. Its confidence only says how far the request lies from its internal dividing line. It does not say whether the library has seen anything similar before. The safe library therefore measures distance to familiar requests. If the request lies too far away, it bypasses the dispatcher and uses the broader, more expensive investigation.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Technical term</th>
+<th>Plain-English meaning</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retrieval-Augmented Generation (RAG)</td>
+<td>A generator answers with retrieved external context</td>
+<td>Retrieval can add evidence or corrupt an answer the model already knew</td>
+</tr>
+<tr>
+<td>Closed-book answer</td>
+<td>An answer produced without retrieved context</td>
+<td>It is the baseline branch that a retrieval gate may preserve</td>
+</tr>
+<tr>
+<td>Parametric memory</td>
+<td>Facts represented in the model's weights</td>
+<td>Popular facts may already be available without retrieval</td>
+</tr>
+<tr>
+<td>Non-parametric memory</td>
+<td>Facts stored outside the model and fetched at request time</td>
+<td>It provides updateable evidence but can add noise</td>
+</tr>
+<tr>
+<td>Exact match (EM)</td>
+<td>A score that marks an answer correct only when it matches the gold answer</td>
+<td>Adaptive-RAG uses it to manufacture route labels</td>
+</tr>
+<tr>
+<td>Retrieval gate</td>
+<td>A controller that chooses retrieve or skip</td>
+<td>It can recover accuracy and cost when always-retrieve is harmful</td>
+</tr>
+<tr>
+<td>Oracle gate</td>
+<td>An impossible ideal gate that picks the better branch for every query</td>
+<td>It defines the maximum available gating gain</td>
+</tr>
+<tr>
+<td>α cell</td>
+<td>Questions both closed-book and retrieval answer correctly</td>
+<td>Skipping these changes cost but not accuracy</td>
+</tr>
+<tr>
+<td>β cell</td>
+<td>Questions only the closed-book branch answers correctly</td>
+<td>This cell is the entire accuracy ceiling over always-retrieve</td>
+</tr>
+<tr>
+<td>γ cell</td>
+<td>Questions only the retrieval branch answers correctly</td>
+<td>Skipping these questions gives accuracy back</td>
+</tr>
+<tr>
+<td>δ cell</td>
+<td>Questions both branches miss</td>
+<td>A gate cannot repair them by branch selection</td>
+</tr>
+<tr>
+<td>Classifier-based gate</td>
+<td>A small model predicts retrieve or skip from the query or a hidden state</td>
+<td>Its signal can exist before generation</td>
+</tr>
+<tr>
+<td>Discriminative model</td>
+<td>A model that predicts a class rather than generating an answer</td>
+<td>It makes routing cheap and thresholdable</td>
+</tr>
+<tr>
+<td>Large Language Model (LLM)</td>
+<td>The generator whose weights and hidden states support answering</td>
+<td>Its competence boundary determines useful routes</td>
+</tr>
+<tr>
+<td>Hidden state</td>
+<td>The model activation produced while reading the prompt</td>
+<td>It exposes model-specific information that raw text lacks</td>
+</tr>
+<tr>
+<td>Frozen model</td>
+<td>A model whose weights stay unchanged while small probes train</td>
+<td>UAR adds control without retraining the generator</td>
+</tr>
+<tr>
+<td>Confidence-based gate</td>
+<td>A gate that thresholds token probability, perplexity, or a competence proxy</td>
+<td>Its timing and truthfulness determine whether it saves work</td>
+</tr>
+<tr>
+<td>Token probability</td>
+<td>The model's probability for a next token</td>
+<td>It measures fluency under the model, not truth</td>
+</tr>
+<tr>
+<td>Perplexity</td>
+<td>A scalar derived from how surprising tokens are to a model</td>
+<td>It is a possible confidence signal, not a truth detector</td>
+</tr>
+<tr>
+<td>Entity popularity</td>
+<td>A query-side proxy for how likely a fact appeared in pre-training</td>
+<td>It is available before generation and supported adaptive retrieval in PopQA</td>
+</tr>
+<tr>
+<td>Self-reflective gate</td>
+<td>A model-generated control signal that requests retrieval</td>
+<td>It can trigger during generation but only after some compute is spent</td>
+</tr>
+<tr>
+<td>Control token</td>
+<td>A special generated token that changes the pipeline action</td>
+<td>It lets the generator request retrieval itself</td>
+</tr>
+<tr>
+<td>Prefill</td>
+<td>Processing prompt and retrieved context before token generation</td>
+<td>Retrieved chunks can make this stage expensive</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>Generating output tokens one step at a time</td>
+<td>A confidence gate may pay a full draft decode before deciding</td>
+</tr>
+<tr>
+<td>Floating-Point Operation (FLOP)</td>
+<td>One arithmetic operation used for compute estimates</td>
+<td>It makes gate and generator costs comparable</td>
+</tr>
+<tr>
+<td>16-bit floating-point (FP16)</td>
+<td>A compact weight format used in the decode estimate</td>
+<td>The 7B example occupies 14 GB at this precision</td>
+</tr>
+<tr>
+<td>High Bandwidth Memory 3 (HBM3)</td>
+<td>Accelerator memory used in the decode estimate</td>
+<td>Its bandwidth sets the weight-reading time per token</td>
+</tr>
+<tr>
+<td>bfloat16 (BF16)</td>
+<td>A 16-bit format used in the stated accelerator specification</td>
+<td>It anchors the UAR throughput comparison</td>
+</tr>
+<tr>
+<td>Unified Active Retrieval (UAR)</td>
+<td>Four binary probes composed into a retrieval decision tree</td>
+<td>It separates intent, knowledge, freshness, and self-knowledge</td>
+</tr>
+<tr>
+<td>Intent-aware probe</td>
+<td>A test for whether the instruction seeks external knowledge</td>
+<td>It skips creative or formatting tasks that do not need facts</td>
+</tr>
+<tr>
+<td>Knowledge-aware probe</td>
+<td>A test for whether world knowledge is required</td>
+<td>It skips pure reasoning over text already present</td>
+</tr>
+<tr>
+<td>Time-aware probe</td>
+<td>A test for whether the answer can become stale</td>
+<td>It retrieves current facts even when the model is confident</td>
+</tr>
+<tr>
+<td>Self-aware probe</td>
+<td>A test for whether this model already knows a stable answer</td>
+<td>It can skip retrieval for known facts</td>
+</tr>
+<tr>
+<td>Multilayer Perceptron (MLP)</td>
+<td>A small feed-forward classifier</td>
+<td>UAR uses one lightweight probe per criterion</td>
+</tr>
+<tr>
+<td>Logit</td>
+<td>An unnormalized class score</td>
+<td>Router margins can support asymmetric fallback decisions</td>
+</tr>
+<tr>
+<td>Boolean composition</td>
+<td>A fixed AND, OR, and NOT rule over binary criteria</td>
+<td>It preserves the meaning and precedence of the four probes</td>
+</tr>
+<tr>
+<td>Cascade</td>
+<td>A sequence in which a terminal decision can stop later checks</td>
+<td>It expresses precedence and may save cost when checks differ in cost</td>
+</tr>
+<tr>
+<td>Conditional termination rate</td>
+<td>The chance a gate stops the cascade after earlier gates pass</td>
+<td>It is the correct quantity for ordering gates by cost</td>
+</tr>
+<tr>
+<td>Hit-rate per unit cost</td>
+<td>Conditional termination probability divided by evaluation cost</td>
+<td>Descending order minimizes expected cost when verdicts are interchangeable</td>
+</tr>
+<tr>
+<td>Source routing</td>
+<td>Choosing which corpora or stores to query</td>
+<td>It controls compliance, cost, duplication, and recall risk</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>Querying every available store</td>
+<td>It avoids routing omissions but amplifies tails and duplicates</td>
+</tr>
+<tr>
+<td>Fan-out</td>
+<td>Sending one query to several stores in parallel</td>
+<td>Wall-clock latency follows the slowest branch, not their sum</td>
+</tr>
+<tr>
+<td>Tail latency</td>
+<td>The chance a request exceeds its latency budget</td>
+<td>More independent sources compound this probability</td>
+</tr>
+<tr>
+<td>Source-selection accuracy</td>
+<td>How often the router opens the store that contains useful evidence</td>
+<td>A missed store leaves no result that can reveal the mistake</td>
+</tr>
+<tr>
+<td>Cross-source duplication</td>
+<td>The same document appearing in several stores</td>
+<td>Copies consume context slots and create false agreement</td>
+</tr>
+<tr>
+<td>Lineage</td>
+<td>The common authored origin of copied or versioned documents</td>
+<td>Counting lineages prevents replication from posing as corroboration</td>
+</tr>
+<tr>
+<td>Heterogeneous stores</td>
+<td>Sources with different corpora, scoring models, or scales</td>
+<td>Their raw scores are not directly comparable</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>A lexical ranking function whose score depends on collection statistics</td>
+<td>Equal scores from different stores need not mean equal relevance</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>The angular similarity used by many embedding systems</td>
+<td>Different models can occupy different effective score ranges</td>
+</tr>
+<tr>
+<td>Pointwise cross-encoder</td>
+<td>A reranker that scores each query-document pair independently</td>
+<td>It promotes near-copies because it does not model redundancy</td>
+</tr>
+<tr>
+<td>Reciprocal Rank Fusion (RRF)</td>
+<td>A method that combines lists using ranks rather than raw scores</td>
+<td>It avoids score calibration across heterogeneous stores</td>
+</tr>
+<tr>
+<td>Metadata filtering</td>
+<td>Narrowing candidates inside a chosen store</td>
+<td>It cannot recover a store that routing never opened</td>
+</tr>
+<tr>
+<td>Source abstention</td>
+<td>Choosing no source when every relevance score is too low</td>
+<td>It prevents least-bad stores from returning plausible noise</td>
+</tr>
+<tr>
+<td>Descriptive controller</td>
+<td>A classifier that outputs properties of a query</td>
+<td>Its label still needs a separate action policy</td>
+</tr>
+<tr>
+<td>Prescriptive router</td>
+<td>A controller that directly outputs the operation to execute</td>
+<td>It closes the gap between description and behavior</td>
+</tr>
+<tr>
+<td>Label space</td>
+<td>The set of descriptions a classifier can emit</td>
+<td>Four binary criteria create 16 possible labels</td>
+</tr>
+<tr>
+<td>Action space</td>
+<td>The set of operations the system can execute</td>
+<td>The chapter's router uses five concrete actions</td>
+</tr>
+<tr>
+<td>Hand-written policy</td>
+<td>A manually authored mapping from labels to actions</td>
+<td>It grows combinatorially and lacks missing query properties</td>
+</tr>
+<tr>
+<td>Action label</td>
+<td>The cheapest operation that produced a correct answer</td>
+<td>It can be manufactured from execution outcomes</td>
+</tr>
+<tr>
+<td>Bidirectional Encoder Representations from Transformers base model (BERT-base)</td>
+<td>A 110M-parameter encoder used as a published router scale</td>
+<td>It can score a short query far more cheaply than generation</td>
+</tr>
+<tr>
+<td>Softmax</td>
+<td>A conversion from class logits to a probability distribution</td>
+<td>It gives a margin that a fixed action router can threshold</td>
+</tr>
+<tr>
+<td>Chain of thought</td>
+<td>A reasoning path that does not require external retrieval</td>
+<td>It keeps arithmetic queries away from distracting documents</td>
+</tr>
+<tr>
+<td>Query rewrite</td>
+<td>Turning an underspecified follow-up into a self-contained search query</td>
+<td>It restores terms that lexical and dense retrievers can match</td>
+</tr>
+<tr>
+<td>Query decomposition</td>
+<td>Splitting a compound question into focused sub-queries</td>
+<td>It raises per-fact coverage for multi-fact answers</td>
+</tr>
+<tr>
+<td>Margin threshold</td>
+<td>A cutoff based on the gap between top route scores</td>
+<td>It enables conservative fallback when route scores are close</td>
+</tr>
+<tr>
+<td>Query stratification</td>
+<td>Classifying what kind of information the corpus must supply</td>
+<td>It reveals which pipeline changes can raise the ceiling</td>
+</tr>
+<tr>
+<td>Level 1 explicit facts</td>
+<td>One written passage contains the answer</td>
+<td>Chunk retrieval and reranking can solve it</td>
+</tr>
+<tr>
+<td>Level 2 implicit facts</td>
+<td>Several facts must be combined to derive the answer</td>
+<td>Decomposition or iterative retrieval is needed</td>
+</tr>
+<tr>
+<td>Level 3 interpretable rationales</td>
+<td>A written procedure explains how to decide</td>
+<td>The retrieval unit must preserve the whole procedure</td>
+</tr>
+<tr>
+<td>Level 4 hidden rationales</td>
+<td>Policy exists only in past decisions</td>
+<td>Retrieval becomes case selection for in-context learning</td>
+</tr>
+<tr>
+<td>Joint coverage</td>
+<td>The chance every required fact reaches the generator</td>
+<td>It falls as p to the power h when h facts are independently needed</td>
+</tr>
+<tr>
+<td>Parent-document retrieval</td>
+<td>Matching a chunk but returning its full document</td>
+<td>It preserves multi-step procedures that chunking would cut apart</td>
+</tr>
+<tr>
+<td>Exemplar selection</td>
+<td>Retrieving prior cases to guide a new decision</td>
+<td>It is the relevant form of retrieval when no rule is written</td>
+</tr>
+<tr>
+<td>Outcome match</td>
+<td>Similarity in decision structure and result, not just wording</td>
+<td>It is the right quality target for Level 4 cases</td>
+</tr>
+<tr>
+<td>Adaptive-RAG</td>
+<td>A three-way router over no retrieval, single-step retrieval, and multi-step retrieval</td>
+<td>Its main contribution here is executable supervision</td>
+</tr>
+<tr>
+<td>Silver label</td>
+<td>A training label generated automatically by a good-enough process</td>
+<td>It avoids impossible human hop-count annotation</td>
+</tr>
+<tr>
+<td>Policy execution</td>
+<td>Running a complete candidate pipeline on a labeled question</td>
+<td>It reveals which route actually works for this generator</td>
+</tr>
+<tr>
+<td>Hop count</td>
+<td>The number of retrieval and reasoning steps a query needs</td>
+<td>It depends on both query and generator knowledge</td>
+</tr>
+<tr>
+<td>Multi-step loop</td>
+<td>Repeated retrieval and generation up to a cap</td>
+<td>It supports hard queries at much higher latency</td>
+</tr>
+<tr>
+<td>Source-corpus bias</td>
+<td>A fallback label based on whether a dataset was built as single-hop or multi-hop</td>
+<td>It retains unsolved hard examples but is crude</td>
+</tr>
+<tr>
+<td>Class prior</td>
+<td>The fraction of labels assigned to each route</td>
+<td>It inherits the benchmark mix and may not match production</td>
+</tr>
+<tr>
+<td>Reinforcement Learning (RL)</td>
+<td>Learning a sampled policy from a verifiable reward</td>
+<td>It becomes attractive when exhaustive route enumeration explodes</td>
+</tr>
+<tr>
+<td>Out-of-distribution (OOD) query</td>
+<td>A query unlike the router's training inputs</td>
+<td>The router can classify it confidently and silently choose the wrong plan</td>
+</tr>
+<tr>
+<td>Decision boundary</td>
+<td>The surface separating route classes</td>
+<td>Softmax confidence reflects distance from this surface</td>
+</tr>
+<tr>
+<td>Training centroid</td>
+<td>A representative center of familiar query embeddings</td>
+<td>Distance to it supplies an independent novelty signal</td>
+</tr>
+<tr>
+<td>Cluster radius</td>
+<td>A scale for spread around a training centroid</td>
+<td>It makes input distance interpretable across a cluster</td>
+</tr>
+<tr>
+<td>k-nearest-neighbor (k-NN) distance</td>
+<td>Distance to nearby training examples rather than only a centroid</td>
+<td>It handles multi-modal training sets better when affordable</td>
+</tr>
+<tr>
+<td>Under-routing</td>
+<td>Sending a hard query to a cheaper, insufficient branch</td>
+<td>It can cause a wrong answer that downstream stages cannot recover</td>
+</tr>
+<tr>
+<td>Over-routing</td>
+<td>Sending a simple query to an expensive branch</td>
+<td>It wastes compute but may preserve correctness</td>
+</tr>
+<tr>
+<td>Cost-sensitive threshold</td>
+<td>A route cutoff derived from compute cost and wrong-answer loss</td>
+<td>It replaces an unjustified 0.5 argmax threshold</td>
+</tr>
+<tr>
+<td>Branch share</td>
+<td>The fraction of traffic assigned to each route</td>
+<td>It is observable without production route labels and can expose shift</td>
+</tr>
+<tr>
+<td>Distribution shift</td>
+<td>A change in the kinds of queries served</td>
+<td>It invalidates learned routing assumptions before retrieval begins</td>
+</tr>
+<tr>
+<td>Corrective Retrieval-Augmented Generation (CRAG)</td>
+<td>A system with a trained evaluator in front of retrieval decisions</td>
+<td>It illustrates the shared OOD weakness of supervised controllers</td>
+</tr>
+<tr>
+<td><code>p(q)</code>, <code>r(q)</code>, and <code>g(q)</code></td>
+<td>Closed-book correctness, retrieval correctness, and the binary retrieve decision for query <code>q</code></td>
+<td>They define the retrieval-gating objective</td>
+</tr>
+<tr>
+<td><code>A(g)</code>, <code>A(1)</code>, <code>A(0)</code>, and <code>A*</code></td>
+<td>Accuracy of a gate, always-retrieve, never-retrieve, and the oracle</td>
+<td>Their differences expose the maximum value of gating</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>Set of queries on which a real gate skips retrieval</td>
+<td>Its intersections with β and γ determine accuracy gained and lost</td>
+</tr>
+<tr>
+<td><code>a_int</code>, <code>a_know</code>, <code>a_time</code>, and <code>a_self</code></td>
+<td>External intent, world-knowledge need, time sensitivity, and model self-knowledge bits</td>
+<td>UAR composes these distinct predicates instead of learning one opaque label</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>Final binary retrieval target produced by the four UAR bits</td>
+<td>It makes the decision rule explicit and inspectable</td>
+</tr>
+<tr>
+<td><code>h(x)</code> and <code>d</code></td>
+<td>Frozen final-token hidden state for prompt <code>x</code> and its width</td>
+<td>Every UAR probe reads this shared model-specific representation</td>
+</tr>
+<tr>
+<td><code>c_i</code>, <code>p_i</code>, <code>n</code>, and <code>E[C]</code></td>
+<td>Gate cost, conditional termination rate, gate count, and expected cascade cost</td>
+<td>Their ratio determines the cheapest valid gate order</td>
+</tr>
+<tr>
+<td><code>N</code>, <code>S_i</code>, <code>K_i</code>, and <code>M</code></td>
+<td>Source count, source <code>i</code>, units in that source, and selected-source subset</td>
+<td>They distinguish broadcast work from routed work</td>
+</tr>
+<tr>
+<td><code>ell_i</code> and tail probability <code>p</code></td>
+<td>Latency of source <code>i</code> and its chance of exceeding budget</td>
+<td>Parallel fan-out compounds tail risk even when latencies do not add</td>
+</tr>
+<tr>
+<td><code>k</code>, replication <code>r</code>, and <code>k_distinct</code></td>
+<td>Context slots, copies per document, and distinct-document capacity</td>
+<td>They quantify the context tax from duplicated evidence</td>
+</tr>
+<tr>
+<td><code>P(relevant given q and S_i)</code></td>
+<td>Query-conditioned relevance probability for one source</td>
+<td>It is the source router's real target instead of a static source ranking</td>
+</tr>
+<tr>
+<td><code>q</code>, <code>L</code>, <code>A</code>, <code>f_desc</code>, <code>f_pres</code>, <code>l</code>, and <code>pi</code></td>
+<td>Query, label space, action space, two controller maps, one label, and the hand-written policy</td>
+<td>They separate describing a query from choosing an executable operation</td>
+</tr>
+<tr>
+<td><code>h</code>, per-fact <code>p</code>, pooled <code>p1</code>, and decomposed <code>pd</code></td>
+<td>Fact count and the three recall terms in stratification</td>
+<td>Their powers determine multi-fact joint coverage</td>
+</tr>
+<tr>
+<td>Policies <code>A</code>, <code>B</code>, and <code>C</code></td>
+<td>No retrieval, single-step retrieval, and multi-step retrieval</td>
+<td>Adaptive-RAG chooses the cheapest policy that answers correctly</td>
+</tr>
+<tr>
+<td><code>a*</code>, <code>Pi</code>, <code>G_pi(q)</code>, <code>c(pi)</code>, <code>pi*</code>, <code>T</code>, and <code>f_phi</code></td>
+<td>Gold answer, policy set, policy output, policy cost, silver label, loop cap, and trained router</td>
+<td>They define the executable supervision procedure</td>
+</tr>
+<tr>
+<td><code>p</code>, wrong-answer loss <code>L</code>, <code>delta C</code>, and <code>tau*</code></td>
+<td>Expensive-route probability, error loss, extra branch cost, and cost-sensitive threshold</td>
+<td>They replace an unjustified symmetric argmax decision</td>
+</tr>
+<tr>
+<td>OOD fraction <code>f</code> and retrieval lift <code>d</code></td>
+<td>Unseen traffic share and accuracy value of querying the right source</td>
+<td>Their product consumes the routing accuracy margin</td>
+</tr>
+<tr>
+<td>Text-to-Text Transfer Transformer (T5)</td>
+<td>Encoder-decoder family used by the Adaptive-RAG router and CRAG evaluator</td>
+<td>It shows that these controllers are trained models, not score thresholds</td>
+</tr>
+<tr>
+<td>Forward-Looking Active Retrieval augmented generation (FLARE)</td>
+<td>Mid-generation retrieval triggered by low token confidence</td>
+<td>Its signal arrives only after generation has begun</td>
+</tr>
+<tr>
+<td>Self-RAG</td>
+<td>A system whose model emits retrieval and critique controls</td>
+<td>It is another supervised controller exposed to distribution shift</td>
+</tr>
+<tr>
+<td>RAGRoute</td>
+<td>Learned source router using query embeddings and source centroids</td>
+<td>It supplies the routing savings and OOD exposure measurements</td>
+</tr>
+<tr>
+<td>Interleaving Retrieval with Chain-of-Thought (IRCoT)</td>
+<td>Multi-step method that alternates reasoning with retrieval</td>
+<td>Its reported gain anchors the decomposition example</td>
+</tr>
+<tr>
+<td>Approximate Nearest Neighbor (ANN) search</td>
+<td>Indexed vector search that avoids a full scan</td>
+<td>It is one recurring cost inside every retrieval call</td>
+</tr>
+<tr>
+<td>Hierarchical Navigable Small World (HNSW) graph</td>
+<td>Approximate vector index with sublinear search behavior</td>
+<td>It limits how literally corpus-size ratios predict search savings</td>
+</tr>
+<tr>
+<td>Generative Pre-trained Transformer 4 (GPT-4)</td>
+<td>Model used to produce reflection labels in the Self-RAG example</td>
+<td>Distillation transfers its label blind spots into the critic</td>
+</tr>
+<tr>
+<td>Medical Information Retrieval-Augmented Generation Evaluation (MIRAGE)</td>
+<td>Medical benchmark used in the source-routing measurements</td>
+<td>It grounds the reported query, transfer, and accuracy changes</td>
+</tr>
+<tr>
+<td>PageRank</td>
+<td>Recursive web-authority score based on links from other authoritative pages</td>
+<td>It shows why raw popularity alone is a gameable static source signal</td>
+</tr>
+<tr>
+<td>Binary cross-entropy</td>
+<td>Loss for independent binary predictions</td>
+<td>RAGRoute uses it to train source relevance labels</td>
+</tr>
+<tr>
+<td>Mutual information</td>
+<td>Measure of dependence between two recorded decisions</td>
+<td>It tests whether action and source selection should share one routing head</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="251-when-to-retrieve-classifier-confidence-and-self-reflective-families">25.1 When to retrieve: classifier, confidence, and self-reflective families</h3>
+<h4 id="what-it-is">What it is</h4>
+<p>Let p(q) be the probability that the closed-book answer is correct. Let r(q) be the probability that the retrieval-augmented answer is correct. Let g(q) be 1 when the gate retrieves and 0 when it skips. The policy accuracy is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false" form="prefix">(</mo><mi>g</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><msub><mi>E</mi><mi>q</mi></msub><mo stretchy="false" form="prefix">[</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mi>r</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>+</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>g</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mi>p</mi><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">A(g) = E_q[g(q)r(q) + (1 - g(q))p(q)]</annotation></semantics></math></p>
+<p>Always-retrieve has accuracy E[r]. Never-retrieve has accuracy E[p]. The oracle gate has accuracy E[max(p, r)]. Its gain over always-retrieve is E[(p - r) positive part]. For binary outcomes, split queries into four cells. α means both branches are correct. β means only closed-book is correct. γ means only retrieval is correct. δ means both branches are wrong. Always-retrieve is α + γ. Never-retrieve is α + β. The oracle is α + β + γ. The maximum gain over always-retrieve is exactly β. A real gate skips a set S. Its change from always-retrieve is Pr(S intersects β) - Pr(S intersects γ).</p>
+<h4 id="why-it-exists">Why it exists</h4>
+<p>On PopQA, Mallen et al. report that retrieval makes roughly 10% of questions wrong that the unassisted model would answer correctly. They also report that the unassisted model wins outright on high-popularity entities. Always-retrieve is therefore a policy with a measurable price. The first number to measure is β for the deployed generator and corpus.</p>
+<h4 id="failure-without-it">Failure without it</h4>
+<p>A gate that merely skips easy questions mostly acts on α. That saves cost but changes no answers. The useful separator is β versus γ. The opening example asks who founded a company. Closed-book answers correctly, but retrieval injects an onboarding slide about the founding team and changes the answer to the wrong person. A stronger reranker can increase retrieval wins without directly eliminating questions where retrieval corrupts an already correct answer.</p>
+<h4 id="signal-families-and-timing">Signal families and timing</h4>
+<p>Classifier-based gates read the query or the frozen model's hidden state. Their signal exists before answer generation. Confidence-based gates threshold token probability, perplexity, or a competence proxy. Mallen et al. use entity popularity tuned on a held-out set because it is query-side and available before decoding. Self-reflective gates include Self-RAG's retrieve token and Forward-Looking Active Retrieval augmented generation (FLARE)'s mid-generation low-confidence trigger. Next-token confidence fails as a truth signal. The fluent false continuation "chocolate milk comes from brown cows" can still have high probability. The confidence signal also arrives only after a closed-book draft has already consumed a decode pass.</p>
+<h4 id="cost-and-worked-example">Cost and worked example</h4>
+<p>The worked system serves 100,000 queries per day with a 7B generator. Its outcome split is α = 52%, β = 10%, γ = 18%, and δ = 20%. Only β comes from the cited result. The other cells are assumed so the split sums to 100% and retrieval wins overall. Closed-book prompts contain 200 tokens. Retrieval adds five chunks of 400 tokens, for 2,200 prompt tokens. Always-retrieve accuracy is 70%. Closed-book accuracy is 62%. The oracle accuracy is 80%. The retrieval path spends 8 ms on embedding, 15 ms on Approximate Nearest Neighbor (ANN) search, and 60 ms reranking the top 20. The 2,000 extra prefill tokens cost 2 × 2,000 × 7 × 10^9 = 2.8 × 10^13 FLOPs. At 3.4 × 10^14 FLOP/s effective throughput, that is 82 ms. Total retrieval overhead is 83 + 82 = 165 ms per query. Always-retrieve processes 220 million prefill tokens per day. The popularity gate skips 30% of traffic. It rescues 6 of 10 β points and loses 3 of 18 γ points. Accuracy becomes 70 + 6 - 3 = 73%. That captures one third of the 10-point oracle headroom. Daily prefill falls to 70,000 × 2,200 + 30,000 × 200 = 160 million tokens. That is a 27% cut with 30% fewer ANN and reranker calls. The expected latency avoided is 0.30 × 165 = 50 ms. A 110M-parameter encoder over 32 tokens costs about 7 GFLOPs and 2 ms wall time. It therefore nets 48 ms in the worked arithmetic. A 7B FP16 model holds 14 GB of weights. At 3.35 TB/s, one token takes 14/3350 = 4.2 ms to read the weights. A 30-token draft costs 126 ms on every query. The confidence gate therefore changes the 50 ms saving into 50 - 126 = -76 ms. The source's closing summary instead says the classifier saved 44 ms and confidence cost 80 ms. Those two summary values conflict with the worked arithmetic above.</p>
+<h4 id="practice-decisions-and-limits">Practice decisions and limits</h4>
+<p>Measure both branches on a few thousand production queries before building a gate. Treat β as model-and-corpus specific. A stronger model can grow β. A cleaner corpus can shrink it. Retune after every model or corpus change. Use cost-target gating only when cost or latency is the binding constraint. Log the input signal and the decision from day one. Track false skips separately from false fires. A false skip risks an ungrounded answer. A false fire spends 165 ms and risks context corruption.</p>
+<h3 id="252-unified-active-retrieval-four-criteria-as-a-decision-tree">25.2 Unified Active Retrieval: four criteria as a decision tree</h3>
+<h4 id="what-it-is-1">What it is</h4>
+<p>A monolithic binary gate hides four latent facts. Define a_int as whether the instruction seeks external knowledge. Define a_know as whether the answer requires world knowledge rather than reasoning over prompt text. Define a_time as whether the answer is time-sensitive. Define a_self as whether this model already knows the answer. The retrieval target is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msub><mi>a</mi><mi>i</mi></msub><mi>n</mi><mi>t</mi><mo>∧</mo><msub><mi>a</mi><mi>k</mi></msub><mi>n</mi><mi>o</mi><mi>w</mi><mo>∧</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>a</mi><mi>t</mi></msub><mi>i</mi><mi>m</mi><mi>e</mi><mo>∨</mo><mi>¬</mi><msub><mi>a</mi><mi>s</mi></msub><mi>e</mi><mi>l</mi><mi>f</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">y = a_int ∧ a_know ∧ (a_time ∨ ¬a_self)</annotation></semantics></math></p>
+<p>The cascade first checks external intent. It then checks knowledge need. It retrieves immediately for time-sensitive facts. For stable facts, it skips only when the model already knows the answer.</p>
+<h4 id="why-it-exists-1">Why it exists</h4>
+<p>The same binary skip label can mean no external intent, no world knowledge need, or a known stable answer. One output bit gives the gradient no direct signal about which sub-predicate failed. It also gives operations one bit of diagnosis when production quality moves. UAR supervises four independent binary probes and composes them explicitly. Each small MLP reads the frozen generator's final-prompt-token hidden state h(x). Intent, knowledge need, and time sensitivity may be legible in surface text. Self-knowledge is specific to the deployed weights, so the hidden state is the load-bearing input.</p>
+<h4 id="failure-without-it-1">Failure without it</h4>
+<p>An intent-only failure retrieves roadmap chunks for a limerick request. A self-knowledge-only gate skips a request for the current vice president because the model confidently knows the former one. Staleness belongs to the world. Confidence belongs to the weights. The time-aware criterion must therefore precede the self-aware criterion. More training data for one undifferentiated output bit does not expose this structure.</p>
+<h4 id="cost-and-ordering">Cost and ordering</h4>
+<p>The worked probe reads a d = 4,096 hidden state. It has a hidden width of 512 and two logits. Its parameter count is 4,096 × 512 + 512 × 2 = 2,098,176, or about 2.1 million. At two FLOPs per multiply-accumulate, each probe costs 4.2 MFLOPs. All four cost 16.8 MFLOPs. One 7B decode step costs 14 GFLOPs. The control plane ratio is 16.8 × 10^6 divided by 14 × 10^9 = 1.2 × 10^-3. That is 0.12% of one generated token. For gate i, let c_i be evaluation cost and p_i be the conditional chance it terminates the cascade. Expected cascade cost is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo stretchy="false" form="prefix">[</mo><mi>C</mi><mo stretchy="false" form="postfix">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>c</mi><mi>i</mi></msub><munder><mo>∏</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi></mrow></munder><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">E[C] = \sum_{i=1}^{n} c_i \prod_{j \lt i}(1 - p_j)</annotation></semantics></math></p>
+<p>Two interchangeable adjacent gates are cheaper in i-then-i+1 order when p_i/c_i exceeds p_i+1/c_i+1. Order interchangeable gates by descending hit-rate per unit cost. Measure p_i on traffic that reaches gate i because knowledge need and external intent correlate. Full-workload rates misstate cascade cost. Four equal-cost probes over one shared hidden state gain nothing from early exit. They may run in parallel, after which the fixed tree consumes four bits. Ordering saves work only when one criterion is materially more expensive.</p>
+<h4 id="worked-example">Worked example</h4>
+<p>The assistant serves 10,000 prompts per day. A retrieval adds 3,000 context tokens and 220 ms. The 220 ms contains 15 ms embedding, 25 ms ANN search, 80 ms cross-encoder reranking, and 100 ms extra prefill. Input costs $3 per million tokens. One retrieval therefore costs $0.009. Always-retrieve costs $90 per day and adds 220 ms to every prompt. Assume conditional termination rates p1 = 0.30, p2 = 0.20, and p3 = 0.25. Gate 4 splits its survivors 55% to skip and 45% to retrieve. Gate 1 skips 3,000 prompts. Gate 2 skips 1,400 of 7,000 survivors. Gate 3 sends 1,400 of 5,600 survivors directly to retrieval. Gate 4 skips 2,310 and retrieves 1,890 of the remaining 4,200. The final retrieval rate is 3,290/10,000 = 32.9%. Daily token cost falls to $29.61. The stated savings are $60.39 per day or $22,042 per year. Mean added latency falls to 0.329 × 220 = 72 ms. Four probes over 10,000 prompts cost 168 GFLOPs per day. At an NVIDIA A100 specification of 312 TFLOP/s dense BF16, this is 0.54 ms of accelerator time per day. At 1% of peak, it is 54 ms per day. If the self-aware gate instead drafts 64 tokens, it costs 896 GFLOPs and always terminates. Putting it last means only 42% of traffic reaches it. Expected gating cost becomes about 376 GFLOPs instead of 896 GFLOPs. That is a 58% reduction. The hit-rate-per-cost ratios are 0.071 per MFLOP for gate 1 and 1.1 × 10^-6 for the draft gate. They differ by roughly 6 × 10^4.</p>
+<h4 id="practice-decisions-and-limits-1">Practice decisions and limits</h4>
+<p>Pin the self-aware probe to a generator version. Fail closed to retrieve when the version tag changes. Collapse the time gate to a constant only for a genuinely frozen corpus. Log the terminating gate, its margin, the final verdict, and the model version. Tune time-aware and self-aware probes for recall of retrieve by default. Tune intent-aware and knowledge-aware probes for precision of skip by default. That asymmetry can reverse when every unnecessary retrieval creates an injection surface. Replacing all probes with one generated structured verdict preserves decomposition but loses the activation-based self-knowledge signal. It also moves control cost from 0.12% of one decode step to more than a full answer's worth of generation on traffic that skips. The source proposes a possible split: use an LLM judge for intent, knowledge, and time, but retain a trained self-awareness probe. Evaluate per-field agreement on held-out and OOD slices.</p>
+<h3 id="253-where-to-retrieve-source-selection-conflict-heterogeneity">25.3 Where to retrieve: source selection, conflict, heterogeneity</h3>
+<h4 id="what-it-is-2">What it is</h4>
+<p>Suppose there are N stores S1 through SN. Store Si contains Ki indexed units. For each query, source routing chooses a subset M. Broadcast sets M to every store and searches Σ_i Ki units across N round trips. Routing searches Σ_(i in M) Ki units across |M| round trips. The choice sits after whether to retrieve and before query formulation inside the selected stores.</p>
+<h4 id="why-it-exists-2">Why it exists</h4>
+<p>Some stores cannot be queried because of residency rules. Some charge per call or forbid bulk export. Some contain repeated or stale copies. Some use scoring systems that cannot be merged on raw values. The desired quantity is per-query relevance P(relevant given q and Si), not one static source leaderboard. Static document count or historical citation count rewards the largest or loudest source. PageRank illustrates the same failure one level lower. Counting inbound links is gameable, while recursive authority is only one query-dependent signal among many.</p>
+<h4 id="failure-without-it-2">Failure without it</h4>
+<p>Parallel broadcast latency is the maximum source latency, not their sum. The real latency problem is compounded tail risk. If each source independently exceeds budget with probability p, N sources exceed it with probability 1 - (1 - p)^N. At p = 0.01, six sources produce 5.9% request-tail probability. Two sources produce 2.0%. Cross-source copies consume a fixed context window. One document copied r times leaves k - r + 1 distinct documents in a k-slot result when the other slots are unique. If every result is replicated r-fold, the effective distinct budget is the ceiling of k/r. At k = 10 and r = 3, only four distinct documents remain. Copies also create false consensus for agreement-based credibility estimation. A pointwise cross-encoder scores each copy independently and promotes all near-copies together. Heterogeneous raw scores are incomparable. BM25 depends on document frequency, corpus size, and average document length. A 120-token wiki and a 900-token PDF corpus normalize differently. A BM25 score of 14.2 in one store therefore cannot be equated to 14.2 in the other. Two embedding models may both output cosine values from -1 to 1 while placing typical relevant pairs near 0.85 and 0.35. Merge heterogeneous lists on rank, not raw score. Routing errors are silent because an unopened store returns no evidence of its relevance.</p>
+<h4 id="reported-measurement">Reported measurement</h4>
+<p>RAGRoute reports results on the MIRAGE medical question-answering benchmark and the Massive Multitask Language Understanding (MMLU) benchmark. Learned routing cut source queries by 77.5% and data transfer by 76.2%. Accuracy moved from 72.22% to 72.24%. Broadcast used 100/22.5 = 4.4 times as many source queries for 0.02 accuracy points.</p>
+<h4 id="worked-example-1">Worked example</h4>
+<p>The constructed assistant has six stores. They contain 40,000, 8,000, 60,000, 300,000, 900,000, and 1,200,000 chunks. The total is 2,508,000 chunks. Each source returns 20 chunks averaging 600 tokens. Broadcast makes six round trips and returns 120 candidates. It transfers 72,000 tokens into fusion. Four copies of one policy occupy four of the final k = 10 slots. Only seven distinct documents remain. Three stale copies outvote one current copy by 3 to 1. Routing to the human-resources wiki and Singapore portal makes two round trips. It returns 40 candidates and transfers 24,000 tokens. That is a 66.7% reduction in candidates and transfer. The selected stores contain 48,000 vectors rather than 2,508,000. The 52 times ratio is only an upper bound on search savings because Hierarchical Navigable Small World (HNSW) search is sublinear in corpus size. Round trips, bandwidth, and reranker load are the durable savings. A cross-encoder at 200 pairs per second reranks 120 candidates in 0.60 seconds. It reranks 40 candidates in 0.20 seconds. Routing returns 400 ms before generation. Near-duplicate detection reduces the four copies to two lineages: one old authored policy and one amendment. The vote becomes 1 to 1. Recency then selects the amendment. Deduplicating after the vote is too late.</p>
+<h4 id="practice-decisions-and-limits-2">Practice decisions and limits</h4>
+<p>Default to broadcast while N is at most 3 for homogeneous, in-region stores. Route sooner when calls are billed, residency-limited, or tail-dominating. Deduplicate across sources before the reranker. Key duplicates to lineage at ingest and retrieve one representative per lineage. Do not collapse translations, jurisdictional variants, or successive released versions when they are distinct evidence. Use RRF with k approximately 60 for heterogeneous stores. Give every selected source at least one merged slot. Use global top-k only when stores share one embedding model, one scorer, and one corpus scale. Stamp chunks with source, ingest time, and effective date. Resolve conflicts by effective date and provenance. Older signed contracts, court rulings, or released interface versions may remain authoritative. Surface surviving conflicts instead of silently hiding them. Add a no-relevant-source branch when every source score is below threshold. Metadata filtering is inside a store. It cannot recover a store that routing skipped. The seventh-source interview example adds a 30-million-document partner interface with no useful metadata and per-call billing. Residency removes bulk copying for the restricted European slice, so the source answer splits unrestricted replication from restricted live federation.</p>
+<h3 id="254-query-routers-descriptive-versus-prescriptive">25.4 Query routers: descriptive versus prescriptive</h3>
+<h4 id="what-it-is-3">What it is</h4>
+<p>A descriptive controller maps query q to label l in label space L. A prescriptive router maps q to action a in action space A. UAR uses four binary criteria, so its label space has 2^4 = 16 cells. The chapter's action space has five operations. They are answer directly, chain of thought, retrieve as issued, rewrite then retrieve, and decompose then retrieve. A prescriptive route to either of the first two actions answers the retrieve-or-skip question for free. A retrieve-or-skip label does not identify the correct retrieval operation.</p>
+<h4 id="why-it-exists-3">Why it exists</h4>
+<p>The label "needs external knowledge" fits retrieve as issued, rewrite then retrieve, and decompose then retrieve. The correct choice also depends on hop count, ambiguity, and self-containment. The descriptive controller did not measure those properties. A hand-written mapping from 16 labels to five actions therefore has no basis for many choices. Train directly on action labels instead. Run each action, score the answer, and select the cheapest correct operation.</p>
+<h4 id="failure-without-it-3">Failure without it</h4>
+<p>A follow-up such as "what about the second one" reaches the index without content-bearing terms. An arithmetic word problem gets irrelevant policy chunks even though no corpus contains its answer. A dispatcher whose action set contains only retrieval variants has no route for either case. The descriptive pipeline then collapses every knowledge-bearing query onto retrieve as issued.</p>
+<h4 id="cost-and-alternatives">Cost and alternatives</h4>
+<p>A five-way BERT-base softmax has 110 million parameters. At two FLOPs per parameter per token, a 32-token query costs 7.04 × 10^9 FLOPs. At 3.4 × 10^14 FLOP/s, that is 0.021 ms of arithmetic. A prompted 8B generator in bf16 reads 16 GB per token. At 3.35 TB/s, it takes 4.8 ms per token. A five-token routing decision takes 24 ms, roughly three orders of magnitude more than the encoder arithmetic. A generated label also lacks a score distribution for asymmetric thresholding. Fine-tuning that router on local traffic also requires touching the generator. The generative router wins when the action space is open-ended, such as hundreds of tools that a fixed softmax cannot enumerate.</p>
+<h4 id="worked-example-2">Worked example</h4>
+<p>Query A asks for the capital of France. The router answers directly. A 32-token prefill costs 2 × 8 × 10^9 × 32 = 5.12 × 10^11 FLOPs, or 1.5 ms. Five decoded tokens add 24 ms. Query B gives four animals with ten legs and asks how many are chickens. The route is chain of thought. The equations yield three chickens and one rabbit. Retrieving five 400-token chunks would add 2,000 distractor tokens. That prefill costs 3.2 × 10^13 FLOPs, or 94 ms. Query C says "what about the second one". The router rewrites and then retrieves. A 20-token rewrite costs 96 ms before retrieval. Query D asks which of two Frankfurt data centers has the later contract renewal. The router decomposes, then makes two retrieval calls and two 94 ms prefills. The router's break-even diversion rate is 0.021/94 = 2.2 × 10^-4, or 0.022%. One correct diversion in about five thousand pays for the router. A BERT-base cross-encoder over 100 candidates at 256 tokens each reads 25,600 tokens. That is exactly 800 times the router's 32 tokens and about 16.6 ms of arithmetic.</p>
+<h4 id="practice-decisions-and-limits-3">Practice decisions and limits</h4>
+<p>Supervise on actions when an evaluation set can score answers. Use a deliberately small descriptive policy only while action labels are unavailable. Prefer a small encoder for a fixed action set. Include non-retrieval actions unless the domain requires every answer to be corpus-grounded. Use a conservative fallback when the top two logits are close. The source defaults that fallback to retrieve as issued because a false direct answer can hallucinate while extra retrieval is usually a bill. Grade the router on end-to-end answer quality per unit cost. Log the chosen action and its margin. Do not trust one scalar routing accuracy because route confusions have different costs. The interview example reports 82% held-out routing accuracy while end-to-end quality falls. Inspect the confusion matrix and quality change per route. Joint routing over five actions and |S| sources creates 5|S| classes. Its silver-labeling cost also multiplies across actions and sources. Prefer an action router followed by source selection unless logged traffic shows strong dependence between action and source. Measure mutual information between action and source before merging the heads.</p>
+<h3 id="255-query-stratification-four-levels-of-information-need">25.5 Query stratification: four levels of information need</h3>
+<h4 id="what-it-is-4">What it is</h4>
+<p>Level is defined by what the corpus must supply. Level 1 supplies one explicit fact written in one place. Level 2 supplies several implicit facts that must be combined. Level 3 supplies an interpretable written rationale such as a standard operating procedure, manual, or regulation. Level 4 supplies examples of hidden rationale because no procedure was written. Level belongs to the query-and-corpus pair, not the query alone. The same question can be Level 1 in a documented company and Level 4 where policy survives only in past approvals.</p>
+<h4 id="why-it-exists-4">Why it exists</h4>
+<p>Retriever tuning raises the ceiling for Levels 1 and 2. Level 3 fails when the retrieval unit cuts a procedure apart. Level 4 fails because the rule is absent from the corpus. One embedding model, one chunk size, one k, and one reranker cannot repair all four mechanisms.</p>
+<h4 id="coverage-mechanics">Coverage mechanics</h4>
+<p>Let h be the number of independently required facts. Let p be the probability any one fact reaches context. Joint coverage is p^h. At p = 0.9 and h = 3, joint coverage is 0.9^3 = 0.729. Holding joint coverage at 0.9 for three facts requires p = 0.9^(1/3) = 0.965. A pooled query also divides one top-k budget across several needs. At k = 10 and h = 3, each need controls about three slots rather than ten. Decomposition raises the per-fact base probability by giving every fact its own query and top-k budget. It does not remove the exponent. Improving recall from 0.90 to 0.94 moves three-fact joint coverage from 0.729 to 0.830, a change of 0.101 if pooling penalties are ignored. That same improvement does nothing for a missing written rule or a chopped procedure.</p>
+<h4 id="worked-example-3">Worked example</h4>
+<p>The corpus has 500,000 chunks of 200 tokens. The retriever returns k = 10. Single-fact recall is p = 0.90. Level 1 asks for a Tier-2 refund window. It retrieves one fact with probability 0.90 and prefills 2,000 tokens. The Level 2 query asks which Tier-2 products fall below a European Union (EU) minimum and needs three facts. The example assumes pooled per-fact recall p1 = 0.60. Joint coverage is 0.60^3 = 0.216. The decomposed version makes three sub-queries. It restores 0.90 per-fact recall and 0.729 joint coverage. The ratio 0.729/0.216 is 3.4 times. The cost is three embeddings, three ANN searches, and 6,000 prefill tokens. The Level 3 example is a nine-step escalation procedure across nine chunks and 1,800 tokens. Parent-document retrieval returns the full procedure plus six other 200-token slots. Total prefill is 3,000 tokens. The Level 4 refund-approval query has no written rule and retrieves eight resolved tickets of about 600 tokens each. That is 4,800 exemplar tokens. With a 60%, 25%, 10%, and 5% traffic split across Levels 1 through 4, mean prefill is 3,240 tokens. The level-blind baseline uses 2,000. The level-aware design spends 1.62 times as much prefill to stop failing 40% of traffic structurally. The assumed pooled penalty from 0.90 to 0.60 is a stated assumption. Interleaving Retrieval with Chain-of-Thought (IRCoT) reports gains up to 21 retrieval points. Substituting p1 = 0.69 gives 0.69^3 = 0.329. The decomposed ratio becomes 0.729/0.329 = 2.2 times. The multiple shrinks but remains several-fold.</p>
+<h4 id="practice-decisions-and-limits-4">Practice decisions and limits</h4>
+<p>Hand-label 200 production queries by level before tuning retrieval. Use decomposition when h is at least 2 independent facts. Use parent-document retrieval when all facts co-occur reliably in one document. Maintain 200-token chunks for fact retrieval and full documents for procedures. The interview's well-tuned fact chunks are 200 tokens with 20% overlap, yet they remain the wrong unit for a nine-step procedure. Do not globally enlarge chunks to solve Level 3. Procedures under roughly 400 tokens may fit one chunk. Treat Level 4 as exemplar selection scored on outcome match. Promote Level 4 to Level 3 as soon as the policy can be written down. Report quality separately by level. A level below 1% of traffic may be explicitly out of scope. Abstain at Level 4 when no sufficiently similar case exists. When a failing slice is 12% of traffic and a decision is due within one week, label 200 failures by level before choosing a reranker or graph index.</p>
+<h3 id="256-adaptive-rag-and-silver-label-supervision">25.6 Adaptive-RAG and silver-label supervision</h3>
+<h4 id="what-it-is-5">What it is</h4>
+<p>Adaptive-RAG chooses among three policies. Policy A answers with no retrieval. Policy B retrieves once and generates. Policy C runs a retrieve-and-reason loop capped at T iterations. For query q with gold answer a*, let G_pi(q) be the generator output under policy pi. Let c(pi) be policy cost with c(A) below c(B) below c(C). The objective is:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>π</mi><mo>⋆</mo></msup><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><munder><mrow><mrow><mi>arg</mi><mo>&#8289;</mo></mrow><mi>min</mi></mrow><mrow><mi>π</mi><mo>∈</mo><mo stretchy="false" form="prefix">{</mo><mi>A</mi><mo>,</mo><mi>B</mi><mo>,</mo><mi>C</mi><mo stretchy="false" form="postfix">}</mo></mrow></munder><mspace width="0.222em"></mspace><mi>c</mi><mo stretchy="false" form="prefix">(</mo><mi>π</mi><mo stretchy="false" form="postfix">)</mo><mspace width="1.0em"></mspace><mtext mathvariant="normal">subject to</mtext><mspace width="1.0em"></mspace><mo>EM</mo><mo stretchy="false" form="prefix">(</mo><msub><mi>G</mi><mi>π</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>q</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo><msup><mi>a</mi><mo>⋆</mo></msup><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\pi^\star(q) = \underset{\pi \in \{A,B,C\}}{\arg\min}\ c(\pi) \quad \text{subject to}\quad \mathop{\text{EM}}(G_\pi(q), a^\star) = 1</annotation></semantics></math></p>
+<p>When several policies are correct, cheapest wins. When no policy is correct, the source dataset's single-hop or multi-hop bias supplies a fallback label. The hard queries stay in training rather than disappearing.</p>
+<h4 id="why-it-exists-5">Why it exists</h4>
+<p>No question-answering dataset supplies the required hop count for a particular generator. An annotator cannot see which facts that generator memorized. The route label is a property of the query-and-generator pair. Execution converts this impossible annotation problem into measurement. Run all policies on every training question with a known answer. Score every output. Keep the cheapest successful policy. This costs |Pi| complete executions per training query, once and offline. A small T5-scale encoder-decoder then learns query to A, B, or C. It predicts which machine will solve the query rather than solving the query itself.</p>
+<h4 id="failure-without-it-4">Failure without it</h4>
+<p>Routing every query to the multi-step loop approaches an order-of-magnitude overhead on simple facts. Routing every query to one retrieval loses bridging facts on multi-hop questions. Using dataset provenance as the main label predicts benchmark construction rather than actual generator need. Dropping questions no policy solved trains a router that never sees the hard tail. A post-generation confidence trigger pays for a pass before discovering that the pass was wrong. Adaptive-RAG commits before retrieval, which saves that work but exposes it to pre-evidence mistakes.</p>
+<h4 id="worked-example-4">Worked example</h4>
+<p>The generator decodes at 50 tokens per second, or 20 ms per token. The answer has 120 tokens. Prefill runs at 8,000 tokens per second. Each retrieval call takes 90 ms and returns five 200-token chunks. The instruction and question use 100 tokens. Policy A prefills 100/8,000 seconds and decodes for 2.40 seconds. Its rounded total is 2.41 seconds. Policy B prefills 1,100 tokens in 0.14 seconds. Adding 0.09 seconds retrieval and 2.40 seconds decode gives 2.63 seconds. Policy C uses T = 5. Each iteration retrieves for 0.09 seconds and generates a 2.40-second reasoning step. The prompt grows by 1,000 tokens per iteration. Summed prefill is 1.94 seconds. Retrieval totals 0.45 seconds. Decode totals 12.00 seconds. The policy total is 14.39 seconds, or 5.5 times Policy B. On 30,000 silver-labeled queries, assume 22% class A, 51% class B, and 27% class C. A perfect router then averages 0.22 × 2.41 + 0.51 × 2.63 + 0.27 × 14.39 = 5.76 seconds. Always using Policy C takes 14.39 seconds. The saving is 2.5 times while preserving the expensive route for class C. Each training query uses 1 + 1 + 5 = 7 generation calls. Thirty thousand queries use 210,000 calls. At roughly 2.4 seconds of decode each, that is 504,000 seconds or 140 serial hours. At 32-way batching, it is 4.4 hours. Human annotation at 30 seconds per query would take 250 annotator-hours and would not observe generator memory. The source says published timings put multi-step close to 10 times single-step. Its cost approximation is 2.565T + 0.0625T^2 seconds. Matching 10 × 2.63 seconds gives T = 8.5. That corresponds to eight or nine iterations before stopping.</p>
+<h4 id="practice-decisions-and-limits-5">Practice decisions and limits</h4>
+<p>Start with three classes, not five. Every extra class adds an execution pass and thins per-class data. If one class exceeds roughly 70% of labels, split inside that dominant class. Keep unsolved queries unless they exceed about one third of the set. Above that level, fix the retriever or generator before the router. Re-run labeling after a generator change. For a minor version, relabel a random 2,000-query sample first and compare class distributions. Budget the router against the route gap it arbitrages. The A-to-B gap is 0.22 seconds. The B-to-C gap is 11.76 seconds. Report EM and latency together. A hypothetical 65% three-way classifier cannot be judged by accuracy alone. Under-routing a class C query can lose the answer. Over-routing class A to C wastes 14.39 - 2.41 = 11.98 seconds but may remain correct. Bias uncertain cases upward toward the expensive route. If routing also chooses rewrite, source, and rerank depth, exhaustive labeling multiplies. The source example has 3 × 2 × 3 × 2 = 36 joint pipelines instead of 3. That is a 12-fold labeling bill. Thirty-six classes over 30,000 queries average about 830 examples each before imbalance. Use a sampled RL policy with exact match as verifiable reward when the action space becomes a product rather than a small list.</p>
+<h3 id="257-the-out-of-distribution-weakness-every-router-shares">25.7 The out-of-distribution weakness every router shares</h3>
+<h4 id="what-it-is-6">What it is</h4>
+<p>The chapter groups several controllers under one risk. CRAG uses a fine-tuned T5-large evaluator with 770 million parameters to classify retrieved documents as correct, ambiguous, or incorrect. Adaptive-RAG predicts route complexity from silver labels over single-hop and multi-hop benchmarks. RAGRoute uses a three-layer fully connected network over query embeddings and per-source centroids with binary cross-entropy supervision. Self-RAG uses a critic distilled from GPT-4 reflection labels. Each is a small supervised classifier fitted to a fixed distribution and served against an open one.</p>
+<h4 id="why-it-is-different-from-retrieval-failure">Why it is different from retrieval failure</h4>
+<p>An unfamiliar query can make a retriever return weak documents. Weak documents may shift score distributions, lower reranker scores, trigger an evaluator, or cause generator abstention. A router commits before those stages. Every downstream component can execute correctly on the wrong plan. The branch not taken leaves no residual to inspect. Six weeks after launch, the opening incident loses two accuracy points after 4% of traffic shifts to a new vertical. Router confidence remains visually unchanged, including the fraction above 0.9.</p>
+<h4 id="cost-sensitive-decision">Cost-sensitive decision</h4>
+<p>Let p be the router probability that a query needs the expensive branch. Let L be the loss from a wrong answer. Let delta C be the extra compute cost of the expensive branch. Under-routing costs pL in expectation. Over-routing costs delta C and is otherwise harmless under the chapter's assumption that the expensive branch still answers simple queries correctly. Choose the expensive branch when pL exceeds delta C. The resulting threshold is tau* = delta C/L. Adaptive-RAG reports the multi-step path at about ten times single-step. At $0.002 for single-step, extra compute is 9 × $0.002 = $0.018. Fifteen minutes of support time at $24 per hour costs L = $6. The threshold is 0.018/6 = 0.003. A symmetric argmax threshold of 0.5 is 167 times too reluctant to escalate under those constants. This cost correction still assumes the probability is meaningful.</p>
+<h4 id="failure-without-an-input-side-gate">Failure without an input-side gate</h4>
+<p>Softmax reports which side of a hyperplane an embedding lands on and how far past it lies. Its regions extend indefinitely beyond the training data. An unseen query can therefore have a large margin and be confidently wrong. Router confidence measures distance from the decision boundary. It does not measure distance from the training distribution. Escalating only low-confidence queries watches the quantity that fails. Use an independent input-side signal. Measure cosine distance from the query embedding to the nearest training centroid. Bypass the router beyond a high percentile of training distances. The source's practice threshold is the 99th percentile. Use k-NN distance when its lookup cost is affordable and the training set is multi-modal. Do not harvest labels only from the system's own failures because silver labels already inherit the producer's blind spots. The chapter notes that retrieval has a zero-shot benchmark for distribution shift while routers lack an equivalent.</p>
+<h4 id="worked-example-5">Worked example</h4>
+<p>The RAGRoute setting has four medical corpora. Broadcast makes four source queries and reports 72.22% end-to-end accuracy. Routing reports 77.5% fewer source queries, 76.2% less transferred data, and 72.24% accuracy. Average fan-out becomes 4 × (1 - 0.775) = 0.90 sources per query. Routing saves 3.10 source queries for a gain of 0.02 accuracy points. Let f be the fraction of unseen traffic. Let d be the retrieval lift in accuracy points on that traffic. Routing remains accuracy-neutral only while fd is at most 0.02 points. At d = 10 points, f = 0.002, or two queries in one thousand. At d = 5 points, the allowance is 0.4%. At d = 20 points, it is 0.1%. One source query is priced at $0.0004. Saving 3.10 calls saves $0.00124 per user query. At 10 million queries per month, that is $12,400. With a $6 escalation and a 10-point retrieval lift, dollar break-even is f = 0.21%. The agreement with the accuracy calculation is an artifact of the chosen constants. The order of magnitude is the intended lesson. The reported query reduction leaves 22.5% of source calls and 23.8% of transferred data. The retained corpora are therefore about 6% larger than average if sources are interchangeable. That supports the source-affinity interpretation but also exposes single-source dependence.</p>
+<h4 id="practice-decisions-and-limits-6">Practice decisions and limits</h4>
+<p>Make the expensive branch the default for ambiguous or unfamiliar inputs. If a hard latency service-level objective blocks that choice, cap expensive-branch traffic and page when the cap binds. Treat the cap binding as a distribution-shift alarm. Set tau* from written values of extra compute and wrong-answer loss. Use escalation or negative-feedback rates as a proxy when wrong-answer loss cannot be priced. Revisit the proxy quarterly. Log branch decisions and monitor branch share by traffic segment. Production route labels may be absent, but branch share is always observable. Sample distance-gated queries each week. Add labeled data when they form a coherent new vertical. Raise the gate percentile when the rejected set is diffuse noise.</p>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="figure-251">Figure 25.1</h3>
+<h4 id="panel-a-the-only-cell-a-gate-can-win">Panel A: the only cell a gate can win</h4>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Closed-book outcome</th>
+<th style="text-align: right;">RAG correct</th>
+<th style="text-align: right;">RAG wrong</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Correct</td>
+<td style="text-align: right;">α = 52</td>
+<td style="text-align: right;">β = 10, the gating ceiling</td>
+</tr>
+<tr>
+<td>Wrong</td>
+<td style="text-align: right;">γ = 18</td>
+<td style="text-align: right;">δ = 20</td>
+</tr>
+</tbody>
+</table></div>
+<p>Always-retrieve = α + γ = 70. Closed-book = α + β = 62. Oracle gate = α + β + γ = 80.</p>
+<h4 id="panel-b-when-each-familys-signal-becomes-available">Panel B: when each family's signal becomes available</h4>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart LR
+    C[&quot;Classifier: query plus hidden state, +2 ms&quot;] --&gt; F[&quot;Confidence: after a closed-book draft, +126 ms&quot;]
+    F --&gt; S[&quot;Self-reflective: emitted mid-generation, once per sentence&quot;]</code></pre></details></figure>
+<p>Compute spent before the gate can fire increases from left to right.</p>
+<p><strong>Figure 25.1:</strong> Gating buys back exactly the questions retrieval spoils - the shaded β cell - and nothing else, while the three mechanism families differ chiefly in how much generation must already have happened before their signal exists.</p>
+<h3 id="figure-252">Figure 25.2</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Q[&quot;prompt x&quot;] --&gt; I[&quot;1. intent-aware&quot;]
+    I --&gt;|no external intent| S1[&quot;SKIP&quot;]
+    I --&gt;|seeks knowledge| K[&quot;2. knowledge-aware&quot;]
+    K --&gt;|no world knowledge| S2[&quot;SKIP&quot;]
+    K --&gt;|needs facts| T[&quot;3. time-aware&quot;]
+    T --&gt;|time-sensitive| R1[&quot;RETRIEVE&quot;]
+    T --&gt;|stable fact| A[&quot;4. self-aware&quot;]
+    A --&gt;|already known| S3[&quot;SKIP&quot;]
+    A --&gt;|not known| R2[&quot;RETRIEVE&quot;]
+    classDef skip stroke-width:1px,stroke-dasharray:5 5
+    classDef retrieve stroke-width:3px
+    class S1,S2,S3 skip
+    class R1,R2 retrieve</code></pre></details></figure>
+<p>All four probes read the same hidden state from one prefill. They train independently, while the tree applies their bits as a precedence rule.</p>
+<p><strong>Figure 25.2:</strong> The four criteria are trained as independent binary probes over one frozen hidden state but applied as a cascade, so the tree encodes precedence rather than computation order: testing time-sensitivity before self-knowledge is what stops a confidently stale answer from short-circuiting the gate. Dashed terminals skip retrieval. Heavy terminals invoke it.</p>
+<h3 id="figure-253">Figure 25.3</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    Q[&quot;query q&quot;] --&gt; B[&quot;broadcast: M = all six stores&quot;]
+    Q --&gt; R[&quot;route on P(relevant given q and Si)&quot;]
+    B --&gt; BS[&quot;query S1, S2, S3, S4, S5, S6&quot;]
+    BS --&gt; BM[&quot;merge by raw score&quot;]
+    BM --&gt; BO[&quot;A, A copy, A copy, A copy, B, C&quot;]
+    R --&gt; RS[&quot;query selected S2 and S4&quot;]
+    R -.-&gt; RX[&quot;skipped S1, S3, S5, S6: silent recall risk&quot;]
+    RS --&gt; RM[&quot;merge by rank, then de-duplicate&quot;]
+    RM --&gt; RO[&quot;A, B, C, D, E, F&quot;]</code></pre></details></figure>
+<p>The broadcast branch has three distinct documents in six slots and counts A four times as agreement. The routed branch has six distinct documents, but every skipped store creates silent recall risk.</p>
+<p><strong>Figure 25.3:</strong> The same context budget spent two ways: broadcasting and merging on raw score lets one replicated document occupy four of six slots and masquerade as cross-source agreement, while routing buys distinct evidence at the cost of a recall risk you can no longer observe. Slot counts are illustrative.</p>
+<h3 id="figure-254">Figure 25.4</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+    Q1[&quot;query q&quot;] --&gt; C[&quot;four binary criteria: intent, knowledge, time, self&quot;]
+    C --&gt; L[&quot;label l in {0,1}^4, 16 cells&quot;]
+    L -.-&gt; P[&quot;policy pi: 16 cells mapped by hand&quot;]
+    P -.-&gt; U[&quot;which operation?&quot;]
+    Q2[&quot;query q&quot;] --&gt; RP[&quot;prescriptive router: BERT-base, 110M&quot;]
+    RP --&gt; A1[&quot;answer directly&quot;]
+    RP --&gt; A2[&quot;chain of thought&quot;]
+    RP --&gt; A3[&quot;retrieve as issued&quot;]
+    RP --&gt; A4[&quot;rewrite, then retrieve&quot;]
+    RP --&gt; A5[&quot;decompose, then retrieve&quot;]</code></pre></details></figure>
+<p>The first two prescriptive actions never fire retrieval. The last three are distinct retrieval operations.</p>
+<p><strong>Figure 25.4:</strong> A descriptive controller (a) ends at a label and leaves the mapping to an operation unwritten, which is why the same label "needs external knowledge" silently collapses onto one action. A prescriptive router (b) emits the operation itself, and the when-to-retrieve answer falls out of the top two branches for free.</p>
+<h3 id="figure-255">Figure 25.5</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>What the corpus must supply</th>
+<th>Machinery</th>
+<th>Ceiling effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1, explicit facts</td>
+<td>The answer written in one place</td>
+<td>Chunking, embeddings, reranking, top-k</td>
+<td>Retrieval quality raises the ceiling</td>
+</tr>
+<tr>
+<td>L2, implicit facts</td>
+<td>Several facts whose combination yields the answer</td>
+<td>Decomposition, iterative retrieval, graph indexes, text-to-Structured Query Language</td>
+<td>Retrieval quality raises the ceiling</td>
+</tr>
+<tr>
+<td>L3, interpretable rationales</td>
+<td>A written standard operating procedure (SOP), manual, or regulation</td>
+<td>Document-level retrieval and procedure-following prompts</td>
+<td>The corpus must contain the rationale</td>
+</tr>
+<tr>
+<td>L4, hidden rationales</td>
+<td>Past decisions that preserve an unwritten policy</td>
+<td>Case retrieval as exemplars, offline rule mining, fine-tuning</td>
+<td>The corpus must contain the rationale</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Figure 25.5:</strong> The four levels are separated by what the corpus must supply - a fact, a combination of facts, a written procedure, a policy that was never written - so tuning the retriever raises the ceiling on the top two bands and on neither of the bottom two.</p>
+<h3 id="figure-256">Figure 25.6</h3>
+<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+    Q[&quot;one training pair, query q and gold answer a*, from an existing question-answering corpus&quot;]
+    Q --&gt; A[&quot;A: no retrieval, 2.41 s, EM = 0&quot;]
+    Q --&gt; B[&quot;B: single-step, 2.63 s, EM = 1&quot;]
+    Q --&gt; C[&quot;C: multi-step, 14.39 s, EM = 1&quot;]
+    A --&gt; S[&quot;score every output against a* by exact match&quot;]
+    B --&gt; S
+    C --&gt; S
+    S --&gt; D{&quot;at least one correct?&quot;}
+    D --&gt;|yes| E[&quot;cheapest correct policy&quot;]
+    D -.-&gt;|no| F[&quot;label from source corpus bias, never discard&quot;]
+    E --&gt; L[&quot;silver-labeled set of query and policy pairs&quot;]
+    F -.-&gt; L
+    L --&gt; T[&quot;train router from q to A, B, or C&quot;]
+    T --&gt; V[&quot;serving commits before any document is retrieved&quot;]</code></pre></details></figure>
+<p><strong>Figure 25.6:</strong> Nobody annotates hop counts, so the label is manufactured by executing every configuration against a known answer and keeping the cheapest one that was correct. The dashed path is what keeps the hardest queries - those no configuration solves - inside the training distribution.</p>
+<h3 id="figure-257">Figure 25.7</h3>
+<pre class="text"><code>cheap branch                                      expensive branch
+
+       single-hop training set       / decision boundary
+          .----------------.         /
+         /  o  o  o  o     \       /       .----------------.
+        |  o  o  o  o  o    |     /       /  []  []  []     \
+         \       center     /     /       | []  []  []  []    |
+          &#39;----------------&#39;     /          \ multi-hop set    /
+                  . . . 2.6 r  /            &#39;----------------&#39;
+                 X unseen query
+
+          distance-to-data gate follows the dotted path</code></pre>
+<p><strong>Figure 25.7:</strong> The unseen query lies 16.1 mm from the decision boundary, within three percent of the margin enjoyed by the centroid of the single-hop training cluster, while sitting 2.6 cluster radii r away from that centroid. A confidence score cannot separate those two situations, because it measures only the first distance. An input-side gate on the second (dashed) catches what the router's own output cannot.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li><p>Draw a query box at the far left.</p></li>
+<li><p>Add a when-to-retrieve gate with four labels in order: intent, knowledge, time, self.</p></li>
+<li><p>Draw a skip arrow to direct generation and a retrieve arrow to an action router.</p></li>
+<li><p>Give the action router five branches: direct, reason, retrieve, rewrite, decompose.</p></li>
+<li><p>From the retrieval actions, draw a source router that selects stores rather than broadcasting.</p></li>
+<li><p>Add a four-row level box: one fact, several facts, written procedure, past cases.</p></li>
+<li><p>Map those levels to one lookup, decomposition, parent-document retrieval, and exemplar retrieval.</p></li>
+<li><p>Add an input-distance gate above the routers with a bypass to the expensive safe path.</p></li>
+<li><p>End at generation, then annotate the router logs with action, margin, terminating gate, and branch share.</p></li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start with one question: should retrieval fire at all? A good gate separates cases retrieval saves from cases it spoils, then checks intent, knowledge need, freshness, and model self-knowledge. If retrieval is needed, a prescriptive router chooses the operation, while a source router chooses the stores. The information level then sets the machinery: one lookup, decomposition, procedure retrieval, or similar-case retrieval. Adaptive-RAG learns the action from silver labels made by running every policy and keeping the cheapest correct one. Finally, input-distance checks catch unfamiliar queries and send them to the safer, more expensive path.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-retrieval-raises-overall-accuracy-but-hurts-common-questions-what-should-trigger-it">1. Retrieval raises overall accuracy but hurts common questions. What should trigger it?</h3>
+<p>Build the closed-book versus RAG 2 by 2 first, then identify β as the gain ceiling over always-retrieve and train the gate to separate β from γ rather than easy from hard. Prefer query-side or hidden-state signals because they exist before decoding. A next-token confidence gate measures fluency and pays for a draft before it can act.</p>
+<h3 id="2-why-not-query-every-source-and-let-the-reranker-choose">2. Why not query every source and let the reranker choose?</h3>
+<p>Parallel fan-out compounds tail risk, can violate residency or billing constraints, and lets duplicate documents consume context slots. Raw scores from heterogeneous stores are incomparable, while a pointwise reranker promotes near-copies instead of suppressing them. Route likely stores, merge on rank, deduplicate by lineage before counting agreement, and expose the silent recall risk of skipped stores.</p>
+<h3 id="3-is-a-when-to-retrieve-classifier-the-same-as-a-router-and-how-does-query-level-change-the-answer">3. Is a when-to-retrieve classifier the same as a router, and how does query level change the answer?</h3>
+<p>No, because a descriptive classifier outputs a label while a prescriptive router outputs an operation such as direct answer, rewrite, or decomposition. The information level is a separate property of the query-and-corpus pair. It tells the router whether the corpus must supply one fact, several facts, a whole procedure, or similar past cases.</p>
+<h3 id="4-nobody-labels-hop-counts-how-does-adaptive-rag-get-supervision">4. Nobody labels hop counts. How does Adaptive-RAG get supervision?</h3>
+<p>Run no-retrieval, single-step, and multi-step policies on questions with known answers, score every result by exact match, and keep the cheapest correct policy as the silver label. If none is correct, retain the query with the source corpus's bias as fallback. Recompute labels whenever the generator changes because the label depends on generator memory.</p>
+<h3 id="5-why-is-router-confidence-not-enough-for-ood-safety">5. Why is router confidence not enough for OOD safety?</h3>
+<p>Confidence measures distance from the decision boundary, not distance from the training data. An unfamiliar query can be far from both, which makes it confident and wrong while every downstream stage follows the wrong plan correctly. Use an independent input-distance gate, route far inputs to the expensive safe branch, and monitor branch share by traffic segment.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th style="text-align: right;">Number or threshold</th>
+<th>Exact meaning or limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PopQA retrieval harm</td>
+<td style="text-align: right;">Roughly 10%</td>
+<td>Questions retrieval made wrong that closed-book would answer correctly</td>
+</tr>
+<tr>
+<td>Figure 25.1 α</td>
+<td style="text-align: right;">52</td>
+<td>Both branches correct in the illustrative matrix</td>
+</tr>
+<tr>
+<td>Figure 25.1 β</td>
+<td style="text-align: right;">10</td>
+<td>Closed-book only, which is the oracle gain ceiling over always-retrieve</td>
+</tr>
+<tr>
+<td>Figure 25.1 γ</td>
+<td style="text-align: right;">18</td>
+<td>Retrieval only in the illustrative matrix</td>
+</tr>
+<tr>
+<td>Figure 25.1 δ</td>
+<td style="text-align: right;">20</td>
+<td>Both branches wrong in the illustrative matrix</td>
+</tr>
+<tr>
+<td>Figure 25.1 always-retrieve</td>
+<td style="text-align: right;">70</td>
+<td>α + γ</td>
+</tr>
+<tr>
+<td>Figure 25.1 closed-book</td>
+<td style="text-align: right;">62</td>
+<td>α + β</td>
+</tr>
+<tr>
+<td>Figure 25.1 oracle</td>
+<td style="text-align: right;">80</td>
+<td>α + β + γ</td>
+</tr>
+<tr>
+<td>Gate signal timing</td>
+<td style="text-align: right;">2 ms</td>
+<td>Classifier wall time in the worked estimate</td>
+</tr>
+<tr>
+<td>Gate signal timing</td>
+<td style="text-align: right;">126 ms</td>
+<td>Closed-book 30-token confidence draft</td>
+</tr>
+<tr>
+<td>Gate workload</td>
+<td style="text-align: right;">100,000 queries per day</td>
+<td>Scale of the section 25.1 worked example</td>
+</tr>
+<tr>
+<td>Gate generator</td>
+<td style="text-align: right;">7B parameters</td>
+<td>Generator size in the section 25.1 example</td>
+</tr>
+<tr>
+<td>Prompt sizes</td>
+<td style="text-align: right;">200 and 2,200 tokens</td>
+<td>Closed-book versus five 400-token retrieved chunks added</td>
+</tr>
+<tr>
+<td>Retrieval stages</td>
+<td style="text-align: right;">8, 15, and 60 ms</td>
+<td>Embedding, ANN search, and top-20 cross-encoder reranking</td>
+</tr>
+<tr>
+<td>Extra prefill</td>
+<td style="text-align: right;">2,000 tokens</td>
+<td>Retrieved tokens beyond the 200-token prompt</td>
+</tr>
+<tr>
+<td>Prefill compute</td>
+<td style="text-align: right;">2.8 × 10^13 FLOPs</td>
+<td>2 × 2,000 × 7 × 10^9</td>
+</tr>
+<tr>
+<td>Effective throughput</td>
+<td style="text-align: right;">3.4 × 10^14 FLOP/s</td>
+<td>Assumed accelerator throughput</td>
+</tr>
+<tr>
+<td>Prefill latency</td>
+<td style="text-align: right;">82 ms</td>
+<td>Extra 2,000-token prefill</td>
+</tr>
+<tr>
+<td>Total retrieval overhead</td>
+<td style="text-align: right;">165 ms</td>
+<td>83 ms retrieval path plus 82 ms prefill</td>
+</tr>
+<tr>
+<td>Always-retrieve prefill</td>
+<td style="text-align: right;">220 million tokens per day</td>
+<td>100,000 × 2,200</td>
+</tr>
+<tr>
+<td>Popularity-gate skip</td>
+<td style="text-align: right;">30%</td>
+<td>Traffic that avoids retrieval</td>
+</tr>
+<tr>
+<td>Infrastructure skip request</td>
+<td style="text-align: right;">50%</td>
+<td>Staff-level hypothetical that conflicts with zero accuracy regression unless traffic is segmented</td>
+</tr>
+<tr>
+<td>Gate rescue and loss</td>
+<td style="text-align: right;">6 β points and 3 γ points</td>
+<td>Accuracy moves from 70% to 73%</td>
+</tr>
+<tr>
+<td>Gated prefill</td>
+<td style="text-align: right;">160 million tokens per day</td>
+<td>27% below always-retrieve</td>
+</tr>
+<tr>
+<td>Expected latency avoided</td>
+<td style="text-align: right;">50 ms</td>
+<td>0.30 × 165 ms</td>
+</tr>
+<tr>
+<td>Classifier encoder</td>
+<td style="text-align: right;">110M parameters and 32 tokens</td>
+<td>About 7 GFLOPs and 2 ms</td>
+</tr>
+<tr>
+<td>Classifier net saving</td>
+<td style="text-align: right;">48 ms</td>
+<td>Worked arithmetic of 50 - 2</td>
+</tr>
+<tr>
+<td>Confidence weight read</td>
+<td style="text-align: right;">14 GB at 3.35 TB/s</td>
+<td>4.2 ms per token for 7B FP16</td>
+</tr>
+<tr>
+<td>Confidence net effect</td>
+<td style="text-align: right;">-76 ms</td>
+<td>Worked arithmetic of 50 - 126</td>
+</tr>
+<tr>
+<td>Source discrepancy</td>
+<td style="text-align: right;">44 ms and 80 ms</td>
+<td>Closing summary values conflict with 48 ms and -76 ms arithmetic</td>
+</tr>
+<tr>
+<td>UAR hidden state</td>
+<td style="text-align: right;">4,096 dimensions</td>
+<td>Input width for each probe</td>
+</tr>
+<tr>
+<td>UAR probe hidden width</td>
+<td style="text-align: right;">512</td>
+<td>Middle width of each two-layer probe</td>
+</tr>
+<tr>
+<td>UAR output</td>
+<td style="text-align: right;">2 logits</td>
+<td>Binary criterion output</td>
+</tr>
+<tr>
+<td>UAR probe parameters</td>
+<td style="text-align: right;">2,098,176</td>
+<td>About 2.1 million parameters</td>
+</tr>
+<tr>
+<td>UAR probe compute</td>
+<td style="text-align: right;">4.2 MFLOPs</td>
+<td>Cost per probe</td>
+</tr>
+<tr>
+<td>UAR total compute</td>
+<td style="text-align: right;">16.8 MFLOPs</td>
+<td>Four probes</td>
+</tr>
+<tr>
+<td>One 7B decode step</td>
+<td style="text-align: right;">14 GFLOPs</td>
+<td>Comparison point for UAR overhead</td>
+</tr>
+<tr>
+<td>UAR overhead</td>
+<td style="text-align: right;">1.2 × 10^-3 or 0.12%</td>
+<td>Fraction of one generated token</td>
+</tr>
+<tr>
+<td>UAR traffic</td>
+<td style="text-align: right;">10,000 prompts per day</td>
+<td>Worked example scale</td>
+</tr>
+<tr>
+<td>UAR retrieved context</td>
+<td style="text-align: right;">3,000 tokens</td>
+<td>Context added per retrieval</td>
+</tr>
+<tr>
+<td>UAR retrieval latency</td>
+<td style="text-align: right;">220 ms</td>
+<td>15 + 25 + 80 + 100 ms</td>
+</tr>
+<tr>
+<td>UAR input price</td>
+<td style="text-align: right;">$3 per million tokens</td>
+<td>Makes one retrieval cost $0.009</td>
+</tr>
+<tr>
+<td>Always-retrieve cost</td>
+<td style="text-align: right;">$90 per day</td>
+<td>10,000 retrievals</td>
+</tr>
+<tr>
+<td>UAR termination rates</td>
+<td style="text-align: right;">0.30, 0.20, 0.25</td>
+<td>Conditional p1, p2, and p3 assumptions</td>
+</tr>
+<tr>
+<td>UAR final split</td>
+<td style="text-align: right;">55% skip and 45% retrieve</td>
+<td>Gate 4 split of survivors</td>
+</tr>
+<tr>
+<td>UAR retrieval rate</td>
+<td style="text-align: right;">32.9%</td>
+<td>3,290 of 10,000 prompts</td>
+</tr>
+<tr>
+<td>UAR daily cost</td>
+<td style="text-align: right;">$29.61</td>
+<td>Cost after routing</td>
+</tr>
+<tr>
+<td>UAR savings</td>
+<td style="text-align: right;">$60.39 per day and $22,042 per year</td>
+<td>Stated example savings</td>
+</tr>
+<tr>
+<td>UAR mean added latency</td>
+<td style="text-align: right;">72 ms</td>
+<td>0.329 × 220 ms</td>
+</tr>
+<tr>
+<td>UAR daily control compute</td>
+<td style="text-align: right;">168 GFLOPs</td>
+<td>Four probes over 10,000 prompts</td>
+</tr>
+<tr>
+<td>A100 reference</td>
+<td style="text-align: right;">312 TFLOP/s dense BF16</td>
+<td>Gives 0.54 ms per day at peak and 54 ms at 1%</td>
+</tr>
+<tr>
+<td>Draft self-aware gate</td>
+<td style="text-align: right;">64 tokens and 896 GFLOPs</td>
+<td>Expensive generated confidence criterion</td>
+</tr>
+<tr>
+<td>Draft gate ordering</td>
+<td style="text-align: right;">42% reaches it</td>
+<td>Last position cuts expected cost to 376 GFLOPs</td>
+</tr>
+<tr>
+<td>Ordering reduction</td>
+<td style="text-align: right;">58%</td>
+<td>376 versus 896 GFLOPs</td>
+</tr>
+<tr>
+<td>Hit-rate-cost ratio gap</td>
+<td style="text-align: right;">About 6 × 10^4</td>
+<td>0.071 versus 1.1 × 10^-6 per MFLOP</td>
+</tr>
+<tr>
+<td>Source-tail probability</td>
+<td style="text-align: right;">1% per source</td>
+<td>Six sources produce 5.9%, two produce 2.0%</td>
+</tr>
+<tr>
+<td>Duplicate collapse</td>
+<td style="text-align: right;">k = 10 and r = 3</td>
+<td>Pathological effective distinct budget is 4</td>
+</tr>
+<tr>
+<td>Heterogeneous lengths</td>
+<td style="text-align: right;">120 and 900 tokens</td>
+<td>Wiki versus PDF average length example</td>
+</tr>
+<tr>
+<td>BM25 comparison</td>
+<td style="text-align: right;">14.2 and 14.2</td>
+<td>Equal raw scores are not comparable across stores</td>
+</tr>
+<tr>
+<td>Cosine comparison</td>
+<td style="text-align: right;">0.85 and 0.35</td>
+<td>Typical relevant-pair similarities can differ across models</td>
+</tr>
+<tr>
+<td>RAGRoute reduction</td>
+<td style="text-align: right;">77.5% queries and 76.2% data</td>
+<td>Reported source-routing savings</td>
+</tr>
+<tr>
+<td>RAGRoute accuracy</td>
+<td style="text-align: right;">72.22% to 72.24%</td>
+<td>Reported 0.02-point change</td>
+</tr>
+<tr>
+<td>Broadcast query ratio</td>
+<td style="text-align: right;">4.4 times</td>
+<td>100/22.5</td>
+</tr>
+<tr>
+<td>Constructed store sizes</td>
+<td style="text-align: right;">40k, 8k, 60k, 300k, 900k, 1.2M</td>
+<td>Six stores totaling 2.508M chunks</td>
+</tr>
+<tr>
+<td>Source return size</td>
+<td style="text-align: right;">Top 20 at 600 tokens each</td>
+<td>Per-store candidate output</td>
+</tr>
+<tr>
+<td>Broadcast transfer</td>
+<td style="text-align: right;">120 candidates and 72,000 tokens</td>
+<td>Six stores queried</td>
+</tr>
+<tr>
+<td>Duplicate vote</td>
+<td style="text-align: right;">Four copies, three stale</td>
+<td>Final window has seven distinct documents and a 3 to 1 stale vote</td>
+</tr>
+<tr>
+<td>Routed transfer</td>
+<td style="text-align: right;">40 candidates and 24,000 tokens</td>
+<td>Two stores queried, a 66.7% reduction</td>
+</tr>
+<tr>
+<td>Selected vectors</td>
+<td style="text-align: right;">48,000 versus 2,508,000</td>
+<td>52 times is only an upper bound on HNSW search saving</td>
+</tr>
+<tr>
+<td>Reranker throughput</td>
+<td style="text-align: right;">200 pairs/s at 512 tokens</td>
+<td>0.60 seconds broadcast versus 0.20 seconds routed</td>
+</tr>
+<tr>
+<td>Router default</td>
+<td style="text-align: right;">Broadcast while N is at most 3</td>
+<td>Only for homogeneous, in-region stores</td>
+</tr>
+<tr>
+<td>RRF constant</td>
+<td style="text-align: right;">k approximately 60</td>
+<td>Rank-based merge default</td>
+</tr>
+<tr>
+<td>Partner source</td>
+<td style="text-align: right;">30 million documents</td>
+<td>Seventh-source example with no useful metadata and per-call billing</td>
+</tr>
+<tr>
+<td>Descriptive labels</td>
+<td style="text-align: right;">2^4 = 16</td>
+<td>Four binary criteria</td>
+</tr>
+<tr>
+<td>Prescriptive actions</td>
+<td style="text-align: right;">5</td>
+<td>Direct, reason, retrieve, rewrite, decompose</td>
+</tr>
+<tr>
+<td>BERT-base router</td>
+<td style="text-align: right;">110M parameters and 32 tokens</td>
+<td>7.04 × 10^9 FLOPs or 0.021 ms</td>
+</tr>
+<tr>
+<td>Generative router</td>
+<td style="text-align: right;">8B bf16 and 16 GB per token read</td>
+<td>4.8 ms per token at 3.35 TB/s</td>
+</tr>
+<tr>
+<td>Routing generation</td>
+<td style="text-align: right;">5 tokens and 24 ms</td>
+<td>About three orders slower than encoder arithmetic</td>
+</tr>
+<tr>
+<td>Direct-answer example</td>
+<td style="text-align: right;">32-token prompt and 5-token answer</td>
+<td>1.5 ms prefill plus 24 ms decode</td>
+</tr>
+<tr>
+<td>Arithmetic distraction</td>
+<td style="text-align: right;">2,000 tokens and 94 ms</td>
+<td>Unnecessary retrieval prefill</td>
+</tr>
+<tr>
+<td>Rewrite example</td>
+<td style="text-align: right;">20 tokens and 96 ms</td>
+<td>Cost before retrieval</td>
+</tr>
+<tr>
+<td>Router break-even</td>
+<td style="text-align: right;">0.022%</td>
+<td>One correct diversion in about five thousand</td>
+</tr>
+<tr>
+<td>Cross-encoder comparison</td>
+<td style="text-align: right;">100 × 256 = 25,600 tokens</td>
+<td>800 times router input, about 16.6 ms arithmetic</td>
+</tr>
+<tr>
+<td>Held-out router accuracy</td>
+<td style="text-align: right;">82%</td>
+<td>Hypothetical that still produces lower end-to-end quality because confusions have unequal cost</td>
+</tr>
+<tr>
+<td>Joint action-source labels</td>
+<td style="text-align: right;">5 times the source count</td>
+<td>Five actions crossed with every source</td>
+</tr>
+<tr>
+<td>Reported recall</td>
+<td style="text-align: right;">Recall@10 of 0.94</td>
+<td>Level-blind deployment still fails beyond lookups</td>
+</tr>
+<tr>
+<td>Level count</td>
+<td style="text-align: right;">4</td>
+<td>Explicit fact, implicit facts, written rationale, hidden rationale</td>
+</tr>
+<tr>
+<td>Joint coverage</td>
+<td style="text-align: right;">0.9^3 = 0.729</td>
+<td>Three facts at 90% per-fact recall</td>
+</tr>
+<tr>
+<td>Required per-fact recall</td>
+<td style="text-align: right;">0.965</td>
+<td>Holds three-fact joint coverage at 0.9</td>
+</tr>
+<tr>
+<td>Pooled budget</td>
+<td style="text-align: right;">k = 10 and h = 3</td>
+<td>About three slots per need</td>
+</tr>
+<tr>
+<td>Recall upgrade</td>
+<td style="text-align: right;">0.90 to 0.94</td>
+<td>Three-fact joint coverage rises by 0.101 if pooling is ignored</td>
+</tr>
+<tr>
+<td>Stratification corpus</td>
+<td style="text-align: right;">500,000 chunks at 200 tokens</td>
+<td>Worked example base</td>
+</tr>
+<tr>
+<td>Level 1 prefill</td>
+<td style="text-align: right;">2,000 tokens</td>
+<td>Ten chunks</td>
+</tr>
+<tr>
+<td>Level 2 pooled</td>
+<td style="text-align: right;">0.60^3 = 0.216</td>
+<td>Assumed pooled joint coverage</td>
+</tr>
+<tr>
+<td>Level 2 decomposed</td>
+<td style="text-align: right;">0.90^3 = 0.729</td>
+<td>Three calls and 6,000 tokens, a 3.4-fold gain</td>
+</tr>
+<tr>
+<td>Level 3 procedure</td>
+<td style="text-align: right;">9 steps and 1,800 tokens</td>
+<td>Parent retrieval yields 3,000 total tokens</td>
+</tr>
+<tr>
+<td>Level 4 exemplars</td>
+<td style="text-align: right;">8 × 600 = 4,800 tokens</td>
+<td>Resolved-ticket context</td>
+</tr>
+<tr>
+<td>Hidden-policy history</td>
+<td style="text-align: right;">400 past cases</td>
+<td>Example where policy exists in decisions but not a rule document</td>
+</tr>
+<tr>
+<td>Traffic mix</td>
+<td style="text-align: right;">60%, 25%, 10%, 5%</td>
+<td>Levels 1 through 4</td>
+</tr>
+<tr>
+<td>Mean level-aware prefill</td>
+<td style="text-align: right;">3,240 versus 2,000 tokens</td>
+<td>1.62 times to address 40% structural failures</td>
+</tr>
+<tr>
+<td>IRCoT anchor</td>
+<td style="text-align: right;">Up to 21 points</td>
+<td>Substitution gives 0.69^3 = 0.329 and a 2.2-fold ratio</td>
+</tr>
+<tr>
+<td>Stratification sample</td>
+<td style="text-align: right;">200 queries</td>
+<td>Default hand-labeling pass</td>
+</tr>
+<tr>
+<td>Fact-chunk overlap</td>
+<td style="text-align: right;">20%</td>
+<td>Well-tuned 200-token chunks remain wrong for a nine-step procedure</td>
+</tr>
+<tr>
+<td>Failing-set decision</td>
+<td style="text-align: right;">12% of traffic, one week, 200 labels</td>
+<td>Cheap stratification experiment before choosing a reranker or graph index</td>
+</tr>
+<tr>
+<td>Decomposition threshold</td>
+<td style="text-align: right;">h at least 2</td>
+<td>Unless facts reliably co-occur</td>
+</tr>
+<tr>
+<td>Procedure chunk exception</td>
+<td style="text-align: right;">Under roughly 400 tokens</td>
+<td>May fit one chunk</td>
+</tr>
+<tr>
+<td>Small level exclusion</td>
+<td style="text-align: right;">Under 1%</td>
+<td>May be explicitly out of scope</td>
+</tr>
+<tr>
+<td>Adaptive-RAG policies</td>
+<td style="text-align: right;">3</td>
+<td>No retrieval, single-step, multi-step</td>
+</tr>
+<tr>
+<td>Decode rate</td>
+<td style="text-align: right;">50 tokens/s or 20 ms/token</td>
+<td>Worked latency model</td>
+</tr>
+<tr>
+<td>Answer length</td>
+<td style="text-align: right;">120 tokens</td>
+<td>2.40 seconds decode</td>
+</tr>
+<tr>
+<td>Prefill rate</td>
+<td style="text-align: right;">8,000 tokens/s</td>
+<td>Worked latency model</td>
+</tr>
+<tr>
+<td>Retrieval call</td>
+<td style="text-align: right;">90 ms</td>
+<td>Embed, ANN search, and rerank</td>
+</tr>
+<tr>
+<td>Retrieved context</td>
+<td style="text-align: right;">5 × 200 = 1,000 tokens</td>
+<td>Per retrieval step</td>
+</tr>
+<tr>
+<td>Policy A</td>
+<td style="text-align: right;">2.41 s</td>
+<td>No retrieval</td>
+</tr>
+<tr>
+<td>Policy B</td>
+<td style="text-align: right;">2.63 s</td>
+<td>One retrieval and generation</td>
+</tr>
+<tr>
+<td>Policy C</td>
+<td style="text-align: right;">T = 5 and 14.39 s</td>
+<td>Five retrieve-generate iterations, 5.5 times B</td>
+</tr>
+<tr>
+<td>Policy C components</td>
+<td style="text-align: right;">1.94, 0.45, and 12.00 s</td>
+<td>Prefill, retrieval, and decode</td>
+</tr>
+<tr>
+<td>Silver-label set</td>
+<td style="text-align: right;">30,000 queries</td>
+<td>22%, 51%, and 27% in A, B, and C</td>
+</tr>
+<tr>
+<td>Routed expected latency</td>
+<td style="text-align: right;">5.76 s</td>
+<td>Versus 14.39 s always multi-step, a 2.5-fold saving</td>
+</tr>
+<tr>
+<td>Label executions</td>
+<td style="text-align: right;">7 per query and 210,000 total</td>
+<td>1 + 1 + 5 over 30,000 queries</td>
+</tr>
+<tr>
+<td>Labeling time</td>
+<td style="text-align: right;">504,000 s or 140 serial hours</td>
+<td>4.4 hours at 32-way batching</td>
+</tr>
+<tr>
+<td>Human comparison</td>
+<td style="text-align: right;">30 s per query and 250 hours</td>
+<td>Still cannot observe generator memory</td>
+</tr>
+<tr>
+<td>Published timing anchor</td>
+<td style="text-align: right;">Close to 10 times</td>
+<td>Cost model reaches it at T = 8.5, or eight to nine iterations</td>
+</tr>
+<tr>
+<td>Class split trigger</td>
+<td style="text-align: right;">Roughly 70%</td>
+<td>Split a dominant class</td>
+</tr>
+<tr>
+<td>Unsolved trigger</td>
+<td style="text-align: right;">About one third</td>
+<td>Above it, fix generator or retriever first</td>
+</tr>
+<tr>
+<td>Minor-version check</td>
+<td style="text-align: right;">2,000 queries</td>
+<td>Relabel sample before full rerun</td>
+</tr>
+<tr>
+<td>Route gaps</td>
+<td style="text-align: right;">0.22 s and 11.76 s</td>
+<td>A-to-B and B-to-C arbitrage</td>
+</tr>
+<tr>
+<td>Over-route cost</td>
+<td style="text-align: right;">11.98 s</td>
+<td>Class A sent to C</td>
+</tr>
+<tr>
+<td>Three-way router accuracy</td>
+<td style="text-align: right;">65%</td>
+<td>Hypothetical that requires asymmetric error analysis before shipping</td>
+</tr>
+<tr>
+<td>Joint routing grid</td>
+<td style="text-align: right;">3 × 2 × 3 × 2 = 36</td>
+<td>12 times current labeling and about 830 examples per class</td>
+</tr>
+<tr>
+<td>OOD incident</td>
+<td style="text-align: right;">Six weeks, 2 accuracy points, 4% new traffic</td>
+<td>Router confidence distribution stays unchanged</td>
+</tr>
+<tr>
+<td>High-confidence share</td>
+<td style="text-align: right;">Above 0.9</td>
+<td>Also appears unchanged in the incident</td>
+</tr>
+<tr>
+<td>CRAG evaluator</td>
+<td style="text-align: right;">770M parameters and 3 classes</td>
+<td>Correct, ambiguous, incorrect</td>
+</tr>
+<tr>
+<td>Cost example</td>
+<td style="text-align: right;">$0.002 single-step and $0.018 extra</td>
+<td>Multi-step is about 10 times slower</td>
+</tr>
+<tr>
+<td>Wrong-answer loss</td>
+<td style="text-align: right;">$6</td>
+<td>Fifteen minutes at $24 per hour</td>
+</tr>
+<tr>
+<td>Cost threshold</td>
+<td style="text-align: right;">0.003</td>
+<td>$0.018 divided by $6</td>
+</tr>
+<tr>
+<td>Argmax mismatch</td>
+<td style="text-align: right;">0.5 and 167 times</td>
+<td>Symmetric threshold is too reluctant under the constants</td>
+</tr>
+<tr>
+<td>Figure 25.7 boundary distance</td>
+<td style="text-align: right;">16.1 mm</td>
+<td>Unseen-query distance to decision boundary</td>
+</tr>
+<tr>
+<td>Figure 25.7 margin comparison</td>
+<td style="text-align: right;">Within 3%</td>
+<td>Similar to the single-hop centroid's boundary margin</td>
+</tr>
+<tr>
+<td>Figure 25.7 data distance</td>
+<td style="text-align: right;">2.6 cluster radii</td>
+<td>Unseen-query distance from the single-hop centroid</td>
+</tr>
+<tr>
+<td>Distance bypass</td>
+<td style="text-align: right;">99th percentile</td>
+<td>Practice threshold over training distances</td>
+</tr>
+<tr>
+<td>Medical corpora</td>
+<td style="text-align: right;">4</td>
+<td>RAGRoute worked setting</td>
+</tr>
+<tr>
+<td>Routed fan-out</td>
+<td style="text-align: right;">0.90 sources per query</td>
+<td>Four times 22.5% remaining calls</td>
+</tr>
+<tr>
+<td>Calls saved</td>
+<td style="text-align: right;">3.10</td>
+<td>Per user query</td>
+</tr>
+<tr>
+<td>OOD accuracy allowance</td>
+<td style="text-align: right;">fd at most 0.02 points</td>
+<td>Entire reported routing margin</td>
+</tr>
+<tr>
+<td>OOD slice at 10-point lift</td>
+<td style="text-align: right;">0.2% or 2 in 1,000</td>
+<td>Consumes the 0.02-point margin</td>
+</tr>
+<tr>
+<td>OOD slice at 5-point lift</td>
+<td style="text-align: right;">0.4%</td>
+<td>Accuracy-neutral limit</td>
+</tr>
+<tr>
+<td>OOD slice at 20-point lift</td>
+<td style="text-align: right;">0.1%</td>
+<td>Accuracy-neutral limit</td>
+</tr>
+<tr>
+<td>Source-query price</td>
+<td style="text-align: right;">$0.0004</td>
+<td>ANN search plus transfer</td>
+</tr>
+<tr>
+<td>Routing dollar saving</td>
+<td style="text-align: right;">$0.00124 per query</td>
+<td>$12,400 at 10M queries per month</td>
+</tr>
+<tr>
+<td>Dollar break-even OOD</td>
+<td style="text-align: right;">0.21%</td>
+<td>With $6 loss and 10-point retrieval lift</td>
+</tr>
+<tr>
+<td>Retained data ratio</td>
+<td style="text-align: right;">23.8% data versus 22.5% calls</td>
+<td>Retained corpora are about 6% larger than average under interchangeability</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/24_query_reformulation.html"><small>Previous</small>Chapter 24. Query Reformulation</a><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html"><small>Next</small>Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

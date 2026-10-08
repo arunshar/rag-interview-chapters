@@ -1,0 +1,1012 @@
+<!doctype html>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>00.04. How to Use This Book | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"><script src="../assets/reader.js" defer data-root="../"></script></head>
+<body data-page="chapters/00_04_how_to_use_this_book.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group" open><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html" aria-current="page">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group"><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Front matter</p><h1>00.04. How to Use This Book</h1><p class="chapter-meta">27 min estimated reading · Unit 4 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This unit explains how to choose a reading route, use the book's recurring section structure, interpret its interview tags and references, and turn its appendices into preparation tools.</p>
+<h2 id="tldr">TL;DR</h2>
+<ul>
+<li>The book supports three uses: interview preparation, on-the-job reference, and systematic study of retrieval-augmented generation (RAG) systems.</li>
+<li>Read linearly when starting from scratch. Use an ordered targeted path for a specific role or a specific knowledge gap.</li>
+<li>Part I is the only mandatory part. It establishes the parametric, non-parametric, and semi-parametric vocabulary plus the five-decision skeleton assumed later.</li>
+<li>Five targeted paths cover retrieval quality, vector infrastructure, product delivery, trust and safety, and training or advanced variants.</li>
+<li>If the interview is one week away, begin with Chapters 3 and 34, follow the stated short chapter sequence, then complete two timed design drills.</li>
+<li>Six cross-cutting threads connect topics that candidates often learn separately and are especially likely to prompt follow-up questions.</li>
+<li>The source calls the recurring section format a six-move structure, but it names seven elements. Preserve the stated label and use every named element. Difficulty tags test mechanism knowledge, derivation from constraints, or judgment under changed constraints. They do not describe reading difficulty.</li>
+</ul>
+<h2 id="the-story">The story</h2>
+<p>Think of the book as a rail network. Part I is the central station. It gives every traveler the shared vocabulary and the five-decision map needed to understand later signs. A first-time traveler stays on the full line because each part depends on stops that came before it.</p>
+<p>A traveler with a specific destination chooses one of five ordered service lines. One line serves retrieval and ranking quality. Another serves vector search infrastructure. Three more reach product delivery, trust and safety, and advanced training. The stops on each line are ordered, so skipping ahead can leave the traveler without the connection that makes the next stop useful.</p>
+<p>The one-week path is the express train. It starts with the answer skeleton and failure attribution, then stops only at the listed core chapters and timed drills. It deliberately passes the rest of the network. The tradeoff is explicit: a partial map that supports reasoning is better than a complete map produced by skimming.</p>
+<p>Six cross-cutting threads act like transfer stations. The recurring section format is the signage inside every station. The three difficulty tags identify what kind of ticket an interview answer must carry. The appendices are the station toolkit, with formulas, self-tests, checklists, reporting templates, readings, notation, and terminology.</p>
+<h2 id="decoder-table">Decoder table</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Source term</th>
+<th>Plain meaning in this unit</th>
+<th>How to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interview preparation</td>
+<td>One of the book's three intended uses</td>
+<td>Choose a role path or the one-week path, then work the interview questions and drills.</td>
+</tr>
+<tr>
+<td>On-the-job reference</td>
+<td>One of the book's three intended uses</td>
+<td>Open the relevant section and rely on its predictable internal structure.</td>
+</tr>
+<tr>
+<td>Systematic study</td>
+<td>One of the book's three intended uses</td>
+<td>Read the parts in dependency order.</td>
+</tr>
+<tr>
+<td>Linear reading order</td>
+<td>Parts arranged by prerequisite</td>
+<td>Use it when building the subject from scratch.</td>
+</tr>
+<tr>
+<td>Part I</td>
+<td>The RAG interview landscape</td>
+<td>Read it before the other parts because it supplies shared vocabulary and the five-decision skeleton.</td>
+</tr>
+<tr>
+<td>Five-decision skeleton</td>
+<td>The organizing structure introduced in Part I and Chapter 3</td>
+<td>Use it as the frame on which later material hangs.</td>
+</tr>
+<tr>
+<td>Targeted path</td>
+<td>An ordered route for a role or knowledge gap</td>
+<td>Read the selected path from top to bottom.</td>
+</tr>
+<tr>
+<td>Path 1</td>
+<td>Retrieval and ranking quality</td>
+<td>Use it for search-relevance and applied-science interviews focused on why the right document is not at rank 1.</td>
+</tr>
+<tr>
+<td>Path 2</td>
+<td>Vector search and platform infrastructure</td>
+<td>Use it for index ownership, capacity, recall, latency, and on-call concerns.</td>
+</tr>
+<tr>
+<td>Path 3</td>
+<td>Shipping a RAG product</td>
+<td>Use it for applied artificial intelligence (AI) and product-engineering interviews about the full loop and user-facing failures.</td>
+</tr>
+<tr>
+<td>Path 4</td>
+<td>High-stakes, trust, and safety</td>
+<td>Use it for regulated domains or questions about wrong or hostile retrieved documents.</td>
+</tr>
+<tr>
+<td>Path 5</td>
+<td>Training the system and advanced variants</td>
+<td>Use it for research-oriented interviews that move from component assembly to changing components.</td>
+</tr>
+<tr>
+<td>One-week path</td>
+<td>A deliberately narrow route for an interview next week</td>
+<td>Follow its exact chapter order and timed drills, then skip everything else.</td>
+</tr>
+<tr>
+<td>Adaptivity</td>
+<td>The thread summarized as one size does not fit all</td>
+<td>Start with Section 3.5 before following its later references.</td>
+</tr>
+<tr>
+<td>Robustness as projection</td>
+<td>A recurring robustness thread</td>
+<td>Start with Section 27.3 before following its later references.</td>
+</tr>
+<tr>
+<td>Model collapse or self-reinforcement</td>
+<td>A recurring failure thread</td>
+<td>Start with Section 11.3 before following its later references.</td>
+</tr>
+<tr>
+<td>Out-of-distribution (OOD) fragility</td>
+<td>The fragility of learned controllers outside their learned conditions</td>
+<td>Start with Section 25.7 before following its later references.</td>
+</tr>
+<tr>
+<td>Lost in the middle or positional bias</td>
+<td>A recurring context-position thread</td>
+<td>Start with Section 30.1 before following its later references.</td>
+</tr>
+<tr>
+<td>Query &lt;-&gt; document as surrogates</td>
+<td>A recurring relationship between query and document representations</td>
+<td>Start with Section 29.1 before following its later references.</td>
+</tr>
+<tr>
+<td>Motivation</td>
+<td>The opening production setting for a section</td>
+<td>Identify who asks the question, the cost of error, and why the obvious answer is insufficient.</td>
+</tr>
+<tr>
+<td>Concept and derivation</td>
+<td>The idea built from first principles</td>
+<td>Track symbol definitions, units, the central claim, and the alternative that loses.</td>
+</tr>
+<tr>
+<td>Italicized claim</td>
+<td>Exactly one sentence per section that states the claim worth remembering</td>
+<td>Use it as the section's memory anchor.</td>
+</tr>
+<tr>
+<td>Alternative that loses</td>
+<td>The defeated competitor named in a derivation</td>
+<td>Use it to show judgment rather than a context-free design choice.</td>
+</tr>
+<tr>
+<td>Figure</td>
+<td>A pipeline, index structure, ranking funnel, decision tree, or comparison table</td>
+<td>Read its caption for the takeaway and use shape or line style rather than hue when reproducing it.</td>
+</tr>
+<tr>
+<td>Worked Example</td>
+<td>A numeric end-to-end instance</td>
+<td>Recalculate it, carry the units, and check its final sanity comparison.</td>
+</tr>
+<tr>
+<td>What You Actually Decide in Practice</td>
+<td>Four to six decisions with defaults and deviation triggers</td>
+<td>Use it to move from discussion to shipping judgment.</td>
+</tr>
+<tr>
+<td>How This Shows Up in Interviews</td>
+<td>Three questions in increasing difficulty with answer-shape guidance</td>
+<td>Practice what to say first, what to derive, and which follow-up to expect.</td>
+</tr>
+<tr>
+<td>Key Takeaways</td>
+<td>Four to six standalone lines</td>
+<td>Use them to recover the chapter's argument, including at least one worked-example number.</td>
+</tr>
+<tr>
+<td><code>[core]</code></td>
+<td>A mechanism test</td>
+<td>Treat it as expected knowledge for anyone who claims RAG experience.</td>
+</tr>
+<tr>
+<td><code>[senior]</code></td>
+<td>A derivation test</td>
+<td>Produce a number from stated constraints rather than memory.</td>
+</tr>
+<tr>
+<td><code>[staff]</code></td>
+<td>A judgment test under changed constraints or team disagreement</td>
+<td>Price both options, concede the other side's valid point, and state the reversal condition.</td>
+</tr>
+<tr>
+<td>Question typography</td>
+<td>Interview questions appear in italics inside quotation marks</td>
+<td>Recognize these as practice prompts.</td>
+</tr>
+<tr>
+<td>Notes and remarks</td>
+<td>Sparse boxed material for misconceptions, version caveats, or edge cases</td>
+<td>Do not treat a box as optional if you need the main argument, because main dependencies are never placed there.</td>
+</tr>
+<tr>
+<td>Source attribution</td>
+<td>Author and year placed in the prose</td>
+<td>Use Appendix E for the collected source list.</td>
+</tr>
+<tr>
+<td>Cross-reference</td>
+<td>A pointer to a specific section when possible</td>
+<td>Follow it to the derivation instead of searching a full chapter.</td>
+</tr>
+<tr>
+<td>Appendix A</td>
+<td>Formula collection for BM25, reciprocal rank fusion (RRF), mean reciprocal rank (MRR), normalized discounted cumulative gain (nDCG), modularity, product quantization (PQ) sizing, floating-point operations (FLOPs), and index memory</td>
+<td>Keep it nearby during active preparation, then re-derive formulas if it remains necessary after two weeks.</td>
+</tr>
+<tr>
+<td>Appendix B</td>
+<td>Difficulty-organized question bank with answers separated</td>
+<td>Use it for self-testing without seeing the answer directly below the question.</td>
+</tr>
+<tr>
+<td>Appendix C</td>
+<td>Retrieval, indexing, evaluation, credibility, and latency checklists</td>
+<td>Internalize the retrieval checklist until it can be spoken in under two minutes.</td>
+</tr>
+<tr>
+<td>Appendix D</td>
+<td>RAG card and index datasheet templates</td>
+<td>Use them as reporting standards and as an answer about handoff to the next team.</td>
+</tr>
+<tr>
+<td>Appendix E</td>
+<td>Annotated reading list keyed to chapters</td>
+<td>Use it to locate the sources attributed in the prose.</td>
+</tr>
+<tr>
+<td>Appendix F</td>
+<td>Notation table</td>
+<td>Use it as a compact symbol reference.</td>
+</tr>
+<tr>
+<td>Appendix G</td>
+<td>Glossary</td>
+<td>Use it when one idea appears under several names.</td>
+</tr>
+<tr>
+<td>BM25</td>
+<td>A retrieval topic derived in Chapter 18 and a formula collected in Appendix A</td>
+<td>Study why saturation and length normalization exist, then use the formula reference when needed.</td>
+</tr>
+<tr>
+<td>Dense passage retrieval (DPR)</td>
+<td>A Chapter 20 topic paired with bi-encoders and hard negatives</td>
+<td>Study it on the retrieval and ranking quality path.</td>
+</tr>
+<tr>
+<td>Sparse lexical and expansion model (SPLADE)</td>
+<td>A Chapter 21 topic</td>
+<td>Study it with ColBERT and hybrid fusion.</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td>A Chapter 21 topic</td>
+<td>Study it with SPLADE and hybrid fusion.</td>
+</tr>
+<tr>
+<td>Reciprocal rank fusion (RRF)</td>
+<td>The named hybrid-fusion method in Chapter 21 and a formula in Appendix A</td>
+<td>Study it on Path 1 and use Appendix A as its formula reference.</td>
+</tr>
+<tr>
+<td>Hypothetical document embeddings (HyDE)</td>
+<td>A Chapter 24 query-reformulation topic</td>
+<td>Study it after reranking on Path 1.</td>
+</tr>
+<tr>
+<td>Mean reciprocal rank (MRR)</td>
+<td>A Chapter 32 metric and Appendix A formula</td>
+<td>Derive it rather than merely quoting it.</td>
+</tr>
+<tr>
+<td>Normalized discounted cumulative gain (nDCG)</td>
+<td>A Chapter 32 metric and Appendix A formula</td>
+<td>Derive it rather than merely quoting it.</td>
+</tr>
+<tr>
+<td>Recall at k</td>
+<td>A Chapter 32 metric</td>
+<td>Derive it rather than merely quoting it.</td>
+</tr>
+<tr>
+<td>Hierarchical navigable small world (HNSW)</td>
+<td>A Chapter 15 index topic derived from a skip list</td>
+<td>Study it with inverted file indexing and the recall, latency, and memory tradeoff.</td>
+</tr>
+<tr>
+<td>Inverted file (IVF)</td>
+<td>A Chapter 15 index topic</td>
+<td>Study it with HNSW.</td>
+</tr>
+<tr>
+<td>Product quantization (PQ)</td>
+<td>A Chapter 16 memory topic and Appendix A sizing formula</td>
+<td>Work its index-memory arithmetic end to end.</td>
+</tr>
+<tr>
+<td>Key-value (KV) cache</td>
+<td>A Chapter 37 latency and reuse topic</td>
+<td>Study where milliseconds go and how cost per query is formed.</td>
+</tr>
+<tr>
+<td>Queries per second (QPS)</td>
+<td>The rate unit in the 100 million document design drill</td>
+<td>Use the stated 500 QPS constraint in first-principles sizing.</td>
+</tr>
+<tr>
+<td>SILO argument</td>
+<td>The source's named privacy and copyright argument</td>
+<td>Study its case for keeping risk in the datastore. The source does not expand the name in this unit.</td>
+</tr>
+<tr>
+<td>Retrieval-augmented fine-tuning (RAFT)</td>
+<td>A Chapter 27 generator-training topic</td>
+<td>Study it with robustness to retrieval defects.</td>
+</tr>
+<tr>
+<td>Fusion-in-Decoder (FiD)</td>
+<td>A Chapter 28 advanced-variant topic</td>
+<td>Study it with the four quadrants, REPLUG, and language-model-supervised retrieval.</td>
+</tr>
+<tr>
+<td>REPLUG</td>
+<td>A Chapter 28 advanced-variant topic</td>
+<td>Study it with FiD and language-model-supervised retrieval.</td>
+</tr>
+<tr>
+<td>Language model (LM)-supervised retrieval</td>
+<td>A Chapter 28 training topic</td>
+<td>Study it on the advanced-variants path.</td>
+</tr>
+<tr>
+<td>Reinforcement learning (RL) for search</td>
+<td>A Chapter 26 agentic-retrieval topic</td>
+<td>Study it with iterative and recursive retrieval.</td>
+</tr>
+<tr>
+<td>Floating-point operations (FLOPs)</td>
+<td>One of the formulas collected in Appendix A</td>
+<td>Use Appendix A as the reference during active preparation.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="core-mechanics">Core mechanics</h2>
+<h3 id="opening-use-model">Opening use model</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Choose among interview preparation, on-the-job reference, and systematic study. Read linearly from scratch or follow a targeted route for a role or gap.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>The choice aligns the amount and order of reading with the reader's goal.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>A reader can skim too broadly or enter a later topic without the vocabulary it assumes.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>Linear reading covers dependencies but takes the full route. Targeted reading narrows the route but must still preserve its stated order.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="linear-reading-order">Linear Reading Order</h3>
+<p>The parts are ordered by dependency. Each part assumes vocabulary developed in prior parts.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Topic</th>
+<th>Prerequisite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I</td>
+<td>The RAG interview landscape</td>
+<td>None</td>
+</tr>
+<tr>
+<td>II</td>
+<td>The generator side</td>
+<td>None</td>
+</tr>
+<tr>
+<td>III</td>
+<td>Prompting and context construction</td>
+<td>Part II</td>
+</tr>
+<tr>
+<td>IV</td>
+<td>Representing what you retrieve</td>
+<td>Part II</td>
+</tr>
+<tr>
+<td>V</td>
+<td>Indexing and vector search</td>
+<td>Part IV</td>
+</tr>
+<tr>
+<td>VI</td>
+<td>Retrieval and ranking</td>
+<td>Parts IV and V</td>
+</tr>
+<tr>
+<td>VII</td>
+<td>Query understanding and control flow</td>
+<td>Parts II and VI</td>
+</tr>
+<tr>
+<td>VIII</td>
+<td>Training the RAG system</td>
+<td>Parts II and VI</td>
+</tr>
+<tr>
+<td>IX</td>
+<td>Generation and context assembly</td>
+<td>Parts II, III, and VI</td>
+</tr>
+<tr>
+<td>X</td>
+<td>Evaluation</td>
+<td>Parts VI and IX</td>
+</tr>
+<tr>
+<td>XI</td>
+<td>Trust, credibility, and adversarial robustness</td>
+<td>Parts VI, IX, and X</td>
+</tr>
+<tr>
+<td>XII</td>
+<td>Scaling, advanced variants, and design drills</td>
+<td>All prior parts</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Follow the part dependencies from the RAG landscape through scaling and design drills.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>Later parts assume earlier vocabulary and concepts. Part I uniquely supplies the shared parametric, non-parametric, and semi-parametric vocabulary plus the five-decision skeleton.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>Later material can appear disconnected because the reader lacks the terms and organizing skeleton the writing assumes.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>Part I is mandatory. Other prerequisites vary by part, and Part XII requires all prior parts.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="targeted-reading-paths">Targeted Reading Paths</h3>
+<p>Every path is ordered rather than ranked. Read the selected path from top to bottom. Each starts at or near Chapter 3 because the later material hangs on the five decisions.</p>
+<h4 id="path-1-retrieval-and-ranking-quality">Path 1: Retrieval and Ranking Quality</h4>
+<p>Use this path for search-relevance and applied-science roles where the interview asks why the right document is not at rank 1.</p>
+<ol type="1">
+<li>Chapter 3, including Section 3.4 for sizing before design.</li>
+<li>Chapter 12 on sparse versus dense retrieval and sentence-embedding contents.</li>
+<li>Chapter 13 on chunking, granularity, and whether semantic chunking pays in Section 13.6.</li>
+<li>Chapter 18 on BM25, saturation, and length normalization.</li>
+<li>Chapter 20 on bi-encoders, DPR, and hard negatives.</li>
+<li>Chapter 21 on SPLADE, ColBERT, and hybrid fusion with RRF.</li>
+<li>Chapter 22 on reranking, cross-encoders, and rerank depth.</li>
+<li>Chapter 24 on query reformulation and HyDE.</li>
+<li>Chapter 32 on deriving MRR, nDCG, and recall at k.</li>
+<li>Section 41.4, the multi-hop question-answering drill.</li>
+</ol>
+<h4 id="path-2-vector-search-and-platform-infrastructure">Path 2: Vector Search and Platform Infrastructure</h4>
+<p>Use this path for roles that own index capacity, recall targets, latency budgets, and the on-call pager.</p>
+<ol type="1">
+<li>Chapter 3, Section 3.4, on sizing before design.</li>
+<li>Chapter 15 on HNSW from a skip list, IVF, and the recall, latency, and memory tradeoff.</li>
+<li>Chapter 16 on product quantization and end-to-end index-memory arithmetic.</li>
+<li>Chapter 17 on tombstones, sharding, metadata, and over-filtering risk.</li>
+<li>Chapter 37 on latency placement, KV-cache reuse, and cost per query.</li>
+<li>Chapter 38 on federated search, source selection, and data residency.</li>
+<li>Section 41.1, sizing 100 million documents at 500 QPS from first principles.</li>
+<li>Section 41.2, a system that must stay fresh.</li>
+</ol>
+<h4 id="path-3-shipping-a-rag-product">Path 3: Shipping a RAG Product</h4>
+<p>Use this path for applied-AI and product-engineering roles where the interview covers the whole loop and failures users encounter.</p>
+<ol type="1">
+<li>Chapters 1 and 3 on what is tested and the answer skeleton.</li>
+<li>Chapter 4 on hallucination taxonomy and five causes of factual error.</li>
+<li>Chapter 9 on RAG prompting and Section 9.4 on why retrieving more can cause more hallucination.</li>
+<li>Chapter 11 on abstention and calibration.</li>
+<li>Chapter 13 on chunking and granularity.</li>
+<li>Chapter 25 on when to retrieve, where to retrieve, and adaptive routing.</li>
+<li>Chapter 30 on lost in the middle and why a longer context window does not fix it.</li>
+<li>Chapter 31 on attribution and citation.</li>
+<li>Chapters 33 and 34 on generation evaluation and stage-level regression attribution.</li>
+<li>Section 41.6, debugging a RAG system that became worse.</li>
+</ol>
+<h4 id="path-4-high-stakes-trust-and-safety">Path 4: High-Stakes, Trust, and Safety</h4>
+<p>Use this path for regulated domains and for questions about a retrieved document that is wrong or hostile.</p>
+<ol type="1">
+<li>Chapter 4 on what the model brings and what it breaks.</li>
+<li>Chapter 5 on privacy, copyright, and the SILO argument for keeping risk in the datastore.</li>
+<li>Chapter 11 on when the system should refuse and how each abstention mechanism fails.</li>
+<li>Chapter 31 on attribution as the core promise of RAG and post-hoc citation as a false promise.</li>
+<li>Chapter 35 on source credibility, one bad document among many good ones, and pluralism.</li>
+<li>Chapter 36 on provenance, indirect prompt injection, and datastore poisoning.</li>
+<li>Section 41.3, high-stakes RAG in medicine and law.</li>
+<li>Section 41.7, retrofitting credibility onto an already shipped pipeline.</li>
+</ol>
+<h4 id="path-5-training-the-system-and-advanced-variants">Path 5: Training the System and Advanced Variants</h4>
+<p>Use this path for research-oriented roles where the interview moves beyond assembling components and asks how to change them.</p>
+<ol type="1">
+<li>Chapters 6 and 7 on retrieval versus parameters and the in-context-learning mechanism.</li>
+<li>Chapter 8 on circuits, induction heads, and the limits of interpretability claims.</li>
+<li>Chapter 27 on generator fine-tuning, RAFT, and robustness to retrieval defects.</li>
+<li>Chapter 28 on the four quadrants, FiD, REPLUG, and LM-supervised retrieval.</li>
+<li>Chapter 29 on bootstrapping training data and the teacher ceiling.</li>
+<li>Chapter 23 on generative retrieval and its unresolved tension with RAG.</li>
+<li>Chapter 26 on iterative, recursive, and agentic retrieval, including RL for search.</li>
+<li>Chapters 39 and 40 on multimodal RAG and graph RAG.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Select one of five role-focused routes and keep its listed order.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>The paths concentrate preparation around the kind of judgment a role is likely to test.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>Treating a path as a ranked menu can remove the setup needed by later stops.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>Focus increases relevance but omits material outside the chosen route. The path order remains binding.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-one-week-path">The One-Week Path</h3>
+<ol type="1">
+<li>Read Chapter 3 first for the answer skeleton.</li>
+<li>Read Chapter 34 second for attributing a failure to a stage.</li>
+<li>Read Chapters 1, 15, 18, 22, 25, 30, and 32 in that order.</li>
+<li>Work Sections 41.1 and 41.6 as timed drills.</li>
+<li>Skip everything else.</li>
+</ol>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Use the source's express sequence when the interview is next week.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>It prioritizes an answer frame, a debugging frame, core mechanisms, metrics, and two design drills.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>Broad skimming can produce a complete-looking map that the candidate cannot reason from.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>The route is intentionally partial. The source prefers a partial map that supports reasoning over a complete map built by skimming.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-cross-cutting-threads">The Cross-Cutting Threads</h3>
+<p>Each idea is introduced once in full, then cross-referenced rather than re-explained.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Thread</th>
+<th>Introduced</th>
+<th>Recurs in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adaptivity, one size does not fit all</td>
+<td>3.5</td>
+<td>13.3, 25.1-25.6, 26.4, 35.6, 39.4</td>
+</tr>
+<tr>
+<td>Robustness as projection</td>
+<td>27.3</td>
+<td>5.4, 7.4, 11.3, 20.3, 39.2</td>
+</tr>
+<tr>
+<td>Model collapse or self-reinforcement</td>
+<td>11.3</td>
+<td>26.6, 29.7, 34.6, 35.4</td>
+</tr>
+<tr>
+<td>OOD fragility of learned controllers</td>
+<td>25.7</td>
+<td>26.5, 34.1, 35.6, 38.3</td>
+</tr>
+<tr>
+<td>Lost in the middle or positional bias</td>
+<td>30.1</td>
+<td>22.5, 30.6, 39.9, 40.7</td>
+</tr>
+<tr>
+<td>Query &lt;-&gt; document as surrogates</td>
+<td>29.1</td>
+<td>21.1, 23.4, 24.6, 32.1</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Follow the introducing section whenever a later section names a thread without explaining it.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>The design avoids repeating full explanations and exposes connections across separately learned topics.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>A reader can mistake a cross-reference for an unsupported claim or miss the shared idea that links chapters.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>The reader must move back to the introducing section. The benefit is less repetition and stronger conceptual connection. These six ideas are especially likely to earn interview follow-ups.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="conventions-in-every-section">Conventions in Every Section</h3>
+<p>The source says all 247 sections follow the same six-move structure. It then names seven recurring elements. This unit preserves both statements rather than silently changing the count.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Named element</th>
+<th>What it contains</th>
+<th>Why it exists</th>
+<th>Failure without active use</th>
+<th>Stated cost or requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Motivation</td>
+<td>Two paragraphs about who asks, production cost, and why the obvious answer is insufficient</td>
+<td>Places the reader in the room</td>
+<td>The reader can know a term without knowing when or why it matters</td>
+<td>It explicitly includes the production cost of getting the issue wrong</td>
+</tr>
+<tr>
+<td>Concept and derivation</td>
+<td>First-principles construction, symbol definitions, units, one italicized claim, and the defeated alternative</td>
+<td>Teaches both mechanism and judgment</td>
+<td>A choice without its losing alternative teaches nothing about judgment</td>
+<td>Carry units through arithmetic and retain exactly one memory claim</td>
+</tr>
+<tr>
+<td>A figure</td>
+<td>At least one pipeline, index structure, ranking funnel, decision tree, or comparison table</td>
+<td>Makes structure visible and printable in grayscale</td>
+<td>A color-dependent or content-only rendering can hide the intended takeaway</td>
+<td>Vary shape and line style rather than hue. The caption states the takeaway</td>
+</tr>
+<tr>
+<td>A Worked Example</td>
+<td>A numeric end-to-end instance with real configurations and orders of magnitude</td>
+<td>Converts an idea into memory, latency, cost, or recall arithmetic</td>
+<td>Passive reading is the single most common way to finish a chapter having learned nothing</td>
+<td>Use a calculator and end with a sanity check against a published figure or known system</td>
+</tr>
+<tr>
+<td>What You Actually Decide in Practice</td>
+<td>Four to six decisions with defaults and triggers to deviate</td>
+<td>Bridges discussion and shipping judgment</td>
+<td>The reader can discuss a technique without being able to choose a default or departure condition</td>
+<td>It is the part the source calls most directly useful on the job</td>
+</tr>
+<tr>
+<td>How This Shows Up in Interviews</td>
+<td>Three increasingly difficult questions with strong-answer shape</td>
+<td>Trains ordering, derivation, and follow-up handling without supplying a recitation script</td>
+<td>The candidate can memorize text without learning answer structure</td>
+<td>At least one question explicitly contrasts a strong and weak answer</td>
+</tr>
+<tr>
+<td>Key Takeaways</td>
+<td>Four to six standalone lines, including at least one worked-example number</td>
+<td>Preserves the chapter argument in compressed form</td>
+<td>Skimming cannot recover the argument or its quantitative anchor</td>
+<td>At least one line must carry a number from the worked example</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="difficulty-tags">Difficulty Tags</h3>
+<p>The tags describe what a question tests, not how hard it is to read.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>What it tests</th>
+<th>Strong-answer shape</th>
+<th>Failure consequence or weakness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[core]</code></td>
+<td>Knowledge of the mechanism</td>
+<td>Explain the mechanism directly</td>
+<td>Failing one can end a phone screen for someone who claims RAG on a resume</td>
+</tr>
+<tr>
+<td><code>[senior]</code></td>
+<td>Ability to derive</td>
+<td>Produce a number from a stated memory budget, latency budget, or recall target</td>
+<td>A memorized number does not satisfy the tag</td>
+</tr>
+<tr>
+<td><code>[staff]</code></td>
+<td>Judgment under a changed constraint or a dispute between partly correct teams</td>
+<td>Price options, concede the other side's real point, choose, and state the reversal condition</td>
+<td>Taking a side without pricing or a reversal condition misses the judgment test</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="typography-and-cross-references">Typography and Cross-References</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What</td>
+<td>Interview questions use italics inside quotation marks. Notes and remarks appear sparingly in boxes. Sources appear by author and year at the point where each claim is made. The book collects them in Appendix E. Cross-references point to specific sections when possible.</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>The typography separates practice questions and caveats, while precise references route the reader to the actual derivation.</td>
+</tr>
+<tr>
+<td>Failure without it</td>
+<td>A reader can confuse a caveat with a dependency or search through an entire chapter for one derivation.</td>
+</tr>
+<tr>
+<td>Stated cost or tradeoff</td>
+<td>Boxes are reserved for misconceptions, version caveats, and edge cases. They never hold material required by the main argument.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="using-the-appendices">Using the Appendices</h3>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Appendix</th>
+<th>What</th>
+<th>Why</th>
+<th>Failure without it</th>
+<th>Stated cost or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Formulas for BM25, RRF, MRR, nDCG, modularity, PQ sizing, FLOPs, and index memory</td>
+<td>Supports active derivation work</td>
+<td>Re-reading formulas can replace the derivation practice the book expects</td>
+<td>Print it for active preparation. If still needed after two weeks, re-derive every formula from scratch</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Question bank organized by difficulty with answers held separately</td>
+<td>Enables genuine self-testing</td>
+<td>Chapter questions reveal the strong answer directly below the prompt</td>
+<td>Use it when testing what is actually known</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Design checklists for retrieval, indexing, evaluation, credibility, and latency</td>
+<td>Makes system checks reproducible</td>
+<td>A candidate can omit a critical design dimension</td>
+<td>Reproduce the retrieval checklist verbally in under two minutes</td>
+</tr>
+<tr>
+<td>D</td>
+<td>RAG card and index datasheet templates</td>
+<td>Supplies reporting standards for a shipped system and a handoff answer</td>
+<td>The next team may not know what the system does</td>
+<td>Use the templates for systems actually shipped</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Annotated reading list keyed to chapters</td>
+<td>Collects prose attributions</td>
+<td>Source follow-up becomes harder</td>
+<td>Follow chapter keys to the attributed reading</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Notation table in reference form</td>
+<td>Centralizes symbols</td>
+<td>Repeated symbol lookup interrupts derivation</td>
+<td>Use it as a reference</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Glossary</td>
+<td>Reconciles a field where one idea can travel under four names</td>
+<td>Terminology can make equivalent ideas look different</td>
+<td>Use it when names differ</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="diagrams">Diagrams</h2>
+<p>The manifest lists zero figures and zero tables for this unit. There are no manifest captions to reproduce or normalize.</p>
+<p>The source pages contain two unnumbered reference matrices. The part-dependency matrix and the cross-cutting-thread matrix are preserved as Markdown tables in Core mechanics. They are not manifest figures or tables.</p>
+<h2 id="whiteboard-pack">Whiteboard pack</h2>
+<h3 id="what-to-draw">What to draw</h3>
+<ol type="1">
+<li>Draw one central box labeled <code>Part I: vocabulary + five decisions</code> .</li>
+<li>From it, draw a full dependency line labeled <code>Linear route</code> .</li>
+<li>Add five ordered branches labeled <code>Retrieval</code> , <code>Infrastructure</code> , <code>Product</code> , <code>Trust</code> , and <code>Advanced variants</code> .</li>
+<li>Add a short express branch labeled <code>One-week path: 3 -&gt; 34 -&gt; 1 -&gt; 15 -&gt; 18 -&gt; 22 -&gt; 25 -&gt; 30 -&gt; 32 -&gt; 41.1 + 41.6</code> .</li>
+<li>Mark six transfer circles for the cross-cutting threads.</li>
+<li>Draw one repeated station card for the named section elements, then place the three difficulty tags and Appendices A through G beside it.</li>
+</ol>
+<h3 id="spoken-script">Spoken script</h3>
+<p>Start at Part I, the central station, because it supplies the shared vocabulary and five-decision skeleton. From there, choose the full dependency line or one of five ordered role paths. If the interview is next week, take the express route through Chapters 3 and 34, then the listed core chapters and two timed drills. Mark six transfer points for the cross-cutting threads. Inside every stop, expect the same recurring section pattern, then use core, senior, and staff tags to judge the question. Finish with the appendices for formulas, self-testing, checklists, reporting templates, readings, notation, and terminology.</p>
+<h2 id="interview-traps">Interview traps</h2>
+<h3 id="1-are-all-twelve-parts-mandatory-before-targeted-preparation">1. Are all twelve parts mandatory before targeted preparation?</h3>
+<p>No. Part I alone is genuinely mandatory because it supplies the vocabulary and five-decision skeleton assumed by later writing. After Part I, use the dependency table or an ordered targeted path.</p>
+<h3 id="2-can-i-treat-a-targeted-path-as-a-ranked-list-and-pick-only-the-highest-items">2. Can I treat a targeted path as a ranked list and pick only the highest items?</h3>
+<p>No. The source says each path is ordered, not ranked. Read it from top to bottom because later stops depend on the setup provided earlier in the route.</p>
+<h3 id="3-what-should-i-do-if-the-interview-is-next-week">3. What should I do if the interview is next week?</h3>
+<p>Read Chapter 3 first and Chapter 34 second. Then read Chapters 1, 15, 18, 22, 25, 30, and 32 in order. Work Sections 41.1 and 41.6 as timed drills, then skip everything else.</p>
+<h3 id="4-do-core-senior-and-staff-mean-easy-medium-and-hard-reading">4. Do <code>[core]</code>, <code>[senior]</code>, and <code>[staff]</code> mean easy, medium, and hard reading?</h3>
+<p>No. The tags test mechanism knowledge for core, derivation from stated constraints for senior, and priced judgment under a changed constraint or disagreement for staff. They identify capability rather than reading difficulty.</p>
+<h3 id="5-should-appendix-a-become-a-permanent-formula-crutch">5. Should Appendix A become a permanent formula crutch?</h3>
+<p>No. Print it and keep it nearby during active preparation. After two weeks, if it is still needed, spend a session re-deriving every formula from scratch instead of re-reading the appendix.</p>
+<h2 id="key-numbers">Key numbers</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Number</th>
+<th>Source meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>Intended uses: interview preparation, on-the-job reference, and systematic study</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Dependency-ordered parts</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Part I is the only genuinely mandatory part</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Decisions in the skeleton introduced by Part I and Chapter 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Targeted reading paths</td>
+</tr>
+<tr>
+<td>10, 8, 10, 8, and 8</td>
+<td>Listed stops in Paths 1 through 5, respectively</td>
+</tr>
+<tr>
+<td>Rank 1</td>
+<td>Retrieval-quality position used to frame Path 1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Causes of factual error named for Chapter 4 on Path 3</td>
+</tr>
+<tr>
+<td>1 bad document</td>
+<td>Credibility case named for Chapter 35 on Path 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Quadrants named for Chapter 28 on Path 5</td>
+</tr>
+<tr>
+<td>1 week</td>
+<td>Trigger for the express preparation path</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Opening chapters on the express path: Chapter 3 first and Chapter 34 second</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Core chapters that follow the opening pair on the express path</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Timed design drills on the express path</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cross-cutting threads</td>
+</tr>
+<tr>
+<td>247</td>
+<td>Sections said to follow the recurring format</td>
+</tr>
+<tr>
+<td>6 and 7</td>
+<td>The source calls the format six moves but names seven elements</td>
+</tr>
+<tr>
+<td>2 paragraphs</td>
+<td>Length of the motivation element in each section</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Italicized claim per section</td>
+</tr>
+<tr>
+<td>At least 1</td>
+<td>Figure per section</td>
+</tr>
+<tr>
+<td>4 to 6</td>
+<td>Practical decisions per section and standalone takeaway lines per section</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Interview questions per section and difficulty tags in the book</td>
+</tr>
+<tr>
+<td>At least 1 of 3</td>
+<td>Interview questions that include a strong-answer versus weak-answer contrast</td>
+</tr>
+<tr>
+<td>At least 1</td>
+<td>Key Takeaway line that carries a number from the Worked Example</td>
+</tr>
+<tr>
+<td>2 teams</td>
+<td>Disagreement frame used by the staff tag</td>
+</tr>
+<tr>
+<td>100 million documents at 500 QPS</td>
+<td>The scale and request rate in the Section 41.1 drill</td>
+</tr>
+<tr>
+<td>20 pages</td>
+<td>Search span avoided by a specific section cross-reference</td>
+</tr>
+<tr>
+<td>Under 2 minutes</td>
+<td>Target time for verbally reproducing the retrieval checklist</td>
+</tr>
+<tr>
+<td>2 weeks</td>
+<td>Point after which Appendix A should no longer be needed</td>
+</tr>
+<tr>
+<td>4 names</td>
+<td>Possible terminology burden for one idea in the glossary</td>
+</tr>
+</tbody>
+</table></div>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/00_03_preface.html"><small>Previous</small>00.03. Preface</a><a href="../chapters/00_05_for_interview_candidates.html"><small>Next</small>00.05. For Interview Candidates</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>
