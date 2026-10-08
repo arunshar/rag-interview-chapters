@@ -3,6 +3,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from html import escape, unescape
 from pathlib import Path
+import hashlib
 import json
 import re
 import shutil
@@ -13,6 +14,8 @@ SITE = ROOT / 'site'
 OUT = ROOT / 'docs'
 PANDOC = shutil.which('pandoc') or '/opt/local/bin/pandoc'
 guide = (SITE / 'navigation-guide.md').read_text()
+STYLE_VERSION = hashlib.sha256((SITE / 'assets/style.css').read_bytes()).hexdigest()[:12]
+SCRIPT_VERSION = hashlib.sha256((SITE / 'assets/reader.js').read_bytes()).hexdigest()[:12]
 
 def slug(text):
     return re.sub(r'[^\w\- ]', '', text.lower()).replace(' ', '-')
@@ -106,7 +109,7 @@ def template(page, title, body, toc=None, unit=None, sequence=None):
     meta = f'<p class="chapter-meta">{unit["minutes"]} min estimated reading · Unit {sequence + 1} of 57</p>' if unit else ''
     progress = '<div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div>' if unit else ''
     html = f'''<!doctype html>
-<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>{escape(title)} | The RAG Interview</title><link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/reader.js" defer data-root="{prefix}"></script></head>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>{escape(title)} | The RAG Interview</title><link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="{prefix}assets/style.css?v={STYLE_VERSION}"><script src="{prefix}assets/reader.js?v={SCRIPT_VERSION}" defer data-root="{prefix}"></script></head>
 <body data-page="{page}" data-chapter="{'true' if unit else 'false'}"><a class="skip-link" href="#main">Skip to reading</a>{progress}<header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="{prefix}index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar">{sidebar(page)}</aside>
 <div class="workspace"><div class="topbar"><a href="{prefix}index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">{escape(eyebrow)}</p><h1>{escape(title)}</h1>{meta}</header>{toc_html}<article class="prose">{body}</article>{nav}<footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>'''
     target = OUT / page
