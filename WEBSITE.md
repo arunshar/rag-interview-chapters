@@ -15,7 +15,7 @@ The website is already built in `docs/`. Publishing does not require Python, Pan
 5. Under **Build and deployment**, select **Deploy from a branch**. Choose **main** and **/docs**, then select **Save**.
 6. Wait for the deployment to finish. GitHub says publishing can take up to 10 minutes. Use **Visit site** on the Pages settings page to confirm the live address.
 
-The expected address is [https://arunshar.github.io/rag-interview-chapters/](https://arunshar.github.io/rag-interview-chapters/). This address is a publishing target. It has not been verified as live.
+The live reader is [https://arunshar.com/rag-interview-chapters/](https://arunshar.com/rag-interview-chapters/). The GitHub Pages address redirects to the existing arunshar.com domain.
 
 The repository and its GitHub Pages website are public.
 
@@ -53,7 +53,7 @@ Theme preference and the last opened chapter are stored only in the reader's bro
 
 ## Build verification
 
-The package was checked for missing chapter pages, broken local links and fragments, duplicate HTML identifiers, equation and diagram preservation, and JavaScript syntax. Browser rendering and deployment could not be verified in the current session.
+The package was checked for missing chapter pages, broken local links and fragments, duplicate HTML identifiers, equation and diagram preservation, and JavaScript syntax. The live reader was checked in a browser for chapter navigation, filtering, section jumps, diagram rendering, theme switching, mobile navigation, and the last-chapter link.
 
 GitHub Pages publishes the prebuilt `docs/` directory from `main` after its publishing source is configured.
 
