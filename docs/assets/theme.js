@@ -9,12 +9,12 @@
     try { return matchMedia('(prefers-color-scheme: light)').matches; } catch { return false; }
   }
 
-  // Decide which theme a page opens in. Return 'light' or 'dark'.
-  // storedTheme() is the reader's last click on the theme button, or null if they never clicked it.
-  // systemPrefersLight() reports the operating system's appearance setting.
+  // A reader's own click on the theme button wins. A first-time reader follows the operating
+  // system's appearance setting, and dark is the fallback when the browser reports none.
   function initialTheme() {
-    // TODO(Arun): choose the precedence between the stored choice, the system setting, and a default.
-    return storedTheme() === 'light' ? 'light' : 'dark';
+    const stored = storedTheme();
+    if (stored === 'light' || stored === 'dark') return stored;
+    return systemPrefersLight() ? 'light' : 'dark';
   }
 
   document.documentElement.dataset.theme = initialTheme();

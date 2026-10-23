@@ -47,7 +47,7 @@ GitHub Markdown and Pandoc disagree on several patterns. A unit can look correct
 
 ## Reader behavior
 
-- `theme.js` runs in the page head and chooses the opening theme. `reader.js` keeps the toggle in sync and stores the reader's choice.
+- `theme.js` runs in the page head and chooses the opening theme. The reader's stored click wins, then the operating system's appearance setting, then dark. `reader.js` keeps the toggle in sync and stores the reader's choice.
 - Mermaid starts with the theme that matches the page. Diagrams already on screen redraw when the reader switches themes.
 - The print button draws every diagram in the light Mermaid theme, prints, and then restores the page theme. A browser print shortcut cannot wait for rendering, so undrawn diagrams print their source instead.
 - Question-bank answer spines are folded under "Show expected reasoning", so a reader can attempt each prompt first.
