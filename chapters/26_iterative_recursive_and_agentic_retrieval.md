@@ -167,7 +167,7 @@ Mechanism example:
 - Its hop-2 inverse document frequency is ln(9,970,000.5 / 30,000.5) = 5.81.
 - The second query asks who established that sulfur is an element.
 - The intended chain ends at Lavoisier's 1777 argument that sulfur is an element rather than a compound.
-- The source limits the benchmark claim to HotpotQA's bridge construction, where two gold paragraphs appear among ten distractors and the second is reached through an entity in the first.
+- The source limits the benchmark claim to HotpotQA's bridge construction, where two gold paragraphs appear among ten distractors and the second is reached through an entity in the first. Correction: HotpotQA's distractor setting mixes the two gold paragraphs with eight retrieved distractors, so the model sees ten paragraphs in all (Yang et al., 2018, arXiv 1809.09600).
 
 Practice decisions:
 
@@ -285,7 +285,7 @@ Why:
 - The example question asks who was president of the United States after the Soviet Union dissolved.
 - The first evidence names December 1991 and George H. W. Bush.
 - The missing query asks who was elected in November 1992.
-- That leads to Bill Clinton taking office in January 1993.
+- That leads to Bill Clinton taking office in January 1993. Correction: the Soviet Union dissolved on 26 December 1991, and George H. W. Bush stayed president until 20 January 1993, so the question as written is answered by Bush. The chain reaches Clinton only for a question such as "Who was the first United States president elected after the Soviet Union dissolved?"
 - The second query does not exist until the first hop supplies the date transition.
 
 Failure without it:
@@ -470,7 +470,7 @@ $$
 
 Failure without it:
 
-- Retriever similarity is the objective used to select top-k, so its maximum measures the index's best topical match rather than answer containment.
+- Retriever similarity is the objective used to select top-k, so its maximum measures the index's best topical match rather than answer containment. Correction: CRAG's own evaluator also scores question-document relevance, because it is a T5-large model fine-tuned on PopQA with golden-title passages as positives and randomly sampled retrieved passages as negatives, and it never checks answer strings (Yan et al., 2024, arXiv 2401.15884).
 - An unanswerable query still has a nearest neighbor.
 - A generator grading its own retrieval shares the generator's blind spots.
 - The fluent, topical, wrong case is the case most likely to receive agreement.
@@ -526,7 +526,7 @@ $$
 f(\hat y_t^{(i)}) = \log p(\hat y_t^{(i)} \mid x,d_i,y_{1:t-1}) + \sum_G w_G s_G^{(i)}
 $$
 
-- The weights w_G are set at decode time.
+- The weights w_G are set at decode time. Correction: Self-RAG's Eq. 3 adds the critique sum to the segment probability p, and the official code uses the length-normalized probability, the exponential of the mean token log probability, plus the weighted IsRel, IsSup, and IsUse scores, so the log p term above should be that normalized probability (Asai, Wu, Wang, Sil, and Hajishirzi, 2023, arXiv 2310.11511).
 
 Why:
 
@@ -609,7 +609,7 @@ $$
 - An 810-token rollout contains 40 prompt tokens, 170 generated tokens, and 600 retrieved tokens.
 - Retrieved spans are 74% of the sequence.
 - They must be masked out of policy loss because the policy did not author them.
-- Keep them in the reference-policy Kullback-Leibler term because they are legitimate context.
+- Keep them in the reference-policy Kullback-Leibler term because they are legitimate context. Correction: Search-R1's released trainer masks retrieved tokens out of the KL term too, because it computes the KL loss as a masked mean over the same loss mask, and the retrieved tokens stay in the sequence only as conditioning context for the generated tokens (Jin et al., 2025, arXiv 2503.09516).
 
 Search cost objective:
 
@@ -625,8 +625,8 @@ Training cost:
 - A 3B policy uses 6 x 10^9 operations per token forward and 1.8 x 10^10 forward plus backward. One 810-token rollout costs 1.02 x 10^12 decode, 3.84 x 10^12 prefill, 4.86 x 10^12 reference forward, and 1.458 x 10^13 policy forward plus backward. Total is 2.430 x 10^13, or 71.5 ms.
 - G = 5 costs 357 ms per question. For 100,000 questions, one pass is 35,750 seconds, 9.93 GPU-hours, or $24.82 at $2.50 per GPU-hour.
 - A mix of 30% at p = 0.95, 25% at p = 0.05, and 45% at p = 0.5 gives 45.4% dead groups. That wastes 4.51 GPU-hours and $11.27. Useful throughput is 54,630 groups, or 5,504 per GPU-hour.
-- Generation plus prefill is 14.3 ms. Reference forward plus update is 57.2 ms. Skipping the latter on dead groups saves 26.0 ms per 71.5 ms, a 36.3% cut, reaching 6.32 GPU-hours and $15.80 with identical gradients.
-- A G = 5 probe filters the 55% all-right or all-wrong prompts. Training 45,000 remaining prompts costs 4.47 GPU-hours and yields 42,188 useful groups, or 9,438 per GPU-hour. This is 1.72 times baseline and surrenders 22.6% of easy and hard questions that would have signaled. The source names this dynamic sampling.
+- Generation plus prefill is 14.3 ms. Reference forward plus update is 57.2 ms. Skipping the latter on dead groups saves 26.0 ms per 71.5 ms, a 36.3% cut, reaching 6.32 GPU-hours and $15.80 with identical gradients. Correction: the gradients are identical only when the KL coefficient is zero, as in DAPO, because Search-R1 trains with a KL loss coefficient of 0.001, so a dead group still adds a small KL gradient whenever the policy differs from the reference.
+- A G = 5 probe filters the 55% all-right or all-wrong prompts. Training 45,000 remaining prompts costs 4.47 GPU-hours and yields 42,188 useful groups, or 9,438 per GPU-hour. This is 1.72 times baseline and surrenders 22.6% of easy and hard questions that would have signaled. The source names this dynamic sampling. Correction: a real G = 5 probe sees all-right or all-wrong outcomes on 45.4% of prompts, which differs from the 55% easy-plus-hard class share, so this calculation is an oracle difficulty filter that also leaves out the probe's own 1.99 GPU-hours (100,000 x 5 x 14.3 ms). Modeled as observed, the probe keeps 54,630 prompts, and fresh G = 5 training on them costs 5.43 GPU-hours plus the 1.99-hour probe for about 42,365 useful groups, or about 5,716 per GPU-hour and 1.04 times baseline. Reusing the probe rollouts for training matches the skip variant above at about 1.57 times baseline, which is the closer match to outcome-based dynamic sampling.
 - Decode becomes compute-bound around batch 102. Batch at 128 or higher. Raising G from 5 to 16 at p = 0.9 lowers dead share from 0.5905 to 0.1853 and roughly triples the bill.
 
 Practice decisions:
@@ -660,7 +660,7 @@ $$
 c\left(\sum_s n_s-\max_s n_s\right) > 883\text{ ms}
 $$
 
-- Equivalently, removed serial work must exceed 1.08 rounds.
+- Equivalently, removed serial work must exceed 1.08 rounds. Correction: the 883 ms overhead leaves out that fan-out also removes 1,081 - 206 = 875 ms of monolith prefill from the critical path, so the net fixed overhead is about 8 ms, which matches the 7 ms gap in the non-looping example below. Fan-out wins when the removed serial round time plus that 875 ms prefill saving exceeds the 883 ms of summary decode and controller prefill, so one follow-up round on even one source repays it, because an agent round (741 ms) is shorter than the same round inside the monolith context (815 ms). The 1.08-round rule holds only when agents give no wall-clock prefill saving, for example when they share one device.
 - Concurrent fixed retrievals do not need agents.
 - Agent behavior is justified when a source must generate a follow-up query and decide whether to continue.
 
@@ -668,7 +668,7 @@ Worked example:
 
 - The legal assistant uses four sources, a 7B model, 4,000 retrieved tokens per source, 200-token summaries, and a 150-token final answer. Prices are $3 per million input and $15 per million output tokens.
 - One 16,300-token call costs 1,081 ms prefill plus 627 ms decode, or 1,708 ms and $0.0512. Four non-looping agents take 1,042 ms concurrently and the controller takes 674 ms. Total is 1,715 ms, 7 ms slower. Hardware is 4,842 versus 1,708 device-milliseconds, or 2.8 times. Cost is $0.0692, 35% higher.
-- With second rounds for case law and graph, the monolith costs 3,363 ms and $0.0761. Fan-out costs 2,457 ms and $0.0941. It is 27% faster and 24% more expensive.
+- With second rounds for case law and graph, the monolith costs 3,363 ms and $0.0761. Fan-out costs 2,457 ms and $0.0941. It is 27% faster and 24% more expensive. Correction: the 883 ms inequality above predicts a 68 ms loss for this case because one removed 815 ms round is below 883 ms, and the measured 906 ms win comes from the 875 ms prefill saving that the inequality leaves out.
 - The reported research system uses about 15 times chat tokens versus 4 times for one agent, implying about 3.7 times fan-out. Here two rounds give 2 x $0.0941 / $0.0512 = 3.68. The claim is limited to rounds times fan-out. Four required agents at 0.9 each yield 0.656 conjunctive reliability. Attribution needs 2m + 2 scoreboards, or 10.
 
 Practice decisions:
@@ -800,19 +800,19 @@ Figure 26.5: Two thresholds, not one. The middle band exists so that a document 
 ```mermaid
 flowchart LR
 teacher["GPT-4 teacher"] -.-> critic["distilled critic C"] -.-> corpus["corpus annotated offline"] -.-> model["generator M"]
-prefix["decoded prefix"] --> retrieve["Retrieve token"] --> branches["K passage-conditioned candidates with IsRel and IsSup"] --> rank["rank with log probability plus weighted group scores"] --> win["append winner, discard K - 1, loop"]
+prefix["decoded prefix"] --> retrieve["Retrieve token"] --> branches["K passage-conditioned candidates with IsRel and IsSup"] --> rank["rank with length-normalized probability plus weighted group scores"] --> win["append winner, discard K - 1, loop"]
 retrieve --> skip["no: continue without passage branch"] --> rank
 ```
-Figure 26.6: Supervision enters from an external teacher once, offline (dashed, top), then freezes into the generator's own vocabulary. So at serving time the critique costs a token per segment, but the K-way branch it exists to rank costs K times the decode.
+Figure 26.6: Supervision enters from an external teacher once, offline (dashed, top), then freezes into the generator's own vocabulary. So at serving time the critique costs a token per segment, but the K-way branch it exists to rank costs K times the decode. Correction: Self-RAG ranks each candidate by its length-normalized segment probability plus the weighted critique scores, and the official code does not use a summed log probability (Asai et al., 2023, arXiv 2310.11511).
 
 ### Figure 26.7
 
 ```mermaid
 flowchart LR
 rollout["810-token rollout: 40 prompt, 170 generated, 600 retrieved and masked"] --> learnable["p = 0.4: +1.22, -0.82, -0.82, +1.22, -0.82, sigma = 0.49"] --> gradient["gradient flows, rare outcome weighted 1.5 times"]
-rollout --> dead["p = 1: five advantages 0.00, sigma = 0"] --> zero["five backward passes, zero gradient"]
+rollout --> dead["p = 1: five advantages 0.00, sigma = 0"] --> zero["five backward passes, zero policy gradient, small KL gradient"]
 ```
-Figure 26.7: GRPO swaps PPO's 112 GB critic for the group mean, which costs nothing and returns nothing whenever all G rollouts agree. The retrieved spans in panel A must be masked, or 74% of the sequence trains the policy to imitate the search engine.
+Figure 26.7: GRPO swaps PPO's 112 GB critic for the group mean, which costs nothing and returns nothing whenever all G rollouts agree. The retrieved spans in panel A must be masked, or 74% of the sequence trains the policy to imitate the search engine. Correction: with a nonzero KL coefficient, such as Search-R1's 0.001, a dead group still returns a small KL gradient, so only its policy-loss gradient is zero, and the retrieved spans are masked out of the KL term as well.
 
 ### Figure 26.8
 
@@ -821,7 +821,7 @@ flowchart LR
 mono["one call, both loops serialized"] --> mtime["3,363 ms"]
 fan["four agents, two looping"] --> summaries["parallel prefills, waits, 836 ms summaries"] --> controller["controller answer"] --> ftime["2,457 ms"]
 ```
-Figure 26.8: Fan-out converts a sum of retrieval rounds into a maximum, and pays for it with one 836 ms summary decode per agent. A tax that no amount of added hardware reduces, and that a single looping source never repays.
+Figure 26.8: Fan-out converts a sum of retrieval rounds into a maximum, and pays for it with one 836 ms summary decode per agent. A tax that no amount of added hardware reduces, and that a single looping source never repays. Correction: with one looping source, the monolith takes 1,708 + 815 = 2,523 ms and fan-out takes 2,457 ms, so fan-out wins by 66 ms because the 875 ms prefill saving offsets almost all of the summary tax.
 
 ### Figure 26.9
 
@@ -866,7 +866,7 @@ No, iteration revises the current information need, while recursion emits a new 
 
 ### 2. Does FLARE retrieve the uncertain draft, and does CRAG use retriever similarity?
 
-No to both. FLARE removes tokens below beta after theta triggers because the uncertain guess would retrieve support for itself, while CRAG uses a separate answer-containment evaluator. CRAG's two thresholds preserve marginal local evidence in AMBIGUOUS while adding web evidence because a binary low-score gate can discard correct local evidence.
+No to both, because FLARE removes tokens below beta after theta triggers so the uncertain guess cannot retrieve support for itself, and the source says CRAG uses a separate answer-containment evaluator. Correction: CRAG's evaluator is a separately fine-tuned T5-large relevance scorer of about 0.77B parameters that grades each retrieved document against the question on a -1 to 1 scale and never checks answer strings (Yan et al., 2024, arXiv 2401.15884). Its two thresholds, (0.59, -0.99) on PopQA, preserve marginal local evidence in AMBIGUOUS while adding web evidence because a binary low-score gate can discard correct local evidence.
 
 ### 3. Are Self-RAG reflection tokens free and independent?
 
@@ -878,7 +878,7 @@ Exact match can reinforce think, search, and stop choices across the whole trace
 
 ### 5. When is agentic RAG worth its cost, and how should the loop stop?
 
-Fan-out is worth it when parallel source-specific loops remove more than 1.08 serial rounds under the stated costs, while fixed concurrent retrievals need no agents. Stop first at the accuracy crossing and then at the economic crossing, which here gives T ⋆ = 3 and T † = 2. A terminator is only a tiebreak under a hard cap because confidence contains neither dilution nor milliseconds.
+The source says fan-out is worth it when parallel source-specific loops remove more than 1.08 serial rounds, and that the loop should stop first at the accuracy crossing and then at the economic crossing, which here gives T ⋆ = 3 and T † = 2. Correction: fan-out also removes 875 ms of prefill from the critical path, so its net fixed overhead is about 8 ms and one follow-up round on even one source repays it, while fixed concurrent retrievals still need no agents. A terminator is only a tiebreak under a hard cap because confidence contains neither dilution nor milliseconds.
 
 ## Key numbers
 

@@ -126,10 +126,7 @@ That is a reduction of `9.98 × 10^4`, close to five orders of magnitude. Stage 
 The reranker also controls position. The source states that the same documents produce different generator quality when the answer-bearing chunk moves between the start, middle, and end of context. Recall cannot measure this ordering effect.
 #### Failure without it
 
-If the gold chunk is absent from the top `k`, stage 1 failed. Adding a reranker cannot help.
-If the gold chunk is in the top `k` but outside the final `m`, stage 2 failed. Re-embedding the whole corpus targets the wrong stage.
-If a pipeline logs only end-to-end accuracy, it observes the product `R1 * R2` and cannot attribute failure to either factor.
-If the system passes all `k` candidates to a long-context generator, it pays much more prefill and exposes the answer to positional degradation.
+If the gold chunk is absent from the top `k`, stage 1 failed. Adding a reranker cannot help. If the gold chunk is in the top `k` but outside the final `m`, stage 2 failed. Re-embedding the whole corpus targets the wrong stage. If a pipeline logs only end-to-end accuracy, it observes the product `R1 * R2` and cannot attribute failure to either factor. If the system passes all `k` candidates to a long-context generator, it pays much more prefill and exposes the answer to positional degradation.
 #### Cost, complexity, and worked example
 
 The worked stack uses 10 million chunks, 256 tokens per chunk, `d = 768` in 32-bit floating point (FP32), a BERT-base cross-encoder, a 7-billion-parameter generator, sustained throughput of `3.4 × 10^14` FLOPs per second, and memory bandwidth of 2.0 TB/s.
@@ -150,9 +147,7 @@ The 100-candidate reranker costs
 $$
 \frac{100(6.336 \times 10^{10})}{3.4 \times 10^{14}} = 18.6\ \text{ms}.
 $$
-Reducing prefill from 100 chunks to five removes 1,001 ms. The reranker returns 54 ms of generator time for each millisecond it spends. Its 18.6 ms adds 27% over the 68.1 ms raw-top-5 configuration.
-For 200 chunks, long-context prefill reaches 51,200 tokens and `7.17 × 10^14` FLOPs, or about 2.1 seconds. Cross-encoding the 200 candidates costs 37.3 ms before sending five.
-Published DPR measurements on Natural Questions give 78.4% top-20 and 85.4% top-100. The set-membership headroom is 7.0 points. That is 32% of the remaining `21.6` points of error.
+Reducing prefill from 100 chunks to five removes 1,001 ms. The reranker returns 54 ms of generator time for each millisecond it spends. Its 18.6 ms adds 27% over the 68.1 ms raw-top-5 configuration. For 200 chunks, long-context prefill reaches 51,200 tokens and `7.17 × 10^14` FLOPs, or about 2.1 seconds. Cross-encoding the 200 candidates costs 37.3 ms before sending five. Published DPR measurements on Natural Questions give 78.4% top-20 and 85.4% top-100. The set-membership headroom is 7.0 points. That is 32% of the remaining `21.6` points of error.
 #### Decisions and limits
 
 - Measure recall at `k` and recall at `m` on the same query set before adding or removing the stage.
@@ -185,17 +180,14 @@ The attention term is
 $$
 48(288^2)(768) = 3.058 \times 10^9.
 $$
-The total is `6.642 × 10^10` FLOPs per pair. The quadratic term is only 4.8% of the linear term at this length.
-At `L = 1,024`, the attention term is `3.865 × 10^10` against a linear term of `2.253 × 10^11`, or 17.2%. Total cost grows 3.97 times for a 3.56 times length increase. The fitted exponent is 1.09, not 2.
+The total is `6.642 × 10^10` FLOPs per pair. The quadratic term is only 4.8% of the linear term at this length. At `L = 1,024`, the attention term is `3.865 × 10^10` against a linear term of `2.253 × 10^11`, or 17.2%. Total cost grows 3.97 times for a 3.56 times length increase. The fitted exponent is 1.09, not 2.
 At the stated throughput, one pair costs
 
 $$
 \frac{6.642 \times 10^{10}}{3.4 \times 10^{14}} = 0.195\ \text{ms}.
 $$
 Reranking `k` candidates therefore costs `0.195k` ms.
-First-stage recall is close to linear in `log2(k)` over the fitted range. DPR rises from 78.4% at 20 to 85.4% at 100. That is 7.0 points over 2.32 doublings, or 3.0 points per doubling. BM25 rises from 59.1% to 73.7%, or 6.3 points per doubling.
-Going from 20 to 40 candidates buys 3.0 points for 3.9 ms, or 0.77 points per millisecond, behind the dense retriever. Going from 100 to 200 buys the same 3.0 points for 19.5 ms, or 0.15 points per millisecond.
-BM25 needs 3.07 doublings beyond `k = 20` to reach 78.4%, so it needs approximately `k = 168`. That is 8.4 times the depth and 8.4 times the reranker bill of DPR at `k = 20`.
+First-stage recall is close to linear in `log2(k)` over the fitted range. DPR rises from 78.4% at 20 to 85.4% at 100. That is 7.0 points over 2.32 doublings, or 3.0 points per doubling. BM25 rises from 59.1% to 73.7%, or 6.3 points per doubling. Going from 20 to 40 candidates buys 3.0 points for 3.9 ms, or 0.77 points per millisecond, behind the dense retriever. Going from 100 to 200 buys the same 3.0 points for 19.5 ms, or 0.15 points per millisecond. BM25 needs 3.07 doublings beyond `k = 20` to reach 78.4%, so it needs approximately `k = 168`. That is 8.4 times the depth and 8.4 times the reranker bill of DPR at `k = 20`.
 #### Failure without it
 
 Depth is not monotonically helpful. Let `epsilon` be the chance that one irrelevant candidate outscores gold. The number of distractors above gold is
@@ -249,7 +241,7 @@ $$
 \frac{1.4 \times 10^{10}}{3.4 \times 10^{14}} = 4.12 \times 10^{-5}\ \text{s} = 0.0412\ \text{ms}.
 $$
 With a 32-token query, 256-token document, and 50 instruction tokens, a pointwise prompt uses 338 tokens and costs 13.9 ms. A pairwise prompt uses 594 tokens and costs 24.5 ms.
-A listwise prompt with `w = 20` uses 5,202 prefill tokens plus about 60 decoded identifier tokens, or 216.8 ms per call.
+A listwise prompt with `w = 20` uses 5,202 prefill tokens plus about 60 decoded identifier tokens, or 216.8 ms per call. Correction: that total bills the 60 decoded tokens at the prefill rate, but decode at batch size one is bound by memory bandwidth. Assuming 16-bit weights, a 7-billion-parameter reranker reads 14 GB per decoded token, or 7.0 ms at the stated 2.0 TB/s, so one listwise call takes about 214.3 + 420 = 634 ms. Pointwise and pairwise prompts need about one output token, which the prefill pass already produces, so their decode term is near zero.
 Call counts are
 
 $$
@@ -286,7 +278,7 @@ The source treats the origin of zero-shot comparative ability as an open hypothe
 | Pairwise all-pairs | 4,950 | 2,940,300 | 121.1 s | 24.5 ms |
 | Pairwise heap top 10 | 340 | 201,960 | 8.32 s | 3.43 s |
 | Pairwise tournament top 1 | 99 | 58,806 | 2.42 s | 171 ms |
-| Listwise with `w = 20` | 9 | 47,358 | 1.95 s | 1.95 s |
+| Listwise with `w = 20` | 9 | 47,358 | about 5.7 s (corrected from 1.95 s) | about 5.7 s (corrected from 1.95 s) |
 Pointwise is the cheapest LLM mode and still costs 71.4 times the cross-encoder's accelerator time.
 The parameter-only ratio is
 
@@ -294,7 +286,7 @@ $$
 \left(\frac{7 \times 10^9}{1.10 \times 10^8}\right)\left(\frac{338}{288}\right) = 74.7.
 $$
 Correcting for the cross-encoder attention term divides by `6.642 / 6.336 = 1.048` and gives 71.2. The remaining 0.3% is rounding.
-A cascade costs 19.5 ms to reduce 100 candidates to 20, then 216.8 ms for one listwise call. Total wall-clock is 236.3 ms. That is 8.3 times faster than full listwise reranking and uses nine times fewer LLM tokens.
+A cascade costs 19.5 ms to reduce 100 candidates to 20, then 216.8 ms for one listwise call. Total wall-clock is 236.3 ms. That is 8.3 times faster than full listwise reranking and uses nine times fewer LLM tokens. Correction: with the decode floor, one listwise call takes about 634 ms, so the cascade takes about 654 ms against about 5.7 s for full listwise, which is still about 8.7 times faster.
 An 8,192-token context could hold
 
 $$
@@ -441,21 +433,21 @@ A call contains `Li + Lq + wLd` prefill tokens and about `3w` decoded identifier
 $$
 82 + 259w
 $$
-tokens per call. The example adds 80 ms of round-trip and queueing time per call. All windows are serial.
+tokens per call. The example adds 80 ms of round-trip and queueing time per call. All windows are serial. Correction: the table's compute column bills the `3w` decoded tokens at the 0.0412 ms prefill rate, and the corrected values, which come first in each cell, charge about 7.0 ms per decoded token for a 16-bit 7-billion-parameter model at 2.0 TB/s.
 
 | Schedule | Calls | Tokens | Compute | Compute plus round trip | Rank-100 ceiling |
 |---|---:|---:|---:|---:|---:|
-| `w = 10`, `s = 5` | 19 | 50,768 | 2,092 ms | 3,612 ms | 1 |
-| `w = 20`, `s = 10` | 9 | 47,358 | 1,951 ms | 2,671 ms | 1 |
-| `w = 40`, `s = 20` | 4 | 41,768 | 1,721 ms | 2,041 ms | 1 |
-| `w = 20`, `s = 20` | 5 | 26,310 | 1,084 ms | 1,484 ms | 81 |
+| `w = 10`, `s = 5` | 19 | 50,768 | 6,058 ms (corrected from 2,092 ms) | 7,578 ms (corrected from 3,612 ms) | 1 |
+| `w = 20`, `s = 10` | 9 | 47,358 | 5,709 ms (corrected from 1,951 ms) | 6,429 ms (corrected from 2,671 ms) | 1 |
+| `w = 40`, `s = 20` | 4 | 41,768 | 5,061 ms (corrected from 1,721 ms) | 5,381 ms (corrected from 2,041 ms) | 1 |
+| `w = 20`, `s = 20` | 5 | 26,310 | 3,172 ms (corrected from 1,084 ms) | 3,572 ms (corrected from 1,484 ms) | 81 |
 At stride `w / 2`, document slots total
 
 $$
 N_{\text{calls}}w = 2k - w.
 $$
 With `w = 20`, the nine windows read 180 document slots, or 46,080 document tokens. Nine prompt-and-output overheads add 1,278 tokens for a total of 47,358.
-Doubling `w` from 20 to 40 cuts calls by 2.25 times but tokens by only 11.8%. The round-trip-aware saving is 24%.
+Doubling `w` from 20 to 40 cuts calls by 2.25 times but tokens by only 11.8%. The round-trip-aware saving is 24%. Correction: with the decode floor, the round-trip-aware saving falls to about 16%, from 6,429 ms to 5,381 ms.
 The wider window improves tail rescue if
 
 $$
@@ -468,7 +460,7 @@ p_{40} > p_{20}^{2.25}.
 $$
 At `p20 = 0.9`, break-even is 0.789. Per-window reliability may fall 11 points and still improve total tail rescue.
 Dropping overlap saves 44.4% of tokens but leaves the rank-100 ceiling at 81.
-Halving `k` from 100 to 50 cuts the default wall-clock from 2,671 ms to 1,187 ms, or 56%. Depth moves the document-token bill linearly. Window size mainly changes overhead.
+Halving `k` from 100 to 50 cuts the default wall-clock from 2,671 ms to 1,187 ms, or 56%. Correction: with the decode floor, halving `k` cuts the default from about 6,429 ms to 2,857 ms, which is still 56%. Depth moves the document-token bill linearly. Window size mainly changes overhead.
 Pointwise reads 25,600 document tokens and repeats the 82-token preamble 100 times. Listwise reads 1.80 times more document tokens but only 1.40 times more total tokens because it amortizes the preamble.
 #### Decisions and limits
 
@@ -662,7 +654,7 @@ flowchart TD
     F --> G["R at m = R1 at k times R2 at m given k. R at m cannot exceed R1 at k"]
 ```
 
-**Figure 22.1:** The stages multiply, so the first sets a ceiling the second can approach but never exceed. The second stage sees 10-5 of the corpus, spends 99.8% of the retrieval arithmetic, and pays for itself by removing 1,001 ms of generator prefill for 18.6 ms of its own.
+**Figure 22.1:** The stages multiply, so the first sets a ceiling the second can approach but never exceed. The second stage sees one hundred-thousandth (1e-5) of the corpus, spends 99.8% of the retrieval arithmetic, and pays for itself by removing 1,001 ms of generator prefill for 18.6 ms of its own.
 ### Figure 22.2
 
 ```text
@@ -697,12 +689,12 @@ flowchart TB
     end
     subgraph L["Listwise, w = 20"]
         L1["q plus 20 candidates"] --> L2["permutation"]
-        L3["9 calls. Serial depth 9. 1.95 s wall-clock and bill. Order-sensitive"]
+        L3["9 calls. Serial depth 9. About 5.7 s wall-clock and bill with decode. Order-sensitive"]
     end
     P --> Q --> L
 ```
 
-**Figure 22.3:** Descending the page, the model sees more candidates per decision and needs fewer calls to rank them, but the calls stop being independent: pointwise and all-pairs are depth 1 and parallelize completely, while sorted-pairwise and listwise trade call count for a serial chain that latency budgets feel directly.
+**Figure 22.3:** Descending the page, the model sees more candidates per decision and needs fewer calls to rank them, but the calls stop being independent: pointwise and all-pairs are depth 1 and parallelize completely, while sorted-pairwise and listwise trade call count for a serial chain that latency budgets feel directly. Correction: the listwise box reads about 5.7 s, corrected from 1.95 s, because each window also decodes about 60 identifier tokens at about 7.0 ms per token.
 ### Figure 22.4
 
 | Design | Candidate input | Output and loss | Gold gradient | Top-distractor gradient | Eighteen-tail gradient | Negative allocation |
@@ -773,7 +765,7 @@ Start with the funnel: a cheap retriever finds k candidates from N, then an expe
 Answer: price the pair, fit first-stage recall at depths 20, 50, 100, and 200, and measure the reranker's distractor rate instead of inheriting a bare number. BERT-base at 288 tokens costs 0.195 ms per candidate, while fitted recall rose 3.0 points per doubling behind Dense Passage Retrieval and 6.3 behind BM25. Start near 100 for a dense or hybrid retriever, then stop where marginal recall per millisecond loses to the rest of the budget because accumulated distractors can make deeper actively worse.
 ### 2. "Pointwise, pairwise, or listwise for a frozen LLM over 100 candidates?"
 
-Answer: choose listwise by default because a frozen prompt cannot create cross-document calibration for pointwise scores, then report both accelerator cost and serial depth. Pointwise bills 1.39 seconds, all-pairs bills 121.1 seconds at depth 1, and nine listwise windows bill 1.95 seconds at depth 9. A cross-encoder cascade to 20 candidates followed by one listwise window costs about 236.3 ms and is the practical comparison.
+Answer: the source chooses listwise by default because a frozen prompt cannot calibrate pointwise scores across documents, and it bills pointwise at 1.39 seconds, all-pairs at 121.1 seconds at depth 1, nine listwise windows at 1.95 seconds at depth 9, and a cross-encoder cascade to 20 plus one window at about 236.3 ms. Correction: those listwise figures bill 60 decoded identifier tokens per window at the prefill rate, and a 16-bit 7-billion-parameter model needs about 7.0 ms per decoded token at 2.0 TB/s, so nine windows take about 5.7 seconds and the cascade takes about 654 ms. The cascade therefore remains the practical comparison, and it is still about 8.7 times faster than full listwise.
 ### 3. "Why slide listwise windows from the back, and why overlap them?"
 
 Answer: promotion needs a complete path, and back-to-front overlap lets a rank-100 candidate enter the next window whenever it finishes in the top `w - s`, requiring nine wins at `w = 20` and `s = 10`. Head-first motion freezes the head before the tail appears, while disjoint windows freeze block boundaries, so both alternatives cap rank-100 promotion at 81. Log the permutation repair rate too because malformed output can silently preserve the input order.
@@ -805,6 +797,10 @@ Answer: compare the two marginals by measuring quality at `m + 1` and a stronger
 | Prefill 100 chunks | 1,054 ms |
 | Prefill removed by reranking 100 to five | 1,001 ms |
 | Generator time returned per reranker millisecond | 54 ms |
+| Attention share of the linear term at `L = 288` and `L = 1,024` | 4.8% and 17.2% |
+| Fitted exponent of pair cost in sequence length | 1.09 |
+| Totals before decode: raw top 5, rerank 100 to 5, send all 100 | 68.1, 86.7, and 1,069 ms |
+| Send all 100 versus rerank to 5 | 12.3 times |
 ### Depth and recall
 
 | Quantity | Value |
@@ -821,23 +817,26 @@ Answer: compare the two marginals by measuring quality at `m + 1` and a stronger
 | Illustrative optimum at `epsilon = 0.01`, `m = 5` | Near `k = 150` |
 | Nogueira and Cho MRR@10 at `k = 1,000` | 0.365 |
 | Consistent illustrative distractor rate | About 0.005 |
+| End-to-end `R(5)` at `k = 100` and `k = 200` | 85.1% and 83.8% |
+| End-to-end `R(5)` at `k = 500` and `k = 1,000` | 40.8% and 2.8% |
+| BM25 alone, MRR@10 on the MS MARCO development set | 0.187 |
 ### LLM ranking modes
 
 | Quantity | Value |
 |---|---:|
-| 7B reranker token time | 0.0412 ms |
+| 7B reranker token time | 0.0412 ms per prefill token, about 7.0 ms per decoded token |
 | Pointwise prompt | 338 tokens, 13.9 ms |
 | Pairwise prompt | 594 tokens, 24.5 ms |
-| Listwise `w = 20` call | 5,262 total tokens, 216.8 ms |
+| Listwise `w = 20` call | 5,262 total tokens, about 634 ms (corrected from 216.8 ms) |
 | All-pairs at `k = 100` | 4,950 calls |
 | Heap top 10 | 340 calls, serial depth 140 |
 | Tournament top 1 | 99 calls, serial depth 7 |
 | Sliding listwise | 9 calls, serial depth 9 |
 | Pointwise accelerator bill | 1.39 s |
 | All-pairs accelerator bill | 121.1 s |
-| Listwise accelerator bill | 1.95 s |
+| Listwise accelerator bill | about 5.7 s (corrected from 1.95 s) |
 | Cheapest LLM versus cross-encoder | 71.4 times |
-| Cross-encoder to 20 plus one listwise window | 236.3 ms |
+| Cross-encoder to 20 plus one listwise window | about 654 ms (corrected from 236.3 ms) |
 ### Losses and training
 
 | Quantity | Value |
@@ -850,6 +849,7 @@ Answer: compare the two marginals by measuring quality at `m + 1` and a stronger
 | Penalty ratio | 58.8 times |
 | Pointwise negative-to-positive ratio at `k = 20` | 3.8 |
 | Pointwise negative-to-positive ratio at `k = 100` | 19.8 |
+| Negative gradient to the top distractor, pointwise versus listwise | 71.9% versus 96.9% |
 | nDCG swap ratio, head versus ranks 99 and 100 | 1,137 to one |
 | T5-base pair cost | `5.20 × 10^10` FLOPs, 0.153 ms |
 | monoT5 epoch | `1.56 × 10^17` FLOPs, 459 s |
@@ -866,12 +866,12 @@ Answer: compare the two marginals by measuring quality at `m + 1` and a stronger
 | Default sliding schedule | `k = 100`, `w = 20`, `s = 10` |
 | Default calls | 9 |
 | Default tokens | 47,358 |
-| Default compute | 1,951 ms |
-| Default with 80 ms round trip per call | 2,671 ms |
+| Default compute | about 5,709 ms (corrected from 1,951 ms) |
+| Default with 80 ms round trip per call | about 6,429 ms (corrected from 2,671 ms) |
 | Rank-100 rescue at `p_window = 0.9` | 0.387 |
 | Rank-10 rescue at `p_window = 0.9` | 0.900 |
 | Wider-window token saving | 11.8% |
-| Wider-window round-trip-aware saving | 24% |
+| Wider-window round-trip-aware saving | about 16% (corrected from 24%) |
 | No-overlap token saving | 44.4%, with ceiling 81 |
 | Halving depth wall-clock saving | 56% |
 | TART negative mix | 90% random, 10% mined |

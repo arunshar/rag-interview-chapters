@@ -93,7 +93,7 @@ The newsroom can set policy for its own risk, but the chapter leaves the accepta
 | Retrieve-and-judge estimator | Retrieval finds evidence from S, then an LM judges the fact against it | It provides a genuine external check at the highest per-fact cost |
 | Non-parametric probability estimator | A masked model predicts claim tokens with retrieved evidence | It reuses a forward pass and is noisier than full retrieve-and-judge verification |
 | Masked-language model | A model asked to reconstruct hidden claim tokens | Its reconstruction score supplies the non-parametric estimate |
-| Ensemble | A combination of the no-context, retrieve-and-judge, and non-parametric estimates | It combines the three verification signals |
+| Ensemble | Retrieve-and-judge combined with the non-parametric estimate, with a fact supported only when both agree (corrected from a combination of the no-context, retrieve-and-judge, and non-parametric estimates) | It combines two retrieval-based verification signals (corrected from three) |
 | Extractor failure | A merged, dropped, split, or unresolved claim created during extraction | It changes what the verifier sees before support judgment begins |
 | Versioned source snapshot | A fixed copy of the verification source | It prevents source drift from looking like a model regression |
 | Claim count | The number of extracted facts in an answer | A falling count can inflate precision without improving the model |
@@ -279,7 +279,7 @@ A retrieval-augmented masked-language model predicts those tokens.
 It reuses one forward pass instead of a full retrieval-plus-judgment call.
 
 It is cheaper and noisier.
-The ensemble combines the no-context, retrieve-and-judge, and non-parametric estimators.
+The ensemble combines the no-context, retrieve-and-judge, and non-parametric estimators. Correction: the FActScore ensemble (Min et al., 2023, arXiv 2305.14251) combines only retrieve-and-judge with the non-parametric estimator, and it counts a fact as supported only when both estimators say supported.
 
 #### What fails without it
 
@@ -314,7 +314,7 @@ The gap from 0.79 to 0.14 preserves the regression signal.
 One retrieve-and-judge check takes about 0.9 seconds.
 
 Fourteen checks take 14 × 0.9 ≈ 12.6 seconds serially.
-A 250-biography benchmark at 14 facts each needs 3,500 checks.
+A 250-biography benchmark at 14 facts each needs 3,500 checks. Correction: 250 is an illustrative size, because the FActScore paper annotated 183 people by hand and ran its automated estimator on 500 people for each of 13 models, or 6,500 generations.
 
 At 0.9 seconds each, that is 3,500 × 0.9 ≈ 3,150 seconds.
 The total is about 52 minutes serially.
@@ -374,7 +374,7 @@ Let C_sup be the number of vᵢ claims supported by S.
 Precision remains:
 
 P = C_sup / C
-K is the average number of verifiable claims in good, human-written responses for this task.
+K is the average number of verifiable claims in good, human-written responses for this task. Correction: Song et al. (2024, arXiv 2406.19276) set K for each domain as the median number of extracted claims across model responses, and they hold that K fixed within the domain.
 The team estimates K once from a reference corpus.
 
 It holds K fixed for every response in the run.
@@ -382,7 +382,7 @@ Recall is:
 
 R = min(C / K, 1)
 Responses with at least K verifiable claims saturate recall at 1.
-Shorter responses receive a penalty in direct proportion to C / K.
+Shorter responses receive a penalty in direct proportion to C / K. Correction: the published recall counts supported claims, R = min(C_sup / K, 1), so a model cannot raise recall by padding a response with unsupported claims.
 
 VeriScore combines the terms:
 VeriScore(y) = 2PR / (P + R)
@@ -416,7 +416,7 @@ The full-effort response has C = 14 and C_sup = 11.
 P = 11 / 14 ≈ 0.786.
 R = min(14 / 12, 1) = 1.
 
-VeriScore = (2 × 0.786 × 1) / (0.786 + 1) ≈ 0.880.
+VeriScore = (2 × 0.786 × 1) / (0.786 + 1) ≈ 0.880. Correction: with the published recall, R = min(11 / 12, 1), or about 0.917, and the full-effort score is (2 x 0.786 x 0.917) / (0.786 + 0.917), or about 0.846. The hedging and one-fact scores below do not change, because every claim in them is supported.
 The hedging response has C = 2 and C_sup = 2.
 
 FActScore gives 2 / 2 = 1.0.
@@ -609,7 +609,7 @@ Intrinsic content contradicts the source.
 Extrinsic content adds something the source does not state.
 An extrinsic addition may be a reasonable bridge or a fabrication.
 
-Maynez et al. (2020) report hallucinations in more than 70 percent of generated abstractive summaries.
+Maynez et al. (2020) report hallucinations in more than 70 percent of generated abstractive summaries. Correction: they measured this rate by human annotation of single-sentence XSum summaries written by neural summarizers of that period, so it describes that dataset and model era and is not a current baseline for abstractive summarization in general.
 Roughly 90 percent of those hallucinations are factually wrong, unsupported by or contradictory to the source.
 Forcing a summary to one sentence does not settle whether hallucination comes from output amount or abstraction itself.
 
@@ -652,7 +652,7 @@ That is under 27 minutes serially and can run in parallel.
 Retrieve-and-judge costs about 0.9 seconds per atomic fact.
 The document-level gate is roughly 4 to 5 times cheaper per item because it already has the source document.
 
-The 70 percent figure is a conservative floor, not a worst case.
+The 70 percent figure is a conservative floor, not a worst case. Correction: the conservative-floor framing is the source's claim, and the 2020 XSum rate is not a floor for a current support-desk summarizer, so the 63 percent figure above is a hypothetical rate that a team must measure on its own tickets.
 More extractive, copy-heavy systems hallucinate less.
 More abstractive systems hallucinate more.
 
@@ -697,7 +697,7 @@ flowchart TD
     N["No-context. LM judges ai from its own memory"]
     R["Retrieve plus LM. Retrieve from S, then judge ai against the passage"]
     P["Non-parametric. Mask ai tokens, retrieve, and score mask predictions"]
-    E["Ensemble. Combine all three estimators"]
+    E["Ensemble. Retrieve plus LM with non-parametric. Supported only when both agree"]
     S["FActScore(y). Plain average of support verdicts over A(y)"]
     Y --> X
     X --> N
@@ -712,7 +712,7 @@ flowchart TD
 
 FActScore(y) = (1 / |A(y)|) Σᵢ₌₁^|A(y)| 𝟙[aᵢ is supported by S]
 
-Figure 33.2: FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts.
+Figure 33.2: FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts. Correction: the ensemble node combines retrieve-and-judge with the non-parametric estimator only, and the no-context estimator is not part of it.
 
 ### Figure 33.3
 
@@ -721,7 +721,7 @@ flowchart TD
     Y["y, a long-form generation"]
     X["Context-aware extraction. Read the full generation. Drop claims with no checkable referent or truth-apt content. Output V(y) = {v1, ..., vC}"]
     P["Verify each vi against S. Count supported claims Csup. P = Csup / C"]
-    R["Compare C with fixed task reference K. K is average verifiable claims in a good response. R = min(C / K, 1)"]
+    R["Compare supported claims Csup with fixed domain reference K. K is the median claim count across model responses. R = min(Csup / K, 1)"]
     V["VeriScore(y) = 2PR / (P + R)"]
     Y --> X
     X --> P
@@ -730,7 +730,7 @@ flowchart TD
     R --> V
 ```
 
-Figure 33.3: VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing.
+Figure 33.3: VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing. Correction: the published recall term is R = min(C_sup / K, 1), which counts supported claims, and K is the per-domain median claim count across model responses (Song et al., 2024, arXiv 2406.19276).
 
 ### Figure 33.4
 
@@ -778,7 +778,7 @@ Figure 33.5: Illustrative per-position hallucination rates, constructed to show 
 5. Above the triangle, draw a decision diamond labeled "External oracle reachable?"
 6. On the no branch, point to the RAGAS triangle and label it per-request.
 7. On the yes branch, draw answer to atomic facts to source verdicts. Label the average FActScore.
-8. Add a second branch from the fact count to R = min(C / K, 1). Merge it with precision into VeriScore.
+8. Add a second branch from the fact count to R = min(C / K, 1). Merge it with precision into VeriScore. Correction: VeriScore recall counts only supported claims, so write R = min(C_sup / K, 1) on this branch.
 9. Under both branches, draw a six-position error curve rising toward the right.
 10. End with a note: report claim count and length, and keep the summarization bridging threshold open.
 
@@ -798,7 +798,7 @@ It fixes the unit of evaluation by splitting a long answer into independently ve
 
 ### 3. Why does VeriScore need both context-aware extraction and recall?
 
-Whole-generation extraction resolves references and removes claims that no source can verify. Recall R = min(C / K, 1) separately prevents a model from winning by making very few safe claims. Use a task-specific fixed K because a biography and a deliberately terse support reply should not share one expected claim count.
+The source answers that whole-generation extraction resolves references and drops unverifiable claims, while recall R = min(C / K, 1) stops a model from winning with very few safe claims. Correction: VeriScore (arXiv 2406.19276) counts supported claims in recall, R = min(C_sup / K, 1), with K fixed per domain as the median claim count across model responses, so padding with unsupported claims cannot raise recall. A biography task and a deliberately terse support reply should not share one K.
 
 ### 4. What does high RAGAS faithfulness with low answer relevance mean?
 
@@ -833,7 +833,7 @@ A basic entailment checker can flag reasonable bridging inference and outright f
 | About 3.75 times lower latency | 3 / 0.8 | Comes only from removing the external fetch |
 | Two, three, or more facts | Typical decomposition of one generated sentence | Shows why sentence scoring is too coarse |
 | 0 to 1 | FActScore range | Per-response precision |
-| 4 automatic estimators | No-context, retrieve-and-judge, non-parametric probability, and their ensemble | They trade oracle strength for verification cost |
+| 4 automatic estimators | No-context, retrieve-and-judge, non-parametric probability, and the ensemble of retrieve-and-judge with non-parametric probability (corrected from their ensemble of all three) | They trade oracle strength for verification cost |
 | Six or more sentences | Long-form example in Figure 33.2 | Descriptive example, not a universal threshold |
 | 6 sentences | Worked biography length | Contains 3 located errors |
 | 1 wrong fact amid 14 correct details | Opening binary-grading contrast | Whole-response grading still returns the same zero as a fabricated career |
@@ -843,7 +843,7 @@ A basic entailment checker can flag reasonable bridging inference and outright f
 | 2 supported of 14 | Worse comparison system | 2 / 14 ≈ 0.14 |
 | 0.9 seconds per fact | Retrieve-and-judge cost | One retrieval plus one LM judgment |
 | About 12.6 seconds | 14 × 0.9 | Serial cost for one biography |
-| 250 biographies | Original FActScore evaluation scale cited by the source | Produces 3,500 checks at 14 facts each |
+| 250 biographies | Illustrative benchmark size (corrected from original FActScore evaluation scale), since the paper used 183 hand-annotated people and 500 people per model | Produces 3,500 checks at 14 facts each |
 | 3,500 checks | 250 × 14 | Full benchmark fact volume |
 | About 3,150 seconds | 3,500 × 0.9 | Serial benchmark runtime |
 | About 52 minutes | 3,150 seconds | Fits an overnight batch before concurrency |
@@ -851,10 +851,10 @@ A basic entailment checker can flag reasonable bridging inference and outright f
 | 0.62 to 0.89 | Interview scenario score jump | Check claim count and source drift before shipping |
 | 0.75 to 0.97 | Support-summary dashboard change | Coincides with under-generation |
 | 6 sentences to 2 | Summary-length contraction | Explains why precision rises without better coverage |
-| K = 12 | Illustrative good-summary verifiable-claim average | Task-specific and not a published universal constant |
+| K = 12 | Illustrative per-domain claim-count reference, which the paper sets as the median across model responses (corrected from good-summary verifiable-claim average) | Task-specific and not a published universal constant |
 | C = 14, C_sup = 11 | Full-effort VeriScore example | P ≈ 0.786 |
-| R = 1 | min(14 / 12, 1) | Recall saturates above K |
-| VeriScore ≈ 0.880 | Full-effort combined score | Uses P ≈ 0.786 and R = 1 |
+| R = 11 / 12, about 0.917 (corrected from R = 1) | min(11 / 12, 1) (corrected from min(14 / 12, 1)) | Recall counts supported claims, so it stays below 1 |
+| VeriScore about 0.846 (corrected from 0.880) | Full-effort combined score | Uses P ≈ 0.786 and R about 0.917 (corrected from R = 1) |
 | C = 2, C_sup = 2 | Hedging VeriScore example | FActScore precision is 1.0 |
 | R ≈ 0.167 | min(2 / 12, 1) | Penalizes the low claim count |
 | VeriScore ≈ 0.286 | Hedging combined score | Nearly 3.5 times below the perfect precision score |
@@ -882,13 +882,13 @@ A basic entailment checker can flag reasonable bridging inference and outright f
 | Sentence 3 to sentence 4 | Autoregressive error example | An earlier fabrication becomes later conditioning context |
 | 6 sentence positions | Figure 33.5 horizontal range | The plotted unsupported rate rises with position |
 | About 0.05, 0.08, 0.15, 0.22, 0.35, and 0.48 | Figure 33.5 illustrative per-position rates, with a pooled line near 0.22 | The constructed curve shows shape, not measured benchmark values |
-| More than 70 percent | Maynez et al. floor for summaries containing hallucinations | The source calls 70 percent conservative, not worst case |
+| More than 70 percent | Maynez et al. (2020) rate on human-annotated XSum summaries from models of that period (corrected from a general floor for summaries) | The source calls 70 percent conservative, but it is not a current baseline |
 | Roughly 90 percent | Share of those hallucinations that are factually wrong | Not benign paraphrase |
 | 1 sentence | Maximum-compression probe | Brevity can still bridge or fabricate |
 | 8,000 tickets per day | Illustrative support-desk volume | One summary per ticket |
 | 5,600 summaries | 8,000 × 0.70 | Contain at least one hallucination |
 | 5,040 summaries | 5,600 × 0.90 | Contain a factually wrong claim |
-| 63 percent | 5,040 / 8,000 | Wrong-claim share before a gate |
+| 63 percent | 5,040 / 8,000 | Hypothetical wrong-claim share before a gate, to be measured locally (corrected from an expected share) |
 | 60 percent caught | Illustrative NLI gate effectiveness | Not a published threshold |
 | 2,016 per day | 5,040 × (1 - 0.60) | Wrong-claim summaries remaining |
 | Well under 200 milliseconds | NLI forward pass per summary | Source already in hand |

@@ -16,7 +16,7 @@ This chapter is for designing Retrieval-Augmented Generation (RAG) across indepe
 
 - Live web grounding pushes request and energy costs onto source sites. Scheduled refresh, caching, bot identification, and bulk interfaces restore amortization.
 
-- Keep every claim bounded. Several prices are stated assumptions, the 10x energy figure is directional operator evidence, and learned routers require broadcast audits for drift.
+- Keep every claim bounded. Several prices are stated assumptions, the 10x energy figure is directional operator evidence, and learned routers require broadcast audits for drift. Correction: the 10x energy figure is the chapter's assumption, because Wikimedia published traffic shares and no energy multiplier.
 
 ## The story
 
@@ -270,9 +270,9 @@ Its tail risk is 14.3%.
 Three calls cost `$0.0003` per query and `$300 per day`.
 The reduction is `(800 - 300) / 800 = 62.5%`.
 
-The learned-router sanity comparison reports 77.5% fewer queries and 76.2% less data transferred.
-Accuracy stays essentially flat from 72.22% to 72.24%.
-The learned result exceeds the hand-built 62.5% reduction without giving back accuracy.
+The learned-router sanity comparison reports 77.5% fewer queries and 76.2% less data transferred. Correction: the RAGRoute paper (arXiv 2502.19280) reports these two savings for MMLU, with ten k-means clusters of Wikipedia and top-10 retrieval, where queries fell from 13,890 to 3,126 and data fell from 73.3 MB to 17.42 MB.
+Accuracy stays essentially flat from 72.22% to 72.24%. Correction: the flat 72.22% to 72.24% accuracy comes from the separate MIRAGE setting with five MedRAG corpora, where query savings were smaller at about 29% to 71%, and on MMLU accuracy fell slightly from 43.59% to 43.29%.
+The learned result exceeds the hand-built 62.5% reduction without giving back accuracy. Correction: no single RAGRoute run shows 77.5% fewer calls at unchanged 72% accuracy, so this comparison combines two benchmark settings.
 
 #### Operating choices and claim limits
 
@@ -330,19 +330,19 @@ The shallow classifier runs in microseconds in the chapter's comparison and prod
 
 The federation has `N = 8` sources and `K = 40` candidates per source.
 Full broadcast makes eight calls and returns `8 x 40 = 320` candidates.
-The setup matches the shape of the RAGRoute evaluation on MIRAGE medical question answering and Massive Multitask Language Understanding (MMLU).
+The setup matches the shape of the RAGRoute evaluation on MIRAGE medical question answering and Massive Multitask Language Understanding (MMLU). Correction: neither RAGRoute setting has 8 sources and K = 40, because the MMLU setting uses ten Wikipedia clusters and the MIRAGE setting uses five medical corpora.
 
 Reported retrieval calls fall by 77.5%.
 Reported data transfer falls by 76.2%.
-End-to-end accuracy moves from 72.22% to 72.24%.
+End-to-end accuracy moves from 72.22% to 72.24%. Correction: the 77.5% and 76.2% savings are MMLU results, and the 72.22% to 72.24% accuracy is a MIRAGE result.
 
-The call reduction implies `M = 8 x (1 - 0.775) = 8 x 0.225 = 1.8`, or approximately two sources per query.
+The call reduction implies `M = 8 x (1 - 0.775) = 8 x 0.225 = 1.8`, or approximately two sources per query. Correction: the reported MMLU counts give 13,890 / 10 = 1,389 questions and 3,126 / 1,389, or about 2.25 sources per query out of 10.
 The data reduction implies `320 x (1 - 0.762) = 320 x 0.238 approximately 76` embeddings.
 That is approximately `1.9 x K`.
-Two independent measurements imply the same effective M near two.
+Two independent measurements imply the same effective M near two. Correction: both savings come from the same 10-source MMLU setting, so they are not independent measurements on an 8-source federation.
 
-The example classifier has widths `768 -> 256 -> 64 -> 8`.
-Its stated weight count is `768 x 256 + 256 x 64 + 64 x 8 approximately 213,500 parameters`.
+The example classifier has widths `768 -> 256 -> 64 -> 8`. Correction: a 768-wide input holds only the query embedding, which conflicts with the concatenated input described above, and RAGRoute itself scores each query and source pair from five features (query embedding, source centroid, query-to-centroid distance, item count, and density) with hidden layers of 256 and 128 and a single output logit applied once per source.
+Its stated weight count is `768 x 256 + 256 x 64 + 64 x 8 approximately 213,500 parameters`. Correction: this count fits a separate illustrative multi-label design over the query embedding alone, and it does not fit RAGRoute's per-pair scorer, whose input is at least 1,536 values wide.
 Its forward pass is an order of magnitude below one millisecond even on a Central Processing Unit (CPU).
 Moving from eight to about two sources avoids six network calls.
 Each avoided call carries tens of milliseconds in the representative enterprise comparison.
@@ -495,10 +495,10 @@ Marginal origin cost per cached query approaches zero for a popular page.
 
 Live RAG grounding fetches the origin during a user query.
 The citation interface can prompt a second origin visit when the user verifies the answer.
-The Wikimedia Foundation reports RAG and artificial-intelligence crawler traffic costing roughly 10x the energy of a normal cached request.
+The Wikimedia Foundation reports RAG and artificial-intelligence crawler traffic costing roughly 10x the energy of a normal cached request. Correction: the Wikimedia Foundation's April 2025 post on how crawlers affect its operations reports traffic shares and no energy multiplier, with bots at about 35% of pageviews but at least 65% of its most resource-consuming traffic, so treat 10x as the chapter's own assumption unless a specific Wikimedia document with that figure is cited.
 The chapter attributes this to uncached and long-tail access patterns.
 
-The 10x value is an operator-reported order of magnitude.
+The 10x value is an operator-reported order of magnitude. Correction: no Wikimedia source for this multiplier has been found, so it is a modeling assumption.
 It is not a peer-reviewed benchmark with controlled methodology.
 Use it as directional evidence and measure the production origin mix directly.
 
@@ -528,7 +528,7 @@ That is 3.1 origin hits per query.
 At 10e per hit, the illustrative total is 31e per satisfied query.
 
 A classical cached search index has near-zero marginal origin cost per query between crawls.
-The reported load-bearing input is the directional 10x value.
+The reported load-bearing input is the directional 10x value. Correction: the 10x value is the chapter's assumption, and the published Wikimedia figures are the 35% pageview share and the 65% share of expensive traffic.
 The 31e result is the chapter's own illustrative extension, not a second published measurement.
 
 #### Provenance is a different problem
@@ -760,13 +760,13 @@ It can address content history and tampering, but it does not reduce live fetche
 | Static routed query cost | $0.0003 | Three metered calls |
 | Static routed daily cost | $300 | At 1 million queries per day |
 | Static routing saving | 62.5% | `(800 - 300) / 800` |
-| RAGRoute retrieval-call saving | 77.5% | Reported on MIRAGE and MMLU |
-| RAGRoute transfer saving | 76.2% | Independent savings cross-check |
-| RAGRoute accuracy | 72.22% to 72.24% | Essentially flat in the reported evaluation |
-| Effective routed sources | 8 x 0.225 = 1.8 approximately 2 | Implied by call reduction |
-| Effective candidate volume | 320 x 0.238 approximately 76 | Approximately 1.9 source pools of K = 40 |
-| Classifier widths | 768 -> 256 -> 64 -> 8 | Three-layer router example |
-| Router parameters | Approximately 213,500 | Weight-only arithmetic stated in the chapter |
+| RAGRoute retrieval-call saving | 77.5% | Reported on MMLU with ten Wikipedia clusters and top-10 retrieval (corrected from reported on MIRAGE and MMLU) |
+| RAGRoute transfer saving | 76.2% | Reported on the same MMLU setting, 73.3 MB to 17.42 MB (corrected from independent savings cross-check) |
+| RAGRoute accuracy | 72.22% to 72.24% | Flat on MIRAGE with five medical corpora and about 29% to 71% query savings, while MMLU accuracy fell from 43.59% to 43.29% (corrected from essentially flat in the reported evaluation) |
+| Effective routed sources | 3,126 / 1,389, about 2.25 of 10 sources on MMLU (corrected from 8 x 0.225 = 1.8 approximately 2) | Implied by the reported MMLU query counts, since no RAGRoute setting has 8 sources |
+| Effective candidate volume | 320 x 0.238 approximately 76 | Approximately 1.9 source pools of K = 40 in an illustrative setup, since no RAGRoute setting has N = 8 and K = 40 |
+| Classifier widths | 768 -> 256 -> 64 -> 8 | Separate illustrative multi-label variant over the query embedding alone, while RAGRoute scores each query and source pair with hidden layers of 256 and 128 and one output logit (corrected from three-layer router example) |
+| Router parameters | Approximately 213,500 | Weight-only arithmetic for the 768-input variant, not for RAGRoute's per-pair scorer with an input of at least 1,536 values (corrected from weight-only arithmetic stated in the chapter) |
 | Router latency | Order of magnitude below 1 ms on CPU | Representative cost claim |
 | Avoided calls | About 6 | Eight-source broadcast versus about two selected |
 | Network-call scale | Tens of milliseconds | Representative enterprise comparison |
@@ -801,7 +801,7 @@ It can address content history and tampering, but it does not reduce live fetche
 | Deletion probe scale | 50 million vectors | Shared collection in the interview case |
 | Rebuild time | 6 hours | Can run at most once per day in the case |
 | Legal deletion commitment | 24 hours | Logical and physical states must stay explicit |
-| Reported origin premium | Roughly 10x | Directional Wikimedia operator report, not controlled benchmark |
+| Assumed origin premium (corrected from reported origin premium) | Roughly 10x | Chapter assumption, because Wikimedia reported bots at about 35% of pageviews and 65% of its most expensive traffic but published no energy multiplier (corrected from directional Wikimedia operator report) |
 | Daily RAG queries | Q = 10 million | Externality worked example |
 | Sources per answer | s = 3 | Live grounding fan-out |
 | Grounding requests | 10 million x 3 = 30 million per day | Before verification clicks |

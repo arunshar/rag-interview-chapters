@@ -474,7 +474,7 @@ $$
 
 A class with 20 examples counts as much as a class with 180. The minority-class term therefore lowers the average when the judge misses rare failures.
 
-AttributionBench uses macro-F1 for attributable versus non-attributable judgments. The source reports that a fine-tuned, purpose-built judge reaches roughly 80% macro-F1. It describes about one verdict in five as wrong and treats this result as a ceiling that a handful of prompt exemplars should not be expected to exceed.
+AttributionBench uses macro-F1 for attributable versus non-attributable judgments. The source reports that a fine-tuned, purpose-built judge reaches roughly 80% macro-F1. It describes about one verdict in five as wrong and treats this result as a ceiling that a handful of prompt exemplars should not be expected to exceed. Correction: AttributionBench (Li et al., 2024, arXiv 2402.15089) makes all of its subsets label-balanced, so its roughly 80% macro-F1 is measured on balanced classes and cannot cap a macro-F1 measured on a 90:10 set.
 
 #### Why exemplar balance matters
 
@@ -494,7 +494,7 @@ The benchmark checks generalization on four in-distribution datasets and three o
 
 Take 200 held-out query-claim-passage triples. There are 180 truly attributable cases and 20 truly non-attributable cases.
 
-The two configurations are illustrative constructions. The source anchors them against the published roughly 80% macro-F1 figure. It does not present them as measured benchmark runs.
+The two configurations are illustrative constructions. The source anchors them against the published roughly 80% macro-F1 figure. It does not present them as measured benchmark runs. Correction: macro-F1 falls as the minority class shrinks, so a judge with 0.80 recall on both classes scores 0.800 on a balanced set but about 0.661 on a 180:20 set, and the balanced-set figure is not a valid anchor for these 90:10 constructions.
 
 Configuration 1 uses seven attributable exemplars and one non-attributable exemplar.
 
@@ -560,7 +560,7 @@ $$
 
 Stratification moves macro-F1 from 0.640 to 0.772. Accuracy also rises from 88.5% to 90%. The majority recall drops from 0.95 to 0.917, but minority recall rises from 0.30 to 0.75.
 
-The constructed macro-F1 of 0.772 sits just below the roughly 0.80 fine-tuned result. The source says a constructed prompted result above that ceiling would deserve distrust.
+The constructed macro-F1 of 0.772 sits just below the roughly 0.80 fine-tuned result. The source says a constructed prompted result above that ceiling would deserve distrust. Correction: on a label-balanced set like AttributionBench's, the same recalls of 0.917 and 0.75 give a macro-F1 of about 0.83, which is above the cited result, so compare per-class recall or balanced accuracy when the class mixes differ.
 
 #### Failure without it
 
@@ -713,7 +713,7 @@ Answer: Yes, because retrieval owns recall at candidate depth d and a reranker c
 | Scaling gap | Roughly three orders of magnitude | The source limits this to its illustrative cost and latency setup. |
 | Disagreement probe | 15% | The source says inspect disagreements before retraining. |
 | Accuracy scene | 91% reported accuracy on a 90% majority set | The number does not prove minority performance. |
-| AttributionBench result | Roughly 80% macro-F1 | The source treats the fine-tuned result as an approximate ceiling for a prompted judge. |
+| AttributionBench result | Roughly 80% macro-F1 | Measured on label-balanced test sets, so it does not cap macro-F1 on a 90:10 set (corrected from an approximate ceiling for a prompted judge). |
 | Error analysis | 300 cases | The analysis assigns 66% to fine-grained insensitivity and 27% to information access mismatch. |
 | Dataset slices | Four in-distribution and three out-of-distribution datasets | They test generalization. |
 | Gold class split | 180 attributable and 20 non-attributable | The ratio is 90:10. |

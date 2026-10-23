@@ -38,9 +38,9 @@ for this guide.
   `Ace Your Next Opportunity`
   tagline define the
   visual layout.
-- The footer lists
-  `hao.hoang.ai@gmail.com`
-  , `haohoang.is-a.dev`
+- The footer lists an email address, the
+  website
+  `https://haohoang.is-a.dev/`
   , `LinkedIn` , and
   `Substack` . The page
   explains no technical
@@ -100,7 +100,7 @@ the route works.
 | AI/ML | Artificial intelligence and machine learning in this guide | The source focus line remains exact even though its abbreviation is decoded here |
 | Institute mark | `AI Interview Prep` | The lower-right mark repeats the institute name |
 | Tagline | `Ace Your Next Opportunity` | This line accompanies the institute mark |
-| Contact channel | `hao.hoang.ai@gmail.com` | This is the listed email address |
+| Contact route | `https://haohoang.is-a.dev/` | This website is the contact route for the author |
 | Contact channel | `haohoang.is-a.dev` | This is the listed website text |
 | Contact channel | `LinkedIn` | This is a listed platform |
 | Contact channel | `Substack` | This is a listed platform |
@@ -247,10 +247,10 @@ metric.
 ### 6. Contact channels
 
 **What.** The footer
-lists
-`hao.hoang.ai@gmail.com`
-, `haohoang.is-a.dev` ,
-`LinkedIn` , and
+lists an email address, the contact
+website
+`https://haohoang.is-a.dev/`
+, `LinkedIn` , and
 `Substack` , separated
 by dots.
 

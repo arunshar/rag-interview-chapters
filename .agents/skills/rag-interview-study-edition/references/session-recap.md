@@ -176,3 +176,29 @@ A later dark-mode browser audit found a fixed Mermaid fill in Figure 3.1 that ma
 ## Current completion boundary
 
 The edition is built, independently verified, packaged, and publicly readable. Its GitHub math compatibility repair, Mermaid theme repair, and project-scoped skill are included in the repository. The original PDF is not in the repository. No release was created. No open-source license was added. Future edits, releases, visibility changes, or publication to another service require fresh user direction.
+
+## Reading website (2026-10-08)
+
+A static reading website was added in commits `66f3582`, `977d7df`, and `924e3e4`. `scripts/build_site.py` converts each unit with Pandoc into MathML pages under `docs/`, and GitHub Pages serves `main:/docs` at `https://arunshar.com/rag-interview-chapters/`. Mermaid 11.4.1 is bundled under `site/assets/`. [website.md](website.md) documents the build and its checks.
+
+Two more public copies were published later from separate repositories: a second reader at `arunshar.com/reading/rag-interview/` and the reworded `arunshar/RAG-Interview-Notion-Markdown` repository. Their text differs from these units, so a correction here does not reach them automatically.
+
+## Review and correction pass (2026-10-23)
+
+The user asked for a review of the live website and approved a fix plan with three choices: keep the site public with an unofficial-edition notice, mark content fixes as labeled corrections, and port the fixes to the other public copies afterward.
+
+- Two read-only review rounds covered all 57 units, the 285 interview traps, the 161 reading-list entries, and the website. A separate adversarial verifier re-checked every high and medium finding. Round one confirmed 50 findings and round two confirmed 45.
+- Seven editor agents corrected disjoint file groups. A different agent verified each group and fixed 15 problems the editors had introduced.
+- The edition now has 199 `Correction:` sentences and 126 table cells marked `corrected from`. Each keeps the book's statement and gives the right fact with its primary source. Notation, rendering, and reading-list author fixes were made directly.
+- Notable corrections include the reversed Snell et al. beam-search finding (unit 06), a breakeven rule that the unit's own numbers disprove (unit 06), the George H. W. Bush multi-hop answer (unit 41), the VeriScore recall term (unit 33), the Think-on-Graph call count (unit 40), the Mallen et al. 10 percent denominator across nine units, and 11 wrong author lists in A5.
+- Unit 12's 27 pseudo-code equations were rewritten as LaTeX. Eight Decoder rows that lost their definitions to unescaped pipes were repaired.
+- The author's personal email address was replaced with his public website in the title page and about-the-author units.
+- `manifest.json` was reconstructed with `scripts/build_manifest.py`, because the creation-time manifest was never published.
+- Final state: audit 0 errors and 0 warnings, 57 units, 44,598 lines from 406 to 900 per unit, 246 figures, 9 tables, 175 Mermaid blocks rendering in both themes, 881 display equations, ZIP 58 files and 1,163,990 bytes.
+
+### Lessons that changed the workflow
+
+1. A clean structural audit did not catch any of the website defects. GitHub and Pandoc parse tables after display math, pipes inside table code spans, and `%` in math differently. The auditor now rejects these patterns, and the build stops on two of them.
+2. Plain-text pseudo-code inside `$$` passes every structural check and still renders as nonsense. Read the rendered page for every unit with heavy notation.
+3. A 900-line cap pushed late material into compression in a few units. A correction must fit the line budget, so it goes on the existing line.
+4. Copies drift. The installed skill, the Codex copy, the repository copy, and the memory note described four different states before this pass. Update all copies in the same change.

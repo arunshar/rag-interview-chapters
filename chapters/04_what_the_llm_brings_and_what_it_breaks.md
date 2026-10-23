@@ -65,7 +65,7 @@ The newsroom lesson is simple. Train the reporter for capability and behavior. U
 | GPT-Neo family | The 125-million through 6-billion parameter family used in the memorization measurements | It supplies the measured capacity ordering in Figure 4.2 |
 | Duplication count | How often a sequence appears in the corpus | More copies make verbatim extraction more likely |
 | Context length | The number of prompt tokens supplied at inference | Longer matching prefixes make memorized continuations easier to unlock |
-| Induction head | Attention circuitry that copies what followed a matched pattern | It supports both useful in-context learning and verbatim regurgitation |
+| Induction head | Attention circuitry that copies what followed a matched pattern | It supports useful in-context learning and verbatim copying of text already in the context (corrected from verbatim regurgitation in general) |
 | In-context learning | Learning a pattern from examples inside the prompt | It shares machinery with memorized copying, so the two cannot be cleanly separated |
 | Divergence attack | A prompt that pushes a chat model away from aligned behavior | It can expose raw pre-training continuations missed by normal probes |
 | Application Programming Interface (API) | The paid query interface used in the outside extraction experiment | It makes the external attack cost comparable with the internal audit cost |
@@ -228,9 +228,9 @@ Law two says duplicated sequences are more extractable.
 Law three says longer supplied context increases extraction.
 Duplication adds repeated gradient steps on the same continuation until greedy decoding follows it deterministically.
 Longer context gives more evidence that the prompt is one exact document rather than a similar one.
-Induction heads perform the matching and copying.
-The same circuitry supports in-context learning and verbatim regurgitation.
-No intervention can simply remove one while preserving the other.
+Induction heads perform the matching and copying. Correction: Induction heads copy a continuation that already sits in the context window, so they cannot supply 300 words that retrieval never provided. Those words come from training text memorized in the weights, which is the memorization that Carlini et al. (2023, arXiv 2202.07646) measure.
+The same circuitry supports in-context learning and verbatim regurgitation. Correction: Olsson et al. (2022, arXiv 2209.11895) link induction heads to in-context learning and to copying from the prompt, while regurgitation of training text that is not in the prompt comes from memorized weights.
+No intervention can simply remove one while preserving the other. Correction: The source cites no evidence for this claim, so treat it as an unsupported assertion.
 
 #### Why the short audit fails
 
@@ -325,7 +325,7 @@ The top 50 entities are 1 percent of the catalog but carry 49.5 percent of traff
 Label 500 questions and place τ near rank 50.
 Closed-book accuracy is 82 percent on the head and 24 percent on the tail.
 Retrieval accuracy is 68 percent on the tail.
-Applying a 10 percent flip rate to the head loses 8.2 points and gives a pessimistic 73.8 percent with retrieval.
+Applying a 10 percent flip rate to the head loses 8.2 points and gives a pessimistic 73.8 percent with retrieval. Correction: Mallen et al. (2023, arXiv 2212.10511) report about 10 percent as a share of all PopQA questions for GPT-3 (text-davinci-003), so the 10 percent rate on correct head answers here is an assumed conditional rate and not the measured value.
 Always retrieving scores 0.495 x 73.8 + 0.505 x 68.0 = 70.9 percent.
 Never retrieving scores 0.495 x 82.0 + 0.505 x 24.0 = 52.7 percent.
 Routing below τ scores 0.495 x 82.0 + 0.505 x 68.0 = 74.9 percent and retrieves on 50.5 percent of queries.
@@ -458,7 +458,7 @@ The ordered tests assign 140 to outdated data, 60 to ambiguity, 120 to retention
 With top-k = 5 and r = 0.85, use m1 = m3 = 0.15, m2 = 1.30, m4 = 0.40, and m5 = 2.00.
 The surviving buckets are 21, 78, 18, 16, and 40.
 They total 173, so S = 173 / 380 = 0.455.
-A 10 percent flip rate turns 62 of the 620 correct answers wrong.
+A 10 percent flip rate turns 62 of the 620 correct answers wrong. Correction: Mallen et al. (2023, arXiv 2212.10511) report about 10 percent as a share of all PopQA questions for GPT-3 (text-davinci-003), so this 10 percent rate on correct answers is an assumed value of φ and not the measured one.
 Total error is 235 of 1,000, or 23.5 percent.
 The net gain is 14.5 points, but ambiguity becomes the largest bucket.
 Ambiguity and integration hold 118 of 173 carried errors, or 68 percent.
@@ -773,7 +773,7 @@ Measure shared blind spots first. A stronger judge only lowers independent misse
 | Co-occurrence prior | Tokyo with Toyota 10 times Toyota City | Example of a modal companion outvoting truth |
 | Co-occurrence failures | About 30 percent | Failures choosing a high-co-occurrence word |
 | Context override | One prompt occurrence can outvote 10^5 corpus occurrences | Strength of the copy path |
-| Retrieval flips | Around 10 percent | Previously correct PopQA answers made wrong |
+| Retrieval flips | Around 10 percent | Share of all PopQA questions on which retrieval made a previously correct answer wrong (corrected from a share of previously correct answers) |
 | Routing traffic | 10,000 questions per day and 5,000 entities | Adaptive retrieval example |
 | Traffic law | Zipf exponent 1 | Assumed traffic and mention distribution |
 | Harmonic values | H5000 about 9.09 and H50 about 4.50 | Values behind the traffic concentration |

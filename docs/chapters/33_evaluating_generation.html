@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A chapter-by-chapter reading guide to The RAG Interview, with a complete roadmap and study routes."><title>Chapter 33. Evaluating Generation | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css?v=ac82da473310"><script src="../assets/reader.js?v=3064da2562b0" defer data-root="../"></script></head>
-<body data-page="chapters/33_evaluating_generation.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group" open><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html" aria-current="page">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Original index</a></div></aside>
-<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part X. Evaluation</p><h1>Chapter 33. Evaluating Generation</h1><p class="chapter-meta">45 min estimated reading · Unit 42 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how to choose and interpret generation metrics for a Retrieval-Augmented Generation (RAG) system when oracle access, claim coverage, output length, and summarization behavior all affect the result.</p>
+<html lang="en" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="This chapter explains how to choose and interpret generation metrics for a Retrieval-Augmented Generation (RAG) system when oracle access, claim coverage, output length, and summarization behavior…"><meta name="robots" content="noindex"><title>Chapter 33. Evaluating Generation | The RAG Interview</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css?v=491b5d5d3783"><script src="../assets/theme.js?v=16bdbe88429c"></script><script src="../assets/reader.js?v=50d3ce37be97" defer data-root="../"></script></head>
+<body data-page="chapters/33_evaluating_generation.html" data-chapter="true"><a class="skip-link" href="#main">Skip to reading</a><div class="reading-progress" aria-hidden="true"><div id="reading-progress-fill"></div></div><header class="mobile-header"><button id="menu-toggle" aria-expanded="false" aria-controls="sidebar">Chapters</button><a href="../index.html">The RAG Interview</a></header><button id="menu-shade" tabindex="-1" aria-label="Close chapter menu" hidden></button><aside class="sidebar" id="sidebar"><a class="brand" href="../index.html"><span class="brand-mark">R</span><span>The RAG Interview<small>STUDY EDITION</small></span></a><label class="search-label" for="chapter-search">Find a chapter</label><div class="search-box"><input id="chapter-search" type="search" placeholder="Title or chapter number" autocomplete="off"><kbd>/</kbd></div><nav class="primary-nav" aria-label="Book navigation"><a href="../index.html">Book roadmap</a><a href="../reading-paths.html">Reading routes</a></nav><p id="search-status" class="sr-only" role="status"></p><nav class="chapter-nav" aria-label="Chapters"><details class="nav-group"><summary>Front matter</summary><ul><li><a href="../chapters/00_01_title_page.html">00.01. Title Page</a></li><li><a href="../chapters/00_02_contents.html">00.02. Contents</a></li><li><a href="../chapters/00_03_preface.html">00.03. Preface</a></li><li><a href="../chapters/00_04_how_to_use_this_book.html">00.04. How to Use This Book</a></li><li><a href="../chapters/00_05_for_interview_candidates.html">00.05. For Interview Candidates</a></li><li><a href="../chapters/00_06_for_practicing_engineers.html">00.06. For Practicing Engineers</a></li><li><a href="../chapters/00_07_notation_and_symbols.html">00.07. Notation and Symbols</a></li><li><a href="../chapters/00_08_acknowledgments.html">00.08. Acknowledgments</a></li><li><a href="../chapters/00_09_about_the_author.html">00.09. About the Author</a></li></ul></details><details class="nav-group"><summary>I. The RAG Interview Landscape</summary><ul><li><a href="../chapters/01_what_a_rag_interview_actually_tests.html">Chapter 1. What a RAG Interview Actually Tests</a></li><li><a href="../chapters/02_the_competing_answers_to_the_same_problem.html">Chapter 2. The Competing Answers to the Same Problem</a></li><li><a href="../chapters/03_a_repeatable_framework_for_any_rag_design_question.html">Chapter 3. A Repeatable Framework for Any RAG Design Question</a></li></ul></details><details class="nav-group"><summary>II. The Generator Side</summary><ul><li><a href="../chapters/04_what_the_llm_brings_and_what_it_breaks.html">Chapter 4. What the LLM Brings and What It Breaks</a></li><li><a href="../chapters/05_data_privacy_and_the_legal_surface.html">Chapter 5. Data, Privacy, and the Legal Surface</a></li><li><a href="../chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html">Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters</a></li><li><a href="../chapters/07_in_context_learning_the_mechanism_rag_rides_on.html">Chapter 7. In-Context Learning - The Mechanism RAG Rides On</a></li><li><a href="../chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.html">Chapter 8. Reading the Machine: Circuits, Induction Heads, and Attribution</a></li></ul></details><details class="nav-group"><summary>III. Prompting and Context Construction</summary><ul><li><a href="../chapters/09_prompting_for_retrieval_augmented_systems.html">Chapter 9. Prompting for Retrieval-Augmented Systems</a></li><li><a href="../chapters/10_prompt_sensitivity.html">Chapter 10. Prompt Sensitivity</a></li><li><a href="../chapters/11_abstention_and_calibration.html">Chapter 11. Abstention and Calibration</a></li></ul></details><details class="nav-group"><summary>IV. Representing What You Retrieve</summary><ul><li><a href="../chapters/12_text_representation.html">Chapter 12. Text Representation</a></li><li><a href="../chapters/13_chunking_and_granularity.html">Chapter 13. Chunking and Granularity</a></li><li><a href="../chapters/14_beyond_plain_text_tables_layout_documents.html">Chapter 14. Beyond Plain Text - Tables, Layout, Documents</a></li></ul></details><details class="nav-group"><summary>V. Indexing and Vector Search</summary><ul><li><a href="../chapters/15_approximate_nearest_neighbor_search.html">Chapter 15. Approximate Nearest Neighbor Search</a></li><li><a href="../chapters/16_compression_and_index_economics.html">Chapter 16. Compression and Index Economics</a></li><li><a href="../chapters/17_operating_a_vector_store.html">Chapter 17. Operating a Vector Store</a></li></ul></details><details class="nav-group"><summary>VI. Retrieval and Ranking</summary><ul><li><a href="../chapters/18_classical_ir_you_are_expected_to_know.html">Chapter 18. Classical IR You Are Expected to Know</a></li><li><a href="../chapters/19_learning_to_rank.html">Chapter 19. Learning to Rank</a></li><li><a href="../chapters/20_dense_retrieval.html">Chapter 20. Dense Retrieval</a></li><li><a href="../chapters/21_learned_sparse_and_multi_vector_retrieval.html">Chapter 21. Learned Sparse and Multi-Vector Retrieval</a></li><li><a href="../chapters/22_reranking.html">Chapter 22. Reranking</a></li><li><a href="../chapters/23_generative_retrieval.html">Chapter 23. Generative Retrieval</a></li></ul></details><details class="nav-group"><summary>VII. Query Understanding and Control Flow</summary><ul><li><a href="../chapters/24_query_reformulation.html">Chapter 24. Query Reformulation</a></li><li><a href="../chapters/25_routing_and_adaptive_retrieval.html">Chapter 25. Routing and Adaptive Retrieval</a></li><li><a href="../chapters/26_iterative_recursive_and_agentic_retrieval.html">Chapter 26. Iterative, Recursive, and Agentic Retrieval</a></li></ul></details><details class="nav-group"><summary>VIII. Training the RAG System</summary><ul><li><a href="../chapters/27_fine_tuning_the_generator.html">Chapter 27. Fine-tuning the Generator</a></li><li><a href="../chapters/28_training_the_retriever.html">Chapter 28. Training the Retriever</a></li><li><a href="../chapters/29_bootstrapping_training_data.html">Chapter 29. Bootstrapping Training Data</a></li></ul></details><details class="nav-group"><summary>IX. Generation and Context Assembly</summary><ul><li><a href="../chapters/30_lost_in_the_middle.html">Chapter 30. Lost in the Middle</a></li><li><a href="../chapters/31_attribution_and_citation.html">Chapter 31. Attribution and Citation</a></li></ul></details><details class="nav-group" open><summary>X. Evaluation</summary><ul><li><a href="../chapters/32_evaluating_retrieval.html">Chapter 32. Evaluating Retrieval</a></li><li><a href="../chapters/33_evaluating_generation.html" aria-current="page">Chapter 33. Evaluating Generation</a></li><li><a href="../chapters/34_evaluating_the_system.html">Chapter 34. Evaluating the System</a></li></ul></details><details class="nav-group"><summary>XI. Trust, Credibility, and Adversarial Robustness</summary><ul><li><a href="../chapters/35_source_credibility.html">Chapter 35. Source Credibility</a></li><li><a href="../chapters/36_provenance_and_adversarial_robustness.html">Chapter 36. Provenance and Adversarial Robustness</a></li></ul></details><details class="nav-group"><summary>XII. Scaling, Advanced Variants, and Design Drills</summary><ul><li><a href="../chapters/37_latency_cost_and_systems.html">Chapter 37. Latency, Cost, and Systems</a></li><li><a href="../chapters/38_distributed_and_federated_rag.html">Chapter 38. Distributed and Federated RAG</a></li><li><a href="../chapters/39_multimodal_rag.html">Chapter 39. Multimodal RAG</a></li><li><a href="../chapters/40_graph_rag.html">Chapter 40. Graph RAG</a></li><li><a href="../chapters/41_end_to_end_design_drills.html">Chapter 41. End-to-End Design Drills</a></li></ul></details><details class="nav-group"><summary>Appendices</summary><ul><li><a href="../chapters/A1_formula_sheet.html">Appendix A1. Formula Sheet</a></li><li><a href="../chapters/A2_question_bank.html">Appendix A2. Question Bank</a></li><li><a href="../chapters/A3_design_checklists.html">Appendix A3. Design Checklists</a></li><li><a href="../chapters/A4_the_rag_card_and_index_datasheet.html">Appendix A4. The RAG Card and Index Datasheet</a></li><li><a href="../chapters/A5_annotated_reading_list.html">Appendix A5. Annotated Reading List</a></li><li><a href="../chapters/A6_notation_quick_reference.html">Appendix A6. Notation Quick Reference</a></li><li><a href="../chapters/A7_glossary.html">Appendix A7. Glossary</a></li></ul></details></nav><p id="no-results" hidden>No chapters match. Try “retrieval” or “15”.</p><div class="sidebar-footer"><a href="../about.html">About this edition</a><a href="../source-index.html">Study index</a></div></aside>
+<div class="workspace"><div class="topbar"><a href="../index.html">Book home</a><div><button id="theme-toggle" aria-label="Switch to light theme">Light theme</button><button id="print-button">Print chapter</button></div></div><main id="main" tabindex="-1"><header class="page-heading"><p class="eyebrow">Part X. Evaluation</p><h1>Chapter 33. Evaluating Generation</h1><p class="chapter-meta">47 min estimated reading · Unit 42 of 57</p></header><details class="page-toc"><summary>On this page</summary><nav aria-label="On this page"><a href="#tldr">TL;DR</a><a href="#the-story">The story</a><a href="#decoder-table">Decoder table</a><a href="#core-mechanics">Core mechanics</a><a href="#diagrams">Diagrams</a><a href="#whiteboard-pack">Whiteboard pack</a><a href="#interview-traps">Interview traps</a><a href="#key-numbers">Key numbers</a></nav></details><article class="prose"><p>This chapter explains how to choose and interpret generation metrics for a Retrieval-Augmented Generation (RAG) system when oracle access, claim coverage, output length, and summarization behavior all affect the result.</p>
 <h2 id="tldr">TL;DR</h2>
 <ul>
 <li>Faithfulness asks whether an answer follows the retrieved context. Factuality asks whether it is true in the world.</li>
@@ -202,8 +202,8 @@
 </tr>
 <tr>
 <td>Ensemble</td>
-<td>A combination of the no-context, retrieve-and-judge, and non-parametric estimates</td>
-<td>It combines the three verification signals</td>
+<td>Retrieve-and-judge combined with the non-parametric estimate, with a fact supported only when both agree (corrected from a combination of the no-context, retrieve-and-judge, and non-parametric estimates)</td>
+<td>It combines two retrieval-based verification signals (corrected from three)</td>
 </tr>
 <tr>
 <td>Extractor failure</td>
@@ -477,7 +477,7 @@
 <p>It is the cheapest option. It is also the weakest because it asks the same kind of model that may hallucinate to catch the error. The retrieve-and-judge estimator retrieves a relevant passage from S.</p>
 <p>An LM then judges aᵢ against that passage. It is the only estimator in the set with a genuine external oracle. It is also the most expensive per fact.</p>
 <p>The non-parametric probability estimator masks the tokens in aᵢ. A retrieval-augmented masked-language model predicts those tokens. It reuses one forward pass instead of a full retrieval-plus-judgment call.</p>
-<p>It is cheaper and noisier. The ensemble combines the no-context, retrieve-and-judge, and non-parametric estimators.</p>
+<p>It is cheaper and noisier. The ensemble combines the no-context, retrieve-and-judge, and non-parametric estimators. Correction: the FActScore ensemble (Min et al., 2023, arXiv 2305.14251) combines only retrieve-and-judge with the non-parametric estimator, and it counts a fact as supported only when both estimators say supported.</p>
 <h4 id="what-fails-without-it-1">What fails without it</h4>
 <p>Sentence-level scoring still bundles true and false clauses.</p>
 <p>For example, one sentence can correctly call Bridget Fonda an American actress and falsely call her a two-time Olympic medalist. A sentence verifier must choose one label or average internally. Either choice loses the fine-grained location of the error.</p>
@@ -488,7 +488,7 @@
 <p>Binary grading returns 0. Atomic extraction produces |A(y)| = 14 facts, or roughly 2.3 per sentence. Retrieve-and-judge finds 11 supported facts and 3 unsupported facts.</p>
 <p>FActScore(y) = 11 / 14 ≈ 0.79. A second system supports only 2 of the same 14 facts. Binary grading also returns 0 for it.</p>
 <p>FActScore returns 2 / 14 ≈ 0.14. The gap from 0.79 to 0.14 preserves the regression signal. One retrieve-and-judge check takes about 0.9 seconds.</p>
-<p>Fourteen checks take 14 × 0.9 ≈ 12.6 seconds serially. A 250-biography benchmark at 14 facts each needs 3,500 checks.</p>
+<p>Fourteen checks take 14 × 0.9 ≈ 12.6 seconds serially. A 250-biography benchmark at 14 facts each needs 3,500 checks. Correction: 250 is an illustrative size, because the FActScore paper annotated 183 people by hand and ran its automated estimator on 500 people for each of 13 models, or 6,500 generations.</p>
 <p>At 0.9 seconds each, that is 3,500 × 0.9 ≈ 3,150 seconds. The total is about 52 minutes serially. This matches an overnight batch better than a per-push gate.</p>
 <h4 id="precision-only-edge-case">Precision-only edge case</h4>
 <p>"Marie Curie was a scientist" is one trivial, supported atomic fact.</p>
@@ -507,9 +507,9 @@
 <p>A sentence-only extractor sees "its" without an antecedent and can emit a broken claim. Context-aware extraction avoids that failure. It also drops opinions, predictions, and claims whose truth no available source can settle.</p>
 <p>Those claims are unverifiable. They are not automatically unsupported. The result is V(y) = {v₁, ..., v_C}, the set of C verifiable claims.</p>
 <p>The second correction adds claim-count recall. Let C_sup be the number of vᵢ claims supported by S. Precision remains:</p>
-<p>P = C_sup / C K is the average number of verifiable claims in good, human-written responses for this task. The team estimates K once from a reference corpus.</p>
+<p>P = C_sup / C K is the average number of verifiable claims in good, human-written responses for this task. Correction: Song et al. (2024, arXiv 2406.19276) set K for each domain as the median number of extracted claims across model responses, and they hold that K fixed within the domain. The team estimates K once from a reference corpus.</p>
 <p>It holds K fixed for every response in the run. Recall is:</p>
-<p>R = min(C / K, 1) Responses with at least K verifiable claims saturate recall at 1. Shorter responses receive a penalty in direct proportion to C / K.</p>
+<p>R = min(C / K, 1) Responses with at least K verifiable claims saturate recall at 1. Shorter responses receive a penalty in direct proportion to C / K. Correction: the published recall counts supported claims, R = min(C_sup / K, 1), so a model cannot raise recall by padding a response with unsupported claims.</p>
 <p>VeriScore combines the terms: VeriScore(y) = 2PR / (P + R)</p>
 <h4 id="why-it-exists-2">Why it exists</h4>
 <p>Context-aware extraction fixes what gets counted. Recall fixes the incentive around how much gets counted.</p>
@@ -521,7 +521,7 @@
 <h4 id="worked-example-and-cost-1">Worked example and cost</h4>
 <p>The illustrative summarization task uses K = 12 verifiable claims. This is a stated, plausible constant for the example. It is not a published universal constant.</p>
 <p>The full-effort response has C = 14 and C_sup = 11. P = 11 / 14 ≈ 0.786. R = min(14 / 12, 1) = 1.</p>
-<p>VeriScore = (2 × 0.786 × 1) / (0.786 + 1) ≈ 0.880. The hedging response has C = 2 and C_sup = 2.</p>
+<p>VeriScore = (2 × 0.786 × 1) / (0.786 + 1) ≈ 0.880. Correction: with the published recall, R = min(11 / 12, 1), or about 0.917, and the full-effort score is (2 x 0.786 x 0.917) / (0.786 + 0.917), or about 0.846. The hedging and one-fact scores below do not change, because every claim in them is supported. The hedging response has C = 2 and C_sup = 2.</p>
 <p>FActScore gives 2 / 2 = 1.0. For VeriScore, P = 1.0. R = min(2 / 12, 1) ≈ 0.167.</p>
 <p>VeriScore = (2 × 1.0 × 0.167) / (1.0 + 0.167) ≈ 0.286. The response falls from 1.0 to 0.286. The source describes this as a nearly 3.5 times swing.</p>
 <p>Whole-generation extraction uses one call at roughly 1.5 seconds. Six sentence-level extraction calls at about 0.4 seconds each total about 2.4 seconds. Verification remains 14 retrieve-and-judge calls at 0.9 seconds each.</p>
@@ -581,7 +581,7 @@
 <p>The source example combines a 2011 company join date with a later chief executive officer appointment. The summary says the person became chief executive officer within the decade. The source states the two facts separately and never uses the word "promoted."</p>
 <p>An entailment checker can treat this bridge exactly like an outright invention. The intrinsic-versus-extrinsic split does not settle the issue. Intrinsic content contradicts the source.</p>
 <p>Extrinsic content adds something the source does not state. An extrinsic addition may be a reasonable bridge or a fabrication.</p>
-<p>Maynez et al. (2020) report hallucinations in more than 70 percent of generated abstractive summaries. Roughly 90 percent of those hallucinations are factually wrong, unsupported by or contradictory to the source. Forcing a summary to one sentence does not settle whether hallucination comes from output amount or abstraction itself.</p>
+<p>Maynez et al. (2020) report hallucinations in more than 70 percent of generated abstractive summaries. Correction: they measured this rate by human annotation of single-sentence XSum summaries written by neural summarizers of that period, so it describes that dataset and model era and is not a current baseline for abstractive summarization in general. Roughly 90 percent of those hallucinations are factually wrong, unsupported by or contradictory to the source. Forcing a summary to one sentence does not settle whether hallucination comes from output amount or abstraction itself.</p>
 <p>A one-sentence summary can still bridge. It can also fabricate its one claim.</p>
 <h4 id="what-fails-without-it-4">What fails without it</h4>
 <p>Driving a summarization flag rate to zero rewards copying source spans. The dashboard can improve while an abstractive summarizer quietly becomes extractive.</p>
@@ -594,7 +594,7 @@
 <p>The example assumes, illustratively, that the gate catches 60 percent of genuinely wrong summaries. The remaining count is:</p>
 <p>5,040 × (1 - 0.60) = 2,016 per day. One NLI forward pass takes well under 200 milliseconds per summary. Using 0.2 seconds for the arithmetic, 8,000 × 0.2 ≈ 1,600 seconds.</p>
 <p>That is under 27 minutes serially and can run in parallel. Retrieve-and-judge costs about 0.9 seconds per atomic fact. The document-level gate is roughly 4 to 5 times cheaper per item because it already has the source document.</p>
-<p>The 70 percent figure is a conservative floor, not a worst case. More extractive, copy-heavy systems hallucinate less. More abstractive systems hallucinate more.</p>
+<p>The 70 percent figure is a conservative floor, not a worst case. Correction: the conservative-floor framing is the source's claim, and the 2020 XSum rate is not a floor for a current support-desk summarizer, so the 63 percent figure above is a hypothetical rate that a team must measure on its own tickets. More extractive, copy-heavy systems hallucinate less. More abstractive systems hallucinate more.</p>
 <h4 id="practical-decisions-4">Practical decisions</h4>
 <p>Report factuality by position or length bucket whenever output length varies.</p>
 <p>Use one pooled score only for fixed-length, single-field outputs with no useful position axis. Use a tolerance band for bridging-type unsupported content in abstractive summarization. Use a strict zero target only when any unsupported claim is unacceptable, such as in the legal, medical, or downstream-agent examples named by the source.</p>
@@ -602,7 +602,7 @@
 <p>Use atomic-fact verification for synthesis across multiple retrieved documents. Treat length or truncation caps as last-resort mitigation. Apply them after position-stratified reporting identifies where error density rises.</p>
 <h2 id="diagrams">Diagrams</h2>
 <h3 id="figure-331">Figure 33.1</h3>
-<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+<figure class="diagram" aria-label="Figure 33.1"><div class="diagram-view"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
     A[&quot;Can the check reach a source of truth outside what the system itself retrieved?&quot;]
     A --&gt;|No external oracle| B[&quot;Faithfulness only. Verify claims against retrieved context. No external call. RAGAS, section 33.4&quot;]
     A --&gt;|External oracle reachable| C[&quot;Factuality. Decompose into atomic claims. Verify each against an external source. FActScore, section 33.2&quot;]
@@ -611,13 +611,13 @@
     D --&gt; E</code></pre></details></figure>
 <p>Figure 33.1: Which of this chapter's four metrics you can run, and where in a pipeline you can afford to run it, is decided by which oracle is reachable at check time, not by which axis matters more.</p>
 <h3 id="figure-332">Figure 33.2</h3>
-<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+<figure class="diagram" aria-label="Figure 33.2"><div class="diagram-view"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
     Y[&quot;y, a long-form generation. Example, a generated biography with six or more sentences&quot;]
     X[&quot;Atomic-fact extraction. An LM makes minimal, single-claim statements. A(y) = {a1, a2, ..., an}&quot;]
     N[&quot;No-context. LM judges ai from its own memory&quot;]
     R[&quot;Retrieve plus LM. Retrieve from S, then judge ai against the passage&quot;]
     P[&quot;Non-parametric. Mask ai tokens, retrieve, and score mask predictions&quot;]
-    E[&quot;Ensemble. Combine all three estimators&quot;]
+    E[&quot;Ensemble. Retrieve plus LM with non-parametric. Supported only when both agree&quot;]
     S[&quot;FActScore(y). Plain average of support verdicts over A(y)&quot;]
     Y --&gt; X
     X --&gt; N
@@ -629,22 +629,22 @@
     P --&gt; S
     E --&gt; S</code></pre></details></figure>
 <p>FActScore(y) = (1 / |A(y)|) Σᵢ₌₁^|A(y)| 𝟙[aᵢ is supported by S]</p>
-<p>Figure 33.2: FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts.</p>
+<p>Figure 33.2: FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts. Correction: the ensemble node combines retrieve-and-judge with the non-parametric estimator only, and the no-context estimator is not part of it.</p>
 <h3 id="figure-333">Figure 33.3</h3>
-<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
+<figure class="diagram" aria-label="Figure 33.3"><div class="diagram-view"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TD
     Y[&quot;y, a long-form generation&quot;]
     X[&quot;Context-aware extraction. Read the full generation. Drop claims with no checkable referent or truth-apt content. Output V(y) = {v1, ..., vC}&quot;]
     P[&quot;Verify each vi against S. Count supported claims Csup. P = Csup / C&quot;]
-    R[&quot;Compare C with fixed task reference K. K is average verifiable claims in a good response. R = min(C / K, 1)&quot;]
+    R[&quot;Compare supported claims Csup with fixed domain reference K. K is the median claim count across model responses. R = min(Csup / K, 1)&quot;]
     V[&quot;VeriScore(y) = 2PR / (P + R)&quot;]
     Y --&gt; X
     X --&gt; P
     X --&gt; R
     P --&gt; V
     R --&gt; V</code></pre></details></figure>
-<p>Figure 33.3: VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing.</p>
+<p>Figure 33.3: VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing. Correction: the published recall term is R = min(C_sup / K, 1), which counts supported claims, and K is the per-domain median claim count across model responses (Song et al., 2024, arXiv 2406.19276).</p>
 <h3 id="figure-334">Figure 33.4</h3>
-<figure class="diagram"><div class="diagram-view" role="img" aria-label="Chapter diagram"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
+<figure class="diagram" aria-label="Figure 33.4"><div class="diagram-view"></div><details><summary>Diagram source</summary><pre><code class="mermaid-source">flowchart TB
     C((&quot;c(q), context&quot;))
     Q((&quot;q, query&quot;))
     A((&quot;a(q), answer&quot;))
@@ -678,7 +678,7 @@
 <li>Above the triangle, draw a decision diamond labeled "External oracle reachable?"</li>
 <li>On the no branch, point to the RAGAS triangle and label it per-request.</li>
 <li>On the yes branch, draw answer to atomic facts to source verdicts. Label the average FActScore.</li>
-<li>Add a second branch from the fact count to R = min(C / K, 1). Merge it with precision into VeriScore.</li>
+<li>Add a second branch from the fact count to R = min(C / K, 1). Merge it with precision into VeriScore. Correction: VeriScore recall counts only supported claims, so write R = min(C_sup / K, 1) on this branch.</li>
 <li>Under both branches, draw a six-position error curve rising toward the right.</li>
 <li>End with a note: report claim count and length, and keep the summarization bridging threshold open.</li>
 </ol>
@@ -690,7 +690,7 @@
 <h3 id="2-what-does-factscore-fix-and-what-can-still-make-its-score-misleading">2. What does FActScore fix, and what can still make its score misleading?</h3>
 <p>It fixes the unit of evaluation by splitting a long answer into independently verifiable atomic facts and averaging their verdicts. It remains precision-only, depends on an LM extractor, and can rise when claim count falls or when source S changes. Check |A(y)| and the pinned source before treating a jump as model improvement.</p>
 <h3 id="3-why-does-veriscore-need-both-context-aware-extraction-and-recall">3. Why does VeriScore need both context-aware extraction and recall?</h3>
-<p>Whole-generation extraction resolves references and removes claims that no source can verify. Recall R = min(C / K, 1) separately prevents a model from winning by making very few safe claims. Use a task-specific fixed K because a biography and a deliberately terse support reply should not share one expected claim count.</p>
+<p>The source answers that whole-generation extraction resolves references and drops unverifiable claims, while recall R = min(C / K, 1) stops a model from winning with very few safe claims. Correction: VeriScore (arXiv 2406.19276) counts supported claims in recall, R = min(C_sup / K, 1), with K fixed per domain as the median claim count across model responses, so padding with unsupported claims cannot raise recall. A biography task and a deliberately terse support reply should not share one K.</p>
 <h3 id="4-what-does-high-ragas-faithfulness-with-low-answer-relevance-mean">4. What does high RAGAS faithfulness with low answer relevance mean?</h3>
 <p>The answer's claims follow the retrieved context, but they do not address the actual query. Inspect query understanding and retrieval scope before changing grounding behavior. Also keep F, AR, and CR separate because one blended score would hide this diagnosis.</p>
 <h3 id="5-why-should-a-team-reject-a-zero-hallucination-target-for-every-abstractive-summary">5. Why should a team reject a zero hallucination target for every abstractive summary?</h3>
@@ -812,7 +812,7 @@
 </tr>
 <tr>
 <td>4 automatic estimators</td>
-<td>No-context, retrieve-and-judge, non-parametric probability, and their ensemble</td>
+<td>No-context, retrieve-and-judge, non-parametric probability, and the ensemble of retrieve-and-judge with non-parametric probability (corrected from their ensemble of all three)</td>
 <td>They trade oracle strength for verification cost</td>
 </tr>
 <tr>
@@ -862,7 +862,7 @@
 </tr>
 <tr>
 <td>250 biographies</td>
-<td>Original FActScore evaluation scale cited by the source</td>
+<td>Illustrative benchmark size (corrected from original FActScore evaluation scale), since the paper used 183 hand-annotated people and 500 people per model</td>
 <td>Produces 3,500 checks at 14 facts each</td>
 </tr>
 <tr>
@@ -902,7 +902,7 @@
 </tr>
 <tr>
 <td>K = 12</td>
-<td>Illustrative good-summary verifiable-claim average</td>
+<td>Illustrative per-domain claim-count reference, which the paper sets as the median across model responses (corrected from good-summary verifiable-claim average)</td>
 <td>Task-specific and not a published universal constant</td>
 </tr>
 <tr>
@@ -911,14 +911,14 @@
 <td>P ≈ 0.786</td>
 </tr>
 <tr>
-<td>R = 1</td>
-<td>min(14 / 12, 1)</td>
-<td>Recall saturates above K</td>
+<td>R = 11 / 12, about 0.917 (corrected from R = 1)</td>
+<td>min(11 / 12, 1) (corrected from min(14 / 12, 1))</td>
+<td>Recall counts supported claims, so it stays below 1</td>
 </tr>
 <tr>
-<td>VeriScore ≈ 0.880</td>
+<td>VeriScore about 0.846 (corrected from 0.880)</td>
 <td>Full-effort combined score</td>
-<td>Uses P ≈ 0.786 and R = 1</td>
+<td>Uses P ≈ 0.786 and R about 0.917 (corrected from R = 1)</td>
 </tr>
 <tr>
 <td>C = 2, C_sup = 2</td>
@@ -1057,8 +1057,8 @@
 </tr>
 <tr>
 <td>More than 70 percent</td>
-<td>Maynez et al. floor for summaries containing hallucinations</td>
-<td>The source calls 70 percent conservative, not worst case</td>
+<td>Maynez et al. (2020) rate on human-annotated XSum summaries from models of that period (corrected from a general floor for summaries)</td>
+<td>The source calls 70 percent conservative, but it is not a current baseline</td>
 </tr>
 <tr>
 <td>Roughly 90 percent</td>
@@ -1088,7 +1088,7 @@
 <tr>
 <td>63 percent</td>
 <td>5,040 / 8,000</td>
-<td>Wrong-claim share before a gate</td>
+<td>Hypothetical wrong-claim share before a gate, to be measured locally (corrected from an expected share)</td>
 </tr>
 <tr>
 <td>60 percent caught</td>
@@ -1127,4 +1127,4 @@
 </tr>
 </tbody>
 </table></div>
-</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/32_evaluating_retrieval.html"><small>Previous</small>Chapter 32. Evaluating Retrieval</a><a href="../chapters/34_evaluating_the_system.html"><small>Next</small>Chapter 34. Evaluating the System</a></nav><footer class="page-footer"><span>Source book by Hao Hoang. Markdown study edition.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>
+</article><nav class="sequence" aria-label="Previous and next chapters"><a href="../chapters/32_evaluating_retrieval.html"><small>Previous</small>Chapter 32. Evaluating Retrieval</a><a href="../chapters/34_evaluating_the_system.html"><small>Next</small>Chapter 34. Evaluating the System</a></nav><footer class="page-footer"><span>Unofficial study notes on The RAG Interview by Hao Hoang. No affiliation with or endorsement by the author is claimed. Rights in the source work remain with the author.</span><a href="#main">Back to top ↑</a></footer></main></div></body></html>

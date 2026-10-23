@@ -135,7 +135,7 @@ The handoff succeeds when a new crew can answer what the system does, what it co
 | Centroids | Coarse or quantization representatives | Contribute memory outside per-vector codes |
 | Codebook | Stored Product Quantization centroids | Adds a separate memory term |
 | `M_index` | Standalone index footprint | Excludes replicas, rebuild, and payload |
-| `M_fleet` | Replicated index with rebuild headroom | Report before payload as its own quantity |
+| `M_replicated` (corrected from `M_fleet`) | Replicated index with rebuild headroom, `R(1+h)M_index` | Report before payload as its own quantity. Section A.8 reserves `M_fleet` for this quantity plus payload |
 | `R` | Replication factor | Multiplies the index footprint |
 | `h` | Rebuild headroom fraction | Reserves extra capacity during replacement |
 | Rebuild headroom | Capacity for old and new artifact overlap | Separates in-place and separate-box strategies |
@@ -296,10 +296,10 @@ Quantization is incomplete without its measured recall cost.
 |---|---|
 | Index family | Name HNSW, IVF, IVF-PQ, disk-resident, or another family. Include build parameters. |
 | Per-vector bytes | Break bytes into vector, identifier, and link terms. State link share because it is incompressible. Source section A.8. |
-| Footprint | Report `M_index`, then `M_fleet` with replication and rebuild headroom, then payload as a separate line. |
+| Footprint | Report `M_index`, then `M_replicated` (corrected from `M_fleet`) with replication and rebuild headroom, then payload as a separate line. |
 | Shards and replicas | Give counts and the partitioning key when partitioning is not random. Source section 17.2. |
 
-Per-vector compression does not equal fleet compression. Identifier and graph-link terms remain after the vector shrinks. Replication and rebuild overlap multiply the artifact before payload is added.
+Per-vector compression does not equal fleet compression. Identifier and graph-link terms remain after the vector shrinks. Replication and rebuild overlap multiply the artifact before payload is added. Correction: Appendix A (Section A.8) and Section 16.5 define `M_fleet = R(1+h)M_index + M_payload`, which includes payload, so this appendix names the payload-free quantity `M_replicated` to keep one meaning per symbol.
 
 The payload must remain a separate line so text cannot disappear inside an index-only total.
 
@@ -340,7 +340,7 @@ Freshness reports the full source-to-index path rather than the age of a source 
 | Index | IVF-PQ, `nlist=4096`, `m=96`, `k=256` |
 | Bytes per vector | 96 code + 4 id + 0 link = 100 |
 | `M_index` | 124 MB + 12.6 MB centroids + 0.8 MB codebook = 138 MB |
-| `M_fleet` | `R=2`, `h=0.2`, 331 MB. Payload store is 2.0 GB. |
+| `M_replicated` (corrected from `M_fleet`) | `R=2`, `h=0.2`, 331 MB. Payload store is 2.0 GB, so `M_fleet` under Section A.8 is about 2.33 GB. |
 | Shards | 1 because the footprint fits one node with headroom |
 | Recall at 10 | 0.94 versus exact at `nprobe=32` |
 | Recall curve | 0.87 at 8, 0.94 at 32, 0.97 at 128 probes |
@@ -370,7 +370,7 @@ The tombstone rows also encode a condition. Recall stayed flat through 6 percent
 6. Compare end-to-end p95 and TTFT with index-only p50 and p95 at production concurrency.
 7. Compare card freshness with datasheet freshness to verify one source-to-retrieval path.
 8. Read store ownership, write access, review status, and poisoned-chunk blast radius together.
-9. Read vector compression, link share, fleet memory, and payload on separate lines.
+9. Read vector compression, link share, replicated index memory (corrected from fleet memory), and payload on separate lines.
 10. Assign every missing quantity to an owner rather than leaving the field silently blank.
 
 #### Cross-record consistency matrix
@@ -481,7 +481,7 @@ Per-vector bytes are only one layer because identifiers, links, centroids, repli
 | Bytes per vector | 96 code + 4 id + 0 link = 100 | Worked compressed layout |
 | Vector compression | Source-reported 32 times | Abbreviated example omits the precision needed to reconstruct raw vector bytes |
 | Index memory | 124 + 12.6 + 0.8 = 138 MB | Codes plus identifiers, centroids, and codebook |
-| Fleet memory | 331 MB | `R=2`, `h=0.2` |
+| Replicated index memory (corrected from Fleet memory) | 331 MB | `R=2`, `h=0.2`. Adding the 2.0 GB payload gives `M_fleet` of about 2.33 GB under Section A.8 |
 | Payload | 2.0 GB | More than one order above 138 MB |
 | Shards | 1 | Fits one node with headroom |
 | Exact Recall | 0.94 at 10 and `nprobe=32` | Approximate versus exact search |

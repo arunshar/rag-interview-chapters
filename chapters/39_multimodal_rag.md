@@ -428,7 +428,7 @@ For N = 1,485, the ratio 1,485^2 / 200^2 is about 55.1 times.
 A typical caption has 15 to 25 tokens. The example uses 20.
 Text plus one caption gives N = 220 and a 1.21-times cost ratio.
 The chapter states that text, one caption, and four frame captions produce about a 2.9-times ratio rather than 55.1. Its displayed expression, (200 + 20 + 4 x 20)^2 / 200^2, evaluates to 2.25, so 2.9 is a source arithmetic inconsistency rather than a derived result.
-The chapter therefore describes a repeated 5 to 55-times economic advantage for captioning at ingestion.
+The chapter therefore describes a repeated 5 to 55-times economic advantage for captioning at ingestion. Correction: 5.2 and 55.1 are raw-fusion costs relative to text only. The advantage of captioning over raw attention is the ratio of the two fused costs, which is 457^2 / 220^2 (about 4.3 times) for one diagram and 1,485^2 / 300^2 (about 24.5 times) for four frames, so the advantage is about 4 to 25 times, or about 19 times for the video case with the source's printed 2.9.
 Default to score fusion when adding a modality to mature retrievers.
 Normalize per modality before combining.
 Caption at ingestion for broad content questions and route detail-specific questions to raw attention.

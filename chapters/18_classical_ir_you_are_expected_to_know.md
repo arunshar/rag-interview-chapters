@@ -72,7 +72,7 @@ The librarian keeps both catalogs. The dense one helps when visitors paraphrase.
 | Cosine similarity | The dot product divided by both vector lengths | It ranks by angle rather than raw magnitude |
 | Cosine score `sim(q,d)` | The angle-based similarity between query `q` and document `d` | It supplies the vector model's total order |
 | Dot product `q · d` | A sum of matching coordinate products | Common terms and long documents dominate it without weighting |
-| Euclidean norm `||x||_2` | The square root of the sum of squared coordinates | Cosine divides by this length for both vectors |
+| Euclidean norm `\|\|x\|\|_2` | The square root of the sum of squared coordinates | Cosine divides by this length for both vectors |
 | Term Frequency (TF) `f_(t,d)` or `f(t,D)` | The count of term `t` inside one document | Linear TF lets repetition keep buying score |
 | Inverse Document Frequency (IDF) | A weight that grows as a term appears in fewer documents | It makes rare query terms more discriminating |
 | TF-IDF coordinate | Term frequency multiplied by inverse document frequency | It combines within-document evidence with corpus rarity |
@@ -89,14 +89,14 @@ The librarian keeps both catalogs. The dense one helps when visitors paraphrase.
 | `b` | BM25's interpolation between ignoring and fully charging length | It expresses the verbosity-versus-scope trade-off |
 | Average document length `avgdl` | Mean token count over the indexed collection | BM25 measures each document length relative to it |
 | Relative length `ell` or `ℓ` | Document length divided by average document length | It centers the length factor at one |
-| Document length `|D|` | Token count of candidate document `D` | The ratio `|D|/avgdl` controls BM25's length adjustment |
+| Document length `\|D\|` | Token count of candidate document `D` | The ratio `\|D\|/avgdl` controls BM25's length adjustment |
 | Effective saturation constant `K` | The value of `k1` after length adjustment | It couples term frequency and document length inside BM25 |
 | Two-Poisson eliteness model | A model with high and low occurrence rates for a concept | It motivates a term reward that rises quickly and then flattens |
 | Dynamic pruning | Skipping postings that cannot beat the current score threshold | A bounded per-term score supplies a safe upper bound |
 | Weak AND (WAND) | A pruning strategy that uses term-score upper bounds | Lucene's BM25 form supports efficient block-max WAND skipping |
 | Probability Ranking Principle (PRP) | Rank by decreasing probability of relevance | It is optimal only when each document's usefulness is independent |
 | Relevance variable `R` | A binary indicator of whether a document is relevant | It is the target of the probabilistic derivation |
-| Probability `Pr(A|B)` and odds `O(R|d,q)` | Conditional probability and relevance odds for one document | A monotone odds transform keeps the same ranking |
+| Probability `Pr(A\|B)` and odds `O(R\|d,q)` | Conditional probability and relevance odds for one document | A monotone odds transform keeps the same ranking |
 | Prior odds | Query-level relevance odds before inspecting a document | They are constant across documents for one query and can be dropped |
 | Likelihood ratio | Document probability under relevance divided by document probability under non-relevance | It remains after the prior cancels |
 | Binary incidence vector `x` and coordinate `x_t` | Zero-or-one indicators for all terms and for term `t` | They make whole-document probabilities estimable but discard counts |
@@ -154,7 +154,7 @@ The librarian keeps both catalogs. The dense one helps when visitors paraphrase.
 - What: Under independent term occurrence, an `n`-term conjunction has expected result size:
 
 $$
-E[|result|] = N ∏_{i=1}^{n}(df_i/N) = (∏_{i=1}^{n} df_i)/N^{n-1}
+E[|\text{result}|] = N \prod_{i=1}^{n}(\text{df}_i/N) = (\prod_{i=1}^{n} \text{df}_i)/N^{n-1}
 $$
 
 - Why: The formula prices each hard clause before the query runs.
@@ -171,11 +171,11 @@ $$
 - What: It replaces membership with weights `w_i` in `[0,1]` and replaces connectives with `p`-norm scores:
 
 $$
-S_OR(d) = ((1/n) ∑_{i=1}^{n} w_i^p)^{1/p}
+S_{\text{OR}}(d) = ((1/n) ∑_{i=1}^{n} w_i^p)^{1/p}
 $$
 
 $$
-S_AND(d) = 1 - ((1/n) ∑_{i=1}^{n}(1-w_i)^p)^{1/p}
+S_{\text{AND}}(d) = 1 - ((1/n) ∑_{i=1}^{n}(1-w_i)^p)^{1/p}
 $$
 
 - Why: Soft AND measures distance from the all-present corner. Soft OR measures distance from the origin.
@@ -186,7 +186,7 @@ $$
 - What: At `p = 1`, both operators become the arithmetic mean:
 
 $$
-S_AND(d) = 1 - (1/n)∑_{i=1}^{n}(1-w_i) = (1/n)∑_{i=1}^{n}w_i = S_OR(d)
+S_{\text{AND}}(d) = 1 - (1/n)∑_{i=1}^{n}(1-w_i) = (1/n)∑_{i=1}^{n}w_i = S_{\text{OR}}(d)
 $$
 
 - Why: This shows exactly when Boolean structure stops affecting the score.
@@ -204,11 +204,11 @@ $$
 - Why: At `p = 2`, the scores are:
 
 $$
-S_AND(A) = 1 - √((0.01 + 0.04 + 0.16 + 1.00)/4) = 1 - √0.3025 = 0.45
+S_{\text{AND}}(A) = 1 - √((0.01 + 0.04 + 0.16 + 1.00)/4) = 1 - √0.3025 = 0.45
 $$
 
 $$
-S_AND(B) = 0.50
+S_{\text{AND}}(B) = 0.50
 $$
 
 - Failure: The documents do not change, but A moves from `0.575` at `p = 1` to `0.45` at `p = 2` to `0` as `p -> infinity`.
@@ -237,7 +237,7 @@ $$
 - What: Salton, Wong, and Yang (1975) represent queries and documents in one coordinate per vocabulary term and score their angle:
 
 $$
-sim(q,d) = (q · d)/(||q||_2 ||d||_2)
+\mathop{\text{sim}}(q,d) = (q \cdot d)/(\|q\|_2 \|d\|_2)
 $$
 
 - Why: A total order solves Boolean retrieval's missing-first-result problem.
@@ -255,7 +255,7 @@ $$
 - What: The unnormalized marginal reward is constant:
 
 $$
-∂(f_(t,d) idf(t))/∂f_(t,d) = idf(t)
+\partial(f_{t,d}\, \mathop{\text{idf}}(t))/\partial f_{t,d} = \mathop{\text{idf}}(t)
 $$
 
 - Why: The derivative shows that the eleventh occurrence earns exactly what the first earned.
@@ -268,11 +268,11 @@ $$
 - Why: For `d = c_1 ⊕ c_2 ⊕ ... ⊕ c_m`, disjoint equal-norm sections, and only `c_1` on topic:
 
 $$
-||d||_2 = √(∑_i ||c_i||_2^2) = √m ||c_1||_2
+\|d\|_2 = \sqrt{\sum_i \|c_i\|_2^2} = \sqrt{m}\, \|c_1\|_2
 $$
 
 $$
-sim(q,d) = sim(q,c_1)/√m
+\mathop{\text{sim}}(q,d) = \mathop{\text{sim}}(q,c_1)/\sqrt{m}
 $$
 
 - Failure: A ten-section guideline scores `1/√10 = 0.32` of its answer section alone, a `68%` cut. A keyword-stuffed page pays nothing for repeated wording.
@@ -336,7 +336,7 @@ $$
 - What: `BM` means Best Match, and `25` is the experiment serial number. The score is:
 
 $$
-BM25(q,D) = ∑_{t ∈ q} ln(1 + (N-n_t+0.5)/(n_t+0.5)) × [f(t,D)(k_1+1)/(f(t,D)+k_1(1-b+b|D|/avgdl))]
+\text{BM25}(q,D) = \sum_{t \in q} \ln(1 + (N-n_t+0.5)/(n_t+0.5)) \times [f(t,D)(k_1+1)/(f(t,D)+k_1(1-b+b|D|/\text{avgdl}))]
 $$
 
 - Why: The first factor prices corpus rarity. The second factor saturates TF and adjusts length.
@@ -376,15 +376,15 @@ $$
 - What: Let `ell = |D|/avgdl`. Then:
 
 $$
-K = k_1(1-b+b ell)
+K = k_1(1-b+b\ell)
 $$
 
 $$
-b=0 => K=k_1
+b=0 \Rightarrow K=k_1
 $$
 
 $$
-b=1 => K=k_1 ell
+b=1 \Rightarrow K=k_1 \ell
 $$
 
 - Why: The index cannot know whether length came from repetition or useful scope.
@@ -492,11 +492,11 @@ $$
 - What: After taking a natural logarithm and dropping the query constant:
 
 $$
-RSV(d) = ∑_{t ∈ q ∩ d} w_t
+\text{RSV}(d) = \sum_{t \in q \cap d} w_t
 $$
 
 $$
-w_t = ln([p_t(1-u_t)]/[u_t(1-p_t)])
+w_t = \ln([p_t(1-u_t)]/[u_t(1-p_t)])
 $$
 
 - Why: Each term weight compares its odds in relevant documents against its odds in non-relevant documents.
@@ -511,7 +511,7 @@ $$
 - Cost or complexity: Add `0.5` to all four cells:
 
 $$
-w_t = ln([(s_t+0.5)(N-S-n_t+s_t+0.5)]/[(S-s_t+0.5)(n_t-s_t+0.5)])
+w_t = \ln([(s_t+0.5)(N-S-n_t+s_t+0.5)]/[(S-s_t+0.5)(n_t-s_t+0.5)])
 $$
 
 #### Zero judgments produce BM25's classic IDF
@@ -520,7 +520,7 @@ $$
 - Why: The result is:
 
 $$
-w_t = ln((N-n_t+0.5)/(n_t+0.5))
+w_t = \ln((N-n_t+0.5)/(n_t+0.5))
 $$
 
 - Failure of the heuristic story: Calling IDF a tuning trick loses its connection to relevance evidence.
@@ -592,7 +592,7 @@ $$
 - What: Lucene's rarity factor is:
 
 $$
-IDF(t) = ln(1 + (N-n_t+0.5)/(n_t+0.5))
+\text{IDF}(t) = \ln(1 + (N-n_t+0.5)/(n_t+0.5))
 $$
 
 - Why: With `N = 2,000,000`, a term in `400,000` chunks gets `ln 5 = 1.61`. A term in `12` chunks gets `ln 160,000 = 11.98`.
@@ -780,7 +780,7 @@ Figure 18.3: BM25 replaces TF-IDF's two unbounded behaviors with bounded ones: r
 | Non-relevant, `N - S` | `c = n_t - s_t` | `d = N - S - n_t + s_t` |
 
 $$
-w_t = ln([(a+0.5)(d+0.5)]/[(b+0.5)(c+0.5)])
+w_t = \ln([(a+0.5)(d+0.5)]/[(b+0.5)(c+0.5)])
 $$
 
 The weight is the main diagonal over the anti-diagonal, with every cell smoothed by `0.5`. At `S = 0`, `a` and `b` both floor at `0.5` and cancel. The result is `ln((N-n_t+0.5)/(n_t+0.5))`.

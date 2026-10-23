@@ -45,10 +45,11 @@ The audit checks:
 4. Table integrity.
 5. Forbidden dash and smart glyphs.
 6. GitHub-blocked math macros and Markdown-sensitive math syntax, including `\operatorname` and unbraced `^*`.
-7. Mermaid declarations, fixed color overrides, and theme configuration.
-8. Heading order and exact level-2 section order.
-9. Unit purpose, summary bullets, Decoder width, whiteboard sequence and script, and interview-trap sentence counts.
-10. Line range, manifest captions, figure and table counts, and undeclared files.
+7. Pandoc-sensitive syntax: a table directly after display math, an unescaped `|` inside a table code span, an unescaped `%` in display math, a parenthesized subscript, and a bare function name in display math.
+8. Mermaid declarations, fixed color overrides, and theme configuration.
+9. Heading order and exact level-2 section order.
+10. Unit purpose, summary bullets, Decoder width, whiteboard sequence and script, and interview-trap sentence counts.
+11. Line range, manifest captions, figure and table counts, and undeclared files.
 
 ## Real Mermaid parsing
 

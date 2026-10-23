@@ -96,9 +96,9 @@ Finally, a six-paragraph story is not one indivisible fact. The editor must deci
 | calibration | Agreement between a score and empirical correctness frequency | Users can interpret a calibrated probability |
 | failure prediction | Separating correct from wrong answers by score | An abstention gate needs this property |
 | recalibration | Monotone post-processing of existing scores | It can repair reliability but cannot create ordering |
-| temperature scaling | One-parameter monotone recalibration of logits | It leaves strict score ordering unchanged |
+| temperature scaling | One-parameter monotone recalibration of logits | It leaves strict score ordering unchanged for a single binary logit, but on a multiclass or token softmax it can reorder maximum probabilities across examples (corrected from it leaves strict score ordering unchanged) |
 | Platt scaling | A lower-variance parametric calibration map | It can be preferable with limited labeled data |
-| isotonic regression | A flexible non-decreasing calibration map | It may merge buckets and turn ranking wins into ties |
+| isotonic regression | A flexible non-decreasing calibration map | It may merge buckets and turn both ranking wins and losses into ties (corrected from turn ranking wins into ties) |
 | Brier score | Mean squared error of probability forecasts | It decomposes into reliability, resolution, and uncertainty |
 | Brier skill score | Resolution divided by task uncertainty after reliability is zero | It measures improvement over the constant base-rate forecast |
 | reliability REL | Penalty for confidence not matching bucket accuracy | Recalibration can drive it toward zero |
@@ -443,11 +443,11 @@ Emit the constant score s = a, where a is base accuracy. Then ECE = 0 exactly fo
 
 #### Why recalibration cannot create separation
 
-- **What:** Temperature scaling, Platt scaling, and strictly increasing calibration maps relabel scores without changing their order.
+- **What:** Temperature scaling, Platt scaling, and strictly increasing calibration maps relabel scores without changing their order. Correction: this holds for temperature scaling of a single binary logit, for Platt scaling, and for any strictly increasing map, but temperature applied to a multiclass or token softmax keeps each example's argmax and can still reorder maximum probabilities across examples. For logits (2, 0, 0) and (1, 0, -10), the maximum probabilities are 0.787 and 0.731 at T = 1 but 0.379 and 0.447 at T = 10, so recheck AUROC after fitting a softmax temperature.
 - **Why:** They can repair numerical probability meaning after a good signal exists.
 - **Failure without this invariant:** A team may select a confidence method on ECE and ship the method that is worse at routing failures.
 
-- **Cost or complexity:** AUROC and the risk-coverage curve stay unchanged under strictly increasing maps. Isotonic regression is only non-decreasing. When it merges buckets, it turns wins into ties and can lower AUROC, never raise it.
+- **Cost or complexity:** AUROC and the risk-coverage curve stay unchanged under strictly increasing maps. Isotonic regression is only non-decreasing. When it merges buckets, it turns wins into ties and can lower AUROC, never raise it. Correction: a merge turns both wins and losses between the merged levels into ties, and pool-adjacent-violators merges only out-of-order levels, so on its own fitting data AUROC stays the same or rises (Fawcett and Niculescu-Mizil, 2007). On new data the change can go either way, and the map still cannot create separation that the raw score lacks.
 
 The cited black-box elicitation study found different winners. Pairwise-ranking aggregation gave the best calibration. Average confidence over samples gave the best failure prediction. It also reported systematic overconfidence under vanilla verbalized prompting and better failure prediction with more samples.
 
@@ -859,7 +859,7 @@ No. A constant score equal to base accuracy has ECE = 0 and AUROC = 0.5, so no t
 
 ### 2. Why can temperature scaling improve ECE without improving selective precision?
 
-Temperature scaling is strictly increasing, so it preserves score order. At fixed coverage, the answered set is identical. It changes the numeric cutoff that reaches that set, not the set itself.
+The source answers that temperature scaling is strictly increasing, so it preserves score order, keeps the answered set identical at fixed coverage, and moves only the numeric cutoff. Correction: that holds for a single binary logit or any strictly increasing map, but temperature on a multiclass or token softmax can reorder maximum probabilities across examples, so recheck selective precision and AUROC after fitting it.
 
 ### 3. When should you not use repeated self-reflection?
 

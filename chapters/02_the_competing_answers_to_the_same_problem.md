@@ -320,7 +320,7 @@ GPT-J offers at most 4,096 independent directions per edited matrix. After that 
 
 #### A Worked Example
 
-The assistant uses GPT-J 6B with 28 layers, residual width 4,096, and feed-forward width 16,384. The catalog turns over 12,000 facts per quarter. Continual fine-tuning uses 12 bytes of 16-bit Adam state per trainable parameter. Six billion parameters therefore need 72 GB before activations. It also carries the forgetting problem. One-at-a-time ROME writes 20,480 numbers per edit into a 67.1 million parameter matrix. Twelve thousand rank-one terms still produce rank no greater than 4,096. From edit 4,097 onward, each new key depends on directions earlier edits occupy. The newest fact can remain effective while a general benchmark falls. MEMIT across six mid-layers gives:
+The assistant uses GPT-J 6B with 28 layers, residual width 4,096, and feed-forward width 16,384. The catalog turns over 12,000 facts per quarter. Continual fine-tuning uses 12 bytes of 16-bit Adam state per trainable parameter. Six billion parameters therefore need 72 GB before activations. Correction: The 12-byte figure fits only pure 16-bit training with no FP32 master copy of the weights. Standard mixed-precision Adam keeps that copy and needs 16 bytes per trainable parameter (Rajbhandari et al., 2020, arXiv 1910.02054), or 96 GB for six billion parameters before activations. Continual fine-tuning also carries the forgetting problem. One-at-a-time ROME writes 20,480 numbers per edit into a 67.1 million parameter matrix. Twelve thousand rank-one terms still produce rank no greater than 4,096. From edit 4,097 onward, each new key depends on directions earlier edits occupy. The newest fact can remain effective while a general benchmark falls. MEMIT across six mid-layers gives:
 
 $$
 6(4{,}096)=24{,}576
@@ -527,7 +527,7 @@ It is 72 times cheaper than pasting the changed subset and 2,400 times cheaper t
 - Start with small k and stop where relevance falls off.
 - Use long context for whole-document or whole-corpus synthesis.
 - Use adaptive retrieval when the model already knows popular facts.
-- Mallen et al. (2023) found retrieval flipped roughly 10 percent of otherwise-correct answers to wrong, concentrated on high-popularity entities.
+- Mallen et al. (2023) found retrieval flipped roughly 10 percent of otherwise-correct answers to wrong, concentrated on high-popularity entities. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers.
 - Retrieve unconditionally for private or post-cutoff domains with no correct parametric answer to protect.
 - Re-walk the gates when window size, compliance rules, corpus cadence, or another binding constant changes.
 
@@ -761,7 +761,7 @@ Walk the cheapest hard gates in order: usable window fit, citability and deletio
 | Literature stream | 2.5 million articles times 20 claims | Produces 50 million edits per year. |
 | All-layer capacity | 28 times 4,096 equals 114,688 | The literature stream exceeds it by 436 times in year one. |
 | Catalog churn | 12,000 facts per quarter | Worked model-editing workload. |
-| Fine-tuning state | 12 bytes per parameter and 72 GB | 16-bit Adam state for GPT-J 6B. |
+| Fine-tuning state | 16 bytes per parameter and 96 GB (corrected from 12 bytes per parameter and 72 GB) | Mixed-precision Adam state for GPT-J 6B. The 12-byte figure omits the FP32 master copy of the weights. |
 | Sequential failure | Edit 4,097 onward | New ROME directions must reuse an occupied 4,096-dimensional space. |
 | MEMIT band | Six layers | Raises the ceiling to 24,576 directions. |
 | Edit optimization | 25 steps over a 20-token prompt | Equals 500 training tokens per edit. |
@@ -837,7 +837,7 @@ Walk the cheapest hard gates in order: usable window fit, citability and deletio
 | RAG ratios | 72 times and 2,400 times cheaper | Compared with changed-subset and full-corpus stuffing. |
 | Sprint re-index | 40.6 trillion FLOPs | About one eight-thousandth of one full-corpus query. |
 | Large-model check | 405 billion parameters at two bytes | Needs 810 GB, above a 640 GB node. |
-| Adaptive retrieval | Roughly 10 percent of correct answers flipped wrong | Concentrated on high-popularity facts in the cited result. |
+| Adaptive retrieval | Roughly 10 percent of all PopQA questions flipped from correct to wrong (corrected from roughly 10 percent of correct answers) | Concentrated on high-popularity facts in the cited result. |
 | Latency budget | 400 milliseconds p99 | ANN lookup and reranking consume real tens of milliseconds. |
 | Cost shape | Flat in F | Continual learning and generative retrieval updates. |
 | Cost shape | Linear in F | Model editing. |

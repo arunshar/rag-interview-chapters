@@ -9,7 +9,7 @@ This chapter explains how to allocate training, serving, memory, and retrieval b
 - Chinchilla minimizes training compute, not lifetime cost. Serving overtakes training at Dinf = 3Dtr.
 - Memory has three bills: weights, optimizer state, and the key-value (KV) cache. Retrieval controls the variable cache bill through context length.
 - At fixed non-embedding parameter count, architecture shape changes loss only a few percent. Shape still changes cache size and decode latency.
-- Test-time search wins at modest query volume only when a verifier can select better candidates.
+- Test-time search wins at modest query volume only when a verifier can select better candidates. Correction: majority voting (self-consistency) is a verifier-free aggregator that also raises accuracy when errors are independent and the correct answer is the most common one, as Chapter 9 shows, so the verifier requirement applies to best-of-N and tree search.
 - Retrieval can replace parameters that store facts. It cannot replace the competence needed to read and use retrieved evidence. Datastore growth forces retrieval depth upward. A reranker keeps the generator context flat as the corpus grows.
 
 ## The story
@@ -77,7 +77,7 @@ Think of the system as a library with a skilled clerk. Model parameters pay for 
 | Proposer | Produces candidate answers | Uses test-time compute to explore |
 | Verifier | Scores passages or answer chains. Pass-at-16 checks whether any of 16 proposals is correct. | Converts exploration into accuracy |
 | Best-of-N | Generate m complete answers and select the top score | Default search at larger budgets |
-| Beam search | Prune partial solutions using verifier scores | Stronger at small budgets on easier tasks |
+| Beam search | Prune partial solutions using verifier scores | Stronger at small budgets and on harder questions (corrected from stronger at small budgets on easier tasks) |
 | Lookahead search | Add Monte Carlo rollouts to beam search | Loses at matched budget in the cited result |
 | Process reward model (PRM) | Scores reasoning steps | Stronger signal than final-answer-only scoring |
 | Outcome reward model | Scores only the final answer | Weaker verifier signal in the cited comparison |
@@ -495,13 +495,13 @@ Q^{*}
 \frac{\Delta C_{pre}}{(m-1)C_{query}}
 $$
 
-Pre-training is constant in Q. Inference is linear in Q. Lifetime query volume decides which bill amortizes.
+Pre-training is constant in Q. Inference is linear in Q. Lifetime query volume decides which bill amortizes. Correction: this form holds only when the extra pre-training buys a model served at the same per-query cost Cquery, such as the same 8 B model trained on more tokens. For a larger model with its own per-query cost Clarge, the general breakeven is Qstar = Delta Cpre divided by (m times Csmall minus Clarge), and a breakeven exists only when m times Csmall is greater than Clarge.
 
 #### Search needs a verifier
 
-The proposer generates candidate answers. The verifier scores them and selects one. Sampling without a verifier has the same expected accuracy as drawing one answer and choosing at random.
+The proposer generates candidate answers. The verifier scores them and selects one. Sampling without a verifier has the same expected accuracy as drawing one answer and choosing at random. Correction: this holds for random selection, but a majority vote over samples needs no verifier and still raises accuracy when errors are independent and the correct answer is the most common one, as Chapter 9 shows.
 
-Best-of-N is simple and competitive at larger budgets. Beam search is stronger at small budgets and on easier problems. Its advantage fades as budget and difficulty rise. Lookahead search loses at matched budget because rollouts displace complete candidates. A process reward model that scores steps beats an outcome reward model that scores only the final answer in the cited mathematical-reasoning result.
+Best-of-N is simple and competitive at larger budgets. Beam search is stronger at small budgets and on easier problems. Its advantage fades as budget and difficulty rise. Correction: Snell et al. (2024, arXiv 2408.03314) find that beam search is more effective on harder questions and at lower compute budgets, and best-of-N is more effective on easier questions and at higher budgets. Lookahead search loses at matched budget because rollouts displace complete candidates. A process reward model that scores steps beats an outcome reward model that scores only the final answer in the cited mathematical-reasoning result.
 
 The source boundary is conditional. Extra test-time compute is the better purchase for easy and moderate problems under modest inference load. Extra pre-training compute wins for genuinely hard problems under large inference load.
 
@@ -544,7 +544,7 @@ $$
 
 queries.
 
-At 10,000 per day, breakeven is 910 years. At 10 million per day, it is 332 days.
+At 10,000 per day, breakeven is 910 years. At 10 million per day, it is 332 days. Correction: this calculation charges the 70 B at the 8 B per-query cost, but the 70 B pass costs 6.16 × 10^14 FLOPs and best-of-16 on the 8 B costs 2.45 × 10^14. The 70 B lifetime compute therefore exceeds the 8 B plus best-of-16 by 5.80 × 10^23 plus Q times 3.71 × 10^14 FLOPs, which is positive at every Q, so no breakeven exists and the 70 B never repays its pre-training on compute grounds.
 
 One 300-token sample costs 4.80 × 10^12 FLOPs. Three hundred extra context tokens cost the same. Five 400-token chunks cost 3.20 × 10^13. That equals 6.7 samples.
 
@@ -554,7 +554,7 @@ The deployment consumes 1.61 × 10^10 inference tokens per year. The 70 B pre-tr
 
 #### Practical decision
 
-Spend marginal FLOPs at test time until lifetime volume crosses Qstar. Use passage reranking before chain verification. Buy an extra sample before an extra chunk unless the miss is a retrieval-recall miss. Use best-of-N with a process reward model by default. Use beam search at small budgets on easy queries. Do not use lookahead search under the cited matched-budget result. Route more search compute only to predicted hard queries when the router is reliable. Measure pass-at-16 on the failing set. If the small model never proposes a correct answer, no verifier can rescue it.
+Spend marginal FLOPs at test time until lifetime volume crosses Qstar. Correction: Qstar applies only when the pre-training alternative is served at the same per-query cost, and against the 70 B in this example test-time compute stays cheaper at every volume, so the reason to upgrade is a pass-at-16 failure on the small model. Use passage reranking before chain verification. Buy an extra sample before an extra chunk unless the miss is a retrieval-recall miss. Use best-of-N with a process reward model by default. Use beam search at small budgets on easy queries. Correction: Snell et al. (2024, arXiv 2408.03314) find beam search more effective on harder questions and at lower budgets, so use beam search at small budgets on medium and hard queries, and use best-of-N on easy queries and at high budgets. Do not use lookahead search under the cited matched-budget result. Route more search compute only to predicted hard queries when the router is reliable. Measure pass-at-16 on the failing set. If the small model never proposes a correct answer, no verifier can rescue it.
 
 ### 6.5 The small-model-plus-datastore argument and its limit
 
@@ -841,7 +841,7 @@ Precision and workload decide. Weights use 108 GB at fp32 or 54 GB at bf16, whil
 
 ### 3. Should multi-step failures trigger an 8 B to 70 B upgrade?
 
-Not before measuring pass-at-16 and verifier quality. Best-of-16 plus a process reward model costs 3.48 times the 8 B baseline, while one 70 B pass costs 8.75 times and needs 910 years to amortize at 10,000 queries per day. Upgrade when the 8 B rarely proposes a correct answer because a verifier cannot select a candidate that never appears.
+The source answers that the upgrade should wait until pass-at-16 and verifier quality are measured, and it says the 70 B needs 910 years to amortize at 10,000 queries per day. Correction: one 70 B pass costs 8.75 times the 8 B baseline while best-of-16 with a process reward model costs 3.48 times, so the 70 B costs more both per query and in pre-training and never amortizes on compute. Upgrade only when pass-at-16 shows the 8 B rarely proposes a correct answer, because a verifier cannot select a candidate that never appears.
 
 ### 4. Does RAG always reduce per-query compute?
 
@@ -887,7 +887,7 @@ Usually neither, because shape moves loss only a few percent at fixed non-embedd
 | Small repeated model | A 3 B run 256 times uses 1.54 × 10^12 FLOPs per output token, 11× one 70 B pass at 1.4 × 10^11. Weight memory is 6 GB versus 140 GB, or 23× less. |
 | Baseline query | The worked query rate is 10,000 daily. Ten 400-token chunks, 100 instruction tokens, and 300 output tokens give Tin = 4,100 and 4,400 total. Attention is 4.41 × 10^12, or 6.7%, against a 6.56 × 10^13 parameter term. The 8 B baseline is 7.04 × 10^13, 0.207 seconds, and USD 0.144 per thousand. |
 | Best-of-16 and 70 B | Best-of-16 uses 6.56 × 10^13 shared prefill, 7.68 × 10^13 decode, and 1.02 × 10^14 reward scoring. Total is 2.45 × 10^14, 3.48×, and USD 0.50 per thousand. The 70 B is 6.16 × 10^14, 8.75×, and USD 1.26 per thousand. |
-| Breakeven and marginal FLOPs | Pre-training is 5.88 × 10^23 for 70 B and 7.68 × 10^21 for 8 B, a 5.80 × 10^23 difference. With m = 3.48 and excess 2.48, Qstar is 3.32 × 10^9. That is 910 years at 10,000 daily and 332 days at 10 million daily. A 300-token sample is 4.80 × 10^12. A 400-token chunk is 6.4 × 10^12, or 1.33 samples. Five chunks are 3.20 × 10^13, or 6.7 samples. A 110 M reranker over 100 by 400 tokens costs 8.80 × 10^12 or 0.125×. Figure increments are 0.068× per sample, 0.45× per five chunks, and 1.455× for the process reward model. Annual inference is 1.61 × 10^10 tokens against 1.4 × 10^12 pre-training tokens, a ratio of 0.011. |
+| Breakeven and marginal FLOPs | Pre-training is 5.88 × 10^23 for 70 B and 7.68 × 10^21 for 8 B, a 5.80 × 10^23 difference. With m = 3.48 and excess 2.48, Qstar is 3.32 × 10^9, which applies only to an alternative served at the 8 B per-query cost. Against the 70 B no breakeven exists, because the 70 B costs 3.71 × 10^14 more FLOPs per query than best-of-16 on the 8 B (corrected from 910 years at 10,000 daily and 332 days at 10 million daily). A 300-token sample is 4.80 × 10^12. A 400-token chunk is 6.4 × 10^12, or 1.33 samples. Five chunks are 3.20 × 10^13, or 6.7 samples. A 110 M reranker over 100 by 400 tokens costs 8.80 × 10^12 or 0.125×. Figure increments are 0.068× per sample, 0.45× per five chunks, and 1.455× for the process reward model. Annual inference is 1.61 × 10^10 tokens against 1.4 × 10^12 pre-training tokens, a ratio of 0.011. |
 
 ### Retrieval versus parameters
 

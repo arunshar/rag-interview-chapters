@@ -6,7 +6,7 @@ This chapter prepares you to explain how learned lexical weights, token-level ma
 
 - Best Matching 25 (BM25) and the Sparse Lexical and Expansion Model (SPLADE) use the same sparse dot-product shape. SPLADE replaces hand-written term weights with a masked language model that can weight terms absent from the text.
 - Rectified Linear Unit (ReLU) creates exact zeros for an inverted index. The log transform limits very large weights, but a separate training objective must control how often vocabulary dimensions remain active.
-- Floating-point operation count regularization, called FLOPS regularization in the source, balances traffic across vocabulary dimensions. Plain L1 regularization can hit the same nonzero count yet cost 56 times more per query.
+- Floating-point operation count regularization, called FLOPS regularization in the source, balances traffic across vocabulary dimensions. Plain L1 regularization can hit the same nonzero count yet cost 56 times more per query. Correction: that 56 times comes from a profile that breaks p_j <= 1, and with every p_j capped at 1 the largest gap at 160 nonzeros against the 4,000-support profile is 25 times.
 - Bidirectional Encoder Representations from Transformers (BERT) supports Contextualized Late Interaction over BERT (ColBERT), which keeps one vector per token. MaxSim lets every query token take its strongest document-token match after both encoders finish.
 - ColBERT's ablations rank the important choices. Keeping token-level vectors matters most, max matters next, and masked-token query augmentation matters least.
 - ColBERTv2 compresses each token vector into a centroid identifier plus a two-bit residual. PLAID reuses those centroids to prune before decompression, which attacks the memory traffic that dominates late interaction.
@@ -41,7 +41,7 @@ The full lesson stays inside this library. Learn better catalog labels, balance 
 | Posting | One term, document identifier, and weight entry | Posting count sets index size and contributes to query work |
 | Posting list | All postings for one vocabulary dimension | Each active query dimension opens one such list |
 | Vocabulary gap | A mismatch between query words and relevant document words | It explains failures such as "charge" versus "supply power" |
-| WordPiece vocabulary `V` and size `|V|` | The fixed subword inventory used by the encoder | SPLADE predicts one weight for each of its 30,522 entries |
+| WordPiece vocabulary `V` and size `\|V\|` | The fixed subword inventory used by the encoder | SPLADE predicts one weight for each of its 30,522 entries |
 | Exact match | Evidence that the same literal token occurs on both sides | It remains valuable for part numbers, versions, and error codes |
 | Sparse score `s(q,d)` and weights `w_j^q`, `w_j^d` | A sum of query-document weight products over shared active dimensions | BM25 and SPLADE keep this same scoring shape |
 | Term weight | The importance assigned to one vocabulary entry | Learned weights can represent context and absent terms |
@@ -107,7 +107,7 @@ The full lesson stays inside this library. Learn better catalog labels, balance 
 | Approximate Nearest Neighbor Negative Contrastive Estimation (ANCE) | A later single-vector training system named in the source | Its result limits what the ColBERT [CLS] ablation proves |
 | K-means | Clustering vectors around learned centers | ColBERTv2 uses it to build the centroid codebook |
 | Centroid table `C`, assignment `t(v)`, embedding `v`, and residual `r` | A shared prototype, its selected row, the token vector, and their difference | They factor token identity from contextual detail |
-| Codebook size `|C|`, embedding count `n_emb`, and residual width `b` | Centroid count, stored token count, and bits per residual dimension | They set compression, scan cost, and posting-list length |
+| Codebook size `\|C\|`, embedding count `n_emb`, and residual width `b` | Centroid count, stored token count, and bits per residual dimension | They set compression, scan cost, and posting-list length |
 | Residual `r = v - C_t(v)` | The difference between an embedding and its assigned centroid | It contains within-cluster context that can tolerate very low bit width |
 | Residual quantization | Low-bit coding of that centroid-relative difference | It compresses without discarding the between-cluster identity |
 | Quantile bucket edges | Thresholds chosen from the residual distribution | They define the one-bit or two-bit residual codes |
@@ -150,17 +150,17 @@ The full lesson stays inside this library. Learn better catalog labels, balance 
 - Cost: The index touches postings only where both factors are nonzero.
 
 $$
-s(q,d) = Σ_{j=1}^{|V|} w_j^q w_j^d
+s(q,d) = \sum_{j=1}^{|V|} w_j^q w_j^d
 $$
 
 BM25 instantiates the weights with hand-written functions. Here f_{j,d} is the raw term count, k_1 and b are BM25 constants, document length is |d|, and avgdl is average document length.
 
 $$
-w_j^d = f_{j,d}(k_1 + 1) / (f_{j,d} + k_1(1 - b + b|d|/avgdl))
+w_j^d = f_{j,d}(k_1 + 1) / (f_{j,d} + k_1(1 - b + b|d|/\text{avgdl}))
 $$
 
 $$
-w_j^q = IDF(j) I[j ∈ q]
+w_j^q = \text{IDF}(j)\, I[j \in q]
 $$
 
 - What: BM25 sets the document weight to zero when f_{j,d} is zero.
@@ -181,7 +181,7 @@ $$
 - Cost: For sequence length n = 128 and vocabulary size 30,522, the dense signed logit matrix holds 3,906,816 values before sparsification.
 
 $$
-w_{ij} = transform(h_i)^T E_j + b_j
+w_{ij} = \mathop{\text{transform}}(h_i)^{\top} E_j + b_j
 $$
 
 The hidden state h_i has 768 dimensions. E_j is the tied input embedding. The transform is the dense, GELU, and LayerNorm block from pre-training.
@@ -194,7 +194,7 @@ The hidden state h_i has 768 dimensions. E_j is the tied input embedding. The tr
 - Cost: The output stays sparse at serving time even though indexing computes the full vocabulary head.
 
 $$
-w_j^d = Σ_{i=1}^{n} log(1 + ReLU(w_{ij}))
+w_j^d = \sum_{i=1}^{n} \log(1 + \mathop{\text{ReLU}}(w_{ij}))
 $$
 
 The saturation example keeps all source arithmetic. Five logits of 12 sum to 60. Five logits of 1 sum to 5. The raw ratio is 12. After saturation, 5 ln(13) = 12.83 and 5 ln(2) = 3.47. The ratio falls to 3.7.
@@ -234,7 +234,7 @@ Practical choices follow from the same arithmetic. Budget nonzeros per document,
 - Cost: Expected MACs per query are the following.
 
 $$
-C = N Σ_{j=1}^{|V|} q_j p_j
+C = N \sum_{j=1}^{|V|} q_j p_j
 $$
 
 The desired L0 count cannot serve directly as a loss. It is piecewise constant, so its gradient is zero almost everywhere. L1 is the tightest convex relaxation and does control the average document count because E[||w^d||_0] = Σ_j p_j = ubar_d. It remains blind to the products in C.
@@ -242,38 +242,38 @@ The desired L0 count cannot serve directly as a loss. It is piecewise constant, 
 Assume the query profile follows the corpus profile.
 
 $$
-q_j = (ubar_q / ubar_d)p_j
+q_j = (\bar{u}_q / \bar{u}_d)\, p_j
 $$
 
 Then expected cost and effective support become:
 
 $$
-C = N ubar_q ubar_d / m_eff
+C = N \bar{u}_q \bar{u}_d / m_{\text{eff}}
 $$
 
 $$
-m_eff = (Σ_j p_j)^2 / Σ_j p_j^2
+m_{\text{eff}} = (\sum_j p_j)^2 / \sum_j p_j^2
 $$
 
-Cauchy-Schwarz gives 1 <= m_eff <= 30,522. The upper bound needs perfectly equal popularity. Two models with the same 160 nonzeros can therefore differ in cost by as much as the vocabulary size under this model.
+Cauchy-Schwarz gives 1 <= m_eff <= 30,522. The upper bound needs perfectly equal popularity. Two models with the same 160 nonzeros can therefore differ in cost by as much as the vocabulary size under this model. Correction: each p_j is a fraction at most 1, so Σ_j p_j^2 <= Σ_j p_j = ubar_d and the bound is ubar_d <= m_eff <= 30,522. At 160 nonzeros, two models can differ in cost by at most 30,522/160 = 191 times.
 
 #### Why a Zipfian profile is expensive
 
 - What: The unregularized term profile follows p_j proportional to 1/j.
 - Why: Natural language naturally concentrates mass in common dimensions.
 - Failure: L1 applies equal pressure and permits that crowded profile.
-- Cost: H_30,522 = ln(30,522) + gamma = 10.33 + 0.58 = 10.90. The squared reciprocal sum approaches pi^2/6 = 1.645. Therefore m_eff = 10.90^2 / 1.645 = 118.9 / 1.645 = 72.
+- Cost: H_30,522 = ln(30,522) + gamma = 10.33 + 0.58 = 10.90. The squared reciprocal sum approaches pi^2/6 = 1.645. Therefore m_eff = 10.90^2 / 1.645 = 118.9 / 1.645 = 72. Correction: scaling 1/j to Σ_j p_j = 160 needs p_1 = 160/10.90 = 14.7, which is not a fraction, so this profile is infeasible and m_eff = 72 cannot occur. A feasible truncated Zipf profile p_j = min(1, c/j) with c = 19.2 gives m_eff of about 677.
 
 #### FLOPS as load balancing
 
 For a training batch of B documents, define the mean activation and penalty as follows.
 
 $$
-abar_j = (1/B) Σ_{b=1}^{B} w_j^{(b)}
+\bar{a}_j = (1/B) \sum_{b=1}^{B} w_j^{(b)}
 $$
 
 $$
-loss_FLOPS = Σ_{j=1}^{|V|} abar_j^2
+\text{loss}_{\text{FLOPS}} = \sum_{j=1}^{|V|} \bar{a}_j^2
 $$
 
 - What: The batch mean stands in for activation probability, and its square penalizes crowding.
@@ -286,7 +286,7 @@ At fixed document nonzero budget, loss_FLOPS = ubar_d^2/m_eff. Minimizing it max
 #### Separate query and document penalties
 
 $$
-L = L_rank + lambda_q loss_FLOPS(q) + lambda_d loss_FLOPS(d)
+L = L_{\text{rank}} + \lambda_q\, \text{loss}_{\text{FLOPS}}(q) + \lambda_d\, \text{loss}_{\text{FLOPS}}(d)
 $$
 
 - What: Query and document sides receive different regularization weights.
@@ -301,18 +301,18 @@ The all-zero vector minimizes the penalty. ReLU makes a fully negative unit abso
 Use N = 8,841,823, document nonzeros ubar_d = 160, and query nonzeros ubar_q = 30.
 
 $$
-N ubar_q ubar_d = 8,841,823 x 30 x 160 = 4.24 x 10^{10}
+N \bar{u}_q \bar{u}_d = 8{,}841{,}823 \times 30 \times 160 = 4.24 \times 10^{10}
 $$
 
 | Configuration | Effective support | Query cost | Index size |
 |---|---:|---:|---:|
-| L1 with a Zipfian profile | 72 | 5.9 x 10^8 MACs | 11.3 GB |
+| L1 with a Zipfian profile | at least 160 (corrected from 72) | at most 2.65 x 10^8 MACs (corrected from 5.9 x 10^8) | 11.3 GB |
 | FLOPS-balanced profile | 4,000 | 1.06 x 10^7 MACs | 11.3 GB |
 | Raise query pressure until only 8 query nonzeros remain | 4,000 | 2.83 x 10^6 MACs | unchanged |
 
-The first two have identical average nonzeros and differ by 56 times in query work. Cutting queries from 30 to 8 gives another 3.75 times reduction without changing the index.
+The first two have identical average nonzeros and differ by 56 times in query work. Correction: with m_eff at least 160, the gap is at most 4,000/160 = 25 times, and the truncated Zipf profile gives about 5.9 times. Cutting queries from 30 to 8 gives another 3.75 times reduction without changing the index.
 
-The FLOPS-balanced configuration still costs 114 times the source's BM25 posting-count estimate of 9.27 x 10^4 MACs. The L1 version costs 6,400 times BM25 and lies outside the range reported for shipped systems. This comparison has a claim limit. The posting-count model is pessimistic for BM25 because WAND and BlockMax-WAND skip postings that cannot reach top k. Mackenzie, Trotman, and Lin report that learned sparse weights weaken the score distributions those bounds rely on. Dynamic pruning may therefore help SPLADE less and renew interest in impact-ordered, score-at-a-time evaluation.
+The FLOPS-balanced configuration still costs 114 times the source's BM25 posting-count estimate of 9.27 x 10^4 MACs. The L1 version costs 6,400 times BM25 and lies outside the range reported for shipped systems. Correction: at the feasible maximum of 2.65 x 10^8 MACs, the L1 version costs at most about 2,900 times BM25. This comparison has a claim limit. The posting-count model is pessimistic for BM25 because WAND and BlockMax-WAND skip postings that cannot reach top k. Mackenzie, Trotman, and Lin report that learned sparse weights weaken the score distributions those bounds rely on. Dynamic pruning may therefore help SPLADE less and renew interest in impact-ordered, score-at-a-time evaluation.
 
 Practical measurement should pair average nonzeros with m_eff. The source suggests estimating it from 100,000 indexed vectors. Tune toward an interpretable target such as 160 nonzeros and m_eff at least 4,000. A 500-million-chunk index at 160 nonzeros occupies 640 GB. Prefer training-time FLOPS pressure to top-k truncation because truncation preserves popularity skew. Recompute m_eff after domain shift because p_j belongs to the deployed corpus.
 
@@ -326,7 +326,7 @@ Practical measurement should pair average nonzeros with m_eff. The source sugges
 - Cost and result: At depth 1,000, the source gives 34.7 MRR@10 and 10,700 ms per query for a BERT-base cross-encoder.
 
 $$
-s_bi(q,d) = eta(q)^T eta(d)
+s_{\text{bi}}(q,d) = \eta(q)^{\top} \eta(d)
 $$
 
 #### Keep token vectors and interact late
@@ -337,13 +337,13 @@ $$
 - Cost: Storage grows with token count instead of passage count alone.
 
 $$
-S(q,d) = Σ_{i=1}^{N_q} max_{j=1,...,n_d}(E_{qi}^T E_{dj})
+S(q,d) = \sum_{i=1}^{N_q} \max_{j=1,\dots,n_d}(E_{qi}^{\top} E_{dj})
 $$
 
 MaxSim asks whether each query token finds evidence anywhere in the document. Replace max with mean in a 68-token passage where one similarity is 0.95 and 67 are 0.10:
 
 $$
-(0.95 + 67 x 0.10) / 68 = 7.65 / 68 = 0.1125
+(0.95 + 67 \times 0.10) / 68 = 7.65 / 68 = 0.1125
 $$
 
 A passage with no match sits at 0.10. Max preserves a 9.5-times evidence separation. Mean leaves only a 12.5% lift. The dilution worsens as the document grows.
@@ -408,7 +408,7 @@ The wall-clock limit matters. Only 13 of 61 ms belongs to encoding and interacti
 
 Appending one precomputed query vector costs 68 x 128 x 2 = 17,408 FLOPs per candidate. At depth 1,000 that is 1.74 x 10^7 FLOPs, only 0.23% of the query budget.
 
-The ablation does not prove that all single-vector retrieval is 18.3% worse. It freezes ColBERT's training recipe. ANCE later reports 0.330 MRR@10 with one vector per passage and hard-negative training at one sixty-eighth of the token-storage footprint. The source explicitly calls the broader claim a common misreading. When an index must fit 30 GiB, the source's senior example chooses the 128-to-24 dimension cut and lands at 27 GiB for one MRR@10 point. A bi-encoder becomes attractive if its own Recall@k lands within one or two points of the multi-vector index. Short corpora such as titles, log lines, and product names can also narrow the difference between pooled and token-level representations.
+The ablation does not prove that all single-vector retrieval is 18.3% worse. It freezes ColBERT's training recipe. ANCE later reports 0.330 MRR@10 with one vector per passage and hard-negative training at one sixty-eighth of the token-storage footprint. Correction: one sixty-eighth counts vectors, one against 68, and by this unit's byte arithmetic a 768-dimensional float32 passage vector takes 3,072 bytes against ColBERT's 17,408, about one sixth (1/5.67) of the bytes. The source explicitly calls the broader claim a common misreading. When an index must fit 30 GiB, the source's senior example chooses the 128-to-24 dimension cut and lands at 27 GiB for one MRR@10 point. A bi-encoder becomes attractive if its own Recall@k lands within one or two points of the multi-vector index. Short corpora such as titles, log lines, and product names can also narrow the difference between pooled and token-level representations.
 
 ### 21.5 Making multi-vector affordable: ColBERTv2 and PLAID
 
@@ -479,7 +479,7 @@ At 2^18 centroids, the query-centroid scan costs 32 x 262,144 x 128 x 2 = 2.15 G
 Per-query min-max normalization maps each list to [0, 1], then applies a convex combination.
 
 $$
-score(d) = alpha scorehat_sparse(d) + (1 - alpha) scorehat_dense(d)
+\text{score}(d) = \alpha\, \widehat{\text{score}}_{\text{sparse}}(d) + (1 - \alpha)\, \widehat{\text{score}}_{\text{dense}}(d)
 $$
 
 The same BM25 score 18.2 becomes (18.2 - 6.1)/25.3 = 0.478 in a top-100 window [6.1, 31.4]. It becomes (18.2 - 12.4)/19.0 = 0.305 in a top-10 window [12.4, 31.4]. Changing depth moves the normalized score by 36%. Min-max also forces every list winner to 1.0, whether the winning margin is 0.2 or a factor of three.
@@ -489,7 +489,7 @@ Naive rank summation has the opposite flaw. It values the gap from rank 61 to 62
 #### RRF and the meaning of k
 
 $$
-RRF(d) = Σ_{ell=1}^{L} 1 / (k + r_ell(d))
+\text{RRF}(d) = \sum_{\ell=1}^{L} 1 / (k + r_{\ell}(d))
 $$
 
 Omit the term when a document is absent from a list. The relative weight inside one list is:
@@ -542,7 +542,7 @@ RRF discards confidence margins. A BM25 winner at 31.4 versus 12.1 contributes t
 Weighted RRF uses a measured list weight:
 
 $$
-weighted_RRF(d) = Σ_{ell=1}^{L} weight_ell / (k + r_ell(d))
+\text{weighted RRF}(d) = \sum_{\ell=1}^{L} \text{weight}_{\ell} / (k + r_{\ell}(d))
 $$
 
 Choose weights from slice-level recall on rare-term and paraphrase queries, not aggregate nDCG. Correlated lists also need care. Adding SPLADE beside BM25 and one dense list gives the lexical family two votes. With three lists and k = 60, the crossover moves to 123. Hierarchical fusion can first combine BM25 and SPLADE, then give that family one vote against dense retrieval. RAG-Fusion applies the same formula to lists from generated paraphrases. Those lists are correlated. Agreement can reflect overlapping rewrites rather than independent evidence. If the datastore lacks the fact, every list can agree on the same near-miss and pass confidently wrong context to the generator.
@@ -593,11 +593,11 @@ p_j                                     p_j
 +-------------> vocabulary j            +-------------> vocabulary j
 
 sum p_j = 160                           sum p_j = 160
-m_eff = 72                              m_eff = 4,000
-C = 5.9 x 10^8 MACs                    C = 1.06 x 10^7 MACs
+m_eff >= 160                            m_eff = 4,000
+C <= 2.65 x 10^8 MACs                  C = 1.06 x 10^7 MACs
 ```
 
-Figure 21.2: The two penalties are indistinguishable by average nonzero count and differ by 56× in query cost: L1's constant gradient lets the learned profile settle into the Zipfian shape natural language already has, while FLOPS's load-proportional gradient spreads the same total mass across far more of the vocabulary. Bar heights are schematic. The cost figures are computed in the worked example below.
+Figure 21.2: The two penalties are indistinguishable by average nonzero count and differ by 56× in query cost: L1's constant gradient lets the learned profile settle into the Zipfian shape natural language already has, while FLOPS's load-proportional gradient spreads the same total mass across far more of the vocabulary. Bar heights are schematic. The cost figures are computed in the worked example below. Correction: the left labels read m_eff >= 160 and C <= 2.65 x 10^8 MACs, corrected from 72 and 5.9 x 10^8, because no p_j can exceed 1, so the largest feasible gap is 25 times.
 
 ### Figure 21.3
 
@@ -707,7 +707,7 @@ SPLADE keeps an inverted index but lets a language model assign weights to words
 
 ### 1. Why can two SPLADE models with 160 nonzeros have a 56x query-cost gap?
 
-Average nonzeros constrain a sum of activation probabilities, while retrieval work depends on products of query and document activation profiles. L1 can preserve a Zipfian crowd around a few long posting lists, while FLOPS uses a squared batch mean to spread load and raise effective support.
+Average nonzeros constrain a sum of activation probabilities, while retrieval work depends on products of query and document activation profiles. L1 can preserve a Zipfian crowd around a few long posting lists, while FLOPS uses a squared batch mean to spread load and raise effective support. Correction: because no p_j can exceed 1, 160 nonzeros force m_eff to at least 160, so the largest feasible gap against the 4,000-support profile is 25x and the 56x figure comes from an infeasible profile.
 
 ### 2. What is late about ColBERT, and when would you not use it?
 
@@ -775,17 +775,17 @@ RRF wins as a label-free, calibration-free default, but a convex combination wit
 | Large SPLADE index | 640 GB | 160 nonzeros per passage |
 | Zipf harmonic terms | 10.33 + 0.58 = 10.90 | ln vocabulary plus gamma |
 | Squared reciprocal limit | 1.645 | pi squared divided by six |
-| Zipf effective support | 72 | 118.9 divided by 1.645 |
+| Zipf effective support | at least 160 (corrected from 72) | The 1/j profile behind 72 needs p_1 = 14.7, which breaks p_j <= 1 |
 | FLOPS pressure example | 40x | Load 2.0 versus 0.05 |
 | FLOPS worked query nonzeros | 30 | Before query-side reduction |
 | FLOPS cost numerator | 4.24 x 10^10 | N x 30 x 160 |
-| L1 query cost | 5.9 x 10^8 MACs | Effective support 72 |
+| L1 query cost | at most 2.65 x 10^8 MACs (corrected from 5.9 x 10^8) | Effective support at least 160 |
 | Balanced effective support | 4,000 | FLOPS configuration |
-| Balanced query cost | 1.06 x 10^7 MACs | 56 times below L1 |
+| Balanced query cost | 1.06 x 10^7 MACs | At most 25 times below L1 (corrected from 56 times) |
 | Literal query nonzeros | 8 | Query-side reduction target |
 | Reduced query cost | 2.83 x 10^6 MACs | Another 3.75-times gain |
 | Balanced versus BM25 | 114x | Posting-count work estimate |
-| L1 versus BM25 | 6,400x | Outside shipped range described in the source |
+| L1 versus BM25 | at most about 2,900x (corrected from 6,400x) | Outside shipped range described in the source |
 | Profile sample | 100,000 vectors | Suggested effective-support estimate |
 | Lambda warm-up | First 10% to 15% of steps | Quadratic schedule recommendation |
 | Lambda ratio default | About one order of magnitude | Query pressure above document pressure |

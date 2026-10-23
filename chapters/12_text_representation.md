@@ -149,44 +149,42 @@ The complete lesson is one library policy. Choose each representation by the fai
 
 #### Era one: fixed lexical axes
 
-What it is: Fix a vocabulary V. A chunk becomes d in R^V. Coordinate t is a function of how often term t occurs.
-The chapter treats a vocabulary near 10^5 as ordinary for English technical prose.
-Term-frequency and inverse-document-frequency weighting and BM25 use different term-frequency transforms. Both keep the same diagonal geometry.
-Let W be the diagonal matrix of inverse-document-frequency weights. Distinct term basis vectors remain orthogonal.
+What it is: Fix a vocabulary V. A chunk becomes d in R^V. Coordinate t is a function of how often term t occurs. The chapter treats a vocabulary near 10^5 as ordinary for English technical prose. Term-frequency and inverse-document-frequency weighting and BM25 use different term-frequency transforms. Both keep the same diagonal geometry. Let W be the diagonal matrix of inverse-document-frequency weights. Distinct term basis vectors remain orthogonal.
 
 $$
-inner(e_i, W e_j) = idf_i · δ_ij
+\langle e_i, W e_j \rangle = \text{idf}_i \cdot \delta_{ij}
 $$
 
 Why it exists: A rare term keeps its own axis. A code found in three chunks out of five million can dominate a result without supervision.
 
 What breaks without it: A dense-only system can miss an exact code, version, product identifier, or rare name. No rescaling of fixed orthogonal axes can create synonym similarity either.
+
 Cost and complexity: The worked corpus has 5 x 10^6 chunks and about 150 distinct terms per chunk. It stores 7.5 x 10^8 postings. At 5 bytes per posting, that is 3.75 GB.
 #### Era two: static dense word vectors
 
-What it is: Project vocabulary axes into about 300 learned dimensions. Similar contexts place words near one another.
-CBOW predicts the center word from its surrounding window. Skip-gram predicts the surrounding window from the center word (Mikolov et al., 2013). GloVe factorizes a global co-occurrence matrix (Pennington et al., 2014).
-For m equally frequent, mutually orthogonal unit senses v_j, Arora et al. (2018) give the cited clean-case superposition:
+What it is: Project vocabulary axes into about 300 learned dimensions. Similar contexts place words near one another. CBOW predicts the center word from its surrounding window. Skip-gram predicts the surrounding window from the center word (Mikolov et al., 2013). GloVe factorizes a global co-occurrence matrix (Pennington et al., 2014). For m equally frequent, mutually orthogonal unit senses v_j, Arora et al. (2018) give the cited clean-case superposition:
 
 $$
-v_w = (1 / sqrt(m)) · Σ from j=1 to m of v_j
+v_w = \frac{1}{\sqrt{m}} \sum_{j=1}^{m} v_j
 $$
 
 $$
-cos(v_w, v_j) = 1 / sqrt(m)
+\cos(v_w, v_j) = \frac{1}{\sqrt{m}}
 $$
 
 Why it exists: Off-diagonal similarity becomes nonzero. Synonymy becomes reachable.
 
 What breaks without it: Lexical axes treat car and automobile like unrelated terms.
+
 What this era breaks: One surface form gets one vector. A two-sense word reaches at most 0.71 cosine with the intended clean-case sense. A three-sense word reaches 0.58. The chapter notes that merely topical neighbors can exceed 0.6.
+
 Cost and complexity: Mean-pooling 300-dimensional static vectors for 5 x 10^6 chunks costs 6.0 GB in 32-bit floating point. Mean pooling also makes word order invisible.
 #### Era three: contextual vectors
 
 What it is: Token i becomes a function of the full sequence.
 
 $$
-v_i = f(w_1, ..., w_n)_i
+v_i = f(w_1, \ldots, w_n)_i
 $$
 
 ELMo stacks two bidirectional LSTM layers and learns a mixture of them (Peters et al., 2018). BERT uses a bidirectional transformer trained by masked language modeling (Devlin et al., 2019).
@@ -194,175 +192,169 @@ ELMo stacks two bidirectional LSTM layers and learns a mixture of them (Peters e
 Why it exists: The sequence selects the sense. It removes static sense averaging and restores word order.
 
 What breaks without it: The sentences does the driver block the update and does the update block the driver receive the same mean-pooled static vector.
+
 What this era still breaks: Rare identifiers can fragment under subword tokenization. Mean pooling gives one deciding token only 1/n of the pooled contribution.
+
 Cost and complexity: A 768-dimensional contextual index for 5 x 10^6 chunks costs 15.36 GB in 32-bit floating point.
 #### Era four: universal spaces
 
-What it is: One space attempts to serve several languages, modalities, or tasks.
-Across languages, a French query can retrieve an English chunk. The chapter ties the same shared-space property to translation without an explicit translation objective.
-Across modalities, text and images can share a neighborhood. Across tasks, Muennighoff et al.'s benchmark evaluates one model on 8 task types, 58 datasets, and 112 languages.
+What it is: One space attempts to serve several languages, modalities, or tasks. Across languages, a French query can retrieve an English chunk. The chapter ties the same shared-space property to translation without an explicit translation objective. Across modalities, text and images can share a neighborhood. Across tasks, Muennighoff et al.'s benchmark evaluates one model on 8 task types, 58 datasets, and 112 languages.
 
 Why it exists: One index can support cross-language and cross-modal retrieval.
 
 What breaks without it: Separate monolingual or unimodal spaces cannot directly answer a cross-space query.
+
 What this era can break: The chapter cites the curse of multilinguality. At fixed capacity, adding languages can reduce per-language quality past a point.
-Cost and complexity: A 1024-dimensional universal multilingual index for 5 x 10^6 chunks costs 20.48 GB in 32-bit floating point.
-An HNSW graph with M0 = 32 neighbors and 4-byte neighbor identifiers adds 128 bytes per vector. That is 0.64 GB, or 3% overhead.
+
+Cost and complexity: A 1024-dimensional universal multilingual index for 5 x 10^6 chunks costs 20.48 GB in 32-bit floating point. An HNSW graph with M0 = 32 neighbors and 4-byte neighbor identifiers adds 128 bytes per vector. That is 0.64 GB, or 3% overhead.
 #### The rare-token worked example
 
-The corpus has 5 x 10^6 chunks, 250 tokens per chunk, four languages, and 10,000 queries per day.
-The query is ERR_0x8007005F failed to write registry key.
-The code occurs in 3 chunks. Its stated BM25 inverse document frequency is:
+The corpus has 5 x 10^6 chunks, 250 tokens per chunk, four languages, and 10,000 queries per day. The query is ERR_0x8007005F failed to write registry key. The code occurs in 3 chunks. Its stated BM25 inverse document frequency is:
 
 $$
-ln(((5 · 10^6 - 3 + 0.5) / 3.5) + 1) = 14.17
+\ln\left(\frac{5 \cdot 10^{6} - 3 + 0.5}{3.5} + 1\right) = 14.17
 $$
 
-Each of four ordinary words occurs in about 10^6 chunks. Each gets ln(4.0 + 1) = 1.61.
-With equal saturation factors, the code contributes:
+Each of four ordinary words occurs in about 10^6 chunks. Each gets ln(4.0 + 1) = 1.61. With equal saturation factors, the code contributes:
 
 $$
-14.17 / (14.17 + 4 · 1.61) = 69%
+\frac{14.17}{14.17 + 4 \cdot 1.61} = 69\%
 $$
 
 Mean pooling gives the same token 1/250 = 0.4% of the contextual vector. The chapter states a factor of 170 between 69% and 0.4% in allowed influence.
+
 A 1024-dimensional 32-bit vector occupies 4,096 bytes. The 250-token chunk is roughly 1,000 English characters. The vector index is about four times larger than the corpus it indexes.
+
 Why the comparison matters: The benchmark cited by Thakur et al. found BM25 a robust out-of-domain baseline. Dense retrievers trained on one distribution often failed to beat it off that distribution.
+
 Claim limit: This does not say BM25 always wins. It says one global recall score can hide a literal-token regression and that each representation chooses a failure class.
 #### Decisions from section 12.1
 
-Default to hybrid retrieval with a sparse leg and a contextual or universal dense leg.
-Remove the sparse leg only after query logs show no identifiers, codes, versions, tokenizer-external proper nouns, or other literal-token demand.
-Split evaluation into literal-token and paraphrase slices. Do not trust one global recall-at-k score.
-Do not mean-pool static word vectors over text longer than a phrase. The result is both order-blind and sense-averaged.
-Use static vectors for lexical-neighbor query expansion when that is the desired behavior.
-Adopt a multilingual model only after measuring dominant-language regression and real cross-language demand.
-Treat re-embedding as an operations migration. The cited corpus contains 1.25 x 10^9 tokens.
-At 2N floating-point operations per token for a 110 million-parameter encoder, the work is 2.75 x 10^17 floating-point operations. At the book's sustained 3.4 x 10^14 floating-point operations per second, it takes 13.5 minutes.
-The dual-index window, evaluation rerun, and rollback plan set the schedule. A changed dimension also requires new approximate-nearest-neighbor parameters and a fresh recall-versus-latency sweep.
+- Default to hybrid retrieval with a sparse leg and a contextual or universal dense leg.
+- Remove the sparse leg only after query logs show no identifiers, codes, versions, tokenizer-external proper nouns, or other literal-token demand.
+- Split evaluation into literal-token and paraphrase slices. Do not trust one global recall-at-k score.
+- Do not mean-pool static word vectors over text longer than a phrase. The result is both order-blind and sense-averaged.
+- Use static vectors for lexical-neighbor query expansion when that is the desired behavior.
+- Adopt a multilingual model only after measuring dominant-language regression and real cross-language demand.
+- Treat re-embedding as an operations migration. The cited corpus contains 1.25 x 10^9 tokens. At 2N floating-point operations per token for a 110 million-parameter encoder, the work is 2.75 x 10^17 floating-point operations. At the book's sustained 3.4 x 10^14 floating-point operations per second, it takes 13.5 minutes. The dual-index window, evaluation rerun, and rollback plan set the schedule. A changed dimension also requires new approximate-nearest-neighbor parameters and a fresh recall-versus-latency sweep.
 ### 12.2 Distributional semantics and meaning drift
 
 #### Meaning as a corpus statistic
 
-What it is: The distributional hypothesis estimates a word representation from the contexts in which that word occurs.
-The chapter traces this view to Harris (1954), Firth (1957), and Wittgenstein (1953).
-Let number(w, c) count word-context pairs in corpus D. Pointwise mutual information is:
+What it is: The distributional hypothesis estimates a word representation from the contexts in which that word occurs. The chapter traces this view to Harris (1954), Firth (1957), and Wittgenstein (1953). Let number(w, c) count word-context pairs in corpus D. Pointwise mutual information is:
 
 $$
-PMI(w, c) = log(P(w, c) / (P(w) P(c)))
+\mathop{\text{PMI}}(w, c) = \log \frac{P(w, c)}{P(w) \, P(c)}
 $$
 
 $$
-PMI(w, c) = log(number(w, c) · size(D) / (number(w) · number(c)))
+\mathop{\text{PMI}}(w, c) = \log \frac{\mathop{\text{number}}(w, c) \cdot \lvert D \rvert}{\mathop{\text{number}}(w) \cdot \mathop{\text{number}}(c)}
 $$
 
 Levy and Goldberg (2014) show that skip-gram with negative sampling has the stated sufficient-dimensionality optimum:
 
 $$
-u_w^T v_c = PMI(w, c) - log(k)
+u_w^{\top} v_c = \mathop{\text{PMI}}(w, c) - \log k
 $$
 
 GloVe states the count dependence as:
 
 $$
-u_w^T v_c + b_w + b_c = log(number(w, c))
+u_w^{\top} v_c + b_w + b_c = \log \mathop{\text{number}}(w, c)
 $$
 
 Why it exists: It turns observed use into computable geometry.
 
 What breaks without it: A representation cannot learn semantic neighborhoods from unlabeled corpora.
+
 Its limit: The vector describes one corpus at one moment. It does not store an eternal meaning.
 #### Count drift
 
-Append m uses of word w in contexts disjoint from an old context c. Let r = m / number(w).
-The old association changes by:
+Append m uses of word w in contexts disjoint from an old context c. Let r = m / number(w). The old association changes by:
 
 $$
-Delta PMI(w, c) = -log(1 + r)
+\Delta \mathop{\text{PMI}}(w, c) = -\log(1 + r)
 $$
 
 At r = 0.5, the change is -ln(1.5) = -0.405 nats. The old association ratio falls to 1/1.5 = 0.67.
+
 Why it matters: The whole row rotates toward the new contexts in proportion to their share.
-The slow clock is language change over decades. Hamilton et al. recover the cited shifts of gay and broadcast from decade slices.
-They report a law of conformity, with semantic-change rate scaling as a negative power of frequency. They also report a law of innovation, with rate scaling as a positive power of polysemy.
+
+The slow clock is language change over decades. Hamilton et al. recover the cited shifts of gay and broadcast from decade slices. They report a law of conformity, with semantic-change rate scaling as a negative power of frequency. They also report a law of innovation, with rate scaling as a positive power of polysemy.
+
 Operational implication: Rare and ambiguous terms can drift fastest. Those terms can also decide lexical rankings because of high inverse document frequency.
+
 The fast clock is a company's live corpus, which can adopt a new sense in months.
 #### Why cross-model cosine fails
 
-What it is: Inner-product objectives identify relative geometry only up to an orthogonal transform Q.
-Replacing u by Qu and v by Qv leaves every inner product unchanged.
+What it is: Inner-product objectives identify relative geometry only up to an orthogonal transform Q. Replacing u by Qu and v by Qv leaves every inner product unchanged.
+
 Why alignment exists: Two independent models can place the same relative triangle at different absolute coordinates.
 
 What breaks without it: A cosine between vectors from different model versions measures coordinate disagreement. It does not measure semantic drift.
+
 The stated Procrustes problem is:
 
 $$
-minimize over Q: norm(W_t Q - W_(t+1))_F
+\min_{Q} \; \lVert W_t Q - W_{t+1} \rVert_F
 $$
 
 $$
-subject to Q^T Q = I
+\text{subject to} \quad Q^{\top} Q = I
 $$
 
-If W_t^T W_(t+1) has SVD U S V^T, the stated closed-form map is Q = U V^T.
-The chapter attributes this closed form to Schoenemann (1966).
+If W_t^T W_(t+1) has SVD U S V^T, the stated closed-form map is Q = U V^T. The chapter attributes this closed form to Schoenemann (1966).
+
 Cost and complexity: Alignment needs a stable-word anchor set and validation. The operational alternative is usually a full re-embed.
 #### Three different stale states
 
-Stale content means the source document is wrong. Recrawl it.
-A stale index means a correct document was never embedded. Write it incrementally.
-A stale representation means the encoder's fitted distribution no longer matches the corpus. Re-embed everything or adapt the encoder.
-Only stale representation is meaning drift. An incremental content pipeline cannot repair it.
+Stale content means the source document is wrong. Recrawl it. A stale index means a correct document was never embedded. Write it incrementally. A stale representation means the encoder's fitted distribution no longer matches the corpus. Re-embed everything or adapt the encoder. Only stale representation is meaning drift. An incremental content pipeline cannot repair it.
 #### The engineering-wiki worked example
 
-The index has 2 x 10^6 chunks of 250 tokens. It uses a 768-dimensional, 110 million-parameter encoder. The corpus grows 4% per month.
-The token agent appears in 12,000 chunks at build time. Nine months later, 6,000 new chunks use its autonomous-software sense.
-Then r = 6,000/12,000 = 0.5. The old-context change is -0.405 nats.
+The index has 2 x 10^6 chunks of 250 tokens. It uses a 768-dimensional, 110 million-parameter encoder. The corpus grows 4% per month. The token agent appears in 12,000 chunks at build time. Nine months later, 6,000 new chunks use its autonomous-software sense. Then r = 6,000/12,000 = 0.5. The old-context change is -0.405 nats.
+
 The frozen encoder can place new documents and new queries consistently in the old broker neighborhood. Both sides are consistently wrong, so a consistency check does not expose the failure.
-If only the 6,000 new chunks use encoder v2, queries from v2 compare against 2 x 10^6 old v1 vectors.
-For random unit vectors in d = 768, the stated prior is mean cosine 0 and standard deviation:
+
+If only the 6,000 new chunks use encoder v2, queries from v2 compare against 2 x 10^6 old v1 vectors. For random unit vectors in d = 768, the stated prior is mean cosine 0 and standard deviation:
 
 $$
-1 / sqrt(768) = 0.036
+\frac{1}{\sqrt{768}} = 0.036
 $$
 
 A working threshold near 0.6 is about 0.6/0.036 = 17 standard deviations away. The old index becomes unreachable rather than degrading smoothly.
+
 For 4% monthly all-new-sense growth:
 
 $$
-1 + r(t) = 1.04^t
+1 + r(t) = 1.04^{t}
 $$
 
 The association-halving threshold arrives at:
 
 $$
-t = ln(2) / ln(1.04) = 0.693 / 0.0392 = 17.7 months
+t = \frac{\ln 2}{\ln 1.04} = \frac{0.693}{0.0392} = 17.7 \text{ months}
 $$
 
 A hot term that doubles every quarter reaches the same threshold in one quarter.
-Re-embedding 2 x 10^6 chunks at 250 tokens processes 5 x 10^8 tokens.
-At the stated rate, this is 1.1 x 10^17 floating-point operations, 324 seconds, or 5.4 minutes.
+
+Re-embedding 2 x 10^6 chunks at 250 tokens processes 5 x 10^8 tokens. At the stated rate, this is 1.1 x 10^17 floating-point operations, 324 seconds, or 5.4 minutes.
+
 Claim limit: The 17.7-month cadence is not universal. The fastest important slice sets the cadence.
 #### Decisions from section 12.2
 
-Make the model version part of the index identity. Use one collection per encoder and revision pair.
-Refuse partial migrations unless an alignment map has passed held-out paraphrase validation.
-Trigger re-embedding from measured drift rather than a calendar alone.
-The chapter's default monitor reports terms whose document frequency more than doubled since build time. It intersects that list with query logs and re-embeds when such a term appears in more than 1% of queries.
-Separate a new token from a new sense. A sparse index handles a new surface token as soon as it is written. It does not separate two senses of an old term.
-Freeze 200-300 query and known-relevant-chunk probe pairs at index build time. Report the known chunk's rank monthly.
-Refresh the probe set when it stops matching live traffic. Mark that refresh as a discontinuity.
-Use continued contrastive training when permanent domain senses have tens of thousands of in-domain pairs.
-When examples number only in the hundreds, the chapter recommends a cheaper and more auditable alias or sparse expansion layer.
+- Make the model version part of the index identity. Use one collection per encoder and revision pair.
+- Refuse partial migrations unless an alignment map has passed held-out paraphrase validation.
+- Trigger re-embedding from measured drift rather than a calendar alone. The chapter's default monitor reports terms whose document frequency more than doubled since build time. It intersects that list with query logs and re-embeds when such a term appears in more than 1% of queries.
+- Separate a new token from a new sense. A sparse index handles a new surface token as soon as it is written. It does not separate two senses of an old term.
+- Freeze 200-300 query and known-relevant-chunk probe pairs at index build time. Report the known chunk's rank monthly.
+- Refresh the probe set when it stops matching live traffic. Mark that refresh as a discontinuity.
+- Use continued contrastive training when permanent domain senses have tens of thousands of in-domain pairs. When examples number only in the hundreds, the chapter recommends a cheaper and more auditable alias or sparse expansion layer.
 ### 12.3 Sparse versus dense
 
 #### Dimension is not storage
 
-What it is: A sparse document vector x lives in R^V. Its nonzero count is nnz(x).
-A dense vector z lives in R^d. The encoder emits no exact zeros, so nnz(z) = d.
-For a 250-token chunk with type-token ratio 0.64, the chapter uses 160 distinct terms.
-With V = 30,522, density is 160/30,522 = 0.52%.
-The dense vector stores all 768 coordinates. The 30,522-dimensional sparse object stores 4.8 times fewer numbers per document.
+What it is: A sparse document vector x lives in R^V. Its nonzero count is nnz(x). A dense vector z lives in R^d. The encoder emits no exact zeros, so nnz(z) = d. For a 250-token chunk with type-token ratio 0.64, the chapter uses 160 distinct terms. With V = 30,522, density is 160/30,522 = 0.52%. The dense vector stores all 768 coordinates. The 30,522-dimensional sparse object stores 4.8 times fewer numbers per document.
+
 Why the distinction exists: Dimension measures ambient space. Support measures stored coordinates.
 
 What breaks without it: Capacity planning can invert the true memory ratio by reasoning from dimension names alone.
@@ -372,96 +364,92 @@ What it is: Sparse coordinate j means term j because the vocabulary fixes the ba
 
 Why it exists: A rare term owns one axis. A new term gets an axis when indexed.
 
-What breaks without it: An individual dense coordinate cannot carry a stable label.
-The dense objective depends on inner products. Any orthogonal rotation rewrites coordinates while preserving retrieval.
-Claim limit: A probe can find a predictive direction. The symmetry rules out a stable claim about one coordinate, not every analysis of a direction.
-Interpretability comes from the fixed basis, not sparsity alone.
+What breaks without it: An individual dense coordinate cannot carry a stable label. The dense objective depends on inner products. Any orthogonal rotation rewrites coordinates while preserving retrieval.
+
+Claim limit: A probe can find a predictive direction. The symmetry rules out a stable claim about one coordinate, not every analysis of a direction. Interpretability comes from the fixed basis, not sparsity alone.
+
 Learned sparse models preserve a vocabulary basis but change the coordinate claim. SPLADE can activate a term absent from the document. The weight then means the term is a useful query for that document, not that the document contains it.
 #### Exact match as gate versus margin
 
 Take unit token vectors v_1 through v_n with mean pairwise inner product rho. Let S be their sum.
 
 $$
-norm(S) = sqrt(n + n(n - 1) rho)
+\lVert S \rVert = \sqrt{n + n(n - 1)\rho}
 $$
 
 For an identifier-only query q = v_t, the extra cosine from the matching token is:
 
 $$
-Delta cos = 1 / sqrt(n + n(n - 1) rho)
+\Delta \cos = \frac{1}{\sqrt{n + n(n - 1)\rho}}
 $$
 
-At n = 250 and rho = 0, the generous margin is 1/sqrt(250) = 0.063.
-At rho = 0.5, norm(S) = sqrt(31,375) = 177.1. The margin is 0.0056.
-Why it matters: That 0.0056 advantage must survive the spread of already-high dense scores.
-The chapter cites Ethayarajh (2019) for last-layer GPT-2 word cosine near 1.0 and increasing anisotropy with depth in BERT and ELMo.
+At n = 250 and rho = 0, the generous margin is 1/sqrt(250) = 0.063. At rho = 0.5, norm(S) = sqrt(31,375) = 177.1. The margin is 0.0056.
+
+Why it matters: That 0.0056 advantage must survive the spread of already-high dense scores. The chapter cites Ethayarajh (2019) for last-layer GPT-2 word cosine near 1.0 and increasing anisotropy with depth in BERT and ELMo.
+
 On the sparse side, a document without the term scores exactly 0 for that term. The distinction is a gate rather than a small margin.
 #### Why more dense dimensions do not fix the objective
 
 Raising d from 768 to 4096 for 10^7 chunks costs 164 GB in 32-bit floating point. That is 5.3 times the 30.7 GB vector cost at d = 768.
+
 The stated Welch-bound floor for m unit vectors in R^d is:
 
 $$
-sqrt((m - d) / (d(m - 1)))
+\sqrt{\frac{m - d}{d(m - 1)}}
 $$
 
 For m = 30,522 and d = 768, it is:
 
 $$
-sqrt((30,522 - 768) / (768 · 30,521)) = sqrt(1.269 · 10^-3) = 0.0356
+\sqrt{\frac{30{,}522 - 768}{768 \cdot 30{,}521}} = \sqrt{1.269 \cdot 10^{-3}} = 0.0356
 $$
 
 This is close to the random-unit-vector chance level 1/sqrt(768) = 0.036.
 
 Why it exists: The bound tests directional capacity.
+
 What the result means: The space can fit the cited vocabulary in almost orthogonal directions. Training spends that capacity on semantic similarity instead of reserving one axis per string.
+
 Claim limit: Higher d can help other representation-quality failures. This derivation says it does not target exact string matching.
 #### Ten-million-chunk memory example
 
-Take N = 10^7 chunks, 250 tokens each, 160 distinct terms per chunk, and d = 768.
-The inverted index has 10^7 x 160 = 1.6 x 10^9 postings.
-Naive 4-byte document identifiers plus 4-byte term frequencies cost 12.8 GB.
+Take N = 10^7 chunks, 250 tokens each, 160 distinct terms per chunk, and d = 768. The inverted index has 10^7 x 160 = 1.6 x 10^9 postings. Naive 4-byte document identifiers plus 4-byte term frequencies cost 12.8 GB.
+
 Sorted identifiers permit gap coding. The chapter states the approximate information cost:
 
 $$
-log_2(choose(N, n)) approx n · (log_2(N/n) + log_2(e)) bits
+\log_2 \binom{N}{n} \approx n \left(\log_2 \frac{N}{n} + \log_2 e\right) \text{ bits}
 $$
 
-At posting-list length n = 10^5, the result is 6.64 + 1.44 = 8.09 bits per posting, about one byte.
-The cited range is 0.60 bytes at n = 10^6 to 2.67 bytes at n = 10.
-Document identifiers then cost 1.6 GB. Mostly-one term frequencies add 0.4 GB. The sparse estimate is 2 GB.
-Dense vectors cost 10^7 x 768 x 4 = 3.07 x 10^10 bytes, or 30.7 GB.
-An HNSW graph with M = 32 stores 64 layer-zero neighbor identifiers. It adds 2.56 x 10^9 bytes, or 2.6 GB.
-The dense total is 33.3 GB, or 16.6 times the sparse index, even though the vocabulary is about 40 times the dense dimension.
+At posting-list length n = 10^5, the result is 6.64 + 1.44 = 8.09 bits per posting, about one byte. The cited range is 0.60 bytes at n = 10^6 to 2.67 bytes at n = 10. Document identifiers then cost 1.6 GB. Mostly-one term frequencies add 0.4 GB. The sparse estimate is 2 GB.
+
+Dense vectors cost 10^7 x 768 x 4 = 3.07 x 10^10 bytes, or 30.7 GB. An HNSW graph with M = 32 stores 64 layer-zero neighbor identifiers. It adds 2.56 x 10^9 bytes, or 2.6 GB. The dense total is 33.3 GB, or 16.6 times the sparse index, even though the vocabulary is about 40 times the dense dimension.
+
 Heaps' law with k = 30 and beta = 0.5 over 2.5 x 10^9 tokens predicts 1.5 x 10^6 types (Manning et al., 2008). That is nearly 2,000 times d and still fits the 2 GB posting estimate.
-For query E-4471-B, the dense exact-match advantage at n = 250 and rho = 0.5 is 0.0056. Sparse gives every nonmatching chunk zero for the term.
-Reducing vector precision from 32-bit to 16-bit floating point takes 30.7 GB to 15.4 GB. It does not change what the space can express.
-The cited Dense Passage Retrieval release has 21,015,324 Wikipedia passages at d = 768 (Karpukhin et al., 2020). The flat 32-bit calculation is 64.6 GB, matching the quoted approximate 65 GB.
-The estimated classical inverted index over those passages is near 2 GB.
+
+For query E-4471-B, the dense exact-match advantage at n = 250 and rho = 0.5 is 0.0056. Sparse gives every nonmatching chunk zero for the term. Reducing vector precision from 32-bit to 16-bit floating point takes 30.7 GB to 15.4 GB. It does not change what the space can express.
+
+The cited Dense Passage Retrieval release has 21,015,324 Wikipedia passages at d = 768 (Karpukhin et al., 2020). The flat 32-bit calculation is 64.6 GB, matching the quoted approximate 65 GB. The estimated classical inverted index over those passages is near 2 GB.
 #### Decisions from section 12.3
 
-Estimate sparse storage as N x nonzeros x about 1 byte.
-Estimate dense storage as N x d x bytes plus N x 2M x 4 for the stated HNSW layer-zero graph.
-Adjust the sparse estimate upward for learned expansion. SPLADE's FLOPS regularizer controls that cost.
-Keep a fixed-basis leg for queries whose answer is a string. Examples include stock-keeping units, error codes, ticket identifiers, versions, and names.
-Fuse by rank rather than raw score.
-Do not raise d to fix string misses. Spend on a lexical leg.
-If paraphrase misses dominate, a stronger or multi-vector encoder can be the right spend.
-Measure the exact-match margin. Embed 100 paired passages with and without identifiers. Compare paired score differences with the interquartile range of top-100 live-query scores.
-At n = 25 and rho = 0.5, the same formula gives 0.056. That is ten times the 250-token margin.
-Use sparse term weights as a debugging surface. Do not claim that they explain why a passage answers a question.
+- Estimate sparse storage as N x nonzeros x about 1 byte.
+- Estimate dense storage as N x d x bytes plus N x 2M x 4 for the stated HNSW layer-zero graph.
+- Adjust the sparse estimate upward for learned expansion. SPLADE's FLOPS regularizer controls that cost.
+- Keep a fixed-basis leg for queries whose answer is a string. Examples include stock-keeping units, error codes, ticket identifiers, versions, and names.
+- Fuse by rank rather than raw score.
+- Do not raise d to fix string misses. Spend on a lexical leg.
+- If paraphrase misses dominate, a stronger or multi-vector encoder can be the right spend.
+- Measure the exact-match margin. Embed 100 paired passages with and without identifiers. Compare paired score differences with the interquartile range of top-100 live-query scores. At n = 25 and rho = 0.5, the same formula gives 0.056. That is ten times the 250-token margin.
+- Use sparse term weights as a debugging surface. Do not claim that they explain why a passage answers a question.
 ### 12.4 Sentence embeddings and text augmentation
 
 #### A sentence vector needs a sentence objective
 
 What it is: A sentence encoder maps token sequence x = (w_1, ..., w_n) to h in R^d.
 
-Why it exists: Pairwise cross-encoding does not scale to retrieval collections.
-For 10^4 sentences, all unordered pairs total 49,995,000 forward passes.
-Reimers and Gurevych report roughly 65 hours for that comparison. Pre-encoding each sentence and using dot products takes about 5 seconds.
-Three cited pooling choices are the first BERT classification token, the first token generated by a decoder, and the mean of encoder token vectors.
-Raw BERT classification-token vectors score 29.19 average Spearman on the cited semantic-textual-similarity benchmarks.
-Mean-pooled BERT scores 54.81. Both trail averaged GloVe vectors in that report.
+Why it exists: Pairwise cross-encoding does not scale to retrieval collections. For 10^4 sentences, all unordered pairs total 49,995,000 forward passes. Reimers and Gurevych report roughly 65 hours for that comparison. Pre-encoding each sentence and using dot products takes about 5 seconds.
+
+Three cited pooling choices are the first BERT classification token, the first token generated by a decoder, and the mean of encoder token vectors. Raw BERT classification-token vectors score 29.19 average Spearman on the cited semantic-textual-similarity benchmarks. Mean-pooled BERT scores 54.81. Both trail averaged GloVe vectors in that report.
 
 What breaks without the right objective: Masked language modeling never asks a pooled sentence vector to place paraphrases together. Pooling alone cannot add that property.
 #### Contrastive training and positive sensitivity
@@ -469,59 +457,59 @@ What breaks without the right objective: Masked language modeling never asks a p
 For anchor x_i, positive x_i+, batch size N, and temperature tau, the stated loss is:
 
 $$
-loss_i = -log(exp(cos(h_i, h_i+) / tau) / sum from j=1 to N of exp(cos(h_i, h_j+) / tau))
+\text{loss}_i = -\log \frac{\exp\left(\cos(h_i, h_i^{+}) / \tau\right)}{\sum_{j=1}^{N} \exp\left(\cos(h_i, h_j^{+}) / \tau\right)}
 $$
 
-The chapter sets tau = 0.05.
-A cosine gap of 0.1 becomes a logit gap of 2.
+The chapter sets tau = 0.05. A cosine gap of 0.1 becomes a logit gap of 2.
 
 Why it exists: The loss directly asks the sentence space to recognize designated equivalents.
 
 What breaks without valid positives: A corrupted positive teaches the encoder to merge different meanings.
 #### Why vision augmentation does not transfer
 
-A 224 x 224 x 3 image contains 150,528 real-valued scalars.
-A crop, color change, or blur can alter many scalars while keeping a human label.
-Text lives on a discrete token lattice V^n. The smallest edit is one whole token.
-Inserting not into a six-word clinical claim changes one seventh of the input and can switch entailment to contradiction.
-Let n = 20 and let c tokens carry the meaning-sensitive details. Edit each token independently with probability rho.
-The chance of corrupting at least one critical token is:
+A 224 x 224 x 3 image contains 150,528 real-valued scalars. A crop, color change, or blur can alter many scalars while keeping a human label.
+
+Text lives on a discrete token lattice V^n. The smallest edit is one whole token. Inserting not into a six-word clinical claim changes one seventh of the input and can switch entailment to contradiction.
+
+Let n = 20 and let c tokens carry the meaning-sensitive details. Edit each token independently with probability rho. The chance of corrupting at least one critical token is:
 
 $$
-P(corrupted) = 1 - (1 - rho)^c
+P(\text{corrupted}) = 1 - (1 - \rho)^{c}
 $$
 
 For c = 2, the rates are 19% at rho = 0.1, 36% at rho = 0.2, and 51% at rho = 0.3.
+
 Why the formula matters: The contrastive loss cannot identify mislabeled pairs. It pulls a claim toward its negation exactly as instructed.
+
 Claim limit: The chapter does not claim every generated paraphrase is bad. It requires measuring semantic corruption rather than assuming label preservation.
 #### Dropout moves the function, not the input
 
 Feed the same tokens through the same encoder with independent dropout masks m_1 and m_2.
 
 $$
-h_1 = f_(m_1)(x), h_2 = f_(m_2)(x)
+h_1 = f_{m_1}(x), \quad h_2 = f_{m_2}(x)
 $$
 
 For keep probability 1 - p with inverted scaling:
 
 $$
-u_i = m_(1i) h_i / (1 - p), v_i = m_(2i) h_i / (1 - p)
+u_i = \frac{m_{1i} h_i}{1 - p}, \quad v_i = \frac{m_{2i} h_i}{1 - p}
 $$
 
 The stated expectations are:
 
 $$
-E[inner(u, v)] = norm(h)^2
+\mathbb{E}\left[\langle u, v \rangle\right] = \lVert h \rVert^{2}
 $$
 
 $$
-E[norm(u)^2] = norm(h)^2 / (1 - p)
+\mathbb{E}\left[\lVert u \rVert^{2}\right] = \frac{\lVert h \rVert^{2}}{1 - p}
 $$
 
 The resulting approximation is:
 
 $$
-cos(u, v) approx 1 - p
+\cos(u, v) \approx 1 - p
 $$
 
 At p = 0.1, expected view cosine is about 0.90. At p = 0.5, it is about 0.50. An identical mask gives 1.0.
@@ -531,43 +519,33 @@ Why it exists: The tokens remain identical, so corruption rate is zero by constr
 What breaks without independent masks: A fixed shared mask produces the same positive vector. The positive numerator becomes constant and only negatives receive gradient.
 #### Reported augmentation findings
 
-Unsupervised SimCSE with p = 0.1 scores 82.5 Spearman on STS-B development (Gao et al., 2021).
-The p = 0.5 result is 71.0. The p = 0 result is 71.1. Reusing a fixed mask falls to 43.6.
-The interpretation stated in the chapter is that alignment dies while uniformity improves with the fixed mask, using the decomposition of Wang and Isola (2020).
-Every tested discrete augmentation loses to dropout in the cited table.
-Cropping 10% of tokens scores 77.8. Deleting one word scores 75.9. Synonym replacement scores 77.4. Masked-language-model token replacement at 15% scores 62.2.
-Supervised SimCSE uses NLI entailments as positives and contradictions as hard negatives.
-Its cited averaged Spearman score is 81.6 versus 76.3 for unsupervised SimCSE. The difference is 5.3 points.
+Unsupervised SimCSE with p = 0.1 scores 82.5 Spearman on STS-B development (Gao et al., 2021). The p = 0.5 result is 71.0. The p = 0 result is 71.1. Reusing a fixed mask falls to 43.6. The interpretation stated in the chapter is that alignment dies while uniformity improves with the fixed mask, using the decomposition of Wang and Isola (2020).
+
+Every tested discrete augmentation loses to dropout in the cited table. Cropping 10% of tokens scores 77.8. Deleting one word scores 75.9. Synonym replacement scores 77.4. Masked-language-model token replacement at 15% scores 62.2.
+
+Supervised SimCSE uses NLI entailments as positives and contradictions as hard negatives. Its cited averaged Spearman score is 81.6 versus 76.3 for unsupervised SimCSE. The difference is 5.3 points.
+
 Claim limit: Dropout is the best free positive in the reported comparison. It is not better than genuine labeled positives.
 #### Two-million-ticket worked example
 
-The setup has 2 x 10^6 support tickets, a 110 million-parameter encoder, median n = 20, and c = 2 critical tokens.
-Training samples 10^6 sentences for one epoch at batch size 64. That is 15,625 steps.
-At rho = 0.1, word deletion removes 2 of 20 tokens on average.
-The 19% corruption rate means about 12 of 64 positive pairs per batch are not paraphrases. The epoch contains 190,000 mislabeled pairs.
-For corruption rates 19%, 36%, and 51%, the cited 10%, 20%, and 30% crop scores are 77.8, 71.4, and 63.6.
-Those are drops of 4.7, 11.1, and 18.9 from the 82.5 dropout baseline.
-The chapter's two-endpoint regression gives (18.9 - 4.7)/(51 - 19) = 0.44 Spearman points lost per percentage point of corrupted pairs.
-For dropout p = 0.1, corruption is 0 and view similarity is about 0.90.
-The simple exchange rate predicts an 8.4-point cost for 19% corruption. The measured gap between single-word deletion at 10% and dropout is 6.6. The estimate is high by under 2 points.
-Each training step runs 128 sequence views padded to 32 tokens, or 4,096 tokens.
-Forward and backward work is 6N = 6.6 x 10^8 floating-point operations per token.
-That is 2.70 x 10^12 floating-point operations per step and 4.22 x 10^16 for the epoch.
-At the book's sustained rate, training takes 124 seconds.
-Embedding the full corpus at 64 tokens per ticket costs 2.82 x 10^16 floating-point operations and another 83 seconds.
-The chapter concludes that evaluation quality, not this compute estimate, is the constraint.
+The setup has 2 x 10^6 support tickets, a 110 million-parameter encoder, median n = 20, and c = 2 critical tokens. Training samples 10^6 sentences for one epoch at batch size 64. That is 15,625 steps. At rho = 0.1, word deletion removes 2 of 20 tokens on average. The 19% corruption rate means about 12 of 64 positive pairs per batch are not paraphrases. The epoch contains 190,000 mislabeled pairs.
+
+For corruption rates 19%, 36%, and 51%, the cited 10%, 20%, and 30% crop scores are 77.8, 71.4, and 63.6. Those are drops of 4.7, 11.1, and 18.9 from the 82.5 dropout baseline. The chapter's two-endpoint regression gives (18.9 - 4.7)/(51 - 19) = 0.44 Spearman points lost per percentage point of corrupted pairs. For dropout p = 0.1, corruption is 0 and view similarity is about 0.90. The simple exchange rate predicts an 8.4-point cost for 19% corruption. The measured gap between single-word deletion at 10% and dropout is 6.6. The estimate is high by under 2 points.
+
+Each training step runs 128 sequence views padded to 32 tokens, or 4,096 tokens. Forward and backward work is 6N = 6.6 x 10^8 floating-point operations per token. That is 2.70 x 10^12 floating-point operations per step and 4.22 x 10^16 for the epoch. At the book's sustained rate, training takes 124 seconds.
+
+Embedding the full corpus at 64 tokens per ticket costs 2.82 x 10^16 floating-point operations and another 83 seconds. The chapter concludes that evaluation quality, not this compute estimate, is the constraint.
 #### Decisions from section 12.4
 
-Use dropout as the only augmentation when no labeled positives exist.
-Prefer real positives from duplicate-ticket links, accepted-answer pairs, or NLI entailment when available.
-Tune p as a view-similarity target. The chapter recommends sweeping 0.05 to 0.15, recentered if the base encoder used another dropout rate.
-Audit 100 generated pairs. Stratify negation, numerals, and entity names.
-Use 19% corruption as the cited prior when rho = 0.1 and c = 2. Measure instead of assuming it.
-The chapter says back-translation through a high-resource language corrupts far less than token edits, but it still requires measurement.
-For sensitive text, an external paraphraser also creates a data-residency decision and inherits its teacher's limits.
-Match serving-time pooling to checkpoint training. A silent classification-token versus mean-pooling mismatch can exceed any approximate-search tuning gain.
-Switch the encoder to eval mode for indexing and queries. Training-mode dropout makes repeated encodings inconsistent.
-Any checkpoint, p, or pooling change creates a new representation version and requires a new index.
+- Use dropout as the only augmentation when no labeled positives exist.
+- Prefer real positives from duplicate-ticket links, accepted-answer pairs, or NLI entailment when available.
+- Tune p as a view-similarity target. The chapter recommends sweeping 0.05 to 0.15, recentered if the base encoder used another dropout rate.
+- Audit 100 generated pairs. Stratify negation, numerals, and entity names.
+- Use 19% corruption as the cited prior when rho = 0.1 and c = 2. Measure instead of assuming it.
+- The chapter says back-translation through a high-resource language corrupts far less than token edits, but it still requires measurement. For sensitive text, an external paraphraser also creates a data-residency decision and inherits its teacher's limits.
+- Match serving-time pooling to checkpoint training. A silent classification-token versus mean-pooling mismatch can exceed any approximate-search tuning gain.
+- Switch the encoder to eval mode for indexing and queries. Training-mode dropout makes repeated encodings inconsistent.
+- Any checkpoint, p, or pooling change creates a new representation version and requires a new index.
 ### 12.5 What a sentence embedding actually contains
 
 #### Capacity before intuition
@@ -575,83 +553,80 @@ Any checkpoint, p, or pooling change creates a new representation version and re
 What it is: A d = 768 vector in 32-bit floating point stores:
 
 $$
-768 · 32 = 24,576 bits = 3,072 bytes
+768 \cdot 32 = 24{,}576 \text{ bits} = 3{,}072 \text{ bytes}
 $$
 
-A 32-token passage is estimated at 32 x 4 = 128 English characters.
-Using the cited estimate of about 1 bit of entropy per printed English character, the passage contains roughly 128 bits.
-The vector container therefore holds 24,576/128 = 192 times as many bits.
+A 32-token passage is estimated at 32 x 4 = 128 English characters. Using the cited estimate of about 1 bit of entropy per printed English character, the passage contains roughly 128 bits. The vector container therefore holds 24,576/128 = 192 times as many bits.
+
 Why it matters: There is no bit-capacity obstacle to recovering the short passage.
+
 Claim limit: Capacity permits recovery. It does not prove that the encoder preserved every passage.
 #### Iterative inversion
 
-The naive decoder emits text once from e(x). It cannot grade whether its guess maps near the target.
-The cited correction method emits hypothesis x_hat(t), re-embeds it, and conditions the next correction on the target vector, current text, and current vector.
+The naive decoder emits text once from e(x). It cannot grade whether its guess maps near the target. The cited correction method emits hypothesis x_hat(t), re-embeds it, and conditions the next correction on the target vector, current text, and current vector.
 
 $$
-x_hat(t+1) = corrector(e(x), x_hat(t), e(x_hat(t)))
+\hat{x}^{(t+1)} = \mathop{\text{corrector}}\left(e(x), \hat{x}^{(t)}, e(\hat{x}^{(t)})\right)
 $$
 
 The same public encoder supplies the objective distance between e(x_hat) and e(x).
 
 Why it exists: Re-embedding turns one-shot generation into search with a self-grading oracle.
-Reported finding: Morris et al. recover 92% of 32-token inputs exactly from the embedding alone.
-Figure 12.5 states 50 correction rounds for that illustrated result.
+
+Reported finding: Morris et al. recover 92% of 32-token inputs exactly from the embedding alone. Figure 12.5 states 50 correction rounds for that illustrated result.
 
 What breaks without access to the encoder: The attack loses its cheap grading oracle. The chapter therefore treats authenticated, logged, rate-limited embedding access as a security control when weights are not already public.
 #### Why embedding-as-hash fails
 
-A cryptographic hash is designed to destroy recoverable structure and separate similar inputs.
-An embedding is designed to preserve similarity distances.
+A cryptographic hash is designed to destroy recoverable structure and separate similar inputs. An embedding is designed to preserve similarity distances.
+
 Why the distinction matters: Similarity search and irreversibility pull in opposite directions.
+
 The chapter's strongest formulation is that the embedding carries the sentence in another basis. The reported exact-recovery result supports that claim for the stated 32-token setting.
+
 Claim limit: Recovery accuracy degrades as passages lengthen. The source does not claim 92% exact recovery for every model or passage length.
 #### Productive use of the stored content
 
-xRAG freezes the vector store and the LLM. It trains a projector from a retrieval embedding into the LLM input space (Cheng et al., 2024).
-A retrieved document can then enter context as one vector instead of 200 tokens.
-The stated obstacle is modality mismatch. Retrieval space serves similarity. LLM input space serves generation.
-The projector uses paraphrase captioning and instruction tuning, drawing on vision-language alignment objectives.
-The cited report finds an average improvement above 10% across six knowledge-intensive tasks and a 3.53 times reduction in overall floating-point operations.
+xRAG freezes the vector store and the LLM. It trains a projector from a retrieval embedding into the LLM input space (Cheng et al., 2024). A retrieved document can then enter context as one vector instead of 200 tokens. The stated obstacle is modality mismatch. Retrieval space serves similarity. LLM input space serves generation.
+
+The projector uses paraphrase captioning and instruction tuning, drawing on vision-language alignment objectives. The cited report finds an average improvement above 10% across six knowledge-intensive tasks and a 3.53 times reduction in overall floating-point operations.
+
 The chapter links this behavior to attention patterns. The first two layers attend locally. From roughly layer two upward, attention mass concentrates on the first position, matching the attention-sink behavior named by Xiao et al. (2023).
+
 The reported weak case is multi-hop questions. One vector has limited room to preserve a hierarchy of facts for the projector.
+
 Claim limit: The chapter recommends embedding-as-context only when prefill dominates and the task is single-hop.
 #### Quantization and the content line
 
-For 10^7 chunks, unquantized 32-bit vectors cost 10^7 x 3,072 bytes = 30.7 GB.
-Each vector holds 24,576 bits versus about 128 content bits, or 192 times more container than content.
-Product quantization with m = 48 subvectors and 8 bits per subvector stores 48 bytes per vector.
-That is 0.48 GB for 10^7 vectors, a 64 times memory reduction.
-The code still holds 384 bits, or 3 times the estimated passage content.
-Binary quantization stores 1 bit per dimension. A 768-dimensional code is 96 bytes.
-That is 0.96 GB, a 32 times memory reduction. The 768-bit code is 6 times the estimated content.
-To reach at most 128 bits with 8-bit product-quantization codes, m must be at most 16.
-That assigns one code to every 48 dimensions and compresses the vector 192 times. The chapter states that this gives up the recall the index exists to provide.
+For 10^7 chunks, unquantized 32-bit vectors cost 10^7 x 3,072 bytes = 30.7 GB. Each vector holds 24,576 bits versus about 128 content bits, or 192 times more container than content.
+
+Product quantization with m = 48 subvectors and 8 bits per subvector stores 48 bytes per vector. That is 0.48 GB for 10^7 vectors, a 64 times memory reduction. The code still holds 384 bits, or 3 times the estimated passage content.
+
+Binary quantization stores 1 bit per dimension. A 768-dimensional code is 96 bytes. That is 0.96 GB, a 32 times memory reduction. The 768-bit code is 6 times the estimated content.
+
+To reach at most 128 bits with 8-bit product-quantization codes, m must be at most 16. That assigns one code to every 48 dimensions and compresses the vector 192 times. The chapter states that this gives up the recall the index exists to provide.
+
 Why the comparison matters: Moving left on the memory axis does not become redaction while the code remains above the content line.
+
 Claim limit: The chapter says no useful point on this stated compression curve serves as a privacy control. Quantization remains a recall-memory choice.
 #### Attack cost
 
-The example uses 50 correction rounds, beam width 8, a 110 million-parameter encoder, a 220 million-parameter corrector, and 32 generated tokens.
-One hypothesis costs 2 x 1.1 x 10^8 x 32 = 7.0 x 10^9 floating-point operations to re-embed.
-Generation costs 2 x 2.2 x 10^8 x 32 = 1.4 x 10^10 floating-point operations.
-Total per hypothesis is 2.1 x 10^10 floating-point operations.
-The 50 x 8 = 400 hypotheses cost 8.4 x 10^12 floating-point operations per passage.
-At 3.4 x 10^14 floating-point operations per second, that is about 25 milliseconds per passage.
-For 10^7 passages, the stated total is 2.5 x 10^5 seconds, or about 69 hours.
+The example uses 50 correction rounds, beam width 8, a 110 million-parameter encoder, a 220 million-parameter corrector, and 32 generated tokens. One hypothesis costs 2 x 1.1 x 10^8 x 32 = 7.0 x 10^9 floating-point operations to re-embed. Generation costs 2 x 2.2 x 10^8 x 32 = 1.4 x 10^10 floating-point operations. Total per hypothesis is 2.1 x 10^10 floating-point operations. The 50 x 8 = 400 hypotheses cost 8.4 x 10^12 floating-point operations per passage.
+
+At 3.4 x 10^14 floating-point operations per second, that is about 25 milliseconds per passage. For 10^7 passages, the stated total is 2.5 x 10^5 seconds, or about 69 hours.
+
 A 512-token chunk carries about 2,048 bits under the same rough entropy estimate. That remains below 24,576 container bits.
+
 Claim limit: Longer text lowers exact recovery. The source still treats partial reconstruction as unsafe.
 #### Decisions from section 12.5
 
-Classify the vector store at the same level as the source text.
-Apply the same access controls, retention clock, region restrictions, and deletion path.
-Never call quantization a privacy control. Select code size and bit depth from the recall-memory curve.
-Redact PII before embedding. Store any mapping inside the governed system.
-If redaction destroys required retrieval signal, exclude the corpus instead of assuming the vector forgets it.
-Authenticate, rate-limit, and log the embedding endpoint when the encoder is private.
-If the encoder weights are public, rate limiting does not remove a local attacker's oracle.
-Delete the vector, its compressed code, its replicas, and its tombstone target when honoring erasure.
-Pair immediate tombstoning with a compaction SLA. A soft-deleted vector left in an HNSW graph remains a recoverable copy.
-Use embedding-as-context only when measured prefill cost dominates and the question path is single-hop.
+- Classify the vector store at the same level as the source text. Apply the same access controls, retention clock, region restrictions, and deletion path.
+- Never call quantization a privacy control. Select code size and bit depth from the recall-memory curve.
+- Redact PII before embedding. Store any mapping inside the governed system. If redaction destroys required retrieval signal, exclude the corpus instead of assuming the vector forgets it.
+- Authenticate, rate-limit, and log the embedding endpoint when the encoder is private. If the encoder weights are public, rate limiting does not remove a local attacker's oracle.
+- Delete the vector, its compressed code, its replicas, and its tombstone target when honoring erasure.
+- Pair immediate tombstoning with a compaction SLA. A soft-deleted vector left in an HNSW graph remains a recoverable copy.
+- Use embedding-as-context only when measured prefill cost dominates and the question path is single-hop.
 ## Diagrams
 
 ### Figure 12.1

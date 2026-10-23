@@ -160,21 +160,21 @@ The reference desk succeeds when it chooses the smallest repair that matches the
 **What it is.** A lexical index sees the form f. The user intends the concept c. The chapter separates two conditionals.
 
 $$
-Pr(f | c) = how often concept c is written as form f
+\Pr(f \mid c) = \text{how often concept } c \text{ is written as form } f
 $$
 
 $$
-Pr(c | f) = how often form f means concept c
+\Pr(c \mid f) = \text{how often form } f \text{ means concept } c
 $$
 
 Searching only one form creates two ceilings.
 
 $$
-Recall ≤ Pr(f | c)
+\text{Recall} \le \Pr(f \mid c)
 $$
 
 $$
-Precision ≤ Pr(c | f)
+\text{Precision} \le \Pr(c \mid f)
 $$
 
 Bayes connects the conditionals, but it does not make them move together.
@@ -194,17 +194,17 @@ Dense retrieval also changes observability. A lexical index exposes a zero-posti
 **Cost and complexity.** A missing rare term can remove most query discrimination. Lucene's IDF formula in the source is:
 
 $$
-IDF(t) = ln(1 + (N − n + 0.5) / (n + 0.5))
+\text{IDF}(t) = \ln(1 + (N - n + 0.5) / (n + 0.5))
 $$
 
 For N = 10⁷ chunks, n(bed) = 10⁵, and n(twin) = 10⁴:
 
 $$
-IDF(bed) = ln(100) = 4.61
+\text{IDF}(\text{bed}) = \ln(100) = 4.61
 $$
 
 $$
-IDF(twin) = ln(1000) = 6.91
+\text{IDF}(\text{twin}) = \ln(1000) = 6.91
 $$
 
 Using the unrounded IDFs, the intact query has 11.51 nats of discriminative mass. The typo query "twn bed" keeps 4.61. It loses 6.91 / 11.51 = 60 percent, including the term that distinguishes this need from generic bed queries.
@@ -223,9 +223,9 @@ The index has N = 10⁷ chunks. Posting counts are n(bed) = 10⁵, n(twin) = 10�
 
 The relevant set has 1,000 chunks. Of these, 550 say "twin bed," 300 say "single bed," and 150 say "cot" without "bed." The split is assumed rather than measured. The arithmetic built on it is exact.
 
-With "twn bed," the typo has no postings. Under the pessimistic but neutral assumption that bed-ness is uncorrelated with twin-ness, the expected relevant count in the top 100 is 100 × 850 / 10⁵ = 0.85. Recall at 100 is 0.85 / 1,000 = 0.085 percent. One character costs three orders of magnitude.
+With "twn bed," the typo has no postings. Under the pessimistic but neutral assumption that bed-ness is uncorrelated with twin-ness, the expected relevant count in the top 100 is 100 × 850 / 10⁵ = 0.85. Recall at 100 is 0.85 / 1,000 = 0.085 percent. One character costs three orders of magnitude. Correction: at a matched cutoff of 100 the typo costs about a 6.5-fold recall loss under these assumptions, 0.085 percent against 0.55 percent for the corrected query, which is under one order of magnitude. The three-orders comparison sets this top-100 value against the 55 percent that the corrected query reaches only at a depth near 10⁴.
 
-After correction to "twin bed," the 150 cot chunks still score zero. The 300 single-bed chunks score at most 10.13 against 11.51 for roughly 10⁴ chunks matching both query terms. They sit below rank 10⁴. Recall at 100 has a 550 / 1,000 = 55 percent ceiling. Raising k cannot rescue a zero score.
+After correction to "twin bed," the 150 cot chunks still score zero. The 300 single-bed chunks score at most 10.13 against 11.51 for roughly 10⁴ chunks matching both query terms. They sit below rank 10⁴. Recall at 100 has a 550 / 1,000 = 55 percent ceiling. Correction: recall at 100 cannot exceed 100 / 1,000 = 10 percent, and under the uncorrelated assumption the corrected query holds about 100 × 550 / 10⁴ = 5.5 relevant chunks in its top 100, or 0.55 percent, so 55 percent is the recall reached at a depth of about 10⁴, the twin-and-bed pool. Raising k cannot rescue a zero score.
 
 Full expansion to `(twin bed) OR (single bed) OR cot` gives every relevant chunk a matching term. The recall ceiling becomes 100 percent. The candidate pool grows from 10⁴ to at most 10⁴ + 3 × 10⁵ + 9 × 10⁴ = 4 × 10⁵ postings, a 40-fold scoring bill.
 
@@ -268,7 +268,7 @@ D(q) ⊆ D(q')
 $$
 
 $$
-cardinality(D(q') ∩ R) ≥ cardinality(D(q) ∩ R)
+\text{cardinality}(D(q') \cap R) \ge \text{cardinality}(D(q) \cap R)
 $$
 
 This is the exact admitted-set recall guarantee.
@@ -350,7 +350,7 @@ Their contextual variant concatenated feedback documents into the generation pro
 The supervised token objective is:
 
 $$
-L = −Σₜ log pθ(q*ₜ | q*₍<ₜ₎, q₀)
+L = -\sum_t \log p_{\theta}(q^{*}_t \mid q^{*}_{< t}, q_0)
 $$
 
 The shipped metric is R(q') = recall at k for the rewritten query. Similar token loss can hide large recall differences because one discriminative term moves documents across the cutoff.
@@ -360,7 +360,7 @@ Retrieval is an argsort over the index. It is piecewise constant in the query, s
 REINFORCE treats the rewriter as policy pθ(q' | q₀) and uses the score-function estimator.
 
 $$
-∇θ E[q' sampled from pθ] R(q') = E[q' sampled from pθ] [(R(q') − b) ∇θ log pθ(q' | q₀)]
+\nabla_{\theta} E_{q' \sim p_{\theta}} R(q') = E_{q' \sim p_{\theta}} [(R(q') - b)\, \nabla_{\theta} \log p_{\theta}(q' \mid q_0)]
 $$
 
 The estimator only evaluates retrieval reward. It never differentiates the index. The baseline b is typically a running reward mean that reduces variance without bias.
@@ -414,7 +414,7 @@ Freeze and version the index during RL training. For hourly corpus updates, trai
 **What it is.** General word2vec training predicts context, not relevance. Skip-gram with negative sampling maximizes:
 
 $$
-max over w⃗,c⃗  Σ[(w,c) in D] [log σ(w⃗ · c⃗) + k E[cₙ sampled from Pₙ] log σ(−w⃗ · c⃗ₙ)]
+\max_{\vec{w},\vec{c}} \sum_{(w,c) \in D} [\log \sigma(\vec{w} \cdot \vec{c}) + k\, E_{c_n \sim P_n} \log \sigma(-\vec{w} \cdot \vec{c}_n)]
 $$
 
 Here w⃗ is the center-word vector, c⃗ is the context-word vector, D contains observed word-context pairs, and k is the sampled negatives per positive.
@@ -422,11 +422,11 @@ Here w⃗ is the center-word vector, c⃗ is the context-word vector, D contains
 Levy and Goldberg (2014) show that at the optimum, given enough embedding dimensions:
 
 $$
-w⃗ · c⃗ = PMI(w,c) − log k
+\vec{w} \cdot \vec{c} = \text{PMI}(w,c) - \log k
 $$
 
 $$
-PMI(w,c) = log(p(c | w) / p(c))
+\text{PMI}(w,c) = \log(p(c \mid w) / p(c))
 $$
 
 A word vector compresses a row of the PMI matrix. Words with identical context distributions receive the same vector. Antonyms often fit the same grammatical frames, so their distributions can be nearly identical.
@@ -436,7 +436,7 @@ A word vector compresses a row of the PMI matrix. Words with identical context d
 For vocabulary V, the learned query-conditioned distribution is:
 
 $$
-p̂(w | q) = exp(w⃗ · q⃗) / Σ[w' in V] exp(w⃗' · q⃗)
+\hat{p}(w \mid q) = \exp(\vec{w} \cdot \vec{q}) / \sum_{w' \in V} \exp(\vec{w}' \cdot \vec{q})
 $$
 
 The first variant minimizes:
@@ -468,11 +468,11 @@ Corpus marginals are p(price) = 0.2, p(laptop) = 0.5, and p(deal) = 0.3. Cheap a
 The PMI rows are:
 
 $$
-v⃗cheap = v⃗expensive = (0.41, −0.22, 0.00)
+\vec{v}_{\text{cheap}} = \vec{v}_{\text{expensive}} = (0.41, -0.22, 0.00)
 $$
 
 $$
-v⃗budget = (−0.69, 0.00, 0.29)
+\vec{v}_{\text{budget}} = (-0.69, 0.00, 0.29)
 $$
 
 Therefore cos(cheap, expensive) = 1.00 and cos(cheap, budget) = −0.81. The antonym is the top neighbor by construction. The desired expansion lies on the opposite side.
@@ -482,11 +482,11 @@ Therefore cos(cheap, expensive) = 1.00 and cos(cheap, budget) = −0.81. The ant
 The product index has N = 1,000,000 documents with k₁ = 1.2 and b = 0.75.
 
 $$
-BM25(q,d) = Σ[t in q] IDF(t) × fₜ,₍d₎(k₁ + 1) / (fₜ,₍d₎ + k₁(1 − b + b|d|/avgdl))
+\text{BM25}(q,d) = \sum_{t \in q} \text{IDF}(t) \times f_{t,d}(k_1 + 1) / (f_{t,d} + k_1(1 - b + b|d|/\text{avgdl}))
 $$
 
 $$
-IDF(t) = ln(1 + (N − nₜ + 0.5) / (nₜ + 0.5))
+\text{IDF}(t) = \ln(1 + (N - n_t + 0.5) / (n_t + 0.5))
 $$
 
 Document frequencies are affordable 5,000, cheap 30,000, budget 40,000, expensive 20,000, and laptop 50,000. Their IDFs are 5.30, 3.51, 3.22, 3.91, and 3.00.
@@ -560,7 +560,7 @@ Conversational rewriting is not iterative retrieval. Iteration fetches an interm
 The rewriter has 8 billion parameters in 16-bit floating point (fp16), so each decode step reads 8 × 10⁹ × 2 bytes = 16 GB of weights. An A100 80 GB accelerator provides roughly 2.0 TB/s peak bandwidth. At a realistic 70 percent of peak:
 
 $$
-16 GB / (0.7 × 2,000 GB/s) = 11.4 ms per decoded token
+16 \text{ GB} / (0.7 \times 2{,}000 \text{ GB/s}) = 11.4 \text{ ms per decoded token}
 $$
 
 Prefill runs at 10,000 tokens per second. The five operations emit 3, 80, 60, 20, and 100 tokens, totaling 263. They read 590 + 355 + 435 + 90 + 90 = 1,560 prompt tokens.
@@ -606,7 +606,7 @@ Here u is the unit topic direction. The residual n is orthogonal to u and carrie
 For an ordinary document d, the source assumes n · d approximately zero.
 
 $$
-cos(q,d) = γ cos(u,d)
+\cos(q,d) = \gamma \cos(u,d)
 $$
 
 Uniform scaling by γ preserves rank exactly. It only reduces margin. The source measures γ from 1,000 query-gold pairs and 1,000 same-topic document pairs.
@@ -620,7 +620,7 @@ A 0.06 topic margin in document space reaches the index as roughly 0.035.
 Question-shaped documents have n · d = ϕ > 0. Their score becomes:
 
 $$
-cos(q,d) = γ cos(u,d) + √(1 − γ²)ϕ = 0.59 cos(u,d) + 0.807ϕ
+\cos(q,d) = \gamma \cos(u,d) + \sqrt{1 - \gamma^2}\, \phi = 0.59 \cos(u,d) + 0.807 \phi
 $$
 
 At ϕ = 0.05, the register bonus is 0.807 × 0.05 = 0.040. That exceeds the 0.035 topic margin and inverts the pair.
@@ -645,10 +645,10 @@ This defense has a hard limit. If every generation chooses the wrong topic, aver
 
 The corpus has 2 million clinical documents at 250 tokens each. Contriever uses dimension 768 with mean pooling. Queries average 11 tokens. The p95 budget is 800 ms.
 
-The generator has 7 billion parameters in fp16 on one A100 80 GB. Achieved bandwidth is 2.0 TB/s, and achieved compute is 156 trillion floating-point operations per second. One decode step reads 14 GB.
+The generator has 7 billion parameters in fp16 on one A100 80 GB. Achieved bandwidth is 2.0 TB/s, and achieved compute is 156 trillion floating-point operations per second. Correction: section 24.5 treats 2.0 TB/s as this card's peak, which matches NVIDIA's listed A100 80 GB peak of about 2.0 TB/s, and it calls 70 percent of peak realistic, so achieved bandwidth is about 1.4 TB/s and one decode step takes 14 GB / 1.4 TB/s = 10.0 ms. One decode step reads 14 GB.
 
 $$
-14 GB / 2.0 TB/s = 7.0 ms per decoded token
+14 \text{ GB} / 2.0 \text{ TB/s} = 7.0 \text{ ms per decoded token}
 $$
 
 The raw query asks how long wisdom-tooth removal takes. The protocol says "third molar" repeatedly and "wisdom teeth" once. The FAQ repeats "wisdom tooth" 15 times without giving duration.
@@ -665,13 +665,13 @@ $$
 2 × 7 × 10⁹ × 60 / (1.56 × 10¹⁴) = 5.4 ms
 $$
 
-Decoding 120 tokens costs 120 × 7.0 = 840 ms. Encoding costs 0.53 ms, and search costs 5 ms. Total is 851 ms, over budget and 71 times the retrieval-only path.
+Decoding 120 tokens costs 120 × 7.0 = 840 ms. Encoding costs 0.53 ms, and search costs 5 ms. Total is 851 ms, over budget and 71 times the retrieval-only path. Correction: at 10.0 ms per decoded token, decoding takes 1,200 ms, and the m = 1 path totals about 5.4 + 1,200 + 0.53 + 5 = 1,211 ms, about 101 times the retrieval-only path.
 
-For m = 8 in one batch, each decode step reads the same 14 GB for all sequences, so decode remains 840 ms. The key-value cache costs 8 × 180 × 0.5 MB = 0.72 GB on the 80 GB card. Eight encodes take 4.2 ms. Total is 855 ms.
+For m = 8 in one batch, each decode step reads the same 14 GB for all sequences, so decode remains 840 ms. The key-value cache costs 8 × 180 × 0.5 MB = 0.72 GB on the 80 GB card. Eight encodes take 4.2 ms. Total is 855 ms. Correction: at 10.0 ms per decoded token, decode is 1,200 ms and the m = 8 total is about 1,215 ms.
 
 Four extra milliseconds reduce the fabricated share from 6.7 percent to 2.4 percent. The source therefore recommends m = 8 whenever HyDE runs on this batched hardware.
 
-At $2 per A100-hour, one 851 ms query costs 0.851 / 3,600 × $2 = $4.7 × 10⁻⁴. One million queries per day cost $473 daily and roughly $14,200 monthly. HyDE is two orders of magnitude dearer than the vector retrieval it wraps, before answer generation.
+At $2 per A100-hour, one 851 ms query costs 0.851 / 3,600 × $2 = $4.7 × 10⁻⁴. One million queries per day cost $473 daily and roughly $14,200 monthly. Correction: on the corrected 1,211 ms path, one query costs about $6.7 × 10⁻⁴, so one million daily queries cost about $673 daily and roughly $20,200 monthly. HyDE is two orders of magnitude dearer than the vector retrieval it wraps, before answer generation.
 
 Gao et al. (2023) report HyDE beating BM25 and bare Contriever by a wide margin and matching or exceeding fine-tuned retrievers on several tasks. Their reported result concerns retrieval quality rather than p95 latency. The source uses this to explain why HyDE looks free on a leaderboard but expensive in a service.
 
@@ -689,7 +689,7 @@ Cache by normalized query. In conversation, use the resolved standalone query as
 
 Do not ship HyDE in an unmeasured language. Fall back to the chapter's hybrid dense and lexical approach when the generator is weak.
 
-Under a 250 ms p95 budget, 25 generated tokens cost 25 × 7.0 = 175 ms. They fit, but an eight-token fabrication would occupy 32 percent of the probe, and the short text remains close to question shape.
+Under a 250 ms p95 budget, 25 generated tokens cost 25 × 7.0 = 175 ms. They fit, but an eight-token fabrication would occupy 32 percent of the probe, and the short text remains close to question shape. Correction: at 10.0 ms per decoded token, 25 tokens cost 250 ms, which uses the entire 250 ms p95 budget before prefill and retrieval, so they do not fit.
 
 The source names three better exits for that budget. Cache head traffic, distill the averaged probe into an encoder, or drop HyDE and buy relevance labels. It proposes roughly a 60 percent cache-hit threshold as the tie-breaker between shipping caching now and beginning distillation.
 
@@ -801,13 +801,13 @@ flowchart TB
   subgraph B["b. One decode buys all eight probes"]
     BQ["query, 11 tokens"] --> BI["instruct model with task-specific instruction"] --> BH["h1 through h8, 120 tokens each"]
     BH --> BC["Contriever mean pool, 120 tokens to 768 dimensions"] --> BA["average 8 embeddings"] --> BS["HNSW over 2 million, about 5 ms"]
-    BH --> BW["batch of 8, 120 x 7.0 = 840 ms"]
+    BH --> BW["batch of 8, 120 x 10.0 = 1,200 ms"]
     BC --> BF["fabricated span at most 8/120 = 6.7%"]
     BA --> BR["6.7% divided by square root of 8 = 2.4%"]
   end
 ```
 
-Figure 24.6: The query is the wrong shape for the index: its question register scales every topical margin by γ = 0.59 while handing question-shaped documents a +0.040 bonus the 0.035 margin cannot survive. Generating a document removes both effects, and mean pooling plus eight-sample averaging holds fabrications to 2.4% of the probe - for one 840 ms decode.
+Figure 24.6: The query is the wrong shape for the index: its question register scales every topical margin by γ = 0.59 while handing question-shaped documents a +0.040 bonus the 0.035 margin cannot survive. Generating a document removes both effects, and mean pooling plus eight-sample averaging holds fabrications to 2.4% of the probe - for one 840 ms decode. Correction: the decode box reads 120 x 10.0 = 1,200 ms, corrected from 840 ms, because a realistic 70 percent of the A100's 2.0 TB/s peak is about 1.4 TB/s.
 
 ## Whiteboard pack
 
@@ -857,8 +857,8 @@ Skip it when the corpus is already question-shaped, the generator is weak in the
 | Typo loss | 11.51 to 4.61 nats, 60% lost | The rare discriminative term disappears |
 | BM25 saturation | k₁ = 1.2, supremum 2.2, unrounded-IDF scores 10.13 vs 11.51 | Exact match leads by only 14% |
 | Lodging relevance | 1,000 total, split 550, 300, 150 | The split is assumed, while derived arithmetic is exact |
-| Typo retrieval | 0.85 expected relevant in top 100, recall 0.085% | One character costs three orders of magnitude |
-| Corrected query | recall ceiling 55%, unmatched cot count 150 | Zero-score documents stay unreachable at every k |
+| Typo retrieval | 0.85 expected relevant in top 100, recall 0.085% | One character costs about 6.5 times in recall at k = 100 (corrected from three orders of magnitude) |
+| Corrected query | recall at 100 about 0.55% (corrected from a 55% ceiling), 55% only at a depth near 10⁴, unmatched cot count 150 | Zero-score documents stay unreachable at every k |
 | Full lodging expansion | pool 4 × 10⁵, cost 40 times, recall 100%, precision 0.25% | Precision is 22 times worse for 1.8 times recall |
 | Cot-only arm | gain 1.67 × 10⁻³, pool 10⁵, recall 70%, precision 0.70% | It gives 2.8 times full-expansion precision at one quarter cost |
 | Vocabulary study | less than 20% agreement across five domains | Furnas et al. measured term-choice disagreement |
@@ -893,8 +893,8 @@ Skip it when the corpus is already question-shaped, the generator is weak in the
 | HyDE geometry | 1,000 query-gold and 1,000 document pairs, γ = 0.42/0.71 = 0.59, 0.06 becomes 0.035, 0.807 × 0.05 = 0.040 | Question register can invert the pair |
 | Clinical miss | answer at rank 63, uncomplicated duration 30 minutes | The title match beats the answer before reformulation |
 | Fabrication control | 8/120 = 6.7%, m = 8 gives 2.4% | Signal-to-invention rises from 3.7 to 10.5 |
-| Clinical setup | 2 million documents, 250 tokens, dimension 768, query 11 tokens, 7B fp16 generator, 14 GB weights, p95 800 ms | Encode is 0.05 ms, HNSW about 5 ms, and the raw path about 12 ms |
-| HyDE single and batch | prefill 5.4 ms, decode 840 ms, encode 0.53 ms, search 5 ms, m = 1 totals 851 ms, m = 8 totals 855 ms | Eight samples add 0.72 GB cache and 4.2 ms encoding |
-| HyDE spend | $4.7 × 10⁻⁴/query, $473/day, about $14,200/month | Assumes $2 per A100-hour and 1 million daily queries |
+| Clinical setup | 2 million documents, 250 tokens, dimension 768, query 11 tokens, 7B fp16 generator, 14 GB weights, decode 10.0 ms per token at about 1.4 TB/s (corrected from 7.0 ms at 2.0 TB/s), p95 800 ms | Encode is 0.05 ms, HNSW about 5 ms, and the raw path about 12 ms |
+| HyDE single and batch | prefill 5.4 ms, decode 1,200 ms (corrected from 840 ms), encode 0.53 ms, search 5 ms, m = 1 totals about 1,211 ms (corrected from 851 ms), m = 8 totals about 1,215 ms (corrected from 855 ms) | Eight samples add 0.72 GB cache and 4.2 ms encoding |
+| HyDE spend | $6.7 × 10⁻⁴/query, $673/day, about $20,200/month (corrected from $4.7 × 10⁻⁴, $473, and $14,200) | Assumes $2 per A100-hour and 1 million daily queries |
 | HyDE defaults | m = 8, 100 to 150 tokens | A metered interface uses m = 3 for 1.7 times suppression |
-| Tight-budget warning | 25 tokens cost 175 ms but put 32% probe mass in an eight-token fabrication | Roughly 60% cache hits is the source's proposed decision point |
+| Tight-budget warning | 25 tokens cost 250 ms (corrected from 175 ms), which fills the whole 250 ms budget, and put 32% probe mass in an eight-token fabrication | Roughly 60% cache hits is the source's proposed decision point |

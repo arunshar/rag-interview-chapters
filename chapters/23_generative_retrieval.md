@@ -335,10 +335,10 @@ The memory comparison has an important limit.
 - N star is 3.52 × 10^9 divided by 512 = 6.9M documents.
 - The 8.8M-passage corpus is 28 percent beyond that point.
 - The capacity model predicts a base-sized retriever should lose there.
-- Pradeep et al. (2023) found model scale dominant, yet multi-billion-parameter systems still failed to match a tuned dual encoder on the full corpus.
+- Pradeep et al. (2023) found model scale dominant, yet multi-billion-parameter systems still failed to match a tuned dual encoder on the full corpus. Correction: Pradeep et al. (2023, arXiv 2305.11841) name synthetic query generation as the single most critical component as corpus size grows, and they report limits of naive parameter scaling, since their 11B model scored 24.3 MRR@10 against 26.7 for the 3B model on the 8.8M-passage MS MARCO corpus.
 - An 11B DSI-XXL has 1.76 × 10^11 bits and a 344M-document parity point.
 - It still lost at 8.8M, so capacity is necessary but not sufficient.
-- The remaining gap is identifier assignment under this analysis.
+- The remaining gap is identifier assignment under this analysis. Correction: this explanation is the source's own analysis, and Pradeep et al. (2023) do not attribute the remaining gap to identifier assignment.
 - Compute N star before prototyping.
 - Reject by default when N is within a factor of two of N star because the bound is optimistic.
 - Consider the design when a static corpus is below one tenth of N star.

@@ -4,7 +4,7 @@ This index maps every Retrieval-Augmented Generation (RAG) manifest unit to an a
 
 ## Suggested reading order
 
-### Fast interview loop
+### Broad interview loop
 
 1. Start with 00.05 For Interview Candidates and Chapter 1 to calibrate what strong answers must demonstrate.
 2. Read Chapter 3 for the reusable design framework.
@@ -60,7 +60,7 @@ Estimated reading time: 26 minutes at 200 words per minute.
 Archive entry: `chapters/00_03_preface.md`
 Summary: This preface explains how the book turns Retrieval-Augmented Generation (RAG) from a component list into a production reasoning discipline for artificial intelligence systems.
 Source span: Physical PDF pages 12 to 13. Printed pages xi to xii.
-Estimated reading time: 27 minutes at 200 words per minute.
+Estimated reading time: 28 minutes at 200 words per minute.
 
 ### 00.04. How to Use This Book
 
@@ -74,7 +74,7 @@ Estimated reading time: 27 minutes at 200 words per minute.
 Archive entry: `chapters/00_05_for_interview_candidates.md`
 Summary: This guide turns Retrieval-Augmented Generation (RAG) interview preparation into a decision-first plan for design, derivation, debugging, pacing, and practice.
 Source span: Physical PDF pages 19 to 23. Printed pages xviii to xxii.
-Estimated reading time: 35 minutes at 200 words per minute.
+Estimated reading time: 36 minutes at 200 words per minute.
 
 ### 00.06. For Practicing Engineers
 
@@ -116,21 +116,21 @@ Estimated reading time: 65 minutes at 200 words per minute.
 Archive entry: `chapters/02_the_competing_answers_to_the_same_problem.md`
 Summary: Choose among continual learning, model editing, long context, generative retrieval, and retrieval-augmented generation by matching each method to the constraint and cost shape it actually serves.
 Source span: Physical PDF pages 55 to 75. Printed pages 22 to 42.
-Estimated reading time: 70 minutes at 200 words per minute.
+Estimated reading time: 71 minutes at 200 words per minute.
 
 ### Chapter 3. A Repeatable Framework for Any RAG Design Question
 
 Archive entry: `chapters/03_a_repeatable_framework_for_any_rag_design_question.md`
 Summary: This chapter gives one repeatable way to turn an underspecified retrieval design prompt into explicit choices, priced trade-offs, and a defensible interview answer.
 Source span: Physical PDF pages 76 to 95. Printed pages 43 to 62.
-Estimated reading time: 64 minutes at 200 words per minute.
+Estimated reading time: 65 minutes at 200 words per minute.
 
 ### Chapter 4. What the LLM Brings and What It Breaks
 
 Archive entry: `chapters/04_what_the_llm_brings_and_what_it_breaks.md`
 Summary: This chapter explains what the Large Language Model (LLM) contributes to Retrieval-Augmented Generation (RAG), what it breaks, and how to assign each failure to the right owner before choosing a fix.
 Source span: Physical PDF pages 97 to 121. Printed pages 64 to 88.
-Estimated reading time: 61 minutes at 200 words per minute.
+Estimated reading time: 62 minutes at 200 words per minute.
 
 ### Chapter 5. Data, Privacy, and the Legal Surface
 
@@ -144,7 +144,7 @@ Estimated reading time: 60 minutes at 200 words per minute.
 Archive entry: `chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.md`
 Summary: This chapter explains how to allocate training, serving, memory, and retrieval budgets for a Retrieval-Augmented Generation (RAG) system.
 Source span: Physical PDF pages 145 to 167. Printed pages 112 to 134.
-Estimated reading time: 47 minutes at 200 words per minute.
+Estimated reading time: 49 minutes at 200 words per minute.
 
 ### Chapter 7. In-Context Learning - The Mechanism RAG Rides On
 
@@ -165,21 +165,21 @@ Estimated reading time: 47 minutes at 200 words per minute.
 Archive entry: `chapters/09_prompting_for_retrieval_augmented_systems.md`
 Summary: Explain where prompting ends, where retrieval begins, how reasoning scaffolds change decoding, and why more calls or more passages can reduce answer quality.
 Source span: Physical PDF pages 218 to 235. Printed pages 185 to 202.
-Estimated reading time: 43 minutes at 200 words per minute.
+Estimated reading time: 45 minutes at 200 words per minute.
 
 ### Chapter 10. Prompt Sensitivity
 
 Archive entry: `chapters/10_prompt_sensitivity.md`
 Summary: This chapter explains how meaning-preserving prompt changes can alter Retrieval-Augmented Generation (RAG), how to measure the effect, and how to make defensible template and optimization decisions.
 Source span: Physical PDF pages 236 to 256. Printed pages 203 to 223.
-Estimated reading time: 53 minutes at 200 words per minute.
+Estimated reading time: 54 minutes at 200 words per minute.
 
 ### Chapter 11. Abstention and Calibration
 
 Archive entry: `chapters/11_abstention_and_calibration.md`
 Summary: This chapter explains when a Retrieval-Augmented Generation (RAG) system should refuse, how to build a useful confidence signal, and how to keep that signal honest for short and long answers.
 Source span: Physical PDF pages 257 to 283. Printed pages 224 to 250.
-Estimated reading time: 50 minutes at 200 words per minute.
+Estimated reading time: 51 minutes at 200 words per minute.
 
 ### Chapter 12. Text Representation
 
@@ -193,7 +193,7 @@ Estimated reading time: 55 minutes at 200 words per minute.
 Archive entry: `chapters/13_chunking_and_granularity.md`
 Summary: This chapter explains how to choose retrieval units, route across granularities, preserve enough context, and measure whether a chunker actually improved retrieval.
 Source span: Physical PDF pages 307 to 332. Printed pages 274 to 299.
-Estimated reading time: 60 minutes at 200 words per minute.
+Estimated reading time: 61 minutes at 200 words per minute.
 
 ### Chapter 14. Beyond Plain Text - Tables, Layout, Documents
 
@@ -207,7 +207,7 @@ Estimated reading time: 57 minutes at 200 words per minute.
 Archive entry: `chapters/15_approximate_nearest_neighbor_search.md`
 Summary: This chapter explains how to choose and defend an Approximate Nearest Neighbor (ANN) index for Retrieval-Augmented Generation (RAG) under recall, latency, memory, build, and update constraints.
 Source span: Physical PDF pages 357 to 383. Printed pages 324 to 350.
-Estimated reading time: 66 minutes at 200 words per minute.
+Estimated reading time: 67 minutes at 200 words per minute.
 
 ### Chapter 16. Compression and Index Economics
 
@@ -235,84 +235,84 @@ Estimated reading time: 55 minutes at 200 words per minute.
 Archive entry: `chapters/19_learning_to_rank.md`
 Summary: Explain how Learning to Rank (LTR) aligns training gradients with ranked-list metrics, then choose among pointwise, pairwise, listwise, representation, interaction, and hybrid designs under real serving constraints.
 Source span: Physical PDF pages 460 to 481. Printed pages 427 to 448.
-Estimated reading time: 58 minutes at 200 words per minute.
+Estimated reading time: 59 minutes at 200 words per minute.
 
 ### Chapter 20. Dense Retrieval
 
 Archive entry: `chapters/20_dense_retrieval.md`
 Summary: This chapter prepares a Retrieval-Augmented Generation (RAG) candidate to explain dense retrieval, train it, price it, combine it with lexical search, and extend it across languages.
 Source span: Physical PDF pages 482 to 504. Printed pages 449 to 471.
-Estimated reading time: 60 minutes at 200 words per minute.
+Estimated reading time: 61 minutes at 200 words per minute.
 
 ### Chapter 21. Learned Sparse and Multi-Vector Retrieval
 
 Archive entry: `chapters/21_learned_sparse_and_multi_vector_retrieval.md`
 Summary: This chapter prepares you to explain how learned lexical weights, token-level matching, compression, pruning, and rank fusion trade retrieval quality against index size and latency.
 Source span: Physical PDF pages 505 to 531. Printed pages 472 to 498.
-Estimated reading time: 62 minutes at 200 words per minute.
+Estimated reading time: 63 minutes at 200 words per minute.
 
 ### Chapter 22. Reranking
 
 Archive entry: `chapters/22_reranking.md`
 Summary: This chapter explains why Retrieval-Augmented Generation (RAG) needs a second ranking stage, how to price and size it, and how cross-encoders, large language model (LLM) ranking modes, ranking losses, sliding-window prompting, instruction-aware scoring, and document-bound versus model-bound diagnosis support that choice.
 Source span: Physical PDF pages 532 to 562. Printed pages 499 to 529.
-Estimated reading time: 50 minutes at 200 words per minute.
+Estimated reading time: 53 minutes at 200 words per minute.
 
 ### Chapter 23. Generative Retrieval
 
 Archive entry: `chapters/23_generative_retrieval.md`
 Summary: This chapter explains when a model can retrieve by generating document identifiers, what that relocation costs, why updates remain hard, and how recitation can complement Retrieval-Augmented Generation (RAG).
 Source span: Physical PDF pages 563 to 580. Printed pages 530 to 547.
-Estimated reading time: 57 minutes at 200 words per minute.
+Estimated reading time: 58 minutes at 200 words per minute.
 
 ### Chapter 24. Query Reformulation
 
 Archive entry: `chapters/24_query_reformulation.md`
 Summary: This chapter prepares you to explain how Retrieval-Augmented Generation (RAG) systems diagnose weak queries, expand or rewrite them, train retrieval-aware representations, repair conversational context, and search with hypothetical answers.
 Source span: Physical PDF pages 582 to 607. Printed pages 549 to 574.
-Estimated reading time: 59 minutes at 200 words per minute.
+Estimated reading time: 61 minutes at 200 words per minute.
 
 ### Chapter 25. Routing and Adaptive Retrieval
 
 Archive entry: `chapters/25_routing_and_adaptive_retrieval.md`
 Summary: This chapter explains how a Retrieval-Augmented Generation (RAG) system decides when to retrieve, where to look, which operation to run, and how to fail safely on unfamiliar queries.
 Source span: Physical PDF pages 608 to 636. Printed pages 575 to 603.
-Estimated reading time: 67 minutes at 200 words per minute.
+Estimated reading time: 69 minutes at 200 words per minute.
 
 ### Chapter 26. Iterative, Recursive, and Agentic Retrieval
 
 Archive entry: `chapters/26_iterative_recursive_and_agentic_retrieval.md`
 Summary: Explain why a single retrieval call fails when the useful query appears only after reasoning begins, then compare the retrieval-augmented generation (RAG) control loops that retrieve again, critique evidence, learn search behavior, fan out across sources, and stop before extra rounds reduce value.
 Source span: Physical PDF pages 637 to 674. Printed pages 604 to 641.
-Estimated reading time: 51 minutes at 200 words per minute.
+Estimated reading time: 55 minutes at 200 words per minute.
 
 ### Chapter 27. Fine-tuning the Generator
 
 Archive entry: `chapters/27_fine_tuning_the_generator.md`
 Summary: Decide when Retrieval-Augmented Generation (RAG) errors belong to the generator, choose a training objective that matches the retrieval defects seen in production, and size the resulting fine-tuning job without confusing behavior, knowledge, robustness, invariance, or memory efficiency.
 Source span: Physical PDF pages 676 to 696. Printed pages 643 to 663.
-Estimated reading time: 51 minutes at 200 words per minute.
+Estimated reading time: 53 minutes at 200 words per minute.
 
 ### Chapter 28. Training the Retriever
 
 Archive entry: `chapters/28_training_the_retriever.md`
 Summary: decide which Retrieval-Augmented Generation (RAG) component to train, connect generator utility to a discrete retriever, and price the index work that retriever updates create.
 Source span: Physical PDF pages 697 to 727. Printed pages 664 to 694.
-Estimated reading time: 46 minutes at 200 words per minute.
+Estimated reading time: 47 minutes at 200 words per minute.
 
 ### Chapter 29. Bootstrapping Training Data
 
 Archive entry: `chapters/29_bootstrapping_training_data.md`
 Summary: explain how to manufacture useful retrieval supervision when query logs or expert labels are scarce, while preserving the task's relevance relation, filtering known failure modes, measuring distribution shift, and locating the teacher ceiling.
 Source span: Physical PDF pages 728 to 759. Printed pages 695 to 726.
-Estimated reading time: 48 minutes at 200 words per minute.
+Estimated reading time: 49 minutes at 200 words per minute.
 
 ### Chapter 30. Lost in the Middle
 
 Archive entry: `chapters/30_lost_in_the_middle.md`
 Summary: This chapter prepares you to diagnose and mitigate position-dependent failures in Retrieval-Augmented Generation (RAG) systems.
 Source span: Physical PDF pages 761 to 790. Printed pages 728 to 757.
-Estimated reading time: 50 minutes at 200 words per minute.
+Estimated reading time: 52 minutes at 200 words per minute.
 
 ### Chapter 31. Attribution and Citation
 
@@ -326,49 +326,49 @@ Estimated reading time: 47 minutes at 200 words per minute.
 Archive entry: `chapters/32_evaluating_retrieval.md`
 Summary: Build a retrieval evaluation that measures both coverage and ordering, remains computable when no relevance set exists yet, and exposes judge failures that accuracy can hide.
 Source span: Physical PDF pages 811 to 825. Printed pages 778 to 792.
-Estimated reading time: 39 minutes at 200 words per minute.
+Estimated reading time: 40 minutes at 200 words per minute.
 
 ### Chapter 33. Evaluating Generation
 
 Archive entry: `chapters/33_evaluating_generation.md`
 Summary: This chapter explains how to choose and interpret generation metrics for a Retrieval-Augmented Generation (RAG) system when oracle access, claim coverage, output length, and summarization behavior all affect the result.
 Source span: Physical PDF pages 826 to 847. Printed pages 793 to 814.
-Estimated reading time: 45 minutes at 200 words per minute.
+Estimated reading time: 47 minutes at 200 words per minute.
 
 ### Chapter 34. Evaluating the System
 
 Archive entry: `chapters/34_evaluating_the_system.md`
 Summary: This chapter is for diagnosing, validating, and stress-testing a Retrieval-Augmented Generation (RAG) system before a launch decision.
 Source span: Physical PDF pages 848 to 870. Printed pages 815 to 837.
-Estimated reading time: 49 minutes at 200 words per minute.
+Estimated reading time: 50 minutes at 200 words per minute.
 
 ### Chapter 35. Source Credibility
 
 Archive entry: `chapters/35_source_credibility.md`
 Summary: This chapter explains how Retrieval-Augmented Generation (RAG) systems measure source credibility, act on weak evidence, and preserve freshness, pluralism, and fair exposure.
 Source span: Physical PDF pages 872 to 902. Printed pages 839 to 869.
-Estimated reading time: 50 minutes at 200 words per minute.
+Estimated reading time: 52 minutes at 200 words per minute.
 
 ### Chapter 36. Provenance and Adversarial Robustness
 
 Archive entry: `chapters/36_provenance_and_adversarial_robustness.md`
 Summary: This chapter explains how a Retrieval-Augmented Generation (RAG) system can verify evidence, resist hostile content, harden its model, and protect access boundaries.
 Source span: Physical PDF pages 903 to 933. Printed pages 870 to 900.
-Estimated reading time: 56 minutes at 200 words per minute.
+Estimated reading time: 58 minutes at 200 words per minute.
 
 ### Chapter 37. Latency, Cost, and Systems
 
 Archive entry: `chapters/37_latency_cost_and_systems.md`
 Summary: Build a stage-level model of Retrieval-Augmented Generation (RAG) latency and cost, then use caching, batching, kernel design, pipelining, retrieval cascades, and multi-resolution indexing only where the measured bottleneck justifies them.
 Source span: Physical PDF pages 935 to 965. Printed pages 902 to 932.
-Estimated reading time: 43 minutes at 200 words per minute.
+Estimated reading time: 45 minutes at 200 words per minute.
 
 ### Chapter 38. Distributed and Federated RAG
 
 Archive entry: `chapters/38_distributed_and_federated_rag.md`
 Summary: This chapter is for designing Retrieval-Augmented Generation (RAG) across independently governed sources, regions, tenants, and shared public infrastructure.
 Source span: Physical PDF pages 966 to 984. Printed pages 933 to 951.
-Estimated reading time: 43 minutes at 200 words per minute.
+Estimated reading time: 46 minutes at 200 words per minute.
 
 ### Chapter 39. Multimodal RAG
 
@@ -382,21 +382,21 @@ Estimated reading time: 53 minutes at 200 words per minute.
 Archive entry: `chapters/40_graph_rag.md`
 Summary: This chapter prepares you to defend every stage, cost, failure, and claim boundary of graph-based Retrieval-Augmented Generation (RAG), from construction and grounded retrieval through generation and the GraphRAG versus LightRAG choice.
 Source span: Physical PDF pages 1020 to 1054. Printed pages 987 to 1021.
-Estimated reading time: 43 minutes at 200 words per minute.
+Estimated reading time: 44 minutes at 200 words per minute.
 
 ### Chapter 41. End-to-End Design Drills
 
 Archive entry: `chapters/41_end_to_end_design_drills.md`
 Summary: Turn seven Retrieval-Augmented Generation (RAG) interview prompts into measurable architectures, explicit trade-offs, and answers that start from the binding constraint rather than a product name.
 Source span: Physical PDF pages 1055 to 1082. Printed pages 1022 to 1049.
-Estimated reading time: 44 minutes at 200 words per minute.
+Estimated reading time: 45 minutes at 200 words per minute.
 
 ### Appendix A1. Formula Sheet
 
 Archive entry: `chapters/A1_formula_sheet.md`
 Summary: This appendix is a compact derivation and interview-use guide for eight formula groups used in Retrieval-Augmented Generation (RAG) that preserves the source equations, numeric examples, conditions, and rules of thumb while translating Best Matching 25 (BM25), Reciprocal Rank Fusion (RRF), Mean Reciprocal Rank (MRR), normalized Discounted Cumulative Gain (nDCG), modularity, Product Quantization (PQ), floating-point operations (FLOPs) with latency, and end-to-end index memory into operational decisions.
 Source span: Physical PDF pages 1083 to 1092. Printed pages 1050 to 1059.
-Estimated reading time: 30 minutes at 200 words per minute.
+Estimated reading time: 31 minutes at 200 words per minute.
 
 ### Appendix A2. Question Bank
 
@@ -424,7 +424,7 @@ Estimated reading time: 32 minutes at 200 words per minute.
 Archive entry: `chapters/A5_annotated_reading_list.md`
 Summary: Use this curated, chapter-mapped reading list to connect each Retrieval-Augmented Generation (RAG) paper with the exact result a senior interview candidate should be able to reproduce.
 Source span: Physical PDF pages 1122 to 1133. Printed pages 1089 to 1100.
-Estimated reading time: 58 minutes at 200 words per minute.
+Estimated reading time: 60 minutes at 200 words per minute.
 
 ### Appendix A6. Notation Quick Reference
 

@@ -150,6 +150,7 @@ At `k_1=1.2`, the TF factor becomes:
 $$
 \mathop{\text{TFfactor}}(f)=\frac{2.2f}{f+1.2}
 $$
+
 | `f` | 1 | 2 | 5 | 10 | 20 | Limit |
 |---:|---:|---:|---:|---:|---:|---:|
 | TF factor | 1.000 | 1.375 | 1.774 | 1.964 | 2.075 | 2.200 |
@@ -175,7 +176,7 @@ This is a 29 percent discount inside the saturation denominator. It is soft rath
 
 - Raise `b` toward 1 for uniform document types such as news or abstracts.
 - Lower `b` toward about 0.3 when long documents are genuinely more informative, as in technical manuals or legal filings.
-- Classical IDF can become negative when a term appears in more than half the collection. Many implementations floor it.
+- Classical IDF can become negative when a term appears in more than half the collection. Many implementations floor it. The A.1 form adds 1 inside the logarithm, so its IDF stays positive, and only the classical form `ln((N - n + 0.5)/(n + 0.5))` can go negative.
 - BM25 remains strong for exact matches, rare entities, and long-tail queries, as section 18.5 describes.
 - Hybrid retrieval is preferable to assuming a dense-only system dominates this baseline.
 
@@ -578,15 +579,13 @@ C &\approx 6ND_{tokens}\\
 \end{aligned}
 $$
 
-Generation has no backward pass.
-
-For prefill over `s` tokens, `L_layers` layers, and hidden dimension `d_hidden`:
+Generation has no backward pass. For prefill over `s` tokens, `L_layers` layers, and hidden dimension `d_hidden`:
 
 $$
 \mathop{\text{FLOPs}}_{prefill}=2Ns+2L_{layers}s^2d_{hidden}
 $$
 
-The first term is model work linear in context. The second is attention work quadratic in context. Doubling retrieved context is therefore not a linear cost.
+The first term is model work linear in context. The second is attention work quadratic in context. Doubling retrieved context is therefore not a linear cost. Correction: prefill is a linear parameter term plus a quadratic attention term, and in the 8B example below the attention term is about 3 percent of prefill at 2,048 tokens, so doubling context to 4,096 tokens multiplies prefill by about 2.06. Section 6.2 shows that the attention term matches the parameter term only near `s = 12d_hidden`, which is 49,152 tokens for `d_hidden = 4,096`, so the quadratic term becomes comparable to the linear term only at tens of thousands of tokens.
 
 #### Memory formulas
 
@@ -697,7 +696,7 @@ $$
 
 #### Per-vector and total formulas
 
-Sections 16.5 and 15.2 derive total index memory and the HNSW link term. Per-vector data bytes are:
+Sections 16.5 and 15.2 derive total index memory and the HNSW link term. Correction: the ten-million-vector table below follows Section 41.1, which uses `M=16` and a four-byte id. Section 16.5 uses `M=32` and an eight-byte id, which gives 3,332 bytes and 33.32 GB for HNSW-Flat and 104 bytes, 1.09 GB, and a 30.5 times ratio for IVF-PQ96. Per-vector data bytes are:
 
 $$
 b_{vec}=
@@ -893,7 +892,7 @@ The RRF default 60 is an evaluated convention, not an optimum, and IDCG covers j
 | HNSW links | Exact 260.13, rounded 260, and quoted 256 bytes | `M=32`, 1.6 percent difference |
 | HNSW-Flat | 3,200 bytes per vector, 32.0 GB | 10 million vectors, `d=768`, `M=16` |
 | HNSW-PQ | 192 bytes per vector, 1.92 GB | 16.7 times smaller, two-thirds links |
-| IVF-PQ | 100 bytes per vector, 1.00 GB, identifiers 4 to 8 bytes | The row uses a 96-byte code plus four-byte id |
+| IVF-PQ | 100 bytes per vector, 1.00 GB, identifiers 4 to 8 bytes | The row uses a 96-byte code plus four-byte id, as Section 41.1 does. Section 16.5 uses an eight-byte id, which gives 104 bytes and 1.09 GB |
 | Rebuild headroom | `h=1` in place, about 0.2 with hot swap | Old and new artifact overlap |
 | Payload | 16 GB text + 2 GB metadata | 10 million chunks at stated sizes |
 | Fleet example | 22 GB | `R=2`, `h=1`, 1 GB index, 18 GB payload |

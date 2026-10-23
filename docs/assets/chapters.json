@@ -19,7 +19,7 @@
     "title": "00.03. Preface",
     "file": "00_03_preface.md",
     "outcome": "You can explain why RAG design requires reasoning about production decisions and their consequences.",
-    "minutes": 27,
+    "minutes": 28,
     "url": "chapters/00_03_preface.html",
     "group": "Front matter"
   },
@@ -35,7 +35,7 @@
     "title": "00.05. For Interview Candidates",
     "file": "00_05_for_interview_candidates.md",
     "outcome": "You can prepare for design, derivation, and debugging questions with deliberate interview practice.",
-    "minutes": 35,
+    "minutes": 36,
     "url": "chapters/00_05_for_interview_candidates.html",
     "group": "Front matter"
   },
@@ -83,7 +83,7 @@
     "title": "Chapter 2. The Competing Answers to the Same Problem",
     "file": "02_the_competing_answers_to_the_same_problem.md",
     "outcome": "You can compare RAG with continual learning, model editing, long context, and generative retrieval under stated constraints.",
-    "minutes": 70,
+    "minutes": 71,
     "url": "chapters/02_the_competing_answers_to_the_same_problem.html",
     "group": "Part I. The RAG Interview Landscape"
   },
@@ -91,7 +91,7 @@
     "title": "Chapter 3. A Repeatable Framework for Any RAG Design Question",
     "file": "03_a_repeatable_framework_for_any_rag_design_question.md",
     "outcome": "You can turn a design prompt into requirements, sizing estimates, component decisions, and measurable trade-offs.",
-    "minutes": 64,
+    "minutes": 65,
     "url": "chapters/03_a_repeatable_framework_for_any_rag_design_question.html",
     "group": "Part I. The RAG Interview Landscape"
   },
@@ -99,7 +99,7 @@
     "title": "Chapter 4. What the LLM Brings and What It Breaks",
     "file": "04_what_the_llm_brings_and_what_it_breaks.md",
     "outcome": "You can distinguish generator capabilities from factual failures and assign each failure to the component responsible for fixing it.",
-    "minutes": 61,
+    "minutes": 62,
     "url": "chapters/04_what_the_llm_brings_and_what_it_breaks.html",
     "group": "Part II. The Generator Side"
   },
@@ -115,7 +115,7 @@
     "title": "Chapter 6. Scaling Laws and the Economics of Retrieval vs Parameters",
     "file": "06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.md",
     "outcome": "You can compare retrieval and model capacity through training, serving, memory, and compute budgets.",
-    "minutes": 47,
+    "minutes": 49,
     "url": "chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.html",
     "group": "Part II. The Generator Side"
   },
@@ -139,7 +139,7 @@
     "title": "Chapter 9. Prompting for Retrieval-Augmented Systems",
     "file": "09_prompting_for_retrieval_augmented_systems.md",
     "outcome": "You can choose prompting and reasoning scaffolds while accounting for the costs and failures of extra calls or passages.",
-    "minutes": 43,
+    "minutes": 45,
     "url": "chapters/09_prompting_for_retrieval_augmented_systems.html",
     "group": "Part III. Prompting and Context Construction"
   },
@@ -147,7 +147,7 @@
     "title": "Chapter 10. Prompt Sensitivity",
     "file": "10_prompt_sensitivity.md",
     "outcome": "You can measure changes caused by equivalent prompt wording before selecting a template.",
-    "minutes": 53,
+    "minutes": 54,
     "url": "chapters/10_prompt_sensitivity.html",
     "group": "Part III. Prompting and Context Construction"
   },
@@ -155,7 +155,7 @@
     "title": "Chapter 11. Abstention and Calibration",
     "file": "11_abstention_and_calibration.md",
     "outcome": "You can design abstention rules and assess confidence calibration for short and long answers.",
-    "minutes": 50,
+    "minutes": 51,
     "url": "chapters/11_abstention_and_calibration.html",
     "group": "Part III. Prompting and Context Construction"
   },
@@ -171,7 +171,7 @@
     "title": "Chapter 13. Chunking and Granularity",
     "file": "13_chunking_and_granularity.md",
     "outcome": "You can choose retrieval granularity, preserve context, and test whether a chunking method improves retrieval.",
-    "minutes": 60,
+    "minutes": 61,
     "url": "chapters/13_chunking_and_granularity.html",
     "group": "Part IV. Representing What You Retrieve"
   },
@@ -187,7 +187,7 @@
     "title": "Chapter 15. Approximate Nearest Neighbor Search",
     "file": "15_approximate_nearest_neighbor_search.md",
     "outcome": "You can choose an approximate nearest neighbor index using recall, latency, memory, build time, and update constraints.",
-    "minutes": 66,
+    "minutes": 67,
     "url": "chapters/15_approximate_nearest_neighbor_search.html",
     "group": "Part V. Indexing and Vector Search"
   },
@@ -219,7 +219,7 @@
     "title": "Chapter 19. Learning to Rank",
     "file": "19_learning_to_rank.md",
     "outcome": "You can connect ranking objectives to metrics and compare pointwise, pairwise, listwise, and neural ranking designs.",
-    "minutes": 58,
+    "minutes": 59,
     "url": "chapters/19_learning_to_rank.html",
     "group": "Part VI. Retrieval and Ranking"
   },
@@ -227,7 +227,7 @@
     "title": "Chapter 20. Dense Retrieval",
     "file": "20_dense_retrieval.md",
     "outcome": "You can train and serve dense retrieval, choose negatives, and combine semantic search with lexical search.",
-    "minutes": 60,
+    "minutes": 61,
     "url": "chapters/20_dense_retrieval.html",
     "group": "Part VI. Retrieval and Ranking"
   },
@@ -235,7 +235,7 @@
     "title": "Chapter 21. Learned Sparse and Multi-Vector Retrieval",
     "file": "21_learned_sparse_and_multi_vector_retrieval.md",
     "outcome": "You can compare learned sparse and multi-vector retrieval and price hybrid fusion, compression, and pruning.",
-    "minutes": 62,
+    "minutes": 63,
     "url": "chapters/21_learned_sparse_and_multi_vector_retrieval.html",
     "group": "Part VI. Retrieval and Ranking"
   },
@@ -243,7 +243,7 @@
     "title": "Chapter 22. Reranking",
     "file": "22_reranking.md",
     "outcome": "You can choose a reranker, size its candidate set, and separate retrieval failures from model failures.",
-    "minutes": 50,
+    "minutes": 53,
     "url": "chapters/22_reranking.html",
     "group": "Part VI. Retrieval and Ranking"
   },
@@ -251,7 +251,7 @@
     "title": "Chapter 23. Generative Retrieval",
     "file": "23_generative_retrieval.md",
     "outcome": "You can explain retrieval through generated document identifiers and its limits for quality and index updates.",
-    "minutes": 57,
+    "minutes": 58,
     "url": "chapters/23_generative_retrieval.html",
     "group": "Part VI. Retrieval and Ranking"
   },
@@ -259,7 +259,7 @@
     "title": "Chapter 24. Query Reformulation",
     "file": "24_query_reformulation.md",
     "outcome": "You can diagnose query failures and choose expansion, rewriting, conversational repair, or hypothetical-answer retrieval.",
-    "minutes": 59,
+    "minutes": 61,
     "url": "chapters/24_query_reformulation.html",
     "group": "Part VII. Query Understanding and Control Flow"
   },
@@ -267,7 +267,7 @@
     "title": "Chapter 25. Routing and Adaptive Retrieval",
     "file": "25_routing_and_adaptive_retrieval.md",
     "outcome": "You can decide when and where to retrieve and test how learned routing behaves on unfamiliar queries.",
-    "minutes": 67,
+    "minutes": 69,
     "url": "chapters/25_routing_and_adaptive_retrieval.html",
     "group": "Part VII. Query Understanding and Control Flow"
   },
@@ -275,7 +275,7 @@
     "title": "Chapter 26. Iterative, Recursive, and Agentic Retrieval",
     "file": "26_iterative_recursive_and_agentic_retrieval.md",
     "outcome": "You can compare repeated retrieval loops and set stopping rules that account for accuracy, latency, and context growth.",
-    "minutes": 51,
+    "minutes": 55,
     "url": "chapters/26_iterative_recursive_and_agentic_retrieval.html",
     "group": "Part VII. Query Understanding and Control Flow"
   },
@@ -283,7 +283,7 @@
     "title": "Chapter 27. Fine-tuning the Generator",
     "file": "27_fine_tuning_the_generator.md",
     "outcome": "You can decide when to fine-tune the generator and match training objectives to the retrieval defects it must handle.",
-    "minutes": 51,
+    "minutes": 53,
     "url": "chapters/27_fine_tuning_the_generator.html",
     "group": "Part VIII. Training the RAG System"
   },
@@ -291,7 +291,7 @@
     "title": "Chapter 28. Training the Retriever",
     "file": "28_training_the_retriever.md",
     "outcome": "You can connect generator utility to retriever training and account for index refresh costs.",
-    "minutes": 46,
+    "minutes": 47,
     "url": "chapters/28_training_the_retriever.html",
     "group": "Part VIII. Training the RAG System"
   },
@@ -299,7 +299,7 @@
     "title": "Chapter 29. Bootstrapping Training Data",
     "file": "29_bootstrapping_training_data.md",
     "outcome": "You can build retrieval supervision from generated data while checking relevance, distribution shift, and the teacher ceiling.",
-    "minutes": 48,
+    "minutes": 49,
     "url": "chapters/29_bootstrapping_training_data.html",
     "group": "Part VIII. Training the RAG System"
   },
@@ -307,7 +307,7 @@
     "title": "Chapter 30. Lost in the Middle",
     "file": "30_lost_in_the_middle.md",
     "outcome": "You can diagnose position-dependent context failures and compare changes to ordering, truncation, training, and architecture.",
-    "minutes": 50,
+    "minutes": 52,
     "url": "chapters/30_lost_in_the_middle.html",
     "group": "Part IX. Generation and Context Assembly"
   },
@@ -323,7 +323,7 @@
     "title": "Chapter 32. Evaluating Retrieval",
     "file": "32_evaluating_retrieval.md",
     "outcome": "You can derive retrieval metrics and assess evaluation based on relevance labels, human judgments, or LLM judges.",
-    "minutes": 39,
+    "minutes": 40,
     "url": "chapters/32_evaluating_retrieval.html",
     "group": "Part X. Evaluation"
   },
@@ -331,7 +331,7 @@
     "title": "Chapter 33. Evaluating Generation",
     "file": "33_evaluating_generation.md",
     "outcome": "You can assess generation through faithfulness, factuality, claim coverage, and response-length effects.",
-    "minutes": 45,
+    "minutes": 47,
     "url": "chapters/33_evaluating_generation.html",
     "group": "Part X. Evaluation"
   },
@@ -339,7 +339,7 @@
     "title": "Chapter 34. Evaluating the System",
     "file": "34_evaluating_the_system.md",
     "outcome": "You can locate failures by stage and design ablations, sanity checks, and system-level evaluation.",
-    "minutes": 49,
+    "minutes": 50,
     "url": "chapters/34_evaluating_the_system.html",
     "group": "Part X. Evaluation"
   },
@@ -347,7 +347,7 @@
     "title": "Chapter 35. Source Credibility",
     "file": "35_source_credibility.md",
     "outcome": "You can evaluate source credibility while considering freshness, conflicting evidence, pluralism, and fair exposure.",
-    "minutes": 50,
+    "minutes": 52,
     "url": "chapters/35_source_credibility.html",
     "group": "Part XI. Trust, Credibility, and Adversarial Robustness"
   },
@@ -355,7 +355,7 @@
     "title": "Chapter 36. Provenance and Adversarial Robustness",
     "file": "36_provenance_and_adversarial_robustness.md",
     "outcome": "You can separate attribution from authenticity and address provenance, prompt injection, poisoning, and access boundaries.",
-    "minutes": 56,
+    "minutes": 58,
     "url": "chapters/36_provenance_and_adversarial_robustness.html",
     "group": "Part XI. Trust, Credibility, and Adversarial Robustness"
   },
@@ -363,7 +363,7 @@
     "title": "Chapter 37. Latency, Cost, and Systems",
     "file": "37_latency_cost_and_systems.md",
     "outcome": "You can build stage-level latency and cost budgets and evaluate caching, pipelining, and retrieval cascades.",
-    "minutes": 43,
+    "minutes": 45,
     "url": "chapters/37_latency_cost_and_systems.html",
     "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
   },
@@ -371,7 +371,7 @@
     "title": "Chapter 38. Distributed and Federated RAG",
     "file": "38_distributed_and_federated_rag.md",
     "outcome": "You can design retrieval across independently governed sources while accounting for tenancy, residency, and shared infrastructure.",
-    "minutes": 43,
+    "minutes": 46,
     "url": "chapters/38_distributed_and_federated_rag.html",
     "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
   },
@@ -387,7 +387,7 @@
     "title": "Chapter 40. Graph RAG",
     "file": "40_graph_rag.md",
     "outcome": "You can decide when a graph earns its cost and compare graph construction, retrieval, generation, and failure modes.",
-    "minutes": 43,
+    "minutes": 44,
     "url": "chapters/40_graph_rag.html",
     "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
   },
@@ -395,7 +395,7 @@
     "title": "Chapter 41. End-to-End Design Drills",
     "file": "41_end_to_end_design_drills.md",
     "outcome": "You can answer seven design prompts with explicit constraints, measurable architectures, and defensible trade-offs.",
-    "minutes": 44,
+    "minutes": 45,
     "url": "chapters/41_end_to_end_design_drills.html",
     "group": "Part XII. Scaling, Advanced Variants, and Design Drills"
   },
@@ -403,7 +403,7 @@
     "title": "Appendix A1. Formula Sheet",
     "file": "A1_formula_sheet.md",
     "outcome": "You can rehearse formulas for lexical scoring, rank fusion, ranking metrics, modularity, quantization, compute, and memory.",
-    "minutes": 30,
+    "minutes": 31,
     "url": "chapters/A1_formula_sheet.html",
     "group": "Appendices"
   },
@@ -435,7 +435,7 @@
     "title": "Appendix A5. Annotated Reading List",
     "file": "A5_annotated_reading_list.md",
     "outcome": "You can find chapter-linked readings and identify the result each reading supports.",
-    "minutes": 58,
+    "minutes": 60,
     "url": "chapters/A5_annotated_reading_list.html",
     "group": "Appendices"
   },

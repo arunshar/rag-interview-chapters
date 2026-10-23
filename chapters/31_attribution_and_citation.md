@@ -73,7 +73,7 @@ Build the receipt into writing, test the receipt in two ordered steps, route eac
 | Closed-book model | A model that answers from its parameters without retrieving a source at answer time | It may know the answer but cannot provide a source pointer by construction |
 | Parametric knowledge | Information encoded across model weights during training | It supplies answers without keeping document-level receipts |
 | Probability distribution | The model's numerical weighting over possible next tokens | It explains how a parametric model produces text without a corpus pointer |
-| `P(x_n | x_1, ..., x_(n-1))` | Probability of next token `x_n` given all earlier tokens | It formalizes generation from fixed parameters without a source index |
+| `P(x_n \| x_1, ..., x_(n-1))` | Probability of next token `x_n` given all earlier tokens | It formalizes generation from fixed parameters without a source index |
 | Context window | The visible input text available to the generator for the current answer | Retrieved chunks must enter this window to condition the write |
 | Datastore | The searchable collection that holds source material | It supplies the finite set of chunks used for attribution |
 | Retriever | The component that selects source passages for a query | Its misses create extrapolatory claims and missing evidence |
@@ -106,7 +106,7 @@ Build the receipt into writing, test the receipt in two ordered steps, route eac
 | GopherCite | A system trained to quote from retrieved passages | It makes the cited text part of the generation objective rather than an added label |
 | Fine-grained Atomic Evaluation of Factual Precision (FActScore) | An atomic-fact audit used to examine factual support and citation behavior in long-form biographies | Its citation rates show why mere citation presence can carry little evidence |
 | Bayes' rule | A rule for updating odds after observing evidence | It quantifies how little a citation helps when correct and incorrect claims cite at similar rates |
-| `c`, `P(c | correct)`, and `P(c | incorrect)` | Citation event and its rates for correct and incorrect claims | Their ratio measures how much a marker should change belief |
+| `c`, `P(c \| correct)`, and `P(c \| incorrect)` | Citation event and its rates for correct and incorrect claims | Their ratio measures how much a marker should change belief |
 | Prior odds | The belief about correctness before seeing a citation | The citation's likelihood ratio updates this starting point |
 | Posterior odds | The belief about correctness after seeing a citation | It shows the actual evidentiary value of the citation marker |
 | Likelihood ratio | The citation rate for correct claims divided by the citation rate for incorrect claims | A value near 1 means the citation barely changes belief |

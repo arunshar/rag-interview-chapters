@@ -12,6 +12,7 @@ Build a study package that a reader can use to explain a topic cold at a whitebo
 - **Build from a book PDF:** Read [references/workflow.md](references/workflow.md) and [references/chapter-contract.md](references/chapter-contract.md).
 - **Audit an existing edition without changing it:** Read [references/verification-and-packaging.md](references/verification-and-packaging.md). Run checks only.
 - **Repair, reindex, or repackage an existing edition:** Read [references/verification-and-packaging.md](references/verification-and-packaging.md). Write only when the user requested the change.
+- **Build, repair, or verify the reading website:** Read [references/website.md](references/website.md) and [references/verification-and-packaging.md](references/verification-and-packaging.md).
 - **Create or update a GitHub repository:** Read [references/github-publication.md](references/github-publication.md). GitHub mutation always requires current user authorization.
 - **Resume this repository's completed case study:** Read [references/session-recap.md](references/session-recap.md).
 - **Hand the workflow to Fable:** Read [references/fable-handoff.md](references/fable-handoff.md).
@@ -42,6 +43,8 @@ Load only the references needed for the requested mode. A full build requires th
 - Keep raw LaTeX inside display math only.
 - Do not use `\operatorname` in GitHub Markdown. GitHub rejects that macro. Use `\mathop{\text{label}}`, with `\limits` when starred operator placement is required.
 - Brace superscript stars as `^{*}` so GitHub Markdown cannot consume paired asterisks before MathJax runs.
+- Write `\%` for a percent sign, `_{...}` for every multi-character subscript, and backslash commands such as `\log` and `\exp` for function names inside display math.
+- Leave a blank line between a closing `$$` and a following table, and write `\|` for a pipe inside a code span in a table row. Pandoc breaks both patterns even though GitHub renders them.
 - Do not add raw HTML, image embeds, base64 data, footnotes, or local filesystem links to study units.
 - Use triple-backtick Mermaid fences. Do not substitute tilde fences when the contract requires backticks.
 - Do not hardcode Mermaid fill, text, background, or stroke colors. Let the active renderer theme set colors. Preserve emphasis with node shapes, `stroke-width`, and `stroke-dasharray`.
@@ -50,9 +53,11 @@ Load only the references needed for the requested mode. A full build requires th
 
 - Resolve every `scripts/...` path from the directory that contains this `SKILL.md` file.
 - Run `node scripts/audit_markdown.mjs <package-root>` for the full unit contract. It expects `<package-root>/manifest.json` and `<package-root>/chapters/`.
+- Run `python3 scripts/build_manifest.py <package-root>` when `manifest.json` is missing. The published repository does not include the creation-time manifest.
 - Run `node scripts/verify_mermaid.mjs <package-root> [mmdc-path] [parallelism] [theme]` to parse every Mermaid block with Mermaid CLI. It uses isolated block files, defaults to three concurrent parses, and accepts Mermaid themes such as `default` and `dark`.
 - Run `node scripts/verify_package.mjs <package-root>` after the index and ZIP exist. It checks the manifest, index coverage, archive allowlist, integrity, and byte equality.
 - Run `node scripts/verify_readme.mjs <repository-root>` before publishing a repository README.
+- Run `python3 scripts/build_site.py` from the repository root to rebuild the website. That script lives in the repository, and it checks the Pandoc version and the source patterns before it writes anything.
 
 These scripts validate mechanics. They do not replace independent source-page review, arithmetic recomputation, or visual reconciliation.
 

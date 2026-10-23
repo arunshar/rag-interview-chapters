@@ -375,9 +375,9 @@ If c_i is wrong, it can confidently suppress the correct document.
 A 32-layer model with 32 heads per layer has 1,024 heads.
 Selecting 100-300 touches about 10-29% and leaves 71-90% unchanged.
 
-CrAM reports 91.3% accuracy on targeted adversarial misinformation injection, described as near-Oracle.
-It reports only 33.6% on Natural Questions, versus RA-RAG at 73.7%.
-The source connects that spread to CrAM's narrow calibration target.
+CrAM reports 91.3% accuracy on targeted adversarial misinformation injection, described as near-Oracle. Correction: the CrAM paper (Deng et al., 2024, arXiv 2406.11497, AAAI 2025) reports no 91.3% near-Oracle result, and this unit gives 91.3% to RA-RAG on TriviaQA above.
+It reports only 33.6% on Natural Questions, versus RA-RAG at 73.7%. Correction: 33.6% is CrAM's exact-match score in its own targeted setting on Natural Questions with Llama2-13B, four correct documents, and one misinformation document, where naive RAG scores 11.9% and clean four-document RAG scores 28.9%. That score cannot be compared directly with RA-RAG's 73.7%, which comes from a different paper with a different setup and metric.
+The source connects that spread to CrAM's narrow calibration target. Correction: CrAM's own results show a large gain over naive RAG in its targeted setting, so this spread does not show a narrow calibration target.
 Source defect: the sanity-check sentence calls CrAM a 12-head-class intervention, which conflicts with the 100-300 gullible-head range stated and computed throughout the section.
 
 Use CrAM for an hours-not-days intervention with no training budget.
@@ -503,9 +503,9 @@ MMR from Carbonell and Goldstein in 1998 uses relevance plus distance but no exp
 - What: The pool has 20 documents and four candidates: 14 basketball, 3 footballer, 2 actor, and 1 researcher.
 - Why: Mean utilities are 0.90, 0.75, 0.70, and 0.62.
 - Failure without it: Pure utility with K = 5 returns five basketball documents totaling 4.40, coverage 1/4 or 0.25, and ILAD 0.08.
-- Cost or complexity: With lambda_1 = 0.3 and lambda_2 = 0.5, the list totals 3.85, a 12.5% credibility drop, but reaches coverage 4/4 and ILAD 0.68.
+- Cost or complexity: With lambda_1 = 0.3 and lambda_2 = 0.5, the list totals 3.85, a 12.5% credibility drop, but reaches coverage 4/4 and ILAD 0.68. Correction: under the printed objective with these weights, the stated list scores 3.85 + 0.3 x 0.683 + 0.5 x 1.0, or about 4.555, while three basketball documents (0.90, 0.89, 0.88) plus the footballer and the actor score 4.12 + 0.3 x 0.549 + 0.5 x 0.75, or about 4.660, so the objective does not select the stated list.
 
-The diversified list keeps two basketball documents and adds the footballer, actor, and researcher.
+The diversified list keeps two basketball documents and adds the footballer, actor, and researcher. Correction: swapping the third basketball document for the researcher lowers the objective by about 0.095 to 0.105 at lambda_2 = 0.5, and the swap pays off only when lambda_2 is above roughly 0.88 to 0.92, depending on which basketball document it replaces, or when the utility term is a mean over K instead of a sum.
 Among 10 pairs, one has distance 0.08 and nine have about 0.75.
 `(0.08 + 9 × 0.75) / 10 = about 0.68`, an 8.5-fold ILAD increase.
 
@@ -678,7 +678,7 @@ Figure 35.7: Every hop in the citation chain resets the apparent age to zero. Th
 | 4 | Basketball, u = 0.87 | Actor, u = 0.70 |
 | 5 | Basketball, u = 0.86 | Researcher, u = 0.62 |
 
-Figure 35.8: Sorting by credibility alone returns five mutually redundant, individually correct documents. Adding coverage to the objective spends two of five slots on redundancy and recovers all four disambiguation candidates.
+Figure 35.8: Sorting by credibility alone returns five mutually redundant, individually correct documents. Adding coverage to the objective spends two of five slots on redundancy and recovers all four disambiguation candidates. Correction: with lambda_2 = 0.5 the printed objective prefers three basketball documents plus the footballer and the actor (about 4.660 against 4.555), so the combined column needs lambda_2 above roughly 0.9 or a utility term averaged over K.
 
 ### Figure 35.9
 
@@ -827,9 +827,9 @@ Check stable source identity first and choose RA-RAG when it exists. Otherwise c
 | 1,024 heads | Total in that configuration |
 | 10-29% | Share of heads CrAM modifies |
 | 71-90% | Share of heads left unchanged |
-| 91.3% | CrAM targeted adversarial-injection accuracy, described as near-Oracle |
-| 33.6% | CrAM Natural Questions accuracy |
-| 73.7% | RA-RAG Natural Questions comparison |
+| 91.3% | Not a CrAM result, because the CrAM paper reports no such figure and this unit gives 91.3% to RA-RAG on TriviaQA (corrected from CrAM targeted adversarial-injection accuracy, described as near-Oracle) |
+| 33.6% | CrAM exact match on Natural Questions with Llama2-13B, four correct documents, and one misinformation document, against 11.9% for naive RAG (corrected from CrAM Natural Questions accuracy) |
+| 73.7% | RA-RAG Natural Questions result from a different paper and setup, not directly comparable with CrAM's 33.6% (corrected from RA-RAG Natural Questions comparison) |
 | 2 resource gates | Stable identity first, then labeled data and fine-tuning runway |
 | 3 marketplace pools | Example showing a system can use all three methods |
 | Same-week launch | Pool 3 deadline that routes to CrAM |
@@ -855,7 +855,7 @@ Check stable source identity first and choose RA-RAG when it exists. Otherwise c
 | 24 months to 6 months | Interview example showing threshold tightening does not reveal t_0 |
 | Top 14 candidates | Redundant dominant cluster in the pluralism setup |
 | 1998 | Carbonell and Goldstein MMR reference |
-| lambda_1 = 0.3 and lambda_2 = 0.5 | Combined-objective weights in the worked list |
+| lambda_1 = 0.3 and lambda_2 = 0.5 | Combined-objective weights stated for the worked list, which under the printed objective select three basketball documents plus the footballer and the actor (corrected from weights that select the full-coverage list) |
 | 20 candidate documents | Michael Jordan pool size |
 | 14, 3, 2, and 1 | Basketball, footballer, actor, and researcher counts |
 | 0.90, 0.75, 0.70, and 0.62 | Mean utilities for those four groups |

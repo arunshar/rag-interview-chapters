@@ -233,7 +233,7 @@ Suppose there are N stores S1 through SN. Store Si contains Ki indexed units. Fo
 
 #### Why it exists
 
-Some stores cannot be queried because of residency rules. Some charge per call or forbid bulk export. Some contain repeated or stale copies. Some use scoring systems that cannot be merged on raw values. The desired quantity is per-query relevance P(relevant given q and Si), not one static source leaderboard. Static document count or historical citation count rewards the largest or loudest source. PageRank illustrates the same failure one level lower. Counting inbound links is gameable, while recursive authority is only one query-dependent signal among many.
+Some stores cannot be queried because of residency rules. Some charge per call or forbid bulk export. Some contain repeated or stale copies. Some use scoring systems that cannot be merged on raw values. The desired quantity is per-query relevance P(relevant given q and Si), not one static source leaderboard. Static document count or historical citation count rewards the largest or loudest source. PageRank illustrates the same failure one level lower. Counting inbound links is gameable, while recursive authority is only one query-dependent signal among many. Correction: PageRank is a query-independent (static) authority score that is computed once over the link graph, so search engines use it as one static prior and combine it with many query-dependent relevance signals (Page, Brin, Motwani, and Winograd, 1999).
 
 #### Failure without it
 
@@ -242,7 +242,7 @@ Merge heterogeneous lists on rank, not raw score. Routing errors are silent beca
 
 #### Reported measurement
 
-RAGRoute reports results on the MIRAGE medical question-answering benchmark and the Massive Multitask Language Understanding (MMLU) benchmark. Learned routing cut source queries by 77.5% and data transfer by 76.2%. Accuracy moved from 72.22% to 72.24%. Broadcast used 100/22.5 = 4.4 times as many source queries for 0.02 accuracy points.
+RAGRoute reports results on the MIRAGE medical question-answering benchmark and the Massive Multitask Language Understanding (MMLU) benchmark. Learned routing cut source queries by 77.5% and data transfer by 76.2%. Accuracy moved from 72.22% to 72.24%. Broadcast used 100/22.5 = 4.4 times as many source queries for 0.02 accuracy points. Correction: the 77.5% query cut and the 76.2% transfer cut (73.3 MB to 17.42 MB) are MMLU results over ten simulated sources built as k-means clusters of Wikipedia snippets, and MMLU accuracy fell from 43.59% to 43.29% with routing. The 72.22% to 72.24% accuracy change is a MIRAGE result over the five MedRAG corpora, where routing cut source queries by about 29% to 71% and transfer by 41.13% (Dhasade, Guerraoui, Kermarrec, Petrescu, Pires, Randl, and de Vos, 2025, arXiv 2502.19280). The 4.4 times ratio is therefore an MMLU saving, and on MMLU it costs 0.30 accuracy points.
 
 #### Worked example
 
@@ -269,11 +269,11 @@ A follow-up such as "what about the second one" reaches the index without conten
 
 #### Cost and alternatives
 
-A five-way BERT-base softmax has 110 million parameters. At two FLOPs per parameter per token, a 32-token query costs 7.04 × 10^9 FLOPs. At 3.4 × 10^14 FLOP/s, that is 0.021 ms of arithmetic. A prompted 8B generator in bf16 reads 16 GB per token. At 3.35 TB/s, it takes 4.8 ms per token. A five-token routing decision takes 24 ms, roughly three orders of magnitude more than the encoder arithmetic. A generated label also lacks a score distribution for asymmetric thresholding. Fine-tuning that router on local traffic also requires touching the generator. The generative router wins when the action space is open-ended, such as hundreds of tools that a fixed softmax cannot enumerate.
+A five-way BERT-base softmax has 110 million parameters. At two FLOPs per parameter per token, a 32-token query costs 7.04 × 10^9 FLOPs. At 3.4 × 10^14 FLOP/s, that is 0.021 ms of arithmetic. A prompted 8B generator in bf16 reads 16 GB per token. At 3.35 TB/s, it takes 4.8 ms per token. A five-token routing decision takes 24 ms, roughly three orders of magnitude more than the encoder arithmetic. Correction: Section 25.1 prices the same 110M encoder over 32 tokens at about 2 ms of wall time, so against wall time the generative router is about 12 times slower. A generated label also lacks a score distribution for asymmetric thresholding. Fine-tuning that router on local traffic also requires touching the generator. The generative router wins when the action space is open-ended, such as hundreds of tools that a fixed softmax cannot enumerate.
 
 #### Worked example
 
-Query A asks for the capital of France. The router answers directly. A 32-token prefill costs 2 × 8 × 10^9 × 32 = 5.12 × 10^11 FLOPs, or 1.5 ms. Five decoded tokens add 24 ms. Query B gives four animals with ten legs and asks how many are chickens. The route is chain of thought. The equations yield three chickens and one rabbit. Retrieving five 400-token chunks would add 2,000 distractor tokens. That prefill costs 3.2 × 10^13 FLOPs, or 94 ms. Query C says "what about the second one". The router rewrites and then retrieves. A 20-token rewrite costs 96 ms before retrieval. Query D asks which of two Frankfurt data centers has the later contract renewal. The router decomposes, then makes two retrieval calls and two 94 ms prefills. The router's break-even diversion rate is 0.021/94 = 2.2 × 10^-4, or 0.022%. One correct diversion in about five thousand pays for the router.
+Query A asks for the capital of France. The router answers directly. A 32-token prefill costs 2 × 8 × 10^9 × 32 = 5.12 × 10^11 FLOPs, or 1.5 ms. Five decoded tokens add 24 ms. Query B gives four animals with ten legs and asks how many are chickens. The route is chain of thought. The equations yield three chickens and one rabbit. Retrieving five 400-token chunks would add 2,000 distractor tokens. That prefill costs 3.2 × 10^13 FLOPs, or 94 ms. Query C says "what about the second one". The router rewrites and then retrieves. A 20-token rewrite costs 96 ms before retrieval. Query D asks which of two Frankfurt data centers has the later contract renewal. The router decomposes, then makes two retrieval calls and two 94 ms prefills. The router's break-even diversion rate is 0.021/94 = 2.2 × 10^-4, or 0.022%. One correct diversion in about five thousand pays for the router. Correction: 0.021 ms is arithmetic time only, and at the 2 ms wall time that Section 25.1 uses for the same encoder, the break-even is 2/94, or about 2.1%, which is one correct diversion in about 47 queries. The 0.022% figure is an arithmetic-only lower bound that ignores per-call overhead.
 A BERT-base cross-encoder over 100 candidates at 256 tokens each reads 25,600 tokens. That is exactly 800 times the router's 32 tokens and about 16.6 ms of arithmetic.
 
 #### Practice decisions and limits
@@ -353,8 +353,8 @@ Softmax reports which side of a hyperplane an embedding lands on and how far pas
 
 #### Worked example
 
-The RAGRoute setting has four medical corpora. Broadcast makes four source queries and reports 72.22% end-to-end accuracy. Routing reports 77.5% fewer source queries, 76.2% less transferred data, and 72.24% accuracy. Average fan-out becomes 4 × (1 - 0.775) = 0.90 sources per query. Routing saves 3.10 source queries for a gain of 0.02 accuracy points. Let f be the fraction of unseen traffic. Let d be the retrieval lift in accuracy points on that traffic. Routing remains accuracy-neutral only while fd is at most 0.02 points. At d = 10 points, f = 0.002, or two queries in one thousand. At d = 5 points, the allowance is 0.4%. At d = 20 points, it is 0.1%. One source query is priced at $0.0004. Saving 3.10 calls saves $0.00124 per user query. At 10 million queries per month, that is $12,400. With a $6 escalation and a 10-point retrieval lift, dollar break-even is f = 0.21%. The agreement with the accuracy calculation is an artifact of the chosen constants.
-The order of magnitude is the intended lesson. The reported query reduction leaves 22.5% of source calls and 23.8% of transferred data. The retained corpora are therefore about 6% larger than average if sources are interchangeable. That supports the source-affinity interpretation but also exposes single-source dependence.
+The RAGRoute setting has four medical corpora. Broadcast makes four source queries and reports 72.22% end-to-end accuracy. Routing reports 77.5% fewer source queries, 76.2% less transferred data, and 72.24% accuracy. Correction: RAGRoute's MIRAGE setting uses five MedRAG corpora, and the 77.5% and 76.2% cuts come from its MMLU setting with ten simulated Wikipedia sources, so this worked example mixes two benchmarks (Dhasade et al., 2025, arXiv 2502.19280). The fan-out, saved calls, fd allowance, and dollar figures below are a constructed four-source illustration that pairs the MMLU savings with the MIRAGE accuracy change. Under one benchmark alone, the MMLU savings come with a 0.30-point accuracy loss, so that setting leaves no positive margin for unseen traffic. Average fan-out becomes 4 × (1 - 0.775) = 0.90 sources per query. Routing saves 3.10 source queries for a gain of 0.02 accuracy points. Let f be the fraction of unseen traffic. Let d be the retrieval lift in accuracy points on that traffic. Routing remains accuracy-neutral only while fd is at most 0.02 points. At d = 10 points, f = 0.002, or two queries in one thousand. At d = 5 points, the allowance is 0.4%. At d = 20 points, it is 0.1%. One source query is priced at $0.0004. Saving 3.10 calls saves $0.00124 per user query. At 10 million queries per month, that is $12,400. With a $6 escalation and a 10-point retrieval lift, dollar break-even is f = 0.21%. The agreement with the accuracy calculation is an artifact of the chosen constants.
+The order of magnitude is the intended lesson. The reported query reduction leaves 22.5% of source calls and 23.8% of transferred data. Correction: both shares are MMLU figures over ten Wikipedia clusters. The retained corpora are therefore about 6% larger than average if sources are interchangeable. That supports the source-affinity interpretation but also exposes single-source dependence.
 
 #### Practice decisions and limits
 
@@ -611,9 +611,9 @@ Confidence measures distance from the decision boundary, not distance from the t
 | Heterogeneous lengths | 120 and 900 tokens | Wiki versus PDF average length example |
 | BM25 comparison | 14.2 and 14.2 | Equal raw scores are not comparable across stores |
 | Cosine comparison | 0.85 and 0.35 | Typical relevant-pair similarities can differ across models |
-| RAGRoute reduction | 77.5% queries and 76.2% data | Reported source-routing savings |
-| RAGRoute accuracy | 72.22% to 72.24% | Reported 0.02-point change |
-| Broadcast query ratio | 4.4 times | 100/22.5 |
+| RAGRoute reduction | 77.5% queries and 76.2% data | MMLU savings over ten simulated sources, where accuracy fell from 43.59% to 43.29% (corrected from reported source-routing savings) |
+| RAGRoute accuracy | 72.22% to 72.24% | MIRAGE 0.02-point change over five MedRAG corpora, with about 29% to 71% fewer queries (corrected from reported 0.02-point change) |
+| Broadcast query ratio | 4.4 times | 100/22.5 on MMLU, where routing cost 0.30 accuracy points (corrected from 100/22.5) |
 | Constructed store sizes | 40k, 8k, 60k, 300k, 900k, 1.2M | Six stores totaling 2.508M chunks |
 | Source return size | Top 20 at 600 tokens each | Per-store candidate output |
 | Broadcast transfer | 120 candidates and 72,000 tokens | Six stores queried |
@@ -632,7 +632,7 @@ Confidence measures distance from the decision boundary, not distance from the t
 | Direct-answer example | 32-token prompt and 5-token answer | 1.5 ms prefill plus 24 ms decode |
 | Arithmetic distraction | 2,000 tokens and 94 ms | Unnecessary retrieval prefill |
 | Rewrite example | 20 tokens and 96 ms | Cost before retrieval |
-| Router break-even | 0.022% | One correct diversion in about five thousand |
+| Router break-even | About 2.1% at 2 ms wall time, or one in 47 (corrected from 0.022%) | 0.022% is an arithmetic-only lower bound, one in about five thousand |
 | Cross-encoder comparison | 100 × 256 = 25,600 tokens | 800 times router input, about 16.6 ms arithmetic |
 | Held-out router accuracy | 82% | Hypothetical that still produces lower end-to-end quality because confusions have unequal cost |
 | Joint action-source labels | 5 times the source count | Five actions crossed with every source |
@@ -692,14 +692,14 @@ Confidence measures distance from the decision boundary, not distance from the t
 | Figure 25.7 margin comparison | Within 3% | Similar to the single-hop centroid's boundary margin |
 | Figure 25.7 data distance | 2.6 cluster radii | Unseen-query distance from the single-hop centroid |
 | Distance bypass | 99th percentile | Practice threshold over training distances |
-| Medical corpora | 4 | RAGRoute worked setting |
-| Routed fan-out | 0.90 sources per query | Four times 22.5% remaining calls |
+| Medical corpora | 5 in MIRAGE (corrected from 4) | The worked setting keeps four constructed sources |
+| Routed fan-out | 0.90 sources per query | Four times the MMLU 22.5% remaining calls in a constructed four-source setting (corrected from four times 22.5% remaining calls) |
 | Calls saved | 3.10 | Per user query |
-| OOD accuracy allowance | fd at most 0.02 points | Entire reported routing margin |
+| OOD accuracy allowance | fd at most 0.02 points | MIRAGE accuracy margin applied to MMLU savings, while MMLU itself shows a 0.30-point loss (corrected from entire reported routing margin) |
 | OOD slice at 10-point lift | 0.2% or 2 in 1,000 | Consumes the 0.02-point margin |
 | OOD slice at 5-point lift | 0.4% | Accuracy-neutral limit |
 | OOD slice at 20-point lift | 0.1% | Accuracy-neutral limit |
 | Source-query price | $0.0004 | ANN search plus transfer |
 | Routing dollar saving | $0.00124 per query | $12,400 at 10M queries per month |
 | Dollar break-even OOD | 0.21% | With $6 loss and 10-point retrieval lift |
-| Retained data ratio | 23.8% data versus 22.5% calls | Retained corpora are about 6% larger than average under interchangeability |
+| Retained data ratio | 23.8% data versus 22.5% calls | MMLU figures, so retained Wikipedia clusters are about 6% larger than average under interchangeability (corrected from retained corpora) |
