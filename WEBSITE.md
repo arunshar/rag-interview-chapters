@@ -48,7 +48,7 @@ Equations use native MathML, and each display equation sits in its own horizonta
 
 The question bank folds every answer spine under **Show expected reasoning**, so a reader can attempt each prompt before reading the answer.
 
-The opening theme is set in the page head by `theme.js`, before the first paint. The theme choice and the last opened chapter are stored only in the reader's browser when browser storage is available. The website has no backend or account system.
+The opening theme is set in the page head by `theme.js`, before the first paint. A reader's own click on the theme button wins. A first-time reader follows the operating system's light or dark setting, and dark is the fallback when the browser reports none. The theme choice and the last opened chapter are stored only in the reader's browser when browser storage is available. The website has no backend or account system.
 
 ## Verification
 
