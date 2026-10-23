@@ -196,7 +196,7 @@ For near-real-time ingestion, index literal text immediately and backfill expans
 #### What
 
 InPars uses k few-shot passage-query examples to prompt GPT-3 for a query about each unlabeled target passage.
-It then trains a dense retriever on the generated query-passage pairs.
+It then trains a dense retriever on the generated query-passage pairs. Correction: InPars fine-tuned monoT5 rerankers (220M and 3B parameters) on the generated pairs and used them to rerank BM25 candidates, and the paper lists fine-tuning dense retrievers on this synthetic data as future work (Bonifacio, Abonizio, Fadaee, and Nogueira, 2022, arXiv 2202.05144).
 The vanilla prompt shows k pairs of passage and "relevant query."
 The GBQ prompt shows k triples of passage, good question, and bad question.
 The human-written question is the good example.
@@ -229,7 +229,7 @@ At an illustrative $0.02 per 1,000 tokens, vanilla costs about $448.
 GBQ costs about $484.
 The contrastive design adds about 8% and roughly $36 for the whole corpus.
 The fixed human cost is two or three good questions, while the general few-shot budget is 2 to 8 examples.
-The reported InPars retriever beat BM25 and several self-supervised dense baselines with no human-labeled query in the target domain.
+The reported InPars retriever beat BM25 and several self-supervised dense baselines with no human-labeled query in the target domain. Correction: the reported InPars model is a monoT5 reranker over BM25 candidates, and the dense dual-encoder training that this unit describes for Promptagator does not apply to InPars.
 Use prompt contrast and post-hoc consistency filtering together.
 If rate limits bind, shorten exemplar passages before removing the contrast.
 

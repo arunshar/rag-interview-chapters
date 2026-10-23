@@ -426,11 +426,7 @@ Cost and complexity: A Tree of Thoughts expands `b` children, scores states, kee
 
 Graph of Thoughts permits aggregation and refinement edges that a tree cannot draw.
 
-Yao et al. (2023) reported GPT-4 on Game of 24 at 4% with CoT.
-
-Self-consistency over 100 samples scored 9%.
-
-A breadth-5 tree scored 74%.
+Yao et al. (2023) reported GPT-4 on Game of 24 at 4% with CoT. Self-consistency over 100 samples scored 9%. A breadth-5 tree scored 74%.
 
 Besta et al. (2024) reported Graph of Thoughts improving sorting quality by 62% over Tree of Thoughts at more than 31% lower cost.
 
@@ -549,11 +545,7 @@ Self-review can reinforce the model's own answer and raise confidence without im
 
 #### Reliability audit
 
-A five-sample fan gets all five parseable outputs with probability 0.904 at 98% per-call parseability.
-
-Exactly four parse with probability 0.092.
-
-Fewer than four parse with probability 0.004.
+A five-sample fan gets all five parseable outputs with probability 0.904 at 98% per-call parseability. Exactly four parse with probability 0.092. Fewer than four parse with probability 0.004.
 
 A four-sample vote with random tie-breaking scores 0.648 at `p = 0.60`.
 
@@ -567,7 +559,7 @@ If its evaluator keeps the correct branch 90% of the time, full execution falls 
 
 Realized accuracy falls to 0.609, seven points below the fan.
 
-The evaluator must keep the correct branch more than 83.5% of the time to break even.
+The evaluator must keep the correct branch more than 83.5% of the time to break even. Correction: at 98% per-call reliability no survival rate breaks even, because even a perfect scorer realizes 0.668 against the fan's 0.680, and the joint condition that 0.98^30 times s^3 reach 0.575 would require s^3 to reach 1.054, which is impossible. The 83.5% figure is the cube root of the 0.583 break-even rate, so it holds only when every call executes perfectly.
 
 Measure this on 200 labeled pruning decisions before writing orchestration.
 
@@ -576,6 +568,8 @@ On Game of 24, a perfect finite search has `p_s = 1.0` and the self-consistency 
 The reported 0.74 tree score implies execution near 0.714.
 
 Even a free exact evaluator leaves a large execution discount.
+
+#### Operational decisions for scaffold depth
 
 Count model-executed steps as a reliability budget.
 
@@ -631,11 +625,7 @@ $$
 
 The relative penalty per added passage is `beta = 1 - Phi(mu)`.
 
-At `mu = 2.0`, `beta = 0.0228`.
-
-At `mu = 2.5`, `beta = 0.0062`.
-
-At `mu = 3.0`, `beta = 0.00135`.
+At `mu = 2.0`, `beta = 0.0228`. At `mu = 2.5`, `beta = 0.0062`. At `mu = 3.0`, `beta = 0.00135`.
 
 A reranker buys margin, not merely a different order.
 
@@ -668,11 +658,7 @@ $$
 k^\star R(k^\star) = \frac{c}{-\ln\Phi(\mu)} \approx \frac{c}{\beta}
 $$
 
-At `mu = 3.0`, the optimum is about 40.
-
-At `mu = 2.5`, the optimum is about 9.
-
-At `mu = 2.0`, the fitted optimum is about 3 and lies below the fit range.
+At `mu = 3.0`, the optimum is about 40. At `mu = 2.5`, the optimum is about 9. At `mu = 2.0`, the fitted optimum is about 3 and lies below the fit range.
 
 That result means fix the ranker rather than retrieve three.
 
@@ -729,6 +715,8 @@ The system crosses below its 0.42 closed-book accuracy near `k = 73`.
 Liu et al. (2023) observed the inversion at 20 documents in multi-document question answering.
 
 The model here omits positional decay, so treat its optimum as an upper bound. Its independent-distractor assumption is also imperfect. Positive correlation among near duplicates lowers the modeled per-document penalty at large top-k and makes deduplication a substantive intervention.
+
+#### Operational decisions for retrieval depth
 
 Gate releases on answer accuracy, not recall at top-k.
 
@@ -864,7 +852,7 @@ Mechanically, both place tokens in the same context channel and leave the genera
 
 ### 2. Will self-consistency turn 60% grounded question-answering accuracy into 75%?
 
-No. Majority-of-five reaches 68.3%, while majority-of-nine reaches 73.3%. Voting can recover probability mass already present across independent paths, but it cannot correct a wrong or missing passage that biases every sample.
+The source answers no, because majority-of-five reaches 68.3% and majority-of-nine reaches 73.3%. Correction: under independent errors about 11 samples reach 75.3%, so the target is reachable in principle, but a wrong or missing passage that biases every sample correlates the errors and can cap the gain well below that.
 
 ### 3. When does more scaffolding make results worse?
 
@@ -887,13 +875,25 @@ No. A larger window removes a token-capacity limit but does not remove competiti
 | Prompt stack | 4,360 tokens | 205 ms and $0.14 per thousand queries |
 | Binding latency | 3 days versus about 5 seconds | 43% stale versus about 8 times 10 to the power of negative 6 |
 | RAG-Sequence | 44.5 exact match | Ten points above closed-book T5-11B at 34.5 |
-| Majority voting | 60% to 68.3% with 5 samples | 73.3% with 9 samples |
+| FLAN | 62 datasets in 12 clusters, 20 of 25 held-out wins | 137 billion parameter model against zero-shot GPT-3 175 billion |
+| Zero-shot CoT | 10.4% to 40.7% | text-davinci-002 on GSM8K with a second answer-extraction call |
+| Majority voting | 60% to 68.3% with 5 samples | 73.3% with 9 samples and 75.3% with 11 under independent errors |
+| PaLM-540B self-consistency | 56.5% greedy to 74.4% with 40 chains | The two-answer normal approximation predicts 74.9% |
+| Game of 24 | 4% CoT, 9% self-consistency over 100, 74% breadth-5 tree | Yao et al. (2023) with GPT-4, implied execution near 0.714 |
+| Graph of Thoughts | 62% better sorting at more than 31% lower cost | Besta et al. (2024) against Tree of Thoughts |
+| Uncached fan | 18,050 tokens, 849 ms, $5.90 times 10 to the power of negative 4 | Five samples at 68.3% accuracy |
+| Uncached tree | 106,800 tokens and 5.0 seconds | 13 times the cached tree and 30 times one chain |
 | Cached fan | 4,610 tokens | 3.9 times cheaper than the uncached fan |
 | Cached tree | 30 calls and 3 serial rounds | 8,235 tokens and 388 ms of GPU time |
 | Tree break-even | 98.2% per call | 98% yields only 54.5% end-to-end execution |
-| Pruning | 83.5% required survival | 66.7% is the chance floor when keeping 2 of 3 |
+| Pruning | No survival rate breaks even at 98% per call, and 83.5% applies only with perfect execution (corrected from 83.5% required survival) | 66.7% is the chance floor when keeping 2 of 3 |
+| Parse reliability | 0.904 all five, 0.092 exactly four, 0.004 fewer than four | Four-sample vote 0.648 and realized fan 0.680 against ideal 0.683 |
+| Tree execution | 0.668 with a perfect scorer, 0.398 and 0.609 at 90% survival | Six times the calls and three serial rounds |
+| Ablation noise | Standard error about 0.021 on 500 questions, McNemar 1.5 | Below 1.96, so a two-point move is noise |
+| Margin penalty | beta 0.0228, 0.0062, and 0.00135 | At mu 2.0, 2.5, and 3.0 |
 | DPR anchors | 78.4% at top-20 and 85.4% at top-100 | Log-linear recall slope 0.0435 |
 | Ranker margin | 2.5 gives top-k about 9 | 3.0 gives top-k about 40 |
 | Weak margin | Accuracy 0.370 at top-100 | Below closed-book 0.42 and crossing near 73 passages |
 | Reranked top-40 | Accuracy 0.843 | Bi-encoder top-40 scores 0.751 |
+| Reranked top-10 | Accuracy 0.824 | Utilization 0.988, grounding 0.745, 5,120 tokens at $0.0154 |
 | Last 1.9 points | $46,000 per million queries | Four times the input bill before extra prefill latency |

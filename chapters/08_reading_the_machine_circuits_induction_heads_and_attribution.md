@@ -447,8 +447,7 @@ $$
 Why: The score depends only on the identities of t_i and t_j.
 Failure without another layer: The desired location is marked by t_(j-1), not by payload token t_j.
 An unseen part number has no trained bigram entry that points to its payload.
-Cost or complexity: One-layer heads can implement memorized skip-trigram associations.
-They cannot implement the general unseen-token pointer by this score alone.
+Cost or complexity: One-layer heads can implement memorized skip-trigram associations. They cannot implement the general unseen-token pointer by this score alone.
 #### The two-layer construction
 
 What: A layer-1 previous-token head shifts t_(j-1) into the residual stream at j.
@@ -463,6 +462,7 @@ s_{ij}^{ind}
 t_iW_EW_{QK}^{I}
 \left(W_{OV}^{P}W_E^{T}t_{j-1}^{T}\right)^{T}
 $$
+Correction: under the row-vector convention the bracketed factor is a d x 1 column, so its transpose is a 1 x d row and the product above is undefined. The key-side state from the previous equation gives the term `t_i W_E W_QK^I (t_(j-1) W_E W_OV^P)^T`, which equals `t_i W_E W_QK^I (W_OV^P)^T W_E^T t_(j-1)^T`.
 Why: Training can make the composed vocabulary map close to a positive multiple of the identity.
 Then the score is high when the current token matches the predecessor copied into position j.
 The layer-2 OV circuit copies t_j into the logits.

@@ -371,7 +371,7 @@ Difficulty marker: Senior. These prompts test whether you can derive from the st
 **Expected reasoning:** Refuse a certification that tokenization made impossible. Replace it with a measurement, sample-size arithmetic, and the interval obtained. Describe residual risk as extractability because document identity can no longer be enumerated.
 
 **Senior 6, §6.1. Prompt:** "Kaplan and Chinchilla disagree by more than a factor of ten on the same question. What actually changed between them?"
-**Expected reasoning:** Data and architecture did not change. The correction matched the cosine learning-rate schedule to run length, removing a long-run measurement bias, and counted embedding parameters.
+**Expected reasoning:** Data and architecture did not change. The correction matched the cosine learning-rate schedule to run length, removing a long-run measurement bias, and counted embedding parameters. Correction: the two studies did use different data and model families, because Kaplan et al. (2020, arXiv 2001.08361) trained on WebText2 and Hoffmann et al. (2022, arXiv 2203.15556) trained Gopher-family models on MassiveText. The source attributes the gap to these two method changes, which are the schedule length matched to run length and the embedding parameters counted.
 
 **Senior 7, §7.1. Prompt:** "Your RAG assistant scores well on the offline set and drops twelve points in production. How do you tell whether that is a retrieval failure or an ICL failure?"
 **Expected reasoning:** On production failures, check whether gold evidence entered the assembled context. If absent, retrieval failed and prompting cannot help. If present, freeze context and vary only demonstrations.

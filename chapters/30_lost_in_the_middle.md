@@ -111,9 +111,9 @@ The final lesson is operational. Do not grade the clerk only on whether the deci
 | Hierarchical merging | Combining chunks through a multi-stage summary structure | The reported study found this could hurt faithfulness |
 | Incremental summarization | Repeatedly updating a running summary as more text arrives | The reported study also found this could hurt faithfulness |
 | Outside-in reordering | Alternating top-ranked items into the start and end positions | It fills both safe zones with trusted evidence |
-| LongContextReorder | The source-named transform that realizes outside-in placement | It is an example implementation of the reordering rule |
+| LongContextReorder | The source-named transform that fills both ends but puts rank 1 last for an even-length list (corrected from realizes outside-in placement) | It is an example implementation of the reordering rule only after reversing its output for even lengths |
 | Ranked-list truncation | Sending only a prefix or selected subset of candidates | It can prevent a trough from forming |
-| Score cliff | A sharp drop in the reranker's relevance scores | Liu et al.'s practical rule truncates at this drop |
+| Score cliff | A sharp drop in the reranker's relevance scores | An interview heuristic from the ranked-list-truncation literature truncates at this drop (corrected from Liu et al.'s practical rule) |
 | Gold-rank distribution and geometric decay | Probabilities assigned to the rank where the answer appears, with the illustrative top ranks halving | This distribution determines how much reordering or truncation changes expected accuracy |
 | Safe-zone width | The combined primacy and recency capacity | It gives a default cap when no score cliff appears |
 | d1 through dn | Candidates ordered from highest to lowest reranker relevance | Outside-in placement maps this order onto both safe ends |
@@ -140,7 +140,7 @@ The final lesson is operational. Do not grade the clerk only on whether the deci
 | Ltrain | The longest sequence length represented in training | Inputs beyond it can recover the U even when the accepted window is larger |
 | O(n²d) | Standard self-attention work for sequence length n and fixed width d | It makes long-context prefill cost grow quadratically in n |
 | c(p), b(p), and z(p) | Content score, positional-bias score, and their combined logit at position p | Calibration tries to remove b(p) so z(p) reflects content |
-| floor and choose operations | Counting non-overlapping answer placements and unordered pairs of placements | They yield 266 single positions and 35,245 two-position combinations |
+| floor and choose operations | Counting non-overlapping answer placements and unordered pairs of placements | They yield 250 single positions and 31,125 two-position combinations for 128-token segments (corrected from 266 and 35,245) |
 | Two-segment IN2 variant | Rotating two evidence pieces independently | It forces integration across arbitrary position pairs |
 
 ## Core mechanics
@@ -256,7 +256,7 @@ $$
 
 - Liu et al. compared standard-context and extended-context checkpoints from the same model family.
 - They tested 75, 140, and 300 key-value pairs at about 4k, 8k, and 16k tokens.
-- The standard and extended checkpoints traced essentially the same U at every size.
+- The standard and extended checkpoints traced essentially the same U at every size. Correction: Liu et al. report nearly identical curves only where an input fit both windows, shown on 10- and 20-document QA for GPT-3.5-Turbo and its 16K version, because the standard 4K checkpoint could not take the larger key-value inputs and Claude-1.3 and its 100K version were nearly perfect at every tested length (Liu et al., 2023, arXiv 2307.03172).
 - Models already near ceiling stayed near ceiling.
 - Models with position trouble retained it as the accepted window grew.
 
@@ -390,7 +390,7 @@ $$
 - That gives d1 primacy but gives the least relevant candidate recency.
 - The outside-in rule maps d1 to position 1, d2 to position n, d3 to position 2, and d4 to position n - 1.
 - The pattern continues until low-ranked items fill the middle.
-- LangChain's LongContextReorder is the source-named example transform that implements this kind of placement.
+- LangChain's LongContextReorder is the source-named example transform that implements this kind of placement. Correction: LongContextReorder reverses the list and then alternates front inserts and appends, so it fills both ends but puts rank 1 first only for an odd-length list, and for 10 documents it yields 2, 4, 6, 8, 10, 9, 7, 5, 3, 1. When primacy beats recency, reverse its output for even lengths or use an explicit outside-in mapping.
 - Liu et al. directly recommend placing the most relevant chunk near the start.
 - Filling both ends generalizes that advice.
 
@@ -399,7 +399,7 @@ $$
 - Reordering exploits the measured U instead of asking the model to unlearn it at inference.
 - With 2 primacy slots and 2 recency slots, the top 4 candidates occupy safe zones.
 - The least trusted candidates absorb the trough.
-- Reordering follows reranking and composes with truncation.
+- Reordering follows reranking and composes with truncation. Correction: when k is at most wp + wr there is no trough, so outside-in placement helps only once k exceeds the safe-zone width.
 
 #### Failure without it
 
@@ -444,7 +444,7 @@ $$
 - Use reordering after a fixed reranker so its effect can be measured cleanly.
 - Send the second-best candidate to the far end, not the worst.
 - Test the middle-attention instruction cheaply, but prefer structural placement when context assembly is controllable.
-- Combine reordering with truncation.
+- Combine reordering with truncation. Correction: at k* = wp + wr = 4 with primacy above recency, outside-in placement moves rank 2 out of primacy and gives (0.50 + 0.125)(70) + (0.25 + 0.0625)(65) + 0.0625(60) = 67.8 percent against 68.4 percent for descending order, so keep descending order after truncation to the safe-zone width and use outside-in placement only when k exceeds it.
 - Rerun the position-controlled probe after either change.
 
 ### 30.6 Ranked-list truncation
@@ -473,7 +473,7 @@ $$
 
 #### Practical score-cliff rule
 
-- Liu et al. recommend watching the reranker's score curve.
+- Liu et al. recommend watching the reranker's score curve. Correction: Liu et al. give no score-curve rule and no top-2 cutoff, because their paper says only that reranking or ranked list truncation (Arampatzis et al., 2009) may be promising directions after reader accuracy saturated at about 20 retrieved documents (Liu et al., 2023, arXiv 2307.03172). The score-cliff rule below is an interview heuristic from the ranked-list-truncation literature.
 - If scores drop sharply after rank 2, send the top 2 and stop.
 - Tail candidates are both unlikely to contain the answer and risky in the trough.
 - If scores decay smoothly, use measured zone widths and Amiss rather than guessing.
@@ -598,12 +598,12 @@ $$
 - Documents front-load predictive content.
 - Chat templates keep the system message at position 0.
 - More data with the same skew can reinforce the skew.
-- IN2 places a roughly 120-token answer segment at positions sampled across contexts from 4K to 32K tokens.
+- IN2 places a roughly 120-token answer segment at positions sampled across contexts from 4K to 32K tokens. Correction: the IN2 paper uses a segment of about 128 tokens and treats a 128-token segment as the minimum information unit (An et al., 2024, arXiv 2404.16811).
 - A question can be answered only from that rotated segment.
 - Every example supplies a gradient signal at the sampled evidence position.
 - A second variant splits evidence across two independently rotated segments.
 - The authors fine-tuned Mistral-7B and named the result FILM-7B.
-- FILM-7B is reported comparable to GPT-4-Turbo on long-context tasks.
+- FILM-7B is reported comparable to GPT-4-Turbo on long-context tasks. Correction: An et al. report FILM-7B comparable to or better than GPT-4-Turbo on their VaL Probing retrieval probes, but on real-world long-context tasks FILM-7B averages 39.9 against 44.7 for GPT-4-Turbo, a 4.8-point gap (An et al., 2024, arXiv 2404.16811).
 
 #### DIFF Transformer
 
@@ -644,7 +644,7 @@ $$
 
 #### Worked arithmetic
 
-- A 32,000-token context and 120-token segment provide floor(32,000/120) = 266 non-overlapping positions.
+- A 32,000-token context and 120-token segment provide floor(32,000/120) = 266 non-overlapping positions. Correction: with the paper's 128-token segment, the count is floor(32,000/128) = 250 positions (256 for a 32,768-token window), so one position holds about 1/250 = 0.40 percent of examples and two positions give C(250, 2) = 250 x 249 / 2 = 31,125 combinations.
 - Uniform rotation puts the answer at any one position in about 1/266 = 0.38 percent of examples.
 - Two independently chosen positions provide:
 
@@ -654,7 +654,7 @@ $$
 
 - Ordinary SFT puts the system message at position 0 in 100 percent of the illustrative examples.
 - Offset 2,000 is occupied in about 57.1 percent of the earlier illustrative corpus.
-- IN2's roughly 0.38 percent occupancy is described as two orders of magnitude flatter.
+- IN2's roughly 0.38 percent occupancy is described as two orders of magnitude flatter. Correction: with the paper's 128-token segment, the per-position occupancy is about 0.40 percent, which is still two orders of magnitude flatter.
 
 #### Stated cost and complexity
 
@@ -709,7 +709,7 @@ high | 4k \\                         / 4k
        position of relevant key-value pair
 ```
 
-Figure 30.3: Tripling the context window from 4k to 16k tokens does not flatten the trough - the same U reappears at every scale, after Liu et al. (2023), because the effect tracks trained sequence length and attention pattern, not the number of tokens the window admits.
+Figure 30.3: Tripling the context window from 4k to 16k tokens does not flatten the trough - the same U reappears at every scale, after Liu et al. (2023), because the effect tracks trained sequence length and attention pattern, not the number of tokens the window admits. Correction: Liu et al. show nearly identical standard and extended curves only where an input fit both windows, because the standard 4K checkpoint could not take the larger inputs.
 
 ### Figure 30.4
 
@@ -798,7 +798,7 @@ Figure 30.8: Differential attention computes two independently parameterized att
 3. Label the ends primacy and recency, and label the center trough.
 4. Add a flat A0 closed-book line that crosses above the trough.
 5. Draw retrieved ranks flowing through a reranker.
-6. Place ranks 1 and 3 at the start, then ranks 2 and 4 at the end.
+6. Place ranks 1 and 3 at the start, then ranks 2 and 4 at the end. Correction: after truncation to k* = 4, keep ranks 1 and 2 at the start and ranks 3 and 4 at the end, and draw the outside-in order only for a k above the safe-zone width.
 7. Mark k* = wp + wr and cross out candidates beyond the safe-zone width.
 8. Add two branches for model access: inference calibration, then IN2 or differential attention when training is owned.
 
@@ -822,7 +822,7 @@ Accepted length is capacity, while positional robustness tracks training length 
 
 ### 4. What mechanism and serving fixes would you propose before retraining?
 
-Primacy is linked to fixed position-0 supervision, recency to next-token locality, and RoPE adds a distance-dependent attention envelope. First reorder high ranks to both ends and truncate at a score cliff or safe-zone width, then consider per-head MS-PoE or attention calibration only when model internals are accessible and recency is not a desired task signal.
+Primacy is linked to fixed position-0 supervision, recency to next-token locality, and RoPE adds a distance-dependent attention envelope. First reorder high ranks to both ends and truncate at a score cliff or safe-zone width, then consider per-head MS-PoE or attention calibration only when model internals are accessible and recency is not a desired task signal. Correction: once truncation leaves k at most the safe-zone width, keep descending order, because outside-in placement helps only when k exceeds that width.
 
 ### 5. How do IN2 and DIFF Transformer differ, and which fits a six-week deadline?
 
@@ -882,11 +882,11 @@ IN2 changes training data by rotating evidence positions, while DIFF Transformer
 | Calibrated exponentials and sum | 20.09, 2.72, 2.72, sum 25.53 | Derived | Position terms removed |
 | Calibrated gold mass | 78.7 percent | Derived | A 33.5-point gain with no weight update |
 | MS-PoE update cost | 0 fine-tuning steps, 0 added parameters, once per model | Reported method properties | It is a plug-and-play inference intervention when internals are accessible |
-| IN2 context and segment | 4K to 32K, roughly 120 tokens | Reported method scale | Rotated evidence length and context span |
+| IN2 context and segment | 4K to 32K, about 128 tokens (corrected from roughly 120 tokens) | Reported method scale | Rotated evidence length and context span |
 | Buried evidence example | token 18,000 of 32,000 | Method motivation | Natural data does not ensure equal signal there |
-| Non-overlapping IN2 positions | 266 | Derived | floor(32,000/120) |
-| Per-position occupancy | about 0.38 percent | Derived | 1/266 under uniform rotation |
-| Two-position combinations | 35,245 | Derived | 266 choose 2 |
-| Training models | Mistral-7B, FILM-7B, GPT-4-Turbo | Reported comparison | FILM-7B is reported comparable on long-context tasks |
+| Non-overlapping IN2 positions | 250 (corrected from 266) | Derived | floor(32,000/128) |
+| Per-position occupancy | about 0.40 percent (corrected from about 0.38 percent) | Derived | 1/250 under uniform rotation |
+| Two-position combinations | 31,125 (corrected from 35,245) | Derived | 250 choose 2 |
+| Training models | Mistral-7B, FILM-7B, GPT-4-Turbo | Reported comparison | FILM-7B is comparable on VaL Probing but trails GPT-4-Turbo 39.9 to 44.7 on real-world long-context tasks (corrected from reported comparable on long-context tasks) |
 | Deadline comparison | 6 weeks versus multiple months | Interview scenario | IN2 fine-tune versus a DIFF Transformer cycle |
 | Study dates | 2021, 2023, 2024 | Source attributions | Su and Press, Liu, then Wan, An, Hsieh, and Ye |

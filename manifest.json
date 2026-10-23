@@ -1,0 +1,1587 @@
+{
+  "_provenance": "Reconstructed from 00_INDEX.md order and the current chapter files. Page spans live in 00_INDEX.md.",
+  "units": [
+    {
+      "slug": "00_01_title_page",
+      "title": "00.01 Title Page: The RAG Interview",
+      "output_file": "chapters/00_01_title_page.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_02_contents",
+      "title": "00.02 Contents",
+      "output_file": "chapters/00_02_contents.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_03_preface",
+      "title": "00.03 Preface",
+      "output_file": "chapters/00_03_preface.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_04_how_to_use_this_book",
+      "title": "00.04 How to Use This Book",
+      "output_file": "chapters/00_04_how_to_use_this_book.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_05_for_interview_candidates",
+      "title": "For Interview Candidates",
+      "output_file": "chapters/00_05_for_interview_candidates.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_06_for_practicing_engineers",
+      "title": "For Practicing Engineers",
+      "output_file": "chapters/00_06_for_practicing_engineers.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_07_notation_and_symbols",
+      "title": "00.07 Notation and Symbols",
+      "output_file": "chapters/00_07_notation_and_symbols.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_08_acknowledgments",
+      "title": "Acknowledgments",
+      "output_file": "chapters/00_08_acknowledgments.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "00_09_about_the_author",
+      "title": "00.09 About the Author",
+      "output_file": "chapters/00_09_about_the_author.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "01_what_a_rag_interview_actually_tests",
+      "title": "Chapter 1: What a RAG Interview Actually Tests",
+      "output_file": "chapters/01_what_a_rag_interview_actually_tests.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "1.1",
+          "caption": "RAG is semi-parametric because it holds knowledge in two stores whose write costs differ by orders of magnitude: a row in D can be inserted, corrected, or deleted in seconds, while the same edit to θ costs a gradient pass and cannot be undone."
+        },
+        {
+          "number": "1.2",
+          "caption": "The five bottlenecks are five consequences of a single storage decision, which is why scaling the model relieves at most one of them and worsens two."
+        },
+        {
+          "number": "1.3",
+          "caption": "Each RAG benefit is one responsibility moved from the weights to the datastore, and each move hands you a new failure surface on the receiving side."
+        },
+        {
+          "number": "1.4",
+          "caption": "RAG occupies the one quadrant of the tool space where the call is safe to retry and its result is citable. Every other tool class surrenders one property or both, which is why attribution and recall-style evaluation transfer to retrieval and to nothing else."
+        },
+        {
+          "number": "1.5",
+          "caption": "Closed-book accuracy climbs steeply with subject popularity while retrieval-augmented accuracy climbs slowly, so the curves cross once. To the right of s⋆ retrieval is a net loss per query, and in a realistic query mix that region carries the majority of the traffic."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "02_the_competing_answers_to_the_same_problem",
+      "title": "Chapter 2: The Competing Answers to the Same Problem",
+      "output_file": "chapters/02_the_competing_answers_to_the_same_problem.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "2.1",
+          "caption": "Forgetting is the quadratic form 1/2 Δ^T F Δ, so the same step length costs nine times as much along a direction the pre-training distribution constrained three times as tightly (a), and shrinking a step trades linearly on what it buys against quadratically on what it destroys (b) - halving the step keeps half the new knowledge for a quarter of the damage."
+        },
+        {
+          "number": "2.2",
+          "caption": "The two editing families differ in how they choose what to write, but both end at an additive low-rank correction to a feed-forward weight matrix - so both inherit the same hard ceiling on how many independent facts can be installed."
+        },
+        {
+          "number": "2.3",
+          "caption": "Prefill is linear in context up to C ∗ = N/(Ld) = 61,035 tokens and quadratic above it, which turns a 70× token ratio into a 296× compute ratio. The same 80 GB card then holds two stuffed requests or 162 retrieved ones."
+        },
+        {
+          "number": "2.4",
+          "caption": "Generative retrieval relocates one of the three stores, not all of them. The index dissolves into the parameters, the payload store survives unchanged and is still addressed by primary key, and the write path changes by five orders of magnitude because a superposed map has no local write."
+        },
+        {
+          "number": "2.5",
+          "caption": "Each gate tests a constraint you already have - window size, citability, corpus volatility - rather than which method scores best, and every leaf is labeled by what its cost scales with."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "03_a_repeatable_framework_for_any_rag_design_question",
+      "title": "Chapter 3: A Repeatable Framework for Any Retrieval-Augmented Generation (RAG) Design Question",
+      "output_file": "chapters/03_a_repeatable_framework_for_any_rag_design_question.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "3.1",
+          "caption": "The five decisions are the five free parameters of y = GENθ (x, RET(x, D)), and only the first one has a bypass. Milliseconds are the worked example's time-to-first-token budget. The heavy box is the decision that owns 82% of it."
+        },
+        {
+          "number": "3.2",
+          "caption": "Advanced RAG is naive RAG with two empty slots filled. Modular RAG is those same slots plus routing and a feedback edge - the three names describe connectivity, not quality."
+        },
+        {
+          "number": "3.3",
+          "caption": "Text and embeddings enter the generator through the input sequence. Parameters enter through the weights - which is why only the first two can be changed between one query and the next."
+        },
+        {
+          "number": "3.4",
+          "caption": "The thresholds that separate RAG index architectures are set by three constants - memory bandwidth, node RAM, and bytes per vector - so the corpus size alone decides which of four systems you are being asked to build."
+        },
+        {
+          "number": "3.5",
+          "caption": "Routing can only ever collect the gap between the average of the row winners and the best single column, and an imperfect router gives that gap back faster than it earns it."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "04_what_the_llm_brings_and_what_it_breaks",
+      "title": "Chapter 4: What the LLM Brings and What It Breaks",
+      "output_file": "chapters/04_what_the_llm_brings_and_what_it_breaks.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "4.1",
+          "caption": "Each training stage installs one class of behavior and is structurally blind to another. The failures that outlive all three are what the datastore exists to own."
+        },
+        {
+          "number": "4.2",
+          "caption": "The three laws push in one direction: capacity separates the curves, duplication shifts a sequence upward, and context length carries every curve to the right - so an audit run at 50 tokens of context reports a lower bound for a system that prompts at two thousand. Axes are schematic. The log-linear shape and the ordering by capacity are the measured findings of Carlini et al. (2023)."
+        },
+        {
+          "number": "4.3",
+          "caption": "The parametric model is worthless where the corpus gave it nothing and overtakes retrieval where the corpus gave it plenty, so the curves cross at a threshold τ set by your traffic rather than by your model - and every query right of τ that you retrieve for is a chance to overwrite a correct answer. Shape after Kandpal et al. (2023) and Mallen et al. (2023). Axis values are schematic."
+        },
+        {
+          "number": "4.4",
+          "caption": "Faithfulness grades the columns and factuality grades the rows, so the two verdicts differ in three of the six cells - most dangerously in the faithful-but-false cell directly below the shaded one, which no faithfulness metric can ever see. Each cell names a different owner, which is the taxonomy's operational value."
+        },
+        {
+          "number": "4.5",
+          "caption": "Four cheap tests, run in this order, assign every failure to exactly one cause - and the order matters, because a stale-correct answer is also repaired by pasting the passage, so staleness must be tested before absence. Dashed boxes are the causes retrieval shrinks. Heavy solid boxes are the two it enlarges. Multipliers are from the audit below."
+        },
+        {
+          "number": "4.6",
+          "caption": "Judge accuracy moves only the dashed middle box. The oracle the judge is allowed to read moves the heavy box, which is where the floor lives - so the left configuration cannot fall below 120 residual errors however good its judge becomes. Counts are from the audit below."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "05_data_privacy_and_the_legal_surface",
+      "title": "Chapter 5: Data, Privacy, and the Legal Surface",
+      "output_file": "chapters/05_data_privacy_and_the_legal_surface.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "5.1",
+          "caption": "Each stage destroys the handle the next legal question needs, and the dashed line is where the cost of answering \"remove this document\" jumps from a file operation to a full retrain. Byte and token figures are the C4 pipeline as reported by Raffel et al. (2020)."
+        },
+        {
+          "number": "5.2",
+          "caption": "Each bar is a memorized sequence and its height is the duplication count d that made it extractable. Alignment fences the sampler into the shaded manifold rather than removing the bars, so a prompt that leaves the manifold reaches them all. Nasr et al. (2023) measured the emission rate outside the fence at roughly 150× the rate inside it."
+        },
+        {
+          "number": "5.3",
+          "caption": "Under independent per-token errors, exposure vanishes geometrically and no exhibit is possible. Under lock-on, the tail flattens into a plateau, so the gap between the two models grows without bound in L - which is why a low mean overlap says nothing about the longest run a plaintiff will find. Axes are schematic. The two endpoints, 0.95^300 and 0.999^300, are computed in the text."
+        },
+        {
+          "number": "5.4",
+          "caption": "(a) The request obliges you to remove everything in the shaded region, while the optimizer only ever receives F̂, and the gap between them is unmeasurable because the corpus is not an object you hold. (b) Even a run that damages 1% of retained capability compounds to 0.99^400 = 1.8% over a year of a modest request stream. The dotted floor is the 1.3 × 10^-4 per-run budget derived in the text."
+        },
+        {
+          "number": "5.5",
+          "caption": "(a) The three low-risk tiers are the only ones permitted to reach a gradient step. High-risk content is admitted at inference through a keyed datastore, which is what makes it revocable. (b) The same removal request costs one filtered write on the datastore side and a $1.34 M retrain on the weights side, landing 7.7 days inside a 30-day contractual deadline on a run that must not fail."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "06_scaling_laws_and_the_economics_of_retrieval_vs_parameters",
+      "title": "Chapter 6: Scaling Laws and the Economics of Retrieval vs Parameters",
+      "output_file": "chapters/06_scaling_laws_and_the_economics_of_retrieval_vs_parameters.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "6.1",
+          "caption": "(a) Three allocation policies, and the models that obeyed them. Kaplan's rule sends the ratio down as budgets grow - open squares, GPT-3 at 175 B×300 B tokens (1.7) and Gopher at 280 B×300 B (1.1). Chinchilla holds it at 20 - filled circle, 70 B×1.4 T. Every post-Chinchilla release sits far above both - filled diamonds, Llama 1 at 143, Llama 2 at 286, Llama 3 at 1,875. (b) The same 7.2 × 10^23 FLOP training budget, spent two ways: the Chinchilla-optimal shape costs 2.6× the lifetime compute of the over-trained shape once the model serves 10^13 tokens, because serving scales with N and not with D."
+        },
+        {
+          "number": "6.2",
+          "caption": "(a) Weight and optimizer memory are step functions you pay once: the same 27 B model is 54 GB or 108 GB depending only on b, and full Adam fine-tuning multiplies the parameter count by 16 bytes, putting an 8 B past one card and a 27 B past five. (b) The KV cache is a slope you pay per concurrent request, and retrieval sets its gradient: at 128 KiB per token for Llama 3.1 8B, the 64 GB left after weights holds 119 requests at a 4k context, 59 at 8k, and 14 at 32k. The weights never moved."
+        },
+        {
+          "number": "6.3",
+          "caption": "(a) At fixed N, architecture shape moves the loss by a few percent, less than the 5.1% that one doubling of N buys under αN = 0.076. (b) The fraction of a model's parameters that is a lookup table ranges from 69% to 3.0%, so total parameter count is not comparable across vocabularies. (c) The same budget spent two ways: converging a 300 M model puts 12% of the budget inside the productive four-epoch window and strands the other 88% in low-return repeats or leaves it unspent, while a 2.5 B model at four epochs spends all of it productively."
+        },
+        {
+          "number": "6.4",
+          "caption": "(a) Snell et al.'s proposer/verifier decomposition maps onto a RAG stack that already alternates between the two roles, with the reranker acting as a verifier over passages and the reward model as a verifier over chains. (b) Priced against a single 8 B generation pass, the passage-side verifier costs 0.125× while the chain-side verifier costs 1.455×, and searching sixteen drafts on the 8 B lands at 3.48× against 8.75× for one pass of the 70 B."
+        },
+        {
+          "number": "6.5",
+          "caption": "(a) Capacity is not what makes weights the wrong place for a fact - the write path is. The same 400-token chunk costs $85.8 to put into a 7 B model's parameters and $1.8 × 10^-7 to put into an index, a factor of 4.8 × 10^8. (b) The datastore is not free to grow either: at a fixed retriever quality ρ = 4 × 10^-8, retrieval depth must rise linearly with |D|, and it collides with a 32k context window at two billion chunks. A reranker is what keeps the generator's slice flat while the corpus grows underneath it."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "07_in_context_learning_the_mechanism_rag_rides_on",
+      "title": "Chapter 7: In-Context Learning - The Mechanism RAG Rides On",
+      "output_file": "chapters/07_in_context_learning_the_mechanism_rag_rides_on.md",
+      "figure_count": 6,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "7.1",
+          "caption": "(a) Demonstrations and retrieved passages compete for one window, so an 8-demo block at 250 tokens each costs exactly five 400-token chunks of head-room. (b) The one-time fine-tuning cost is constant in query volume while the demonstration tax is linear, so the two cross once - here after 27,000 queries, under three days of traffic."
+        },
+        {
+          "number": "7.2",
+          "caption": "(a) Demonstration selection is retrieve-then-rerank with the generator as the reranker: a cheap similarity stage builds a pool, and one prefill pass per candidate picks the demonstrations that minimize the model's conditional entropy on the test input. (b) Corrupting only the test input, while holding the demonstrations fixed, degrades ICL accuracy at both 1 and 3 shots - the experiment that locates the bottleneck on the test-input side (Peng et al., 2024). The trend is the finding. The magnitudes here are schematic."
+        },
+        {
+          "number": "7.3",
+          "caption": "(a) Six independent surface-form slots, none of them exotic, already generate 2,880 prompts with identical meaning - which is why format selection is a search problem under budget rather than a style choice. (b) Rankings over that space do not transfer: the format that wins on one model can sit at the bottom on another, so an inherited template is an unmeasured sample. The crossing pattern is the finding. The specific ranks here are schematic."
+        },
+        {
+          "number": "7.4",
+          "caption": "Both defenses against ordering bias probe the prompt with the test input deleted. (a) DEmO shortlists permutations offline by content-free entropy under a label-balance constraint, then ranks the survivors per query by how far each moves the model off its own content-free prior. (b) The same probe supports the cheaper fix: with no content in the prompt the label distribution should be uniform, so the gap between p_cf and the dashed 1/|Y| line is the prompt's positional bias - dividing it out flips this query's prediction from A to B. The probabilities are the worked example's."
+        },
+        {
+          "number": "7.5",
+          "caption": "Evidence accumulates exponentially and then averages locally. (a) Posterior mass on the wrong concept falls as e^(-kD), so a format that raises per-demonstration discriminating power from 0.35 to 1.2 nats reaches the same 5% residual ambiguity at k = 6 instead of k = 20 - shot count is a substitute for format quality, at 3.3× the prefill. (b) The same softmax that averages the demonstrations counts three near-duplicates three times, putting 85.3% of the kernel mass on label A before the query is read. Capping the cluster at one drops that to 67.7% and exposes how much of the remaining mass rides on a single neighbor."
+        },
+        {
+          "number": "7.6",
+          "caption": "Prompting and adapter fine-tuning build updates of the same algebraic shape and pay for them in different currencies. (a) The demonstration block's contribution to one head is an additive, rank-bounded matrix rebuilt on every request and carried as 189 MB of KV cache per concurrent request. A rank-16 LoRA is the same kind of additive term, trained once and shared across every request at 16.8 MB. (b) What the prompt cannot buy is optimization steps: one linear self-attention layer executes at most one gradient step, so a 32-layer stack has a step budget an order of magnitude below a modest fine-tune - which is why raising the shot count does not make a multi-step task learnable in-context."
+        }
+      ],
+      "tables": [
+        {
+          "number": "7.1",
+          "caption": "The two methods differ on when the bill arrives and on what fails when they are misapplied - which is why the deciding question is not cost but whether the defect is one of behavior or one of knowledge."
+        }
+      ]
+    },
+    {
+      "slug": "08_reading_the_machine_circuits_induction_heads_and_attribution",
+      "title": "Chapter 8: Reading the Machine: Circuits, Induction Heads, and Attribution",
+      "output_file": "chapters/08_reading_the_machine_circuits_induction_heads_and_attribution.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "8.1",
+          "caption": "Attribution and circuits answer different questions and are priced differently. (a) A saliency score, a probe, or a Shapley value summarizes every route from a chunk token to the answer logit for one particular input. The head's OV path is a single product of weight matrices that is defined without any input at all, which is why only it generalizes to the next query. (b) On a 20-chunk context and an 8 B generator at 0.76 s per replay, causal attribution costs between 21 and 2,048 forward passes depending on how much chunk redundancy you must untangle, and the exact game-theoretic answer costs 9.2 GPU-days."
+        },
+        {
+          "number": "8.2",
+          "caption": "The residual stream is a fixed-width channel, and that width is what fails to scale with retrieval. (a) At one position, every head and MLP reads a normalized copy of the stream and adds an update back into the same 4,096 coordinates, so the space the embedding wrote into is the space the unembedding reads from. One head touches a 128-dimensional slice and leaves 3,968 directions alone. (b) Across positions, 50 chunks occupy 195 MiB of stream at a single layer, but the next token is read from 8 KiB at the answer position - a 25,000:1 funnel that does not widen with k."
+        },
+        {
+          "number": "8.3",
+          "caption": "Splitting a head into two circuits turns an opaque 0.9 attention weight into two separately testable claims. (a) W_Q W_K^T mixes positions and fixes where the head reads. W_V W_O mixes channels and fixes what it writes back. The two share no parameters, so a correct attention pattern is no evidence at all about the content that follows it. (b) Only the OV side admits a spectrum, because it maps the vocabulary to itself: eigenvalues on the positive reals mean the head raises the logit of the token it attends to, while random weights spread over a disk and score κ ≈ 0 with a 0.0625 noise floor at d_h = 128."
+        },
+        {
+          "number": "8.4",
+          "caption": "The induction circuit is what lets a generator quote a string absent from its training data: a layer-1 head shifts every token onto the following position, and a layer-2 head attends wherever that shifted token matches the current one, then copies what came next. Because the match is on literal token identity and the payload is the next token, a chunk boundary that separates the two (b) removes the copy target while leaving the match intact, and the direct residual path answers from the parametric prior - fluent, and wrong."
+        },
+        {
+          "number": "8.5",
+          "caption": "Interpretability evidence sits at three quantifier levels, and the only rung that answers \"did this answer use that document\" is the cheapest one. Rungs one and two are denominated in heads and hold across inputs. Rung three is denominated in documents and holds for a single input. Inference runs upward as a hint and never downward as proof."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "09_prompting_for_retrieval_augmented_systems",
+      "title": "Chapter 9: Prompting for Retrieval-Augmented Systems",
+      "output_file": "chapters/09_prompting_for_retrieval_augmented_systems.md",
+      "figure_count": 4,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "9.1",
+          "caption": "The four rungs are cumulative rather than alternative, and they differ in the one property that decides everything else - how late the information they carry can be bound, from the pre-training corpus up to the request itself - with the price of that lateness paid in prompt tokens on every query."
+        },
+        {
+          "number": "9.2",
+          "caption": "The four scaffolds differ in one structural property - what an edge is allowed to do - and every cost follows from it: the fan is embarrassingly parallel and needs no scorer, while the tree buys exploration only by adding a serial round per level and a state evaluator at every node."
+        },
+        {
+          "number": "9.3",
+          "caption": "Realized accuracy of a 30-call tree, A = 0.45 + 0.40 q^30, against a fan of five held flat at its 68.3%. The curve is geometric in the call count, so the tree only repays its design accuracy of 85% once per-call execution reliability clears 98.2% - and it is already losing at 98%."
+        },
+        {
+          "number": "9.4",
+          "caption": "Answer accuracy A(k) = m + (1 - m) R(k) Φ(µ)^(k-1) against the number of retrieved passages, at three ranker margins, with m = 0.31 and R anchored on DPR's published top-20 and top-100 recall. Every curve has an interior maximum. Half a standard deviation of margin moves it from k = 9 to k = 40, and at µ = 2.0 the retrieval-augmented system drops below its own closed-book accuracy at about k = 73."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "10_prompt_sensitivity",
+      "title": "Chapter 10: Prompt Sensitivity",
+      "output_file": "chapters/10_prompt_sensitivity.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "10.1",
+          "caption": "One wrapper around the same retrieved chunks admits 1,440 semantically identical spellings, and choosing badly among them costs more accuracy than most retriever upgrades win. Spreads are as reported by Sclar et al. (2024) for LLaMA-2-13B and by the Japanese-template study for GPT-4."
+        },
+        {
+          "number": "10.2",
+          "caption": "One forward pass over a family of meaning-preserving prompt variants offers three read-outs. The top one is what teams reach for and is the only one that needs labels. The middle one is POSIX, label-free and continuous. The bottom one is already in your logits and costs nothing to log on live traffic. Correction: PSS sits on the top, label-based read-out, because ProSA (Zhuo et al., 2024, arXiv 2410.12405) computes it from correctness or judge scores, and only POSIX is label-free."
+        },
+        {
+          "number": "10.3",
+          "caption": "Sensitivity tracks accuracy through the decoding margin, so the cloud slopes down and a ranking built on it beats chance. The filled points are what the proxy cannot see: answers held with a wide margin because the generator trusts a retrieved distractor. They sit in the quadrant the correlation promises is safe, and they are the failures a RAG system actually ships."
+        },
+        {
+          "number": "10.4",
+          "caption": "Adding parameters or instruction data translates the band of accuracies over meaning-preserving formats, while in-format demonstrations narrow it (top panel, schematic). The mechanism is margin: under ∆z(k) = 0.154 + 0.35k nats, the drift measured in section 10.2 falls from 15.5% of the flip barrier to 1.5% by four demonstrations (bottom panel, derived)."
+        },
+        {
+          "number": "10.5",
+          "caption": "Both methods work by refusing to search the whole space. COPLE restricts edits to one influential word slot at a time, which makes the sweep linear in prompt length and the accept test the only thing standing between you and selection noise. P2G refuses to average its feedback: pooling false positives with false negatives leaves a step proportional to their difference, so the signal collapses exactly where both error types are still worth fixing."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "11_abstention_and_calibration",
+      "title": "Chapter 11: Abstention and Calibration",
+      "output_file": "chapters/11_abstention_and_calibration.md",
+      "figure_count": 6,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "11.1",
+          "caption": "Raising the cost of a wrong answer raises the confidence threshold at which answering beats abstaining. Attaching a verifiable citation lowers that cost and with it the threshold. Above the dashed line no gate built on an 80%-macro-F1 support judge can enforce the required threshold at all, which bounds the stakes a refusing system can honestly serve at cw ≈ 26 bare and cw ≈ 65 with citations."
+        },
+        {
+          "number": "11.2",
+          "caption": "Each abstention mechanism taps the pipeline at a different point, and its blind spot is fixed by what that point cannot see. Mechanism 5 taps nothing, because risk sets the threshold rather than estimating knowledge."
+        },
+        {
+          "number": "11.3",
+          "caption": "The same operator at two timescales: resampling a corpus from your own model deletes everything below the sampling resolution, and re-reading your own answer from your own context multiplies stated confidence by a factor the evidence never earned."
+        },
+        {
+          "number": "11.4",
+          "caption": "Panel (a) is fixable by sliding points sideways onto the diagonal. Panel (b) is not, because a sideways slide cannot change how much the grey and white mass overlap. Recalibration operates only on (a), which is why it moves ECE and leaves AUROC exactly where it was."
+        },
+        {
+          "number": "11.5",
+          "caption": "Verbalized confidence piles onto three round values, all crowded above 0.9, so it cannot express a cutoff at 0.929. Eight-sample agreement lays down nine levels, and the four outside the shaded band are the ones separated by more than one standard error - which is exactly where the gate operates."
+        },
+        {
+          "number": "11.6",
+          "caption": "Three predictive distributions over the support fraction S, all summarized by the same scalar 0.80. The mean is identical by construction. The mass at S = 1 runs from 0.80 down to zero, and at cw = 20 that is a 16.8-unit spread in expected value the scalar cannot express."
+        }
+      ],
+      "tables": [
+        {
+          "number": "11.1",
+          "caption": "The same 1,000 queries scored two ways. Recalibration zeroes reliability and leaves resolution and ordering untouched - and resolution is what the gate spends."
+        }
+      ]
+    },
+    {
+      "slug": "12_text_representation",
+      "title": "Chapter 12: Text Representation",
+      "output_file": "chapters/12_text_representation.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "12.1",
+          "caption": "Following the word bank through the four spaces: era one holds it orthogonal to everything else, era two averages its senses into one point, era three splits it back apart per occurrence (r for the river sense, f for the financial one), and era four pulls its translations and its pictures into the same neighborhood. Each step conflates something the previous step kept apart."
+        },
+        {
+          "number": "12.2",
+          "caption": "Drift is only measurable after alignment: inside one frame the vector for agent visibly changes neighborhoods (A), while two independently trained models place the same three words in the same relative configuration at different coordinates (B), so a cosine taken across model versions reports the rotation rather than any change in meaning."
+        },
+        {
+          "number": "12.3",
+          "caption": "The sparse representation is expensive in dimensions and cheap in stored numbers because its basis is fixed by the vocabulary in advance, which is what makes its coordinates readable and its exact-match behavior a gate rather than a margin. The dense representation stores every one of its 768 coordinates and is identified only up to an orthogonal transform, so no individual dimension means anything."
+        },
+        {
+          "number": "12.4",
+          "caption": "The asymmetry that kills the transfer. A vision augmentation moves a long way through a continuous input space without leaving the meaning-preserving region. A text edit takes the shortest move the lattice allows and can still land on the far side of the decision boundary. The only perturbation guaranteed to preserve meaning is one applied to the encoder rather than to the input."
+        },
+        {
+          "number": "12.5",
+          "caption": "Inversion needs two things and has both: a search loop that can grade its own guesses by re-embedding them, and a code that never had to throw the passage away. Compressing the vector moves you left along the axis but not past the content line, so a smaller code buys memory, not privacy."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "13_chunking_and_granularity",
+      "title": "Chapter 13: Chunking and Granularity",
+      "output_file": "chapters/13_chunking_and_granularity.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "13.1",
+          "caption": "The same document under five splitting policies: levels one and two place boundaries without reading it and sever the units they land in, level three cuts on structure the author already declared, and levels four and five pay 3.5× and 45× to rediscover - imperfectly, in level four's case - boundaries the markup already gives away.**"
+        },
+        {
+          "number": "13.2",
+          "caption": "Breakpoint chunking cuts where the subject changes. Pseudo-instruction chunking cuts where the usefulness changes. The difference is entirely in what each sentence is compared against - its neighbor, or a single document-level anchor - and only the second comparison knows what the document is for.**"
+        },
+        {
+          "number": "13.3",
+          "caption": "Pooling three granularities into one ranked list puts a section that answers nothing (0.686) above the sentence that is the answer (0.620), because the pooled cosine of a long chunk flattens onto the background floor b/√ρ instead of decaying. A query-conditioned weight per level restores the ordering.**"
+        },
+        {
+          "number": "13.4",
+          "caption": "Mean pooling over eight facts costs the answering passage a quarter of its score and lets a topically broad passage with no answer in it rank first. Indexing propositions restores the ranking, and mapping the retrieved propositions back to their parents restores the context the generator needs.**"
+        },
+        {
+          "number": "13.5",
+          "caption": "The three ways a chunker gets the extent wrong, scored against one gold excerpt (dashed guides).**"
+        },
+        {
+          "number": "13.6",
+          "caption": "The same detector, the same threshold rule, two corpora. Separability, not the splitting code, sets the ceiling: when the two gap populations barely overlap the chunker is near-perfect, and when they nearly coincide it recovers under a third of the real boundaries while three of every four cuts it makes land inside a topic.**"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "14_beyond_plain_text_tables_layout_documents",
+      "title": "Chapter 14: Beyond Plain Text - Tables, Layout, Documents",
+      "output_file": "chapters/14_beyond_plain_text_tables_layout_documents.md",
+      "figure_count": 5,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "14.1",
+          "caption": "A fixed-length cut severs the header from every row beneath it: the top chunk holds the column names and 16 of 120 rows, and the remaining 104 rows become unlabeled numbers. Repeating the header inside each row makes every fragment self-describing and makes the cut position stop mattering.**"
+        },
+        {
+          "number": "14.2",
+          "caption": "TAPAS flattens the table row-major, which puts same-column cells CL tokens apart and unrelated same-row cells only L apart, then repairs the lost geometry with three additive lookups. Only the rank is derived from the cell values. the position, column, and row IDs are read off the printed order, so permuting rows hands the model a different input for the same data. The query occupies segment 0 and carries zeros in all three table fields.**"
+        },
+        {
+          "number": "14.3",
+          "caption": "TAPAS binds a cell to an absolute row index, so swapping two rows rewrites every token vector in them. TableFormer binds it to a relation type, which the swap leaves fixed.**"
+        },
+        {
+          "number": "14.4",
+          "caption": "Reading order is decided at the block level, not the token level: sorting lines rather than blocks cuts the longest coherent span on a two-column page from 495 tokens to 11, while a two-level encoder gives block order, block type, and block adjacency a representation level at which they can be predicted.**"
+        },
+        {
+          "number": "14.5",
+          "caption": "Recursive X-Y cut recovers reading order only while whitespace runs the full height of the region, because the gutter is the one gap no intra-column word space can fill in across 54 lines. A single element straddling it erases the valley, the cut fails, and the (y, x) fallback emits column 1, column 2, column 1, column 2 - zero correct adjacencies.**"
+        }
+      ],
+      "tables": [
+        {
+          "number": "14.1",
+          "caption": "Semi-structured data is the only one of the four types in which meaning is carried by position rather than by tokens, which is why it is the only one a text splitter can corrupt without producing anything that looks broken.**"
+        }
+      ]
+    },
+    {
+      "slug": "15_approximate_nearest_neighbor_search",
+      "title": "Chapter 15: Approximate Nearest Neighbor Search",
+      "output_file": "chapters/15_approximate_nearest_neighbor_search.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "15.1",
+          "caption": "As d grows, the distances from a query to the whole corpus collapse onto their mean at rate 1/√(2d), which leaves the kd-tree's pruning radius too large to ever exclude a subtree. The tree constrains 24 of 768 coordinates and degenerates into an exhaustive scan with pointer chasing on top.**"
+        },
+        {
+          "number": "15.2",
+          "caption": "Both structures answer a query by advancing within a level and descending when advancing stops helping. What differs is the halting test. In (a) it is absolute - the next key 29 exceeds the target 17, so descend - because a total order is available for free. In (b) it is relative - no neighbor of the current node is closer to q, so descend - because a metric space admits no such order and the long edges must be stored. Occupancy thins geometrically in both, by 1/2 per level and by 1/M per layer, which is what bounds the height at log2 n and logM n respectively.**"
+        },
+        {
+          "number": "15.3",
+          "caption": "A query near a Voronoi boundary has its true nearest neighbor in the adjacent cell (a), which is the whole reason nprobe exists - and once nlist is large enough to make cells small, the coarse quantizer itself becomes the bottleneck (b), which is why production IVF configurations put an ANN index over their own centroids.**"
+        },
+        {
+          "number": "15.4",
+          "caption": "Amplification is what makes a 0.198 per-bit margin usable, and L - the number of independent tables the step function costs - is the term that reappears as index memory.**"
+        },
+        {
+          "number": "15.5",
+          "caption": "Edge selection is the whole design. (a) The same ten candidates around p: at a 36◦ cone width the rule keeps the nearest point in each occupied cone and prunes the farther duplicate behind it, giving five edges spanning five directions. Widening to 120◦ collapses three cones into one and leaves q2 and q5 with no edge at all, so a walk arriving at p can no longer depart in those directions. (b) The consequence at query time. Greedy descent from entry point E (at distance 63.6 from Q) moves to P5 (50.4, beating P2 at 55.5), then P1 (38.6), then halts at P4 (22.4) because P4 's only neighbor is uphill. The true nearest neighbor P9 , at 5.66, is reachable only through P6 → P7 → P8 - the branch greedy abandoned when P4 beat P6 by 14.5. Beam search with width 2 retains P6 and reaches P9 in four more expansions.**"
+        },
+        {
+          "number": "15.6",
+          "caption": "Each index family is a position on a triangle whose three corners cannot be held at once: the flat scan keeps recall and memory and concedes latency, HNSW keeps recall and latency and concedes memory, IVF-PQ keeps memory and latency and concedes recall, and DiskANN relocates the memory bill to SSD. Panel (b) shows why the argument is usually settled on the memory axis: at d = 768 the HNSW graph adds only 132 bytes to a 3,072-byte vector, so compression - not graph structure - is the only lever that changes the order of magnitude.**"
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "16_compression_and_index_economics",
+      "title": "Chapter 16: Compression and Index Economics",
+      "output_file": "chapters/16_compression_and_index_economics.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "16.1",
+          "caption": "Splitting the vector makes the effective codebook a Cartesian product, so k^m cells are addressed by k × m stored sub-centroids - exponential reach at linear cost - and the price is that every cell boundary is shared across the whole grid instead of being placed freely."
+        },
+        {
+          "number": "16.2",
+          "caption": "Residual encoding converts the coarse quantizer from a router into a first stage of the code, and the conversion is paid for at query time. In (a) each vector is written x = ci + r, and the residuals from every cell collapse onto one low-variance cloud that a single PQ codebook can cover. In (b) the query stays in full precision - the asymmetry in ADC - but because the stored code is of a residual, the lookup table depends on which centroid was subtracted and must be rebuilt for each of the w probed cells."
+        },
+        {
+          "number": "16.3",
+          "caption": "Noise on the cosine score grows faster than compression saves bytes (a), and the binary point sits below the scalar curve only because Hamming distance estimates an angle instead of reconstructing components - which is why binary quantization is a candidate generator feeding a rescoring stage (b), never a final scorer."
+        },
+        {
+          "number": "16.4",
+          "caption": "The same product-quantized codes, transposed into blocks of 32, turn a strided gather into one aligned load feeding a single in-register table lookup (a). And because every code costs identical work, no lane of a 32-wide unit ever idles - a promise graph traversal cannot make (b, drawn illustratively)."
+        },
+        {
+          "number": "16.5",
+          "caption": "Compression acts on the first row only. Every row below it is either an additive per-vector term or a multiplier that scales whatever survived, which is why a 30.5× smaller index still needs a capacity plan and why the payload store - shared across replicas, untouched by quantization - outweighs the entire compressed index."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "17_operating_a_vector_store",
+      "title": "Chapter 17: Operating a Vector Store",
+      "output_file": "chapters/17_operating_a_vector_store.md",
+      "figure_count": 6,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "17.1",
+          "caption": "Deleting structurally and deleting logically fail in different currencies. In (a) the select-neighbors heuristic kept v because it bridged two clusters. Removing v and repairing its in-neighbors from local candidates leaves the right-hand cluster unreachable, so greedy descent halts at a4 and returns a wrong answer with no error raised. In (b) the tombstone keeps the graph intact and converts the cost into a beam that must widen as ef₀(1+cT). The rebuild resets it, and the cadence T is whichever comes first of the cost optimum √(2B/(Q₀ λc)), the latency ceiling, and the erasure deadline."
+        },
+        {
+          "number": "17.2",
+          "caption": "The three scaling axes are not interchangeable: sharding divides memory but broadcasts every query, replication multiplies throughput but also multiplies the memory bill, and only key-based partitioning divides memory and multiplies throughput at once - at the cost of requiring the query to carry the key."
+        },
+        {
+          "number": "17.3",
+          "caption": "The index is the smallest term you can optimize and the only one benchmarks measure. Panel (a): at 10^7 vectors the ANN search is 0.42 ms of a 134 ms same-region retrieval path, while putting the store in the wrong region adds 75 ms and breaks the budget on its own. Panel (b): every architectural class - a library such as FAISS or hnswlib, an embedded store such as Chroma or LanceDB, an SQL extension such as pgvector, a Lucene-family search engine, a purpose-built distributed store such as Milvus or Qdrant, and a fully managed service - gives up at least one column, so the choice is a position on a Pareto frontier rather than a ranking."
+        },
+        {
+          "number": "17.4",
+          "caption": "The three metadata types enter at three different points in the pipeline, and only the first is owned by a system of record - which is why routing a generated field into a hard predicate multiplies a permanent recall ceiling into every query that uses it."
+        },
+        {
+          "number": "17.5",
+          "caption": "Selectivity, not preference, decides where the predicate is evaluated (a). And masking a graph index in place is not a smaller graph but an induced subgraph, which can cut the search off from documents the predicate explicitly admits (b)."
+        },
+        {
+          "number": "17.6",
+          "caption": "Self-querying splits one sentence into a semantic channel and a predicate channel, and the branch at the validator decides which failure mode you own: dropping an unresolvable predicate costs you the unfiltered baseline, while executing it returns zero documents and raises no error. The session filter is conjoined after extraction, so no text reaching the model can widen it."
+        }
+      ],
+      "tables": [
+        {
+          "number": "17.1",
+          "caption": "The three metadata types differ in origin, marginal cost, and - decisively - in the direction they fail, which is what determines whether a field may be used as a hard predicate."
+        }
+      ]
+    },
+    {
+      "slug": "18_classical_ir_you_are_expected_to_know",
+      "title": "Chapter 18: Classical Information Retrieval (IR) You Are Expected to Know",
+      "output_file": "chapters/18_classical_ir_you_are_expected_to_know.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "18.1",
+          "caption": "Boolean AND fails by arithmetic, and the exponent p is what buys the failure back. In (a) each added conjunct multiplies the expected result count by df_i/N, so a query that gets more specific returns 1.5 × 10^6, then 1.8 × 10^4, then 72, then nothing - while the OR alternative returns 1.64 × 10^6 documents with no order at all. In (b) each curve is the set of two-term documents scoring exactly 0.5 under the extended Boolean AND: document B scores 0.5 at every p, while A, which is perfect on one term and nearly absent on the other, beats B at p = 1, loses to it at p = 2, and is scored 0.1 as p → ∞. The two tie at p ≈ 1.18."
+        },
+        {
+          "number": "18.2",
+          "caption": "TF-IDF's term weight grows without bound in f while BM25's saturates at k1 + 1, and TF-IDF's cosine normalization charges a 1/√m penalty for covering m topics while charging nothing at all for saying the same thing m times over."
+        },
+        {
+          "number": "18.3",
+          "caption": "BM25 replaces TF-IDF's two unbounded behaviors with bounded ones: repetition buys at most k1 beyond the first occurrence, so no amount of stuffing crosses the ceiling (A), and length is discounted along a curve that b interpolates between ignoring length entirely and charging for it fully, always more gently than division (B)."
+        },
+        {
+          "number": "18.4",
+          "caption": "Five assumptions turn an optimality principle into a table lookup: the last one is why BM25's IDF has the shape it does, while the first two are what every retriever built after BM25 spends its effort repairing."
+        },
+        {
+          "number": "18.5",
+          "caption": "Sparse retrieval gives the rare error string its own coordinate and a weight that grows as the string gets rarer. Dense retrieval averages its ten subword pieces into 5.6% of one pooled vector, where rarity buys nothing at all."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "19_learning_to_rank",
+      "title": "Chapter 19: Learning to Rank",
+      "output_file": "chapters/19_learning_to_rank.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "19.1",
+          "caption": "The argsort step destroys everything about the scores except their order, so the metric has no gradient and a surrogate loss is unavoidable (top). squared error is the wrong surrogate because it ranks Model A above Model B by a factor of 4.2 in loss while NDCG ranks Model B above Model A by 15.2 points (bottom)."
+        },
+        {
+          "number": "19.2",
+          "caption": "The same classifier, the same probabilities: taking the arg max leaves the head of the ranking as one unordered bucket, while an expectation over the predicted distribution recovers a total order for free."
+        },
+        {
+          "number": "19.3",
+          "caption": "RankNet's gradient factorizes so the scorer never sees a pair, but it weights a top-of-list repair and a rank-50 repair identically. LambdaRank's |∆NDCG| factor separates them by 426×."
+        },
+        {
+          "number": "19.4",
+          "caption": "Two ways to get a usable gradient out of a metric built on integer ranks. (a) SoftRank replaces each score with a Gaussian, which makes the pairwise probability πij smooth, then an insertion recurrence turns the discrete rank into a distribution pj (r) whose expected NDCG is differentiable - at a cost of Θ(n3 ) per query. (b) SetRank instead changes what is scored, pushing the whole candidate set through self-attention with the positional embeddings removed, so re-ordering the input permutes the scores rather than changing them."
+        },
+        {
+          "number": "19.5",
+          "caption": "The three shapes differ only in whether the document's contribution to the score can be computed before the query arrives: the dashed path in (a) runs at index time, (b) has no dashed path at all, and (c) pays for both because they fail on different queries."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "20_dense_retrieval",
+      "title": "20. Dense Retrieval",
+      "output_file": "chapters/20_dense_retrieval.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "20.1",
+          "caption": "The same encoder is unaffordable at corpus depth and cheap at candidate depth: scoring 21M passages with a cross-encoder costs 36 minutes per query, while a bi-encoder answers in 32 ms because its passage tower ran offline - and the cross-encoder then returns as a reranker over 100 candidates for 10.4 ms. Dashed paths are precomputed. Solid paths run per query."
+        },
+        {
+          "number": "20.2",
+          "caption": "Both curves are exact for a 21,015,324-passage corpus and a 5.888 × 10^4-pair training set, and they run in opposite directions against the same variable: BM25's per-term weight falls as document frequency rises, while the dense encoder's supervised exposure to that term rises. They cross near n(t) ≈ 3.9 × 10^3, which is why neither method dominates and why the two error sets barely overlap. Correction: the rare-term label reads 15.61 nats, corrected from 16.61, because the A1 IDF form ln(1 + (N - n(t) + 0.5)/(n(t) + 0.5)) replaces this unit's log(...) + 1 variant."
+        },
+        {
+          "number": "20.3",
+          "caption": "A negative one nat from the positive carries 1,097 times the gradient weight of one eight nats away, so the sampler that minimizes SGD variance is the model's own retrieval list - and because that list moves as the parameters move, the index must be rebuilt periodically at a cost of roughly 10,233 training steps per refresh."
+        },
+        {
+          "number": "20.4",
+          "caption": "Two random crops of one document make a positive pair without any label, and a momentum-encoded FIFO queue raises the negative count from 128 to 65,536 - from 7.00 to 16.0 bits of certifiable query-document information - at 201 MB instead of the 3.40 TB of activations the same negatives would cost in-batch."
+        },
+        {
+          "number": "20.5",
+          "caption": "The language centroid adds a constant α^2 to every same-language score, so at α = 0.9 the worst Swahili distractor (0.829) outranks the best English answer (0.576). Removing the centroid and removing the query-time translation hop are the two independent fixes, worth a correct ranking and a 25 × latency reduction respectively."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "21_learned_sparse_and_multi_vector_retrieval",
+      "title": "Chapter 21: Learned Sparse and Multi-Vector Retrieval",
+      "output_file": "chapters/21_learned_sparse_and_multi_vector_retrieval.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "21.1",
+          "caption": "Expansion in SPLADE is a side effect of the pre-training head, not a generation step: the MLM head already scores all 30,522 vocabulary entries at every position, so terms absent from the passage can receive positive weight, and ReLU is what turns the remaining |V | dimensions into free zeros an inverted index can skip. Bar lengths are schematic."
+        },
+        {
+          "number": "21.2",
+          "caption": "The two penalties are indistinguishable by average nonzero count and differ by 56× in query cost: L1's constant gradient lets the learned profile settle into the Zipfian shape natural language already has, while FLOPS's load-proportional gradient spreads the same total mass across far more of the vocabulary. Bar heights are schematic. The cost figures are computed in the worked example below. Correction: the left labels read m_eff >= 160 and C <= 2.65 x 10^8 MACs, corrected from 72 and 5.9 x 10^8, because no p_j can exceed 1, so the largest feasible gap is 25 times."
+        },
+        {
+          "number": "21.3",
+          "caption": "Late interaction sits between the two ends and inherits the cost profile of the cheap one: ColBERT and a bi-encoder both spend about 7 B FLOPs per query because the query encoder dominates both, and they differ by 5.7× in bytes per passage. Figures are for MS MARCO at rerank depth 1,000 and are derived in the worked example. Circles are query tokens, squares document tokens."
+        },
+        {
+          "number": "21.4",
+          "caption": "Representation granularity dominates the aggregator, which dominates query expansion: collapsing to a single vector costs 18.3% of MRR@10, mean-for-max costs 5.2%, and removing the [MASK] rows costs 1.7%. Rows are query tokens, columns document tokens. Shaded cells enter the score."
+        },
+        {
+          "number": "21.5",
+          "caption": "Compression and pruning share one artifact. The centroid table shrinks each embedding from 256 to 36 bytes, and then, reused as a ranking proxy, keeps all but 64 of the candidate passages from ever being decompressed - 38.1 MiB of query-time traffic instead of 341 MiB. Counts are for the worked example: 2^18 centroids, two probes per query token, ndocs = 256."
+        },
+        {
+          "number": "21.6",
+          "caption": "Reciprocal weighting makes agreement across lists commensurate with rank inside a list. At k = 60 a list's vote at rank 62 is worth exactly half its vote at rank 1, so two lists agreeing at rank 62 tie one list's top hit. At k = 0 the same vote is worth 1/62 and only rank matters. This is why the fused list in panel (a) is led by the documents both retrievers found, not by either retriever's favorite."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "22_reranking",
+      "title": "Chapter 22: Reranking",
+      "output_file": "chapters/22_reranking.md",
+      "figure_count": 7,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "22.1",
+          "caption": "The stages multiply, so the first sets a ceiling the second can approach but never exceed. The second stage sees one hundred-thousandth (1e-5) of the corpus, spends 99.8% of the retrieval arithmetic, and pays for itself by removing 1,001 ms of generator prefill for 18.6 ms of its own."
+        },
+        {
+          "number": "22.2",
+          "caption": "Fitted to DPR's published Natural Questions results, recall climbs 3.0 points per doubling of depth behind a dense first stage and 6.3 behind BM25 - so the weaker retriever must buy with depth what the stronger one already has, and pays 8.4× the cross-encoder bill on every query to reach the same ceiling. Dashed segments are extrapolated past the fitted range."
+        },
+        {
+          "number": "22.3",
+          "caption": "Descending the page, the model sees more candidates per decision and needs fewer calls to rank them, but the calls stop being independent: pointwise and all-pairs are depth 1 and parallelize completely, while sorted-pairwise and listwise trade call count for a serial chain that latency budgets feel directly. Correction: the listwise box reads about 5.7 s, corrected from 1.95 s, because each window also decodes about 60 identifier tokens at about 7.0 ms per token."
+        },
+        {
+          "number": "22.4",
+          "caption": "Both designs run the identical encoder over the identical candidate and differ only in what the loss is allowed to see. The gradient is where that difference lands. Bars are drawn to scale for one query whose gold passage scores 0.90 behind a distractor at 0.92, with eighteen tail documents at 0.02."
+        },
+        {
+          "number": "22.5",
+          "caption": "Back-to-front sliding at w = 20, s = 10 over k = 100: every call permanently fixes the bottom ten ranks of its window, so the staircase is the only path by which a rank-100 document reaches rank 1 - and it requires winning all nine windows in a row."
+        },
+        {
+          "number": "22.6",
+          "caption": "Only the shaded quadrant - documents that match the query's topic but violate its instruction - puts gradient on the instruction tokens. The 90% random negatives are already rejected by the query, so they train topical relevance and leave the model free to ignore the instruction entirely."
+        },
+        {
+          "number": "22.7",
+          "caption": "The bound flips where the two marginals cross. Under a geometric rank model fitted to Nogueira and Cho's reported MRR@10 of 0.365 (p = 0.18), sending one more document (solid) beats upgrading to a 3.2-point-better ranker (dashed) up to m⋆ = 5, and loses to it after. The generator's extraction rate and the first stage's recall scale both curves equally and so cannot move the crossing."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "23_generative_retrieval",
+      "title": "Chapter 23: Generative Retrieval",
+      "output_file": "chapters/23_generative_retrieval.md",
+      "figure_count": 4,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "23.1",
+          "caption": "Retrieval becomes decoding. Each step emits one identifier token. The heavy path is what the beam keeps, thin branches are valid continuations it scored lower, and the dashed branch is deleted by the prefix trie because no document lives under it. The path length is L = ⌈log_k N⌉ tokens - seven for 8.8M passages at k = 10 - so the query path touches the model's weights and a trie of identifiers, never the corpus."
+        },
+        {
+          "number": "23.2",
+          "caption": "The same relocation seen from both sides, for a 220M-parameter model at b = 16 bits. Query latency (top) is flat for generative retrieval because it depends on identifier length, not corpus size, while IVF-PQ grows as √N. Capacity per document (bottom) is flat for an index because every document gets a private record, and falls as 1/N for generative retrieval because every document shares one pool. The curves cross at N ⋆ = 6.9M against a 64-byte quantized index and at 143k against an uncompressed one."
+        },
+        {
+          "number": "23.3",
+          "caption": "Incremental indexing is decided by write locality. Inserting one document rewrites a handful of posting lists in an inverted index and O(M log N) edges in an HNSW graph, but a learned index superposes every document across every parameter, so the correct insertion is a global update - which is why production systems freeze the learned base and route new arrivals into a small mutable delta."
+        },
+        {
+          "number": "23.4",
+          "caption": "Retrieval and recitation are two producers of the same object, so they compose rather than compete. (a) An autoregressive model has no random-access primitive. It reaches a fact at offset L only by locating an entry point and rolling forward, which costs a factor φ^L. (b) Each path covers what the other cannot, and under independence their union raises coverage from R1 alone to 1 - (1 - R1)(1 - p_loc φ^L)."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "24_query_reformulation",
+      "title": "Chapter 24: Query Reformulation",
+      "output_file": "chapters/24_query_reformulation.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "24.1",
+          "caption": "The same inverted index fails in two opposite directions: matching one surface form of a concept leaves that concept's other forms scoring exactly zero, while matching one surface form of several concepts drags the other concepts into the ranking at full weight. Expansion moves the dashed boundary outward, which is a cure in panel A and a poison in panel B."
+        },
+        {
+          "number": "24.2",
+          "caption": "The three expansion families differ only in what conditions the terms they add (top), and all three end at the same place (bottom): a superset of candidates, in which recall cannot fall but precision survives only when the newly admitted documents are relevant at a rate at least equal to the precision you already had."
+        },
+        {
+          "number": "24.3",
+          "caption": "The three generations differ only in what supplies the learning signal (dashed boxes). Only REINFORCE routes the retrieval metric itself back into the parameters, by sampling instead of differentiating through the index."
+        },
+        {
+          "number": "24.4",
+          "caption": "The same four words under two training objectives. Context prediction makes the antonym (dashed) the top neighbor of the query term and exiles the term you wanted. A relevance objective reverses the ordering, because documents relevant to cheap-laptop queries do not contain expensive."
+        },
+        {
+          "number": "24.5",
+          "caption": "The five operations split by what they repair: three decide which history survives and in what form, two decide what the query itself must say, and the token counts show a 582-token concatenation becoming a 180-token standalone query in which the actual information need holds 11% of the mass instead of 1.2%."
+        },
+        {
+          "number": "24.6",
+          "caption": "The query is the wrong shape for the index: its question register scales every topical margin by γ = 0.59 while handing question-shaped documents a +0.040 bonus the 0.035 margin cannot survive. Generating a document removes both effects, and mean pooling plus eight-sample averaging holds fabrications to 2.4% of the probe - for one 840 ms decode. Correction: the decode box reads 120 x 10.0 = 1,200 ms, corrected from 840 ms, because a realistic 70 percent of the A100's 2.0 TB/s peak is about 1.4 TB/s."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "25_routing_and_adaptive_retrieval",
+      "title": "Chapter 25: Routing and Adaptive Retrieval",
+      "output_file": "chapters/25_routing_and_adaptive_retrieval.md",
+      "figure_count": 7,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "25.1",
+          "caption": "Gating buys back exactly the questions retrieval spoils - the shaded β cell - and nothing else, while the three mechanism families differ chiefly in how much generation must already have happened before their signal exists."
+        },
+        {
+          "number": "25.2",
+          "caption": "The four criteria are trained as independent binary probes over one frozen hidden state but applied as a cascade, so the tree encodes precedence rather than computation order: testing time-sensitivity before self-knowledge is what stops a confidently stale answer from short-circuiting the gate. Dashed terminals skip retrieval. Heavy terminals invoke it."
+        },
+        {
+          "number": "25.3",
+          "caption": "The same context budget spent two ways: broadcasting and merging on raw score lets one replicated document occupy four of six slots and masquerade as cross-source agreement, while routing buys distinct evidence at the cost of a recall risk you can no longer observe. Slot counts are illustrative."
+        },
+        {
+          "number": "25.4",
+          "caption": "A descriptive controller (a) ends at a label and leaves the mapping to an operation unwritten, which is why the same label \"needs external knowledge\" silently collapses onto one action. A prescriptive router (b) emits the operation itself, and the when-to-retrieve answer falls out of the top two branches for free."
+        },
+        {
+          "number": "25.5",
+          "caption": "The four levels are separated by what the corpus must supply - a fact, a combination of facts, a written procedure, a policy that was never written - so tuning the retriever raises the ceiling on the top two bands and on neither of the bottom two."
+        },
+        {
+          "number": "25.6",
+          "caption": "Nobody annotates hop counts, so the label is manufactured by executing every configuration against a known answer and keeping the cheapest one that was correct. The dashed path is what keeps the hardest queries - those no configuration solves - inside the training distribution."
+        },
+        {
+          "number": "25.7",
+          "caption": "The unseen query lies 16.1 mm from the decision boundary, within three percent of the margin enjoyed by the centroid of the single-hop training cluster, while sitting 2.6 cluster radii r away from that centroid. A confidence score cannot separate those two situations, because it measures only the first distance. An input-side gate on the second (dashed) catches what the router's own output cannot."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "26_iterative_recursive_and_agentic_retrieval",
+      "title": "Chapter 26: Iterative, Recursive, and Agentic Retrieval",
+      "output_file": "chapters/26_iterative_recursive_and_agentic_retrieval.md",
+      "figure_count": 9,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "26.1",
+          "caption": "All three one-shot failures put the deciding term on the far side of the single retrieval call, so the retriever scores a query that is missing it and the control flow offers no second pass in which to use it."
+        },
+        {
+          "number": "26.2",
+          "caption": "One-shot retrieval cannot reach the second document of a bridge chain because the query never contains the bridge entity. Feeding the round-one draft back into the query supplies it, at the price of one more retrieval and one more decode."
+        },
+        {
+          "number": "26.3",
+          "caption": "Both loops derive the next query from the model's own partial reasoning. They differ in what survives into the next prompt. IRCoT carries every retrieved passage forward, Self-Ask carries only the extracted sub-answers."
+        },
+        {
+          "number": "26.4",
+          "caption": "Confidence triggering reads a throwaway draft's minimum token probability to decide whether to search, then builds the query from everything except the tokens that triggered it."
+        },
+        {
+          "number": "26.5",
+          "caption": "Two thresholds, not one. The middle band exists so that a document scored low by mistake is carried forward alongside web results rather than deleted, which converts the evaluator's false-positive cost from a lost answer into a longer prompt."
+        },
+        {
+          "number": "26.6",
+          "caption": "Supervision enters from an external teacher once, offline (dashed, top), then freezes into the generator's own vocabulary. So at serving time the critique costs a token per segment, but the K-way branch it exists to rank costs K times the decode. Correction: Self-RAG ranks each candidate by its length-normalized segment probability plus the weighted critique scores, and the official code does not use a summed log probability (Asai et al., 2023, arXiv 2310.11511)."
+        },
+        {
+          "number": "26.7",
+          "caption": "GRPO swaps PPO's 112 GB critic for the group mean, which costs nothing and returns nothing whenever all G rollouts agree. The retrieved spans in panel A must be masked, or 74% of the sequence trains the policy to imitate the search engine. Correction: with a nonzero KL coefficient, such as Search-R1's 0.001, a dead group still returns a small KL gradient, so only its policy-loss gradient is zero, and the retrieved spans are masked out of the KL term as well."
+        },
+        {
+          "number": "26.8",
+          "caption": "Fan-out converts a sum of retrieval rounds into a maximum, and pays for it with one 836 ms summary decode per agent. A tax that no amount of added hardware reduces, and that a single looping source never repays. Correction: with one looping source, the monolith takes 1,708 + 815 = 2,523 ms and fan-out takes 2,457 ms, so fan-out wins by 66 ms because the 875 ms prefill saving offsets almost all of the summary tax."
+        },
+        {
+          "number": "26.9",
+          "caption": "Coverage saturates while dilution compounds, so an accumulating loop peaks at T ⋆ = 3 and declines thereafter. Charging 100 ms per accuracy point moves the stop one round earlier to T † = 2. Carrying extracted strings instead of passages removes the turnover entirely and leaves only the budget to decide."
+        }
+      ],
+      "tables": [
+        {
+          "number": "26.1",
+          "caption": "An accumulating loop over the depth mixture above. Coverage saturates by round four while dilution keeps compounding, so accuracy peaks at T = 3 and then falls, at monotonically rising cost."
+        }
+      ]
+    },
+    {
+      "slug": "27_fine_tuning_the_generator",
+      "title": "Chapter 27: Fine-tuning the Generator",
+      "output_file": "chapters/27_fine_tuning_the_generator.md",
+      "figure_count": 5,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "27.1",
+          "caption": "Gradients write into weights and documents write into the context, at costs separated by a factor of 1.9 × 10^6. Measuring accuracy with the gold passage pasted in tells you which of the two your errors live in."
+        },
+        {
+          "number": "27.2",
+          "caption": "Deleting the golden document for a fraction 1 - P of training items is the only point at which the gradient ever sees a context that cannot answer the question, which is why a model trained with P = 1 has no learned behavior for the 1 - r slice it will meet in production."
+        },
+        {
+          "number": "27.3",
+          "caption": "The three defect classes fall out of three tests, and the third one breaks the pattern: T1 and T2 are functions of the query-document pair, so a defect-detection head can learn them from the context alone, while T3 asks whether a claim is true and needs evidence the context cannot contain. Dashed boxes mark the branch that no amount of reading decides."
+        },
+        {
+          "number": "27.4",
+          "caption": "Splitting one retrieved set into k single-context examples that share a target converts a single fit-the-window constraint into k constraints whose only common solution is a context-insensitive answer - at the same token count and one-kth the attention cost."
+        },
+        {
+          "number": "27.5",
+          "caption": "Full fine-tuning of a 7B generator does not fit on an 80 GB A100 once optimizer state is counted. freezing the base deletes the two largest bars, and quantizing what remains shrinks the last one by 4×. All three rows assume batch 1, sequence 4,096, and r = 16 adapters on q and v."
+        }
+      ],
+      "tables": [
+        {
+          "number": "27.1",
+          "caption": "Five techniques, one move: hide part of the input and force the learner to cope without it. Retrieval-defect training is the RAG-shaped member of the family - it projects away rows of the evidence set the way dropout projects away columns of a hidden layer."
+        }
+      ]
+    },
+    {
+      "slug": "28_training_the_retriever",
+      "title": "Chapter 28: Training the Retriever",
+      "output_file": "chapters/28_training_the_retriever.md",
+      "figure_count": 7,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "28.1",
+          "caption": "The costly boundary in the grid is vertical, not horizontal: moving down trains more parameters, but moving right invalidates every vector already in the datastore and forces a full re-encode that dwarfs the gradient step which caused it."
+        },
+        {
+          "number": "28.2",
+          "caption": "Fusion-in-Decoder confines the quadratic attention term inside each passage and pays for the passage count once, in the decoder's cross-attention. FiD-Light shrinks that decoder-side cost by a factor of n/z without touching the encoder, which is why its end-to-end benefit scales with how many tokens you generate."
+        },
+        {
+          "number": "28.3",
+          "caption": "Only the operator in the second column changes. The Gumbel noise enters as an external source (dashed) that carries no gradient, and straight-through recovers row 1's forward pass while keeping row 2's backward pass."
+        },
+        {
+          "number": "28.4",
+          "caption": "Each retrieved document reaches the answer through its own forward pass and its own softmax weight, so a document's influence on the generated token is bounded by its retrieval score rather than by where attention happens to land in a concatenated prompt."
+        },
+        {
+          "number": "28.5",
+          "caption": "LM supervision moves probability mass between retrieved passages rather than assigning labels to them. In (a) the retriever's favorite d1 is pushed down hardest (-0.38) because the frozen generator answers worst from it, while d3 - the passage the generator actually answers best from - is pulled up by +0.23. d4 moves by -0.02 because the update on every passage is scaled by the mass PR already gave it, and d5 and below, outside the top k, are in neither distribution and receive exactly zero. The updates sum to zero. In (b) only the retriever is differentiated: the language model appears solely as k parallel forward passes returning ui = log PLM (y | di ⊕ x), which is why the method runs against a log-probability API."
+        },
+        {
+          "number": "28.6",
+          "caption": "The refresh interval is bounded from below by builder capacity and from above by the staleness you will tolerate. In (a) the builder snapshots θjK and publishes one interval later, so the index in use is always between K and 2K steps behind the weights being trained - asynchronous refresh bounds staleness rather than removing it. In (b) the curve is the compute multiplier for refreshing in line, 1+Cr /(KCs ) with Cr /Cs = 2,604. Left of the dashed line an equal-throughput asynchronous builder cannot keep up, so you are either paying the curve or falling further behind every interval."
+        },
+        {
+          "number": "28.7",
+          "caption": "The retriever's only teacher is the masked-token probability: a block is pushed up exactly when it beats the marginal, the coefficients sum to zero so the signal is purely comparative, and the dashed return path is the index the training step just invalidated."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "29_bootstrapping_training_data",
+      "title": "Chapter 29: Bootstrapping Training Data",
+      "output_file": "chapters/29_bootstrapping_training_data.md",
+      "figure_count": 7,
+      "table_count": 2,
+      "figures": [
+        {
+          "number": "29.1",
+          "caption": "The inversion (top two arrows) runs once per document, before the corpus is ever searched, so the ordinary query-time retrieval step (bottom arrow) can later succeed on vocabulary the original document never contained."
+        },
+        {
+          "number": "29.2",
+          "caption": "doc2query appends model-predicted query terms to a document's indexed text at build time, moving the document into the posting lists that a matching query will actually touch."
+        },
+        {
+          "number": "29.3",
+          "caption": "The prompt's exemplars set an implicit quality ceiling: a single positive example teaches imitation, a good/bad pair teaches discrimination."
+        },
+        {
+          "number": "29.4",
+          "caption": "The round trip verifies that a retriever can recover the source passage from the generated query, so its two errors are a degenerate query that round-trips anyway and a hard positive that loses a tie to a near-duplicate."
+        },
+        {
+          "number": "29.5",
+          "caption": "Both extensions change the generator's output type rather than its prompt wording: SWIM-IR inserts a summary so the query is written from a quarter as much low-resource text, and CONVERSER emits a dialogue so that context-dependent turns exist in the training set at all."
+        },
+        {
+          "number": "29.6",
+          "caption": "Whether a synthetic set is safe is a question about topology and sample size, not about provenance. In (a) the same generator is benign on the left and divergent on the right, because only the cycle lets one round's truncation feed the next. In (b) a draw of n = 10^5 items puts a hard floor under what any set can contain: an intent carrying mass 10^-5 appears with probability 0.63, one at 10^-6 with probability 0.095, and after fitting, whatever failed to appear has no support at all. A 500-item human set has the same curve shifted two decades right."
+        },
+        {
+          "number": "29.7",
+          "caption": "Filtering converts the teacher's draw-to-draw noise into accuracy and then stops dead at 1 - ϵsys. Only a label source with different blind spots moves the ceiling itself. Figures are percentages of the retained set in the worked example."
+        }
+      ],
+      "tables": [
+        {
+          "number": "29.1",
+          "caption": "Four BEIR retrieval tasks define \"relevant\" on four structurally different relations. A retriever trained to approximate one does not automatically approximate the others."
+        },
+        {
+          "number": "29.2",
+          "caption": "The tier tells you the error structure, and the error structure tells you whether redundancy is worth buying."
+        }
+      ]
+    },
+    {
+      "slug": "30_lost_in_the_middle",
+      "title": "Chapter 30: Lost in the Middle",
+      "output_file": "chapters/30_lost_in_the_middle.md",
+      "figure_count": 8,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "30.1",
+          "caption": "The serial position effect measured in humans (dashed) and the same U measured in an LLM reading a retrieved context (solid, after Liu et al., 2023): accuracy is highest when the correct chunk sits at the start or end of the context and lowest when it sits in the middle, regardless of whether the chunk is actually relevant."
+        },
+        {
+          "number": "30.2",
+          "caption": "The U-curve is not bounded below by the closed-book baseline: for gold-document positions in the trough, retrieval-augmented accuracy A(p) falls under the no-retrieval accuracy A0, after Liu et al. (2023)."
+        },
+        {
+          "number": "30.3",
+          "caption": "Tripling the context window from 4k to 16k tokens does not flatten the trough - the same U reappears at every scale, after Liu et al. (2023), because the effect tracks trained sequence length and attention pattern, not the number of tokens the window admits. Correction: Liu et al. show nearly identical standard and extended curves only where an input fit both windows, because the standard 4K checkpoint could not take the larger inputs."
+        },
+        {
+          "number": "30.4",
+          "caption": "Primacy and recency are learned at different points in training: next-token pre-training concentrates predictive signal on nearby preceding tokens (top), while SFT and alignment fix the system message at position 0 in every example (bottom), so only that position accumulates a consistent, high-leverage training signal."
+        },
+        {
+          "number": "30.5",
+          "caption": "Sorting by relevance rank already gives the top candidate primacy, but wastes the recency zone on the least relevant chunk and buries the second- and third-best candidates in the trough. Filling both safe zones from the outside in instead concentrates the reranker's confidence exactly where the U-curve rewards it."
+        },
+        {
+          "number": "30.6",
+          "caption": "Extending the retrieved list past the safe-zone width does not add new safe positions - it pushes ranks that were safely in the recency zone at k = 4 into a newly created trough at k = 6."
+        },
+        {
+          "number": "30.7",
+          "caption": "Raw attention already favors both ends of the context before content is considered. Subtracting the estimated positional bias lets the genuinely relevant chunk in the middle dominate instead of being swamped by the prior."
+        },
+        {
+          "number": "30.8",
+          "caption": "Differential attention computes two independently parameterized attention maps over the same positions and subtracts them, so a positional prior shared by both maps cancels while content-specific signal, present in one map more than the other, survives."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "31_attribution_and_citation",
+      "title": "Chapter 31: Attribution and Citation",
+      "output_file": "chapters/31_attribution_and_citation.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "31.1",
+          "caption": "A parametric model's answer has no pointer back into the corpus that shaped it. A retrieval-augmented answer is built from a visible, finite set of chunks, so its spans can be traced back to the specific chunk that supplied them."
+        },
+        {
+          "number": "31.2",
+          "caption": "Interpretability gates attribution: a sentence is only checked against its source after its explicature has been resolved, so an ambiguous claim never reaches the attribution test in the first place."
+        },
+        {
+          "number": "31.3",
+          "caption": "A post-hoc citation search matches already-fixed text to a passage that looks similar. During-generation attribution conditions the text on the same document it later cites, so text and citation share a causal origin."
+        },
+        {
+          "number": "31.4",
+          "caption": "The three-way attribution label routes each failure to a different fix: silence sends the claim back to retrieval, a conflict sends it to a block, and only a full match ships."
+        },
+        {
+          "number": "31.5",
+          "caption": "Two thirds of a fine-tuned attribution judge's errors are a reasoning problem no prompt fixes quickly. Over a quarter are a context-budget problem fixable by feeding the judge more of the source."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "32_evaluating_retrieval",
+      "title": "Chapter 32: Evaluating Retrieval",
+      "output_file": "chapters/32_evaluating_retrieval.md",
+      "figure_count": 4,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "32.1",
+          "caption": "Systems A and B retrieve the same four relevant documents (shaded, marked R) among the same ten candidates, so precision@10, recall@10, and F1@10 are identical for both - but only System A's relevant documents survive the top-5 cutoff that actually reaches the generator."
+        },
+        {
+          "number": "32.2",
+          "caption": "MRR stops scoring at the first relevant hit, at rank 1. nDCG discounts and sums every relevant hit by its graded relevance, so it alone registers the far more relevant document sitting at rank 4."
+        },
+        {
+          "number": "32.3",
+          "caption": "A small human-labeled gold set is not replaced by the LLM judge. It calibrates the judge once and re-checks it periodically, while the judge itself carries the evaluation load at scale."
+        },
+        {
+          "number": "32.4",
+          "caption": "Sampling exemplars in proportion to the gold set's natural class frequency reproduces that imbalance inside the judge. Stratifying the exemplar set instead raises macro-F1 by fixing recall on the class accuracy was hiding."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "33_evaluating_generation",
+      "title": "Chapter 33: Evaluating Generation",
+      "output_file": "chapters/33_evaluating_generation.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "33.1",
+          "caption": "Which of this chapter's four metrics you can run, and where in a pipeline you can afford to run it, is decided by which oracle is reachable at check time, not by which axis matters more."
+        },
+        {
+          "number": "33.2",
+          "caption": "FActScore's contribution is the extraction step: once a generation is split into independently checkable atomic facts, verification is a choice of how much oracle strength you can afford per fact, and the score is a plain average of the verdicts. Correction: the ensemble node combines retrieve-and-judge with the non-parametric estimator only, and the no-context estimator is not part of it."
+        },
+        {
+          "number": "33.3",
+          "caption": "VeriScore adds two independent corrections to FActScore: extraction reads the whole generation instead of one sentence, and a recall term R = min(C/K, 1) stops a system from buying a perfect precision score by claiming almost nothing. Correction: the published recall term is R = min(C_sup / K, 1), which counts supported claims, and K is the per-domain median claim count across model responses (Song et al., 2024, arXiv 2406.19276)."
+        },
+        {
+          "number": "33.4",
+          "caption": "RAGAS scores every edge of the query-context-answer triangle, so a low score points at the retriever, the generator, or a mismatched question independently."
+        },
+        {
+          "number": "33.5",
+          "caption": "Illustrative per-position hallucination rates, constructed to show the shape of the effect Min et al. (2023) report qualitatively: unsupported-fact density rises with position in the generation, while a single pooled FActScore number reports one flat average that hides where the generation actually breaks down."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "34_evaluating_the_system",
+      "title": "Chapter 34: Evaluating the System",
+      "output_file": "chapters/34_evaluating_the_system.md",
+      "figure_count": 6,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "34.1",
+          "caption": "Each stage boundary is a place to take a direct measurement. The end-to-end score at the bottom of the bracket sums all of them into one number that cannot be un-summed after the fact."
+        },
+        {
+          "number": "34.2",
+          "caption": "Macro alone cannot tell you that a 1.4-point aggregate gain is really a +15-point win on one slice and a -2-point loss on another - only mezzo, run after micro generates the hypothesis, can."
+        },
+        {
+          "number": "34.3",
+          "caption": "A well-designed ablation buckets cases by relationship to the mechanism: the gap concentrates in the bucket the component was built for, compresses under a ceiling effect on easy cases, and must stay near zero on the control bucket the component should never touch."
+        },
+        {
+          "number": "34.4",
+          "caption": "Removing one cited passage at a time and regenerating turns a fixed set of \"attributable\" citations into four distinct verdicts - load-bearing, decorative, and harmful - that a static entailment check cannot tell apart."
+        },
+        {
+          "number": "34.5",
+          "caption": "Time-to-first-token sums the stage medians, but end-to-end tail risk compounds across every stage in the chain."
+        },
+        {
+          "number": "34.6",
+          "caption": "A reported RAG benchmark score earns trust only after clearing three gates - contamination, synthetic-set artifacts, and task format - and each one can fail without moving the headline number."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "35_source_credibility",
+      "title": "Chapter 35: Source Credibility",
+      "output_file": "chapters/35_source_credibility.md",
+      "figure_count": 9,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "35.1",
+          "caption": "Each of the six trustworthiness aspects is native to one pipeline stage, so a failure on any one axis points to a specific component to fix, not to \"the model.\""
+        },
+        {
+          "number": "35.2",
+          "caption": "One low-credibility document (dashed) mixed into an otherwise credible context set is enough to measurably degrade answer accuracy, because the generator weights every document equally by default."
+        },
+        {
+          "number": "35.3",
+          "caption": "Reliability is estimated once offline from cross-source agreement, then reused at query time to select which sources vote and how much each vote counts."
+        },
+        {
+          "number": "35.4",
+          "caption": "CAG spends a training run once, offline, so that at inference time credibility reasoning runs on document content alone, with no source lookup required."
+        },
+        {
+          "number": "35.5",
+          "caption": "CrAM spends a one-time calibration pass identifying which heads propagate misinformation, then reweights only those heads' attention at every subsequent query, with no training run."
+        },
+        {
+          "number": "35.6",
+          "caption": "Both gates test for a resource you already have or lack - source identity, then labeled training data - not for which method scores best on a benchmark."
+        },
+        {
+          "number": "35.7",
+          "caption": "Every hop in the citation chain resets the apparent age to zero. The freshness filter only ever sees the box on the right, never the origin date on the left."
+        },
+        {
+          "number": "35.8",
+          "caption": "Sorting by credibility alone returns five mutually redundant, individually correct documents. Adding coverage to the objective spends two of five slots on redundancy and recovers all four disambiguation candidates. Correction: with lambda_2 = 0.5 the printed objective prefers three basketball documents plus the footballer and the actor (about 4.660 against 4.555), so the combined column needs lambda_2 above roughly 0.9 or a utility term averaged over K."
+        },
+        {
+          "number": "35.9",
+          "caption": "The frontier loop approximates fair exposure by steering which documents enter each batch, not by solving the exposure LP directly."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "36_provenance_and_adversarial_robustness",
+      "title": "Chapter 36: Provenance and Adversarial Robustness",
+      "output_file": "chapters/36_provenance_and_adversarial_robustness.md",
+      "figure_count": 8,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "36.1",
+          "caption": "Attribution and authenticity are orthogonal axes. The hatched quadrant is the dangerous one because it is invisible to a pipeline that only measures linguistic agreement."
+        },
+        {
+          "number": "36.2",
+          "caption": "Each manifest hashes the asset state it produced and the manifest before it. Breaking any link in the chain - by editing bytes without updating the manifest, or signing with an untrusted key - makes the corresponding signature fail to verify."
+        },
+        {
+          "number": "36.3",
+          "caption": "A missing manifest and a forged one need different policies: the left branch has nothing left to check, so it defaults to untrusted. The right branch already passed the cryptographic check and still needs revocation and anomaly checks before it earns full weight. Correction: an anomaly flag alone should lower the weight and go to human review, as section 36.3 says, so on this branch only a revoked key goes to the forged node with p(d) = 0 and a key blocklist."
+        },
+        {
+          "number": "36.4",
+          "caption": "Every retrieved document occupies the same token channel as the system prompt. An instruction hidden in document B is attended to exactly like an authorized one, because nothing in the architecture marks the difference."
+        },
+        {
+          "number": "36.5",
+          "caption": "The poisoned fraction of the corpus is small and scattered, but nothing in top-k retrieval guarantees the poisoned fraction of what the generator sees stays small."
+        },
+        {
+          "number": "36.6",
+          "caption": "Guardrails run inline on every query at near-zero added latency. Red teaming and adversarial training run offline and feed both the guardrail bank and the model itself on a slower cadence."
+        },
+        {
+          "number": "36.7",
+          "caption": "A continuous ϵ-ball trains against a symmetric neighborhood most real tokens never reach and can still miss a known jailbreak anchor that sits far away in embedding space. The hybrid spends its expensive discrete step at exactly that anchor instead of searching the whole space. Correction: MixAT itself centers the continuous ball on cheap PAP rephrasings of about half its training prompts, so this figure shows the general hybrid idea and does not show MixAT's recipe."
+        },
+        {
+          "number": "36.8",
+          "caption": "Deleting a row from D closes the future, but none of the three query-time leak paths a shared datastore introduces are closed by deletability alone."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "37_latency_cost_and_systems",
+      "title": "Chapter 37: Latency, Cost, and Systems",
+      "output_file": "chapters/37_latency_cost_and_systems.md",
+      "figure_count": 8,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "37.1",
+          "caption": "Decode is 91% of a 1.34-second RAG query even though prefill performs fourteen times more arithmetic in a tenth of the time - the other four stages are barely visible at this scale because they are not the bottleneck."
+        },
+        {
+          "number": "37.2",
+          "caption": "Concatenating precomputed, per-chunk KV caches turns an online 2,048-token prefill into a 48-token one, loaded rather than recomputed. Decode, still 91% of the query (section 37.1), is identical either way. Correction: the worked request uses five 400-token chunks and 1,221 ms of decode, so the diagram now shows five chunks and 1,221 ms where it showed 3 chunks and 1,198 ms."
+        },
+        {
+          "number": "37.3",
+          "caption": "Bidirectional attention entangles document and query key/value vectors regardless of order. Causal masking with the document placed first decouples them, so only the document-first ordering leaves a cacheable artifact."
+        },
+        {
+          "number": "37.4",
+          "caption": "A fixed-size slot packs the document from the start and the query flush against the end, masking whatever is left in between, so every request presents the identical tensor shape to a compiled or captured kernel graph regardless of actual document or query length."
+        },
+        {
+          "number": "37.5",
+          "caption": "The prefetch transfer is identical in both timelines - only its placement changes - so moving it inside the rewrite window removes it from the query's critical path entirely."
+        },
+        {
+          "number": "37.6",
+          "caption": "Each stage hands a shrinking, purpose-matched candidate set to the next - the funnel's cost is set by what survives to the narrowest stage, not by the corpus size feeding the widest one."
+        },
+        {
+          "number": "37.7",
+          "caption": "Cluster-summarize-embed builds one tree from leaves to root, and collapsed retrieval treats every node on that tree, regardless of level, as a single candidate pool for one similarity ranking."
+        },
+        {
+          "number": "37.8",
+          "caption": "Batching decode from B = 1 to B = 32 collapses decode's share of the bill from 90.9% to 32.4% and makes prefill - untouched by batching because it is compute-bound - the largest line item at 55.2%."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "38_distributed_and_federated_rag",
+      "title": "Chapter 38: Distributed and Federated RAG",
+      "output_file": "chapters/38_distributed_and_federated_rag.md",
+      "figure_count": 5,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "38.1",
+          "caption": "Merging four independently governed corpora into one index fails for a mix of soft constraints (cost, size, latency) and one hard constraint (compliance). Leaving each silo its own index and routing queries to a relevant subset avoids the hard constraint entirely."
+        },
+        {
+          "number": "38.2",
+          "caption": "A source selector cuts both candidate volume and tail-latency risk by querying M sources instead of all N, not by making any single source faster."
+        },
+        {
+          "number": "38.3",
+          "caption": "RAGRoute's classifier flags S1 and S4 as relevant (solid arrows) and skips the rest (dashed), so retrieval cost scales with the number of sources selected, not the number of sources that exist."
+        },
+        {
+          "number": "38.4",
+          "caption": "Residency is decided once, by which regional stack a tenant is routed into. Isolation is decided again, inside that region, by whether the tenant shares a filtered collection (dashed) or sits in a physically separate one (solid)."
+        },
+        {
+          "number": "38.5",
+          "caption": "A search engine pays the origin once per crawl and amortizes it over every cached query that follows. A RAG assistant that fetches live and sends the user back to verify pays the origin on every query, up to twice."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "39_multimodal_rag",
+      "title": "Chapter 39: Multimodal RAG",
+      "output_file": "chapters/39_multimodal_rag.md",
+      "figure_count": 9,
+      "table_count": 1,
+      "figures": [
+        {
+          "number": "39.1",
+          "caption": "Each generation moves the lossy step further from the document: Generation 1.0 forces every non-text element through a captioning bottleneck (dashed), Generation 3.0 removes the bottleneck entirely at the cost of a far larger index (heavy border)."
+        },
+        {
+          "number": "39.2",
+          "caption": "A joint encoder collapses a page to one vector and pays for it in lost detail. A decoupled-and-aligned encoder keeps a vector per patch and per token and pays for it in comparisons at query time."
+        },
+        {
+          "number": "39.3",
+          "caption": "CLIP's contrastive loss supervises only the shaded diagonal - whether a whole caption matches a whole image - leaving every within-caption and within-image credit assignment unconstrained, which is the shared root of all three biases."
+        },
+        {
+          "number": "39.4",
+          "caption": "A single global threshold zeroes out every CLIP image match (open and filled circles alike sit left of θglobal) while still leaking one borderline text match through. Separate, modality-calibrated thresholds recover the image matches and catch the leak. Filled circles are genuine matches, open circles are noise."
+        },
+        {
+          "number": "39.5",
+          "caption": "A pooled vector gives the correct, detail-matching candidate only a 0.014 raw-cosine edge over a same-scene distractor - inside typical encoder noise - so the bi-encoder's order flips. A reranker that reads all 49 patches jointly, not the pooled average, recovers the correct order."
+        },
+        {
+          "number": "39.6",
+          "caption": "The three fusion families trade compute for cross-modal sensitivity in opposite directions: score fusion is cheapest and blindest, attention fusion is most expensive and most sensitive, and unified fusion moves the expense to ingestion - which is why production systems route between them by query complexity rather than fixing one architecture."
+        },
+        {
+          "number": "39.7",
+          "caption": "Video collapses to one embedding per shot at each key frame (top), and event time is folded into similarity itself by rotating the embedding by an angle proportional to elapsed time rather than pooling frames into an order-blind average (bottom)."
+        },
+        {
+          "number": "39.8",
+          "caption": "Non-textual attribution adds a localization gate before verification: a claim is only checked against the specific region of the source it depends on, never against the source as a whole."
+        },
+        {
+          "number": "39.9",
+          "caption": "A VQA-shaped benchmark skips the corpus entirely (dashed box). A RAG-shaped benchmark forces search over a multi-document, multi-modal corpus (heavy box) before generation - the structural difference a benchmark's name does not reveal."
+        }
+      ],
+      "tables": [
+        {
+          "number": "39.1",
+          "caption": "Corpus size alone does not indicate whether a benchmark exercises retrieval: M2RAG's corpus dwarfs the others, but its four component tasks (Mixed) mostly test one pipeline stage at a time rather than the full retrieve-fuse-generate loop, and MRAG-Bench's Partial reflects its single-image, VQA-descended item shape."
+        }
+      ]
+    },
+    {
+      "slug": "40_graph_rag",
+      "title": "Chapter 40: Graph RAG",
+      "output_file": "chapters/40_graph_rag.md",
+      "figure_count": 9,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "40.1",
+          "caption": "A graph earns its place only after multi-hop necessity, recurring relational structure, and affordable maintenance all clear the gate - any \"no\" routes back to flat retrieval."
+        },
+        {
+          "number": "40.2",
+          "caption": "The extraction method decides where the graph's cost lands - annotator-hours, missed edges, or a token bill that reappears downstream as a deduplication pass."
+        },
+        {
+          "number": "40.3",
+          "caption": "Only the last three sub-processes ever consult the graph schema. Grounding a decomposition means constraining it to that schema, not to the LLM's own notion of a plausible next hop."
+        },
+        {
+          "number": "40.4",
+          "caption": "Heuristic retrieval is three checkable steps rather than one similarity score: linking fixes the anchor node, matching narrows the query's phrases to real edge types, and bounded traversal finds the connected path, while an unmatched relation like colleague_of is never traversed."
+        },
+        {
+          "number": "40.5",
+          "caption": "Reasoning on Graphs proposes relation paths before touching an entity, then grounds each one against real edges: a plan with no matching walk from the question entity is discarded before it can reach the answer."
+        },
+        {
+          "number": "40.6",
+          "caption": "Query-conditioned message passing raises importance on relations that match the question's intent and lets the rest decay toward zero, without a hand-written rule for which edge types matter. Scores shown are illustrative, one layer in, for the query \"which language do Jamaican people speak.\""
+        },
+        {
+          "number": "40.7",
+          "caption": "Four operations sit between a retrieved subgraph and the generator, and each one earns its place by removing a specific failure mode - unbounded size, positional burial, missing context, or an incompatible format - rather than by convention."
+        },
+        {
+          "number": "40.8",
+          "caption": "Verbalizing pays in context tokens that grow with subgraph size, embedding fusion pays in training compute to hold that cost constant, and graph-native generation never routes through natural-language text at all."
+        },
+        {
+          "number": "40.9",
+          "caption": "GraphRAG spends index-time budget on a community hierarchy so a query can be answered by map-reduce over summaries. LightRAG spends none of that budget and answers by searching a flat key-value graph at two granularities."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "41_end_to_end_design_drills",
+      "title": "Chapter 41: End-to-End Design Drills",
+      "output_file": "chapters/41_end_to_end_design_drills.md",
+      "figure_count": 7,
+      "table_count": 0,
+      "figures": [
+        {
+          "number": "41.1",
+          "caption": "Scatter-gather broadcasts every query to all S shards, so shard count is set by memory capacity while each shard still absorbs the full system query rate."
+        },
+        {
+          "number": "41.2",
+          "caption": "Freshness is three clocks, not one: a fast invalidation write, a sub-second ingestion path, and a slow, off-critical-path compaction job, all gated by a recency check before generation."
+        },
+        {
+          "number": "41.3",
+          "caption": "The abstention gate sits after generation and before the answer ships, and its threshold is set by the deployment's cost ratio, not by the model's raw confidence."
+        },
+        {
+          "number": "41.4",
+          "caption": "One-shot retrieval never forms a query for the fact hop 2 needs. Iterative retrieval promotes the model's own intermediate finding into the next query and reaches the correct answer. Correction: the source asks who was president right after the dissolution, and George H. W. Bush is the right answer to that question because he served until 20 January 1993, so the diagram now asks who won the first presidential election after the dissolution."
+        },
+        {
+          "number": "41.5",
+          "caption": "The router queries only the modality sources relevant to a given query. Skipped sources never run a search, so their retrieval and reranking cost never enters the query path."
+        },
+        {
+          "number": "41.6",
+          "caption": "Every branch of the debugging tree is a measurement, not a guess. Retrieval and augmentation are ruled out before the model or its context window is ever blamed."
+        },
+        {
+          "number": "41.7",
+          "caption": "A hosted generation API forecloses CrAM outright and CAG on any sprint timeline. A missing source field forecloses RA-RAG only until a cheap metadata-only backfill restores it."
+        }
+      ],
+      "tables": []
+    },
+    {
+      "slug": "A1_formula_sheet",
+      "title": "Appendix A: Formula Sheet",
+      "output_file": "chapters/A1_formula_sheet.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A2_question_bank",
+      "title": "Appendix B: Question Bank",
+      "output_file": "chapters/A2_question_bank.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A3_design_checklists",
+      "title": "Appendix C: Design Checklists",
+      "output_file": "chapters/A3_design_checklists.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A4_the_rag_card_and_index_datasheet",
+      "title": "Appendix D: The RAG Card and Index Datasheet",
+      "output_file": "chapters/A4_the_rag_card_and_index_datasheet.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A5_annotated_reading_list",
+      "title": "Appendix E: Annotated Reading List",
+      "output_file": "chapters/A5_annotated_reading_list.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A6_notation_quick_reference",
+      "title": "Appendix F: Notation Quick Reference",
+      "output_file": "chapters/A6_notation_quick_reference.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    },
+    {
+      "slug": "A7_glossary",
+      "title": "Appendix G: Glossary",
+      "output_file": "chapters/A7_glossary.md",
+      "figure_count": 0,
+      "table_count": 0,
+      "figures": [],
+      "tables": []
+    }
+  ]
+}

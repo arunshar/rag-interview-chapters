@@ -440,7 +440,7 @@ Start with four to eight demonstrations.
 Treat a request for 32 as a possible format, coverage, or diversity problem.
 For classification, k must at least cover the label count when the kernel can only average labels that appear.
 Cluster the pool and cap one example per near-duplicate group unless frequency represents a real prior.
-Alert when ESS falls below k divided by 2.
+Alert when ESS falls below k divided by 2. Correction: on the worked block this rule does not fire before the cap, because ESS 4.4 is above 8 divided by 2 = 4, and it fires only after the cap, because 2.6 is below 6 divided by 2 = 3, so it detects one dominant neighbor and misses duplication. To catch duplicates, also alert when a near-duplicate cluster of two or more examples holds more than half the kernel mass, which flags the three duplicates that hold 81.6% before the cap.
 Sweep k in {2, 4, 8, 16} and inspect the slope.
 A curve that is flat from k = 2 can indicate that the required concept is absent from the pre-training mixture.
 ### 7.6 Gradient descent as inference
@@ -560,16 +560,18 @@ flowchart TD
 
 ```text
 (b) ICL accuracy
-high  *  3-shot
-      |\
-      | \        *
-      |  \        \
-      *---\--------*  3-shot
-      |    \        \
-      |     \--------  1-shot
+high  *
+      | \___
+      |     \___
+      |         \___*  3-shot (upper line)
+      *
+      | \___
+      |     \___
+      |         \___*  1-shot (lower line)
 low   +----------------------> fraction of test-input words shuffled
       0                      1
 
+The upper line is 3-shot and the lower line is 1-shot.
 Both trends fall. The magnitudes are schematic.
 ```
 
@@ -837,7 +839,7 @@ Keep a house template for maintainability unless a per-model override clears sam
 | Effective cost | 15.4 ms per effective demo | Derived in the worked example |
 | Deduplicated mass | 61.99 divided by 91.54 = 67.7% | Figure ESS becomes 2.6 of 6 |
 | Shot default | k from 4 to 8 | Classification-shaped starting range |
-| ESS alert | below k divided by 2 | Duplicate-concentration threshold |
+| ESS alert | below k divided by 2 | Single-dominant-neighbor threshold that misses the 4.4-of-8 duplicate case, so pair it with a cluster-mass alert above one half (corrected from duplicate-concentration threshold) |
 | Shot sweep | 2, 4, 8, 16 | Diagnostic slope check |
 | Gradient scenario | 3,000 prompt tokens, 1,440 demo tokens, 10,000 daily queries | Motivation for prompt-to-adapter conversion |
 | Linear-attention output | F(q) = sum of value-key outer products, then multiplied by q | Context builds the operator applied to the query |

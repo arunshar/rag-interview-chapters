@@ -110,7 +110,7 @@ Run the oracle-context ablation on current failures. Put the gold passage direct
 
 - Accuracy jumps: the evidence was not arriving. Train or repair retrieval.
 - Accuracy stays flat: the generator saw evidence but failed to use it. Train or repair generation.
-- If recall at k is 0.6, generator training cannot lift end-to-end accuracy above 0.6 on those queries.
+- If recall at k is 0.6, generator training cannot lift end-to-end accuracy above 0.6 on those queries. Correction: end-to-end accuracy is R x A_orc + (1 - R) x A_ng, where R is recall at k, A_orc is accuracy when the evidence arrives, and A_ng is accuracy when it does not. A_orc is at most 1, so the ceiling at recall 0.6 is 0.6 + 0.4 x A_ng, which is above 0.6 whenever the model can answer some misses from its weights, and on the missed 40 percent it can only recover what the model already knows closed-book.
 
 #### Why
 
@@ -482,7 +482,7 @@ A batch of 64 queries with k equal to 20 needs 1,280 generator passes and 327,68
 
 - A frozen 7B generator costs 4.6 times 10 to the 15 FLOPs.
 - A 110 million parameter contrastive bi-encoder batch costs 4.5 times 10 to the 13 FLOPs including backward.
-- LM supervision costs roughly 100 times more per step.
+- LM supervision costs roughly 100 times more per step. Correction: Section 28.6 prices the same 64-query, k = 20 contrastive step as Cs = 1,280 x 6PL = 2.163 times 10 to the 14 FLOPs, which is the forward and backward pass over all 1,280 passages at 256 tokens each. Against that step, LM supervision costs about 21 to 26 times more (4.6 or 5.59 times 10 to the 15 FLOPs over 2.163 times 10 to the 14), which matches the 26 times figure in Section 28.6.
 
 Use it as a short fine-tune over a pretrained retriever. The source examples are the LM-supervised REPLUG variant over Contriever and Retrieval-Augmented Dual Instruction Tuning (RA-DIT) over an existing dense retriever.
 Choose k for the distractors that need demotion. Default to serving top k or 20, whichever is larger. Pair misses with hard-negative mining.
@@ -875,25 +875,25 @@ Answer: REALM rewards a block only when its masked-token probability beats the r
 | REPLUG weights | Gold mass is 0.110 at tau 1 and 0.440 at tau 0.05 |
 | REPLUG correct-token mass | 0.183 at tau 1 and 0.430 at tau 0.05 |
 | REPLUG wrong majority | Wrong token 0.504, reversal needs gold above 0.514 and tau below roughly 0.04 |
-| REPLUG bills | Concatenation 0.00510 dollars, endpoint input 166,080 tokens or 0.4982 dollars, endpoint output 0.0096 dollars, total 0.508 dollars, just under 100 times |
+| REPLUG bills | Concatenation 0.00510 dollars, endpoint input 166,080 tokens or 0.4982 dollars, endpoint output 0.0096 dollars, total 0.508 dollars, just under 100 times. In-process REPLUG prefills 2,280 tokens, 1.65 times concatenation, with 640 decode passes, and a 500-token answer over ten passages needs 5,000 forward passes |
 | REPLUG reported gains | GPT-3 language modeling 6.3 percent, Codex five-shot MMLU 5.1 percent |
 | LM-supervised PR | Opening fine-tune uses 40,000 labeled pairs over 6 weeks and raises recall@5 by 4 points with exact match flat. Worked PR is 0.431, 0.319, 0.143, 0.106 |
 | LM-supervised QLM and KL | At beta 1, QLM is 0.118, 0.354, 0.469, 0.059 and KL is 0.418 nats |
 | LM-supervised updates | -0.378, +0.167, +0.230, -0.019, summing to zero |
 | Lower-beta target | At beta 0.5, QLM is 0.038, 0.346, 0.606, 0.009 and KL is 1.067 nats, 2.6 times higher |
 | Lower-beta d4 effect | Update magnitude increases 7.6 times |
-| LM-supervision cost | Batch 64 at k equal to 20 gives 1,280 passes and 327,680 tokens, costing 4.6 times 10 to the 15 FLOPs against 4.5 times 10 to the 13, or roughly 100 times a contrastive step |
+| LM-supervision cost | Batch 64 at k equal to 20 gives 1,280 passes and 327,680 tokens, costing 4.6 times 10 to the 15 FLOPs against 2.163 times 10 to the 14 for the same contrastive step, or about 21 to 26 times (corrected from 4.5 times 10 to the 13 and roughly 100 times) |
 | Bare refresh economics | Opening in-batch accuracy exceeds 90 percent while recall@20 stalls at step 3,000, query weights reach step 40,000, and document vectors predate step 1. Cr divided by Cs is 2,604 steps, while HNSW graph FLOPs are 5,730 times lower |
 | Refresh extremes | 25,000 steps on 8 A100s at 312 TFLOP per second and 40 percent model FLOP utilization (MFU) give 0.217 seconds per step and 564 seconds per refresh, a 1.51-hour refresh-free run, or 164 days with refresh every step |
 | Inline K 500 | 6.21 times multiplier, 9.4 hours, 84 percent encoding share |
 | Asynchronous builder | Minimum K 2,604, maximum staleness 5,208 steps or 21 percent of the run |
 | Flat search | 15.4 GB of vectors, 0.45 percent of Cs |
-| Teacher-adjusted refresh | Ratio 101 steps, K 500 inline multiplier 1.20 |
+| Teacher-adjusted refresh | Ratio 101 steps, K 500 inline multiplier 1.20. Use inline refresh when Cr divided by Cs falls below about 100, which the source says also covers a training datastore below 400,000 chunks. REALM's 500-step cadence needs builder ratio at least 5.2 under the bare-step constants |
 | Staleness trigger | Probe costs 26 steps, proposed top-k overlap floor 0.8 |
 | REALM setup | Opening system uses a frozen 70B generator. Worked run uses two 110 million parameter encoders, 13.3 million blocks, 288-token inputs, k equal to 8, batch 512, 200,000 steps, and refresh every 500 steps |
 | REALM reader cost | 1.90 times 10 to the 11 closed-book FLOPs against 3.04 times 10 to the 12 retrieval FLOPs per example, or 16 times before refresh |
 | REALM total cost | Refresh is 52 percent, total is 33 times closed-book |
-| REALM device-hours | 1,800 with retrieval, 54 closed-book |
+| REALM device-hours | 1,800 with retrieval, 54 closed-book, or about 28 hours against under one on 64 accelerators |
 | REALM result | 40.4 NQ-Open exact match, versus 34.5 for T5-11B at about 33 times the parameters |
-| RETRO scale | 2 trillion tokens, 522 times the REALM worked corpus |
+| RETRO scale | 2 trillion tokens, 522 times the REALM worked corpus, with performance comparable to GPT-3 on the Pile at 25 times fewer parameters |
 | RETRO refresh counterfactual | 565 times trainer compute per window |

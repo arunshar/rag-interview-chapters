@@ -77,7 +77,7 @@ The lesson stays consistent across the kitchen. Control the ticket, measure the 
 | Log-likelihood | The model's score for an entire answer under a prompt | Its movement across variants is the core sensitivity signal |
 | Ordered pair | A source prompt and target prompt where direction matters | Canonical-to-typo and typo-to-canonical scoring can differ |
 | Prompt sensitivity index (POSIX) | Average absolute per-token log-likelihood shift across ordered prompt pairs | It measures distributional consistency without correctness labels |
-| Prompt sensitivity score (PSS) | An instance-level sensitivity score paired with generation confidence | It exposes risky queries that a dataset mean can hide |
+| Prompt sensitivity score (PSS) | An instance-level score built from correctness or judge-score differences across prompt variants, which ProSA pairs with decoding confidence (corrected from an instance-level sensitivity score paired with generation confidence) | It exposes risky queries that a dataset mean can hide, but it needs labels or a judge |
 | Decoding confidence | Strength of the model's emitted-token preferences | More confident generations tend to be more consistent under rewording |
 | Logit | An unnormalized score before token probabilities | Top-two logit distance is the flip barrier |
 | Argmax | The option with the largest score | The answer changes when perturbation crosses the winner's margin |
@@ -126,7 +126,7 @@ The lesson stays consistent across the kitchen. Control the ticket, measure the 
 | Proxy-task score | Noisy development-set objective used during search | Its noise floor can dominate reported gains |
 | Accept rule | Test that decides whether a candidate replaces the incumbent | It determines whether improvements survive held-out evaluation |
 | Best-arm identification | Allocate more evaluation to promising candidates | It reduces the cost of selecting a winner |
-| ProTeGi | A method that uses textual feedback and staged candidate evaluation | Its best-arm step supports disciplined prompt search |
+| ProTeGi (Prompt Optimization with Textual Gradients) | A method that uses textual feedback and staged candidate evaluation | Its best-arm step supports disciplined prompt search |
 | Textual gradient | Natural-language critique that suggests an opposite prompt edit | It converts error examples into an edit direction |
 | Minibatch | A small sample of errors used for feedback | Pool composition can cancel opposing signals |
 | False positive | A negative case incorrectly classified as positive | Its critique calls for a stricter instruction |
@@ -135,8 +135,8 @@ The lesson stays consistent across the kitchen. Control the ticket, measure the 
 | Pooled critic | One critique written from mixed error types | Opposing corrections can shrink its useful signal to zero |
 | Credit assignment | Knowing which edit caused a score change | Whole-prompt rewrites obscure it |
 | Semantic drift | An edit that quietly changes the task meaning | It can create a false proxy-set win |
-| APE | A named whole-prompt rewriting approach | It can escape a coordinate basin but loses per-edit attribution |
-| OPRO | A named whole-prompt rewriting approach | It shares the higher-variance accept-test problem of free-form rewriting |
+| APE (Automatic Prompt Engineer) | A named whole-prompt rewriting approach | It can escape a coordinate basin but loses per-edit attribution |
+| OPRO (Optimization by PROmpting) | A named whole-prompt rewriting approach | It shares the higher-variance accept-test problem of free-form rewriting |
 
 ## Core mechanics
 
@@ -218,7 +218,7 @@ $$
 - **What:** Log valid-response rate beside parsed-answer accuracy.
 - **Why:** Formatting can change whether the response is parseable.
 - **Failure without it:** A benchmark can hide end-to-end loss.
-- A two-point parsed-accuracy loss plus a five-point parse-rate loss becomes a seven-point service loss.
+- A two-point parsed-accuracy loss plus a five-point parse-rate loss becomes a seven-point service loss. Correction: end-to-end accuracy is parse rate times parsed-answer accuracy, so at the 64% operating point the move from 1.00 times 0.64 = 0.640 to 0.95 times 0.62 = 0.589 is a 5.1-point service loss, and the two losses multiply.
 - **Cost or complexity:** Logging is cheap. Ignoring it can misdiagnose the component that failed.
 
 #### Practical decision rule
@@ -288,7 +288,7 @@ $$
 - **What:** PSS pairs instance-level sensitivity with confidence.
 - **Why:** Production failures concentrate in the tail, not necessarily in the mean.
 - **Failure without it:** A mean can look calm when 5% of queries sit at 0.09 nats per token and the other 95% sit at 0.005.
-- **Cost or complexity:** Tail quantiles require storing per-query scores, but not new labels.
+- **Cost or complexity:** Tail quantiles require storing per-query scores, but not new labels. Correction: PSS (PromptSensiScore) from ProSA (Zhuo et al., 2024, arXiv 2410.12405) averages the absolute difference in correctness or LLM-judge score across prompt-variant pairs of one instance, so it needs a label or a judge call for every variant. Only per-query POSIX, which the nats-per-token example above uses, gives label-free tail quantiles.
 
 #### Respect scoring access limits
 
@@ -559,7 +559,7 @@ $$
 
 #### Know when free-form rewriting loses and wins
 
-- **What:** APE from Zhou et al. (2023) and OPRO from Yang et al. (2024) ask a model to rewrite the whole prompt from failures.
+- **What:** APE from Zhou et al. (2023) and OPRO from Yang et al. (2024) ask a model to rewrite the whole prompt from failures. Correction: APE (Zhou et al., 2023, arXiv 2211.01910) proposes instructions from input-output demonstrations and keeps the best-scoring ones, and OPRO (Yang et al., 2024, arXiv 2309.03409) asks an LLM for new instructions given earlier instructions and their scores. Both are whole-prompt rewriters, so the credit-assignment point below still holds, but neither works from failure examples, which is the ProTeGi mechanism.
 - **Why teams use it:** A large move can escape a basin that coordinate descent cannot.
 - **Failure:** One rewrite can change fourteen parts at once, destroy credit assignment, and drift the task meaning.
 - A broader proposal distribution also needs more evaluation for the same confidence.
@@ -625,12 +625,12 @@ flowchart LR
     X1["x1 canonical"] --> G["generator weights and readable log-probabilities"]
     X2["x2 reworded"] --> G
     XN["xN typo or reordered"] --> G
-    G --> A["sampled string yi and agreement: labels plus N decodes"]
-    G --> P["log P of yi under xj and POSIX or PSS: label-free plus N(N-1) prefills"]
+    G --> A["sampled string yi, agreement, and PSS: labels or judge plus N decodes"]
+    G --> P["log P of yi under xj and POSIX: label-free plus N(N-1) prefills"]
     G --> D["top-two gap log(p1/p2) and decoding confidence: free with sample"]
 ```
 
-Figure 10.2: One forward pass over a family of meaning-preserving prompt variants offers three read-outs. The top one is what teams reach for and is the only one that needs labels. The middle one is POSIX, label-free and continuous. The bottom one is already in your logits and costs nothing to log on live traffic.
+Figure 10.2: One forward pass over a family of meaning-preserving prompt variants offers three read-outs. The top one is what teams reach for and is the only one that needs labels. The middle one is POSIX, label-free and continuous. The bottom one is already in your logits and costs nothing to log on live traffic. Correction: PSS sits on the top, label-based read-out, because ProSA (Zhuo et al., 2024, arXiv 2410.12405) computes it from correctness or judge scores, and only POSIX is label-free.
 
 ### Figure 10.3
 
@@ -756,7 +756,7 @@ COPLE cannot see interactions beyond its coordinate moves, so it can stop at a l
 | Scale comparison | 13B to 70B | Formatting spread persisted under the reported scale increase |
 | Other reported model | GPT-3.5 | Formatting sensitivity persisted there |
 | Japanese GPT-4 restructure | roughly 49% to 25.44% | A 23.56-point drop under a task-preserving template change |
-| Parse example | 2 plus 5 equals 7 points | Parsed accuracy loss plus parse-rate loss becomes end-to-end loss |
+| Parse example | 0.95 times 0.62 = 0.589 against 0.640, a 5.1-point loss (corrected from 2 plus 5 equals 7 points) | Parse rate times parsed accuracy gives end-to-end accuracy (corrected from parsed accuracy loss plus parse-rate loss) |
 | Format evaluation set | 500 questions | Basis of the section 10.1 worked example |
 | Retrieved context | 5 chunks at 250 tokens | 1,250 retrieved tokens per query |
 | Other input | roughly 150 tokens | Question and instruction size |

@@ -614,9 +614,9 @@ The closed-book baseline scores 76%.
 The apparent retrieval lift is 6 points.
 The contamination check finds 1,800 overlapping items, or 18%.
 The closed-book baseline scores 91% on those 1,800 contaminated items.
-It scores 71% on the clean 8,200.
-The decontaminated retrieval lift is `82% - 71% = 11 points`.
-That is nearly twice the reported 6-point lift.
+It scores 71% on the clean 8,200. Correction: these slice scores give an overall closed-book score of 0.18 x 91% + 0.82 x 71%, or about 74.6%, so they do not reproduce the stated 76%.
+The decontaminated retrieval lift is `82% - 71% = 11 points`. Correction: this subtraction mixes two populations, because 82% is the pipeline score on all 10,000 items and 71% is the closed-book score on the clean 8,200 only. The valid clean lift is the pipeline score on the same 8,200 clean items minus 71%, and if the pipeline also scores at least 91% on the contaminated slice, its clean score is at most (82 - 16.38) / 0.82, or about 80%, so the clean lift is at most about 9 points.
+That is nearly twice the reported 6-point lift. Correction: the stated numbers do not support "nearly twice," and the comparison holds only when both systems are scored on the same clean slice.
 The example next identifies 3,000 LLM-generated questions without a consistency filter.
 A keyword baseline is routed over that slice.
 If it scores within a few points of the full pipeline, the slice rewards lexical overlap rather than semantic retrieval.
@@ -891,7 +891,7 @@ Not from that number. First check overlap with pre-training data, test synthetic
 | Contamination probe | 2-point RAG lift with 92% recall@10 | Test baseline memorization before blaming retrieval |
 | Contaminated slice | 1,800 items, 18% | Closed-book score is 91% there |
 | Clean slice | 8,200 items | Closed-book score is 71% there |
-| Clean retrieval lift | 82% - 71% = 11 points | Nearly twice the contaminated headline lift |
+| Clean retrieval lift | Pipeline score on the clean 8,200 minus 71%, at most about 9 points if the pipeline keeps 91% on the contaminated slice (corrected from 82% - 71% = 11 points) | Both systems must be scored on the same clean slice (corrected from nearly twice the contaminated headline lift) |
 | Synthetic slice | 3,000 questions | Generated without a consistency filter |
 | Synthetic chunking mismatch | +12 recall points versus no production difference | Construction artifacts can create the apparent gain |
 | Human-written slice | 7,000 questions | Keyword baseline trails by more than 15 points |

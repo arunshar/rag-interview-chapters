@@ -283,7 +283,7 @@ The model saw one parser-emitted ordering. The objective does not tie the rest t
 TAPAS is not a query engine.
 It predicts a set of cells and at most one operator from none, count, sum, or average.
 It is trained by weak supervision from final answers, not logical forms.
-Average margin across segments whose revenue grew requires two operations. The head cannot express that plan.
+Average margin across segments whose revenue grew requires two operations. The head cannot express that plan. Correction: The TAPAS head can express one filter followed by one aggregate, because cell selection carries the filter (Herzig et al., 2020, arXiv 2004.02349). For this question it can select the margin cells in rows where revenue grew and apply AVERAGE. Its real limits are answers that need more than one operator over one selection, such as a ratio of aggregates, a percentage change, or a nested aggregate. The selection head must also judge growth implicitly, which is a reliability risk and not an expressiveness limit.
 Route compound numeric questions to SQL.
 Numeric parsing is also a gate.
 The source states that one failed parse can collapse the rank field to 0 for the column.

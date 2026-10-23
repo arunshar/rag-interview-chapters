@@ -55,7 +55,7 @@ Imagine a clinical assistant as a hospital with a library and a physician. The r
 | Corruption rate `f` and count `X` | Per-document error probability and number of corrupt documents | They define the majority-vote calculation. Correlation breaks its binomial guarantee |
 | Corroboration | Agreement across documents | It can reduce independent corruption. Syndication and coordinated poisoning break independence |
 | Robust fine-tuning against retrieval defects (RbFT) | Answer training plus defect detection and utility extraction | It gives per-document supervision. One scalar answer loss leaves a `k`-way credit assignment problem |
-| Defect detection | Emit a label for each document before answering | The answer can condition on the audit. A global trust gate cannot identify one bad document |
+| Defect detection | An RbFT auxiliary training task that labels each document, after which RbFT answers directly at inference (corrected from emit a label for each document before answering) | Emitting labels before the answer is the edition's own design option, so the answer can condition on the audit. A global trust gate cannot identify one bad document |
 | Utility extraction | Recover the usable fragment from a partial document | Thin long-tail topics may lack one complete source. A binary filter discards partial evidence |
 | Answer invariance | Keep target `y` fixed across separate contexts | It declares context a nuisance variable. It is wrong when the answer should vary by context or tenant |
 | RA-DIT | The source-named recipe that creates one fixed-target example per retrieved chunk | It makes invariance an actual constraint. Concatenation lets one supporting chunk satisfy the loss alone |
@@ -174,7 +174,7 @@ $$
 A_{\mathrm{rag}} = 0.75(0.88) + 0.25(0.60) = 0.66 + 0.15 = 81.0\%
 $$
 
-The gain is 11.7 points. The distractors-only term supplies 0.25 times 0.29, or 7.3 points. The mixture predicts 69.3% against 69% measured end to end. The distraction penalty is 41 minus 31, or 10 points. Mallen et al. (2023) report that RAG flips roughly 10% of correct closed-book PopQA answers to incorrect. That published statistic is over all questions. The worked statistic is conditioned on the golden document being absent. They are not the same statistic. The source says a 40-point penalty would suggest broken labels or chunking.
+The gain is 11.7 points. The distractors-only term supplies 0.25 times 0.29, or 7.3 points. The mixture predicts 69.3% against 69% measured end to end. The distraction penalty is 41 minus 31, or 10 points. Mallen et al. (2023) report that RAG flips roughly 10% of correct closed-book PopQA answers to incorrect. Correction: for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval, so the 10 percent is a share of all questions and not a share of otherwise-correct answers (Mallen et al., 2023, arXiv 2212.10511). That published statistic is over all questions. The worked statistic is conditioned on the golden document being absent. They are not the same statistic. The source says a 40-point penalty would suggest broken labels or chunking.
 
 Dropping retrieval and fine-tuning the guideline text offers at most one minus 0.41, or 59 points of headroom. The source prices that route at 1.5 GPU-hours per refresh and the corresponding figure's index path at 2.8 milliseconds per document.
 
@@ -284,7 +284,7 @@ Voting reduces 20% document-level corruption to 5.8% answer-level corruption, a 
 
 #### Failure without it
 
-Standard answer-only SFT rewards copying an answer-shaped span. RAFT with one answer loss can learn a global context gate. It does not identify which of k documents should be distrusted. RbFT adds two auxiliary tasks. Defect detection labels each document as helpful, possibly relevant but unhelpful, or incorrect. The labels are emitted before the answer. Utility extraction recovers usable text from a partially useful document. A binary relevance filter fails on counterfactual documents because they are relevant. It can also discard partial utility. The filter still wins on cost and auditability as a pre-filter. It is not the complete answer. The source associates this pre-filter pattern with Yoran et al. (2024).
+Standard answer-only SFT rewards copying an answer-shaped span. RAFT with one answer loss can learn a global context gate. It does not identify which of k documents should be distrusted. RbFT adds two auxiliary tasks. Defect detection labels each document as helpful, possibly relevant but unhelpful, or incorrect. The labels are emitted before the answer. Correction: RbFT's defect-detection prompt has four assessments (helps, possibly relevant but does not help, irrelevant, and contains incorrect information), and RbFT trains defect detection as a separate auxiliary task and then answers directly at inference, at 0.196 s per query against 0.193 s for vanilla RAG (Tu, Su, Zhou, Liu, and Ai, 2025, arXiv 2501.18365). Emitting defect labels before the answer at inference is this edition's own design option. Utility extraction recovers usable text from a partially useful document. A binary relevance filter fails on counterfactual documents because they are relevant. It can also discard partial utility. The filter still wins on cost and auditability as a pre-filter. It is not the complete answer. The source associates this pre-filter pattern with Yoran et al. (2024).
 
 #### Cost and complexity
 
@@ -294,7 +294,7 @@ $$
 16/3350 = 4.8\ \mathrm{ms}
 $$
 
-Twenty tags cost 96 milliseconds. A 40-token answer costs 192 milliseconds under the same roofline. The tags add 50% to decode time. Adding 30 tokens of extracted spans pushes the extra path to 239 milliseconds. The same constant caps single-stream decode at:
+Twenty tags cost 96 milliseconds. A 40-token answer costs 192 milliseconds under the same roofline. The tags add 50% to decode time. Correction: this 96 ms cost belongs to the edition's option of emitting tags at inference, because RbFT itself answers directly and reports almost no added inference time. Adding 30 tokens of extracted spans pushes the extra path to 239 milliseconds. The same constant caps single-stream decode at:
 
 $$
 1/0.0048 = 209\ \mathrm{tokens/s}
@@ -348,7 +348,7 @@ The total is 160.3, or 80.2%. That is 6.3 points over RAFT. Of 12.55 recovered a
 
 #### Decisions and claim limits
 
-Label your own defect sample before choosing a recipe. Go directly to RAFT-style withholding only when uncovered queries exceed 30%. Per-document supervision cannot help when the entire context contains nothing. Emit defect labels at inference. Keep utility extraction training-only unless the extracted span is needed as a citation anchor. Never expect a relevance filter to catch counterfactual evidence. Pair it with recency, source authority, or agreement across independent documents. Set the counterfactual training fraction from the audit. The worked rate is 30 divided by 1,000, or 3% of pairs. Over-training can make the model discount legitimate updates. The source connects that tension to the entity-substitution result of Longpre et al. (2021). The source permits increasing that fraction under adversarial exposure. Report exact match and confidently-wrong rate separately. The source allows collapsing that distinction only for low-stakes internal search where wrong and unhelpful answers have similar cost. If legal requires faithfulness while the model team wants factual override, the conflict cannot be solved from an unannotated context alone. Add timestamps or source authority before generation. Without such metadata, the source's worked decision favors faithfulness at 3% counterfactual pairs and override at 20%.
+Label your own defect sample before choosing a recipe. Go directly to RAFT-style withholding only when uncovered queries exceed 30%. Per-document supervision cannot help when the entire context contains nothing. Emit defect labels at inference. Correction: this advice is the edition's own design option, because RbFT trains defect detection as an auxiliary task and answers directly at inference. Keep utility extraction training-only unless the extracted span is needed as a citation anchor. Never expect a relevance filter to catch counterfactual evidence. Pair it with recency, source authority, or agreement across independent documents. Set the counterfactual training fraction from the audit. The worked rate is 30 divided by 1,000, or 3% of pairs. Over-training can make the model discount legitimate updates. The source connects that tension to the entity-substitution result of Longpre et al. (2021). The source permits increasing that fraction under adversarial exposure. Report exact match and confidently-wrong rate separately. The source allows collapsing that distinction only for low-stakes internal search where wrong and unhelpful answers have similar cost. If legal requires faithfulness while the model team wants factual override, the conflict cannot be solved from an unannotated context alone. Add timestamps or source authority before generation. Without such metadata, the source's worked decision favors faithfulness at 3% counterfactual pairs and override at 20%.
 
 ### 27.4 Answer invariance to context as a training objective
 
@@ -486,7 +486,7 @@ $$
 7\times 10^9 \times 12 = 8.4\times 10^{10}\ \mathrm{bytes} = 84\ \mathrm{GB}
 $$
 
-The 14 GB of bfloat16 base weights are only one-sixth of the bill. LoRA freezes a weight matrix W and learns a factored update.
+The 14 GB of bfloat16 base weights are only one-sixth of the bill. Correction: standard mixed-precision Adam keeps the FP32 master copy, so its state is 7 x 10^9 x 16 = 112 GB and the base weights are one-eighth of that bill (Rajbhandari, Rasley, Ruwase, and He, 2020, arXiv 1910.02054). LoRA freezes a weight matrix W and learns a factored update.
 
 $$
 h = Wx + \frac{\alpha}{r}BAx
@@ -524,7 +524,7 @@ Prefix tuning consumes sequence length. The source rejects that cost in RAG beca
 
 #### Failure without it
 
-Full fine-tuning requires 84 GB before activations and creates one full checkpoint per domain. Counting only the 14 GB base causes an out-of-memory failure at the first optimizer step. Quantizing a trainable adapter makes gradients vulnerable to quantization noise. The source says to keep A and B in bfloat16. An adapter is a delta against an exact base. Failing to pin the base checkpoint hash can cause quality regression after an infrastructure change. Merging every tenant adapter into a separate base eliminates sharing. LoRA is not a free substitute for full fine-tuning. Biderman et al. (2024) found it underperformed full fine-tuning on code and mathematics domains requiring genuinely new knowledge. It also forgot markedly less of the base model's original capability. The source interprets this as consistent with keeping facts in the index.
+Full fine-tuning requires 84 GB before activations and creates one full checkpoint per domain. Correction: standard mixed-precision Adam with an FP32 master copy requires 112 GB before activations. Counting only the 14 GB base causes an out-of-memory failure at the first optimizer step. Quantizing a trainable adapter makes gradients vulnerable to quantization noise. The source says to keep A and B in bfloat16. An adapter is a delta against an exact base. Failing to pin the base checkpoint hash can cause quality regression after an infrastructure change. Merging every tenant adapter into a separate base eliminates sharing. LoRA is not a free substitute for full fine-tuning. Biderman et al. (2024) found it underperformed full fine-tuning on code and mathematics domains requiring genuinely new knowledge. It also forgot markedly less of the base model's original capability. The source interprets this as consistent with keeping facts in the index.
 
 #### Cost and complexity
 
@@ -580,7 +580,7 @@ At two bytes each, that is 37.7 MB. Hu et al. report 35 MB for that configuratio
 
 #### Decisions and claim limits
 
-Budget optimizer state first, activations second, and weights last. The default source budget is 12 bytes per trainable parameter for 16-bit Adam. Eight-bit optimizer state changes that to 2 plus 2 plus 1 plus 1, or 6 bytes. For 7 billion parameters, that is 42 GB. The source recommends parameter coverage before high rank. Its default is rank 16 on every block linear layer rather than rank 128 on q and v. The stated memory-bound alternative is q and v only. Hold alpha divided by rank constant in a rank sweep. Quantize the frozen base and never the adapter. Pin the exact base hash into adapter metadata. For 40 customers, merging gives 40 times 14 GB, or 560 GB. Unmerged serving uses one 14 GB base plus:
+Budget optimizer state first, activations second, and weights last. The default source budget is 12 bytes per trainable parameter for 16-bit Adam. Correction: standard mixed-precision Adam also keeps an FP32 master copy and needs 2 + 2 + 12 = 16 bytes per trainable parameter, which is the budget units 01 and 06 use, so 12 bytes fits only pure bfloat16 training without a master copy. Eight-bit optimizer state changes that to 2 plus 2 plus 1 plus 1, or 6 bytes. For 7 billion parameters, that is 42 GB. The source recommends parameter coverage before high rank. Its default is rank 16 on every block linear layer rather than rank 128 on q and v. The stated memory-bound alternative is q and v only. Hold alpha divided by rank constant in a rank sweep. Quantize the frozen base and never the adapter. Pin the exact base hash into adapter metadata. For 40 customers, merging gives 40 times 14 GB, or 560 GB. Unmerged serving uses one 14 GB base plus:
 
 $$
 40 \times 16.8\ \mathrm{MB} = 0.67\ \mathrm{GB}
@@ -727,7 +727,7 @@ Figure 27.5: Full fine-tuning of a 7B generator does not fit on an 80 GB A100 on
 
 ### Spoken script
 
-Start by separating the two write paths. Fine-tuning changes shared behavior in weights, while retrieval changes query-time evidence. I diagnose them with recall, oracle-context accuracy, and distractors-only accuracy. Then I match training to production. RAFT removes gold evidence on some items, RbFT adds per-document defect supervision, and invariance holds one target across separate contexts. Each has a scope limit, especially when the answer exists in neither context nor weights. Finally, I size memory correctly. Full Adam training needs 12 bytes per trainable parameter. LoRA freezes the base, and QLoRA also compresses its storage.
+Start by separating the two write paths. Fine-tuning changes shared behavior in weights, while retrieval changes query-time evidence. I diagnose them with recall, oracle-context accuracy, and distractors-only accuracy. Then I match training to production. RAFT removes gold evidence on some items, RbFT adds per-document defect supervision, and invariance holds one target across separate contexts. Each has a scope limit, especially when the answer exists in neither context nor weights. Finally, I size memory correctly. Full Adam training needs 12 bytes per trainable parameter. Correction: mixed-precision Adam needs 16 bytes. LoRA freezes the base, and QLoRA also compresses its storage.
 
 ## Interview traps
 
@@ -749,7 +749,7 @@ The fixed target says `y` labels the question rather than the question-context p
 
 ### 5. Why does a 14 GB model not fit full fine-tuning?
 
-Adam uses 12 bytes per trainable parameter before activations, so 7 billion parameters require 84 GB. Rank-16 LoRA on `q` and `v` yields 15.2 GB, while the matching NF4 figure row is 4.7 GB and the rank-64 all-linear QLoRA worked run is 6.5 GB. Treat NF4 as memory compression, choose matrix coverage before excessive rank, hold `alpha/rank` constant, keep adapters in bfloat16, and pin the exact base hash.
+The source says Adam uses 12 bytes per trainable parameter before activations, so 7 billion parameters require 84 GB, while rank-16 LoRA on `q` and `v` yields 15.2 GB, the matching NF4 figure row is 4.7 GB, and the rank-64 all-linear QLoRA worked run is 6.5 GB. Correction: standard mixed-precision Adam also keeps an FP32 master copy, so it needs 2 + 2 + 12 = 16 bytes per trainable parameter, or 112 GB for 7B before activations, and 12 bytes holds only for pure bfloat16 training without a master copy (Rajbhandari et al., 2020, arXiv 1910.02054). Treat NF4 as memory compression, choose matrix coverage before excessive rank, hold `alpha/rank` constant, keep adapters in bfloat16, and pin the exact base hash.
 
 ## Key numbers
 
@@ -810,7 +810,7 @@ Adam uses 12 bytes per trainable parameter before activations, so 7 billion para
 | Base-only mistake | 14 GB base and another 56 GB requested | Opening 7B out-of-memory failure |
 | LoRA toy factorization | 8 by 6 gives 48, rank 1 gives 14, rank 2 gives 28 | Shows the `r(d + k)` count |
 | Frozen NF4 base | 0.5 bytes per parameter, 3.5 GB at 7B | Storage before adapter state and activations |
-| Full 7B fine-tuning | 85.1 GB | 84 GB state plus 1.07 GB activations |
+| Full 7B fine-tuning | 85.1 GB | 84 GB pure bfloat16 state plus 1.07 GB activations, or about 113.1 GB with the FP32 master copy of standard mixed-precision Adam (corrected from 84 GB state plus 1.07 GB activations) |
 | LoRA q and v | 15.2 GB, 8.4M parameters, 16.8 MB artifact | Rank 16 |
 | LoRA compression | 0.12% trainable and about 830 times smaller artifact | Adapter versus full per-domain checkpoint |
 | QLoRA figure row | 4.7 GB | Rank 16 on q and v |

@@ -666,7 +666,7 @@ Use `N = 10^7`, `d = 768`, `nlist = 16,384`, `k = 256`, and decimal GB:
 
 - HNSW links alone cost about 2.6 GB.
 - IVF-Flat saves 7% against HNSW-Flat. The source frames this as a rebuild and GPU-mapping choice, not a major memory choice.
-- IVF-PQ96 is `30.5x` smaller before refinement.
+- IVF-PQ96 is `30.5x` smaller before refinement. Appendix A1 prices the same ten-million-vector index with the Section 41.1 convention of `M = 16`, 4-byte identifiers, and no fixed terms. That convention gives 3,200 B and 100 B per vector, 32.0 GB and 1.00 GB, and a `32x` ratio. The two tables differ only because of these conventions, and the arithmetic in both is correct.
 - At `h = 1` and `R = 3`, HNSW needs about 200 GB and IVF-PQ96 about 6.5 GB.
 - Both sit above an 18 GB shared payload.
 - Compression removes about 193 GB from the multiplied term and zero from payload.

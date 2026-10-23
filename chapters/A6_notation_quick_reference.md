@@ -257,6 +257,7 @@ intended meaning.
 | `ℒ`, `L`, `L_q`, `L_p` | Training loss, Transformer layer count, and query or passage token lengths |
 | `E_Q`, `E_P`, `E_q`, `E_d` | Query and passage encoders versus shared-space embeddings |
 | `G`, `∣V∣`, `∣E∣`, `ω`, `h` | Graph, entity count, edge count, grounding operator, and hop depth |
+| `M_index`, `M_fleet`, `M_payload` | Standalone index footprint, fleet memory as Appendix A Section A.8 defines it (`M_fleet = R(1+h)M_index + M_payload`, so it includes payload), and text plus metadata bytes. Here `h` is rebuild headroom, not hop depth |
 
 ## Diagrams
 

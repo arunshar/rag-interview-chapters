@@ -56,7 +56,7 @@ The traveler succeeds by reading the translation board, checking each warning ca
 | Contrastive Language-Image Pre-training (CLIP) | Jointly trained image and text encoders place matching image-text pairs near each other | It is the default multimodal retriever in the source and carries three biases worth naming. Section 39.3 |
 | Closed-book | Answering only from knowledge in model weights, with no retrieved context | It is the baseline every RAG evaluation needs and most omit. Section 30.2 |
 | ColBERT | A late-interaction retriever that stores one vector per token and scores with maximum-similarity matching, called MaxSim | It recovers much cross-encoder accuracy at index-time cost. Section 21.3 |
-| Generative retrieval | A model produces document identifiers directly instead of searching an index | It has constant-time lookup, a quality ceiling, and an unsolved incremental-indexing problem. Chapter 23 |
+| Generative retrieval | A model produces document identifiers directly instead of searching an index | Its lookup takes about `ceil(log_V N)` decode steps with structured identifiers and an exhaustive N-row score with atomic identifiers (corrected from constant-time lookup, the source's label), and it has a quality ceiling and an unsolved incremental-indexing problem. Section 23.2 and Chapter 23 |
 | Graph RAG | Retrieval over an extracted entity-relation graph rather than a flat chunk store | Its cost pays off for relational and global-sense-making queries, not otherwise. Chapter 40 |
 | Hallucination | A generated statement unsupported by the context or the world | The useful taxonomy separates factuality from faithfulness and intrinsic from extrinsic. Section 4.4 |
 | High-bandwidth memory (HBM) | Accelerator-attached memory that a decode step reads in full for every token | Decode becomes bandwidth-bound, and its cost does not fall merely because the model gets smarter. Section 37.1 |
@@ -499,7 +499,7 @@ Why: Retrieval becomes direct identifier generation.
 
 Failure or qualifier: It has a quality ceiling and an unsolved incremental-indexing problem.
 
-Cost or complexity: The source calls it constant-time.
+Cost or complexity: The source calls it constant-time. Correction: Section 23.2 shows that lookup takes about `ceil(log_V N)` decode steps with structured identifiers, and atomic identifiers still score all N rows exhaustively.
 
 Cross-reference: Chapter 23.
 
@@ -853,7 +853,7 @@ Use the book's convention when the literature contests a term. State the local d
 | CLIP | 3 biases | The appendix says they are worth naming but does not enumerate them here |
 | ColBERT | 1 vector per token | Late interaction recovers accuracy at index-time cost |
 | Cross-encoder | 1 joint forward pass | Query and document interact directly, but the model is unindexable |
-| Generative retrieval | Constant-time | The source also states a quality ceiling and unresolved incremental indexing |
+| Generative retrieval | About `ceil(log_V N)` decode steps (corrected from Constant-time, the source's label) | The source also states a quality ceiling and unresolved incremental indexing |
 | High-bandwidth memory | 1 full read per generated token | Decode remains bandwidth-bound |
 | Hybrid retrieval | 2 parallel retrieval paths | Lexical and dense rankings are fused after retrieval |
 | Inverted file index | n_probe nearest cells | The appendix gives no fixed probe count |

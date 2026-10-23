@@ -10,7 +10,7 @@ This chapter explains how a Retrieval-Augmented Generation (RAG) system can veri
 - RAG is naturally exposed to indirect prompt injection because retrieved data and authorized instructions enter one token channel.
 - Datastore poisoning is persistent. A few attacker-written passages can dominate one query's top-k results even inside a corpus of millions.
 - Guardrails catch known patterns quickly. Red teams discover new patterns. Adversarial training widens the refusal boundary. No layer reaches zero risk.
-- Continuous adversarial training is cheap but geometrically incomplete. Hybrid training uses expensive discrete search only at known-hard anchors. A datastore makes records deletable. It does not make them confidential. Retrieval must enforce each requester's access rights before choosing top-k.
+- Continuous adversarial training is cheap but geometrically incomplete. Hybrid training uses expensive discrete search only at known-hard anchors. Correction: the cited MixAT method applies continuous perturbations on top of cheap PAP persuasion rephrasings for about half of its training prompts. A datastore makes records deletable. It does not make them confidential. Retrieval must enforce each requester's access rights before choosing top-k.
 
 ## The story
 
@@ -32,7 +32,7 @@ The newsroom therefore adds a security desk. A fast guard checks each incoming r
 
 The training team has two drills. In the expensive drill, it searches real word sequences for a working attack. In the cheap drill, it nudges the request's numerical representation in nearby directions. The cheap drill covers a broad neighborhood. It can miss a distant role-play attack that a person can type.
 
-The team combines the drills. It uses cheap local perturbations across the full exercise set. It spends expensive word search only on attacks the red team already found. This hybrid keeps the broad coverage and places extra defenses at known weak doors.
+The team combines the drills. It uses cheap local perturbations across the full exercise set. It spends expensive word search only on attacks the red team already found. This hybrid keeps the broad coverage and places extra defenses at known weak doors. Correction: the cited MixAT method builds its hard examples from cheap rephrased attacks in fixed persuasion styles for about half the exercises, and it does not limit word search to attacks the red team already found.
 
 Finally, the editor asks who may enter each archive room. Deleting a clipping later gives revocability. Checking a badge before retrieval gives confidentiality. The archivist must filter the candidate shelves by the requester's access-control list before ranking relevance.
 
@@ -265,14 +265,13 @@ Trust-anchor scoping narrows the keys that can ever produce an accepted signatur
 
 Treating missing as neutral rewards the cheapest attack. Treating signature verification as the final decision trusts a stolen key.
 Anomaly detection is only a heuristic.
-A professional editor can trigger the 47-edit threshold and create a false positive.
-A patient attacker can stay below it and create a false negative.
+A professional editor can trigger the 47-edit threshold and create a false positive. A patient attacker can stay below it and create a false negative.
 Use anomaly flags to down-weight and route to review. Do not equate them with a revoked key or broken signature.
 
 #### Cost, complexity, and decisions
 
 The example starts with N = 200 candidate images.
-The batch contains 120 trusted images, 50 missing manifests, 18 hash failures attributed to apparent re-encoding, and 12 cryptographically valid images that fail revocation or anomaly checks.
+The batch contains 120 trusted images, 50 missing manifests, 18 hash failures attributed to apparent re-encoding, and 12 cryptographically valid images that fail revocation or anomaly checks. Correction: only a revoked key or a broken or untrusted signature should get p(d) = 0 and a key blocklist, so this bucket should split revoked keys from anomaly flags, and an anomaly-flagged image should get an intermediate weight and go to human review.
 Set the trusted relevance floor to u_floor = 0.3.
 To keep a maximally relevant missing document below the weakest floor-clearing trusted document, require p_min x 1 < u_floor x 1.
 Therefore p_min < 0.3. The example chooses p_min = 0.2.
@@ -288,7 +287,7 @@ $$
 
 A missing document with u = 0.95 gets 0.95 x 0.2 = 0.19 and misses top 20.
 A corroborated re-encoded document with u = 0.85 gets 0.85 x 0.67 ≈ 0.57 and enters just above the cutoff.
-Every forged document gets 0 regardless of relevance.
+Every forged document gets 0 regardless of relevance. Correction: this zero weight applies only to revoked keys and broken or untrusted signatures, and a document with only an anomaly flag keeps an intermediate weight until a reviewer decides.
 Revocation changes over time, so a cache-forever-by-hash policy is wrong for it.
 At k = 20 and about 30 ms per live status round trip, query-time revocation checking costs about 600 ms.
 That is three times the chapter's 200 ms budget.
@@ -506,8 +505,8 @@ Its epsilon ball is symmetric, but real token sequences occupy a smaller irregul
 Some perturbed points do not correspond to any text an attacker can send.
 A real role-play attack can sit far outside the local ball.
 Inflating epsilon does not specifically target that distant point and can waste training signal.
-Hybrid training uses cheap continuous perturbations broadly and expensive discrete search at known-hard anchors.
-MixAT obtains anchors from red teaming or prior discrete search.
+Hybrid training uses cheap continuous perturbations broadly and expensive discrete search at known-hard anchors. Correction: MixAT (Dekany et al., 2025, arXiv 2505.16947) applies continuous perturbations on top of discrete adversarial inputs, and those inputs are cheap PAP persuasion rephrasings drawn at random from 40 predefined strategies for about half of the training prompts (PAP sample ratio alpha = 0.5).
+MixAT obtains anchors from red teaming or prior discrete search. Correction: MixAT does not reserve GCG-style search for a few red-team anchors, because it centers the continuous PGD perturbation on the embeddings of those PAP rephrasings.
 
 #### Failure without it
 
@@ -527,7 +526,7 @@ Continuous projected-gradient training with K = 10 uses 10 forward-and-backward 
 The chapter compares pass counts as 256,000/10 = 25,600 times fewer for one example.
 This comparison counts passes. It does not claim that every forward-and-backward pass has identical wall cost to a forward-only pass.
 The MixAT result reports runtime comparable to continuous-only training on Zephyr-7B.
-It reduces ALO-ASR from over 50% for prior continuous-style defenses to under 20%.
+It reduces ALO-ASR from over 50% for prior continuous-style defenses to under 20%. Correction: the prior defenses above 50% ALO-ASR include the discrete method R2D2 and the latent method LAT as well as the continuous method CAT.
 That is a harder ensemble worst-case metric than the fixed-suite 71% to 2% guardrail result. The numbers are not directly interchangeable.
 Start with continuous training across the full behavior set.
 Add discrete search only for currently successful anchors.
@@ -630,15 +629,16 @@ flowchart TD
     D["Retrieved document d: manifest present?"]
     M["MISSING: no embedded or cloud manifest, p(d) = p_min, below floor, flagged, ranked down, warned"]
     P["PRESENT: hash and signature verify, two checks remain"]
-    F["FORGED: key revoked or edit history anomalous, p(d) = 0, blocklist key"]
+    F["FORGED: key revoked, p(d) = 0, blocklist key"]
     T["TRUSTED: not revoked, clean history, scoped trust anchor, p(d) = 1"]
     D -->|no| M
     D -->|yes| P
-    P -->|revocation or anomaly check fails| F
+    P -->|revocation check fails| F
+    P -->|anomaly flag only| R["REVIEW: edit history anomalous, intermediate p(d), human review, no blocklist"]
     P -->|both checks pass| T
 ```
 
-**Figure 36.3:** A missing manifest and a forged one need different policies: the left branch has nothing left to check, so it defaults to untrusted. The right branch already passed the cryptographic check and still needs revocation and anomaly checks before it earns full weight.
+**Figure 36.3:** A missing manifest and a forged one need different policies: the left branch has nothing left to check, so it defaults to untrusted. The right branch already passed the cryptographic check and still needs revocation and anomaly checks before it earns full weight. Correction: an anomaly flag alone should lower the weight and go to human review, as section 36.3 says, so on this branch only a revoked key goes to the forged node with p(d) = 0 and a key blocklist.
 
 ### Figure 36.4
 
@@ -716,11 +716,11 @@ Embedding space R^d, schematic two-dimensional slice
           '-----------------'
              clean embedding
 
-  MixAT uses the cheap continuous ball broadly and one expensive
+  A hybrid uses the cheap continuous ball broadly and one expensive
   discrete search at the distant known-hard anchor.
 ```
 
-**Figure 36.7:** A continuous ϵ-ball trains against a symmetric neighborhood most real tokens never reach and can still miss a known jailbreak anchor that sits far away in embedding space. The hybrid spends its expensive discrete step at exactly that anchor instead of searching the whole space.
+**Figure 36.7:** A continuous ϵ-ball trains against a symmetric neighborhood most real tokens never reach and can still miss a known jailbreak anchor that sits far away in embedding space. The hybrid spends its expensive discrete step at exactly that anchor instead of searching the whole space. Correction: MixAT itself centers the continuous ball on cheap PAP rephrasings of about half its training prompts, so this figure shows the general hybrid idea and does not show MixAT's recipe.
 
 ### Figure 36.8
 

@@ -13,13 +13,17 @@
     themeButton.textContent = `${next[0].toUpperCase() + next.slice(1)} theme`;
     themeButton.setAttribute('aria-label', `Switch to ${next} theme`);
   }
-  setTheme(storage.get('rag-book-theme') === 'light' ? 'light' : 'dark');
+  // theme.js already chose the opening theme before the first paint.
+  setTheme(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
   themeButton.addEventListener('click', () => {
     const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     storage.set('rag-book-theme', theme);
     setTheme(theme);
+    document.dispatchEvent(new CustomEvent('rag-theme-change'));
   });
-  document.querySelector('#print-button').addEventListener('click', () => window.print());
+  // Pages with diagrams replace this so the printout shows rendered diagrams.
+  let printChapter = () => window.print();
+  document.querySelector('#print-button').addEventListener('click', () => printChapter());
   const menuButton = document.querySelector('#menu-toggle');
   const shade = document.querySelector('#menu-shade');
   function menu(open) {
@@ -87,13 +91,17 @@
   const diagrams = [...document.querySelectorAll('.diagram')];
   if (!diagrams.length) return;
   let library;
+  const pageMermaidTheme = () => document.documentElement.dataset.theme === 'light' ? 'default' : 'dark';
+  function configure(theme) {
+    window.mermaid.initialize({startOnLoad: false, securityLevel: 'strict', theme, fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif'});
+  }
   function loadMermaid() {
     if (library) return library;
     library = new Promise((resolve, reject) => {
       const tag = document.createElement('script');
       tag.src = `${root}assets/mermaid.min.js`;
       tag.onload = () => {
-        window.mermaid.initialize({startOnLoad: false, securityLevel: 'strict', theme: 'dark', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif'});
+        configure(pageMermaidTheme());
         resolve(window.mermaid);
       };
       tag.onerror = () => reject(new Error('Diagram renderer unavailable'));
@@ -126,6 +134,27 @@
     }), {rootMargin: '500px'});
     diagrams.forEach(figure => observer.observe(figure));
   } else diagrams.forEach(render);
+  // Redraw the diagrams that are already on screen in a new Mermaid theme.
+  async function redraw(theme, all) {
+    const mermaid = await loadMermaid();
+    configure(theme);
+    diagrams.filter(figure => all || figure.querySelector('.diagram-view svg')).forEach(figure => {
+      delete figure.dataset.queued;
+      render(figure);
+    });
+    await queue;
+    return mermaid;
+  }
+  document.addEventListener('rag-theme-change', () => {
+    if (library) redraw(pageMermaidTheme(), false);
+  });
+  // The print button draws every diagram in the light Mermaid theme first, then restores the page theme.
+  printChapter = async () => {
+    try { await redraw('default', true); } catch { /* Unrendered diagrams fall back to their source below. */ }
+    addEventListener('afterprint', () => redraw(pageMermaidTheme(), false), {once: true});
+    window.print();
+  };
+  // A browser print shortcut cannot wait for rendering, so undrawn diagrams print their source.
   addEventListener('beforeprint', () => diagrams.forEach(figure => {
     if (!figure.querySelector('svg')) figure.querySelector('details').open = true;
   }));

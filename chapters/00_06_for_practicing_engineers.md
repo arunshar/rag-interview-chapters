@@ -16,7 +16,7 @@ face.
   score cannot identify which of five stages caused it.
 - Do not assume retrieval or more context always helps. Retrieval flips roughly
   10% of otherwise-correct answers to wrong, and middle-position evidence
-  remains less reliable in a longer window.
+  remains less reliable in a longer window. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers.
 - Start with Chapters 30, 34, 17, and 37 for context use, system evaluation,
   vector-store operations, and latency and cost.
 - Keep stable principles separate from volatile tools. Ask which constraint a
@@ -339,7 +339,7 @@ them.
 
 | Position | Why it matters | Failure without it | Stated cost |
 |---|---|---|---|
-| Retrieval is not a free improvement | Section 1.5 reports that it flips roughly 10% of otherwise-correct answers to wrong. On high-popularity questions, retrieval-augmented accuracy falls below closed-book accuracy. | "Always retrieve" becomes an unexamined default. Adaptive gating is deferred even though it is decision one in Section 25.1. | Retrieval has a measured accuracy cost rather than a neutral effect. |
+| Retrieval is not a free improvement | Section 1.5 reports that it flips a correct answer to wrong on about 10% of all PopQA questions (corrected from roughly 10% of otherwise-correct answers). On high-popularity questions, retrieval-augmented accuracy falls below closed-book accuracy. | "Always retrieve" becomes an unexamined default. Adaptive gating is deferred even though it is decision one in Section 25.1. | Retrieval has a measured accuracy cost rather than a neutral effect. |
 | More context is not better | Evidence in the middle is used less reliably than evidence at either end. Sections 30.1 to 30.3 show that a longer window does not fix this. | A team treats retrieving fewer documents as only a cost compromise. | Section 30.6 treats fewer documents as a quality intervention. |
 | Semantic chunking's benchmark advantage mostly does not transfer | Section 13.6 explains that published gains come from corpora made by stitching unrelated documents together. That construction manufactures the topic discontinuities the method detects. | A team assumes those gains transfer to its corpus even when its corpus lacks those discontinuities. | No numeric cost is stated. The benchmark advantage can fail to transfer. |
 | Post-hoc citations are close to worthless as grounding evidence | Section 31.3 explains that a citation added after generation identifies topical similarity, not the document from which the answer came. | A team mistakes topical similarity for attribution. | If attribution matters, it must be built into answer production. |
@@ -360,7 +360,7 @@ whether the corpus justifies those choices.
 #### Stated cost
 
 The source gives two explicit magnitudes. Retrieval flips roughly 10% of
-otherwise-correct answers to wrong. Million-document LLM-based graph
+otherwise-correct answers to wrong. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers. Million-document LLM-based graph
 construction can cost about 475 times a vanilla vector-index build.
 
 ### 6. Artifacts You Can Take to Work
@@ -461,10 +461,10 @@ and trade-off.
 
 ### 1. Why not make retrieval the default for every query?
 
-Retrieval is not neutral. It flips roughly 10% of otherwise-correct answers to
-wrong, and retrieval-augmented accuracy is below closed-book accuracy on
-high-popularity questions. Adaptive gating is the first design decision, not a
-later optimization.
+The source answers that retrieval flips roughly 10% of otherwise-correct answers
+to wrong and loses to closed-book accuracy on high-popularity questions, so adaptive gating is the first design decision.
+Correction: Mallen and colleagues (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval.
+The 10 percent is a share of all questions, not of otherwise-correct answers.
 
 ### 2. If evidence is lost in the middle, why not use a longer context window?
 
@@ -500,7 +500,7 @@ stage that moved rather than the stage the team knows best.
 | 5 stages | A single end-to-end score cannot identify which stage caused a quality regression. |
 | 4 chapters | The recommended short path is Chapters 30, 34, 17, and 37. |
 | 6 disagreements | The source gives six positions that cut against optimistic retrieval folklore. |
-| Roughly 10% | Retrieval flips roughly this share of otherwise-correct answers to wrong. |
+| Roughly 10% | Retrieval flipped a correct answer to wrong on roughly this share of all PopQA questions (corrected from a share of otherwise-correct answers). |
 | Decision 1 | Adaptive gating is the first design decision rather than a later optimization. |
 | 1 order of magnitude | Most latency intuitions are wrong by this amount in one direction or the other. |
 | 1 million documents | The stated corpus scale for the graph-construction cost comparison. |

@@ -525,7 +525,7 @@ WindowDiff compares the number of boundaries inside the window rather than a sam
 
 For uniform reference segments of length ell, the conventional window is k = ell / 2.
 
-A no-boundary segmenter scores 0.5. An all-boundary segmenter also scores 0.5. Report both baselines with either metric.
+A no-boundary segmenter scores 0.5. An all-boundary segmenter also scores 0.5. Report both baselines with either metric. Correction: Both degenerate baselines score about 0.5 only under Pk with k = ell / 2. Under WindowDiff (Pevzner and Hearst, 2002), the no-boundary segmenter still scores about 0.5, but the all-boundary segmenter scores about 1.0. Every window then holds about k proposed boundaries, while the reference window holds 0 or 1.
 
 The chapter traces element-level precision, recall, and overlap to Extensible Markup Language (XML) retrieval, where systems had to return the correct section, paragraph, or span from a nested document.
 
@@ -640,7 +640,7 @@ A random detector placing 10 cuts among 199 gaps with 8 true boundaries has expe
 #### Shipping rule
 
 - Measure Delta on 30 real documents before building. Label 200 adjacent sentence pairs.
-- Below Delta = 2, the source says the percentile rule cannot clear one boundary in three and recommends stopping.
+- Below Delta = 2, the source says the percentile rule cannot clear one boundary in three and recommends stopping. Correction: Under this unit's own Gaussian gap model (sigma = 0.08, mu_w = 0.25, 8 boundaries in 199 gaps, about 10 cuts), the percentile rule recovers about 54% of real boundaries at Delta = 2 with precision about 44%. Recall falls below one in three only near Delta = 1.35, so treat stopping below Delta = 2 as a conservative source policy and not as a derived limit.
 - Prefer headings, HTML sections, Portable Document Format (PDF) outlines, speaker turns, and ticket identifiers. They provide observed boundaries before inference.
 - Spend marginal ingestion budget on overlap and k first on low-Delta corpora.
 - For chunks above roughly 2,000 tokens, the same absolute overlap is a smaller fraction. Raise o with C instead of holding 50 forever.
@@ -896,5 +896,5 @@ Not necessarily. Recall can be purchased by returning more text, so compare at a
 | Semantic ingestion | 4.61 x 10^9 padded slots, 1.01 x 10^18 FLOPs, 2,982 seconds detection plus 38.8 minutes index | Total 88.5 minutes, or +106% |
 | Clustering add-on | 120 sentences, 7,140 pairs, 1,536 FLOPs each, 1.32 x 10^13 corpus FLOPs, 0.04 seconds | Sentence embedding dominates cost |
 | Agentic ingestion | 3,000 input plus 150 output = 3,150 tokens, 5.04 x 10^13 FLOPs per article | Corpus total 6.05 x 10^19 FLOPs, 49.4 GPU-hours, $124, or 34x semantic embedding budget |
-| Semantic calibration | 30 documents, 200 labeled adjacent pairs, stop below Delta = 2 | The rule cannot recover one boundary in three below that stated threshold |
+| Semantic calibration | 30 documents, 200 labeled adjacent pairs, stop below Delta = 2 | The rule recovers fewer than one boundary in three only below about Delta = 1.35 and recovers about 54% at Delta = 2 (corrected from cannot recover one boundary in three below Delta = 2). Stopping below 2 stays a conservative source policy |
 | Length caps | Roughly 2,000 tokens changes overlap economics. An 8,000-token encoder shifts the cap to generator context | Monitor the tail, not only the mean |

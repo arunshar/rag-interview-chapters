@@ -6,6 +6,7 @@ This repository converts the structure of *The RAG Interview* into 57 self-conta
 
 ## Start here
 
+- Read the edition online at [arunshar.com/rag-interview-chapters](https://arunshar.com/rag-interview-chapters/). The website is generated from these Markdown files, and [WEBSITE.md](WEBSITE.md) explains how to rebuild it.
 - Browse the complete [study index](00_INDEX.md) for source spans, reading-time estimates, and focused reading paths.
 - Open the [chapter directory](chapters/) to study one topic at a time.
 - Download [rag-interview-chapters.zip](rag-interview-chapters.zip) for the verified portable package.
@@ -42,13 +43,23 @@ Each unit follows the same interview-oriented structure:
 |   |   Forty-one technical and interview-practice chapters
 |   `-- A1_formula_sheet.md through A7_glossary.md
 |       Formula, question, checklist, reporting, reading, notation, and glossary references
+|-- WEBSITE.md
+|   How the reading website is built, checked, and published
+|-- scripts/build_site.py
+|   Website build that converts every unit with Pandoc into docs/
+|-- site/
+|   Reader assets and the navigation guide that the build reads
+|-- docs/
+|   Generated website that GitHub Pages serves
+|-- manifest.json
+|   Unit list with figure and table captions, used by the audit scripts
 |-- .agents/skills/rag-interview-study-edition/
 |   |-- SKILL.md
 |   |   Reusable workflow entrypoint for building, auditing, packaging, and publishing an edition
 |   |-- references/ and assets/
 |   |   Chapter contract, verification rules, handoff guidance, recap, and templates
 |   `-- scripts/
-|       Markdown, Mermaid, package, and README verification helpers
+|       Markdown, Mermaid, package, README, and manifest helpers
 `-- rag-interview-chapters.zip
     Verified portable package containing 00_INDEX.md and chapters/
 ```
@@ -73,7 +84,7 @@ For Fable, share the `.agents/skills/rag-interview-study-edition/` folder and as
 
 ## Suggested reading paths
 
-### Fast interview loop
+### Broad interview loop
 
 Read the interview guide, Chapters 1 and 3, and the retrieval stack in Chapters 15 through 18. Continue with Chapters 21, 22, 24, 25, and 26 for hybrid retrieval, reranking, query reformulation, routing, and iterative control. Add evaluation in Chapters 30 through 34 and trust and systems in Chapters 35 through 38. Finish with Chapter 41 and Appendices A1, A2, A3, and A6.
 
@@ -247,8 +258,8 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Front-matter units | 9 |
 | Technical chapters | 41 |
 | Appendices | 7 |
-| Total lines across unit files | 44,918 |
-| Unit line-count range | 405 to 900 |
+| Total lines across unit files | 44,598 |
+| Unit line-count range | 406 to 900 |
 | Numbered figure headings | 246 |
 | Numbered table headings | 9 |
 | Mermaid diagram blocks | 175 |
@@ -256,9 +267,11 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Mermaid renders, default theme | 175 of 175 |
 | Mermaid renders, dark theme | 175 of 175 |
 | Files inside the ZIP | 58 |
-| ZIP size | 1,142,346 bytes |
+| ZIP size | 1,163,990 bytes |
 | GitHub-blocked `\operatorname` macros | 0 |
 | Repaired display-math blocks parsed | 72 of 72 |
+| Pandoc-sensitive lint violations | 0 |
+| Labeled corrections from the October 2026 review | 199 sentences and 126 table cells |
 
 ### Creation-time quality record
 
@@ -272,15 +285,19 @@ The [full index](00_INDEX.md) gives the exact sequence for each path and an esti
 | Final audit errors | 0 |
 | Final audit warnings | 0 |
 
-The reusable verification scripts are included under `.agents/skills/rag-interview-study-edition/scripts/`. The manifest and verifier tracker are not included, so the creation-time source-reconciliation records are not fully reproducible from this checkout. The current README and repository-structure checks can be rerun directly.
+The reusable verification scripts are included under `.agents/skills/rag-interview-study-edition/scripts/`. The creation-time manifest and verifier tracker were never published. `manifest.json` was reconstructed in October 2026 from `00_INDEX.md` and the unit files, so the audit and package checks can be rerun directly. The creation-time source-reconciliation records remain unreproducible from this checkout.
 
 ZIP SHA-256:
 
 ```text
-ccba472284b229b73b890530340663c591b0ad1bdceef18cb34be103a082d819
+c9115e704d6be1ad13208b4e8bfa40aa4af2a31c67c64c6376bb03bb60dbec4d
 ```
 
-The archive was extracted during creation-time verification. All 58 extracted files matched their source files byte for byte.
+The archive was rebuilt after the October 2026 corrections. All 58 extracted files matched their source files byte for byte.
+
+### October 2026 review and corrections
+
+Two independent review rounds read all 57 units and checked arithmetic, equations, citations, interview-trap answers, the reading-list author lists, and the website rendering. Each finding was re-checked by a separate verifier before any edit. The confirmed errors are corrected in place as labeled corrections. Each one keeps the book's statement and adds a sentence that starts with "Correction:" and gives the right fact with its primary source. Notation fixes, rendering fixes, and reading-list author lists were corrected directly. The source PDF was not available for this review, so a correction can mark an error in the book or an error introduced by this edition.
 
 ## Source and rights boundary
 

@@ -166,6 +166,9 @@ for (const unit of manifest.units) {
 
     if (line.trim() === "$$") {
       inMath = !inMath;
+      if (!inMath && isTableRow(lines[i + 1] || "")) {
+        add("error", relativeFile, lineNumber + 1, "Starts a table directly after display math. Pandoc reads it as paragraph text, so add a blank line");
+      }
       continue;
     }
 
@@ -177,6 +180,19 @@ for (const unit of manifest.units) {
     }
     if (inMath && /\^\*/.test(line)) {
       add("error", relativeFile, lineNumber, "Contains an unbraced superscript star that GitHub Markdown can consume. Use ^{*}");
+    }
+    if (inMath && /(?<!\\)%/.test(line)) {
+      add("error", relativeFile, lineNumber, "Contains an unescaped % in display math. TeX reads it as a comment, so use \\%");
+    }
+    if (inMath && /_\(/.test(line)) {
+      add("error", relativeFile, lineNumber, "Contains a parenthesized subscript. MathML attaches only the opening parenthesis, so use _{...}");
+    }
+    if (inMath) {
+      const bare = line.replace(/\\(?:text|mathrm|mathop|operatorname)\s*\{[^{}]*\}/g, "").match(/(?<![\\A-Za-z])(ln|log|exp|sin|cos|max|min|argmax|argmin|softmax|sim)(?![A-Za-z])/);
+      if (bare) add("error", relativeFile, lineNumber, `Contains the bare function name ${bare[1]} in display math. It renders as italic letters, so use a backslash command or \\mathop{\\text{${bare[1]}}}`);
+    }
+    if (!inMath && isTableRow(line) && (line.match(/`[^`]*`/g) || []).some((span) => /(?<!\\)\|/.test(span))) {
+      add("error", relativeFile, lineNumber, "Has an unescaped | inside a code span in a table row. Pandoc splits the cell there, so use \\|");
     }
 
     if (!inMath) {

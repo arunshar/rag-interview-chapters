@@ -195,7 +195,7 @@ The single-stream rate is about 123 tokens per second, which the source limits t
 
 - Instrument all five stages independently.
 
-- Attack decode with shorter answers, int8 or int4 weights, or batching when total latency is the target.
+- Attack decode with shorter answers, int8 or int4 weights, or batching when total latency is the target. Correction: batching lowers cost per query but does not lower one request's decode latency, because a request in a batch of B waits about (s / 2,000)(Nb + Bc) seconds, which is 1.872 s at B = 32 against 1.221 s at B = 1. Shorter output, smaller weights, speculative decoding, or faster hardware are the levers for a latency target.
 
 - Attack prefill when a streaming interface makes TTFT the target.
 
@@ -264,9 +264,9 @@ TurboRAG reports peak TTFT speedup of 9.4 times, average speedup of 8.6 times on
 
 The independent arithmetic gives 9.3 times for prefill and a 97.7% FLOP reduction.
 
-The full request improves only about 6.7% when 99.6 ms in a roughly 1,320 ms budget falls to 10.7 ms.
+The full request improves only about 6.7% when 99.6 ms in a roughly 1,320 ms budget falls to 10.7 ms. Correction: section 37.1 puts the full request at about 1,343 ms with 1,221 ms of decode, so the 88.9 ms saving is about 6.6% of the request.
 
-Figure 37.2 holds decode at 1,198 ms in both branches. Reuse changes prefill, not decode.
+Figure 37.2 holds decode at 1,198 ms in both branches. Correction: decode is 1,221 ms in both branches, which matches section 37.1, and the figure now uses that value. Reuse changes prefill, not decode.
 
 HBM bandwidth is roughly 63 times the stated PCIe bandwidth, at 2,000 versus 31.5 GB per second.
 
@@ -616,7 +616,7 @@ The 1,335 total nodes add 135 embeddings, about 11% over the flat index, and req
 
 Each internal call compresses roughly ten 100-token inputs in the worked construction.
 
-Traversal with 20 nodes across 5 levels touches 100 nodes for every query. A factual query pays for 80 summary nodes it does not need.
+Traversal with 20 nodes across 5 levels touches 100 nodes for every query. A factual query pays for 80 summary nodes it does not need. Correction: the top three levels hold only 1, 2, and 12 nodes, so traversal that selects up to 20 nodes per level touches at most 1 + 2 + 12 + 20 + 20 = 55 nodes, and a factual query pays for at most 35 summary nodes.
 
 Collapsed retrieval keeps one global top 20. A factual result near the leaf layer gives about a 2,000-token context, while a thematic result lands mostly at levels 2 through 4 and uses summaries that cover many leaves.
 
@@ -667,7 +667,7 @@ $$
 = 58.5\ \mathrm{ms}
 $$
 
-The total becomes 180.4 ms. Cost becomes about $0.000125, or $125 per million queries, which is about 7.4 times cheaper.
+The total becomes 180.4 ms. Cost becomes about $0.000125, or $125 per million queries, which is about 7.4 times cheaper. Correction: 58.5 ms and 180.4 ms are GPU time billed to each query, and the wall-clock decode time of one request in the batch is (s / 2,000)(Nb + Bc), or about 1,872 ms at B = 32, which is longer than the 1,221 ms at B = 1.
 
 Decode's cost share falls from 90.9% to 32.4%. Prefill becomes 55.2%.
 
@@ -718,15 +718,15 @@ For a third-party application programming interface (API), price the invoiced in
 ```mermaid
 flowchart LR
   subgraph NR["No reuse"]
-    N1["3 chunks and query, 2,048 tokens"] --> N2["full prefill, 99.6 ms"] --> N3["decode, 1,198 ms"]
+    N1["5 chunks and query, 2,048 tokens"] --> N2["full prefill, 99.6 ms"] --> N3["decode, 1,221 ms"]
   end
   subgraph KR["KV-cache reuse"]
-    S["offline store, chunks A, B, C"] -->|"load 8.3 ms"| K["concatenated cache, 2,000 tokens, 0 new FLOPs"]
-    K -->|"query, 48 fresh tokens"| P["fresh prefill, 2.3 ms"] --> D["decode, 1,198 ms"]
+    S["offline store, chunks A to E"] -->|"load 8.3 ms"| K["concatenated cache, 2,000 tokens, 0 new FLOPs"]
+    K -->|"query, 48 fresh tokens"| P["fresh prefill, 2.3 ms"] --> D["decode, 1,221 ms"]
   end
 ```
 
-**Figure 37.2:** Concatenating precomputed, per-chunk KV caches turns an online 2,048-token prefill into a 48-token one, loaded rather than recomputed. Decode, still 91% of the query (section 37.1), is identical either way.
+**Figure 37.2:** Concatenating precomputed, per-chunk KV caches turns an online 2,048-token prefill into a 48-token one, loaded rather than recomputed. Decode, still 91% of the query (section 37.1), is identical either way. Correction: the worked request uses five 400-token chunks and 1,221 ms of decode, so the diagram now shows five chunks and 1,221 ms where it showed 3 chunks and 1,198 ms.
 
 ### Figure 37.3
 
@@ -849,11 +849,11 @@ flowchart TB
 
 ### Probe 1: Product wants p50 below 500 ms. What do you change first?
 
-Answer: Profile all five stages because the worked request is already 2.7 times above target and decode owns 90.9%. Shorter output, quantization, or batching attacks that bottleneck, while rerank and ANN cuts can spend recall for only a few milliseconds. Switch attention to prefill when TTFT, not total response time, is the product metric.
+Answer: The source says to profile all five stages because the worked request is 2.7 times above target and decode owns 90.9%, and it names shorter output, quantization, or batching as the decode levers while rerank and ANN cuts spend recall to save only a few milliseconds. Correction: batching lowers cost per query but raises one request's wall-clock decode from 1,221 ms at B = 1 to about 1,872 ms at B = 32, so a p50 target needs shorter output, smaller weights such as int4 (about 321 ms), speculative decoding, or faster hardware. Switch attention to prefill when TTFT, not total response time, is the product metric.
 
 ### Probe 2: Can every repeated document be cached and served through one fast compiled path?
 
-Answer: No. Chunk reuse needs retrieval concentration, mask-aware fine-tuning, and position re-offsetting, while reranker reuse needs a document-first causal model. Compiled serving also needs fixed shapes, supported masks, output-parity checks, and a few buckets that balance graph reuse against padding.
+Answer: The source says no, because chunk reuse needs retrieval concentration, mask-aware fine-tuning, and position re-offsetting, reranker reuse needs a document-first causal model, and compiled serving needs fixed shapes, supported masks, output-parity checks, and a few buckets that balance graph reuse against padding. Correction: training-free methods such as CacheBlend (arXiv 2405.16444, 2024) reuse non-prefix chunk caches without fine-tuning by recomputing a small subset of tokens, so the mask-aware fine-tune is one option, and position re-offsetting and a quality check against full prefill are still required.
 
 ### Probe 3: A production index becomes slow and recall falls as the corpus grows. Is one systems fix enough?
 
@@ -865,7 +865,7 @@ Answer: The answer may not exist in any leaf, so RAPTOR creates summary nodes th
 
 ### Probe 5: Decode is 90.9% of latency. Is it also 90.9% of production cost?
 
-Answer: Only at batch size one in this example. At batch 32, shared weight reads cut decode to 58.5 ms and 32.4% of cost, while prefill reaches 55.2%. Price achieved throughput, queueing, input work, output work, and the always-on index separately before assuming a smaller generator gives the largest saving.
+Answer: The source says only at batch size one, because at batch 32 shared weight reads cut decode to 58.5 ms and 32.4% of cost while prefill reaches 55.2%. Correction: 58.5 ms is GPU time billed to each query, and one request's wall-clock decode in that batch grows to about 1,872 ms. Price achieved throughput, queueing, input work, output work, and the always-on index separately before assuming a smaller generator gives the largest saving.
 
 ## Key numbers
 
@@ -881,7 +881,7 @@ Answer: Only at batch size one in this example. At batch 32, shared weight reads
 | Reuse context | Thousands of paraphrases, 20 recurring questions, 500 articles, 2,000 cached tokens, 48 fresh tokens, 131,072 bytes per token, 262 MB cache, 7.94 x 10^11 fresh FLOPs, 2.3 ms compute |
 | HBM reuse | 0.13 ms load, about 2.5 ms total, about 40 times prefill reduction |
 | Host reuse | 31.5 GB/s PCIe, 8.3 ms load, about 10.7 ms total, about 9.3 times reduction, HBM about 63 times faster |
-| TurboRAG checks | 9.4 times peak TTFT, 8.6 times average LongBench speedup, 98.46% reported online-compute cut, 97.7% derived FLOP cut, about 6.7% end-to-end latency cut |
+| TurboRAG checks | 9.4 times peak TTFT, 8.6 times average LongBench speedup, 98.46% reported online-compute cut, 97.7% derived FLOP cut, about 6.6% end-to-end latency cut against the 1,343 ms request (corrected from about 6.7%) |
 | Causal reranker | 424-token pair 0.274 ms, 400-token cache build 0.259 ms, 24-token fresh query 0.0155 ms, 94% document share, 5.7% fresh share, 17.7 times steady-state saving, break-even near one repeat, under 5% repeats means about 95% one-use caches |
 | Fusion | 147,456 bytes or 144 KiB activation, 576 KiB per layer, 7.08 MB over 12 layers, 3.54 microseconds, source also states 0.00347 ms, 0.0190 to 0.0155 ms, 18% cut, 15% external sanity check |
 | Global padding warning | 2,000 tokens across 50 candidates gives 2.2 x 10^13 FLOPs and 64.7 ms, nearly eight times 8.3 ms |
@@ -890,5 +890,5 @@ Answer: Only at batch size one in this example. At batch 32, shared weight reads
 | Deeper prefetch | `nprobe = 128` moves about eight times the bytes and takes about 7.5 to 9.6 ms under the two bandwidth assumptions |
 | Funnel | 10 million to 200 million chunks after a dozen added sources and wikis from three acquired teams, 20 times more distractors, worked 100 million passages, 2.5 million clusters to 300, 1,200 documents to 40, 400 passages to 20, 307.2 to 30.72 GB dense footprint, roughly 40% reported latency cut |
 | RAPTOR | 300-page motivating novel, five returned scenes, 120,000 tokens, 1,200 leaves, branching factor 10, five levels, 1,335 nodes, 135 summaries, about 11% storage overhead, 20 percentage point reported gain |
-| Batched cost | $933 per million at B = 1 versus $125 at B = 32, 58.5 ms batched decode, 180.4 ms total, about 7.4 times cheaper, 32.4% decode and 55.2% prefill |
+| Batched cost | $933 per million at B = 1 versus $125 at B = 32, 58.5 ms billed decode GPU time per query (corrected from 58.5 ms batched decode) with about 1,872 ms wall-clock decode per request, 180.4 ms billed total, about 7.4 times cheaper, 32.4% decode and 55.2% prefill |
 | Fixed store | 30.72 GB at $0.01/GB-hour gives about $0.31/hour, crossover about 2,500 queries/hour or 0.69 QPS, tenant rates 50 QPS and 0.3 QPS with 20 QPS bursts, batched decode about $0.27 per million output tokens |

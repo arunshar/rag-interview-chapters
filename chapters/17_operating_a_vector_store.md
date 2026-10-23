@@ -460,7 +460,7 @@ Finally, a reader may ask for last quarter's board deck without filling out a ca
 - Compression comparison: the 307 MB scan is 786× the 390.6 KB of PQ codes scanned by the cited 100-million-vector IVF-PQ query, despite this corpus being 10× smaller.
 - Large-tenant case: 400,000 vectors require 1.23 GB per exact query and 61 ms at 20 GB/s. Partitioning by tenant can enforce access while restoring ANN inside that tenant's graph.
 - Partitioning cost: the source prices that move as 5,000 small indexes, each with its own build and tail behavior.
-- Coarse-to-fine option: FunnelRAG uses BM25 over about 4,000-token clusters, dense retrieval at document scale, and ranking at about 100-token passages. It reports about 40% faster retrieval at maintained accuracy.
+- Coarse-to-fine option: FunnelRAG uses BM25 over about 4,000-token clusters, dense retrieval at document scale, and ranking at about 100-token passages. It reports about 40% faster retrieval at maintained accuracy. Correction: FunnelRAG (Zhao et al., arXiv 2410.10293, NAACL 2025) retrieves about 4,000-token clusters with BM25 and pre-ranks about 1,000-token documents with a cross-encoder (bge-reranker-v2-m3). It then post-ranks about 100-token passages with a FiD-based ranker, so no dense retriever appears in its funnel.
 
 ### 17.6 Self-querying: LLM-extracted filter constraints
 
@@ -720,7 +720,7 @@ Figure 17.6: Self-querying splits one sentence into a semantic channel and a pre
 
 ### Spoken script
 
-Start with the lifecycle. Inserts can enter an HNSW graph online, but deletes become tombstones because local edge repair is costly and can disconnect search. Rebuild when cost, latency, or erasure policy first requires it. Scale by separating sharding for memory, replication for throughput and availability, and key partitioning for routed work. Choose the store around durability, topology, filtering, writes, and operations. Treat metadata provenance as a recall contract. Use exact pre-filtering at tiny selectivity, filter-aware ANN in the middle, and post-filtering only at high selectivity. Finally, validate model-extracted predicates against real values and append authorization outside the model.
+Start with the lifecycle. Inserts can enter an HNSW graph online, but deletes become tombstones because local edge repair is costly and can disconnect search. Rebuild when cost, latency, or erasure policy first requires it. Scale by separating sharding for memory, replication for throughput and availability, and key partitioning for routed work. Choose the store around durability, topology, filtering, writes, and operations. Treat metadata provenance as a recall contract. Use exact pre-filtering for narrow predicates, filter-aware ANN in the middle, and post-filtering only for broad predicates. Finally, validate model-extracted predicates against real values and append authorization outside the model.
 
 ## Interview traps
 

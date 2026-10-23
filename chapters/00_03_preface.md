@@ -36,7 +36,7 @@ not answer the most important question. Should the clerk fetch a chart at all?
 
 Sometimes the physician already knows the right answer. A distracting chart can
 then reverse a correct decision. Mallen et al. (2023) measured retrieval
-changing roughly 10% of otherwise-correct answers into wrong answers. More
+changing roughly 10% of otherwise-correct answers into wrong answers. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers. More
 charts can also give the physician more misleading material and increase
 hallucination, which means unsupported content in the answer.
 
@@ -194,7 +194,7 @@ when the constraints change.
 - What breaks without it: A team always retrieves and assumes that extra
   context must improve quality.
 - Evidence stated in the source: Mallen et al. (2023) measured retrieval
-  changing roughly 10% of otherwise-correct answers into wrong answers.
+  changing roughly 10% of otherwise-correct answers into wrong answers. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers.
 
 The common recipe embeds documents, searches for nearest neighbors, and places
 the top k results in the prompt. That recipe names components. It does not state
@@ -439,9 +439,9 @@ hurt, and how the system will make or evaluate that choice.
 
 ### 2. When would you not retrieve?
 
-Do not assume retrieval helps when the model already knows a high-popularity
-fact. The preface cites Mallen et al. (2023), who measured retrieval changing
-roughly 10% of otherwise-correct answers into wrong answers.
+The source answers that retrieval can hurt when the model already knows a high-popularity fact, because it changed roughly 10% of otherwise-correct answers into wrong answers.
+Correction: Mallen and colleagues (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval.
+The 10 percent is a share of all questions, not of otherwise-correct answers.
 
 ### 3. Why can adding documents increase hallucination?
 
@@ -466,7 +466,7 @@ identify the stage that owns the regression.
 | Number | Context | Meaning |
 |---|---|---|
 | 2023 | Mallen et al. attribution | The year attached to the retrieval-harm result |
-| Roughly 10% | Otherwise-correct answers | Retrieval changed this share into wrong answers in the cited measurement |
+| Roughly 10% | All PopQA questions (corrected from otherwise-correct answers) | For this share of questions, retrieval changed a correct GPT-3 (text-davinci-003) answer into a wrong one in the cited measurement |
 | Five stages | Production pipeline | The example asks which stage owns an end-to-end regression |
 | Four points | Overnight answer-quality drop | The production example uses this regression size |
 | 50 years | Information-retrieval literature | The preface describes this depth in ranking and evaluation |

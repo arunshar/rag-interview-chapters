@@ -640,7 +640,7 @@ The source requires five timed stages at production concurrency. It calls for p9
 
 **What**
 
-1. Cut context before cutting stages. Prefill is quadratic in context length. Fewer documents can improve quality as well as latency. Source pointer: section 30.6.
+1. Cut context before cutting stages. Prefill is quadratic in context length. Correction: prefill is a linear parameter term plus a quadratic attention term, and Section 6.2 shows that for `d = 4,096` the attention term matches the parameter term only near 49,152 tokens, so prefill grows almost linearly at contexts of a few thousand tokens. Fewer documents can improve quality as well as latency. Source pointer: section 30.6.
 2. Reuse the KV cache for retrieved chunks that repeat across queries. Source pointer: section 37.2.
 3. Use a coarse-to-fine cascade so the expensive stage sees few candidates. Source pointer: section 37.6.
 4. Overlap work that can overlap. Embedding and search can form a CPU and GPU pipeline. Source pointer: section 37.5.
@@ -795,7 +795,7 @@ Measure all five stages at the relevant production percentile before choosing a 
 | 5 latency stages | Query embedding, ANN search, rerank, prefill, decode | Measure every stage on a real query |
 | p95 or p99 | Usually relevant latency percentiles | Report the product-relevant tail at production concurrency |
 | 1 order of magnitude | The source says most latency intuitions in this field are wrong by this amount | Measure instead of estimating |
-| Quadratic prefill | Prefill cost as context length grows | Cut context before cutting stages |
+| Linear plus quadratic prefill (corrected from Quadratic prefill) | Prefill cost as context length grows, with the quadratic attention term equal to the parameter term only near 49,152 tokens at `d = 4,096` | Cut context before cutting stages |
 | Context reduction before component replacement | First cut context, reuse cache, cascade candidates, and overlap work | Delay quality-bearing substitutions |
 | Smaller generator or cheaper index | Both reduce cost and trade quality | Consider them only after earlier reductions |
 | Query cost versus indexing cost | Separate the two and amortize indexing over refresh cadence | A graph build is a recurring capital expense |

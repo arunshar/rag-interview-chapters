@@ -164,17 +164,17 @@ One 768-dimensional passage vector must support every future question about that
 
 The chapter uses the two-P FLOPs-per-token rule with BERT-base at P = 110M, L_q = 32, and L_p = 128.
 $$
-2P(L_q + L_p) = 2 × 1.10 × 10^8 × 160 = 3.52 × 10^{10} FLOPs
+2P(L_q + L_p) = 2 \times 1.10 \times 10^8 \times 160 = 3.52 \times 10^{10} \text{ FLOPs}
 $$
 $$
-2PL_q = 7.04 × 10^9 FLOPs
+2PL_q = 7.04 \times 10^9 \text{ FLOPs}
 $$
 For N = 21,015,324 passages, the full cross-encoder and bi-encoder arithmetic are:
 $$
-3.52 × 10^{10} × 2.10 × 10^7 = 7.40 × 10^{17} FLOPs
+3.52 \times 10^{10} \times 2.10 \times 10^7 = 7.40 \times 10^{17} \text{ FLOPs}
 $$
 $$
-7.04 × 10^9 + 2 × 768 × 2.10 × 10^7 = 3.93 × 10^{10} FLOPs
+7.04 \times 10^9 + 2 \times 768 \times 2.10 \times 10^7 = 3.93 \times 10^{10} \text{ FLOPs}
 $$
 **Why:** The factor is 1.9 × 10^7, which is seven orders of magnitude.
 
@@ -186,9 +186,9 @@ $$
 
 **What:** DPR trains one question q_i, one gold passage p_i+, and negatives p_i,j- with a softmax over dot products.
 $$
-L(q_i) = -log(
-exp(E_Q(q_i)^T E_P(p_i+)) /
-[exp(E_Q(q_i)^T E_P(p_i+)) + Σ_j exp(E_Q(q_i)^T E_P(p_i,j-))]
+L(q_i) = -\log(
+\exp(E_Q(q_i)^{\top} E_P(p_i^{+})) /
+[\exp(E_Q(q_i)^{\top} E_P(p_i^{+})) + \sum_j \exp(E_Q(q_i)^{\top} E_P(p_{i,j}^{-}))]
 )
 $$
 **Why:** The loss pushes query-passage interaction into training because inference deleted direct token interaction.
@@ -221,7 +221,7 @@ It misses the budget by 4.4 × 10^4. Batching cannot change this asymptote.
 
 **Configuration 2:** A flat bi-encoder index occupies:
 $$
-2.10 × 10^7 × 768 × 4 = 6.46 × 10^{10} bytes = 64.6 GB
+2.10 \times 10^7 \times 768 \times 4 = 6.46 \times 10^{10} \text{ bytes} = 64.6 \text{ GB}
 $$
 The dot products cost 3.23 × 10^10 FLOPs, or 95 μs of arithmetic. Streaming 64.6 GB at 2.0 TB/s takes 32 ms. The scan is memory-bound by a factor of 340. Halving d halves latency in this case, while doubling FLOP/s does nothing.
 
@@ -241,7 +241,7 @@ Use bi-encoder retrieval before cross-encoder reranking. A 50 ms budget at 3.52 
 
 Precomputed passage vectors are bound to the exact E_P weights that made them. For 500M chunks at 256 tokens, re-encoding costs:
 $$
-2 × 1.10 × 10^8 × 256 × 5 × 10^8 = 2.82 × 10^{19} FLOPs
+2 \times 1.10 \times 10^8 \times 256 \times 5 \times 10^8 = 2.82 \times 10^{19} \text{ FLOPs}
 $$
 That is 8.3 × 10^4 s, or 23 hours, on one accelerator and under two hours on twelve under the chapter's throughput model. The 768-dimensional fp32 index is 1.54 TB. A blue-green cutover needs 3.1 TB plus a dual-write ingest window.
 
@@ -255,7 +255,7 @@ That is 8.3 × 10^4 s, or 23 hours, on one accelerator and under two hours on tw
 
 Its inverse document frequency is:
 $$
-IDF(t) = log((N - n(t) + 0.5)/(n(t) + 0.5)) + 1
+\text{IDF}(t) = \log((N - n(t) + 0.5)/(n(t) + 0.5)) + 1
 $$
 **Why:** A rarer exact term receives a larger weight.
 
@@ -263,9 +263,9 @@ $$
 
 On the 21,015,324-passage corpus, n(t) = 3 gives:
 $$
-log((2.1015 × 10^7 - 3 + 0.5)/3.5) + 1 = log(6.00 × 10^6) + 1 = 16.61 nats
+\log((2.1015 \times 10^7 - 3 + 0.5)/3.5) + 1 = \log(6.00 \times 10^6) + 1 = 16.61 \text{ nats}
 $$
-At n(t) = 10^5, the weight is log(209.2) + 1 = 6.34 nats. The rare term receives 2.6 times the weight.
+At n(t) = 10^5, the weight is log(209.2) + 1 = 6.34 nats. The rare term receives 2.6 times the weight. Correction: the A1 formula sheet and units 12 and 18 define BM25 IDF as ln(1 + (N - n(t) + 0.5)/(n(t) + 0.5)), which is the Lucene BM25 form, and the log(...) + 1 variant above differs from it. With the A1 form, n(t) = 3 gives 15.61 nats, n(t) = 10^5 gives 5.35 nats, and the rare term receives 2.92 times the weight.
 
 #### Dense supervised exposure
 
@@ -299,9 +299,9 @@ Thakur et al. report BM25 as a strong zero-shot baseline that most dense retriev
 
 The example uses N = 2,000,000 documents, d = 768, and both dense and BM25 indexes. For a query about a single sign-on (SSO) certificate, the relevant title uses Security Assertion Markup Language (SAML) assertion and signing-key language. With no shared content term, BM25 assigns zero to that document. The dense retriever ranks it first in the constructed example. For the Secure Sockets Layer (SSL) query `ERR_SSL_5417 remediation`, the code appears in n(t) = 4 documents.
 $$
-log((2 × 10^6 - 4 + 0.5)/4.5) + 1 = log(4.444 × 10^5) + 1 = 14.00 nats
+\log((2 \times 10^6 - 4 + 0.5)/4.5) + 1 = \log(4.444 \times 10^5) + 1 = 14.00 \text{ nats}
 $$
-`remediation` at n(t) = 2 × 10^5 receives log(9.00) + 1 = 3.20 nats. The code supplies 14.00/(14.00 + 3.20) = 81% of the query weight. BM25 retrieves all four matches within top 20, so recall@20 is 100% by construction. If 1,800 codes occupy one dense neighborhood, random selection gives recall@20 ≈ 20/1,800 = 1.1%.
+`remediation` at n(t) = 2 × 10^5 receives log(9.00) + 1 = 3.20 nats. The code supplies 14.00/(14.00 + 3.20) = 81% of the query weight. Correction: with the A1 IDF form ln(1 + (N - n(t) + 0.5)/(n(t) + 0.5)), the code weighs 13.00 nats, `remediation` weighs 2.30 nats, and the code supplies 13.00/(13.00 + 2.30) = 85% of the query weight. BM25 retrieves all four matches within top 20, so recall@20 is 100% by construction. If 1,800 codes occupy one dense neighborhood, random selection gives recall@20 ≈ 20/1,800 = 1.1%.
 
 **Claim limit:** The 1.1% against 100% split is constructed to expose the mechanism.
 
@@ -321,7 +321,7 @@ Keep BM25 when dense retrieval launches unless production logs show essentially 
 
 Let s+ be the positive score, s_j- a negative score, and Δ_j = s+ - s_j-. The DPR loss becomes:
 $$
-L = log(1 + Σ_{j=1}^{M} e^{-Δ_j})
+L = \log(1 + \sum_{j=1}^{M} e^{-\Delta_j})
 $$
 With Z = 1 + Σ_j e^-Δ_j:
 $$
@@ -342,15 +342,15 @@ A negative at Δ = 8 has weight e^-8 = 3.35 × 10^-4. A negative at Δ = 1 has w
 
 Let g be the exact gradient across M negatives. Sample negative j with probability p_j and use g_hat = ∇_θ L_j/p_j. The estimator remains unbiased for any p. For an L-smooth objective and step size η, the descent lemma gives:
 $$
-E[f(θ_{t+1})] ≤ f(θ_t) - η||g||^2 + η^2 L E[||g_{hat}||^2]/2
+E[f(\theta_{t+1})] \le f(\theta_t) - \eta\|g\|^2 + \eta^2 L\, E[\|\hat{g}\|^2]/2
 $$
 The sampler controls:
 $$
-E[||g_{hat}||^2] = Σ_j ||g_j||^2/p_j
+E[\|\hat{g}\|^2] = \sum_j \|g_j\|^2/p_j
 $$
 Cauchy-Schwarz gives equality at:
 $$
-p_j^{*} = ||g_j|| / Σ_i ||g_i||
+p_j^{*} = \|g_j\| / \sum_i \|g_i\|
 $$
 Since norm(g_j) is proportional to e^-Δ_j, the optimal sampler is the model's own ranked retrieval list.
 
@@ -390,7 +390,7 @@ Z = 1.4534, loss is 0.374 nats, and negative mass is 31.2%. That is 3.96 times C
 
 Re-encoding one 128-token passage costs 2PL_p = 2.816 × 10^10 FLOPs. The full MS MARCO corpus costs 2.49 × 10^17 FLOPs. At 3.4 × 10^14 FLOP/s, the floor is 732 s. One training step costs:
 $$
-6P × (128 × 32 + 256 × 128) = 2.43 × 10^{13} FLOPs
+6P \times (128 \times 32 + 256 \times 128) = 2.43 \times 10^{13} \text{ FLOPs}
 $$
 That step takes 0.0716 s under the same throughput model. One refresh therefore equals 10,233 training steps. Refreshing every 10,000 steps roughly doubles training compute and changes query-time cost by zero. For DPR's 21,015,324-passage index, the same lower bound is 5.92 × 10^17 FLOPs, or 29 minutes. Karpukhin et al. report about 8.8 hours on 8 graphics processing units (GPUs), which is 18 times the stated FLOP floor on 2020-era hardware.
 
@@ -416,7 +416,7 @@ MS MARCO has 502,939 training queries for 8,841,823 passages. That is about one 
 
 With K negatives, the bound is:
 $$
-I(q;p) ≥ log(K + 1) - L_{InfoNCE}
+I(q;p) \ge \log(K + 1) - L_{\text{InfoNCE}}
 $$
 **What:** The objective can certify at most log(K + 1) nats.
 
@@ -428,7 +428,7 @@ DPR's B = 128 gives log2(128) = 7.00 bits. Identifying one passage among 8,841,8
 
 For sequence length s, hidden size h, attention heads a, and half precision, the cited per-layer activation accounting is s × h × (34 + 5as/h) bytes. For a 128-token BERT-base passage with h = 768, a = 12, and 12 layers:
 $$
-128 × 768 × (34 + 5 × 12 × 128/768) × 12 = 51,904,512 bytes = 51.9 MB
+128 \times 768 \times (34 + 5 \times 12 \times 128/768) \times 12 = 51{,}904{,}512 \text{ bytes} = 51.9 \text{ MB}
 $$
 Holding 65,536 such passage activations costs 3.40 TB. A queued d = 768 fp32 key costs 768 × 4 = 3,072 bytes. The same 65,536 keys cost 201 MB. The queue is 16,900 times cheaper for the same negative count.
 
@@ -454,11 +454,11 @@ $$
 
 With unit-norm embeddings, cosine scores lie between -1 and 1. The largest possible margin is 2. The finite-score loss floor is:
 $$
-log(1 + K e^{-2/τ})
+\log(1 + K e^{-2/\tau})
 $$
 At τ = 1 and K = 65,536, the floor is 9.09 nats. At MoCo's τ = 0.07, the floor is 2.6 × 10^-8 nats. Keeping it below 0.01 nats requires:
 $$
-τ ≤ 2/log(100K)
+\tau \le 2/\log(100K)
 $$
 For K = 65,536, τ must be at most 0.127. The chapter moves toward τ = 0.01 only for sharper reranker-distillation targets and warns of gradient-scale instability.
 
@@ -506,7 +506,7 @@ Keep lexical retrieval within a language or for tokens that survive languages un
 
 For a unit-norm text embedding in language l:
 $$
-e(t) = α μ_l + sqrt(1-α^2) r(t)
+e(t) = \alpha \mu_l + \sqrt{1-\alpha^2}\, r(t)
 $$
 Here μ_l is a unit language direction, r(t) is a unit semantic residual, and α is the norm share spent on language identity. The residual is assumed orthogonal to every centroid and averages to zero within a language. For query language a and document language b:
 $$
@@ -588,7 +588,7 @@ flowchart TD
 
 ```text
 BM25 IDF(t), nats                              log10 training pairs seen
-high  16.61 at n(t)=3       X\              /X       280 at n(t)=10^5  high
+high  15.61 at n(t)=3       X\              /X       280 at n(t)=10^5  high
                               \            /
                                \          /
                                 \   X    /         crossover near 3.9 x 10^3
@@ -599,7 +599,7 @@ low                               \____/                               low
             solid line falls     | dashed line rises          n(t)
 ```
 
-> Figure 20.2: Both curves are exact for a 21,015,324-passage corpus and a 5.888 × 10^4-pair training set, and they run in opposite directions against the same variable: BM25's per-term weight falls as document frequency rises, while the dense encoder's supervised exposure to that term rises. They cross near n(t) ≈ 3.9 × 10^3, which is why neither method dominates and why the two error sets barely overlap.
+> Figure 20.2: Both curves are exact for a 21,015,324-passage corpus and a 5.888 × 10^4-pair training set, and they run in opposite directions against the same variable: BM25's per-term weight falls as document frequency rises, while the dense encoder's supervised exposure to that term rises. They cross near n(t) ≈ 3.9 × 10^3, which is why neither method dominates and why the two error sets barely overlap. Correction: the rare-term label reads 15.61 nats, corrected from 16.61, because the A1 IDF form ln(1 + (N - n(t) + 0.5)/(n(t) + 0.5)) replaces this unit's log(...) + 1 variant.
 
 ### Figure 20.3
 
@@ -765,9 +765,9 @@ Its embedding can spend norm on a language centroid, which gives same-language d
 | parallel re-index time | under 2 hours | Estimate on twelve accelerators |
 | 500M live index | 1.54 TB | fp32 storage at d = 768 |
 | blue-green footprint | 3.1 TB | Old and new index during cutover |
-| rare BM25 term | n(t) = 3 and 16.61 nats | Rare-term IDF example |
-| frequent BM25 term | n(t) = 10^5 and 6.34 nats | Frequent-term IDF example |
-| IDF ratio | 2.6 times | Rare to frequent term weight |
+| rare BM25 term | n(t) = 3 and 15.61 nats (corrected from 16.61) | Rare-term IDF example, recomputed with the A1 IDF form ln(1 + (N - n + 0.5)/(n + 0.5)) |
+| frequent BM25 term | n(t) = 10^5 and 5.35 nats (corrected from 6.34) | Frequent-term IDF example |
+| IDF ratio | 2.92 times (corrected from 2.6) | Rare to frequent term weight |
 | supervised set | 5.888 × 10^4 pairs | Filtered Natural Questions training set |
 | rare expected exposure | 8.4 × 10^-3 or 1 in 119 | Expected sightings when n(t) = 3 |
 | frequent exposure | 280 pairs | Expected sightings when n(t) = 10^5 |
@@ -775,10 +775,10 @@ Its embedding can spend norm on a language centroid, which gives same-language d
 | BEIR | 18 datasets | Transfer benchmark count in the cited result |
 | support corpus | N = 2,000,000 | Rare-code worked example |
 | code frequency | n(t) = 4 | Documents containing ERR_SSL_5417 |
-| code IDF | 14.00 nats | BM25 weight for the code |
+| code IDF | 13.00 nats (corrected from 14.00) | BM25 weight for the code, recomputed with the A1 IDF form |
 | remediation frequency | n(t) = 2 × 10^5 | Comparison term frequency |
-| remediation IDF | 3.20 nats | Comparison term weight |
-| code weight share | 81% | Share of the two-term query's total weight |
+| remediation IDF | 2.30 nats (corrected from 3.20) | Comparison term weight |
+| code weight share | 85% (corrected from 81%) | Share of the two-term query's total weight |
 | sparse code recall | 100% at top 20 | Constructed result with four matching documents |
 | dense code pool | 1,800 codes | Constructed topical neighborhood |
 | dense code recall | about 1.1% at top 20 | 20 divided by 1,800 constructed estimate |

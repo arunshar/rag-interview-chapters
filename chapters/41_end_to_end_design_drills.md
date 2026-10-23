@@ -372,7 +372,7 @@ The source asks who was United States president right after the Soviet Union dis
 
 One-shot retrieval finds December 1991 collapse documents and answers George H. W. Bush, who was president at dissolution.
 
-Iterative retrieval turns the December 1991 finding into a query about the 1992 election and reaches Bill Clinton.
+Iterative retrieval turns the December 1991 finding into a query about the 1992 election and reaches Bill Clinton. Correction: George H. W. Bush held office from January 1989 to 20 January 1993, so he was also the president right after the Soviet Union dissolved on 26 December 1991, and the one-shot answer is right for the question as the source words it. The example needs a real second hop, such as asking who won the first United States presidential election held after the dissolution. One-shot retrieval still returns Bush for that question, and the hop to the 1992 election results returns the correct winner, Bill Clinton.
 
 IRCoT is flexible for comparison and aggregation. Its free-form reasoning query is harder to audit.
 
@@ -693,16 +693,16 @@ flowchart TB
 
 ```mermaid
 flowchart TB
-  Q["Who was United States president right after the Soviet Union dissolved"]
+  Q["Who won the first United States presidential election held after the Soviet Union dissolved"]
   Q --> O1["one-shot, retrieve with original query"]
-  O1 --> O2["documents about the 1991 dissolution"] --> O3["generate George H. W. Bush, wrong"]
+  O1 --> O2["documents about the 1991 dissolution"] --> O3["generate George H. W. Bush, the sitting president, wrong"]
   Q --> I1["iterative hop 1, original query"]
   I1 --> I2["USSR dissolved in December 1991"]
   I2 --> I3["reasoning step becomes query 2"]
-  I3 --> I4["retrieve 1992 election results"] --> I5["next president was Bill Clinton, correct"]
+  I3 --> I4["retrieve 1992 election results"] --> I5["Bill Clinton won the 1992 election, correct"]
 ```
 
-**Figure 41.4:** One-shot retrieval never forms a query for the fact hop 2 needs. Iterative retrieval promotes the model's own intermediate finding into the next query and reaches the correct answer.
+**Figure 41.4:** One-shot retrieval never forms a query for the fact hop 2 needs. Iterative retrieval promotes the model's own intermediate finding into the next query and reaches the correct answer. Correction: the source asks who was president right after the dissolution, and George H. W. Bush is the right answer to that question because he served until 20 January 1993, so the diagram now asks who won the first presidential election after the dissolution.
 
 ### Figure 41.5
 

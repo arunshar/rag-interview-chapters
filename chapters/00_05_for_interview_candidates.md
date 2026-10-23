@@ -218,7 +218,7 @@ Use the five decisions in order. Say the order aloud.
 
 **What it is:** State the retrieval gate g(x) first. The gate decides whether query x should trigger retrieval.
 
-**Why it exists:** Retrieval is neither free nor neutral. Mallen et al. (2023) measured retrieval flipping roughly 10 percent of otherwise-correct answers to wrong. Retrieval-augmented accuracy on high-popularity questions sits below closed-book accuracy outright. Section 1.5 gives these results.
+**Why it exists:** Retrieval is neither free nor neutral. Mallen et al. (2023) measured retrieval flipping roughly 10 percent of otherwise-correct answers to wrong. Correction: Mallen et al. (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers. Retrieval-augmented accuracy on high-popularity questions sits below closed-book accuracy outright. Section 1.5 gives these results.
 
 **What fails without it:** Always retrieve becomes an unexamined default. The design cannot express the option that retrieval should not run.
 
@@ -470,7 +470,7 @@ Every retrieval design includes ingest, chunk, embed, index, retrieve, rerank, a
 
 ### 2. When would you not use retrieval?
 
-Do not assume retrieval is neutral. The source reports that it flipped roughly 10 percent of otherwise-correct answers to wrong, and retrieval-augmented accuracy fell below closed-book accuracy on high-popularity questions.
+The source answers that retrieval is not neutral, because it flipped roughly 10 percent of otherwise-correct answers to wrong and its accuracy fell below closed-book accuracy on high-popularity questions. Correction: Mallen and colleagues (2023, arXiv 2212.10511) found that for about 10 percent of PopQA questions, retrieval augmentation made GPT-3 (text-davinci-003) answer incorrectly a question it answered correctly without retrieval. The 10 percent is a share of all questions, not of otherwise-correct answers.
 
 ### 3. What should follow any number you state?
 
@@ -506,7 +506,7 @@ A post-hoc citation can be attached without showing that the cited source shaped
 | 5 decisions | Answer skeleton | When, where, what, how, and present |
 | Decisions versus components | Interview answer shape | Decisions expose judgment, while a standard component list does not |
 | Retrieve versus do not retrieve | When decision | Retrieval can help, but it is neither free nor neutral |
-| Roughly 10 percent | Retrieval gate evidence | Otherwise-correct answers flipped to wrong in the cited Mallen et al. (2023) result |
+| Roughly 10 percent | Retrieval gate evidence | Share of all PopQA questions on which retrieval flipped a correct answer to wrong in the cited Mallen et al. (2023) result (corrected from a share of otherwise-correct answers) |
 | Source choice versus latency | Where decision | A wrong source can create a silent contradiction, which is more important here than latency |
 | k-prime to k | Presentation | Truncate the reranker candidate set to the generator evidence set |
 | Larger k | Top-k trade-off | Raises the chance that evidence is present but costs prefill tokens and dilutes attention |

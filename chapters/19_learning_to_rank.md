@@ -43,7 +43,7 @@ The depot therefore builds a funnel. The representation worker retrieves a manag
 | Query-document triple `(q, d, y)` | One query, one candidate, and its label | It is the basic judged record |
 | Feature map `φ(q, d)` | A vector of signals for one query-document pair | Traditional rankers score this vector |
 | Feature dimension `m` or `F` | The number of features in a vector | The source uses 46 and 136 in named benchmarks |
-| Candidate set `D_q` and depth `|D_q|` or `n_q` | All judged candidates for query `q` and their count | They define the per-query sort, loss normalization, and cost |
+| Candidate set `D_q` and depth `\|D_q\|` or `n_q` | All judged candidates for query `q` and their count | They define the per-query sort, loss normalization, and cost |
 | Candidate count `n`, class count `K`, and cutoff `k` | List length, number of relevance grades, and reported rank depth | The source uses each count for a different boundary |
 | Indices `i`, `j`, and `r` | Candidate, comparison-candidate, and rank positions | They identify documents, preference pairs, and rank bins |
 | Best Matching 25 (BM25) | A lexical relevance score named in the source | It is a feature and a first-stage retriever |
@@ -187,17 +187,17 @@ The depot therefore builds a funnel. The representation worker retrieves a manag
 The training data contains triples `(q, d, y)`. The feature extractor maps each pair to `φ(q, d) in R^m`. The source examples include BM25 over title, body, and anchor text, TF-IDF variants, language-model scores, PageRank, URL depth, and click counts. LETOR 4.0 has 46 features per pair. MSLR-WEB30K has 136 features per pair. Both use the five-grade scale in the source. The scorer and serving order are:
 
 $$
-sᵢ = fθ(φ(q, dᵢ))
+s_i = f_{\theta}(\phi(q, d_i))
 $$
 
 $$
-π_q = argsort↓(s₁, ..., s_|D_q|)
+\pi_q = \mathop{\text{argsort}}\downarrow(s_1, \dots, s_{|D_q|})
 $$
 
 The metric is `M(π_q, y_q)`. It reads the permutation and labels, not the scores. The desired objective is:
 
 $$
-maximize over θ: Σ_q M(π_q, y_q)
+\text{maximize over } \theta:\ \sum_q M(\pi_q, y_q)
 $$
 
 This objective is piecewise constant in `θ`. It changes only when two scores cross. Its gradient is zero everywhere else.
@@ -211,13 +211,13 @@ The system needs a differentiable surrogate or an explicitly defined gradient. T
 Squared error is:
 
 $$
-L = Σ_q Σ_(i in D_q) (sᵢ - yᵢ)²
+L = \sum_q \sum_{i \in D_q} (s_i - y_i)^2
 $$
 
 It fails in three separate ways. First, it lacks the metric's shift invariance. Adding a constant `c` to every score leaves the ranking fixed, but changes loss by:
 
 $$
-Σ_i (2c(sᵢ - yᵢ) + c²)
+\sum_i (2c(s_i - y_i) + c^2)
 $$
 
 Second, grades are ordinal judgments, not interval measurements. The only guaranteed relation is `y₁ < y₂ < y₃`. The standard gain is `2^y - 1`. A grade 4 has gain 15 and a grade 3 has gain 7. Their gain ratio is 15/7 = 2.14, while their raw-label ratio is 4/3 = 1.33. That is a 1.61-fold re-spacing. Third, pair-summed loss weights queries by judgment depth while the metric averages queries. A query with 500 judgments and one with 5 give the first query 500/505 = 99.0% of loss but 50% of the metric. That is a 100-fold accidental overweighting. Per-query z-scoring does not repair the objective. It invents interval structure and makes a pair's target depend on the first-stage candidate pool. Changing from BM25 to a dense retriever can then change the target for the same `(q, d)` pair. Pointwise is not a synonym for regression. Classification and ordinal regression remain pointwise. Rejecting squared error does not require a pairwise model.
@@ -227,7 +227,7 @@ Second, grades are ordinal judgments, not interval measurements. The only guaran
 Use five candidates with grades `y = (4, 3, 0, 0, 0)`. The ideal discounted gain is:
 
 $$
-IDCG = (2⁴ - 1)/log₂2 + (2³ - 1)/log₂3 = 15 + 7/1.585 = 15 + 4.417 = 19.417
+\text{IDCG} = (2^4 - 1)/\log_2 2 + (2^3 - 1)/\log_2 3 = 15 + 7/1.585 = 15 + 4.417 = 19.417
 $$
 
 Model A predicts `s = (2.0, 2.1, 0, 0, 0)`. Its squared error is `4.00 + 0.81 = 4.81`. It inverts the top pair. Its DCG is `7 + 15/1.585 = 7 + 9.464 = 16.464`. Its NDCG is `16.464/19.417 = 0.848`. Model B predicts `s = (0.5, 0.2, 0.1, 0.1, 0.1)`. Its squared error is `12.25 + 7.84 + 0.03 = 20.12`. Its order is ideal, so NDCG is 1.000. Squared error prefers A by `20.12/4.81 = 4.2` times. NDCG prefers B by 15.2 points. For Model A, squared-error gradient magnitudes total `4.0 + 1.8 = 5.8`. For Model B, they total `7.0 + 5.6 + 3(0.2) = 13.2`. Squared error pushes 2.3 times harder on the model that already has NDCG 1.000. The source's internal check repeats the 15-to-7 gain ratio. Its external check notes that Li, Burges, and Wu introduced McRank in 2007 and reported that multiclass classification ranked better than regression on the same kind of labels and features. The Qin and Liu 2013 baselines named are RankSVM, RankBoost, ListNet, AdaRank, and LambdaMART. Least-squares regression is absent from that list.
@@ -247,13 +247,13 @@ A pointwise model trains on individual `(φ, y)` pairs after dissolving query bo
 A flat `K`-way softmax treats classes as exchangeable. Its objective does not encode that 3 lies between 0 and 4. Arg max then maps 100 candidates onto only 5 scores. Ties become typical, not exceptional. Let `p_j(d) = P(y = j given φ(q, d))`. For standard gain `g(y) = 2^y - 1`:
 
 $$
-E[g(y_d)] = Σ_(j=0 to K-1) (2ʲ - 1)p_j(d)
+E[g(y_d)] = \sum_{j=0}^{K-1} (2^j - 1)\, p_j(d)
 $$
 
 For a candidate permutation:
 
 $$
-E[DCG@k] = Σ_(i=1 to k) E[g(y_π(i))] / log₂(i + 1)
+E[\text{DCG@}k] = \sum_{i=1}^{k} E[g(y_{\pi(i)})] / \log_2(i + 1)
 $$
 
 The discounts decrease strictly with rank. The rearrangement inequality therefore makes descending expected gain optimal for expected DCG. McRank uses multiclass gradient-boosted trees and ranks by expected relevance `Σ_j j p_j(d)`. The linear-gain and exponential-gain versions usually agree on order in the source. The exponential version matches the metric.
@@ -263,13 +263,13 @@ The discounts decrease strictly with rank. The rearrangement inequality therefor
 Ordinal regression learns one direction `w` and `K - 1` thresholds:
 
 $$
-b₁ ≤ b₂ ≤ ... ≤ b_(K-1)
+b_1 \le b_2 \le \dots \le b_{K-1}
 $$
 
 It predicts the first interval boundary above the score:
 
 $$
-y_hat = min{r : wᵀφ < b_r}
+\hat{y} = \min\{r : w^{\top}\phi < b_r\}
 $$
 
 PRank, from Crammer and Singer in 2001, initializes weights at zero. On a mistake it rotates the hyperplane like a perceptron and shifts offending thresholds by one. The thresholds remain ordered by construction. Shashua and Levin's 2002 method makes the construction large-margin. It learns both ends of each interval, maximizes neighboring margins, and uses slack. For ranking, the thresholds can be discarded. The continuous score `wᵀφ` gives a total order.
@@ -283,7 +283,7 @@ Sorting by the winning class probability ranks confidence, not estimated relevan
 Use 10 candidates. Truth is `A = 4`, `B = C = 3`, `D = E = F = 2`, and the final four are 0. Exponential gains are `15, 7, 7, 3, 3, 3`, then four zeros. The source reports the ideal value as:
 
 $$
-IDCG@10 = 15/log₂2 + 7/log₂3 + 7/log₂4 + 3/log₂5 + 3/log₂6 + 3/log₂7 = 26.437
+\text{IDCG@}10 = 15/\log_2 2 + 7/\log_2 3 + 7/\log_2 4 + 3/\log_2 5 + 3/\log_2 6 + 3/\log_2 7 = 26.437
 $$
 
 Direct evaluation of that formula gives 26.437718, which rounds to 26.438 rather than 26.437. The source uses its displayed 26.437 in the remaining arithmetic. The head distributions are: `p(A) = (0.00, 0.05, 0.15, 0.45, 0.35)`. `p(B) = (0.00, 0.05, 0.25, 0.50, 0.20)`. `p(C) = (0.05, 0.10, 0.30, 0.45, 0.10)`. All three modes are class 3. Placing A first gives NDCG@10 = 1.000. Placing A second loses 2.953 DCG. The source reports `23.484/26.437 = 0.888`, while unrounded calculation gives DCG 23.485156. Placing A third loses 4.000 DCG. The source reports `22.437/26.437 = 0.849`, while unrounded calculation gives DCG 22.437718. Both NDCG values still round to 0.888 and 0.849. Across the six orders of `{A, B, C}`, the expected value is `(1.000 + 0.888 + 0.849)/3 = 0.912`. Breaking the tie by winning-class probability puts B first and A second. That gives NDCG@10 = 0.888. Expected relevance gives `3.10` for A, `2.85` for B, and `2.45` for C. Expected gain gives `8.90`, `7.30`, and `5.65`. Both order A, B, C and reach NDCG@10 = 1.000. The change is 0.088 absolute and 9.6% relative with no extra inference pass. At `K = 2`, expected relevance reduces to `p₁`. The source says monoT5, from Nogueira and colleagues in 2020, ranks by the decoder probability of the token `true`.
@@ -299,17 +299,17 @@ For `k = 100`, pointwise scoring needs 100 independent forward passes. At 250 qu
 For one query, pairwise training derives:
 
 $$
-I = {(i, j) : yᵢ > yⱼ}
+I = \{(i, j) : y_i > y_j\}
 $$
 
 Pairs must stay within one query. Grades are not calibrated across queries. RankSVM uses `sᵢ = wᵀxᵢ`. Its preference condition is `wᵀ(xᵢ - xⱼ) > 0`. It classifies the difference vector through the origin. There is no bias because a common score shift cannot change rank. Its max-margin program is:
 
 $$
-minimize over w: 0.5||w||² + C Σ_((i,j) in I) ξᵢⱼ
+\text{minimize over } w:\ 0.5\|w\|^2 + C \sum_{(i,j) \in I} \xi_{ij}
 $$
 
 $$
-subject to wᵀ(xᵢ - xⱼ) ≥ 1 - ξᵢⱼ and ξᵢⱼ ≥ 0
+\text{subject to } w^{\top}(x_i - x_j) \ge 1 - \xi_{ij} \text{ and } \xi_{ij} \ge 0
 $$
 
 Herbrich and colleagues introduced the method in 2000. Joachims applied it to search in 2002. A click on result 3 after skipping results 1 and 2 yields two preference pairs in the source example.
@@ -319,35 +319,41 @@ Herbrich and colleagues introduced the method in 2000. Joachims applied it to se
 RankNet, from Burges and colleagues in 2005, keeps the preference pairs and uses a neural scorer. Its pair probability and target are:
 
 $$
-Pᵢⱼ = σ(γ(sᵢ - sⱼ)), P̄ᵢⱼ = 1 for (i, j) in I
+P_{ij} = \sigma(\gamma(s_i - s_j)), \quad \bar{P}_{ij} = 1 \text{ for } (i, j) \in I
 $$
 
 Cross-entropy collapses to:
 
 $$
-Cᵢⱼ = log(1 + exp(-γ(sᵢ - sⱼ)))
+C_{ij} = \log(1 + \exp(-\gamma(s_i - s_j)))
 $$
 
 Differentiation gives equal-and-opposite forces:
 
 $$
-∂Cᵢⱼ/∂sᵢ = -γ/(1 + exp(γ(sᵢ - sⱼ))) = -λᵢⱼ
+\partial C_{ij}/\partial s_i = -\gamma/(1 + \exp(\gamma(s_i - s_j))) = -\lambda_{ij}
 $$
 
 $$
-∂Cᵢⱼ/∂sⱼ = λᵢⱼ
+\partial C_{ij}/\partial s_j = \lambda_{ij}
 $$
 
 Aggregate document force is:
 
 $$
-λᵢ = Σ_(j:(i,j) in I) λᵢⱼ - Σ_(j:(j,i) in I) λⱼᵢ
+\lambda_i = \sum_{j:(i,j) \in I} \lambda_{ij} - \sum_{j:(j,i) \in I} \lambda_{ji}
 $$
 
 The model gradient factorizes as:
 
 $$
-∂C/∂θ = Σ_(i=1 to n) λᵢ ∂sᵢ/∂θ
+\partial C/\partial \theta = \sum_{i=1}^{n} \lambda_i\, \partial s_i/\partial \theta
+$$
+
+Correction: with the positive pair force defined above, ∂C/∂sᵢ = -λᵢ, so the chain rule gives the factorized gradient a leading minus sign. Burges (2010, Microsoft Research technical report MSR-TR-2010-82) prints it without the sign because he defines λᵢⱼ as the negative quantity ∂Cᵢⱼ/∂sᵢ.
+
+$$
+\partial C/\partial \theta = -\sum_{i=1}^{n} \lambda_i\, \partial s_i/\partial \theta
 $$
 
 The network therefore runs once per document, not once per pair. The pair loop assembles forces outside the network.
@@ -357,11 +363,11 @@ The network therefore runs once per document, not once per pair. The pair loop a
 RankSVM and RankNet count or smooth inversions without rank-position value. The same score gap gets the same force near rank 1 and rank 500. LambdaRank, from Burges, Ragno, and Le in 2006, specifies the metric-aware gradient directly. For documents at ranks `r_i` and `r_j`:
 
 $$
-|ΔNDCGᵢⱼ| = |relᵢ - relⱼ|/IDCG × |1/log₂(1 + rᵢ) - 1/log₂(1 + rⱼ)|
+|\Delta \text{NDCG}_{ij}| = |\text{rel}_i - \text{rel}_j|/\text{IDCG} \times |1/\log_2(1 + r_i) - 1/\log_2(1 + r_j)|
 $$
 
 $$
-λLRᵢⱼ = γ|ΔNDCGᵢⱼ|/(1 + exp(γ(sᵢ - sⱼ)))
+\lambda^{\text{LR}}_{ij} = \gamma|\Delta \text{NDCG}_{ij}|/(1 + \exp(\gamma(s_i - s_j)))
 $$
 
 The extra metric factor costs one multiplication per pair. The source says the authors tested more than ten candidate approximations before selecting it. The continuous derivative of the discount at rank 100 has magnitude `3.222 × 10^-4`. The discrete change is `3.199 × 10^-4`. They agree within 0.7%. The reweighting acts as a position derivative.
@@ -385,11 +391,11 @@ A label split of `80/20/12/6/2` across grades 0 to 4 creates `120 choose 2 = 7,1
 NDCG depends on integer ranks:
 
 $$
-DCG = Σ_(j=1 to n) g(yⱼ)/log₂(1 + rⱼ)
+\text{DCG} = \sum_{j=1}^{n} g(y_j)/\log_2(1 + r_j)
 $$
 
 $$
-NDCG = DCG/IDCG
+\text{NDCG} = \text{DCG}/\text{IDCG}
 $$
 
 A tiny score change either leaves every rank fixed or swaps documents and jumps the metric. The gradient is zero almost everywhere and undefined at swap boundaries. The source develops three routes.
@@ -399,25 +405,25 @@ A tiny score change either leaves every rank fixed or swaps documents and jumps 
 SoftRank, from Taylor and colleagues in 2008, randomizes each score:
 
 $$
-sⱼ is distributed as Normal(f(xⱼ), σ²)
+s_j \text{ is distributed as } \mathcal{N}(f(x_j), \sigma^2)
 $$
 
 For independent Gaussians:
 
 $$
-πᵢⱼ = Pr[sᵢ > sⱼ] = Φ((f(xᵢ) - f(xⱼ))/(√2σ))
+\pi_{ij} = \Pr[s_i > s_j] = \Phi((f(x_i) - f(x_j))/(\sqrt{2}\sigma))
 $$
 
 Insert candidates one at a time. The recurrence is:
 
 $$
-pⱼ^(i)(r) = πᵢⱼ pⱼ^(i-1)(r - 1) + (1 - πᵢⱼ)pⱼ^(i-1)(r)
+p_j^{(i)}(r) = \pi_{ij}\, p_j^{(i-1)}(r - 1) + (1 - \pi_{ij})\, p_j^{(i-1)}(r)
 $$
 
 It starts with all probability mass at rank zero. After `n - 1` insertions, every rank probability is differentiable in every score. Expected metric is:
 
 $$
-SoftNDCG = (1/IDCG) Σ_j g(yⱼ) Σ_r pⱼ(r)/log₂(1 + r)
+\text{SoftNDCG} = (1/\text{IDCG}) \sum_j g(y_j) \sum_r p_j(r)/\log_2(1 + r)
 $$
 
 Each of `n` documents needs `n - 1` insertions. Each insertion updates `n` rank bins. The full recurrence therefore costs `Θ(n³)` per query and is sequential in insertion index.
@@ -427,8 +433,10 @@ Each of `n` documents needs `n - 1` insertions. Each insertion updates `n` rank 
 LambdaRank keeps the metric discrete and defines the gradient. The listwise section writes the pair force as:
 
 $$
-λᵢⱼ = -σ_l ΔNDCGᵢⱼ/(1 + exp(σ_l(sᵢ - sⱼ)))
+\lambda_{ij} = -\sigma_l\, \Delta \text{NDCG}_{ij}/(1 + \exp(\sigma_l(s_i - s_j)))
 $$
+
+Correction: this listwise form follows the negative-force convention of Burges (2010, MSR-TR-2010-82), who also writes the metric factor as |ΔNDCGᵢⱼ|. Its `σ_l` plays the role of `γ` in section 19.3, so this λᵢⱼ equals minus the positive LambdaRank force λLRᵢⱼ printed there.
 
 LambdaMART feeds the per-document forces to gradient-boosted regression trees. Each boosting round fits a tree to `lambda_j = Σ_j' lambda_jj'`. It sets leaf values with a Newton step. The source favors trees for heterogeneous, unnormalized features such as BM25, PageRank, click-through rate, and domain age.
 
@@ -437,13 +445,13 @@ LambdaMART feeds the per-document forces to gradient-boosted regression trees. E
 SoftRank and LambdaMART still score each document alone. SetRank, from Pang and colleagues in 2020, changes the scorer's arity:
 
 $$
-s = f(q, {d₁, ..., d_n})
+s = f(q, \{d_1, \dots, d_n\})
 $$
 
 A document score can now depend on competitors. The output must not depend on arbitrary first-stage input order. Without positional encodings, self-attention obeys:
 
 $$
-softmax(PQKᵀPᵀ/√d)PV = P softmax(QKᵀ/√d)V
+\mathop{\text{softmax}}(PQK^{\top}P^{\top}/\sqrt{d})PV = P \mathop{\text{softmax}}(QK^{\top}/\sqrt{d})V
 $$
 
 SetRank removes positional embeddings and projects each contextualized candidate to a scalar. When prior rank should be a feature, it adds an ordinal embedding that can be ablated.
@@ -471,13 +479,13 @@ Use LambdaMART by default for handcrafted tabular features. The source says a bo
 Neural LTR changes features from handcrafted values to learned text representations. It does not change the pointwise, pairwise, and listwise loss taxonomy. The source applies the same structural distinction to a 2016 CNN ranker, a 2020 bi-encoder, and a 2024 LLM reranker. Representation scoring factorizes:
 
 $$
-s_rep(q, d) = sim(η(q), η(d))
+s_{\text{rep}}(q, d) = \mathop{\text{sim}}(\eta(q), \eta(d))
 $$
 
 The document vector `eta(d)` does not depend on the query. It can be computed when the document is indexed. Interaction scoring does not factorize:
 
 $$
-s_int(q, d) = f(φ(q, d))
+s_{\text{int}}(q, d) = f(\phi(q, d))
 $$
 
 The joint object cannot exist before the query arrives. Parameter count is not the deciding property. The deciding question is whether the document contribution can be computed before the query is known.
@@ -491,7 +499,7 @@ DSSM, from Huang and colleagues in 2013, hashes words into letter trigrams. The 
 MatchPyramid, from Pang and colleagues in 2016, constructs:
 
 $$
-Mᵢⱼ = cos(qᵢ, dⱼ)
+M_{ij} = \cos(q_i, d_j)
 $$
 
 A 100-word query and 100-word document create `100 × 100 = 10,000` token similarities for one pair. MatchPyramid treats the matrix as an image and applies a 2-D CNN. Its filters span positions in both texts. The source says the usual complaint about CNN locality does not apply in the same way here. It describes the design in hindsight as attention without the softmax. DRMM, from Guo and colleagues in 2016, turns each matrix row into a similarity histogram. An MLP learns the contribution of each bin. Histogram width is independent of document length. That avoids the padding and truncation forced by a fixed interaction matrix. DRMM also destroys document word order. The source treats that as defensible for ad hoc aboutness matching. It treats it as indefensible when order carries meaning, such as Boston-to-Denver versus Denver-to-Boston. For directional or comparative queries, order destruction is the bug, not a small approximation.
@@ -501,7 +509,7 @@ A 100-word query and 100-word document create `100 × 100 = 10,000` token simila
 A representation model compresses a document before it knows the future query. At `m = 128` in fp32, the vector has `128 × 32 = 4,096` bits. A 400-token chunk from a 30,522-piece vocabulary has a raw upper bound of:
 
 $$
-400 log₂(30,522) approximately equals 400 × 14.9 = 5,960 bits
+400 \log_2(30{,}522) \approx 400 \times 14.9 = 5{,}960 \text{ bits}
 $$
 
 The vector budget is about `4,096/400 = 10` bits per token. That is below the 14.9 bits needed merely to name one vocabulary item under the raw bound. Natural language is redundant and has lower true entropy. The source therefore presents this as the shape of the constraint, not a break-even point. The vector budget stays fixed while document length varies. The encoder allocates coordinates to corpus-wide recurring distinctions. A part number occurring in one document among `10^6` may not receive a coordinate. Increasing width from 128 to 768 multiplies index bytes by 6. The source says this does not restore exact matching because the problem is allocation, not only room. Duet, from Mitra, Diaz, and Craswell in 2017, sums a representation score and an interaction score. The source's stated headline result is that the joint model beats each half. The claim is about complementary failure modes. If the two channels have high rank correlation on actual traffic, the source allows choosing one because correlated channels duplicate signal at twice the cost.
@@ -511,13 +519,13 @@ The vector budget is about `4,096/400 = 10` bits per token. That is below the 14
 Use a `10^7`-passage corpus, about the stated 8.8 million passage size of Microsoft Machine Reading Comprehension (MS MARCO). Each passage has 100 tokens with 300-dimensional fp32 token embeddings. The query has 10 tokens. The accelerator sustains 3.35 terabytes per second of memory bandwidth and `3.4 × 10^14` FLOPs per second. Full interaction streams:
 
 $$
-10^7 × 100 × 300 × 4 bytes = 1.2 × 10^12 bytes = 1.2 terabytes
+10^7 \times 100 \times 300 \times 4 \text{ bytes} = 1.2 \times 10^{12} \text{ bytes} = 1.2 \text{ terabytes}
 $$
 
 At the stated bandwidth, that is `0.358` seconds or 358 milliseconds before convolution. The data does not fit in one accelerator's memory. A representation index at `m = 128` streams:
 
 $$
-10^7 × 128 × 4 bytes = 5.12 × 10^9 bytes = 5.12 gigabytes
+10^7 \times 128 \times 4 \text{ bytes} = 5.12 \times 10^9 \text{ bytes} = 5.12 \text{ gigabytes}
 $$
 
 That takes 1.53 milliseconds. The dot products cost `10^7 × 2m = 2.56 × 10^9` FLOPs. At the stated compute rate, they take 7.5 microseconds. Memory movement dominates arithmetic by more than 200 times. The byte ratio is `1.2 × 10^12 / 5.12 × 10^9 = 234`. A hybrid interaction stage over top `k = 100` streams `1.2 × 10^7` bytes in 3.6 microseconds. It runs on `10^-5` of the corpus. The stage adds 0.0036 milliseconds to a 1.53-millisecond retrieval, or 0.235% of that budget. It cannot recover a document excluded from top 100. At `10^4` documents, full interaction streams 1.2 gigabytes and takes 0.36 milliseconds. At that scale, the source says a first stage is pure complexity. A multi-vector index with one vector per token uses 100 times the bytes and streams in 153 milliseconds. ColBERT's published end-to-end latency on MS MARCO is 458 milliseconds in the cited 2020 work. The estimate is within a factor of 3. The source attributes the residual to ANN traversal, MaxSim reshaping, and final reranking.
@@ -607,13 +615,13 @@ flowchart TD
 SoftRank recurrence:
 
 $$
-pⱼ^(i)(r) = πᵢⱼ pⱼ^(i-1)(r - 1) + (1 - πᵢⱼ)pⱼ^(i-1)(r)
+p_j^{(i)}(r) = \pi_{ij}\, p_j^{(i-1)}(r - 1) + (1 - \pi_{ij})\, p_j^{(i-1)}(r)
 $$
 
 SetRank equivariance:
 
 $$
-f(q, PD) = P f(q, D) for every permutation P
+f(q, PD) = P f(q, D) \text{ for every permutation } P
 $$
 
 Figure 19.4: Two ways to get a usable gradient out of a metric built on integer ranks. (a) SoftRank replaces each score with a Gaussian, which makes the pairwise probability πij smooth, then an insertion recurrence turns the discrete rank into a distribution pj (r) whose expected NDCG is differentiable - at a cost of Θ(n3 ) per query. (b) SetRank instead changes what is scored, pushing the whole candidate set through self-attention with the positional embeddings removed, so re-ordering the input permutes the scores rather than changing them.

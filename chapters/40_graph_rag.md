@@ -10,7 +10,7 @@ This chapter prepares you to defend every stage, cost, failure, and claim bounda
 - Heuristic retrieval links entities, matches phrases to real relation types, and traverses a bounded connected path.
 - Grounding turns a graph from a fact store into a reasoning source by rejecting every proposed path that has no real walk.
 - Graph neural network retrieval moves repeated inference-time model calls into offline training, but it needs a symbolic fallback for unseen relations.
-- Prune, rerank, augment, and verbalize before generation. A correct but raw subgraph can still overflow context or bury the answer. Choose GraphRAG communities for global sense-making and LightRAG dual-level keys for point or multi-hop factual retrieval with frequent updates.
+- Prune, rerank, augment, and verbalize before generation. A correct but raw subgraph can still overflow context or bury the answer. Choose GraphRAG communities for global sense-making and LightRAG dual-level keys for point or multi-hop factual retrieval with frequent updates. Correction: LightRAG's own paper evaluates it on global sense-making questions, so its reported scope is not limited to factual retrieval.
 
 ## The story
 
@@ -104,7 +104,7 @@ Finally, GraphRAG builds a hierarchy of regional rail maps and summaries for que
 | Leiden | Connected-community partitioning by modularity gain | It constructs GraphRAG's hierarchy |
 | Modularity `Q` | Within-community connection strength beyond chance | It is the partition objective |
 | Map-reduce | Answer over community summaries, then merge partial answers | It serves global queries without reopening raw chunks |
-| LightRAG | Flat key-value graph with dual-level retrieval | It favors point queries and incremental updates |
+| LightRAG | Flat key-value graph with dual-level retrieval | It targets both specific and thematic queries and supports incremental updates (corrected from it favors point queries and incremental updates) |
 | Low-level key | Specific entity or relation key | It behaves like entity linking for facts |
 | High-level key | Abstract thematic key | It retrieves broader related material |
 | Sense-making query | Ask for themes across a corpus | It matches GraphRAG's summary hierarchy |
@@ -359,11 +359,17 @@ $$
 \sum_{k=1}^{h}w^{k-1}=\frac{w^h-1}{w-1}
 $$
 
-With `w = 3`, a two-hop question needs four traversal calls and one final call, or five total. A four-hop question needs 40 traversal calls and one final call, or 41 total.
+Correction: Think-on-Graph (Sun et al., 2023, arXiv 2307.07697) keeps only the top w reasoning paths at each depth, so its LLM calls grow linearly in depth and multiplicatively in beam width, and the paper bounds the total at:
+
+$$
+\text{calls}_{\text{ToG}} \le 2wh + h + 1
+$$
+
+With `w = 3`, a two-hop question needs four traversal calls and one final call, or five total. A four-hop question needs 40 traversal calls and one final call, or 41 total. Correction: under the paper's bound, `w = 3` gives up to 15 calls at two hops and up to 29 calls at four hops, final call included, and this linear growth agrees with section 40.6, which prices three beams across three hops at nine sequential calls.
 
 RoG uses one planning call, zero model calls for exact grounding, and one reasoning call. It stays at two calls independent of `h`.
 
-At about $0.002 per short call, two hops cost $0.010 for ToG and $0.004 for RoG, a 2.5 times gap. Four hops cost about $0.082 and $0.004, roughly a 20 times gap.
+At about $0.002 per short call, two hops cost $0.010 for ToG and $0.004 for RoG, a 2.5 times gap. Four hops cost about $0.082 and $0.004, roughly a 20 times gap. Correction: with the paper's bound, two hops cost up to $0.030 against $0.004, about 7.5 times, and four hops cost up to $0.058 against $0.004, about 14.5 times.
 
 #### Decisions, ablation, and claim limit
 
@@ -593,7 +599,7 @@ LightRAG skips community summaries. It profiles each entity name as a key and su
 
 GraphRAG's hierarchy can answer questions about major themes without reopening raw chunks. LightRAG avoids the summarization tax and accepts local incremental updates. `Which plan tier includes single sign-on?` is the source point-query example for LightRAG.
 
-GraphRAG loses on point lookup because a map-reduce pass reads summaries written for another question. LightRAG loses on a genuinely global query because local key matching cannot replace a summary that was never written.
+GraphRAG loses on point lookup because a map-reduce pass reads summaries written for another question. LightRAG loses on a genuinely global query because local key matching cannot replace a summary that was never written. Correction: the LightRAG paper (Guo et al., 2024, arXiv 2410.05779) reports roughly even or better LLM-judged overall win rates against GraphRAG on its global sense-making questions, and neither paper measures point-query accuracy.
 
 #### Failure without it
 
@@ -617,7 +623,7 @@ For 50 new documents, LightRAG adds about 50 local extraction units. GraphRAG re
 
 #### Decisions, ablation, and claim limit
 
-Default to LightRAG for point and multi-hop factual queries. Use GraphRAG for global themes. A source decision threshold treats at most about 10,000 chunks with rare edits as the small and static case where GraphRAG's one-time premium may be acceptable.
+Default to LightRAG for point and multi-hop factual queries. Use GraphRAG for global themes. Correction: this split is the source's advice, and LightRAG's own evaluation covers global sense-making questions, so measure both systems on the shipping workload before choosing. A source decision threshold treats at most about 10,000 chunks with rare edits as the small and static case where GraphRAG's one-time premium may be acceptable.
 
 For a corpus growing 5 percent daily under a one-hour freshness target, combine an incremental LightRAG-style key store with a scheduled GraphRAG rebuild for sense-making queries.
 
@@ -784,7 +790,7 @@ Attribute latency before optimizing because one structured schema call takes 2,5
 
 ### 5. Is GraphRAG better than LightRAG because its reported evaluation looks stronger?
 
-No, because the query shape and benchmark must be named first. GraphRAG targets global sense-making through community summaries, while LightRAG targets factual retrieval through low-level and high-level keys. GraphRAG's reported comprehensiveness, diversity, and empowerment are subjective and LLM-scored, so test point accuracy, global coverage, update freshness, and cost on the workload that will ship.
+The source answers no, because GraphRAG targets global sense-making through community summaries while LightRAG targets factual retrieval, and it calls only GraphRAG's comprehensiveness, diversity, and empowerment scores subjective and LLM-scored. Correction: LightRAG (arXiv 2410.05779) also reports win rates from an LLM judge on global sense-making questions built with the GraphRAG method, where it claims to match or beat GraphRAG at lower indexing cost. Neither paper measures point-query accuracy, so test point accuracy, global coverage, update freshness, and cost on the workload that will ship.
 
 ## Key numbers
 
@@ -817,11 +823,11 @@ No, because the query shape and benchmark must be named first. GraphRAG targets 
 | 40.4 | `h` at most 3 or `h` at most 4 | Explicit practical depth bound from the source |
 | 40.4 | `h + 2` calls | KG-GPT minimum for an `h`-relation query |
 | 40.4 | Roughly 20 edge types | Upper region where hand lookup can remain practical |
-| 40.5 | `b = 8` and `w = 3`, then 5 calls at two hops | Graph branching example and ToG-style two-hop total including generation |
-| 40.5 | 41 calls at four hops | ToG-style four-hop total including generation |
+| 40.5 | `b = 8` and `w = 3`, then up to 15 calls at two hops (corrected from 5 calls) | Graph branching example and ToG two-hop bound 2wh + h + 1 including generation |
+| 40.5 | Up to 29 calls at four hops (corrected from 41 calls) | ToG four-hop bound 2wh + h + 1 including generation |
 | 40.5 | 2 calls independent of `h` | RoG planning plus reasoning |
-| 40.5 | $0.010 versus $0.004, then $0.082 versus $0.004 | Two-hop and four-hop illustrative costs |
-| 40.5 | 2.5 times and roughly 20 times | Cost gaps as depth increases |
+| 40.5 | Up to $0.030 versus $0.004, then up to $0.058 versus $0.004 (corrected from $0.010 and $0.082 for ToG) | Two-hop and four-hop illustrative costs |
+| 40.5 | About 7.5 times and about 14.5 times (corrected from 2.5 times and roughly 20 times) | Cost gaps against RoG as depth increases |
 | 40.6 | 500 nodes, degree 4, about 2,000 edges, dimension 768 | Candidate graph example |
 | 40.6 | 3 layers and 9.2 million multiply-adds | Learned retrieval arithmetic |
 | 40.6 | 9 calls at 700 ms = 6.3 seconds | Constructed symbolic latency |
